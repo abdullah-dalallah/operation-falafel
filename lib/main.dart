@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:operation_falafel/localization/demo_localization.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/screens/tabs_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatefulWidget {
     state?.setLocale(locale);
 
 
-    
+
   }
 
 
@@ -88,7 +89,7 @@ class _MyAppState extends State<MyApp> {
 
             primarySwatch: Colors.blue,
           ),
-          home: const MyHomePage(title: 'Flutter Demo Home Page'),
+          home: const Tabs_Screen(title: 'Flutter Demo Home Page'),
         );
     }
 
@@ -96,11 +97,21 @@ class _MyAppState extends State<MyApp> {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
 class MyHomePage extends StatefulWidget {
+  final String title;
   const MyHomePage({super.key, required this.title});
 
-
-  final String title;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
