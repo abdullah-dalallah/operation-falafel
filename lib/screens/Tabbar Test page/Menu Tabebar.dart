@@ -38,7 +38,7 @@ class _TabeBarState extends State<TabeBar> with SingleTickerProviderStateMixin{
                  backgroundColor: Colors.orangeAccent,
                  pinned: true,
                  // floating: true,
-                 expandedHeight: 230.0,
+                 expandedHeight: 200.0,
                  flexibleSpace: FlexibleSpaceBar(
                    // titlePadding: EdgeInsets.only(bottom: 60, left: 50),
                    title: Text('Main Menu', textScaleFactor: 1),
