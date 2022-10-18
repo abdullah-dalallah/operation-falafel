@@ -30,6 +30,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   shared_preferences: ^2.0.15
+  persistent_bottom_nav_bar: ^5.0.2
   flutter:
     sdk: flutter
   flutter_localizations:
