@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:operation_falafel/localization/demo_localization.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
-import 'package:operation_falafel/screens/tabs_screen.dart';
+import 'package:operation_falafel/screens/bottomnavigationbar_screen.dart';
 
 void main() {
   runApp(const MyApp());

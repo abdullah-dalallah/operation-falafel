@@ -1,15 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/screens/drawer.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class Test_Rout extends StatefulWidget{
+class Cart_Screen extends StatefulWidget{
   @override
-  State<Test_Rout> createState() => _Test_RoutState();
+  State<Cart_Screen> createState() => _Cart_ScreenState();
 }
 
-class _Test_RoutState extends State<Test_Rout> {
+class _Cart_ScreenState extends State<Cart_Screen> {
+  final GlobalKey<ScaffoldState> _drawerKey = GlobalKey(); // Create a key
   @override
   Widget build(BuildContext context) {
    return Stack(
+
      children: [
        Image.asset(
          "assets/images/background.jpeg",
@@ -18,10 +22,14 @@ class _Test_RoutState extends State<Test_Rout> {
          fit: BoxFit.cover,
        ),
        Scaffold(
+         key: _drawerKey,
          backgroundColor: Colors.transparent,
 
 
          appBar: AppBar(
+           leading:IconButton(onPressed: (){
+             _drawerKey.currentState?.openDrawer();
+           },icon: FaIcon(FontAwesomeIcons.bars,size: 30,),) ,
            backgroundColor: Colors.transparent,
            elevation: 0,
            title: Text("Operation Falafel",style: TextStyle(fontFamily: "oldpress",color: Colors.white, fontSize: 30),)
@@ -68,6 +76,7 @@ class _Test_RoutState extends State<Test_Rout> {
              ],
            ),
          ),
+         drawer: DrawerWidget(),
        ),
      ],
    );

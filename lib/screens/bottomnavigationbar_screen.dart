@@ -3,6 +3,7 @@ import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/main.dart';
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/screens/Tabbar%20Test%20page/Menu%20Tabebar.dart';
+import 'package:operation_falafel/screens/cart%20page/cart_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class Tabs_Screen extends StatefulWidget{
@@ -39,7 +40,7 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
       controller: _controller,
       screens: [
         TabeBar(),
-        TabeBar(),
+        Cart_Screen(),
         TabeBar(),
         TabeBar(),
         TabeBar(),
@@ -73,7 +74,6 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
           activeColorPrimary: CupertinoColors.activeOrange,
           inactiveColorPrimary: CupertinoColors.systemBackground,
         ),
-
         PersistentBottomNavBarItem(
           // iconSize: 100,
           icon:Icon(CupertinoIcons.person_alt_circle),
@@ -110,34 +110,6 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
 
 
 
-    //   Scaffold(
-    //   appBar: AppBar(
-    //
-    //     title: Text(widget.title),
-    //   ),
-    //   body: Center(
-    //
-    //     child: Column(
-    //       mainAxisAlignment: MainAxisAlignment.center,
-    //       children: <Widget>[
-    //         Text(getTranslated(context, "Main_Text")!,),
-    //         // Text(getTranslated(context, "Main_Text")!, style: Theme.of(context).textTheme.headline4,),
-    //       ],
-    //     ),
-    //   ),
-    //   floatingActionButton: FloatingActionButton(
-    //     onPressed:(){
-    //       // _changeLanguage("en");
-    //       Navigator.of(context).push(MaterialPageRoute(builder: (context) => TabeBar()));
-    //
-    //     },
-    //     tooltip: 'Increment',
-    //     child: const Icon(Icons.add),
-    //   ),
-    //
-    //
-    //
-    //   // This trailing comma makes auto-formatting nicer for build methods.
-    // );
+
   }
 }

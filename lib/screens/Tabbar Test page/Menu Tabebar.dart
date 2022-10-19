@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/main.dart';
-import 'package:operation_falafel/screens/Test%20Page.dart';
+import 'package:operation_falafel/screens/cart%20page/cart_screen.dart';
+
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 class TabeBar extends StatefulWidget{
   @override
@@ -196,7 +197,7 @@ class _TabeBarState extends State<TabeBar> with SingleTickerProviderStateMixin{
          _changeLanguage("en");
          PersistentNavBarNavigator.pushNewScreen(
            context,
-           screen: Test_Rout(),
+           screen: Cart_Screen(),
            withNavBar: true, // OPTIONAL VALUE. True by default.
            pageTransitionAnimation: PageTransitionAnimation.cupertino,
          );
