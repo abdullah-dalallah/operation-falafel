@@ -29,6 +29,8 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  carousel_slider: ^4.1.1
+  line_awesome_flutter: ^2.0.0
   font_awesome_flutter: ^10.2.1
   shared_preferences: ^2.0.15
   persistent_bottom_nav_bar: ^5.0.2

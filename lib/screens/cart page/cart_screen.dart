@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:operation_falafel/screens/drawer.dart';
+import 'package:operation_falafel/widgets/drawer.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Cart_Screen extends StatefulWidget{
@@ -41,18 +41,18 @@ class _Cart_ScreenState extends State<Cart_Screen> {
              children: [
 
                SizedBox(height: 20,),
-               Text("!MY O:F CART",style: TextStyle(fontFamily: "oldpress",color: Colors.amber.shade300, fontSize: 50),),
+               Text("MY O:F CART!",style: TextStyle(fontFamily: "oldpress",color: Colors.amber.shade300, fontSize: 50),),
                SizedBox(height: 50,),
 
                Text("YOUR CART IS EMPITY",style: TextStyle(fontFamily: "oldpress",color: Colors.white, fontSize: 30),),
-               SizedBox(height: 15,),
+               SizedBox(height: 10,),
                Container(
-                 width: 300,
-                   height: 40,
+                 width: 330,
+                   height: 38,
                  child: ElevatedButton(
                    onPressed: null,
                    style: ButtonStyle(
-                     backgroundColor:  MaterialStateProperty.all<Color>(Colors.green),
+                     backgroundColor:  MaterialStateProperty.all<Color>(Color(0xFF84ab24)),
                      foregroundColor:
                      MaterialStateProperty.all<Color>(Colors.black),
                      shape: MaterialStateProperty.all(
@@ -64,7 +64,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
 
 
                    ),
-                   child: Text("Order Now",style: TextStyle(fontFamily: "oldpress",color: Colors.white, fontSize: 30),)
+                   child: Text("Order Now",style: TextStyle(fontFamily: "oldpress",color: Colors.white, fontSize: 25),)
 
 
                    // Padding(

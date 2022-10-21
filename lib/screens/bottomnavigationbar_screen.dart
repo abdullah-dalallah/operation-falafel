@@ -4,7 +4,10 @@ import 'package:operation_falafel/main.dart';
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/screens/Tabbar%20Test%20page/Menu%20Tabebar.dart';
 import 'package:operation_falafel/screens/cart%20page/cart_screen.dart';
+import 'package:operation_falafel/screens/homepage/mainmenu.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class Tabs_Screen extends StatefulWidget{
   final String title;
@@ -39,7 +42,7 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
       context,
       controller: _controller,
       screens: [
-        TabeBar(),
+        MainMenu(),
         Cart_Screen(),
         TabeBar(),
         TabeBar(),
@@ -48,13 +51,14 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
       ],
       items: [
         PersistentBottomNavBarItem(
-          icon: Icon(CupertinoIcons.doc_plaintext),
+          icon: FaIcon(CupertinoIcons.doc_plaintext),
           title: ("Order"),
+          textStyle: TextStyle(fontSize: 9),
           activeColorPrimary: CupertinoColors.activeOrange,
           inactiveColorPrimary: CupertinoColors.systemBackground,
         ),
         PersistentBottomNavBarItem(
-
+          textStyle: TextStyle(fontSize: 9),
           icon: Icon(CupertinoIcons.cart),
           title: ("Cart"),
           activeColorPrimary: CupertinoColors.activeOrange,
@@ -69,12 +73,14 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
           inactiveColorPrimary: CupertinoColors.systemBackground,
         ),
         PersistentBottomNavBarItem(
+          textStyle: TextStyle(fontSize: 9),
           icon: Icon(CupertinoIcons.gift),
           title: ("Loyalty"),
           activeColorPrimary: CupertinoColors.activeOrange,
           inactiveColorPrimary: CupertinoColors.systemBackground,
         ),
         PersistentBottomNavBarItem(
+          textStyle: TextStyle(fontSize: 9),
           // iconSize: 100,
           icon:Icon(CupertinoIcons.person_alt_circle),
           //Icon(CupertinoIcons.person_alt_circle),
