@@ -268,7 +268,7 @@ class _MainMenuState extends State<MainMenu> {
                 ),
 
                 ///- Your O:F Favorites
-                Text("YOUR O:F FAVORITES", style: TextStyle(fontSize: 35,fontFamily: "oldpress", color: Colors.amber.shade500),),
+                Text("YOUR O:F FAVORITES", style: TextStyle(fontSize: 33,fontFamily: "oldpress", color: Colors.amber.shade500),),
 
                 /// - List
                 SizedBox(
@@ -595,7 +595,8 @@ class _MainMenuState extends State<MainMenu> {
                             )
                           ],
                         ),
-                      ),Padding(
+                      ),
+                      Padding(
                         padding: const EdgeInsets.all(2.0),
                         child: Stack(
                           alignment: Alignment.topRight,
@@ -657,7 +658,582 @@ class _MainMenuState extends State<MainMenu> {
 
                     ],
                   ),
-                )
+                ),
+
+
+                SizedBox(height: 10,),
+                ///- Our O:F Best Seller
+                Text("OUR O:F BEST SELLERS", style: TextStyle(fontSize: 33,fontFamily: "oldpress", color: Colors.white),),
+
+                /// - List
+                SizedBox(
+                  height:100 ,
+                  width: MediaQuery.of(context).size.width,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+
+                       Padding(
+                         padding: const EdgeInsets.all(4.0),
+                         child: Stack(
+                            alignment: Alignment.topRight,
+                            children: [
+                              Container(
+                                // width: 125,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(100),
+                                    bottomLeft: Radius.circular(100),
+                                    topLeft: Radius.circular(100),
+                                    bottomRight: Radius.circular(100),
+
+                                  ),
+                                  color: Colors.grey,
+                                  border: Border.all(
+                                    width: 0.8,
+                                    color: Colors.white,
+                                    style: BorderStyle.solid,
+                                  ),
+                                ),
+                                child: Center(child: ClipRRect(
+                                    borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
+                                    child: Image.asset("assets/images/falafel.jpg", height: 90,width: 90,fit: BoxFit.cover,))
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.topRight,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(50),
+                                        bottomLeft: Radius.circular(50),
+                                        topLeft: Radius.circular(50),
+                                        bottomRight: Radius.circular(50),
+
+                                      ),
+                                      color: Colors.black,
+                                      // border: Border.all(
+                                      //   width: 0.8,
+                                      //   color: Colors.white,
+                                      //   style: BorderStyle.solid,
+                                      // ),
+                                    ),
+                                    child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                       ),
+                       Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Stack(
+                          alignment: Alignment.topRight,
+                          children: [
+                            Container(
+                              // width: 125,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(100),
+                                  bottomLeft: Radius.circular(100),
+                                  topLeft: Radius.circular(100),
+                                  bottomRight: Radius.circular(100),
+
+                                ),
+                                color: Colors.grey,
+                                border: Border.all(
+                                  width: 0.8,
+                                  color: Colors.white,
+                                  style: BorderStyle.solid,
+                                ),
+                              ),
+                              child: Center(child: ClipRRect(
+                                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
+                                  child: Image.asset("assets/images/falafel.jpg", height: 90,width: 90,fit: BoxFit.cover,))
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.topRight,
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(50),
+                                      bottomLeft: Radius.circular(50),
+                                      topLeft: Radius.circular(50),
+                                      bottomRight: Radius.circular(50),
+
+                                    ),
+                                    color: Colors.black,
+                                    // border: Border.all(
+                                    //   width: 0.8,
+                                    //   color: Colors.white,
+                                    //   style: BorderStyle.solid,
+                                    // ),
+                                  ),
+                                  child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Stack(
+                          alignment: Alignment.topRight,
+                          children: [
+                            Container(
+                              // width: 125,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(100),
+                                  bottomLeft: Radius.circular(100),
+                                  topLeft: Radius.circular(100),
+                                  bottomRight: Radius.circular(100),
+
+                                ),
+                                color: Colors.grey,
+                                border: Border.all(
+                                  width: 0.8,
+                                  color: Colors.white,
+                                  style: BorderStyle.solid,
+                                ),
+                              ),
+                              child: Center(child: ClipRRect(
+                                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
+                                  child: Image.asset("assets/images/falafel.jpg", height: 90,width: 90,fit: BoxFit.cover,))
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.topRight,
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(50),
+                                      bottomLeft: Radius.circular(50),
+                                      topLeft: Radius.circular(50),
+                                      bottomRight: Radius.circular(50),
+
+                                    ),
+                                    color: Colors.black,
+                                    // border: Border.all(
+                                    //   width: 0.8,
+                                    //   color: Colors.white,
+                                    //   style: BorderStyle.solid,
+                                    // ),
+                                  ),
+                                  child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Stack(
+                          alignment: Alignment.topRight,
+                          children: [
+                            Container(
+                              // width: 125,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(100),
+                                  bottomLeft: Radius.circular(100),
+                                  topLeft: Radius.circular(100),
+                                  bottomRight: Radius.circular(100),
+
+                                ),
+                                color: Colors.grey,
+                                border: Border.all(
+                                  width: 0.8,
+                                  color: Colors.white,
+                                  style: BorderStyle.solid,
+                                ),
+                              ),
+                              child: Center(child: ClipRRect(
+                                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
+                                  child: Image.asset("assets/images/falafel.jpg", height: 90,width: 90,fit: BoxFit.cover,))
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.topRight,
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(50),
+                                      bottomLeft: Radius.circular(50),
+                                      topLeft: Radius.circular(50),
+                                      bottomRight: Radius.circular(50),
+
+                                    ),
+                                    color: Colors.black,
+                                    // border: Border.all(
+                                    //   width: 0.8,
+                                    //   color: Colors.white,
+                                    //   style: BorderStyle.solid,
+                                    // ),
+                                  ),
+                                  child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Stack(
+                          alignment: Alignment.topRight,
+                          children: [
+                            Container(
+                              // width: 125,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(100),
+                                  bottomLeft: Radius.circular(100),
+                                  topLeft: Radius.circular(100),
+                                  bottomRight: Radius.circular(100),
+
+                                ),
+                                color: Colors.grey,
+                                border: Border.all(
+                                  width: 0.8,
+                                  color: Colors.white,
+                                  style: BorderStyle.solid,
+                                ),
+                              ),
+                              child: Center(child: ClipRRect(
+                                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
+                                  child: Image.asset("assets/images/falafel.jpg", height: 90,width: 90,fit: BoxFit.cover,))
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.topRight,
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(50),
+                                      bottomLeft: Radius.circular(50),
+                                      topLeft: Radius.circular(50),
+                                      bottomRight: Radius.circular(50),
+
+                                    ),
+                                    color: Colors.black,
+                                    // border: Border.all(
+                                    //   width: 0.8,
+                                    //   color: Colors.white,
+                                    //   style: BorderStyle.solid,
+                                    // ),
+                                  ),
+                                  child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Stack(
+                          alignment: Alignment.topRight,
+                          children: [
+                            Container(
+                              // width: 125,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(100),
+                                  bottomLeft: Radius.circular(100),
+                                  topLeft: Radius.circular(100),
+                                  bottomRight: Radius.circular(100),
+
+                                ),
+                                color: Colors.grey,
+                                border: Border.all(
+                                  width: 0.8,
+                                  color: Colors.white,
+                                  style: BorderStyle.solid,
+                                ),
+                              ),
+                              child: Center(child: ClipRRect(
+                                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
+                                  child: Image.asset("assets/images/falafel.jpg", height: 90,width: 90,fit: BoxFit.cover,))
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.topRight,
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(50),
+                                      bottomLeft: Radius.circular(50),
+                                      topLeft: Radius.circular(50),
+                                      bottomRight: Radius.circular(50),
+
+                                    ),
+                                    color: Colors.black,
+                                    // border: Border.all(
+                                    //   width: 0.8,
+                                    //   color: Colors.white,
+                                    //   style: BorderStyle.solid,
+                                    // ),
+                                  ),
+                                  child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Stack(
+                          alignment: Alignment.topRight,
+                          children: [
+                            Container(
+                              // width: 125,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(100),
+                                  bottomLeft: Radius.circular(100),
+                                  topLeft: Radius.circular(100),
+                                  bottomRight: Radius.circular(100),
+
+                                ),
+                                color: Colors.grey,
+                                border: Border.all(
+                                  width: 0.8,
+                                  color: Colors.white,
+                                  style: BorderStyle.solid,
+                                ),
+                              ),
+                              child: Center(child: ClipRRect(
+                                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
+                                  child: Image.asset("assets/images/falafel.jpg", height: 90,width: 90,fit: BoxFit.cover,))
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.topRight,
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(50),
+                                      bottomLeft: Radius.circular(50),
+                                      topLeft: Radius.circular(50),
+                                      bottomRight: Radius.circular(50),
+
+                                    ),
+                                    color: Colors.black,
+                                    // border: Border.all(
+                                    //   width: 0.8,
+                                    //   color: Colors.white,
+                                    //   style: BorderStyle.solid,
+                                    // ),
+                                  ),
+                                  child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Stack(
+                          alignment: Alignment.topRight,
+                          children: [
+                            Container(
+                              // width: 125,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(100),
+                                  bottomLeft: Radius.circular(100),
+                                  topLeft: Radius.circular(100),
+                                  bottomRight: Radius.circular(100),
+
+                                ),
+                                color: Colors.grey,
+                                border: Border.all(
+                                  width: 0.8,
+                                  color: Colors.white,
+                                  style: BorderStyle.solid,
+                                ),
+                              ),
+                              child: Center(child: ClipRRect(
+                                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
+                                  child: Image.asset("assets/images/falafel.jpg", height: 90,width: 90,fit: BoxFit.cover,))
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.topRight,
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(50),
+                                      bottomLeft: Radius.circular(50),
+                                      topLeft: Radius.circular(50),
+                                      bottomRight: Radius.circular(50),
+
+                                    ),
+                                    color: Colors.black,
+                                    // border: Border.all(
+                                    //   width: 0.8,
+                                    //   color: Colors.white,
+                                    //   style: BorderStyle.solid,
+                                    // ),
+                                  ),
+                                  child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+
+
+
+
+
+
+
+                    ],
+                  ),
+                ),
+
+                /// - O:F Boxes
+                Stack (
+                  children: [
+                    Row(
+                      main
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(2.0),
+                          child: Stack(
+                            alignment: Alignment.topRight,
+                            children: [
+                              Container(
+                                width: 200,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(0),
+                                    bottomLeft: Radius.circular(0),
+                                    topLeft: Radius.circular(0),
+                                    bottomRight: Radius.circular(0),
+
+                                  ),
+                                  color: Colors.grey,
+                                  border: Border.all(
+                                    width: 0.8,
+                                    color: Colors.white,
+                                    style: BorderStyle.solid,
+                                  ),
+                                ),
+                                child: Center(child: Image.asset("assets/images/falafel.jpg")
+                                ),
+                              ),
+
+                              Align(
+                                alignment: Alignment.topRight,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(50),
+                                        bottomLeft: Radius.circular(50),
+                                        topLeft: Radius.circular(50),
+                                        bottomRight: Radius.circular(50),
+
+                                      ),
+                                      color: Colors.black,
+                                      // border: Border.all(
+                                      //   width: 0.8,
+                                      //   color: Colors.white,
+                                      //   style: BorderStyle.solid,
+                                      // ),
+                                    ),
+                                    child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(2.0),
+                          child: Stack(
+                            alignment: Alignment.topRight,
+                            children: [
+                              Container(
+                                width: 200,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(0),
+                                    bottomLeft: Radius.circular(0),
+                                    topLeft: Radius.circular(0),
+                                    bottomRight: Radius.circular(0),
+
+                                  ),
+                                  color: Colors.grey,
+                                  border: Border.all(
+                                    width: 0.8,
+                                    color: Colors.white,
+                                    style: BorderStyle.solid,
+                                  ),
+                                ),
+                                child: Center(child: Image.asset("assets/images/falafel.jpg")
+                                ),
+                              ),
+
+                              Align(
+                                alignment: Alignment.topRight,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(50),
+                                        bottomLeft: Radius.circular(50),
+                                        topLeft: Radius.circular(50),
+                                        bottomRight: Radius.circular(50),
+
+                                      ),
+                                      color: Colors.black,
+                                      // border: Border.all(
+                                      //   width: 0.8,
+                                      //   color: Colors.white,
+                                      //   style: BorderStyle.solid,
+                                      // ),
+                                    ),
+                                    child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+
 
               ],
             ),
