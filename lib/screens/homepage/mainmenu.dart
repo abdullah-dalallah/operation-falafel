@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'dart:math' as math;
 
 class MainMenu extends StatefulWidget{
   @override
@@ -14,10 +15,10 @@ class _MainMenuState extends State<MainMenu> {
   int currentPos = 0;
   final List<String> imgList = [
 
-    "assets/images/falafel.jpg",
-    "assets/images/operation-falafel-scaled.jpg",
-    "assets/images/opfalafel2.jpg",
-    "assets/images/banner.jpg",
+    "assets/images/OF_NEWWrap_AppBanner.jpeg",
+    "assets/images/OF_NEWWrap_AppBanner.jpeg",
+    "assets/images/OF_NEWWrap_AppBanner.jpeg",
+    "assets/images/OF_NEWWrap_AppBanner.jpeg",
   ];
 
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
@@ -27,47 +28,75 @@ class _MainMenuState extends State<MainMenu> {
     return Stack(
       children: [
         Image.asset(
-          "assets/images/background.jpeg",
+          "assets/images/background.png",
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           fit: BoxFit.cover,
         ),
         Scaffold(
+
           key: _drawerKey,
           backgroundColor: Colors.transparent,
           appBar: AppBar(
+            // toolbarHeight: 40,
               leading:IconButton(onPressed: (){
                 _drawerKey.currentState?.openDrawer();
               },icon: FaIcon(FontAwesomeIcons.bars,size: 30,),) ,
               backgroundColor: Colors.transparent,
               elevation: 0,
+              centerTitle: true,
               title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text("Operation Falafel",style: TextStyle(fontFamily: "oldpress",color: Colors.white, fontSize: 30),),
+                  Padding(
+                    padding: const EdgeInsets.only(right:58.0),
+                    child: Image.asset("assets/images/of_logo_top.png", width: 220,),
+                  ),
 
-                  Container(
-                    width: 35,
-                    height: 30,
-                    decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.4),
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(40),
-                        bottomLeft: Radius.circular(40),
-                        topLeft: Radius.circular(40),
-                        bottomRight: Radius.circular(40),
+
+
+                  Stack(
+                    children: [
+                      Container(
+                        width: 35,
+                        height: 27,
+                        decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.4),
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(40),
+                            bottomLeft: Radius.circular(40),
+                            topLeft: Radius.circular(40),
+                            bottomRight: Radius.circular(40),
+                          ),
+                          border: Border.all(
+                            width: 0.5,
+                            color: Colors.white,
+                            style: BorderStyle.solid,
+                          ),
+                        ),
+                        child: Image.asset("assets/images/icon_search.png",height: 30,width: 35,),
+
                       ),
-                      border: Border.all(
-                        width: 0.5,
-                        color: Colors.white,
-                        style: BorderStyle.solid,
+
+                      new Positioned.fill(
+                          child: new Material(
+                            color: Colors.transparent,
+                            child:  new InkWell(
+                              borderRadius: BorderRadius.all(Radius.circular(20)),
+                              splashColor: Colors.black,
+                              overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                              onTap: (){
+                                print("text");
+                              },
+                            ),
+
+                          )
                       ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Image.asset("assets/images/search.png", color: Colors.white,height: 25,width: 25,),
-                    ),
-                  )
+
+                    ],
+                  ),
+
                 ],
               )
 
@@ -75,13 +104,13 @@ class _MainMenuState extends State<MainMenu> {
           body: SingleChildScrollView(
             child: Column(
               children: [
-                /// - Slider -
+                /// - Slider - Done Design
                 ClipRRect(
                   borderRadius: BorderRadius.only(),
                   child: CarouselSlider(
 
                       options: CarouselOptions(
-                        height: 320,
+                        height: 350,
                         aspectRatio: 1,
                         viewportFraction: 1,
                         initialPage: 0,
@@ -110,16 +139,16 @@ class _MainMenuState extends State<MainMenu> {
                   children: imgList.map((url) {
                     int index = imgList.indexOf(url);
                     return Padding(
-                      padding: const EdgeInsets.only(left: 20.0,right: 20),
+                      padding: const EdgeInsets.only(left: 35.0,right: 35 ,top: 5,bottom: 5),
                       child: Container(
                         width: 8.0,
                         height: 8.0,
-                        margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                        margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: currentPos == index
-                              ? Color.fromRGBO(255, 174, 0, 0.9019607843137255)
-                              : Color.fromRGBO(211, 211, 211, 0.4),
+                              ?const Color.fromRGBO(255, 174, 0, 0.9019607843137255)
+                              : const Color.fromRGBO(211, 211, 211, 0.4),
                         ),
                       ),
                     );
@@ -128,8 +157,8 @@ class _MainMenuState extends State<MainMenu> {
 
                 /// - Location
                 Container(
-
-                   padding: EdgeInsets.only(left: 20,right: 20),
+                  height: 35,
+                   padding: const EdgeInsets.only(left: 20,right: 20),
                   decoration: const BoxDecoration(
                     color: Colors.black,
                   ),
@@ -137,18 +166,17 @@ class _MainMenuState extends State<MainMenu> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                    Icon(Icons.location_on,color: Colors.orange,),
-                    SizedBox(width: 10,),
-                    Text("Al Souq Al Kabeer", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w300,fontSize: 17),), Expanded(child: SizedBox(width: 10,)),
+
+                    Icon(Icons.location_on,color: Colors.orange.shade300,size: 20,),
+                    const SizedBox(width: 10,),
+                    const Text("Al Souq Al Kabeer", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w300,fontSize: 12),), Expanded(child: SizedBox(width: 10,)),
+
                     TextButton(
                       onPressed: () {},
                       style: TextButton.styleFrom(
                         foregroundColor: Colors.amber,
                       ),
-                      child: Text(
-                        'Change',
-                        style: TextStyle(fontWeight: FontWeight.w400),
-                      ),
+                      child: const Text('Change', style: TextStyle(fontWeight: FontWeight.w300, ),),
                     )
                   ],),
 
@@ -160,116 +188,149 @@ class _MainMenuState extends State<MainMenu> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                        width: 125,
-                        padding: const EdgeInsets.all(8.0),
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                              Colors.amber.shade800,
-                              Colors.amber.shade700,
-                            ],
-                          ),
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(15),
-                            bottomLeft: Radius.circular(15),
-                            topLeft: Radius.circular(15),
-                            bottomRight: Radius.circular(15),
+
+                      Stack(
+                        children: [
+                          Container(
+                            width: 125,
+
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.4),
+                              borderRadius:const BorderRadius.only(
+                                topRight: Radius.circular(40),
+                                bottomLeft: Radius.circular(40),
+                                topLeft: Radius.circular(40),
+                                bottomRight: Radius.circular(40),
+                              ),
+                              // border: Border.all(
+                              //   width: 0.5,
+                              //   color: Colors.white,
+                              //   style: BorderStyle.solid,
+                              // ),
+                            ),
+                            child:  Image.asset("assets/images/icon_menu_0.png",),
 
                           ),
-                          // color: Colors.amber.shade700,
-                          border: Border.all(
-                            width: 0.8,
-                            color: Colors.white,
-                            style: BorderStyle.solid,
+                           Positioned.fill(
+                              child:  Material(
+                                color: Colors.transparent,
+                                child:   InkWell(
+                                  borderRadius: BorderRadius.all(Radius.circular(17)),
+                                  splashColor: Colors.black,
+                                  overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                  onTap: (){
+                                    print("text");
+                                  },
+                                ),
+
+                              )
                           ),
-                        ),
-                        child: Center(
-                            child: Column(
-                              children: [
-                                Text("FULL", style: TextStyle(fontFamily: "oldpress", color: Colors.white,fontSize: 28),),
-                                Text("MENU!", style: TextStyle(fontFamily: "oldpress", color: Colors.black,fontSize: 28),),
-                              ],
-                            )
-                        ),
+
+                        ],
                       ),
-                      SizedBox(width: 10,),
-                      Container(
-                       width: 125,
-                        padding: const EdgeInsets.all(8.0),
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                              Colors.grey.shade900,
-                              Colors.grey.shade600,
-                            ],
+                      const SizedBox(width: 10,),
+                      Stack(
+                        children: [
+                          Container(
+                            width: 125,
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.4),
+                              borderRadius:const BorderRadius.only(
+                                topRight: Radius.circular(40),
+                                bottomLeft: Radius.circular(40),
+                                topLeft: Radius.circular(40),
+                                bottomRight: Radius.circular(40),
+                              ),
+                              // border: Border.all(
+                              //   width: 0.5,
+                              //   color: Colors.white,
+                              //   style: BorderStyle.solid,
+                              // ),
+                            ),
+                            child:  Image.asset("assets/images/icon_menu_1.png",),
+
                           ),
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(15),
-                            bottomLeft: Radius.circular(15),
-                            topLeft: Radius.circular(15),
-                            bottomRight: Radius.circular(15),
+                          Positioned.fill(
+                              child:  Material(
+                                color: Colors.transparent,
+                                child:   InkWell(
+                                  borderRadius: BorderRadius.all(Radius.circular(17)),
+                                  splashColor: Colors.black,
+                                  overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                  onTap: (){
+                                    print("text");
+                                  },
+                                ),
+
+                              )
                           ),
-                          border: Border.all(
-                            width: 0.8,
-                            color: Colors.white,
-                            style: BorderStyle.solid,
-                          ),
-                        ),
-                        child: Center(
-                            child: Column(
-                              children: [
-                                Text("VEGETARIAN", style: TextStyle(fontFamily: "oldpress", color: Colors.green.shade600,fontSize:28, ),),
-                                Text("MENU!", style: TextStyle(fontFamily: "oldpress", color: Colors.white,fontSize: 28),),
-                              ],
-                            )
-                        ),
+                        ],
                       ),
-                      SizedBox(width: 10,),
-                      Container(
-                        width: 125,
-                        padding: const EdgeInsets.all(8.0),
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                              Colors.grey.shade900,
-                              Colors.grey.shade600,
-                            ],
+                      const SizedBox(width: 10,),
+                      Stack(
+                        children: [
+                          Container(
+                            width: 125,
+
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.4),
+                              borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(40),
+                                bottomLeft: Radius.circular(40),
+                                topLeft: Radius.circular(40),
+                                bottomRight: Radius.circular(40),
+                              ),
+                              // border: Border.all(
+                              //   width: 0.5,
+                              //   color: Colors.white,
+                              //   style: BorderStyle.solid,
+                              // ),
+                            ),
+                            child:  Image.asset("assets/images/icon_menu_2.png",),
+
                           ),
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(15),
-                            bottomLeft: Radius.circular(15),
-                            topLeft: Radius.circular(15),
-                            bottomRight: Radius.circular(15),
+                          Positioned.fill(
+                              child:  Material(
+                                color: Colors.transparent,
+                                child:   InkWell(
+                                  borderRadius: const BorderRadius.all(Radius.circular(17)),
+                                  splashColor: Colors.black,
+                                  overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                  onTap: (){
+                                    print("text");
+                                  },
+                                ),
+
+                              )
                           ),
-                          border: Border.all(
-                            width: 1,
-                            color: Colors.white,
-                            style: BorderStyle.solid,
-                          ),
-                        ),
-                        child: Center(
-                            child: Column(
-                              children: [
-                                Text("VEGAN", style: TextStyle(fontFamily: "oldpress", color: Colors.green.shade600,fontSize: 28),),
-                                Text("MENU!", style: TextStyle(fontFamily: "oldpress", color: Colors.white,fontSize: 28),),
-                              ],
-                            )
-                        ),
+                        ],
                       ),
+
                     ],
                   ),
                 ),
 
                 ///- Your O:F Favorites
-                Text("YOUR O:F FAVORITES", style: TextStyle(fontSize: 33,fontFamily: "oldpress", color: Colors.amber.shade500),),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Transform.rotate(
+                        angle: -math.pi / 4,
+                        child: Image.asset("assets/images/arrow_down.png" ,height: 32,)),
+                    const SizedBox(width: 8,),
+                    Text("YOUR O:F FAVORITES", style: TextStyle(fontSize: 33,fontFamily: "oldpress", color: Colors.amber.shade500),),
+                    const SizedBox(width: 30,),
+                    Transform(
+                        transform: Matrix4.rotationY(math.pi),
+                        child: Transform.rotate(
+                            angle: -math.pi / 4,
+                            child: Image.asset("assets/images/arrow_down.png" ,height: 32,))),
 
+                  ],
+                ),
                 /// - List
                 SizedBox(
                   height: 100,
@@ -660,11 +721,22 @@ class _MainMenuState extends State<MainMenu> {
                   ),
                 ),
 
-
-                SizedBox(height: 10,),
+                const SizedBox(height: 10,),
                 ///- Our O:F Best Seller
-                Text("OUR O:F BEST SELLERS", style: TextStyle(fontSize: 33,fontFamily: "oldpress", color: Colors.white),),
+                Row( mainAxisAlignment: MainAxisAlignment.center,
+                  children: [//page7_right_icon
+                    Transform.rotate(
+                        angle: -math.pi / 2,
+                        child: Image.asset("assets/images/page7_right_icon.png" ,height: 32,)),
+                    const SizedBox(width: 10,),
+                    const Text("OUR O:F BEST SELLERS", style: TextStyle(fontSize: 33,fontFamily: "oldpress", color: Colors.white),),
+                    const SizedBox(width: 10,),
+                    Transform.rotate(
+                        angle: -math.pi / 8,
+                        child: Image.asset("assets/images/page7_right_icon.png" ,height: 32,)),
 
+                  ],
+                ),
                 /// - List
                 SizedBox(
                   height:100 ,
@@ -672,14 +744,14 @@ class _MainMenuState extends State<MainMenu> {
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: [
-
-                       Padding(
+                      Padding(
                          padding: const EdgeInsets.all(4.0),
                          child: Stack(
                             alignment: Alignment.topRight,
                             children: [
                               Container(
-                                // width: 125,
+                                width: 90,
+                                height: 90,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.only(
                                     topRight: Radius.circular(100),
@@ -695,9 +767,11 @@ class _MainMenuState extends State<MainMenu> {
                                     style: BorderStyle.solid,
                                   ),
                                 ),
-                                child: Center(child: ClipRRect(
+                                child: Center(
+                                    child:
+                                    ClipRRect(
                                     borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
-                                    child: Image.asset("assets/images/falafel.jpg", height: 90,width: 90,fit: BoxFit.cover,))
+                                    child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
                                 ),
                               ),
                               Align(
@@ -727,13 +801,14 @@ class _MainMenuState extends State<MainMenu> {
                             ],
                           ),
                        ),
-                       Padding(
+                      Padding(
                         padding: const EdgeInsets.all(4.0),
                         child: Stack(
                           alignment: Alignment.topRight,
                           children: [
                             Container(
-                              // width: 125,
+                              width: 90,
+                              height: 90,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                   topRight: Radius.circular(100),
@@ -751,7 +826,7 @@ class _MainMenuState extends State<MainMenu> {
                               ),
                               child: Center(child: ClipRRect(
                                   borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
-                                  child: Image.asset("assets/images/falafel.jpg", height: 90,width: 90,fit: BoxFit.cover,))
+                                  child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
                               ),
                             ),
                             Align(
@@ -787,7 +862,8 @@ class _MainMenuState extends State<MainMenu> {
                           alignment: Alignment.topRight,
                           children: [
                             Container(
-                              // width: 125,
+                              width: 90,
+                              height: 90,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                   topRight: Radius.circular(100),
@@ -805,7 +881,7 @@ class _MainMenuState extends State<MainMenu> {
                               ),
                               child: Center(child: ClipRRect(
                                   borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
-                                  child: Image.asset("assets/images/falafel.jpg", height: 90,width: 90,fit: BoxFit.cover,))
+                                  child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
                               ),
                             ),
                             Align(
@@ -841,7 +917,8 @@ class _MainMenuState extends State<MainMenu> {
                           alignment: Alignment.topRight,
                           children: [
                             Container(
-                              // width: 125,
+                              width: 90,
+                              height: 90,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                   topRight: Radius.circular(100),
@@ -859,62 +936,7 @@ class _MainMenuState extends State<MainMenu> {
                               ),
                               child: Center(child: ClipRRect(
                                   borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
-                                  child: Image.asset("assets/images/falafel.jpg", height: 90,width: 90,fit: BoxFit.cover,))
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.topRight,
-                              child: Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(50),
-                                      bottomLeft: Radius.circular(50),
-                                      topLeft: Radius.circular(50),
-                                      bottomRight: Radius.circular(50),
-
-                                    ),
-                                    color: Colors.black,
-                                    // border: Border.all(
-                                    //   width: 0.8,
-                                    //   color: Colors.white,
-                                    //   style: BorderStyle.solid,
-                                    // ),
-                                  ),
-                                  child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Stack(
-                          alignment: Alignment.topRight,
-                          children: [
-                            Container(
-                              // width: 125,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(100),
-                                  bottomLeft: Radius.circular(100),
-                                  topLeft: Radius.circular(100),
-                                  bottomRight: Radius.circular(100),
-
-                                ),
-                                color: Colors.grey,
-                                border: Border.all(
-                                  width: 0.8,
-                                  color: Colors.white,
-                                  style: BorderStyle.solid,
-                                ),
-                              ),
-                              child: Center(child: ClipRRect(
-                                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
-                                  child: Image.asset("assets/images/falafel.jpg", height: 90,width: 90,fit: BoxFit.cover,))
+                                  child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
                               ),
                             ),
                             Align(
@@ -950,7 +972,8 @@ class _MainMenuState extends State<MainMenu> {
                           alignment: Alignment.topRight,
                           children: [
                             Container(
-                              // width: 125,
+                              width: 90,
+                              height: 90,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                   topRight: Radius.circular(100),
@@ -968,7 +991,7 @@ class _MainMenuState extends State<MainMenu> {
                               ),
                               child: Center(child: ClipRRect(
                                   borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
-                                  child: Image.asset("assets/images/falafel.jpg", height: 90,width: 90,fit: BoxFit.cover,))
+                                  child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
                               ),
                             ),
                             Align(
@@ -1004,7 +1027,8 @@ class _MainMenuState extends State<MainMenu> {
                           alignment: Alignment.topRight,
                           children: [
                             Container(
-                              // width: 125,
+                              width: 90,
+                              height: 90,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                   topRight: Radius.circular(100),
@@ -1022,7 +1046,7 @@ class _MainMenuState extends State<MainMenu> {
                               ),
                               child: Center(child: ClipRRect(
                                   borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
-                                  child: Image.asset("assets/images/falafel.jpg", height: 90,width: 90,fit: BoxFit.cover,))
+                                  child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
                               ),
                             ),
                             Align(
@@ -1058,7 +1082,8 @@ class _MainMenuState extends State<MainMenu> {
                           alignment: Alignment.topRight,
                           children: [
                             Container(
-                              // width: 125,
+                              width: 90,
+                              height: 90,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                   topRight: Radius.circular(100),
@@ -1076,7 +1101,7 @@ class _MainMenuState extends State<MainMenu> {
                               ),
                               child: Center(child: ClipRRect(
                                   borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
-                                  child: Image.asset("assets/images/falafel.jpg", height: 90,width: 90,fit: BoxFit.cover,))
+                                  child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
                               ),
                             ),
                             Align(
@@ -1106,131 +1131,303 @@ class _MainMenuState extends State<MainMenu> {
                           ],
                         ),
                       ),
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Stack(
+                          alignment: Alignment.topRight,
+                          children: [
+                            Container(
+                              width: 90,
+                              height: 90,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(100),
+                                  bottomLeft: Radius.circular(100),
+                                  topLeft: Radius.circular(100),
+                                  bottomRight: Radius.circular(100),
 
+                                ),
+                                color: Colors.grey,
+                                border: Border.all(
+                                  width: 0.8,
+                                  color: Colors.white,
+                                  style: BorderStyle.solid,
+                                ),
+                              ),
+                              child: Center(child: ClipRRect(
+                                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
+                                  child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.topRight,
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(50),
+                                      bottomLeft: Radius.circular(50),
+                                      topLeft: Radius.circular(50),
+                                      bottomRight: Radius.circular(50),
 
+                                    ),
+                                    color: Colors.black,
+                                    // border: Border.all(
+                                    //   width: 0.8,
+                                    //   color: Colors.white,
+                                    //   style: BorderStyle.solid,
+                                    // ),
+                                  ),
+                                  child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Stack(
+                          alignment: Alignment.topRight,
+                          children: [
+                            Container(
+                              width: 90,
+                              height: 90,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(100),
+                                  bottomLeft: Radius.circular(100),
+                                  topLeft: Radius.circular(100),
+                                  bottomRight: Radius.circular(100),
 
+                                ),
+                                color: Colors.grey,
+                                border: Border.all(
+                                  width: 0.8,
+                                  color: Colors.white,
+                                  style: BorderStyle.solid,
+                                ),
+                              ),
+                              child: Center(child: ClipRRect(
+                                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
+                                  child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.topRight,
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(50),
+                                      bottomLeft: Radius.circular(50),
+                                      topLeft: Radius.circular(50),
+                                      bottomRight: Radius.circular(50),
 
+                                    ),
+                                    color: Colors.black,
+                                    // border: Border.all(
+                                    //   width: 0.8,
+                                    //   color: Colors.white,
+                                    //   style: BorderStyle.solid,
+                                    // ),
+                                  ),
+                                  child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Stack(
+                          alignment: Alignment.topRight,
+                          children: [
+                            Container(
+                              width: 90,
+                              height: 90,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(100),
+                                  bottomLeft: Radius.circular(100),
+                                  topLeft: Radius.circular(100),
+                                  bottomRight: Radius.circular(100),
 
+                                ),
+                                color: Colors.grey,
+                                border: Border.all(
+                                  width: 0.8,
+                                  color: Colors.white,
+                                  style: BorderStyle.solid,
+                                ),
+                              ),
+                              child: Center(child: ClipRRect(
+                                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
+                                  child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.topRight,
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(50),
+                                      bottomLeft: Radius.circular(50),
+                                      topLeft: Radius.circular(50),
+                                      bottomRight: Radius.circular(50),
 
-
+                                    ),
+                                    color: Colors.black,
+                                    // border: Border.all(
+                                    //   width: 0.8,
+                                    //   color: Colors.white,
+                                    //   style: BorderStyle.solid,
+                                    // ),
+                                  ),
+                                  child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
 
                 /// - O:F Boxes
                 Stack (
+                  alignment: Alignment.topCenter,
                   children: [
-                    Row(
-                      main
+                    Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.all(2.0),
-                          child: Stack(
-                            alignment: Alignment.topRight,
-                            children: [
-                              Container(
-                                width: 200,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(0),
-                                    bottomLeft: Radius.circular(0),
-                                    topLeft: Radius.circular(0),
-                                    bottomRight: Radius.circular(0),
-
-                                  ),
-                                  color: Colors.grey,
-                                  border: Border.all(
-                                    width: 0.8,
-                                    color: Colors.white,
-                                    style: BorderStyle.solid,
-                                  ),
-                                ),
-                                child: Center(child: Image.asset("assets/images/falafel.jpg")
-                                ),
-                              ),
-
-                              Align(
-                                alignment: Alignment.topRight,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Container(
+                        const SizedBox(height: 30,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child: Stack(
+                                alignment: Alignment.topLeft,
+                                children: [
+                                  Container(
+                                    width: 200,
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(50),
-                                        bottomLeft: Radius.circular(50),
-                                        topLeft: Radius.circular(50),
-                                        bottomRight: Radius.circular(50),
+                                      borderRadius:const BorderRadius.only(
+                                        topRight: Radius.circular(10),
+                                        bottomLeft: Radius.circular(10),
+                                        topLeft: Radius.circular(10),
+                                        bottomRight: Radius.circular(10),
 
                                       ),
-                                      color: Colors.black,
-                                      // border: Border.all(
-                                      //   width: 0.8,
-                                      //   color: Colors.white,
-                                      //   style: BorderStyle.solid,
-                                      // ),
+                                      color: Colors.grey,
+                                      border: Border.all(
+                                        width: 0.8,
+                                        color: Colors.white,
+                                        style: BorderStyle.solid,
+                                      ),
                                     ),
-                                    child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                    child: Center(
+                                        child: ClipRRect(
+                                            borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10),bottomRight: Radius.circular(10),bottomLeft: Radius.circular(10)),
+                                            child: Image.asset("assets/images/falafel.jpg"))
+                                    ),
                                   ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(2.0),
-                          child: Stack(
-                            alignment: Alignment.topRight,
-                            children: [
-                              Container(
-                                width: 200,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(0),
-                                    bottomLeft: Radius.circular(0),
-                                    topLeft: Radius.circular(0),
-                                    bottomRight: Radius.circular(0),
+                                  Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(5.0),
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                          borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(50),
+                                            bottomLeft: Radius.circular(50),
+                                            topLeft: Radius.circular(50),
+                                            bottomRight: Radius.circular(50),
 
-                                  ),
-                                  color: Colors.grey,
-                                  border: Border.all(
-                                    width: 0.8,
-                                    color: Colors.white,
-                                    style: BorderStyle.solid,
-                                  ),
-                                ),
-                                child: Center(child: Image.asset("assets/images/falafel.jpg")
-                                ),
+                                          ),
+                                          color: Colors.black,
+                                          // border: Border.all(
+                                          //   width: 0.8,
+                                          //   color: Colors.white,
+                                          //   style: BorderStyle.solid,
+                                          // ),
+                                        ),
+                                        child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                      ),
+                                    ),
+                                  )
+                                ],
                               ),
-
-                              Align(
+                            ),
+                            const SizedBox(width: 5,),
+                            Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child: Stack(
                                 alignment: Alignment.topRight,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Container(
+                                children: [
+                                  Container(
+                                    width: 200,
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(50),
-                                        bottomLeft: Radius.circular(50),
-                                        topLeft: Radius.circular(50),
-                                        bottomRight: Radius.circular(50),
+                                      borderRadius:const BorderRadius.only(
+                                        topRight: Radius.circular(10),
+                                        bottomLeft: Radius.circular(10),
+                                        topLeft: Radius.circular(10),
+                                        bottomRight: Radius.circular(10),
 
                                       ),
-                                      color: Colors.black,
-                                      // border: Border.all(
-                                      //   width: 0.8,
-                                      //   color: Colors.white,
-                                      //   style: BorderStyle.solid,
-                                      // ),
+                                      color: Colors.grey,
+                                      border: Border.all(
+                                        width: 0.8,
+                                        color: Colors.white,
+                                        style: BorderStyle.solid,
+                                      ),
                                     ),
-                                    child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                    child: Center(
+                                        child: ClipRRect(
+                                            borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10),bottomRight: Radius.circular(10),bottomLeft: Radius.circular(10)),
+                                            child: Image.asset("assets/images/falafel.jpg"))
+                                    ),
                                   ),
-                                ),
-                              )
-                            ],
-                          ),
+                                  Align(
+                                    alignment: Alignment.topRight,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(5.0),
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                          borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(50),
+                                            bottomLeft: Radius.circular(50),
+                                            topLeft: Radius.circular(50),
+                                            bottomRight: Radius.circular(50),
+
+                                          ),
+                                          color: Colors.black,
+                                          // border: Border.all(
+                                          //   width: 0.8,
+                                          //   color: Colors.white,
+                                          //   style: BorderStyle.solid,
+                                          // ),
+                                        ),
+                                        child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                       ],
-                    )
+                    ),
+                    Positioned(
+
+                        child: Image.asset("assets/images/page6_boxes.png", height: 60,))
                   ],
                 ),
 

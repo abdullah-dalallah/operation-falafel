@@ -113,7 +113,7 @@ class _DrawerState extends State<DrawerWidget> {
               
                 Expanded(child: SizedBox(height: 10,)),
                 
-              Column(
+                 Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("FOLLOW US", style: TextStyle(fontFamily: "oldpress",color: Colors.amber,fontSize: 50),),

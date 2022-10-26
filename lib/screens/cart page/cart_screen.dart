@@ -16,7 +16,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
 
      children: [
        Image.asset(
-         "assets/images/background.jpeg",
+         "assets/images/background.png",
          height: MediaQuery.of(context).size.height,
          width: MediaQuery.of(context).size.width,
          fit: BoxFit.cover,
@@ -32,7 +32,9 @@ class _Cart_ScreenState extends State<Cart_Screen> {
            },icon: FaIcon(FontAwesomeIcons.bars,size: 30,),) ,
            backgroundColor: Colors.transparent,
            elevation: 0,
-           title: Text("Operation Falafel",style: TextStyle(fontFamily: "oldpress",color: Colors.white, fontSize: 30),)
+           centerTitle: true,
+           title: Image.asset("assets/images/of_logo_top.png", width: 220,),
+           // Text("Operation Falafel",style: TextStyle(fontFamily: "oldpress",color: Colors.white, fontSize: 30),)
 
          ),
 

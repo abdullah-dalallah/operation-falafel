@@ -51,7 +51,11 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
       ],
       items: [
         PersistentBottomNavBarItem(
-          icon: FaIcon(CupertinoIcons.doc_plaintext),
+          icon: ImageIcon(
+            AssetImage("assets/images/icon_order.png"),
+          ),
+          // Image.asset("assets/images/icon_order.png"),
+          // FaIcon(CupertinoIcons.doc_plaintext),
           title: ("Order"),
           textStyle: TextStyle(fontSize: 9),
           activeColorPrimary: CupertinoColors.activeOrange,
@@ -59,22 +63,28 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
         ),
         PersistentBottomNavBarItem(
           textStyle: TextStyle(fontSize: 9),
-          icon: Icon(CupertinoIcons.cart),
-          title: ("Cart"),
+          icon: ImageIcon(
+            AssetImage("assets/images/icon_cart.png"),
+          ),
+
           activeColorPrimary: CupertinoColors.activeOrange,
           inactiveColorPrimary: CupertinoColors.systemBackground,
         ),
         PersistentBottomNavBarItem(
 
           textStyle: TextStyle(fontSize: 7, ),
-          icon: Icon(CupertinoIcons.map_pin_ellipse),
-          title: ("Track My\n    Order"),
+          icon: ImageIcon(
+            AssetImage("assets/images/icon_track.png"),
+          ),
+
           activeColorPrimary: CupertinoColors.activeOrange,
           inactiveColorPrimary: CupertinoColors.systemBackground,
         ),
         PersistentBottomNavBarItem(
           textStyle: TextStyle(fontSize: 9),
-          icon: Icon(CupertinoIcons.gift),
+          icon: ImageIcon(
+            AssetImage("assets/images/icon_loyality.png"),
+          ),
           title: ("Loyalty"),
           activeColorPrimary: CupertinoColors.activeOrange,
           inactiveColorPrimary: CupertinoColors.systemBackground,
@@ -82,7 +92,9 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
         PersistentBottomNavBarItem(
           textStyle: TextStyle(fontSize: 9),
           // iconSize: 100,
-          icon:Icon(CupertinoIcons.person_alt_circle),
+          icon:ImageIcon(
+            AssetImage("assets/images/icon_profile.png"),
+          ),
           //Icon(CupertinoIcons.person_alt_circle),
           title: ("Profile"),
           activeColorPrimary: CupertinoColors.activeOrange,
@@ -100,6 +112,8 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
         colorBehindNavBar: Colors.black,
       ),
       popAllScreensOnTapOfSelectedTab: true,
+
+      // hideNavigationBar: true,
       popActionScreens: PopActionScreensType.all,
       itemAnimationProperties: ItemAnimationProperties( // Navigation Bar's items animation properties.
         duration: Duration(milliseconds: 200),
@@ -110,7 +124,7 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
         curve: Curves.ease,
         duration: Duration(milliseconds: 200),
       ),
-      navBarStyle: NavBarStyle.style8, // Choose the nav bar style with this property.
+      navBarStyle: NavBarStyle.style5, // Choose the nav bar style with this property.
     );
 
 
