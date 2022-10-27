@@ -114,7 +114,7 @@ class FullMenu extends StatelessWidget{
                                   onTap: (){
                                     PersistentNavBarNavigator.pushNewScreen(
                                       context,
-                                      screen: TabeBar(),
+                                      screen: TabeBarMenu(),
                                       withNavBar: true, // OPTIONAL VALUE. True by default.
                                       pageTransitionAnimation: PageTransitionAnimation.cupertino,
                                     );

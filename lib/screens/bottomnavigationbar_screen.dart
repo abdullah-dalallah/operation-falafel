@@ -44,9 +44,9 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
       screens: [
         MainMenu(),
         Cart_Screen(),
-        TabeBar(),
-        TabeBar(),
-        TabeBar(),
+        TabeBarMenu(),
+        TabeBarMenu(),
+        TabeBarMenu(),
 
       ],
       items: [

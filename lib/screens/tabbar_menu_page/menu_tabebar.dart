@@ -4,32 +4,34 @@ import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/main.dart';
 import 'package:operation_falafel/screens/cart%20page/cart_screen.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:operation_falafel/screens/item_details_page/item_details.dart';
 import 'package:operation_falafel/widgets/radio_option.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-class TabeBar extends StatefulWidget{
+class TabeBarMenu extends StatefulWidget{
   @override
-  State<TabeBar> createState() => _TabeBarState();
+  State<TabeBarMenu> createState() => _TabeBarMenuState();
 }
 
-class _TabeBarState extends State<TabeBar> with SingleTickerProviderStateMixin{
+class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStateMixin{
 
   late TabController _cardController;
 
   @override
   void initState() {
-    _cardController = new TabController(vsync: this, length: 10);
+    _cardController = new TabController(vsync: this, length: 12);
   }
 
-  String? _groupValue;
 
+
+  String? _foodType;
   ValueChanged<String?> _valueChangedHandler() {
 
     return (value) => setState(() {
 
-      _groupValue = value!;
+      _foodType = value!;
     });
   }
-
+  double _opacityValue = 0.50;
 
   @override
   Widget build(BuildContext context) {
@@ -50,13 +52,11 @@ class _TabeBarState extends State<TabeBar> with SingleTickerProviderStateMixin{
        Scaffold(
           backgroundColor: Colors.transparent,
          body: DefaultTabController(
-           length: 10,
+           length: 12,
            child:NestedScrollView(
-
                headerSliverBuilder:(BuildContext context, bool innerBoxIsScrolled){
                  return <Widget>[
                    SliverAppBar(
-
                      backgroundColor: Colors.orangeAccent,
                      pinned: true,
                      expandedHeight: 210.0,
@@ -112,11 +112,11 @@ class _TabeBarState extends State<TabeBar> with SingleTickerProviderStateMixin{
 
                              ),
 
-                             new Positioned.fill(
-                                 child: new Material(
+                              Positioned.fill(
+                                 child:  Material(
                                    color: Colors.transparent,
-                                   child:  new InkWell(
-                                     borderRadius: BorderRadius.all(Radius.circular(50)),
+                                   child:   InkWell(
+                                     borderRadius: const BorderRadius.all(Radius.circular(50)),
                                      splashColor: Colors.black,
                                      overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
 
@@ -192,23 +192,29 @@ class _TabeBarState extends State<TabeBar> with SingleTickerProviderStateMixin{
                        alignment: AlignmentDirectional.center,
                        child:TabBar(
 
-                         labelColor: Colors.white,
+                         labelColor: Colors.black,
                          indicatorColor: Colors.transparent,
                          unselectedLabelColor: Colors.grey.shade300,
 
                          controller: _cardController,
                          isScrollable: true,
-                         tabs: [
-                           Tab(child: Text("tabe1"),),
-                           Tab(child: Text("tabe2"),),
-                           Tab(child: Text("tabe3"),),
-                           Tab(child: Text("tabe1"),),
-                           Tab(child: Text("tabe2"),),
-                           Tab(child: Text("tabe3"),),
-                           Tab(child: Text("tabe1"),),
-                           Tab(child: Text("tabe2"),),
-                           Tab(child: Text("tabe3"),),
-                           Tab(child: Text("tabe1"),),
+                         tabs: const[
+                           Tab(child: Text("NEW AT O:F", style: TextStyle(fontSize: 15),),),
+                           Tab(child: Text("FALAFEL & CO", style: TextStyle(fontSize: 15)),),
+                           Tab(child: Text("MANAEESH & WRAPS", style: TextStyle(fontSize: 15)),),
+
+                           Tab(child: Text("SANDWICHES", style: TextStyle(fontSize: 15)),),
+                           Tab(child: Text("O:F BOXES", style: TextStyle(fontSize: 15)),),
+                           Tab(child: Text("SOUP & SALADS", style: TextStyle(fontSize: 15)),),
+
+                           Tab(child: Text("PLATTERS", style: TextStyle(fontSize: 15)),),
+                           Tab(child: Text("O:F KIDS", style: TextStyle(fontSize: 15)),),
+                           Tab(child: Text("XL MEZZA", style: TextStyle(fontSize: 15)),),
+
+                           Tab(child: Text("DESSERTS", style: TextStyle(fontSize: 15)),),
+                           Tab(child: Text("DRINKS", style: TextStyle(fontSize: 15)),),
+                           Tab(child: Text("SAUCES", style: TextStyle(fontSize: 15)),),
+                          
 
                          ],
                        ),
@@ -219,23 +225,23 @@ class _TabeBarState extends State<TabeBar> with SingleTickerProviderStateMixin{
                  ];
                },
                body: Padding(
-                 padding: const EdgeInsets.all(8.0),
+                 padding: const EdgeInsets.only(left:8.0, right:8),
                  child: Column(
                    children: [
 
-
+                     /// - Vegetarain & Vegan Radio Button
                      Row(
                        children: [
                          RadioOption<String>(
                            value: '1',
-                           groupValue: _groupValue,
+                           groupValue: _foodType,
                            onChanged:_valueChangedHandler(),
                            label: '1',
                            text: 'Vegetarian',
                          ),
                          RadioOption<String>(
                            value: '2',
-                           groupValue: _groupValue,
+                           groupValue: _foodType,
                            onChanged: _valueChangedHandler(),
                            label: '2',
                            text: 'Vegan',
@@ -243,11 +249,7 @@ class _TabeBarState extends State<TabeBar> with SingleTickerProviderStateMixin{
                        ],
                      ),
 
-
-
-
-
-                     Divider(color: Colors.white,),
+                     const Divider(color: Colors.white,),
 
                      Expanded(
                        child: TabBarView(
@@ -263,645 +265,9828 @@ class _TabeBarState extends State<TabeBar> with SingleTickerProviderStateMixin{
 
                                  Padding(
                                    padding: const EdgeInsets.only(bottom: 8.0),
-                                   child: Row(
-                                     crossAxisAlignment: CrossAxisAlignment.start,
-                                     children: <Widget>[
-                                       Container(
-                                         width: 100,
-                                         height: 100,
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
 
-                                         decoration: BoxDecoration(
-                                           borderRadius: BorderRadius.only(
-                                             topRight: Radius.circular(0),
-                                             bottomLeft: Radius.circular(0),
-                                             topLeft: Radius.circular(0),
-                                             bottomRight: Radius.circular(0),
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
 
-                                           ),
-                                           color: Colors.grey,
-                                           border: Border.all(
-                                             width: 0.8,
-                                             color: Colors.white,
-                                             style: BorderStyle.solid,
-                                           ),
-                                         ),
-                                         child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
-                                         ),
-                                       ),
-                                       Expanded(
-                                         flex: 4,
-                                         child: Container(
-                                           padding: EdgeInsets.only(left: 5),
-                                           child: Column(
-                                             crossAxisAlignment: CrossAxisAlignment.start,
-                                             children: <Widget>[
-                                               Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
-                                               Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
-                                               // SizedBox(height: 20,),
-                                               Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
-                                             ],
-                                           ),
-                                         ),
-                                       ),
-                                       Expanded(
-                                         flex: 0,
-                                         child: Column(
-                                           mainAxisAlignment: MainAxisAlignment.center,
-                                           children: [
-                                             Padding(
-                                               padding: const EdgeInsets.all(8.0),
-                                               child: Container(
-                                                 height: 20,
-                                                 width: 20,
-                                                 decoration: BoxDecoration(
-                                                   borderRadius: BorderRadius.only(
-                                                     topRight: Radius.circular(50),
-                                                     bottomLeft: Radius.circular(50),
-                                                     topLeft: Radius.circular(50),
-                                                     bottomRight: Radius.circular(50),
-
-                                                   ),
-                                                   color: Colors.black,
-                                                   // border: Border.all(
-                                                   //   width: 0.8,
-                                                   //   color: Colors.white,
-                                                   //   style: BorderStyle.solid,
-                                                   // ),
-                                                 ),
-                                                 child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
                                                ),
                                              ),
-                                           ],
-                                         ),
-                                       )
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
 
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){//ItemDetails
+                                                 PersistentNavBarNavigator.pushNewScreen(
+                                                   context,
+                                                   screen: ItemDetails(),
+                                                   withNavBar: true, // OPTIONAL VALUE. True by default.
+                                                   pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                                 );
+                                               },
+                                             ),
+
+                                           )
+                                       ),
                                      ],
                                    ),
                                  ),
-                                 Padding(
-                                   padding: const EdgeInsets.only(bottom: 8.0),
-                                   child: Row(
-                                     crossAxisAlignment: CrossAxisAlignment.start,
-                                     children: <Widget>[
-                                       Container(
-                                         width: 100,
-                                         height: 100,
+                                 Opacity(
+                                   opacity: _opacityValue,
+                                   child: Padding(
+                                     padding: const EdgeInsets.only(bottom: 8.0),
+                                     child: Stack(
+                                       children: [
+                                         Row(
+                                           crossAxisAlignment: CrossAxisAlignment.start,
+                                           children: <Widget>[
+                                             Container(
+                                               width: 100,
+                                               height: 100,
+                                               decoration: BoxDecoration(
+                                                 borderRadius: BorderRadius.only(
+                                                   topRight: Radius.circular(0),
+                                                   bottomLeft: Radius.circular(0),
+                                                   topLeft: Radius.circular(0),
+                                                   bottomRight: Radius.circular(0),
 
-                                         decoration: BoxDecoration(
-                                           borderRadius: BorderRadius.only(
-                                             topRight: Radius.circular(0),
-                                             bottomLeft: Radius.circular(0),
-                                             topLeft: Radius.circular(0),
-                                             bottomRight: Radius.circular(0),
-
-                                           ),
-                                           color: Colors.grey,
-                                           border: Border.all(
-                                             width: 0.8,
-                                             color: Colors.white,
-                                             style: BorderStyle.solid,
-                                           ),
-                                         ),
-                                         child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
-                                         ),
-                                       ),
-                                       Expanded(
-                                         flex: 4,
-                                         child: Container(
-                                           padding: EdgeInsets.only(left: 5),
-                                           child: Column(
-                                             crossAxisAlignment: CrossAxisAlignment.start,
-                                             children: <Widget>[
-                                               Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
-                                               Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
-                                               // SizedBox(height: 20,),
-                                               Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
-                                             ],
-                                           ),
-                                         ),
-                                       ),
-                                       Expanded(
-                                         flex: 0,
-                                         child: Column(
-                                           mainAxisAlignment: MainAxisAlignment.center,
-                                           children: [
-                                             Padding(
-                                               padding: const EdgeInsets.all(8.0),
-                                               child: Container(
-                                                 height: 20,
-                                                 width: 20,
-                                                 decoration: BoxDecoration(
-                                                   borderRadius: BorderRadius.only(
-                                                     topRight: Radius.circular(50),
-                                                     bottomLeft: Radius.circular(50),
-                                                     topLeft: Radius.circular(50),
-                                                     bottomRight: Radius.circular(50),
-
-                                                   ),
-                                                   color: Colors.black,
-                                                   // border: Border.all(
-                                                   //   width: 0.8,
-                                                   //   color: Colors.white,
-                                                   //   style: BorderStyle.solid,
-                                                   // ),
                                                  ),
-                                                 child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                 color: Colors.grey,
+                                                 border: Border.all(
+                                                   width: 0.8,
+                                                   color: Colors.white,
+                                                   style: BorderStyle.solid,
+                                                 ),
+                                               ),
+                                               child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
                                                ),
                                              ),
+                                             Expanded(
+                                               flex: 4,
+                                               child: Container(
+                                                 padding: EdgeInsets.only(left: 5),
+                                                 child: Column(
+                                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                                   children: <Widget>[
+                                                     Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                     Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                     // SizedBox(height: 20,),
+                                                     Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                   ],
+                                                 ),
+                                               ),
+                                             ),
+                                             Expanded(
+                                               flex: 0,
+                                               child: Column(
+                                                 mainAxisAlignment: MainAxisAlignment.center,
+                                                 children: [
+                                                   Padding(
+                                                     padding: const EdgeInsets.all(8.0),
+                                                     child: Container(
+                                                       height: 20,
+                                                       width: 20,
+                                                       decoration: BoxDecoration(
+                                                         borderRadius: BorderRadius.only(
+                                                           topRight: Radius.circular(50),
+                                                           bottomLeft: Radius.circular(50),
+                                                           topLeft: Radius.circular(50),
+                                                           bottomRight: Radius.circular(50),
+
+                                                         ),
+                                                         color: Colors.black,
+                                                         // border: Border.all(
+                                                         //   width: 0.8,
+                                                         //   color: Colors.white,
+                                                         //   style: BorderStyle.solid,
+                                                         // ),
+                                                       ),
+                                                       child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                     ),
+                                                   ),
+                                                 ],
+                                               ),
+                                             )
+
                                            ],
                                          ),
-                                       )
+                                         Positioned.fill(
+                                             child:  Material(
+                                               color: Colors.transparent,
+                                               child:   InkWell(
+                                                 borderRadius: BorderRadius.all(Radius.circular(0)),
+                                                 splashColor: Colors.black,
+                                                 overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
 
-                                     ],
+                                                 onTap: (){
+                                                   print("text");
+                                                 },
+                                               ),
+
+                                             )
+                                         ),
+                                       ],
+                                     ),
                                    ),
                                  ),
-                                 Padding(
-                                   padding: const EdgeInsets.only(bottom: 8.0),
-                                   child: Row(
-                                     crossAxisAlignment: CrossAxisAlignment.start,
-                                     children: <Widget>[
-                                       Container(
-                                         width: 100,
-                                         height: 100,
-
-                                         decoration: BoxDecoration(
-                                           borderRadius: BorderRadius.only(
-                                             topRight: Radius.circular(0),
-                                             bottomLeft: Radius.circular(0),
-                                             topLeft: Radius.circular(0),
-                                             bottomRight: Radius.circular(0),
-
-                                           ),
-                                           color: Colors.grey,
-                                           border: Border.all(
-                                             width: 0.8,
-                                             color: Colors.white,
-                                             style: BorderStyle.solid,
-                                           ),
-                                         ),
-                                         child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
-                                         ),
-                                       ),
-                                       Expanded(
-                                         flex: 4,
-                                         child: Container(
-                                           padding: EdgeInsets.only(left: 5),
-                                           child: Column(
-                                             crossAxisAlignment: CrossAxisAlignment.start,
-                                             children: <Widget>[
-                                               Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
-                                               Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
-                                               // SizedBox(height: 20,),
-                                               Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
-                                             ],
-                                           ),
-                                         ),
-                                       ),
-                                       Expanded(
-                                         flex: 0,
-                                         child: Column(
-                                           mainAxisAlignment: MainAxisAlignment.center,
-                                           children: [
-                                             Padding(
-                                               padding: const EdgeInsets.all(8.0),
-                                               child: Container(
-                                                 height: 20,
-                                                 width: 20,
-                                                 decoration: BoxDecoration(
-                                                   borderRadius: BorderRadius.only(
-                                                     topRight: Radius.circular(50),
-                                                     bottomLeft: Radius.circular(50),
-                                                     topLeft: Radius.circular(50),
-                                                     bottomRight: Radius.circular(50),
-
-                                                   ),
-                                                   color: Colors.black,
-                                                   // border: Border.all(
-                                                   //   width: 0.8,
-                                                   //   color: Colors.white,
-                                                   //   style: BorderStyle.solid,
-                                                   // ),
-                                                 ),
-                                                 child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
-                                               ),
-                                             ),
-                                           ],
-                                         ),
-                                       )
-
-                                     ],
-                                   ),
-                                 ),
-                                 Padding(
-                                   padding: const EdgeInsets.only(bottom: 8.0),
-                                   child: Row(
-                                     crossAxisAlignment: CrossAxisAlignment.start,
-                                     children: <Widget>[
-                                       Container(
-                                         width: 100,
-                                         height: 100,
-
-                                         decoration: BoxDecoration(
-                                           borderRadius: BorderRadius.only(
-                                             topRight: Radius.circular(0),
-                                             bottomLeft: Radius.circular(0),
-                                             topLeft: Radius.circular(0),
-                                             bottomRight: Radius.circular(0),
-
-                                           ),
-                                           color: Colors.grey,
-                                           border: Border.all(
-                                             width: 0.8,
-                                             color: Colors.white,
-                                             style: BorderStyle.solid,
-                                           ),
-                                         ),
-                                         child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
-                                         ),
-                                       ),
-                                       Expanded(
-                                         flex: 4,
-                                         child: Container(
-                                           padding: EdgeInsets.only(left: 5),
-                                           child: Column(
-                                             crossAxisAlignment: CrossAxisAlignment.start,
-                                             children: <Widget>[
-                                               Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
-                                               Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
-                                               // SizedBox(height: 20,),
-                                               Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
-                                             ],
-                                           ),
-                                         ),
-                                       ),
-                                       Expanded(
-                                         flex: 0,
-                                         child: Column(
-                                           mainAxisAlignment: MainAxisAlignment.center,
-                                           children: [
-                                             Padding(
-                                               padding: const EdgeInsets.all(8.0),
-                                               child: Container(
-                                                 height: 20,
-                                                 width: 20,
-                                                 decoration: BoxDecoration(
-                                                   borderRadius: BorderRadius.only(
-                                                     topRight: Radius.circular(50),
-                                                     bottomLeft: Radius.circular(50),
-                                                     topLeft: Radius.circular(50),
-                                                     bottomRight: Radius.circular(50),
-
-                                                   ),
-                                                   color: Colors.black,
-                                                   // border: Border.all(
-                                                   //   width: 0.8,
-                                                   //   color: Colors.white,
-                                                   //   style: BorderStyle.solid,
-                                                   // ),
-                                                 ),
-                                                 child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
-                                               ),
-                                             ),
-                                           ],
-                                         ),
-                                       )
-
-                                     ],
-                                   ),
-                                 ),Padding(
-                                   padding: const EdgeInsets.only(bottom: 8.0),
-                                   child: Row(
-                                     crossAxisAlignment: CrossAxisAlignment.start,
-                                     children: <Widget>[
-                                       Container(
-                                         width: 100,
-                                         height: 100,
-
-                                         decoration: BoxDecoration(
-                                           borderRadius: BorderRadius.only(
-                                             topRight: Radius.circular(0),
-                                             bottomLeft: Radius.circular(0),
-                                             topLeft: Radius.circular(0),
-                                             bottomRight: Radius.circular(0),
-
-                                           ),
-                                           color: Colors.grey,
-                                           border: Border.all(
-                                             width: 0.8,
-                                             color: Colors.white,
-                                             style: BorderStyle.solid,
-                                           ),
-                                         ),
-                                         child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
-                                         ),
-                                       ),
-                                       Expanded(
-                                         flex: 4,
-                                         child: Container(
-                                           padding: EdgeInsets.only(left: 5),
-                                           child: Column(
-                                             crossAxisAlignment: CrossAxisAlignment.start,
-                                             children: <Widget>[
-                                               Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
-                                               Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
-                                               // SizedBox(height: 20,),
-                                               Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
-                                             ],
-                                           ),
-                                         ),
-                                       ),
-                                       Expanded(
-                                         flex: 0,
-                                         child: Column(
-                                           mainAxisAlignment: MainAxisAlignment.center,
-                                           children: [
-                                             Padding(
-                                               padding: const EdgeInsets.all(8.0),
-                                               child: Container(
-                                                 height: 20,
-                                                 width: 20,
-                                                 decoration: BoxDecoration(
-                                                   borderRadius: BorderRadius.only(
-                                                     topRight: Radius.circular(50),
-                                                     bottomLeft: Radius.circular(50),
-                                                     topLeft: Radius.circular(50),
-                                                     bottomRight: Radius.circular(50),
-
-                                                   ),
-                                                   color: Colors.black,
-                                                   // border: Border.all(
-                                                   //   width: 0.8,
-                                                   //   color: Colors.white,
-                                                   //   style: BorderStyle.solid,
-                                                   // ),
-                                                 ),
-                                                 child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
-                                               ),
-                                             ),
-                                           ],
-                                         ),
-                                       )
-
-                                     ],
-                                   ),
-                                 ),
-                                 Padding(
-                                   padding: const EdgeInsets.only(bottom: 8.0),
-                                   child: Row(
-                                     crossAxisAlignment: CrossAxisAlignment.start,
-                                     children: <Widget>[
-                                       Container(
-                                         width: 100,
-                                         height: 100,
-
-                                         decoration: BoxDecoration(
-                                           borderRadius: BorderRadius.only(
-                                             topRight: Radius.circular(0),
-                                             bottomLeft: Radius.circular(0),
-                                             topLeft: Radius.circular(0),
-                                             bottomRight: Radius.circular(0),
-
-                                           ),
-                                           color: Colors.grey,
-                                           border: Border.all(
-                                             width: 0.8,
-                                             color: Colors.white,
-                                             style: BorderStyle.solid,
-                                           ),
-                                         ),
-                                         child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
-                                         ),
-                                       ),
-                                       Expanded(
-                                         flex: 4,
-                                         child: Container(
-                                           padding: EdgeInsets.only(left: 5),
-                                           child: Column(
-                                             crossAxisAlignment: CrossAxisAlignment.start,
-                                             children: <Widget>[
-                                               Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
-                                               Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
-                                               // SizedBox(height: 20,),
-                                               Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
-                                             ],
-                                           ),
-                                         ),
-                                       ),
-                                       Expanded(
-                                         flex: 0,
-                                         child: Column(
-                                           mainAxisAlignment: MainAxisAlignment.center,
-                                           children: [
-                                             Padding(
-                                               padding: const EdgeInsets.all(8.0),
-                                               child: Container(
-                                                 height: 20,
-                                                 width: 20,
-                                                 decoration: BoxDecoration(
-                                                   borderRadius: BorderRadius.only(
-                                                     topRight: Radius.circular(50),
-                                                     bottomLeft: Radius.circular(50),
-                                                     topLeft: Radius.circular(50),
-                                                     bottomRight: Radius.circular(50),
-
-                                                   ),
-                                                   color: Colors.black,
-                                                   // border: Border.all(
-                                                   //   width: 0.8,
-                                                   //   color: Colors.white,
-                                                   //   style: BorderStyle.solid,
-                                                   // ),
-                                                 ),
-                                                 child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
-                                               ),
-                                             ),
-                                           ],
-                                         ),
-                                       )
-
-                                     ],
-                                   ),
-                                 ),
-                                 Padding(
-                                   padding: const EdgeInsets.only(bottom: 8.0),
-                                   child: Row(
-                                     crossAxisAlignment: CrossAxisAlignment.start,
-                                     children: <Widget>[
-                                       Container(
-                                         width: 100,
-                                         height: 100,
-
-                                         decoration: BoxDecoration(
-                                           borderRadius: BorderRadius.only(
-                                             topRight: Radius.circular(0),
-                                             bottomLeft: Radius.circular(0),
-                                             topLeft: Radius.circular(0),
-                                             bottomRight: Radius.circular(0),
-
-                                           ),
-                                           color: Colors.grey,
-                                           border: Border.all(
-                                             width: 0.8,
-                                             color: Colors.white,
-                                             style: BorderStyle.solid,
-                                           ),
-                                         ),
-                                         child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
-                                         ),
-                                       ),
-                                       Expanded(
-                                         flex: 4,
-                                         child: Container(
-                                           padding: EdgeInsets.only(left: 5),
-                                           child: Column(
-                                             crossAxisAlignment: CrossAxisAlignment.start,
-                                             children: <Widget>[
-                                               Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
-                                               Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
-                                               // SizedBox(height: 20,),
-                                               Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
-                                             ],
-                                           ),
-                                         ),
-                                       ),
-                                       Expanded(
-                                         flex: 0,
-                                         child: Column(
-                                           mainAxisAlignment: MainAxisAlignment.center,
-                                           children: [
-                                             Padding(
-                                               padding: const EdgeInsets.all(8.0),
-                                               child: Container(
-                                                 height: 20,
-                                                 width: 20,
-                                                 decoration: BoxDecoration(
-                                                   borderRadius: BorderRadius.only(
-                                                     topRight: Radius.circular(50),
-                                                     bottomLeft: Radius.circular(50),
-                                                     topLeft: Radius.circular(50),
-                                                     bottomRight: Radius.circular(50),
-
-                                                   ),
-                                                   color: Colors.black,
-                                                   // border: Border.all(
-                                                   //   width: 0.8,
-                                                   //   color: Colors.white,
-                                                   //   style: BorderStyle.solid,
-                                                   // ),
-                                                 ),
-                                                 child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
-                                               ),
-                                             ),
-                                           ],
-                                         ),
-                                       )
-
-                                     ],
-                                   ),
-                                 ),
-                                 Padding(
-                                   padding: const EdgeInsets.only(bottom: 8.0),
-                                   child: Row(
-                                     crossAxisAlignment: CrossAxisAlignment.start,
-                                     children: <Widget>[
-                                       Container(
-                                         width: 100,
-                                         height: 100,
-
-                                         decoration: BoxDecoration(
-                                           borderRadius: BorderRadius.only(
-                                             topRight: Radius.circular(0),
-                                             bottomLeft: Radius.circular(0),
-                                             topLeft: Radius.circular(0),
-                                             bottomRight: Radius.circular(0),
-
-                                           ),
-                                           color: Colors.grey,
-                                           border: Border.all(
-                                             width: 0.8,
-                                             color: Colors.white,
-                                             style: BorderStyle.solid,
-                                           ),
-                                         ),
-                                         child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
-                                         ),
-                                       ),
-                                       Expanded(
-                                         flex: 4,
-                                         child: Container(
-                                           padding: EdgeInsets.only(left: 5),
-                                           child: Column(
-                                             crossAxisAlignment: CrossAxisAlignment.start,
-                                             children: <Widget>[
-                                               Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
-                                               Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
-                                               // SizedBox(height: 20,),
-                                               Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
-                                             ],
-                                           ),
-                                         ),
-                                       ),
-                                       Expanded(
-                                         flex: 0,
-                                         child: Column(
-                                           mainAxisAlignment: MainAxisAlignment.center,
-                                           children: [
-                                             Padding(
-                                               padding: const EdgeInsets.all(8.0),
-                                               child: Container(
-                                                 height: 20,
-                                                 width: 20,
-                                                 decoration: BoxDecoration(
-                                                   borderRadius: BorderRadius.only(
-                                                     topRight: Radius.circular(50),
-                                                     bottomLeft: Radius.circular(50),
-                                                     topLeft: Radius.circular(50),
-                                                     bottomRight: Radius.circular(50),
-
-                                                   ),
-                                                   color: Colors.black,
-                                                   // border: Border.all(
-                                                   //   width: 0.8,
-                                                   //   color: Colors.white,
-                                                   //   style: BorderStyle.solid,
-                                                   // ),
-                                                 ),
-                                                 child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
-                                               ),
-                                             ),
-                                           ],
-                                         ),
-                                       )
-
-                                     ],
-                                   ),
-                                 ),
-
-
-
-
-
-
-
-
 
 
 
 
                                ],
                              ),
+                             ListView(
+                               shrinkWrap:true,
+                               padding:EdgeInsets.only(top: 10,bottom: 20),
+                               physics: NeverScrollableScrollPhysics(),
+                               children: [
+
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ), Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
 
 
 
-                             Text("tabe2"),
-                             Text("tabe3"),
-                             Text("tabe1"),
-                             Text("tabe2"),
-                             Text("tabe3"),
-                             Text("tabe1"),
-                             Text("tabe2"),
-                             Text("tabe3"),
-                             Text("tabe3"),
+                               ],
+                             ),
+                             ListView(
+                               shrinkWrap:true,
+                               padding:EdgeInsets.only(top: 10,bottom: 20),
+                               physics: NeverScrollableScrollPhysics(),
+                               children: [
+
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ), Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+
+
+
+                               ],
+                             ),
+
+                             ListView(
+                               shrinkWrap:true,
+                               padding:EdgeInsets.only(top: 10,bottom: 20),
+                               physics: NeverScrollableScrollPhysics(),
+                               children: [
+
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ), Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+
+
+
+                               ],
+                             ),
+                             ListView(
+                               shrinkWrap:true,
+                               padding:EdgeInsets.only(top: 10,bottom: 20),
+                               physics: NeverScrollableScrollPhysics(),
+                               children: [
+
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ), Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+
+
+
+                               ],
+                             ),
+                             ListView(
+                               shrinkWrap:true,
+                               padding:EdgeInsets.only(top: 10,bottom: 20),
+                               physics: NeverScrollableScrollPhysics(),
+                               children: [
+
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ), Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+
+
+
+                               ],
+                             ),
+
+                             ListView(
+                               shrinkWrap:true,
+                               padding:EdgeInsets.only(top: 10,bottom: 20),
+                               physics: NeverScrollableScrollPhysics(),
+                               children: [
+
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ), Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+
+
+
+                               ],
+                             ),
+                             ListView(
+                               shrinkWrap:true,
+                               padding:EdgeInsets.only(top: 10,bottom: 20),
+                               physics: NeverScrollableScrollPhysics(),
+                               children: [
+
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ), Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+
+
+
+                               ],
+                             ),
+                             ListView(
+                               shrinkWrap:true,
+                               padding:EdgeInsets.only(top: 10,bottom: 20),
+                               physics: NeverScrollableScrollPhysics(),
+                               children: [
+
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ), Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+
+
+
+                               ],
+                             ),
+
+                             ListView(
+                               shrinkWrap:true,
+                               padding:EdgeInsets.only(top: 10,bottom: 20),
+                               physics: NeverScrollableScrollPhysics(),
+                               children: [
+
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ), Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+
+
+
+                               ],
+                             ),
+                             ListView(
+                               shrinkWrap:true,
+                               padding:EdgeInsets.only(top: 10,bottom: 20),
+                               physics: NeverScrollableScrollPhysics(),
+                               children: [
+
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ), Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+
+
+
+                               ],
+                             ),
+                             ListView(
+                               shrinkWrap:true,
+                               padding:EdgeInsets.only(top: 10,bottom: 20),
+                               physics: NeverScrollableScrollPhysics(),
+                               children: [
+
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                        Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ), Padding(
+                                   padding: const EdgeInsets.only(bottom: 8.0),
+                                   child: Stack(
+                                     children: [
+                                       Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: <Widget>[
+                                           Container(
+                                             width: 100,
+                                             height: 100,
+
+                                             decoration: BoxDecoration(
+                                               borderRadius: BorderRadius.only(
+                                                 topRight: Radius.circular(0),
+                                                 bottomLeft: Radius.circular(0),
+                                                 topLeft: Radius.circular(0),
+                                                 bottomRight: Radius.circular(0),
+
+                                               ),
+                                               color: Colors.grey,
+                                               border: Border.all(
+                                                 width: 0.8,
+                                                 color: Colors.white,
+                                                 style: BorderStyle.solid,
+                                               ),
+                                             ),
+                                             child: Center(child: Image.asset("assets/images/OF Chicken Fatteh.jpg", width: 100,height: 100,)
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 4,
+                                             child: Container(
+                                               padding: EdgeInsets.only(left: 5),
+                                               child: Column(
+                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                 children: <Widget>[
+                                                   Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                                   Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                                                   // SizedBox(height: 20,),
+                                                   Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                                                 ],
+                                               ),
+                                             ),
+                                           ),
+                                           Expanded(
+                                             flex: 0,
+                                             child: Column(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                               children: [
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     height: 20,
+                                                     width: 20,
+                                                     decoration: BoxDecoration(
+                                                       borderRadius: BorderRadius.only(
+                                                         topRight: Radius.circular(50),
+                                                         bottomLeft: Radius.circular(50),
+                                                         topLeft: Radius.circular(50),
+                                                         bottomRight: Radius.circular(50),
+
+                                                       ),
+                                                       color: Colors.black,
+                                                       // border: Border.all(
+                                                       //   width: 0.8,
+                                                       //   color: Colors.white,
+                                                       //   style: BorderStyle.solid,
+                                                       // ),
+                                                     ),
+                                                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+
+                                         ],
+                                       ),
+                                       Positioned.fill(
+                                           child:  Material(
+                                             color: Colors.transparent,
+                                             child:   InkWell(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               splashColor: Colors.black,
+                                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                               onTap: (){
+                                                 print("text");
+                                               },
+                                             ),
+
+                                           )
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                                 
+                                
+
+                               ],
+                             ),
+                               
+
                            ]
                        ),
                      ),
