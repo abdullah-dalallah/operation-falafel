@@ -1,9 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:operation_falafel/screens/menus/full_menu.dart';
+import 'package:operation_falafel/screens/menus/vegan_menu.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'dart:math' as math;
+
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+
+import '../menus/vegetarian_menu.dart';
 
 class MainMenu extends StatefulWidget{
   @override
@@ -34,30 +40,31 @@ class _MainMenuState extends State<MainMenu> {
           fit: BoxFit.cover,
         ),
         Scaffold(
-
           key: _drawerKey,
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             // toolbarHeight: 40,
-              leading:IconButton(onPressed: (){
+              leading:IconButton(  
+                onPressed: (){
                 _drawerKey.currentState?.openDrawer();
-              },icon: FaIcon(FontAwesomeIcons.bars,size: 30,),) ,
+              },
+                icon: const ImageIcon(
+                  AssetImage("assets/images/icon_menu.png",),
+                  size: 35,
+                ),
+              ) ,
+             
+             
               backgroundColor: Colors.transparent,
               elevation: 0,
               centerTitle: true,
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right:58.0),
-                    child: Image.asset("assets/images/of_logo_top.png", width: 220,),
-                  ),
-
-
-
-                  Stack(
+              actions: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 13.0, right: 15, bottom: 15, left:15),
+                  child: Stack(
                     children: [
                       Container(
+
                         width: 35,
                         height: 27,
                         decoration: BoxDecoration(
@@ -96,13 +103,13 @@ class _MainMenuState extends State<MainMenu> {
 
                     ],
                   ),
+                ),
+              ],
+              title: Image.asset("assets/images/of_logo_top.png", width: 220,),
 
-                ],
-              )
 
           ),
-          body: SingleChildScrollView(
-            child: Column(
+          body: SingleChildScrollView(child: Column(
               children: [
                 /// - Slider - Done Design
                 ClipRRect(
@@ -188,7 +195,7 @@ class _MainMenuState extends State<MainMenu> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-
+                      /// - Full Menu
                       Stack(
                         children: [
                           Container(
@@ -220,7 +227,12 @@ class _MainMenuState extends State<MainMenu> {
                                   overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
 
                                   onTap: (){
-                                    print("text");
+                                    PersistentNavBarNavigator.pushNewScreen(
+                                      context,
+                                      screen: FullMenu(),
+                                      withNavBar: true, // OPTIONAL VALUE. True by default.
+                                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                    );
                                   },
                                 ),
 
@@ -230,6 +242,7 @@ class _MainMenuState extends State<MainMenu> {
                         ],
                       ),
                       const SizedBox(width: 10,),
+                      /// - Vegetarian Menu
                       Stack(
                         children: [
                           Container(
@@ -260,7 +273,12 @@ class _MainMenuState extends State<MainMenu> {
                                   overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
 
                                   onTap: (){
-                                    print("text");
+                                    PersistentNavBarNavigator.pushNewScreen(
+                                      context,
+                                      screen: VegetarianMenu(),
+                                      withNavBar: true, // OPTIONAL VALUE. True by default.
+                                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                    );
                                   },
                                 ),
 
@@ -269,6 +287,7 @@ class _MainMenuState extends State<MainMenu> {
                         ],
                       ),
                       const SizedBox(width: 10,),
+                      /// - Vegan Menu
                       Stack(
                         children: [
                           Container(
@@ -300,7 +319,12 @@ class _MainMenuState extends State<MainMenu> {
                                   overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
 
                                   onTap: (){
-                                    print("text");
+                                    PersistentNavBarNavigator.pushNewScreen(
+                                      context,
+                                      screen: VeganMenu(),
+                                      withNavBar: true, // OPTIONAL VALUE. True by default.
+                                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                    );
                                   },
                                 ),
 
@@ -1433,8 +1457,7 @@ class _MainMenuState extends State<MainMenu> {
 
 
               ],
-            ),
-          ),
+            ),),
           drawer: DrawerWidget(),
         )
 

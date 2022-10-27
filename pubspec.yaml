@@ -29,6 +29,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  getwidget: ^3.0.1
   carousel_slider: ^4.1.1
   line_awesome_flutter: ^2.0.0
   font_awesome_flutter: ^10.2.1
