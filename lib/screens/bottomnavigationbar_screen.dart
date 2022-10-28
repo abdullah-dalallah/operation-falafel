@@ -4,6 +4,7 @@ import 'package:operation_falafel/main.dart';
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/screens/cart%20page/cart_screen.dart';
 import 'package:operation_falafel/screens/homepage/of_homepage.dart';
+import 'package:operation_falafel/screens/other_screen.dart';
 import 'package:operation_falafel/screens/tabbar_menu_page/menu_tabebar.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -44,9 +45,9 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
       screens: [
         MainMenu(),
         Cart_Screen(),
-        TabeBarMenu(),
-        TabeBarMenu(),
-        TabeBarMenu(),
+        OtherScreen(),
+        OtherScreen(),
+        OtherScreen(),
 
       ],
       items: [

@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.operationfalafel.operation_falafel">
    <application
-        android:label="operation_falafel"
+        android:label="Operation Falafel"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
