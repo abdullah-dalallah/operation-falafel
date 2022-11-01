@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:operation_falafel/screens/menus/full_menu.dart';
 import 'package:operation_falafel/screens/menus/vegan_menu.dart';
+import 'package:operation_falafel/widgets/address_list_sheet.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'dart:math' as math;
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
@@ -53,8 +56,6 @@ class _MainMenuState extends State<MainMenu> {
                   size: 35,
                 ),
               ) ,
-             
-             
               backgroundColor: Colors.transparent,
               elevation: 0,
               centerTitle: true,
@@ -75,11 +76,11 @@ class _MainMenuState extends State<MainMenu> {
                             topLeft: Radius.circular(40),
                             bottomRight: Radius.circular(40),
                           ),
-                          border: Border.all(
-                            width: 0.5,
-                            color: Colors.white,
-                            style: BorderStyle.solid,
-                          ),
+                          // border: Border.all(
+                          //   width: 0.5,
+                          //   color: Colors.white,
+                          //   style: BorderStyle.solid,
+                          // ),
                         ),
                         child: Image.asset("assets/images/icon_search.png",height: 30,width: 35,),
 
@@ -109,7 +110,9 @@ class _MainMenuState extends State<MainMenu> {
 
 
           ),
-          body: SingleChildScrollView(child: Column(
+          body: SingleChildScrollView(
+            physics: NeverScrollableScrollPhysics(),
+            child: Column(
               children: [
                 /// - Slider - Done Design
                 ClipRRect(
@@ -117,7 +120,7 @@ class _MainMenuState extends State<MainMenu> {
                   child: CarouselSlider(
 
                       options: CarouselOptions(
-                        height: 350,
+                        height: 340,
                         aspectRatio: 1,
                         viewportFraction: 1,
                         initialPage: 0,
@@ -161,7 +164,6 @@ class _MainMenuState extends State<MainMenu> {
                     );
                   }).toList(),
                 ),
-
                 /// - Location
                 Container(
                   height: 35,
@@ -173,13 +175,39 @@ class _MainMenuState extends State<MainMenu> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-
-                    Icon(Icons.location_on,color: Colors.orange.shade300,size: 20,),
+                    Image.asset("assets/images/home_pin.png", scale: 2.5,),
+                    // Icon(Icons.location_on,color: Colors.orange.shade300,size: 20,),
                     const SizedBox(width: 10,),
                     const Text("Al Souq Al Kabeer", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w300,fontSize: 12),), Expanded(child: SizedBox(width: 10,)),
 
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+
+                        showMaterialModalBottomSheet(
+                          expand: false,
+                          context: context,
+
+                          backgroundColor: Colors.transparent,
+                          builder: (context) =>
+                              DraggableScrollableSheet(
+                                  initialChildSize: 0.5,
+                                  minChildSize: 0.5,
+                                  maxChildSize: 1,
+                              expand: true,
+                              builder: (context, scrollController) {
+                                return AddressListSheet(scrollController);
+                              }
+
+                          )
+
+
+
+
+                        );
+
+
+
+                      },
                       style: TextButton.styleFrom(
                         foregroundColor: Colors.amber,
                       ),
@@ -188,1273 +216,1475 @@ class _MainMenuState extends State<MainMenu> {
                   ],),
 
                 ),
-
-                /// - Menus
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      /// - Full Menu
-                      Stack(
-                        children: [
-                          Container(
-                            width: 125,
-
-                            decoration: BoxDecoration(
-                              color: Colors.black.withOpacity(0.4),
-                              borderRadius:const BorderRadius.only(
-                                topRight: Radius.circular(40),
-                                bottomLeft: Radius.circular(40),
-                                topLeft: Radius.circular(40),
-                                bottomRight: Radius.circular(40),
-                              ),
-                              // border: Border.all(
-                              //   width: 0.5,
-                              //   color: Colors.white,
-                              //   style: BorderStyle.solid,
-                              // ),
-                            ),
-                            child:  Image.asset("assets/images/icon_menu_0.png",),
-
-                          ),
-                           Positioned.fill(
-                              child:  Material(
-                                color: Colors.transparent,
-                                child:   InkWell(
-                                  borderRadius: BorderRadius.all(Radius.circular(17)),
-                                  splashColor: Colors.black,
-                                  overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
-
-                                  onTap: (){
-                                    PersistentNavBarNavigator.pushNewScreen(
-                                      context,
-                                      screen: FullMenu(),
-                                      withNavBar: true, // OPTIONAL VALUE. True by default.
-                                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                    );
-                                  },
-                                ),
-
-                              )
-                          ),
-
-                        ],
-                      ),
-                      const SizedBox(width: 10,),
-                      /// - Vegetarian Menu
-                      Stack(
-                        children: [
-                          Container(
-                            width: 125,
-                            decoration: BoxDecoration(
-                              color: Colors.black.withOpacity(0.4),
-                              borderRadius:const BorderRadius.only(
-                                topRight: Radius.circular(40),
-                                bottomLeft: Radius.circular(40),
-                                topLeft: Radius.circular(40),
-                                bottomRight: Radius.circular(40),
-                              ),
-                              // border: Border.all(
-                              //   width: 0.5,
-                              //   color: Colors.white,
-                              //   style: BorderStyle.solid,
-                              // ),
-                            ),
-                            child:  Image.asset("assets/images/icon_menu_1.png",),
-
-                          ),
-                          Positioned.fill(
-                              child:  Material(
-                                color: Colors.transparent,
-                                child:   InkWell(
-                                  borderRadius: BorderRadius.all(Radius.circular(17)),
-                                  splashColor: Colors.black,
-                                  overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
-
-                                  onTap: (){
-                                    PersistentNavBarNavigator.pushNewScreen(
-                                      context,
-                                      screen: VegetarianMenu(),
-                                      withNavBar: true, // OPTIONAL VALUE. True by default.
-                                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                    );
-                                  },
-                                ),
-
-                              )
-                          ),
-                        ],
-                      ),
-                      const SizedBox(width: 10,),
-                      /// - Vegan Menu
-                      Stack(
-                        children: [
-                          Container(
-                            width: 125,
-
-                            decoration: BoxDecoration(
-                              color: Colors.black.withOpacity(0.4),
-                              borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(40),
-                                bottomLeft: Radius.circular(40),
-                                topLeft: Radius.circular(40),
-                                bottomRight: Radius.circular(40),
-                              ),
-                              // border: Border.all(
-                              //   width: 0.5,
-                              //   color: Colors.white,
-                              //   style: BorderStyle.solid,
-                              // ),
-                            ),
-                            child:  Image.asset("assets/images/icon_menu_2.png",),
-
-                          ),
-                          Positioned.fill(
-                              child:  Material(
-                                color: Colors.transparent,
-                                child:   InkWell(
-                                  borderRadius: const BorderRadius.all(Radius.circular(17)),
-                                  splashColor: Colors.black,
-                                  overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
-
-                                  onTap: (){
-                                    PersistentNavBarNavigator.pushNewScreen(
-                                      context,
-                                      screen: VeganMenu(),
-                                      withNavBar: true, // OPTIONAL VALUE. True by default.
-                                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                    );
-                                  },
-                                ),
-
-                              )
-                          ),
-                        ],
-                      ),
-
-                    ],
-                  ),
-                ),
-
-                ///- Your O:F Favorites
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                const  SizedBox(height: 15,),
+                /// - Order Now Button
+                Stack(
                   children: [
-                    Transform.rotate(
-                        angle: -math.pi / 4,
-                        child: Image.asset("assets/images/arrow_down.png" ,height: 32,)),
-                    const SizedBox(width: 8,),
-                    Text("YOUR O:F FAVORITES", style: TextStyle(fontSize: 33,fontFamily: "oldpress", color: Colors.amber.shade500),),
-                    const SizedBox(width: 30,),
-                    Transform(
-                        transform: Matrix4.rotationY(math.pi),
-                        child: Transform.rotate(
-                            angle: -math.pi / 4,
-                            child: Image.asset("assets/images/arrow_down.png" ,height: 32,))),
+                    Container(
+                        width: 370,
+                        padding: EdgeInsets.only(left: 18, right: 18),
+                        decoration: BoxDecoration(
+                          color: Colors.amber.shade600,
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(20),
+                            bottomLeft: Radius.circular(20),
+                            topLeft: Radius.circular(20),
+                            bottomRight: Radius.circular(20),
+                          ),
+
+                        ),
+                        child: Center(child: Text("ORDER NOW!", style: TextStyle(fontFamily: "oldpress", fontSize: 55, color: Colors.white),))
+
+                    ),
+
+                    new Positioned.fill(
+                        child: new Material(
+                          color: Colors.transparent,
+                          child:  new InkWell(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            splashColor: Colors.black,
+                            overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                            onTap: (){
+                              print("text");
+                            },
+                          ),
+
+                        )
+                    ),
 
                   ],
                 ),
-                /// - List
-                SizedBox(
-                  height: 100,
-                  width: MediaQuery.of(context).size.width,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-
-                      Padding(
-                        padding: const EdgeInsets.all(2.0),
-                        child: Stack(
-                          alignment: Alignment.topRight,
-                          children: [
-                            Container(
-                              // width: 125,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(0),
-                                  bottomLeft: Radius.circular(0),
-                                  topLeft: Radius.circular(0),
-                                  bottomRight: Radius.circular(0),
-
-                                ),
-                                color: Colors.grey,
-                                border: Border.all(
-                                  width: 0.8,
-                                  color: Colors.white,
-                                  style: BorderStyle.solid,
-                                ),
-                              ),
-                              child: Center(child: Image.asset("assets/images/falafel.jpg")
-                              ),
-                            ),
-
-                            Align(
-                              alignment: Alignment.topRight,
-                              child: Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(50),
-                                      bottomLeft: Radius.circular(50),
-                                      topLeft: Radius.circular(50),
-                                      bottomRight: Radius.circular(50),
-
-                                    ),
-                                    color: Colors.black,
-                                    // border: Border.all(
-                                    //   width: 0.8,
-                                    //   color: Colors.white,
-                                    //   style: BorderStyle.solid,
-                                    // ),
-                                  ),
-                                  child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(2.0),
-                        child: Stack(
-                          alignment: Alignment.topRight,
-                          children: [
-                            Container(
-                              // width: 125,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(0),
-                                  bottomLeft: Radius.circular(0),
-                                  topLeft: Radius.circular(0),
-                                  bottomRight: Radius.circular(0),
-
-                                ),
-                                color: Colors.grey,
-                                border: Border.all(
-                                  width: 0.8,
-                                  color: Colors.white,
-                                  style: BorderStyle.solid,
-                                ),
-                              ),
-                              child: Center(child: Image.asset("assets/images/falafel.jpg")
-                              ),
-                            ),
-
-                            Align(
-                              alignment: Alignment.topRight,
-                              child: Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(50),
-                                      bottomLeft: Radius.circular(50),
-                                      topLeft: Radius.circular(50),
-                                      bottomRight: Radius.circular(50),
-
-                                    ),
-                                    color: Colors.black,
-                                    // border: Border.all(
-                                    //   width: 0.8,
-                                    //   color: Colors.white,
-                                    //   style: BorderStyle.solid,
-                                    // ),
-                                  ),
-                                  child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(2.0),
-                        child: Stack(
-                          alignment: Alignment.topRight,
-                          children: [
-                            Container(
-                              // width: 125,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(0),
-                                  bottomLeft: Radius.circular(0),
-                                  topLeft: Radius.circular(0),
-                                  bottomRight: Radius.circular(0),
-
-                                ),
-                                color: Colors.grey,
-                                border: Border.all(
-                                  width: 0.8,
-                                  color: Colors.white,
-                                  style: BorderStyle.solid,
-                                ),
-                              ),
-                              child: Center(child: Image.asset("assets/images/falafel.jpg")
-                              ),
-                            ),
-
-                            Align(
-                              alignment: Alignment.topRight,
-                              child: Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(50),
-                                      bottomLeft: Radius.circular(50),
-                                      topLeft: Radius.circular(50),
-                                      bottomRight: Radius.circular(50),
-
-                                    ),
-                                    color: Colors.black,
-                                    // border: Border.all(
-                                    //   width: 0.8,
-                                    //   color: Colors.white,
-                                    //   style: BorderStyle.solid,
-                                    // ),
-                                  ),
-                                  child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(2.0),
-                        child: Stack(
-                          alignment: Alignment.topRight,
-                          children: [
-                            Container(
-                              // width: 125,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(0),
-                                  bottomLeft: Radius.circular(0),
-                                  topLeft: Radius.circular(0),
-                                  bottomRight: Radius.circular(0),
-
-                                ),
-                                color: Colors.grey,
-                                border: Border.all(
-                                  width: 0.8,
-                                  color: Colors.white,
-                                  style: BorderStyle.solid,
-                                ),
-                              ),
-                              child: Center(child: Image.asset("assets/images/falafel.jpg")
-                              ),
-                            ),
-
-                            Align(
-                              alignment: Alignment.topRight,
-                              child: Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(50),
-                                      bottomLeft: Radius.circular(50),
-                                      topLeft: Radius.circular(50),
-                                      bottomRight: Radius.circular(50),
-
-                                    ),
-                                    color: Colors.black,
-                                    // border: Border.all(
-                                    //   width: 0.8,
-                                    //   color: Colors.white,
-                                    //   style: BorderStyle.solid,
-                                    // ),
-                                  ),
-                                  child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(2.0),
-                        child: Stack(
-                          alignment: Alignment.topRight,
-                          children: [
-                            Container(
-                              // width: 125,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(0),
-                                  bottomLeft: Radius.circular(0),
-                                  topLeft: Radius.circular(0),
-                                  bottomRight: Radius.circular(0),
-
-                                ),
-                                color: Colors.grey,
-                                border: Border.all(
-                                  width: 0.8,
-                                  color: Colors.white,
-                                  style: BorderStyle.solid,
-                                ),
-                              ),
-                              child: Center(child: Image.asset("assets/images/falafel.jpg")
-                              ),
-                            ),
-
-                            Align(
-                              alignment: Alignment.topRight,
-                              child: Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(50),
-                                      bottomLeft: Radius.circular(50),
-                                      topLeft: Radius.circular(50),
-                                      bottomRight: Radius.circular(50),
-
-                                    ),
-                                    color: Colors.black,
-                                    // border: Border.all(
-                                    //   width: 0.8,
-                                    //   color: Colors.white,
-                                    //   style: BorderStyle.solid,
-                                    // ),
-                                  ),
-                                  child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(2.0),
-                        child: Stack(
-                          alignment: Alignment.topRight,
-                          children: [
-                            Container(
-                              // width: 125,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(0),
-                                  bottomLeft: Radius.circular(0),
-                                  topLeft: Radius.circular(0),
-                                  bottomRight: Radius.circular(0),
-
-                                ),
-                                color: Colors.grey,
-                                border: Border.all(
-                                  width: 0.8,
-                                  color: Colors.white,
-                                  style: BorderStyle.solid,
-                                ),
-                              ),
-                              child: Center(child: Image.asset("assets/images/falafel.jpg")
-                              ),
-                            ),
-
-                            Align(
-                              alignment: Alignment.topRight,
-                              child: Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(50),
-                                      bottomLeft: Radius.circular(50),
-                                      topLeft: Radius.circular(50),
-                                      bottomRight: Radius.circular(50),
-
-                                    ),
-                                    color: Colors.black,
-                                    // border: Border.all(
-                                    //   width: 0.8,
-                                    //   color: Colors.white,
-                                    //   style: BorderStyle.solid,
-                                    // ),
-                                  ),
-                                  child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(2.0),
-                        child: Stack(
-                          alignment: Alignment.topRight,
-                          children: [
-                            Container(
-                              // width: 125,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(0),
-                                  bottomLeft: Radius.circular(0),
-                                  topLeft: Radius.circular(0),
-                                  bottomRight: Radius.circular(0),
-
-                                ),
-                                color: Colors.grey,
-                                border: Border.all(
-                                  width: 0.8,
-                                  color: Colors.white,
-                                  style: BorderStyle.solid,
-                                ),
-                              ),
-                              child: Center(child: Image.asset("assets/images/falafel.jpg")
-                              ),
-                            ),
-
-                            Align(
-                              alignment: Alignment.topRight,
-                              child: Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(50),
-                                      bottomLeft: Radius.circular(50),
-                                      topLeft: Radius.circular(50),
-                                      bottomRight: Radius.circular(50),
-
-                                    ),
-                                    color: Colors.black,
-                                    // border: Border.all(
-                                    //   width: 0.8,
-                                    //   color: Colors.white,
-                                    //   style: BorderStyle.solid,
-                                    // ),
-                                  ),
-                                  child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-
-
-
-
-
-
-
-                    ],
-                  ),
-                ),
-
                 const SizedBox(height: 10,),
-                ///- Our O:F Best Seller
-                Row( mainAxisAlignment: MainAxisAlignment.center,
-                  children: [//page7_right_icon
-                    Transform.rotate(
-                        angle: -math.pi / 2,
-                        child: Image.asset("assets/images/page7_right_icon.png" ,height: 32,)),
-                    const SizedBox(width: 10,),
-                    const Text("OUR O:F BEST SELLERS", style: TextStyle(fontSize: 33,fontFamily: "oldpress", color: Colors.white),),
-                    const SizedBox(width: 10,),
-                    Transform.rotate(
-                        angle: -math.pi / 8,
-                        child: Image.asset("assets/images/page7_right_icon.png" ,height: 32,)),
+                /// - Dashboard
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    padding: const EdgeInsets.only(left: 18, right: 18,top: 8,bottom: 8),
+                    decoration:const BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(10),
+                        bottomLeft: Radius.circular(10),
+                        topLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      ),
 
-                  ],
-                ),
-                /// - List
-                SizedBox(
-                  height:100 ,
-                  width: MediaQuery.of(context).size.width,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      Padding(
-                         padding: const EdgeInsets.all(4.0),
-                         child: Stack(
-                            alignment: Alignment.topRight,
-                            children: [
-                              Container(
-                                width: 90,
-                                height: 90,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(100),
-                                    bottomLeft: Radius.circular(100),
-                                    topLeft: Radius.circular(100),
-                                    bottomRight: Radius.circular(100),
+                    ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: RichText(
 
-                                  ),
-                                  color: Colors.grey,
-                                  border: Border.all(
-                                    width: 0.8,
-                                    color: Colors.white,
-                                    style: BorderStyle.solid,
-                                  ),
-                                ),
-                                child: Center(
-                                    child:
-                                    ClipRRect(
-                                    borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
-                                    child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
-                                ),
+                            text:  TextSpan(text: 'You have ',style: TextStyle(fontSize: 17, fontWeight: FontWeight.w300), children: [
+                               TextSpan(
+                                text: '77.6 Credits ',
+                                style: TextStyle(color: Colors.amber),
+                                recognizer: new TapGestureRecognizer()..onTap = () => print('Tap Here onTap'),
                               ),
-                              Align(
-                                alignment: Alignment.topRight,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(50),
-                                        bottomLeft: Radius.circular(50),
-                                        topLeft: Radius.circular(50),
-                                        bottomRight: Radius.circular(50),
-
-                                      ),
-                                      color: Colors.black,
-                                      // border: Border.all(
-                                      //   width: 0.8,
-                                      //   color: Colors.white,
-                                      //   style: BorderStyle.solid,
-                                      // ),
-                                    ),
-                                    child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
-                                  ),
-                                ),
+                              TextSpan(
+                                text: 'Valid Until 00/00/0000',
+                                style: TextStyle(color: Colors.white),
+                                recognizer: new TapGestureRecognizer()..onTap = () => print('Tap Here onTap'),
                               )
+                            ]),
+                          ),
+                        ),
+                        const Divider(color: Colors.amber,),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Stack(
+                                children: [
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Image.asset("assets/images/my_rewards_gencode.png", height: 40,width: 40,),
+                                      const SizedBox(height: 5,),
+                                      // Icon(Icons.qr_code_2, color: Colors.amber,size: 35,),
+                                      const  Text("My\nCode", style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),textAlign:TextAlign.center,)
+                                    ],
+                                  ),
+                                  new Positioned.fill(
+                                      child: new Material(
+                                        color: Colors.transparent,
+                                        child:  new InkWell(
+                                          borderRadius: BorderRadius.all(Radius.circular(0)),
+                                          splashColor: Colors.black,
+                                          overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                          onTap: (){
+                                            print("text");
+                                          },
+                                        ),
+
+                                      )
+                                  ),
+                                ],
+                              ),
+                              Stack(
+                                children: [
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Image.asset("assets/images/gift.png", height: 40,width: 40,),
+                                      const SizedBox(height: 5,),
+                                      // Icon(Icons.qr_code_2, color: Colors.amber,size: 35,),
+                                      const  Text("My\nRewards", style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),textAlign:TextAlign.center,)
+                                    ],
+                                  ),
+                                  Positioned.fill(
+                                      child: new Material(
+                                        color: Colors.transparent,
+                                        child:  new InkWell(
+                                          borderRadius: BorderRadius.all(Radius.circular(0)),
+                                          splashColor: Colors.black,
+                                          overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                          onTap: (){
+                                            print("text");
+                                          },
+                                        ),
+
+                                      )
+                                  ),
+                                ],
+                              ),
+                              Stack(
+                                children: [
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.supervised_user_circle_sharp, color: Colors.amber,size: 40,),
+                                      const SizedBox(height: 5,),
+                                      // Icon(Icons.qr_code_2, color: Colors.amber,size: 35,),
+                                      const  Text("Refer \nFriend", style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),textAlign:TextAlign.center,)
+                                    ],
+                                  ),
+                                  Positioned.fill(
+                                      child: new Material(
+                                        color: Colors.transparent,
+                                        child:  new InkWell(
+                                          borderRadius: BorderRadius.all(Radius.circular(0)),
+                                          splashColor: Colors.black,
+                                          overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                          onTap: (){
+                                            print("text");
+                                          },
+                                        ),
+
+                                      )
+                                  ),
+                                ],
+                              ),
+                              Stack(
+                                children: [
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.monetization_on_outlined, color: Colors.amber,size: 40,),
+                                      const SizedBox(height: 5,),
+                                      Text("Transfer\nCredit", style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),textAlign:TextAlign.center,)
+                                    ],
+                                  ),
+                                  Positioned.fill(
+                                      child: new Material(
+                                        color: Colors.transparent,
+                                        child:  new InkWell(
+                                          borderRadius: BorderRadius.all(Radius.circular(0)),
+                                          splashColor: Colors.black,
+                                          overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                          onTap: (){
+                                            print("text");
+                                          },
+                                        ),
+
+                                      )
+                                  ),
+                                ],
+                              ),
+
+
                             ],
                           ),
-                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Stack(
-                          alignment: Alignment.topRight,
-                          children: [
-                            Container(
-                              width: 90,
-                              height: 90,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(100),
-                                  bottomLeft: Radius.circular(100),
-                                  topLeft: Radius.circular(100),
-                                  bottomRight: Radius.circular(100),
-
-                                ),
-                                color: Colors.grey,
-                                border: Border.all(
-                                  width: 0.8,
-                                  color: Colors.white,
-                                  style: BorderStyle.solid,
-                                ),
-                              ),
-                              child: Center(child: ClipRRect(
-                                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
-                                  child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.topRight,
-                              child: Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(50),
-                                      bottomLeft: Radius.circular(50),
-                                      topLeft: Radius.circular(50),
-                                      bottomRight: Radius.circular(50),
-
-                                    ),
-                                    color: Colors.black,
-                                    // border: Border.all(
-                                    //   width: 0.8,
-                                    //   color: Colors.white,
-                                    //   style: BorderStyle.solid,
-                                    // ),
-                                  ),
-                                  child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Stack(
-                          alignment: Alignment.topRight,
-                          children: [
-                            Container(
-                              width: 90,
-                              height: 90,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(100),
-                                  bottomLeft: Radius.circular(100),
-                                  topLeft: Radius.circular(100),
-                                  bottomRight: Radius.circular(100),
-
-                                ),
-                                color: Colors.grey,
-                                border: Border.all(
-                                  width: 0.8,
-                                  color: Colors.white,
-                                  style: BorderStyle.solid,
-                                ),
-                              ),
-                              child: Center(child: ClipRRect(
-                                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
-                                  child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.topRight,
-                              child: Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(50),
-                                      bottomLeft: Radius.circular(50),
-                                      topLeft: Radius.circular(50),
-                                      bottomRight: Radius.circular(50),
-
-                                    ),
-                                    color: Colors.black,
-                                    // border: Border.all(
-                                    //   width: 0.8,
-                                    //   color: Colors.white,
-                                    //   style: BorderStyle.solid,
-                                    // ),
-                                  ),
-                                  child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Stack(
-                          alignment: Alignment.topRight,
-                          children: [
-                            Container(
-                              width: 90,
-                              height: 90,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(100),
-                                  bottomLeft: Radius.circular(100),
-                                  topLeft: Radius.circular(100),
-                                  bottomRight: Radius.circular(100),
-
-                                ),
-                                color: Colors.grey,
-                                border: Border.all(
-                                  width: 0.8,
-                                  color: Colors.white,
-                                  style: BorderStyle.solid,
-                                ),
-                              ),
-                              child: Center(child: ClipRRect(
-                                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
-                                  child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.topRight,
-                              child: Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(50),
-                                      bottomLeft: Radius.circular(50),
-                                      topLeft: Radius.circular(50),
-                                      bottomRight: Radius.circular(50),
-
-                                    ),
-                                    color: Colors.black,
-                                    // border: Border.all(
-                                    //   width: 0.8,
-                                    //   color: Colors.white,
-                                    //   style: BorderStyle.solid,
-                                    // ),
-                                  ),
-                                  child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Stack(
-                          alignment: Alignment.topRight,
-                          children: [
-                            Container(
-                              width: 90,
-                              height: 90,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(100),
-                                  bottomLeft: Radius.circular(100),
-                                  topLeft: Radius.circular(100),
-                                  bottomRight: Radius.circular(100),
-
-                                ),
-                                color: Colors.grey,
-                                border: Border.all(
-                                  width: 0.8,
-                                  color: Colors.white,
-                                  style: BorderStyle.solid,
-                                ),
-                              ),
-                              child: Center(child: ClipRRect(
-                                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
-                                  child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.topRight,
-                              child: Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(50),
-                                      bottomLeft: Radius.circular(50),
-                                      topLeft: Radius.circular(50),
-                                      bottomRight: Radius.circular(50),
-
-                                    ),
-                                    color: Colors.black,
-                                    // border: Border.all(
-                                    //   width: 0.8,
-                                    //   color: Colors.white,
-                                    //   style: BorderStyle.solid,
-                                    // ),
-                                  ),
-                                  child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Stack(
-                          alignment: Alignment.topRight,
-                          children: [
-                            Container(
-                              width: 90,
-                              height: 90,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(100),
-                                  bottomLeft: Radius.circular(100),
-                                  topLeft: Radius.circular(100),
-                                  bottomRight: Radius.circular(100),
-
-                                ),
-                                color: Colors.grey,
-                                border: Border.all(
-                                  width: 0.8,
-                                  color: Colors.white,
-                                  style: BorderStyle.solid,
-                                ),
-                              ),
-                              child: Center(child: ClipRRect(
-                                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
-                                  child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.topRight,
-                              child: Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(50),
-                                      bottomLeft: Radius.circular(50),
-                                      topLeft: Radius.circular(50),
-                                      bottomRight: Radius.circular(50),
-
-                                    ),
-                                    color: Colors.black,
-                                    // border: Border.all(
-                                    //   width: 0.8,
-                                    //   color: Colors.white,
-                                    //   style: BorderStyle.solid,
-                                    // ),
-                                  ),
-                                  child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Stack(
-                          alignment: Alignment.topRight,
-                          children: [
-                            Container(
-                              width: 90,
-                              height: 90,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(100),
-                                  bottomLeft: Radius.circular(100),
-                                  topLeft: Radius.circular(100),
-                                  bottomRight: Radius.circular(100),
-
-                                ),
-                                color: Colors.grey,
-                                border: Border.all(
-                                  width: 0.8,
-                                  color: Colors.white,
-                                  style: BorderStyle.solid,
-                                ),
-                              ),
-                              child: Center(child: ClipRRect(
-                                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
-                                  child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.topRight,
-                              child: Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(50),
-                                      bottomLeft: Radius.circular(50),
-                                      topLeft: Radius.circular(50),
-                                      bottomRight: Radius.circular(50),
-
-                                    ),
-                                    color: Colors.black,
-                                    // border: Border.all(
-                                    //   width: 0.8,
-                                    //   color: Colors.white,
-                                    //   style: BorderStyle.solid,
-                                    // ),
-                                  ),
-                                  child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Stack(
-                          alignment: Alignment.topRight,
-                          children: [
-                            Container(
-                              width: 90,
-                              height: 90,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(100),
-                                  bottomLeft: Radius.circular(100),
-                                  topLeft: Radius.circular(100),
-                                  bottomRight: Radius.circular(100),
-
-                                ),
-                                color: Colors.grey,
-                                border: Border.all(
-                                  width: 0.8,
-                                  color: Colors.white,
-                                  style: BorderStyle.solid,
-                                ),
-                              ),
-                              child: Center(child: ClipRRect(
-                                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
-                                  child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.topRight,
-                              child: Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(50),
-                                      bottomLeft: Radius.circular(50),
-                                      topLeft: Radius.circular(50),
-                                      bottomRight: Radius.circular(50),
-
-                                    ),
-                                    color: Colors.black,
-                                    // border: Border.all(
-                                    //   width: 0.8,
-                                    //   color: Colors.white,
-                                    //   style: BorderStyle.solid,
-                                    // ),
-                                  ),
-                                  child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Stack(
-                          alignment: Alignment.topRight,
-                          children: [
-                            Container(
-                              width: 90,
-                              height: 90,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(100),
-                                  bottomLeft: Radius.circular(100),
-                                  topLeft: Radius.circular(100),
-                                  bottomRight: Radius.circular(100),
-
-                                ),
-                                color: Colors.grey,
-                                border: Border.all(
-                                  width: 0.8,
-                                  color: Colors.white,
-                                  style: BorderStyle.solid,
-                                ),
-                              ),
-                              child: Center(child: ClipRRect(
-                                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
-                                  child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.topRight,
-                              child: Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(50),
-                                      bottomLeft: Radius.circular(50),
-                                      topLeft: Radius.circular(50),
-                                      bottomRight: Radius.circular(50),
-
-                                    ),
-                                    color: Colors.black,
-                                    // border: Border.all(
-                                    //   width: 0.8,
-                                    //   color: Colors.white,
-                                    //   style: BorderStyle.solid,
-                                    // ),
-                                  ),
-                                  child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Stack(
-                          alignment: Alignment.topRight,
-                          children: [
-                            Container(
-                              width: 90,
-                              height: 90,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(100),
-                                  bottomLeft: Radius.circular(100),
-                                  topLeft: Radius.circular(100),
-                                  bottomRight: Radius.circular(100),
-
-                                ),
-                                color: Colors.grey,
-                                border: Border.all(
-                                  width: 0.8,
-                                  color: Colors.white,
-                                  style: BorderStyle.solid,
-                                ),
-                              ),
-                              child: Center(child: ClipRRect(
-                                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
-                                  child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.topRight,
-                              child: Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(50),
-                                      bottomLeft: Radius.circular(50),
-                                      topLeft: Radius.circular(50),
-                                      bottomRight: Radius.circular(50),
-
-                                    ),
-                                    color: Colors.black,
-                                    // border: Border.all(
-                                    //   width: 0.8,
-                                    //   color: Colors.white,
-                                    //   style: BorderStyle.solid,
-                                    // ),
-                                  ),
-                                  child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                /// - O:F Boxes
-                Stack (
-                  alignment: Alignment.topCenter,
-                  children: [
-                    Column(
-                      children: [
-                        const SizedBox(height: 30,),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(2.0),
-                              child: Stack(
-                                alignment: Alignment.topLeft,
-                                children: [
-                                  Container(
-                                    width: 200,
-                                    decoration: BoxDecoration(
-                                      borderRadius:const BorderRadius.only(
-                                        topRight: Radius.circular(10),
-                                        bottomLeft: Radius.circular(10),
-                                        topLeft: Radius.circular(10),
-                                        bottomRight: Radius.circular(10),
-
-                                      ),
-                                      color: Colors.grey,
-                                      border: Border.all(
-                                        width: 0.8,
-                                        color: Colors.white,
-                                        style: BorderStyle.solid,
-                                      ),
-                                    ),
-                                    child: Center(
-                                        child: ClipRRect(
-                                            borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10),bottomRight: Radius.circular(10),bottomLeft: Radius.circular(10)),
-                                            child: Image.asset("assets/images/falafel.jpg"))
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.topLeft,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(5.0),
-                                      child: Container(
-                                        decoration: const BoxDecoration(
-                                          borderRadius: BorderRadius.only(
-                                            topRight: Radius.circular(50),
-                                            bottomLeft: Radius.circular(50),
-                                            topLeft: Radius.circular(50),
-                                            bottomRight: Radius.circular(50),
-
-                                          ),
-                                          color: Colors.black,
-                                          // border: Border.all(
-                                          //   width: 0.8,
-                                          //   color: Colors.white,
-                                          //   style: BorderStyle.solid,
-                                          // ),
-                                        ),
-                                        child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            const SizedBox(width: 5,),
-                            Padding(
-                              padding: const EdgeInsets.all(2.0),
-                              child: Stack(
-                                alignment: Alignment.topRight,
-                                children: [
-                                  Container(
-                                    width: 200,
-                                    decoration: BoxDecoration(
-                                      borderRadius:const BorderRadius.only(
-                                        topRight: Radius.circular(10),
-                                        bottomLeft: Radius.circular(10),
-                                        topLeft: Radius.circular(10),
-                                        bottomRight: Radius.circular(10),
-
-                                      ),
-                                      color: Colors.grey,
-                                      border: Border.all(
-                                        width: 0.8,
-                                        color: Colors.white,
-                                        style: BorderStyle.solid,
-                                      ),
-                                    ),
-                                    child: Center(
-                                        child: ClipRRect(
-                                            borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10),bottomRight: Radius.circular(10),bottomLeft: Radius.circular(10)),
-                                            child: Image.asset("assets/images/falafel.jpg"))
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.topRight,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(5.0),
-                                      child: Container(
-                                        decoration: const BoxDecoration(
-                                          borderRadius: BorderRadius.only(
-                                            topRight: Radius.circular(50),
-                                            bottomLeft: Radius.circular(50),
-                                            topLeft: Radius.circular(50),
-                                            bottomRight: Radius.circular(50),
-
-                                          ),
-                                          color: Colors.black,
-                                          // border: Border.all(
-                                          //   width: 0.8,
-                                          //   color: Colors.white,
-                                          //   style: BorderStyle.solid,
-                                          // ),
-                                        ),
-                                        child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
                         ),
                       ],
                     ),
-                    Positioned(
-
-                        child: Image.asset("assets/images/page6_boxes.png", height: 60,))
-                  ],
+                  ),
                 ),
 
+                /// - Old Version
+                // /// - Menus
+                // Padding(
+                //   padding: const EdgeInsets.all(15.0),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     children: [
+                //       /// - Full Menu
+                //       Stack(
+                //         children: [
+                //           Container(
+                //             width: 125,
+                //
+                //             decoration: BoxDecoration(
+                //               color: Colors.black.withOpacity(0.4),
+                //               borderRadius:const BorderRadius.only(
+                //                 topRight: Radius.circular(40),
+                //                 bottomLeft: Radius.circular(40),
+                //                 topLeft: Radius.circular(40),
+                //                 bottomRight: Radius.circular(40),
+                //               ),
+                //               // border: Border.all(
+                //               //   width: 0.5,
+                //               //   color: Colors.white,
+                //               //   style: BorderStyle.solid,
+                //               // ),
+                //             ),
+                //             child:  Image.asset("assets/images/icon_menu_0.png",),
+                //
+                //           ),
+                //            Positioned.fill(
+                //               child:  Material(
+                //                 color: Colors.transparent,
+                //                 child:   InkWell(
+                //                   borderRadius: BorderRadius.all(Radius.circular(17)),
+                //                   splashColor: Colors.black,
+                //                   overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+                //
+                //                   onTap: (){
+                //                     PersistentNavBarNavigator.pushNewScreen(
+                //                       context,
+                //                       screen: FullMenu(),
+                //                       withNavBar: true, // OPTIONAL VALUE. True by default.
+                //                       pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                //                     );
+                //                   },
+                //                 ),
+                //
+                //               )
+                //           ),
+                //
+                //         ],
+                //       ),
+                //       const SizedBox(width: 10,),
+                //       /// - Vegetarian Menu
+                //       Stack(
+                //         children: [
+                //           Container(
+                //             width: 125,
+                //             decoration: BoxDecoration(
+                //               color: Colors.black.withOpacity(0.4),
+                //               borderRadius:const BorderRadius.only(
+                //                 topRight: Radius.circular(40),
+                //                 bottomLeft: Radius.circular(40),
+                //                 topLeft: Radius.circular(40),
+                //                 bottomRight: Radius.circular(40),
+                //               ),
+                //               // border: Border.all(
+                //               //   width: 0.5,
+                //               //   color: Colors.white,
+                //               //   style: BorderStyle.solid,
+                //               // ),
+                //             ),
+                //             child:  Image.asset("assets/images/icon_menu_1.png",),
+                //
+                //           ),
+                //           Positioned.fill(
+                //               child:  Material(
+                //                 color: Colors.transparent,
+                //                 child:   InkWell(
+                //                   borderRadius: BorderRadius.all(Radius.circular(17)),
+                //                   splashColor: Colors.black,
+                //                   overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+                //
+                //                   onTap: (){
+                //                     PersistentNavBarNavigator.pushNewScreen(
+                //                       context,
+                //                       screen: VegetarianMenu(),
+                //                       withNavBar: true, // OPTIONAL VALUE. True by default.
+                //                       pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                //                     );
+                //                   },
+                //                 ),
+                //
+                //               )
+                //           ),
+                //         ],
+                //       ),
+                //       const SizedBox(width: 10,),
+                //       /// - Vegan Menu
+                //       Stack(
+                //         children: [
+                //           Container(
+                //             width: 125,
+                //
+                //             decoration: BoxDecoration(
+                //               color: Colors.black.withOpacity(0.4),
+                //               borderRadius: BorderRadius.only(
+                //                 topRight: Radius.circular(40),
+                //                 bottomLeft: Radius.circular(40),
+                //                 topLeft: Radius.circular(40),
+                //                 bottomRight: Radius.circular(40),
+                //               ),
+                //               // border: Border.all(
+                //               //   width: 0.5,
+                //               //   color: Colors.white,
+                //               //   style: BorderStyle.solid,
+                //               // ),
+                //             ),
+                //             child:  Image.asset("assets/images/icon_menu_2.png",),
+                //
+                //           ),
+                //           Positioned.fill(
+                //               child:  Material(
+                //                 color: Colors.transparent,
+                //                 child:   InkWell(
+                //                   borderRadius: const BorderRadius.all(Radius.circular(17)),
+                //                   splashColor: Colors.black,
+                //                   overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+                //
+                //                   onTap: (){
+                //                     PersistentNavBarNavigator.pushNewScreen(
+                //                       context,
+                //                       screen: VeganMenu(),
+                //                       withNavBar: true, // OPTIONAL VALUE. True by default.
+                //                       pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                //                     );
+                //                   },
+                //                 ),
+                //
+                //               )
+                //           ),
+                //         ],
+                //       ),
+                //
+                //     ],
+                //   ),
+                // ),
+                //
+                // ///- Your O:F Favorites
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     Transform.rotate(
+                //         angle: -math.pi / 4,
+                //         child: Image.asset("assets/images/arrow_down.png" ,height: 32,)),
+                //     const SizedBox(width: 8,),
+                //     Text("YOUR O:F FAVORITES", style: TextStyle(fontSize: 33,fontFamily: "oldpress", color: Colors.amber.shade500),),
+                //     const SizedBox(width: 30,),
+                //     Transform(
+                //         transform: Matrix4.rotationY(math.pi),
+                //         child: Transform.rotate(
+                //             angle: -math.pi / 4,
+                //             child: Image.asset("assets/images/arrow_down.png" ,height: 32,))),
+                //
+                //   ],
+                // ),
+                // /// - List
+                // SizedBox(
+                //   height: 100,
+                //   width: MediaQuery.of(context).size.width,
+                //   child: ListView(
+                //     scrollDirection: Axis.horizontal,
+                //     children: [
+                //
+                //       Padding(
+                //         padding: const EdgeInsets.all(2.0),
+                //         child: Stack(
+                //           alignment: Alignment.topRight,
+                //           children: [
+                //             Container(
+                //               // width: 125,
+                //               decoration: BoxDecoration(
+                //                 borderRadius: BorderRadius.only(
+                //                   topRight: Radius.circular(0),
+                //                   bottomLeft: Radius.circular(0),
+                //                   topLeft: Radius.circular(0),
+                //                   bottomRight: Radius.circular(0),
+                //
+                //                 ),
+                //                 color: Colors.grey,
+                //                 border: Border.all(
+                //                   width: 0.8,
+                //                   color: Colors.white,
+                //                   style: BorderStyle.solid,
+                //                 ),
+                //               ),
+                //               child: Center(child: Image.asset("assets/images/falafel.jpg")
+                //               ),
+                //             ),
+                //
+                //             Align(
+                //               alignment: Alignment.topRight,
+                //               child: Padding(
+                //                 padding: const EdgeInsets.all(5.0),
+                //                 child: Container(
+                //                   decoration: BoxDecoration(
+                //                     borderRadius: BorderRadius.only(
+                //                       topRight: Radius.circular(50),
+                //                       bottomLeft: Radius.circular(50),
+                //                       topLeft: Radius.circular(50),
+                //                       bottomRight: Radius.circular(50),
+                //
+                //                     ),
+                //                     color: Colors.black,
+                //                     // border: Border.all(
+                //                     //   width: 0.8,
+                //                     //   color: Colors.white,
+                //                     //   style: BorderStyle.solid,
+                //                     // ),
+                //                   ),
+                //                   child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                //                 ),
+                //               ),
+                //             )
+                //           ],
+                //         ),
+                //       ),
+                //       Padding(
+                //         padding: const EdgeInsets.all(2.0),
+                //         child: Stack(
+                //           alignment: Alignment.topRight,
+                //           children: [
+                //             Container(
+                //               // width: 125,
+                //               decoration: BoxDecoration(
+                //                 borderRadius: BorderRadius.only(
+                //                   topRight: Radius.circular(0),
+                //                   bottomLeft: Radius.circular(0),
+                //                   topLeft: Radius.circular(0),
+                //                   bottomRight: Radius.circular(0),
+                //
+                //                 ),
+                //                 color: Colors.grey,
+                //                 border: Border.all(
+                //                   width: 0.8,
+                //                   color: Colors.white,
+                //                   style: BorderStyle.solid,
+                //                 ),
+                //               ),
+                //               child: Center(child: Image.asset("assets/images/falafel.jpg")
+                //               ),
+                //             ),
+                //
+                //             Align(
+                //               alignment: Alignment.topRight,
+                //               child: Padding(
+                //                 padding: const EdgeInsets.all(5.0),
+                //                 child: Container(
+                //                   decoration: BoxDecoration(
+                //                     borderRadius: BorderRadius.only(
+                //                       topRight: Radius.circular(50),
+                //                       bottomLeft: Radius.circular(50),
+                //                       topLeft: Radius.circular(50),
+                //                       bottomRight: Radius.circular(50),
+                //
+                //                     ),
+                //                     color: Colors.black,
+                //                     // border: Border.all(
+                //                     //   width: 0.8,
+                //                     //   color: Colors.white,
+                //                     //   style: BorderStyle.solid,
+                //                     // ),
+                //                   ),
+                //                   child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                //                 ),
+                //               ),
+                //             )
+                //           ],
+                //         ),
+                //       ),
+                //       Padding(
+                //         padding: const EdgeInsets.all(2.0),
+                //         child: Stack(
+                //           alignment: Alignment.topRight,
+                //           children: [
+                //             Container(
+                //               // width: 125,
+                //               decoration: BoxDecoration(
+                //                 borderRadius: BorderRadius.only(
+                //                   topRight: Radius.circular(0),
+                //                   bottomLeft: Radius.circular(0),
+                //                   topLeft: Radius.circular(0),
+                //                   bottomRight: Radius.circular(0),
+                //
+                //                 ),
+                //                 color: Colors.grey,
+                //                 border: Border.all(
+                //                   width: 0.8,
+                //                   color: Colors.white,
+                //                   style: BorderStyle.solid,
+                //                 ),
+                //               ),
+                //               child: Center(child: Image.asset("assets/images/falafel.jpg")
+                //               ),
+                //             ),
+                //
+                //             Align(
+                //               alignment: Alignment.topRight,
+                //               child: Padding(
+                //                 padding: const EdgeInsets.all(5.0),
+                //                 child: Container(
+                //                   decoration: BoxDecoration(
+                //                     borderRadius: BorderRadius.only(
+                //                       topRight: Radius.circular(50),
+                //                       bottomLeft: Radius.circular(50),
+                //                       topLeft: Radius.circular(50),
+                //                       bottomRight: Radius.circular(50),
+                //
+                //                     ),
+                //                     color: Colors.black,
+                //                     // border: Border.all(
+                //                     //   width: 0.8,
+                //                     //   color: Colors.white,
+                //                     //   style: BorderStyle.solid,
+                //                     // ),
+                //                   ),
+                //                   child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                //                 ),
+                //               ),
+                //             )
+                //           ],
+                //         ),
+                //       ),
+                //       Padding(
+                //         padding: const EdgeInsets.all(2.0),
+                //         child: Stack(
+                //           alignment: Alignment.topRight,
+                //           children: [
+                //             Container(
+                //               // width: 125,
+                //               decoration: BoxDecoration(
+                //                 borderRadius: BorderRadius.only(
+                //                   topRight: Radius.circular(0),
+                //                   bottomLeft: Radius.circular(0),
+                //                   topLeft: Radius.circular(0),
+                //                   bottomRight: Radius.circular(0),
+                //
+                //                 ),
+                //                 color: Colors.grey,
+                //                 border: Border.all(
+                //                   width: 0.8,
+                //                   color: Colors.white,
+                //                   style: BorderStyle.solid,
+                //                 ),
+                //               ),
+                //               child: Center(child: Image.asset("assets/images/falafel.jpg")
+                //               ),
+                //             ),
+                //
+                //             Align(
+                //               alignment: Alignment.topRight,
+                //               child: Padding(
+                //                 padding: const EdgeInsets.all(5.0),
+                //                 child: Container(
+                //                   decoration: BoxDecoration(
+                //                     borderRadius: BorderRadius.only(
+                //                       topRight: Radius.circular(50),
+                //                       bottomLeft: Radius.circular(50),
+                //                       topLeft: Radius.circular(50),
+                //                       bottomRight: Radius.circular(50),
+                //
+                //                     ),
+                //                     color: Colors.black,
+                //                     // border: Border.all(
+                //                     //   width: 0.8,
+                //                     //   color: Colors.white,
+                //                     //   style: BorderStyle.solid,
+                //                     // ),
+                //                   ),
+                //                   child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                //                 ),
+                //               ),
+                //             )
+                //           ],
+                //         ),
+                //       ),
+                //       Padding(
+                //         padding: const EdgeInsets.all(2.0),
+                //         child: Stack(
+                //           alignment: Alignment.topRight,
+                //           children: [
+                //             Container(
+                //               // width: 125,
+                //               decoration: BoxDecoration(
+                //                 borderRadius: BorderRadius.only(
+                //                   topRight: Radius.circular(0),
+                //                   bottomLeft: Radius.circular(0),
+                //                   topLeft: Radius.circular(0),
+                //                   bottomRight: Radius.circular(0),
+                //
+                //                 ),
+                //                 color: Colors.grey,
+                //                 border: Border.all(
+                //                   width: 0.8,
+                //                   color: Colors.white,
+                //                   style: BorderStyle.solid,
+                //                 ),
+                //               ),
+                //               child: Center(child: Image.asset("assets/images/falafel.jpg")
+                //               ),
+                //             ),
+                //
+                //             Align(
+                //               alignment: Alignment.topRight,
+                //               child: Padding(
+                //                 padding: const EdgeInsets.all(5.0),
+                //                 child: Container(
+                //                   decoration: BoxDecoration(
+                //                     borderRadius: BorderRadius.only(
+                //                       topRight: Radius.circular(50),
+                //                       bottomLeft: Radius.circular(50),
+                //                       topLeft: Radius.circular(50),
+                //                       bottomRight: Radius.circular(50),
+                //
+                //                     ),
+                //                     color: Colors.black,
+                //                     // border: Border.all(
+                //                     //   width: 0.8,
+                //                     //   color: Colors.white,
+                //                     //   style: BorderStyle.solid,
+                //                     // ),
+                //                   ),
+                //                   child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                //                 ),
+                //               ),
+                //             )
+                //           ],
+                //         ),
+                //       ),
+                //       Padding(
+                //         padding: const EdgeInsets.all(2.0),
+                //         child: Stack(
+                //           alignment: Alignment.topRight,
+                //           children: [
+                //             Container(
+                //               // width: 125,
+                //               decoration: BoxDecoration(
+                //                 borderRadius: BorderRadius.only(
+                //                   topRight: Radius.circular(0),
+                //                   bottomLeft: Radius.circular(0),
+                //                   topLeft: Radius.circular(0),
+                //                   bottomRight: Radius.circular(0),
+                //
+                //                 ),
+                //                 color: Colors.grey,
+                //                 border: Border.all(
+                //                   width: 0.8,
+                //                   color: Colors.white,
+                //                   style: BorderStyle.solid,
+                //                 ),
+                //               ),
+                //               child: Center(child: Image.asset("assets/images/falafel.jpg")
+                //               ),
+                //             ),
+                //
+                //             Align(
+                //               alignment: Alignment.topRight,
+                //               child: Padding(
+                //                 padding: const EdgeInsets.all(5.0),
+                //                 child: Container(
+                //                   decoration: BoxDecoration(
+                //                     borderRadius: BorderRadius.only(
+                //                       topRight: Radius.circular(50),
+                //                       bottomLeft: Radius.circular(50),
+                //                       topLeft: Radius.circular(50),
+                //                       bottomRight: Radius.circular(50),
+                //
+                //                     ),
+                //                     color: Colors.black,
+                //                     // border: Border.all(
+                //                     //   width: 0.8,
+                //                     //   color: Colors.white,
+                //                     //   style: BorderStyle.solid,
+                //                     // ),
+                //                   ),
+                //                   child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                //                 ),
+                //               ),
+                //             )
+                //           ],
+                //         ),
+                //       ),
+                //       Padding(
+                //         padding: const EdgeInsets.all(2.0),
+                //         child: Stack(
+                //           alignment: Alignment.topRight,
+                //           children: [
+                //             Container(
+                //               // width: 125,
+                //               decoration: BoxDecoration(
+                //                 borderRadius: BorderRadius.only(
+                //                   topRight: Radius.circular(0),
+                //                   bottomLeft: Radius.circular(0),
+                //                   topLeft: Radius.circular(0),
+                //                   bottomRight: Radius.circular(0),
+                //
+                //                 ),
+                //                 color: Colors.grey,
+                //                 border: Border.all(
+                //                   width: 0.8,
+                //                   color: Colors.white,
+                //                   style: BorderStyle.solid,
+                //                 ),
+                //               ),
+                //               child: Center(child: Image.asset("assets/images/falafel.jpg")
+                //               ),
+                //             ),
+                //
+                //             Align(
+                //               alignment: Alignment.topRight,
+                //               child: Padding(
+                //                 padding: const EdgeInsets.all(5.0),
+                //                 child: Container(
+                //                   decoration: BoxDecoration(
+                //                     borderRadius: BorderRadius.only(
+                //                       topRight: Radius.circular(50),
+                //                       bottomLeft: Radius.circular(50),
+                //                       topLeft: Radius.circular(50),
+                //                       bottomRight: Radius.circular(50),
+                //
+                //                     ),
+                //                     color: Colors.black,
+                //                     // border: Border.all(
+                //                     //   width: 0.8,
+                //                     //   color: Colors.white,
+                //                     //   style: BorderStyle.solid,
+                //                     // ),
+                //                   ),
+                //                   child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                //                 ),
+                //               ),
+                //             )
+                //           ],
+                //         ),
+                //       ),
+                //
+                //
+                //
+                //
+                //
+                //
+                //
+                //     ],
+                //   ),
+                // ),
+                //
+                // const SizedBox(height: 10,),
+                // ///- Our O:F Best Seller
+                // Row( mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [//page7_right_icon
+                //     Transform.rotate(
+                //         angle: -math.pi / 2,
+                //         child: Image.asset("assets/images/page7_right_icon.png" ,height: 32,)),
+                //     const SizedBox(width: 10,),
+                //     const Text("OUR O:F BEST SELLERS", style: TextStyle(fontSize: 33,fontFamily: "oldpress", color: Colors.white),),
+                //     const SizedBox(width: 10,),
+                //     Transform.rotate(
+                //         angle: -math.pi / 8,
+                //         child: Image.asset("assets/images/page7_right_icon.png" ,height: 32,)),
+                //
+                //   ],
+                // ),
+                // /// - List
+                // SizedBox(
+                //   height:100 ,
+                //   width: MediaQuery.of(context).size.width,
+                //   child: ListView(
+                //     scrollDirection: Axis.horizontal,
+                //     children: [
+                //       Padding(
+                //          padding: const EdgeInsets.all(4.0),
+                //          child: Stack(
+                //             alignment: Alignment.topRight,
+                //             children: [
+                //               Container(
+                //                 width: 90,
+                //                 height: 90,
+                //                 decoration: BoxDecoration(
+                //                   borderRadius: BorderRadius.only(
+                //                     topRight: Radius.circular(100),
+                //                     bottomLeft: Radius.circular(100),
+                //                     topLeft: Radius.circular(100),
+                //                     bottomRight: Radius.circular(100),
+                //
+                //                   ),
+                //                   color: Colors.grey,
+                //                   border: Border.all(
+                //                     width: 0.8,
+                //                     color: Colors.white,
+                //                     style: BorderStyle.solid,
+                //                   ),
+                //                 ),
+                //                 child: Center(
+                //                     child:
+                //                     ClipRRect(
+                //                     borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
+                //                     child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
+                //                 ),
+                //               ),
+                //               Align(
+                //                 alignment: Alignment.topRight,
+                //                 child: Padding(
+                //                   padding: const EdgeInsets.all(5.0),
+                //                   child: Container(
+                //                     decoration: BoxDecoration(
+                //                       borderRadius: BorderRadius.only(
+                //                         topRight: Radius.circular(50),
+                //                         bottomLeft: Radius.circular(50),
+                //                         topLeft: Radius.circular(50),
+                //                         bottomRight: Radius.circular(50),
+                //
+                //                       ),
+                //                       color: Colors.black,
+                //                       // border: Border.all(
+                //                       //   width: 0.8,
+                //                       //   color: Colors.white,
+                //                       //   style: BorderStyle.solid,
+                //                       // ),
+                //                     ),
+                //                     child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                //                   ),
+                //                 ),
+                //               )
+                //             ],
+                //           ),
+                //        ),
+                //       Padding(
+                //         padding: const EdgeInsets.all(4.0),
+                //         child: Stack(
+                //           alignment: Alignment.topRight,
+                //           children: [
+                //             Container(
+                //               width: 90,
+                //               height: 90,
+                //               decoration: BoxDecoration(
+                //                 borderRadius: BorderRadius.only(
+                //                   topRight: Radius.circular(100),
+                //                   bottomLeft: Radius.circular(100),
+                //                   topLeft: Radius.circular(100),
+                //                   bottomRight: Radius.circular(100),
+                //
+                //                 ),
+                //                 color: Colors.grey,
+                //                 border: Border.all(
+                //                   width: 0.8,
+                //                   color: Colors.white,
+                //                   style: BorderStyle.solid,
+                //                 ),
+                //               ),
+                //               child: Center(child: ClipRRect(
+                //                   borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
+                //                   child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
+                //               ),
+                //             ),
+                //             Align(
+                //               alignment: Alignment.topRight,
+                //               child: Padding(
+                //                 padding: const EdgeInsets.all(5.0),
+                //                 child: Container(
+                //                   decoration: BoxDecoration(
+                //                     borderRadius: BorderRadius.only(
+                //                       topRight: Radius.circular(50),
+                //                       bottomLeft: Radius.circular(50),
+                //                       topLeft: Radius.circular(50),
+                //                       bottomRight: Radius.circular(50),
+                //
+                //                     ),
+                //                     color: Colors.black,
+                //                     // border: Border.all(
+                //                     //   width: 0.8,
+                //                     //   color: Colors.white,
+                //                     //   style: BorderStyle.solid,
+                //                     // ),
+                //                   ),
+                //                   child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                //                 ),
+                //               ),
+                //             )
+                //           ],
+                //         ),
+                //       ),
+                //       Padding(
+                //         padding: const EdgeInsets.all(4.0),
+                //         child: Stack(
+                //           alignment: Alignment.topRight,
+                //           children: [
+                //             Container(
+                //               width: 90,
+                //               height: 90,
+                //               decoration: BoxDecoration(
+                //                 borderRadius: BorderRadius.only(
+                //                   topRight: Radius.circular(100),
+                //                   bottomLeft: Radius.circular(100),
+                //                   topLeft: Radius.circular(100),
+                //                   bottomRight: Radius.circular(100),
+                //
+                //                 ),
+                //                 color: Colors.grey,
+                //                 border: Border.all(
+                //                   width: 0.8,
+                //                   color: Colors.white,
+                //                   style: BorderStyle.solid,
+                //                 ),
+                //               ),
+                //               child: Center(child: ClipRRect(
+                //                   borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
+                //                   child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
+                //               ),
+                //             ),
+                //             Align(
+                //               alignment: Alignment.topRight,
+                //               child: Padding(
+                //                 padding: const EdgeInsets.all(5.0),
+                //                 child: Container(
+                //                   decoration: BoxDecoration(
+                //                     borderRadius: BorderRadius.only(
+                //                       topRight: Radius.circular(50),
+                //                       bottomLeft: Radius.circular(50),
+                //                       topLeft: Radius.circular(50),
+                //                       bottomRight: Radius.circular(50),
+                //
+                //                     ),
+                //                     color: Colors.black,
+                //                     // border: Border.all(
+                //                     //   width: 0.8,
+                //                     //   color: Colors.white,
+                //                     //   style: BorderStyle.solid,
+                //                     // ),
+                //                   ),
+                //                   child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                //                 ),
+                //               ),
+                //             )
+                //           ],
+                //         ),
+                //       ),
+                //       Padding(
+                //         padding: const EdgeInsets.all(4.0),
+                //         child: Stack(
+                //           alignment: Alignment.topRight,
+                //           children: [
+                //             Container(
+                //               width: 90,
+                //               height: 90,
+                //               decoration: BoxDecoration(
+                //                 borderRadius: BorderRadius.only(
+                //                   topRight: Radius.circular(100),
+                //                   bottomLeft: Radius.circular(100),
+                //                   topLeft: Radius.circular(100),
+                //                   bottomRight: Radius.circular(100),
+                //
+                //                 ),
+                //                 color: Colors.grey,
+                //                 border: Border.all(
+                //                   width: 0.8,
+                //                   color: Colors.white,
+                //                   style: BorderStyle.solid,
+                //                 ),
+                //               ),
+                //               child: Center(child: ClipRRect(
+                //                   borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
+                //                   child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
+                //               ),
+                //             ),
+                //             Align(
+                //               alignment: Alignment.topRight,
+                //               child: Padding(
+                //                 padding: const EdgeInsets.all(5.0),
+                //                 child: Container(
+                //                   decoration: BoxDecoration(
+                //                     borderRadius: BorderRadius.only(
+                //                       topRight: Radius.circular(50),
+                //                       bottomLeft: Radius.circular(50),
+                //                       topLeft: Radius.circular(50),
+                //                       bottomRight: Radius.circular(50),
+                //
+                //                     ),
+                //                     color: Colors.black,
+                //                     // border: Border.all(
+                //                     //   width: 0.8,
+                //                     //   color: Colors.white,
+                //                     //   style: BorderStyle.solid,
+                //                     // ),
+                //                   ),
+                //                   child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                //                 ),
+                //               ),
+                //             )
+                //           ],
+                //         ),
+                //       ),
+                //       Padding(
+                //         padding: const EdgeInsets.all(4.0),
+                //         child: Stack(
+                //           alignment: Alignment.topRight,
+                //           children: [
+                //             Container(
+                //               width: 90,
+                //               height: 90,
+                //               decoration: BoxDecoration(
+                //                 borderRadius: BorderRadius.only(
+                //                   topRight: Radius.circular(100),
+                //                   bottomLeft: Radius.circular(100),
+                //                   topLeft: Radius.circular(100),
+                //                   bottomRight: Radius.circular(100),
+                //
+                //                 ),
+                //                 color: Colors.grey,
+                //                 border: Border.all(
+                //                   width: 0.8,
+                //                   color: Colors.white,
+                //                   style: BorderStyle.solid,
+                //                 ),
+                //               ),
+                //               child: Center(child: ClipRRect(
+                //                   borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
+                //                   child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
+                //               ),
+                //             ),
+                //             Align(
+                //               alignment: Alignment.topRight,
+                //               child: Padding(
+                //                 padding: const EdgeInsets.all(5.0),
+                //                 child: Container(
+                //                   decoration: BoxDecoration(
+                //                     borderRadius: BorderRadius.only(
+                //                       topRight: Radius.circular(50),
+                //                       bottomLeft: Radius.circular(50),
+                //                       topLeft: Radius.circular(50),
+                //                       bottomRight: Radius.circular(50),
+                //
+                //                     ),
+                //                     color: Colors.black,
+                //                     // border: Border.all(
+                //                     //   width: 0.8,
+                //                     //   color: Colors.white,
+                //                     //   style: BorderStyle.solid,
+                //                     // ),
+                //                   ),
+                //                   child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                //                 ),
+                //               ),
+                //             )
+                //           ],
+                //         ),
+                //       ),
+                //       Padding(
+                //         padding: const EdgeInsets.all(4.0),
+                //         child: Stack(
+                //           alignment: Alignment.topRight,
+                //           children: [
+                //             Container(
+                //               width: 90,
+                //               height: 90,
+                //               decoration: BoxDecoration(
+                //                 borderRadius: BorderRadius.only(
+                //                   topRight: Radius.circular(100),
+                //                   bottomLeft: Radius.circular(100),
+                //                   topLeft: Radius.circular(100),
+                //                   bottomRight: Radius.circular(100),
+                //
+                //                 ),
+                //                 color: Colors.grey,
+                //                 border: Border.all(
+                //                   width: 0.8,
+                //                   color: Colors.white,
+                //                   style: BorderStyle.solid,
+                //                 ),
+                //               ),
+                //               child: Center(child: ClipRRect(
+                //                   borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
+                //                   child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
+                //               ),
+                //             ),
+                //             Align(
+                //               alignment: Alignment.topRight,
+                //               child: Padding(
+                //                 padding: const EdgeInsets.all(5.0),
+                //                 child: Container(
+                //                   decoration: BoxDecoration(
+                //                     borderRadius: BorderRadius.only(
+                //                       topRight: Radius.circular(50),
+                //                       bottomLeft: Radius.circular(50),
+                //                       topLeft: Radius.circular(50),
+                //                       bottomRight: Radius.circular(50),
+                //
+                //                     ),
+                //                     color: Colors.black,
+                //                     // border: Border.all(
+                //                     //   width: 0.8,
+                //                     //   color: Colors.white,
+                //                     //   style: BorderStyle.solid,
+                //                     // ),
+                //                   ),
+                //                   child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                //                 ),
+                //               ),
+                //             )
+                //           ],
+                //         ),
+                //       ),
+                //       Padding(
+                //         padding: const EdgeInsets.all(4.0),
+                //         child: Stack(
+                //           alignment: Alignment.topRight,
+                //           children: [
+                //             Container(
+                //               width: 90,
+                //               height: 90,
+                //               decoration: BoxDecoration(
+                //                 borderRadius: BorderRadius.only(
+                //                   topRight: Radius.circular(100),
+                //                   bottomLeft: Radius.circular(100),
+                //                   topLeft: Radius.circular(100),
+                //                   bottomRight: Radius.circular(100),
+                //
+                //                 ),
+                //                 color: Colors.grey,
+                //                 border: Border.all(
+                //                   width: 0.8,
+                //                   color: Colors.white,
+                //                   style: BorderStyle.solid,
+                //                 ),
+                //               ),
+                //               child: Center(child: ClipRRect(
+                //                   borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
+                //                   child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
+                //               ),
+                //             ),
+                //             Align(
+                //               alignment: Alignment.topRight,
+                //               child: Padding(
+                //                 padding: const EdgeInsets.all(5.0),
+                //                 child: Container(
+                //                   decoration: BoxDecoration(
+                //                     borderRadius: BorderRadius.only(
+                //                       topRight: Radius.circular(50),
+                //                       bottomLeft: Radius.circular(50),
+                //                       topLeft: Radius.circular(50),
+                //                       bottomRight: Radius.circular(50),
+                //
+                //                     ),
+                //                     color: Colors.black,
+                //                     // border: Border.all(
+                //                     //   width: 0.8,
+                //                     //   color: Colors.white,
+                //                     //   style: BorderStyle.solid,
+                //                     // ),
+                //                   ),
+                //                   child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                //                 ),
+                //               ),
+                //             )
+                //           ],
+                //         ),
+                //       ),
+                //       Padding(
+                //         padding: const EdgeInsets.all(4.0),
+                //         child: Stack(
+                //           alignment: Alignment.topRight,
+                //           children: [
+                //             Container(
+                //               width: 90,
+                //               height: 90,
+                //               decoration: BoxDecoration(
+                //                 borderRadius: BorderRadius.only(
+                //                   topRight: Radius.circular(100),
+                //                   bottomLeft: Radius.circular(100),
+                //                   topLeft: Radius.circular(100),
+                //                   bottomRight: Radius.circular(100),
+                //
+                //                 ),
+                //                 color: Colors.grey,
+                //                 border: Border.all(
+                //                   width: 0.8,
+                //                   color: Colors.white,
+                //                   style: BorderStyle.solid,
+                //                 ),
+                //               ),
+                //               child: Center(child: ClipRRect(
+                //                   borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
+                //                   child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
+                //               ),
+                //             ),
+                //             Align(
+                //               alignment: Alignment.topRight,
+                //               child: Padding(
+                //                 padding: const EdgeInsets.all(5.0),
+                //                 child: Container(
+                //                   decoration: BoxDecoration(
+                //                     borderRadius: BorderRadius.only(
+                //                       topRight: Radius.circular(50),
+                //                       bottomLeft: Radius.circular(50),
+                //                       topLeft: Radius.circular(50),
+                //                       bottomRight: Radius.circular(50),
+                //
+                //                     ),
+                //                     color: Colors.black,
+                //                     // border: Border.all(
+                //                     //   width: 0.8,
+                //                     //   color: Colors.white,
+                //                     //   style: BorderStyle.solid,
+                //                     // ),
+                //                   ),
+                //                   child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                //                 ),
+                //               ),
+                //             )
+                //           ],
+                //         ),
+                //       ),
+                //       Padding(
+                //         padding: const EdgeInsets.all(4.0),
+                //         child: Stack(
+                //           alignment: Alignment.topRight,
+                //           children: [
+                //             Container(
+                //               width: 90,
+                //               height: 90,
+                //               decoration: BoxDecoration(
+                //                 borderRadius: BorderRadius.only(
+                //                   topRight: Radius.circular(100),
+                //                   bottomLeft: Radius.circular(100),
+                //                   topLeft: Radius.circular(100),
+                //                   bottomRight: Radius.circular(100),
+                //
+                //                 ),
+                //                 color: Colors.grey,
+                //                 border: Border.all(
+                //                   width: 0.8,
+                //                   color: Colors.white,
+                //                   style: BorderStyle.solid,
+                //                 ),
+                //               ),
+                //               child: Center(child: ClipRRect(
+                //                   borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
+                //                   child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
+                //               ),
+                //             ),
+                //             Align(
+                //               alignment: Alignment.topRight,
+                //               child: Padding(
+                //                 padding: const EdgeInsets.all(5.0),
+                //                 child: Container(
+                //                   decoration: BoxDecoration(
+                //                     borderRadius: BorderRadius.only(
+                //                       topRight: Radius.circular(50),
+                //                       bottomLeft: Radius.circular(50),
+                //                       topLeft: Radius.circular(50),
+                //                       bottomRight: Radius.circular(50),
+                //
+                //                     ),
+                //                     color: Colors.black,
+                //                     // border: Border.all(
+                //                     //   width: 0.8,
+                //                     //   color: Colors.white,
+                //                     //   style: BorderStyle.solid,
+                //                     // ),
+                //                   ),
+                //                   child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                //                 ),
+                //               ),
+                //             )
+                //           ],
+                //         ),
+                //       ),
+                //       Padding(
+                //         padding: const EdgeInsets.all(4.0),
+                //         child: Stack(
+                //           alignment: Alignment.topRight,
+                //           children: [
+                //             Container(
+                //               width: 90,
+                //               height: 90,
+                //               decoration: BoxDecoration(
+                //                 borderRadius: BorderRadius.only(
+                //                   topRight: Radius.circular(100),
+                //                   bottomLeft: Radius.circular(100),
+                //                   topLeft: Radius.circular(100),
+                //                   bottomRight: Radius.circular(100),
+                //
+                //                 ),
+                //                 color: Colors.grey,
+                //                 border: Border.all(
+                //                   width: 0.8,
+                //                   color: Colors.white,
+                //                   style: BorderStyle.solid,
+                //                 ),
+                //               ),
+                //               child: Center(child: ClipRRect(
+                //                   borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), topRight: Radius.circular(100),bottomRight: Radius.circular(100),bottomLeft: Radius.circular(100)),
+                //                   child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 90,width: 90,fit: BoxFit.cover,))
+                //               ),
+                //             ),
+                //             Align(
+                //               alignment: Alignment.topRight,
+                //               child: Padding(
+                //                 padding: const EdgeInsets.all(5.0),
+                //                 child: Container(
+                //                   decoration: BoxDecoration(
+                //                     borderRadius: BorderRadius.only(
+                //                       topRight: Radius.circular(50),
+                //                       bottomLeft: Radius.circular(50),
+                //                       topLeft: Radius.circular(50),
+                //                       bottomRight: Radius.circular(50),
+                //
+                //                     ),
+                //                     color: Colors.black,
+                //                     // border: Border.all(
+                //                     //   width: 0.8,
+                //                     //   color: Colors.white,
+                //                     //   style: BorderStyle.solid,
+                //                     // ),
+                //                   ),
+                //                   child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                //                 ),
+                //               ),
+                //             )
+                //           ],
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                //
+                // /// - O:F Boxes
+                // Stack (
+                //   alignment: Alignment.topCenter,
+                //   children: [
+                //     Column(
+                //       children: [
+                //         const SizedBox(height: 30,),
+                //         Row(
+                //           mainAxisAlignment: MainAxisAlignment.center,
+                //           children: [
+                //             Padding(
+                //               padding: const EdgeInsets.all(2.0),
+                //               child: Stack(
+                //                 alignment: Alignment.topLeft,
+                //                 children: [
+                //                   Container(
+                //                     width: 200,
+                //                     decoration: BoxDecoration(
+                //                       borderRadius:const BorderRadius.only(
+                //                         topRight: Radius.circular(10),
+                //                         bottomLeft: Radius.circular(10),
+                //                         topLeft: Radius.circular(10),
+                //                         bottomRight: Radius.circular(10),
+                //
+                //                       ),
+                //                       color: Colors.grey,
+                //                       border: Border.all(
+                //                         width: 0.8,
+                //                         color: Colors.white,
+                //                         style: BorderStyle.solid,
+                //                       ),
+                //                     ),
+                //                     child: Center(
+                //                         child: ClipRRect(
+                //                             borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10),bottomRight: Radius.circular(10),bottomLeft: Radius.circular(10)),
+                //                             child: Image.asset("assets/images/falafel.jpg"))
+                //                     ),
+                //                   ),
+                //                   Align(
+                //                     alignment: Alignment.topLeft,
+                //                     child: Padding(
+                //                       padding: const EdgeInsets.all(5.0),
+                //                       child: Container(
+                //                         decoration: const BoxDecoration(
+                //                           borderRadius: BorderRadius.only(
+                //                             topRight: Radius.circular(50),
+                //                             bottomLeft: Radius.circular(50),
+                //                             topLeft: Radius.circular(50),
+                //                             bottomRight: Radius.circular(50),
+                //
+                //                           ),
+                //                           color: Colors.black,
+                //                           // border: Border.all(
+                //                           //   width: 0.8,
+                //                           //   color: Colors.white,
+                //                           //   style: BorderStyle.solid,
+                //                           // ),
+                //                         ),
+                //                         child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                //                       ),
+                //                     ),
+                //                   )
+                //                 ],
+                //               ),
+                //             ),
+                //             const SizedBox(width: 5,),
+                //             Padding(
+                //               padding: const EdgeInsets.all(2.0),
+                //               child: Stack(
+                //                 alignment: Alignment.topRight,
+                //                 children: [
+                //                   Container(
+                //                     width: 200,
+                //                     decoration: BoxDecoration(
+                //                       borderRadius:const BorderRadius.only(
+                //                         topRight: Radius.circular(10),
+                //                         bottomLeft: Radius.circular(10),
+                //                         topLeft: Radius.circular(10),
+                //                         bottomRight: Radius.circular(10),
+                //
+                //                       ),
+                //                       color: Colors.grey,
+                //                       border: Border.all(
+                //                         width: 0.8,
+                //                         color: Colors.white,
+                //                         style: BorderStyle.solid,
+                //                       ),
+                //                     ),
+                //                     child: Center(
+                //                         child: ClipRRect(
+                //                             borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10),bottomRight: Radius.circular(10),bottomLeft: Radius.circular(10)),
+                //                             child: Image.asset("assets/images/falafel.jpg"))
+                //                     ),
+                //                   ),
+                //                   Align(
+                //                     alignment: Alignment.topRight,
+                //                     child: Padding(
+                //                       padding: const EdgeInsets.all(5.0),
+                //                       child: Container(
+                //                         decoration: const BoxDecoration(
+                //                           borderRadius: BorderRadius.only(
+                //                             topRight: Radius.circular(50),
+                //                             bottomLeft: Radius.circular(50),
+                //                             topLeft: Radius.circular(50),
+                //                             bottomRight: Radius.circular(50),
+                //
+                //                           ),
+                //                           color: Colors.black,
+                //                           // border: Border.all(
+                //                           //   width: 0.8,
+                //                           //   color: Colors.white,
+                //                           //   style: BorderStyle.solid,
+                //                           // ),
+                //                         ),
+                //                         child:Icon(Icons.add,color: Colors.amber.shade500,size: 15,),
+                //                       ),
+                //                     ),
+                //                   )
+                //                 ],
+                //               ),
+                //             ),
+                //           ],
+                //         ),
+                //       ],
+                //     ),
+                //     Positioned(
+                //
+                //         child: Image.asset("assets/images/page6_boxes.png", height: 60,))
+                //   ],
+                // ),
+                /// - Old Version
 
               ],
             ),),

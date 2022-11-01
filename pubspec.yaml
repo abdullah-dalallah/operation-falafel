@@ -29,6 +29,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  modal_bottom_sheet: ^2.1.2
   getwidget: ^3.0.1
   carousel_slider: ^4.1.1
   line_awesome_flutter: ^2.0.0

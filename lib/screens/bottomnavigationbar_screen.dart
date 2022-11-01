@@ -44,15 +44,24 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
       controller: _controller,
       screens: [
         MainMenu(),
+        TabeBarMenu(),
         Cart_Screen(),
-        OtherScreen(),
         OtherScreen(),
         OtherScreen(),
 
       ],
       items: [
         PersistentBottomNavBarItem(
+          textStyle: TextStyle(fontSize: 9),
           icon: ImageIcon(
+            AssetImage("assets/images/icon_order.png"),
+          ),
+          title: ("home"),
+          activeColorPrimary: CupertinoColors.activeOrange,
+          inactiveColorPrimary: CupertinoColors.systemBackground,
+        ),
+        PersistentBottomNavBarItem(
+          icon: const ImageIcon(
             AssetImage("assets/images/icon_order.png"),
           ),
           // Image.asset("assets/images/icon_order.png"),
@@ -83,15 +92,6 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
         ),
         PersistentBottomNavBarItem(
           textStyle: TextStyle(fontSize: 9),
-          icon: ImageIcon(
-            AssetImage("assets/images/icon_loyality.png"),
-          ),
-          title: ("Loyalty"),
-          activeColorPrimary: CupertinoColors.activeOrange,
-          inactiveColorPrimary: CupertinoColors.systemBackground,
-        ),
-        PersistentBottomNavBarItem(
-          textStyle: TextStyle(fontSize: 9),
           // iconSize: 100,
           icon:ImageIcon(
             AssetImage("assets/images/icon_profile.png"),
@@ -116,11 +116,11 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
 
       // hideNavigationBar: true,
       popActionScreens: PopActionScreensType.all,
-      itemAnimationProperties: ItemAnimationProperties( // Navigation Bar's items animation properties.
+      itemAnimationProperties:const ItemAnimationProperties( // Navigation Bar's items animation properties.
         duration: Duration(milliseconds: 200),
         curve: Curves.ease,
       ),
-      screenTransitionAnimation: ScreenTransitionAnimation( // Screen transition animation on change of selected tab.
+      screenTransitionAnimation:const ScreenTransitionAnimation( // Screen transition animation on change of selected tab.
         animateTabTransition: false,
         curve: Curves.ease,
         duration: Duration(milliseconds: 200),
