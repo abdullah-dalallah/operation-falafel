@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/main.dart';
 
 class DrawerWidget extends StatefulWidget{
   @override
@@ -8,6 +10,13 @@ class DrawerWidget extends StatefulWidget{
 }
 
 class _DrawerState extends State<DrawerWidget> {
+
+  void _changeLanguage (String languageCode) async {
+    Locale _temp =await setLocale(languageCode);
+
+    MyApp.setLocale(context,_temp);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -158,7 +167,7 @@ class _DrawerState extends State<DrawerWidget> {
                                       overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
 
                                       onTap: (){
-                                        print("text");
+                                        _changeLanguage("ar");
                                       },
                                     ),
 
@@ -171,7 +180,6 @@ class _DrawerState extends State<DrawerWidget> {
                           Stack(
                             children: [
                               Container(
-
                                 width: 35,
                                 height: 35,
                                 decoration: BoxDecoration(
@@ -200,7 +208,7 @@ class _DrawerState extends State<DrawerWidget> {
                                       overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
 
                                       onTap: (){
-                                        print("text");
+                                        _changeLanguage("en");
                                       },
                                     ),
 

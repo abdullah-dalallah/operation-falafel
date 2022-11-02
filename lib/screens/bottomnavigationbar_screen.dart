@@ -29,12 +29,17 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
 
 
   late PersistentTabController _controller;
-
+  void changePage(index){
+    setState(() {
+      _controller.index=index;
+    });
+  }
 
   @override
   void initState() {
 
     _controller = PersistentTabController(initialIndex: 0);
+
   }
 
   @override
@@ -43,7 +48,7 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
       context,
       controller: _controller,
       screens: [
-        MainMenu(),
+        MainMenu((value) => changePage(value),),
         TabeBarMenu(),
         Cart_Screen(),
         OtherScreen(),

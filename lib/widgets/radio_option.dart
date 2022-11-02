@@ -25,10 +25,10 @@ class RadioOption<T> extends StatelessWidget{
       decoration:  BoxDecoration(
         color: Colors.transparent,
         borderRadius:const BorderRadius.only(
-          topRight: Radius.circular(0),
-          bottomLeft: Radius.circular(0),
-          topLeft: Radius.circular(0),
-          bottomRight: Radius.circular(0),
+          topRight: Radius.circular(5),
+          bottomLeft: Radius.circular(5),
+          topLeft: Radius.circular(5),
+          bottomRight: Radius.circular(5),
         ),
         border: Border.all(
           width: 1,

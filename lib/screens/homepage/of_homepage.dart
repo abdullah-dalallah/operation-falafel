@@ -9,12 +9,12 @@ import 'package:operation_falafel/widgets/drawer.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'dart:math' as math;
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
-import '../menus/vegetarian_menu.dart';
 
 class MainMenu extends StatefulWidget{
+  final ValueChanged onChanged;
+  const MainMenu(this.onChanged,{super.key});
   @override
   State<MainMenu> createState() => _MainMenuState();
 }
@@ -222,10 +222,10 @@ class _MainMenuState extends State<MainMenu> {
                   children: [
                     Container(
                         width: 370,
-                        padding: EdgeInsets.only(left: 18, right: 18),
+                        padding: const EdgeInsets.only(left: 18, right: 18),
                         decoration: BoxDecoration(
                           color: Colors.amber.shade600,
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                             topRight: Radius.circular(20),
                             bottomLeft: Radius.circular(20),
                             topLeft: Radius.circular(20),
@@ -233,21 +233,18 @@ class _MainMenuState extends State<MainMenu> {
                           ),
 
                         ),
-                        child: Center(child: Text("ORDER NOW!", style: TextStyle(fontFamily: "oldpress", fontSize: 55, color: Colors.white),))
+                        child:const Center(child: Text("ORDER NOW!", style: TextStyle(fontFamily: "oldpress", fontSize: 55, color: Colors.white),))
 
                     ),
 
-                    new Positioned.fill(
-                        child: new Material(
+                     Positioned.fill(
+                        child:  Material(
                           color: Colors.transparent,
-                          child:  new InkWell(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                          child:   InkWell(
+                            borderRadius:const BorderRadius.all(Radius.circular(20)),
                             splashColor: Colors.black,
                             overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
-
-                            onTap: (){
-                              print("text");
-                            },
+                            onTap: (){widget.onChanged(1);},
                           ),
 
                         )

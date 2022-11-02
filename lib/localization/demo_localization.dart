@@ -15,7 +15,7 @@ class DemoLocalization {
   Map<String, String>?_localizedValues;
 
   Future load() async {
-    print("selected json lib/lang/${locale.languageCode}.json");
+    // print("selected json lib/lang/${locale.languageCode}.json");
     String JsonStringValues = await rootBundle.loadString('lib/lang/${locale.languageCode}.json');
 
     Map<String,dynamic> mappedJson=json.decode(JsonStringValues);
