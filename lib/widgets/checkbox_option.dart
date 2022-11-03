@@ -6,12 +6,16 @@ class CheckboxOption extends StatelessWidget{
   final String label;
   final String text;
   final bool addOnFlag;
+  Color? colorOfBox;
+  Color? colorOfText;
   final ValueChanged onChanged;
-  const CheckboxOption({super.key,
+   CheckboxOption({super.key,
     required this.value,
     required this.label,
     required this.text,
     required this.onChanged,
+    this.colorOfBox,
+     this.colorOfText,
     required this.addOnFlag
   });
 
@@ -32,7 +36,7 @@ class CheckboxOption extends StatelessWidget{
         ),
         border: Border.all(
           width: 1,
-          color: Colors.amber,
+          color: (colorOfBox!=null)?colorOfBox!:Colors.amber,
           style: BorderStyle.solid,
         ),
       ),
@@ -47,7 +51,7 @@ class CheckboxOption extends StatelessWidget{
   Widget _buildText() {
     return Text(
       text,
-      style: const TextStyle(color: Colors.green, fontSize: 15,fontWeight: FontWeight.w300),
+      style:  TextStyle(color: (colorOfText!=null)?colorOfText!:Colors.green, fontSize: 15,fontWeight: FontWeight.w300),
     );
   }
 
@@ -56,7 +60,7 @@ class CheckboxOption extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(5),
+      margin:const EdgeInsets.all(5),
       child: InkWell(
         onTap: () => onChanged(value),
         splashColor: Colors.grey.withOpacity(0.5),
