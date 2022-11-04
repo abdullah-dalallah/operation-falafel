@@ -1,6 +1,8 @@
 {
   "fontFamilyTitle": "GE SS Two Medium",
   "fontFamilyBody": "GE SS Two Medium",
+  "fontFamilyButtons" : "GE SS Two Medium",
+
 
   "Main_Text":"لقد أخترت هذه اللغه",
   "Title": "إختر اللغه من فضلك",
@@ -27,6 +29,32 @@
   "repeatOrder": "كرر التخصيص المستخدم الأخير؟",
   "repeatLast": "كرر",
   "addNew": "إضف من جديد",
-  "addToCart": "إضف إلى السلة"
+  "addToCart": "إضف إلى السلة",
+
+
+  "home": "الصفحة الرئيسية",
+  "notification": "ألإشعارات",
+  "partners": "شركاء",
+  "locations": "المواقع",
+  "feedback": "الآراء",
+  "contact us": "اتصل بنا",
+  "follow us": "تابعنا",
+  "my o:f cart": "عربة أوبريشن : فلافل",
+  "sepecial instructions": "تعليمات خاصة",
+  "tip the driver":"تبرع للسائق (اختياري)",
+  "enter promo code": "إدخال الرمز الترويجي",
+  "tip": "تبرع",
+  "subTotal": "المجموع الفرعي",
+  "totalAfterPromoCode": "المجموع بعد الرمز الترويجي",
+  "delivery fee": "رسوم التوصيل",
+  "total": "المجموع",
+  "total of credits": "مجموع الاعتمادات 0.00 ساعة معتمدة",
+  "earned credits": "لقد ربحت 2.10 رصيدًا",
+  "pleaseSelectAddress":"الرجاء تحديد العنوان",
+  "payment": "طريقة دفع",
+  "pleaseSelectPayment": "يرجى تحديد طريقة الدفع",
+  "optional": "اختياري",
+  "bringItOn": "إجلبه!",
+  "address": "الاماكن"
 
 }

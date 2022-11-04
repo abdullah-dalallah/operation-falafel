@@ -23,115 +23,95 @@ class _DrawerState extends State<DrawerWidget> {
       backgroundColor: Colors.black,
       child:SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(left:30.0, top: 15),
+          padding: const EdgeInsets.only(left:30.0, top: 15, right: 30),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
 
-              Row(children:const [
-                 ImageIcon(
+              Row(children: [
+                const ImageIcon(
                   AssetImage("assets/images/icon_menu.png",),
                   size: 35,
                    color: Colors.white,
                 ),
                  // FaIcon(FontAwesomeIcons.bars, color: Colors.white,size: 30,),
-                SizedBox(width: 15,),
-                Text("HI ABDULLH",style: TextStyle(color: Colors.amber,fontWeight: FontWeight.w300,fontSize: 20 ),),
+                const  SizedBox(width: 15,),
+                Text("HI ABDULLH",style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,fontWeight: FontWeight.w300,fontSize: 20 ),),
 
             ],),
 
 
               const SizedBox(height: 20,),
               //Home
-              const ListTile(
-                title: Text("HOME", style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),),
+               ListTile(
+                title: Text(getTranslated(context, "home")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),),
+
               ),
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: SizedBox(
-                      width: 120,
-                      height: 0,
-                      child: Divider(color: Colors.white,)),
-                ),
+              const Padding(
+                padding:  EdgeInsets.only(left: 8.0, right: 8),
+                child:  SizedBox(
+                        width: 120,
+                        height: 0,
+                        child: Divider(color: Colors.white,)),
               ),
+
+
               //Notification
-              const ListTile(
-                title: Text("NOTIFICATIONS", style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),),
+               ListTile(
+                title: Text(getTranslated(context, "notification")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),),
               ),
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: SizedBox(
-                      width: 120,
-                      height: 0,
-                      child: Divider(color: Colors.white,)),
-                ),
+              const Padding(
+                padding:  EdgeInsets.only(left: 8.0, right: 8),
+                child:  SizedBox(
+                    width: 120,
+                    height: 0,
+                    child: Divider(color: Colors.white,)),
               ),
               //Partners
-              const  ListTile(
-                title: Text("PARTNERS", style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),),
+                ListTile(
+                title: Text(getTranslated(context, "partners")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),),
               ),
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: SizedBox(
-                      width: 120,
-                      height: 0,
-                      child: Divider(color: Colors.white,)),
-                ),
+              const Padding(
+                padding:  EdgeInsets.only(left: 8.0, right: 8),
+                child:  SizedBox(
+                    width: 120,
+                    height: 0,
+                    child: Divider(color: Colors.white,)),
               ),
               //Location
-              const ListTile(
-                title: Text("LOCATIONS", style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),),
+               ListTile(
+                title: Text(getTranslated(context, "locations")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),),
               ),
-              const  Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: SizedBox(
-                      width: 120,
-                      height: 0,
-                      child: Divider(color: Colors.white,)),
-                ),
+              const Padding(
+                padding:  EdgeInsets.only(left: 8.0, right: 8),
+                child:  SizedBox(
+                    width: 120,
+                    height: 0,
+                    child: Divider(color: Colors.white,)),
               ),
               //Feedback
-              const  ListTile(
-                title: Text("FEEDBACK", style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),),
+                ListTile(
+                title: Text(getTranslated(context, "feedback")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),),
               ),
-              const  Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: SizedBox(
-                      width: 120,
-                      height: 0,
-                      child: Divider(color: Colors.white,)),
-                ),
+              const Padding(
+                padding:  EdgeInsets.only(left: 8.0, right: 8),
+                child:  SizedBox(
+                    width: 120,
+                    height: 0,
+                    child: Divider(color: Colors.white,)),
               ),
               //Contact us
-              const  ListTile(
-                title: Text("CONTACT US", style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),),
+                ListTile(
+                title: Text(getTranslated(context, "contact us")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),),
               ),
-              const  Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: SizedBox(
-                      width: 120,
-                      height: 0,
-                      child: Divider(color: Colors.white,)),
-                ),
-              ),
+
 
               const  Expanded(child: SizedBox(height: 10,)),
 
               Column(
               crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text("FOLLOW US", style: TextStyle(fontFamily: "oldpress",color: Colors.amber,fontSize: 50),),
+                       Text(getTranslated(context, "follow us")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyButtons"),color: Colors.amber,fontSize: 50),),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [

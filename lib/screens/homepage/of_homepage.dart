@@ -72,7 +72,7 @@ class _MainMenuState extends State<MainMenu> {
                         height: 27,
                         decoration: BoxDecoration(
                           color: Colors.black.withOpacity(0.4),
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                             topRight: Radius.circular(40),
                             bottomLeft: Radius.circular(40),
                             topLeft: Radius.circular(40),
@@ -88,10 +88,10 @@ class _MainMenuState extends State<MainMenu> {
 
                       ),
 
-                      new Positioned.fill(
-                          child: new Material(
+                       Positioned.fill(
+                          child:  Material(
                             color: Colors.transparent,
-                            child:  new InkWell(
+                            child:   InkWell(
                               borderRadius: BorderRadius.all(Radius.circular(20)),
                               splashColor: Colors.black,
                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
@@ -333,7 +333,7 @@ class _MainMenuState extends State<MainMenu> {
                                       Image.asset("assets/images/gift.png", height: 35,width: 35,),
                                       const SizedBox(height: 5,),
                                       // Icon(Icons.qr_code_2, color: Colors.amber,size: 35,),
-                                        Text(getTranslated(context, "dashBoardTitle-referToFriend")!, style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300,fontFamily:getTranslated(context, "fontFamilyBody")!,),textAlign:TextAlign.center,)
+                                        Text(getTranslated(context, "dashBoardTitle-myRewards")!, style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300,fontFamily:getTranslated(context, "fontFamilyBody")!,),textAlign:TextAlign.center,)
                                     ],
                                   ),
                                   Positioned.fill(
@@ -1689,6 +1689,15 @@ class _MainMenuState extends State<MainMenu> {
               ],
             ),),
           drawer: DrawerWidget(),
+        ),
+        Visibility(
+          visible: false,
+          child: Align(
+              alignment: Alignment.center,
+              child: Container(
+                  height: MediaQuery. of(context). size. height,
+                  width: MediaQuery. of(context). size. width,
+                  child: Image.asset("assets/images/icon_bike.png"))),
         )
 
       ],

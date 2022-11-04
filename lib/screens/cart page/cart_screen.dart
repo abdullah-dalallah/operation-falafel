@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/widgets/checkbox_option.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -54,7 +55,8 @@ class _Cart_ScreenState extends State<Cart_Screen> {
            backgroundColor: Colors.transparent,
            elevation: 0,
            centerTitle: true,
-           title: Image.asset("assets/images/of_logo_top.png", width: 220,),
+           title:Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),),
+           // Image.asset("assets/images/of_logo_top.png", width: 220,),
            // Text("Operation Falafel",style: TextStyle(fontFamily: "oldpress",color: Colors.white, fontSize: 30),)
            actions: [
              CupertinoSwitch(
@@ -83,7 +85,8 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                    crossAxisAlignment: CrossAxisAlignment.center,
                    children: [
                      const  SizedBox(height: 20,),
-                     Text("MY O:F CART!",style: TextStyle(fontFamily: "oldpress",color: Colors.amber.shade300, fontSize: 50),),
+                     Text(getTranslated(context, "my o:f cart")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber.shade300, fontSize: 30),),
+
                      const  SizedBox(height: 50,),
                      /// - Items List
                      ListView.builder(
@@ -127,7 +130,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                      const SizedBox(height: 10,),
 
                      /// - Special Intructions
-                     const Text("SPECIAL INSTRUCTIONS", style: TextStyle(color:Colors.amber, fontSize: 25),),
+                      Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.amber, fontSize: 25),),
                      const SizedBox(height: 10,),
                       Padding(
                         padding: const EdgeInsets.only(left:18.0, right: 18),
@@ -158,7 +161,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                borderSide: BorderSide(color: Colors.transparent, width: 0.0),
                              ),
                              hintText: '',
-                             label: Text("SPECIAL INSTRUCTIONS", style: TextStyle(color: Colors.white38),),
+                             label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
 
                            ),
 
@@ -196,14 +199,14 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                          ],
                        ),
                      ),
-                    /// - Promtion
+                     /// - Promtion
                      Padding(
                        padding: const EdgeInsets.only(left:18.0, right: 18),
                        child: Row(
                          crossAxisAlignment: CrossAxisAlignment.center,
                          children: [
                            SizedBox(
-                             width: (false)?390:310,
+                             width: 295,
                              height: 50,
                              child:   TextField(
                                autofocus: false,
@@ -227,7 +230,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                    borderSide: BorderSide(color: Colors.white70, width: 0.0),
                                  ),
                                  hintText: '',
-                                 label: Text("ENTER PROMO CODE", style: TextStyle(color: Colors.white38),),
+                                 label: Text(getTranslated(context, "enter promo code")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
 
                                ),
 
@@ -264,7 +267,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                        ),
                      ),
                      const SizedBox(height: 15,),
-                     const Text("TIP THE DRIVER (OPTIONAL)", style: TextStyle(color:Colors.amber, fontSize: 20),),
+                     Text(getTranslated(context, "tip the driver")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.amber, fontSize: 20),),
                      const SizedBox(height: 15,),
                      Padding(
                        padding: const EdgeInsets.only(left:18.0, right: 18),
@@ -279,21 +282,21 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                            decoration:  InputDecoration(
                              filled: true,
                              fillColor: Colors.amber.withOpacity(0.1),
-                             contentPadding: EdgeInsets.only(left:10),
-                             focusedBorder: OutlineInputBorder(
+                             contentPadding:const EdgeInsets.only(left:10),
+                             focusedBorder:const OutlineInputBorder(
                                borderRadius:  BorderRadius.all(
                                  Radius.circular(0.0),
                                ),
                                borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
                              ),
-                             enabledBorder: OutlineInputBorder(
+                             enabledBorder:const OutlineInputBorder(
                                borderRadius:  BorderRadius.all(
                                  Radius.circular(0.0),
                                ),
                                borderSide: BorderSide(color: Colors.transparent, width: 0.0),
                              ),
                              hintText: '',
-                             label: Text("Tip", style: TextStyle(color: Colors.white38),),
+                             label: Text(getTranslated(context, "tip")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.white38),),
 
                            ),
 
@@ -310,8 +313,8 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                              child: Row(
                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                children: [
-                               const Text("SUB TOTAL", style: TextStyle(color:Colors.white, fontSize: 17,fontWeight: FontWeight.w300),),
-                               const Text("AED 14", style: TextStyle(color:Colors.white, fontSize: 17,fontWeight: FontWeight.w300),),
+                                Text(getTranslated(context, "subTotal")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.white, fontSize: 17,fontWeight: FontWeight.w300),),
+                                Text("AED 14", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.white, fontSize: 17,fontWeight: FontWeight.w300),),
                              ],),
                            ),
                            Padding(
@@ -319,8 +322,8 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                              child: Row(
                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                children: [
-                                 const Text("TOTAL AFTER PROMO CODE", style: TextStyle(color:Colors.amber, fontSize: 17,fontWeight: FontWeight.w300),),
-                                 const Text("AED 14", style: TextStyle(color:Colors.white, fontSize: 17,fontWeight: FontWeight.w300),),
+                                  Text(getTranslated(context, "totalAfterPromoCode")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.amber, fontSize: 17,fontWeight: FontWeight.w300),),
+                                  Text("AED 14", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.white, fontSize: 17,fontWeight: FontWeight.w300),),
                                ],),
                            ),
                            Padding(
@@ -328,8 +331,8 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                              child: Row(
                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                children: [
-                                 const Text("SUB TOTAL", style: TextStyle(color:Colors.white, fontSize: 17,fontWeight: FontWeight.w300),),
-                                 const Text("AED 14", style: TextStyle(color:Colors.white, fontSize: 17,fontWeight: FontWeight.w300),),
+                                 Text(getTranslated(context, "delivery fee")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.white, fontSize: 17,fontWeight: FontWeight.w300),),
+                                  Text("AED 14", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.white, fontSize: 17,fontWeight: FontWeight.w300),),
                                ],),
                            ),
                          ],
@@ -353,9 +356,9 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                        ),
                        padding: EdgeInsets.only(left:25, right: 24,top: 10,bottom: 10),
                        child: RichText(
-                         text: const TextSpan(
-                           text: 'TOTAL:',
-                           style: TextStyle(color: Colors.amber, fontWeight: FontWeight.w300,fontSize: 20),
+                         text:  TextSpan(
+                           text: getTranslated(context, "total")!,
+                           style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber, fontWeight: FontWeight.w300,fontSize: 20),
                            children: [
                              TextSpan(
                                text: ' AED 25',
@@ -372,16 +375,17 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                        padding: const EdgeInsets.only(left:8.0, right:10, top: 10),
                        child: Row(
                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                         children: const [
-                            Text("YOU EARNED 2.10 CREDITS", style: TextStyle(color:Colors.amber, fontSize: 10),),
-                            Text("TOTAL OF CREDITS 0.00 CREDITS", style: TextStyle(color:Colors.amber, fontSize: 10),),
+                         children:  [
+                            Text(getTranslated(context, "earned credits")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody"),color:Colors.amber, fontSize: 10),),
+                            Text(getTranslated(context, "total of credits")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody"),color:Colors.amber, fontSize: 10),),
                          ],
                        ),
                      ),
+
                      const SizedBox(height: 15,),
-                     const  Align( alignment: Alignment.centerLeft, child: Padding(
+                       Align( alignment: Alignment.centerLeft, child: Padding(
                        padding: const EdgeInsets.only(left:18.0 , right: 18),
-                       child: const Text("ADDRESS", style: TextStyle(color:Colors.amber, fontSize: 25, fontFamily: "oldpress"),),
+                       child:  Text(getTranslated(context, "address")!, style: TextStyle(color:Colors.amber, fontSize: 25, fontFamily: getTranslated(context, "fontFamilyButtons")!),),
                      )),
                      Padding(
                        padding: const EdgeInsets.only(left:18.0, right: 18),
@@ -403,15 +407,15 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                            ),
                            // padding: EdgeInsets.all(18),
                            child: ListTile(
-                             title: Text("Please Select Address",style: TextStyle(color:Colors.white,fontWeight: FontWeight.w300), ),
+                             title: Text(getTranslated(context, "pleaseSelectAddress")!,style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody"),color:Colors.white,fontWeight: FontWeight.w300), ),
                              leading: Image.asset("assets/images/icon_location_address.png",scale:3,),
                            )
                        ),
                      ),
                      const SizedBox(height: 15,),
-                     const Align( alignment: Alignment.centerLeft, child: Padding(
-                       padding: const EdgeInsets.only(left:18.0 , right: 18),
-                       child: const Text("PAYMENT", style: TextStyle(color:Colors.amber, fontSize: 25, fontFamily: "oldpress"),),
+                      Align( alignment: Alignment.centerLeft, child: Padding(
+                       padding:  EdgeInsets.only(left:18.0 , right: 18),
+                       child:  Text(getTranslated(context, "payment")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color:Colors.amber, fontSize: 25, ),),
                      )),
                      Padding(
                        padding: const EdgeInsets.only(left:18.0, right: 18),
@@ -433,13 +437,13 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                            ),
                            // padding: EdgeInsets.all(18),
                            child: ListTile(
-                             title: const Text("Please Select Payment",style: TextStyle(color:Colors.white,fontWeight: FontWeight.w300), ),
+                             title:  Text(getTranslated(context, "pleaseSelectPayment")!,style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody"),color:Colors.white,fontWeight: FontWeight.w300), ),
                              // leading: Image.asset("assets/images/icon_location_address.png",scale:3,),
                            )
                        ),
                      ),
                      const SizedBox(height: 15,),
-                     const Text("OPTIONAL", style: TextStyle(color:Colors.amber, fontSize: 20),),
+                      Text(getTranslated(context, "optional")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.amber, fontSize: 20),),
                      Padding(
                        padding: const EdgeInsets.all(18.0),
                        child: Column(
@@ -487,7 +491,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
 
 
                            ),
-                           child:const Text("BRING IT ON!",style: TextStyle(fontFamily: "oldpress",color: Colors.white, fontSize: 40),)
+                           child: Text(getTranslated(context, "bringItOn")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.white, fontSize: 40),)
 
 
                        ),
