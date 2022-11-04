@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/localization/localization_constants.dart';
 
 class AddressListSheet extends StatelessWidget{
   ScrollController scrollController;
@@ -27,9 +28,10 @@ class AddressListSheet extends StatelessWidget{
            child: Row(
              mainAxisAlignment: MainAxisAlignment.spaceBetween,
              children: [
-              const Text(
-                   "SELECT ADDRESS",
+               Text(
+                  getTranslated(context, "selectAddress")!,
                    style: TextStyle(
+                     fontFamily:  getTranslated(context, "fontFamilyBody")!,
                      fontSize: 22,
                      fontWeight: FontWeight.w400,
                      color: Colors.amber
@@ -59,7 +61,7 @@ class AddressListSheet extends StatelessWidget{
                onPressed: () { },
                child: Row(
                  children: [
-                   Text('Add Address',style: TextStyle(fontWeight: FontWeight.w400),),
+                   Text(getTranslated(context, "addAddress")!,style: TextStyle(fontWeight: FontWeight.w400, fontFamily:  getTranslated(context, "fontFamilyBody")!,),),
                  ],
                ),
              ),
@@ -67,9 +69,9 @@ class AddressListSheet extends StatelessWidget{
          ),
 
 
-         const Padding(
+          Padding(
            padding:  EdgeInsets.all(8.0),
-           child: Text("saved address", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+           child: Text( getTranslated(context, "savedAddress")!, style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300,fontFamily:  getTranslated(context, "fontFamilyBody")!),),
          ),
          Expanded(
            child: ListView(

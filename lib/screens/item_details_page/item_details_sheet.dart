@@ -4,6 +4,8 @@ import 'package:operation_falafel/widgets/checkbox_option.dart';
 import 'package:operation_falafel/widgets/radio_option.dart';
 import 'package:getwidget/getwidget.dart';
 
+import 'package:video_player/video_player.dart';
+
 class ItemDetailsSheet extends StatefulWidget{
   ScrollController scrollController;
    ItemDetailsSheet(this.scrollController,{super.key});
@@ -55,7 +57,8 @@ class _ItemDetailsSheetState extends State<ItemDetailsSheet> {
 
 
 
-
+  late VideoPlayerController _controller;
+  late Future<void> _initializeVideoPlayerFuture;
 
   @override
   void initState() {
@@ -63,7 +66,68 @@ class _ItemDetailsSheetState extends State<ItemDetailsSheet> {
     print(itemOptions);
     print(itemOptions['Add on']?.length);
     print(itemOptions[itemOptions.keys.elementAt(1)][1]['${itemOptions[itemOptions.keys.elementAt(1)][1].keys.elementAt(0)}']["Id"]);
+
+    // Create and store the VideoPlayerController. The VideoPlayerController
+    // offers several different constructors to play videos from assets, files,
+    // or the internet.
+    _controller = VideoPlayerController.network(
+      'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
+    );
+
+    _initializeVideoPlayerFuture = _controller.initialize();
+
   }
+
+
+  showAlertDialog(BuildContext context) {
+
+    // set up the button
+    Widget okButton = TextButton(
+      child: Text("OK"),
+      onPressed: () {
+        _controller.value.isPlaying
+            ? _controller.pause()
+            : _controller.play();
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: FutureBuilder(
+        future: _initializeVideoPlayerFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            // If the VideoPlayerController has finished initialization, use
+            // the data it provides to limit the aspect ratio of the video.
+            return AspectRatio(
+              aspectRatio: _controller.value.aspectRatio,
+              // Use the VideoPlayer widget to display the video.
+              child: VideoPlayer(_controller),
+            );
+          } else {
+            // If the VideoPlayerController is still initializing, show a
+            // loading spinner.
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
+      ),
+      content: Text("This is my message."),
+      actions: [
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -321,7 +385,18 @@ class _ItemDetailsSheetState extends State<ItemDetailsSheet> {
                             width: 290,
                             height: 45,
                             child: ElevatedButton(
-                                onPressed: (){print("added");},
+                                onPressed: (){
+                                  setState(() {
+                                    // If the video is playing, pause it.
+                                    if (_controller.value.isPlaying) {
+                                      _controller.pause();
+                                    } else {
+                                      // If the video is paused, play it.
+                                      _controller.play();
+                                    }
+                                  });
+                                  showAlertDialog( context);
+                                },
                                 style: ButtonStyle(
                                   backgroundColor:  MaterialStateProperty.all<Color>(Color(0xFF84ab24)),
                                   foregroundColor:

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/screens/menus/full_menu.dart';
 import 'package:operation_falafel/screens/menus/vegan_menu.dart';
 import 'package:operation_falafel/widgets/address_list_sheet.dart';
@@ -34,6 +35,7 @@ class _MainMenuState extends State<MainMenu> {
 
   @override
   Widget build(BuildContext context) {
+    String languageflag= Localizations.localeOf(context).languageCode;
     return Stack(
       children: [
         Image.asset(
@@ -106,7 +108,10 @@ class _MainMenuState extends State<MainMenu> {
                   ),
                 ),
               ],
-              title: Image.asset("assets/images/of_logo_top.png", width: 220,),
+              title:
+              Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),)
+              //Image.asset("assets/images/of_logo_top.png", width: 220,),
+
 
 
           ),
@@ -176,9 +181,9 @@ class _MainMenuState extends State<MainMenu> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                     Image.asset("assets/images/home_pin.png", scale: 2.5,),
-                    // Icon(Icons.location_on,color: Colors.orange.shade300,size: 20,),
+
                     const SizedBox(width: 10,),
-                    const Text("Al Souq Al Kabeer", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w300,fontSize: 12),), Expanded(child: SizedBox(width: 10,)),
+                    const Text("Al Souq Al Kabeer", style: TextStyle(fontFamily:"Raleway-Regular",color: Colors.white, fontWeight: FontWeight.w300,fontSize: 12),), Expanded(child: SizedBox(width: 10,)),
 
                     TextButton(
                       onPressed: () {
@@ -188,8 +193,7 @@ class _MainMenuState extends State<MainMenu> {
                           context: context,
 
                           backgroundColor: Colors.transparent,
-                          builder: (context) =>
-                              DraggableScrollableSheet(
+                          builder: (context) => DraggableScrollableSheet(
                                   initialChildSize: 0.5,
                                   minChildSize: 0.5,
                                   maxChildSize: 1,
@@ -211,7 +215,8 @@ class _MainMenuState extends State<MainMenu> {
                       style: TextButton.styleFrom(
                         foregroundColor: Colors.amber,
                       ),
-                      child: const Text('Change', style: TextStyle(fontWeight: FontWeight.w300, ),),
+                      child:
+                      Text(getTranslated(context, "changeLocation")!, style: TextStyle(fontFamily:"${getTranslated(context, "fontFamilyBody")!}",fontWeight: FontWeight.w300, ),)
                     )
                   ],),
 
@@ -222,7 +227,7 @@ class _MainMenuState extends State<MainMenu> {
                   children: [
                     Container(
                         width: 370,
-                        padding: const EdgeInsets.only(left: 18, right: 18),
+                        padding: const EdgeInsets.only(left: 18, right: 18, top: 5, bottom: 5),
                         decoration: BoxDecoration(
                           color: Colors.amber.shade600,
                           borderRadius: const BorderRadius.only(
@@ -233,7 +238,7 @@ class _MainMenuState extends State<MainMenu> {
                           ),
 
                         ),
-                        child:const Center(child: Text("ORDER NOW!", style: TextStyle(fontFamily: "oldpress", fontSize: 55, color: Colors.white),))
+                        child: Center(child: Text(getTranslated(context, "ORDER NOW")!, style: TextStyle(fontFamily:(languageflag=="en")? getTranslated(context, "fontFamilyButtons")!:getTranslated(context, "fontFamilyBody")!, fontSize: 45, color: Colors.white),))
 
                     ),
 
@@ -257,14 +262,14 @@ class _MainMenuState extends State<MainMenu> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                    padding: const EdgeInsets.only(left: 18, right: 18,top: 8,bottom: 8),
+                    padding: const EdgeInsets.only(left: 20, right: 20,top: 10,bottom: 10),
                     decoration:const BoxDecoration(
                       color: Colors.black,
                       borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(10),
-                        bottomLeft: Radius.circular(10),
-                        topLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
+                        topRight: Radius.circular(20),
+                        bottomLeft: Radius.circular(20),
+                        topLeft: Radius.circular(20),
+                        bottomRight: Radius.circular(20),
                       ),
 
                     ),
@@ -274,21 +279,21 @@ class _MainMenuState extends State<MainMenu> {
                           padding: const EdgeInsets.all(3.0),
                           child: RichText(
 
-                            text:  TextSpan(text: 'You have ',style: TextStyle(fontSize: 17, fontWeight: FontWeight.w300), children: [
+                            text:  TextSpan(text: getTranslated(context, "dashBoardTitle-youHave")!,style: TextStyle(fontSize: 17, fontWeight: FontWeight.w300,fontFamily:getTranslated(context, "fontFamilyBody")!,), children: [
                                TextSpan(
-                                text: '77.6 Credits ',
+                                text: getTranslated(context, "dashBoardTitle-credit")!,
                                 style: TextStyle(color: Colors.amber),
                                 recognizer: new TapGestureRecognizer()..onTap = () => print('Tap Here onTap'),
                               ),
                               TextSpan(
-                                text: 'Valid Until 00/00/0000',
+                                text: '${getTranslated(context, "dashBoardTitle-valid")!} 00/00/0000',
                                 style: TextStyle(color: Colors.white),
                                 recognizer: new TapGestureRecognizer()..onTap = () => print('Tap Here onTap'),
                               )
                             ]),
                           ),
                         ),
-                        const Divider(color: Colors.amber,),
+                        const Divider(color: Colors.amber,thickness: 1,),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
@@ -299,10 +304,8 @@ class _MainMenuState extends State<MainMenu> {
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     children: [
-                                      Image.asset("assets/images/my_rewards_gencode.png", height: 40,width: 40,),
-                                      const SizedBox(height: 5,),
-                                      // Icon(Icons.qr_code_2, color: Colors.amber,size: 35,),
-                                      const  Text("My\nCode", style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),textAlign:TextAlign.center,)
+                                      Image.asset("assets/images/my_rewards_gencode.png", height: 35,width: 35,),
+                                      Text(getTranslated(context, "dashBoardTitle-myCode")!, style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300,fontFamily:getTranslated(context, "fontFamilyBody")!,),textAlign:TextAlign.center,)
                                     ],
                                   ),
                                   new Positioned.fill(
@@ -327,10 +330,10 @@ class _MainMenuState extends State<MainMenu> {
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     children: [
-                                      Image.asset("assets/images/gift.png", height: 40,width: 40,),
+                                      Image.asset("assets/images/gift.png", height: 35,width: 35,),
                                       const SizedBox(height: 5,),
                                       // Icon(Icons.qr_code_2, color: Colors.amber,size: 35,),
-                                      const  Text("My\nRewards", style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),textAlign:TextAlign.center,)
+                                        Text(getTranslated(context, "dashBoardTitle-referToFriend")!, style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300,fontFamily:getTranslated(context, "fontFamilyBody")!,),textAlign:TextAlign.center,)
                                     ],
                                   ),
                                   Positioned.fill(
@@ -355,10 +358,10 @@ class _MainMenuState extends State<MainMenu> {
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     children: [
-                                      Icon(Icons.supervised_user_circle_sharp, color: Colors.amber,size: 40,),
+                                      Icon(Icons.supervised_user_circle_sharp, color: Colors.amber,size: 35,),
                                       const SizedBox(height: 5,),
                                       // Icon(Icons.qr_code_2, color: Colors.amber,size: 35,),
-                                      const  Text("Refer \nFriend", style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),textAlign:TextAlign.center,)
+                                        Text(getTranslated(context, "dashBoardTitle-referToFriend")!, style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300,fontFamily:getTranslated(context, "fontFamilyBody")!,),textAlign:TextAlign.center,)
                                     ],
                                   ),
                                   Positioned.fill(
@@ -383,9 +386,9 @@ class _MainMenuState extends State<MainMenu> {
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     children: [
-                                      Icon(Icons.monetization_on_outlined, color: Colors.amber,size: 40,),
+                                     const Icon(Icons.monetization_on_outlined, color: Colors.amber,size: 35,),
                                       const SizedBox(height: 5,),
-                                      Text("Transfer\nCredit", style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),textAlign:TextAlign.center,)
+                                      Text(getTranslated(context, "dashBoardTitle-transferCredit")!, style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300,fontFamily:getTranslated(context, "fontFamilyBody")!,),textAlign:TextAlign.center,)
                                     ],
                                   ),
                                   Positioned.fill(

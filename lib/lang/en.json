@@ -1,6 +1,31 @@
 {
+  "fontFamilyTitle": "StencilStd",
+  "fontFamilyBody": "Raleway-Regular",
+  "fontFamilyButtons" : "oldpress",
+
   "Main_Text":"You have Selected This Language",
   "Title": "Select Country Language",
   "Drawer_Text": "Localization App",
-  "Change_Language": "To change the language please press on country flag icon"
+  "Change_Language": "To change the language please press on country flag icon",
+
+  "changeLocation": "change",
+  "operationFalafelLogo": "OPERATION:FALAFEL",
+
+  "ORDER NOW": "ORDER NOW!",
+
+  "dashBoardTitle-youHave": "you have 12 ",
+  "dashBoardTitle-credit": "12 Credit ",
+  "dashBoardTitle-valid": "valid until ",
+  "dashBoardTitle-transferCredit" : "Transfer\nCredit",
+  "dashBoardTitle-referToFriend": "Refer a\nFriend",
+  "dashBoardTitle-myRewards": "My\nRewards",
+  "dashBoardTitle-myCode": "My\nCode",
+
+  "addAddress": "Add Address",
+  "selectAddress": "SELECT ADDRESS",
+  "savedAddress": "Save address",
+
+  "repeatOrder": "Repeat last used customization?",
+  "repeatLast": "Repeat last",
+  "addNew": "Add new"
 }

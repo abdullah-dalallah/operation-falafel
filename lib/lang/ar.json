@@ -1,6 +1,31 @@
 {
+  "fontFamilyTitle": "GE SS Two Medium",
+  "fontFamilyBody": "GE SS Two Medium",
+
   "Main_Text":"لقد أخترت هذه اللغه",
   "Title": "إختر اللغه من فضلك",
   "Drawer_Text": "تطبيق اللغات",
-  "Change_Language": "لتغيير اللغه يرجى الضغط على ايقونة علم الدوله"
+  "Change_Language": "لتغيير اللغه يرجى الضغط على ايقونة علم الدوله",
+
+  "changeLocation": "تغيير",
+  "operationFalafelLogo": "أوبريشن : فلافل",
+  "ORDER NOW":"أطلب ألان!",
+
+  "dashBoardTitle-youHave": "لديك ",
+  "dashBoardTitle-credit": "١٢ رصيد ",
+  "dashBoardTitle-valid": "صالحه الى ",
+  "dashBoardTitle-transferCredit" : "تحويل\nرصيد",
+  "dashBoardTitle-referToFriend": "أدع\nصديقا",
+  "dashBoardTitle-myRewards": "أرباحي",
+  "dashBoardTitle-myCode": "رمزي",
+
+
+  "addAddress": "أضف عنوان",
+  "selectAddress": "أختر عنوانك",
+  "savedAddress": "العناوين المحفوضه",
+
+  "repeatOrder": "كرر التخصيص المستخدم الأخير؟",
+  "repeatLast": "كرر",
+  "addNew": "إضف من جديد"
+
 }

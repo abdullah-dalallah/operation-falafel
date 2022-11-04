@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/localization/localization_constants.dart';
 
 class RepeatLastCustomizationSheet extends StatelessWidget{
   ScrollController scrollController;
@@ -27,9 +28,10 @@ class RepeatLastCustomizationSheet extends StatelessWidget{
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                      "Repeat last used customization?",
+                   Text(
+                      getTranslated(context, "repeatOrder")!,
                       style: TextStyle(
+                        fontFamily:  getTranslated(context, "fontFamilyBody")!,
                           fontSize: 15,
                           fontWeight: FontWeight.w400,
                           color: Colors.amber
@@ -73,7 +75,7 @@ class RepeatLastCustomizationSheet extends StatelessWidget{
                           style: BorderStyle.solid,
                         ),
                       ),
-                      child:const Text("Add new ",style: TextStyle(color: Colors.amber), ),
+                      child: Text( getTranslated(context, "addNew")!,style: TextStyle(color: Colors.amber,  fontFamily:  getTranslated(context, "fontFamilyBody")!,), ),
                     ),
                   ),
                   SizedBox(
@@ -95,7 +97,7 @@ class RepeatLastCustomizationSheet extends StatelessWidget{
                           style: BorderStyle.solid,
                         ),
                       ),
-                      child:const Text("Repeat last", style: TextStyle(color: Colors.white)),
+                      child: Text( getTranslated(context, "repeatLast")!, style: TextStyle(color: Colors.white, fontFamily:  getTranslated(context, "fontFamilyBody")!,)),
                     ),
                   ),
                 ],

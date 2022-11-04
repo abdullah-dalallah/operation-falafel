@@ -29,6 +29,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  video_player: ^2.4.7
   modal_bottom_sheet: ^2.1.2
   getwidget: ^3.0.1
   carousel_slider: ^4.1.1
@@ -96,6 +97,19 @@ flutter:
       fonts:
          - asset: assets/fonts/old press.ttf
          - asset: assets/fonts/old press italic.ttf
+    - family: Raleway-Regular
+      fonts:
+        - asset: assets/fonts/Raleway-Regular.ttf
+    - family: StencilStd
+      fonts:
+        - asset: assets/fonts/StencilStd.otf
+    - family: GE SS Two Medium
+      fonts:
+        - asset: assets/fonts/GE SS Two Medium.otf
+    - family: GE SS Two Light
+      fonts:
+        - asset: assets/fonts/GE SS Two Light.otf
+
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:
