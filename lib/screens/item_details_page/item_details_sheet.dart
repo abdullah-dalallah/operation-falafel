@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/widgets/checkbox_option.dart';
 import 'package:operation_falafel/widgets/radio_option.dart';
 import 'package:getwidget/getwidget.dart';
@@ -71,7 +72,11 @@ class _ItemDetailsSheetState extends State<ItemDetailsSheet> {
     // offers several different constructors to play videos from assets, files,
     // or the internet.
     _controller = VideoPlayerController.network(
-      'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
+      videoPlayerOptions: VideoPlayerOptions(
+
+      ),
+
+      'https://clipchamp.com/watch/tehjHhBuWKS',
     );
 
     _initializeVideoPlayerFuture = _controller.initialize();
@@ -410,7 +415,7 @@ class _ItemDetailsSheetState extends State<ItemDetailsSheet> {
 
 
                                 ),
-                                child: const Text("Add to cart",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w300, fontSize: 20),)
+                                child:  Text(getTranslated(context, "addToCart")!,style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.white,fontWeight: FontWeight.w300, fontSize: 20),)
 
 
                               // Padding(
