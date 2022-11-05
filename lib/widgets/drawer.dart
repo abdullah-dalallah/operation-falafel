@@ -111,14 +111,14 @@ class _DrawerState extends State<DrawerWidget> {
               Column(
               crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                       Text(getTranslated(context, "follow us")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyButtons"),color: Colors.amber,fontSize: 50),),
+                       Text(getTranslated(context, "follow us")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyButtons"),color: Colors.amber,fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
+                      SizedBox(height: 10,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Stack(
                             children: [
                               Container(
-
                                 width: 35,
                                 height: 35,
                                 decoration: BoxDecoration(

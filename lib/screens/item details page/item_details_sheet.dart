@@ -157,45 +157,48 @@ class _ItemDetailsSheetState extends State<ItemDetailsSheet> {
                     Padding(
                         padding: const EdgeInsets.only(left:18.0,right: 18),
                         child: SizedBox(
-                          height: 310,
+                          height: MediaQuery. of(context). size. height-520,
                           child: ListView.builder(
-                            shrinkWrap: true,
-                            physics:const BouncingScrollPhysics(),
-                            itemCount: itemOptions.length,
-                            padding:const EdgeInsets.only(top: 5),
-                              itemBuilder: (context, index) =>
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                       Text("${itemOptions.keys.elementAt(index)}", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                shrinkWrap: true,
+                                physics:const BouncingScrollPhysics(),
+                                itemCount: itemOptions.length,
+                                padding:const EdgeInsets.only(top: 5),
+                                  itemBuilder: (context, index) =>
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                           Text("${itemOptions.keys.elementAt(index)}", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
 
-                                      ListView.builder(
-                                        padding:const EdgeInsets.only(top: 0),
-                                        physics:const BouncingScrollPhysics(),
-                                        shrinkWrap: true,
-                                        itemCount: itemOptions[itemOptions.keys.elementAt(index)].length,
-                                          itemBuilder: (context, Index) =>
+                                          ListView.builder(
+                                            padding:const EdgeInsets.only(top: 0),
+                                            physics:const BouncingScrollPhysics(),
+                                            shrinkWrap: true,
+                                            itemCount: itemOptions[itemOptions.keys.elementAt(index)].length,
+                                              itemBuilder: (context, Index) =>
 
-                                              CheckboxOption(
-                                                value: itemOptions[itemOptions.keys.elementAt(index)][Index]['${itemOptions[itemOptions.keys.elementAt(index)][Index].keys.elementAt(0)}']["flag"],
-                                                onChanged:_valueChangedHandler(index,Index, (itemOptions.keys.elementAt(index)=="Add on")?true:false),
-                                                label: '1',
-                                                text: '${itemOptions[itemOptions.keys.elementAt(index)][Index].keys.elementAt(0)}',
-                                                addOnFlag: (itemOptions.keys.elementAt(index)=="Add on")?true:false,
-                                              ),
+                                                  CheckboxOption(
+                                                    value: itemOptions[itemOptions.keys.elementAt(index)][Index]['${itemOptions[itemOptions.keys.elementAt(index)][Index].keys.elementAt(0)}']["flag"],
+                                                    onChanged:_valueChangedHandler(index,Index, (itemOptions.keys.elementAt(index)=="Add on")?true:false),
+                                                    label: '1',
+                                                    text: '${itemOptions[itemOptions.keys.elementAt(index)][Index].keys.elementAt(0)}',
+                                                    addOnFlag: (itemOptions.keys.elementAt(index)=="Add on")?true:false,
+                                                  ),
 
 
+                                          ),
+
+
+
+
+
+                                        ],
                                       ),
-
-                                      const SizedBox(height: 10,)
-
-
-
-                                    ],
-                                  ),
-                          ),
+                              ),
                         ),
+
+
                       ),
+                    const SizedBox(height: 50,)
                   ],
                 ),
               ),

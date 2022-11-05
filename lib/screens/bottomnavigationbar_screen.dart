@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:operation_falafel/screens/cart%20page/cart_screen.dart';
 import 'package:operation_falafel/screens/homepage/of_homepage.dart';
 import 'package:operation_falafel/screens/other_screen.dart';
-import 'package:operation_falafel/screens/tabbar_menu_page/menu_tabebar.dart';
+import 'package:operation_falafel/screens/profile/logged_in_user_profile.dart';
+import 'package:operation_falafel/screens/tabbar%20menu%20page/menu_tabebar.dart';
+import 'package:operation_falafel/screens/track%20orders/track_my_order.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
@@ -51,18 +53,19 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
         MainMenu((value) => changePage(value),),
         TabeBarMenu(),
         Cart_Screen(),
-        OtherScreen(),
-        OtherScreen(),
+        TrackMyOrder(),
+        LoggedInUserProfile(),
 
       ],
       items: [
         PersistentBottomNavBarItem(
           textStyle: TextStyle(fontSize: 9),
-          icon: const ImageIcon(
-            AssetImage("assets/images/icon_order.png", ),
-            size: 28,
-          ),
-          // title: ("home"),
+          icon: Icon(Icons.home, size:40,),
+          // const ImageIcon(
+          //   AssetImage("assets/images/icon_order.png", ),
+          //   size: 28,
+          // ),
+          title: ("home"),
           activeColorPrimary: CupertinoColors.activeOrange,
           inactiveColorPrimary: CupertinoColors.systemBackground,
         ),

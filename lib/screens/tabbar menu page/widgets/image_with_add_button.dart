@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:operation_falafel/screens/item_details_page/item_details_sheet.dart';
-import 'package:operation_falafel/screens/tabbar_menu_page/widgets/repeat_last_customization_sheet.dart';
+import 'package:operation_falafel/screens/item%20details%20page/item_details_sheet.dart';
+import 'package:operation_falafel/screens/tabbar%20menu%20page/widgets/repeat_last_customization_sheet.dart';
 
 class ImageWithAddButton extends StatelessWidget{
   @override
@@ -217,12 +217,12 @@ class ImageWithAddButton extends StatelessWidget{
                                backgroundColor: Colors.transparent,
                                builder: (context) =>
                                    DraggableScrollableSheet(
-                                       initialChildSize: 0.32,
+                                       initialChildSize: 0.33,
                                        minChildSize: 0.3,
                                        maxChildSize: 0.4,
                                        expand: true,
                                        builder: (context, scrollController) {
-                                         return RepeatLastCustomizationSheet(scrollController);
+                                        return RepeatLastCustomizationSheet(scrollController: scrollController);
                                        }
 
                                    )

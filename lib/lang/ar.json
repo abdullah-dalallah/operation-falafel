@@ -2,6 +2,7 @@
   "fontFamilyTitle": "GE SS Two Medium",
   "fontFamilyBody": "GE SS Two Medium",
   "fontFamilyButtons" : "GE SS Two Medium",
+  "fontFamilyButtonsSize" : 20,
 
 
   "Main_Text":"لقد أخترت هذه اللغه",
@@ -55,6 +56,34 @@
   "pleaseSelectPayment": "يرجى تحديد طريقة الدفع",
   "optional": "اختياري",
   "bringItOn": "إجلبه!",
-  "address": "الاماكن"
+  "address": "الاماكن",
+  "noOrder": "لا توجد طلبات",
+
+  "callUs": "إتصل بنا",
+  "emailUs": "ارسل لنا عبر البريد الإلكتروني",
+  "emailUsDividerLength": 190,
+
+  "orderDelivered": "تم توصيل\nالطلب",
+  "onTheWay": "على \nالطريق",
+  "inTheKitchen": "في\nالمطبخ",
+  "orderAccepted": "تم\nالموافقه",
+
+  "editProfile": "تعديل الملف الشخصي",
+
+  "name":"الإسم",
+  "mobileNo": "رقم الهاتف",
+  "emailAddress": "البريد الالكترونى",
+  "dateOfBirth": "تاريخ الولادة",
+  "gender": "الجنس",
+  "password": "كلمة المرور",
+  "referralCode": "كود الإحالة",
+  "oderHistory": "طلباتي",
+  "savedAddress": "العناوين المحفوظة",
+  "savedCards": "البطاقات المحفوظة",
+  "loyalty": "الهدايا",
+  "help": "مساعدة",
+  "sighOut": "تسجيل\nخروج",
+  "choose": "إختر",
+  "uploadId": "تحميل الهويه"
 
 }

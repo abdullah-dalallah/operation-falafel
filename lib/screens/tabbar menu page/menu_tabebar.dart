@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:operation_falafel/screens/item_details_page/item_details_sheet.dart';
-import 'package:operation_falafel/screens/tabbar_menu_page/widgets/custom_list_tile.dart';
+import 'package:operation_falafel/screens/item%20details%20page/item_details_sheet.dart';
+import 'package:operation_falafel/screens/tabbar%20menu%20page/widgets/custom_list_tile.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
 import 'package:operation_falafel/widgets/radio_option.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';

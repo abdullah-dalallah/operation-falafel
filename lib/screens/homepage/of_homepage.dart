@@ -116,7 +116,7 @@ class _MainMenuState extends State<MainMenu> {
 
           ),
           body: SingleChildScrollView(
-            physics: NeverScrollableScrollPhysics(),
+            physics: BouncingScrollPhysics(),
             child: Column(
               children: [
                 /// - Slider - Done Design
@@ -225,21 +225,24 @@ class _MainMenuState extends State<MainMenu> {
                 /// - Order Now Button
                 Stack(
                   children: [
-                    Container(
-                        width: 370,
-                        padding: const EdgeInsets.only(left: 18, right: 18, top: 5, bottom: 5),
-                        decoration: BoxDecoration(
-                          color: Colors.amber.shade600,
-                          borderRadius: const BorderRadius.only(
-                            topRight: Radius.circular(20),
-                            bottomLeft: Radius.circular(20),
-                            topLeft: Radius.circular(20),
-                            bottomRight: Radius.circular(20),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 25.0, right: 25),
+                      child: Container(
+                          // width: MediaQuery. of(context). size. width,
+                          padding: const EdgeInsets.only(left: 18, right: 18, top: 5, bottom: 5),
+                          decoration: BoxDecoration(
+                            color: Colors.amber.shade600,
+                            borderRadius: const BorderRadius.only(
+                              topRight: Radius.circular(20),
+                              bottomLeft: Radius.circular(20),
+                              topLeft: Radius.circular(20),
+                              bottomRight: Radius.circular(20),
+                            ),
+
                           ),
+                          child: Center(child: Text(getTranslated(context, "ORDER NOW")!, style: TextStyle(fontFamily:(languageflag=="en")? getTranslated(context, "fontFamilyButtons")!:getTranslated(context, "fontFamilyBody")!, fontSize: 40, color: Colors.white),))
 
-                        ),
-                        child: Center(child: Text(getTranslated(context, "ORDER NOW")!, style: TextStyle(fontFamily:(languageflag=="en")? getTranslated(context, "fontFamilyButtons")!:getTranslated(context, "fontFamilyBody")!, fontSize: 45, color: Colors.white),))
-
+                      ),
                     ),
 
                      Positioned.fill(
@@ -279,7 +282,7 @@ class _MainMenuState extends State<MainMenu> {
                           padding: const EdgeInsets.all(3.0),
                           child: RichText(
 
-                            text:  TextSpan(text: getTranslated(context, "dashBoardTitle-youHave")!,style: TextStyle(fontSize: 17, fontWeight: FontWeight.w300,fontFamily:getTranslated(context, "fontFamilyBody")!,), children: [
+                            text:  TextSpan(text: getTranslated(context, "dashBoardTitle-youHave")!,style: TextStyle(fontSize: 15, fontWeight: FontWeight.w300,fontFamily:getTranslated(context, "fontFamilyBody")!,), children: [
                                TextSpan(
                                 text: getTranslated(context, "dashBoardTitle-credit")!,
                                 style: TextStyle(color: Colors.amber),

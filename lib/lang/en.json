@@ -2,6 +2,8 @@
   "fontFamilyTitle": "StencilStd",
   "fontFamilyBody": "Raleway-Regular",
   "fontFamilyButtons" : "oldpress",
+  "fontFamilyButtonsSize" : 50,
+
 
   "Main_Text":"You have Selected This Language",
   "Title": "Select Country Language",
@@ -23,7 +25,7 @@
 
   "addAddress": "Add Address",
   "selectAddress": "SELECT ADDRESS",
-  "savedAddress": "Save address",
+  "saveAddress": "Save address",
 
   "repeatOrder": "Repeat last used customization?",
   "repeatLast": "Repeat last",
@@ -54,7 +56,40 @@
   "pleaseSelectPayment": "Please Select Peyment",
   "optional": "OPTIONAL",
   "bringItOn": "BTING IT ON!",
-  "address": "ADDRESS"
+  "address": "ADDRESS",
+
+
+  "noOrder": "NO ORDER",
+  "callUs": "CALL US",
+  "emailUs": "EMAIL US",
+  "emailUsDividerLength": 70,
+
+  "orderDelivered": "Order\nDeliverd",
+  "onTheWay": "On The\nWay",
+  "inTheKitchen": "In The\nKitchen",
+  "orderAccepted": "Order\nAccepted",
+
+  "editProfile": "EDIT PROFILE",
+
+  "name":"Name",
+  "mobileNo": "Mobile No",
+  "emailAddress": "Email Address",
+  "dateOfBirth": "Date Of Birth",
+  "gender": "Gender",
+  "password": "Password",
+  "referralCode": "Referral Code",
+  "oderHistory": "Order History",
+  "savedAddress": "Saved Addresses",
+  "savedCards": "Saved Cards",
+  "loyalty": "Loyalty",
+  "help": "Help",
+  "sighOut": "Sign\nOut",
+  "choose": "Choose",
+  "uploadId": "Upload ID"
+
+
+
+
 
 
 

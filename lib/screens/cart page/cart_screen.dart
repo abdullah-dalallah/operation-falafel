@@ -205,70 +205,77 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                        child: Row(
                          crossAxisAlignment: CrossAxisAlignment.center,
                          children: [
-                           SizedBox(
-                             width: 295,
-                             height: 50,
-                             child:   TextField(
-                               autofocus: false,
-                               style: TextStyle(color: Colors.white70),
+                           Expanded(
+                             flex: 3,
+                             child: SizedBox(
+                               // width: 295,
+                               height: 50,
+                               child:   TextField(
+                                 autofocus: false,
+                                 style: TextStyle(color: Colors.white70),
 
-                               // scrollPadding: EdgeInsets.only(bottom:40),
-                               decoration:  InputDecoration(
-                                 filled: true,
-                                 fillColor: Colors.amber.withOpacity(0.1),
-                                 contentPadding: EdgeInsets.only(left:10),
-                                 focusedBorder: OutlineInputBorder(
-                                   borderRadius:  BorderRadius.all(
-                                     Radius.circular(0.0),
+                                 // scrollPadding: EdgeInsets.only(bottom:40),
+                                 decoration:  InputDecoration(
+                                   filled: true,
+                                   fillColor: Colors.amber.withOpacity(0.1),
+                                   contentPadding: EdgeInsets.only(left:10, ),
+                                   focusedBorder: OutlineInputBorder(
+                                     borderRadius:  BorderRadius.all(
+                                       Radius.circular(0.0),
+                                     ),
+                                     borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
                                    ),
-                                   borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
-                                 ),
-                                 enabledBorder: OutlineInputBorder(
-                                   borderRadius:  BorderRadius.all(
-                                     Radius.circular(0.0),
+                                   enabledBorder: OutlineInputBorder(
+                                     borderRadius:  BorderRadius.all(
+                                       Radius.circular(0.0),
+                                     ),
+                                     borderSide: BorderSide(color: Colors.white70, width: 0.0),
                                    ),
-                                   borderSide: BorderSide(color: Colors.white70, width: 0.0),
+                                   hintText: '',
+                                   label: Text(getTranslated(context, "enter promo code")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+
                                  ),
-                                 hintText: '',
-                                 label: Text(getTranslated(context, "enter promo code")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
 
                                ),
-
                              ),
                            ),
-                           Padding(
-                             padding: const EdgeInsets.only(bottom: 2.0),
-                             child: SizedBox(
-                               width:80,
-                               height: 48,
-                               child: ElevatedButton(
-                                 onPressed: () {
+                           Expanded(
+                             child: Padding(
+                               padding: const EdgeInsets.only(bottom: 2.0),
+                               child: SizedBox(
+                                 // width:80,
+                                 height: 48,
+                                 child: ElevatedButton(
+                                   onPressed: () {
 
-                                 },
-                                 style: ButtonStyle(
-                                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                         const RoundedRectangleBorder(
-                                             borderRadius: BorderRadius.all(Radius.circular(0)),
-                                             side: BorderSide(color: Colors.white70,width: 1)
-                                         )
-                                     ),
-                                     overlayColor: MaterialStateProperty.all(Colors.black12),
-                                     elevation:MaterialStateProperty.all(0),
-                                     shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                     backgroundColor: MaterialStateProperty.all(Colors.amber.shade700.withOpacity(0.3)),
-                                     foregroundColor: MaterialStateProperty.all(Colors.black),
-                                     padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
-                                     textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                                 child: const Text('ADD ', style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),),
+                                   },
+                                   style: ButtonStyle(
+                                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                           const RoundedRectangleBorder(
+                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               side: BorderSide(color: Colors.white30,width: 1)
+                                           )
+                                       ),
+                                       overlayColor: MaterialStateProperty.all(Colors.black12),
+                                       elevation:MaterialStateProperty.all(0),
+                                       shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                       backgroundColor: MaterialStateProperty.all(Colors.amber.shade700.withOpacity(0.3)),
+                                       foregroundColor: MaterialStateProperty.all(Colors.black),
+                                       padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
+                                       textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
+                                   child: const Text('ADD ', style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),),
+                                 ),
                                ),
                              ),
                            ),
                          ],
                        ),
                      ),
+
                      const SizedBox(height: 15,),
                      Text(getTranslated(context, "tip the driver")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.amber, fontSize: 20),),
                      const SizedBox(height: 15,),
+                     /// - tip the driver
                      Padding(
                        padding: const EdgeInsets.only(left:18.0, right: 18),
                        child: SizedBox(
@@ -303,6 +310,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                          ),
                        ),
                      ),
+                     /// - sub total
                      const SizedBox(height: 15,),
                      Padding(
                        padding: const EdgeInsets.all(8.0),
@@ -338,11 +346,12 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                          ],
                        ),
                      ),
+                     /// - Total
                      Container(
 
-                       decoration: BoxDecoration(
+                       decoration: const BoxDecoration(
                          color: Colors.black,
-                         borderRadius:const BorderRadius.only(
+                         borderRadius: BorderRadius.only(
                            topRight: Radius.circular(10),
                            bottomLeft: Radius.circular(10),
                            topLeft: Radius.circular(10),
@@ -371,6 +380,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                          ),
                        )
                      ),
+                     /// - credit calculation
                      Padding(
                        padding: const EdgeInsets.only(left:8.0, right:10, top: 10),
                        child: Row(
@@ -381,19 +391,19 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                          ],
                        ),
                      ),
-
+                     /// - Address
                      const SizedBox(height: 15,),
-                       Align( alignment: Alignment.centerLeft, child: Padding(
+                     Align( alignment: Alignment.centerLeft, child: Padding(
                        padding: const EdgeInsets.only(left:18.0 , right: 18),
-                       child:  Text(getTranslated(context, "address")!, style: TextStyle(color:Colors.amber, fontSize: 25, fontFamily: getTranslated(context, "fontFamilyButtons")!),),
+                       child:  Text(getTranslated(context, "address")!, style: TextStyle(color:Colors.amber, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!), fontFamily: getTranslated(context, "fontFamilyButtons")!),),
                      )),
                      Padding(
                        padding: const EdgeInsets.only(left:18.0, right: 18),
                        child: Container(
 
-                           decoration: BoxDecoration(
+                           decoration:const BoxDecoration(
                              color: Colors.black,
-                             borderRadius:const BorderRadius.only(
+                             borderRadius: BorderRadius.only(
                                topRight: Radius.circular(10),
                                bottomLeft: Radius.circular(10),
                                topLeft: Radius.circular(10),
@@ -412,10 +422,11 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                            )
                        ),
                      ),
+                     /// - Address
                      const SizedBox(height: 15,),
-                      Align( alignment: Alignment.centerLeft, child: Padding(
+                     Align( alignment: Alignment.centerLeft, child: Padding(
                        padding:  EdgeInsets.only(left:18.0 , right: 18),
-                       child:  Text(getTranslated(context, "payment")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color:Colors.amber, fontSize: 25, ),),
+                       child:  Text(getTranslated(context, "payment")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color:Colors.amber, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!) ),),
                      )),
                      Padding(
                        padding: const EdgeInsets.only(left:18.0, right: 18),
@@ -437,13 +448,15 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                            ),
                            // padding: EdgeInsets.all(18),
                            child: ListTile(
+                             leading: Icon(Icons.credit_card, color: Colors.amber,),
                              title:  Text(getTranslated(context, "pleaseSelectPayment")!,style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody"),color:Colors.white,fontWeight: FontWeight.w300), ),
                              // leading: Image.asset("assets/images/icon_location_address.png",scale:3,),
                            )
                        ),
                      ),
+                     /// - checkbox
                      const SizedBox(height: 15,),
-                      Text(getTranslated(context, "optional")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.amber, fontSize: 20),),
+                     Text(getTranslated(context, "optional")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.amber, fontSize: 20),),
                      Padding(
                        padding: const EdgeInsets.all(18.0),
                        child: Column(
@@ -473,6 +486,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                          ],
                        ),
                      ),
+                     /// - bring it on
                      SizedBox(
                        width: MediaQuery. of(context). size. width,
                        height: 50,
