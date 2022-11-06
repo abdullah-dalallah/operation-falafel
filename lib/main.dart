@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:operation_falafel/localization/demo_localization.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/providers/parsistent_tabview_provider.dart';
 import 'package:operation_falafel/screens/bottomnavigationbar_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
 void main() {
   runApp(const MyApp());
@@ -58,40 +61,47 @@ class _MyAppState extends State<MyApp> {
       );
     }
     else{
-      return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        locale:  _locale,
-        supportedLocales: [
-          Locale('ar','SA'),
-          Locale('en','US'),
+      return MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (context) => PersistentTabviewProvider()),
+
 
         ],
-        localizationsDelegates: [
-          DemoLocalization.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          locale:  _locale,
+          supportedLocales: const [
+            Locale('ar','SA'),
+            Locale('en','US'),
 
-        ],
-        localeResolutionCallback: (deviceLocale, supportedLocales){
-          for(var locale in supportedLocales){
-            if(locale.languageCode == deviceLocale!.languageCode && locale.languageCode == deviceLocale!.countryCode){
-              return deviceLocale;
+          ],
+          localizationsDelegates: const [
+            DemoLocalization.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+
+          ],
+          localeResolutionCallback: (deviceLocale, supportedLocales){
+            for(var locale in supportedLocales){
+              if(locale.languageCode == deviceLocale!.languageCode && locale.languageCode == deviceLocale!.countryCode){
+                return deviceLocale;
+              }
             }
-          }
-          return deviceLocale;
-        },
+            return deviceLocale;
+          },
 
 
 
 
-          title: 'Flutter Demo',
-          theme: ThemeData(
+            title: 'Flutter Demo',
+            theme: ThemeData(
 
-            primarySwatch: Colors.blue,
+              primarySwatch: Colors.blue,
+            ),
+            home: KeyboardVisibilityProvider(child: const Tabs_Screen(title: 'Flutter Demo Home Page')),
           ),
-          home: const Tabs_Screen(title: 'Flutter Demo Home Page'),
-        );
+      );
     }
 
   }

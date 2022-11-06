@@ -29,6 +29,9 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  flutter_keyboard_visibility: ^5.4.0
+  fl_country_code_picker: ^0.0.4
+  provider: ^6.0.3
   video_player: ^2.4.7
   modal_bottom_sheet: ^2.1.2
   getwidget: ^3.0.1
