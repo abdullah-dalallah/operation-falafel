@@ -4,7 +4,14 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:operation_falafel/screens/item%20details%20page/item_details_sheet.dart';
 import 'package:operation_falafel/screens/tabbar%20menu%20page/widgets/repeat_last_customization_sheet.dart';
 
-class ImageWithAddButton extends StatelessWidget{
+class ImageWithAddButton extends StatefulWidget{
+
+  @override
+  State<ImageWithAddButton> createState() => _ImageWithAddButtonState();
+}
+
+class _ImageWithAddButtonState extends State<ImageWithAddButton> {
+  bool addFirstTime =true;
   @override
   Widget build(BuildContext context) {
    return SizedBox(
@@ -43,7 +50,7 @@ class ImageWithAddButton extends StatelessWidget{
          ),
          /// - Add button
          Visibility(
-           visible: false,
+           visible: addFirstTime,
            child: Positioned(
              bottom:13,
              child: Align(
@@ -83,13 +90,16 @@ class ImageWithAddButton extends StatelessWidget{
 
                            child: ElevatedButton(
                              onPressed: () {
+                               setState(() {
+                                 addFirstTime= false;
+                               });
                                showMaterialModalBottomSheet(
                                    expand: false,
                                    context: context,
                                    backgroundColor: Colors.transparent,
                                    builder: (context) =>
                                        DraggableScrollableSheet(
-                                           initialChildSize: 0.6,
+                                           initialChildSize: 0.7,
                                            minChildSize: 0.6,
                                            maxChildSize: 1,
                                            expand: true,
@@ -132,7 +142,7 @@ class ImageWithAddButton extends StatelessWidget{
          ),
          /// - Pluse & minuse
          Visibility(
-           visible: true,
+           visible: !addFirstTime,
            child: Positioned(
              bottom:13,
              child: Align(
@@ -276,5 +286,4 @@ class ImageWithAddButton extends StatelessWidget{
      ),
    );
   }
-
 }

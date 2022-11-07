@@ -43,9 +43,7 @@ class _ItemDetailsSheetState extends State<ItemDetailsSheet> {
   }
 
   Map itemOptions ={
-    // 'Choice of Folding':["Wrap","Roll cut in half","Roll cut 4 Pieces"],
-    // 'Choice of Cooking':["Well-done"],
-    // 'Customization':["no lettuce","no picles","no aioli mayo"],
+
     'Choice of Folding':[{'Cheese':{"Price":50,"flag":false}}, {'Mini Fattoush':{"Price":51,"flag":false}},{'Mini Quinoa Tabouleh':{"Price":52,"flag":false}}],
 
     'Choice of Cooking':[{'Cheese':{"Price":50,"flag":false}}, {'Mini Fattoush':{"Price":51,"flag":false}},{'Mini Quinoa Tabouleh':{"Price":52,"flag":false}}],
@@ -138,8 +136,10 @@ class _ItemDetailsSheetState extends State<ItemDetailsSheet> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
-                          const Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+                          const Text("Chicken Fatteh", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                          const SizedBox(height: 8,),
+                          const Text("Chicken topped with rice, fatteh yogurt,fried bread,pine nuts,sumac. parsley and gheee.", style: TextStyle(color: Colors.white),),
+                          const SizedBox(height: 8,),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children:const [
@@ -169,7 +169,7 @@ class _ItemDetailsSheetState extends State<ItemDetailsSheet> {
                                         children: [
                                            Text("${itemOptions.keys.elementAt(index)}", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
 
-                                          ListView.builder(
+                                           ListView.builder(
                                             padding:const EdgeInsets.only(top: 0),
                                             physics:const BouncingScrollPhysics(),
                                             shrinkWrap: true,
@@ -180,8 +180,12 @@ class _ItemDetailsSheetState extends State<ItemDetailsSheet> {
                                                     value: itemOptions[itemOptions.keys.elementAt(index)][Index]['${itemOptions[itemOptions.keys.elementAt(index)][Index].keys.elementAt(0)}']["flag"],
                                                     onChanged:_valueChangedHandler(index,Index, (itemOptions.keys.elementAt(index)=="Add on")?true:false),
                                                     label: '1',
-                                                    text: '${itemOptions[itemOptions.keys.elementAt(index)][Index].keys.elementAt(0)}',
+                                                    text: '${itemOptions[itemOptions.keys.elementAt(index)][Index].keys.elementAt(0)} ',
                                                     addOnFlag: (itemOptions.keys.elementAt(index)=="Add on")?true:false,
+                                                    colorOfText: Colors.white,
+                                                    fontFamily: getTranslated(context, "fontFamilyBody")!,
+                                                    priceText: "${itemOptions[itemOptions.keys.elementAt(index)][Index]['${itemOptions[itemOptions.keys.elementAt(index)][Index].keys.elementAt(0)}']["Price"]} AED",
+
                                                   ),
 
 

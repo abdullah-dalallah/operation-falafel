@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/localization/localization_constants.dart';
 
 class RadioOption<T> extends StatelessWidget{
   final T value;
@@ -47,7 +48,7 @@ class RadioOption<T> extends StatelessWidget{
   Widget _buildText() {
     return Text(
       text,
-      style: const TextStyle(color: Colors.green, fontSize: 15,fontWeight: FontWeight.w300),
+      style:  TextStyle(color: Colors.green, fontSize: 15,fontWeight: FontWeight.w300),
     );
   }
 

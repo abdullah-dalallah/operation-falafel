@@ -2,7 +2,7 @@
   "fontFamilyTitle": "StencilStd",
   "fontFamilyBody": "Raleway-Regular",
   "fontFamilyButtons" : "oldpress",
-  "fontFamilyButtonsSize" : 50,
+  "fontFamilyButtonsSize" : 35,
 
 
   "Main_Text":"You have Selected This Language",
@@ -40,6 +40,7 @@
   "feedback": "FEEDBACK",
   "contact us": "CONTACT US",
   "follow us": "FOLLOW US",
+  "language": "Language",
   "my o:f cart": "MY O:F CART",
   "sepecial instructions": "SPECIAL INSTRUCTIONS",
   "tip the driver":"TIP THE DRIVER (OPTIONAL)",

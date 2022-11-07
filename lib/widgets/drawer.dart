@@ -107,7 +107,108 @@ class _DrawerState extends State<DrawerWidget> {
 
 
               const  Expanded(child: SizedBox(height: 10,)),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(getTranslated(context, "language")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyButtons"),color: Colors.amber,fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
+                  SizedBox(height: 10,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Stack(
+                        children: [
+                          Container(
+                            width: 35,
+                            height: 35,
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.4),
+                              borderRadius:const BorderRadius.only(
+                                topRight: Radius.circular(40),
+                                bottomLeft: Radius.circular(40),
+                                topLeft: Radius.circular(40),
+                                bottomRight: Radius.circular(40),
+                              ),
+                              // border: Border.all(
+                              //   width: 0.5,
+                              //   color: Colors.white,
+                              //   style: BorderStyle.solid,
+                              // ),
+                            ),
+                            child: Image.asset("assets/images/uae.png",height: 30,width: 35,),
+                          ),
 
+                          new Positioned.fill(
+                              child: new Material(
+                                color: Colors.transparent,
+                                child:  new InkWell(
+                                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                                  splashColor: Colors.black,
+                                  overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                  onTap: (){
+                                    _changeLanguage("ar");
+                                  },
+                                ),
+
+                              )
+                          ),
+
+                        ],
+                      ),
+                      SizedBox(width: 15,),
+                      Stack(
+                        children: [
+                          Container(
+                            width: 35,
+                            height: 35,
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.4),
+                              borderRadius:const BorderRadius.only(
+                                topRight: Radius.circular(40),
+                                bottomLeft: Radius.circular(40),
+                                topLeft: Radius.circular(40),
+                                bottomRight: Radius.circular(40),
+                              ),
+                              // border: Border.all(
+                              //   width: 0.5,
+                              //   color: Colors.white,
+                              //   style: BorderStyle.solid,
+                              // ),
+                            ),
+                            child: ClipRRect(
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(100),
+                                  topRight: Radius.circular(100),
+                                  bottomLeft: Radius.circular(100),
+                                  bottomRight: Radius.circular(100),
+
+                                ),
+                                child: Image.asset("assets/images/uk.png",height: 30,width: 35,fit: BoxFit.cover,)),
+                          ),
+
+                          new Positioned.fill(
+                              child: new Material(
+                                color: Colors.transparent,
+                                child:  new InkWell(
+                                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                                  splashColor: Colors.black,
+                                  overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                  onTap: (){
+                                    _changeLanguage("en");
+                                  },
+                                ),
+
+                              )
+                          ),
+
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10,),
               Column(
               crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -147,7 +248,7 @@ class _DrawerState extends State<DrawerWidget> {
                                       overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
 
                                       onTap: (){
-                                        _changeLanguage("ar");
+
                                       },
                                     ),
 
@@ -188,7 +289,7 @@ class _DrawerState extends State<DrawerWidget> {
                                       overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
 
                                       onTap: (){
-                                        _changeLanguage("en");
+
                                       },
                                     ),
 

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/widgets/address_list_sheet.dart';
 import 'package:operation_falafel/widgets/checkbox_option.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -97,12 +99,13 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                            return Column(
                              children: [
                                ListTile(
-                                 title: Text("Chicken Shawerma SaJ", style: TextStyle(color: Colors.amber, fontSize: 25, fontWeight: FontWeight.w300),),
-                                 subtitle:  Column(children: [ListView.builder(
+                                 title: Text("Chicken Fatteh", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.amber, fontSize: 25, fontWeight: FontWeight.w300),),
+                                 subtitle:  Column(children: [
+                                   ListView.builder(
                                      physics:const NeverScrollableScrollPhysics(),
                                      shrinkWrap: true,
                                      itemCount:3,
-                                     itemBuilder: (context, index) {return  Text("Mini Mountabal + 1pc bread", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w300),);}
+                                     itemBuilder: (context, index) {return  Text("Mini Mountabal + 1pc bread", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontWeight: FontWeight.w300),);}
                                  ),],),
                                ),
                                Padding(
@@ -111,7 +114,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                    children: [
                                      PluseMinusWidget(),
-                                     Text("AED 16", style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w300),)
+                                     Text("AED 16", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,fontSize: 20, color: Colors.white, fontWeight: FontWeight.w300),)
                                    ],
                                  ),
                                ),
@@ -217,17 +220,19 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                  // scrollPadding: EdgeInsets.only(bottom:40),
                                  decoration:  InputDecoration(
                                    filled: true,
-                                   fillColor: Colors.amber.withOpacity(0.1),
+                                   fillColor: Colors.black,
                                    contentPadding: EdgeInsets.only(left:10, ),
                                    focusedBorder: OutlineInputBorder(
-                                     borderRadius:  BorderRadius.all(
-                                       Radius.circular(0.0),
+                                     borderRadius:  BorderRadius.only(
+                                      bottomLeft:  Radius.circular(10.0),
+                                       topLeft: Radius.circular(10.0),
                                      ),
                                      borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
                                    ),
                                    enabledBorder: OutlineInputBorder(
-                                     borderRadius:  BorderRadius.all(
-                                       Radius.circular(0.0),
+                                     borderRadius:   BorderRadius.only(
+                                       bottomLeft:  Radius.circular(10.0),
+                                       topLeft: Radius.circular(10.0),
                                      ),
                                      borderSide: BorderSide(color: Colors.white70, width: 0.0),
                                    ),
@@ -252,14 +257,18 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                    style: ButtonStyle(
                                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                            const RoundedRectangleBorder(
-                                               borderRadius: BorderRadius.all(Radius.circular(0)),
+                                               borderRadius: BorderRadius.only(
+                                                   topRight: Radius.circular(10),
+                                                   bottomRight: Radius.circular(10),
+
+                                               ),
                                                side: BorderSide(color: Colors.white30,width: 1)
                                            )
                                        ),
                                        overlayColor: MaterialStateProperty.all(Colors.black12),
                                        elevation:MaterialStateProperty.all(0),
                                        shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                       backgroundColor: MaterialStateProperty.all(Colors.amber.shade700.withOpacity(0.3)),
+                                       backgroundColor: MaterialStateProperty.all(Colors.amber),
                                        foregroundColor: MaterialStateProperty.all(Colors.black),
                                        padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
                                        textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
@@ -288,17 +297,18 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                            // scrollPadding: EdgeInsets.only(bottom:50),
                            decoration:  InputDecoration(
                              filled: true,
-                             fillColor: Colors.amber.withOpacity(0.1),
+                             fillColor: Colors.black,
+                             //amber.withOpacity(0.1),
                              contentPadding:const EdgeInsets.only(left:10),
                              focusedBorder:const OutlineInputBorder(
                                borderRadius:  BorderRadius.all(
-                                 Radius.circular(0.0),
+                                 Radius.circular(10.0),
                                ),
                                borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
                              ),
                              enabledBorder:const OutlineInputBorder(
                                borderRadius:  BorderRadius.all(
-                                 Radius.circular(0.0),
+                                 Radius.circular(10.0),
                                ),
                                borderSide: BorderSide(color: Colors.transparent, width: 0.0),
                              ),
@@ -417,6 +427,28 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                            ),
                            // padding: EdgeInsets.all(18),
                            child: ListTile(
+                             onTap: (){
+                               showMaterialModalBottomSheet(
+                                   expand: false,
+                                   context: context,
+
+                                   backgroundColor: Colors.transparent,
+                                   builder: (context) => DraggableScrollableSheet(
+                                       initialChildSize: 0.5,
+                                       minChildSize: 0.5,
+                                       maxChildSize: 1,
+                                       expand: true,
+                                       builder: (context, scrollController) {
+                                         return AddressListSheet(scrollController);
+                                       }
+
+                                   )
+
+
+
+
+                               );
+                             },
                              title: Text(getTranslated(context, "pleaseSelectAddress")!,style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody"),color:Colors.white,fontWeight: FontWeight.w300), ),
                              leading: Image.asset("assets/images/icon_location_address.png",scale:3,),
                            )
@@ -505,7 +537,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
 
 
                            ),
-                           child: Text(getTranslated(context, "bringItOn")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.white, fontSize: 40),)
+                           child: Text(getTranslated(context, "bringItOn")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.white, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),)
 
 
                        ),

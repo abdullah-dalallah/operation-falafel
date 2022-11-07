@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/screens/tabbar%20menu%20page/widgets/image_with_add_button.dart';
 
 class CustomListTile extends StatelessWidget{
@@ -19,10 +20,10 @@ class CustomListTile extends StatelessWidget{
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Build-Your-Owen Slider Box", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
-              Text("Perfect for sharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white),),
+              Text("Chicken Fatteh", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+              Text("Chicken topped with rice, fatteh yogurt,fried bread,pine nuts,sumac. parsley and gheee.", style: TextStyle(color: Colors.white,fontFamily:getTranslated(context, "fontFamilyBody")!,),),
 
-              Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 18, fontWeight: FontWeight.w300),),
+              Text("AED 44", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.white,fontSize: 18, fontWeight: FontWeight.w300),),
             ],
           ),
         ),

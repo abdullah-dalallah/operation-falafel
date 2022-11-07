@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/screens/menus/full_menu.dart';
 import 'package:operation_falafel/screens/menus/vegan_menu.dart';
+import 'package:operation_falafel/screens/my%20rewards%20page/my_rewards.dart';
 import 'package:operation_falafel/widgets/address_list_sheet.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -223,42 +224,43 @@ class _MainMenuState extends State<MainMenu> {
                 ),
                 const  SizedBox(height: 15,),
                 /// - Order Now Button
-                Stack(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 25.0, right: 25),
-                      child: Container(
-                          // width: MediaQuery. of(context). size. width,
-                          padding: const EdgeInsets.only(left: 18, right: 18, top: 5, bottom: 5),
-                          decoration: BoxDecoration(
-                            color: Colors.amber.shade600,
-                            borderRadius: const BorderRadius.only(
-                              topRight: Radius.circular(20),
-                              bottomLeft: Radius.circular(20),
-                              topLeft: Radius.circular(20),
-                              bottomRight: Radius.circular(20),
+                Padding(
+                  padding: const EdgeInsets.only(left: 25.0, right: 25),
+                  child: Stack(
+                    children: [
+                      Container(
+                            // width: MediaQuery. of(context). size. width,
+                            padding: const EdgeInsets.only(left: 18, right: 18, top: 5, bottom: 5),
+                            decoration: BoxDecoration(
+                              color: Colors.amber,
+                              borderRadius: const BorderRadius.only(
+                                topRight: Radius.circular(20),
+                                bottomLeft: Radius.circular(20),
+                                topLeft: Radius.circular(20),
+                                bottomRight: Radius.circular(20),
+                              ),
+
+                            ),
+                            child: Center(child: Text(getTranslated(context, "ORDER NOW")!, style: TextStyle(fontFamily:(languageflag=="en")? getTranslated(context, "fontFamilyButtons")!:getTranslated(context, "fontFamilyBody")!, fontSize: 40, color: Colors.white),))
+
+                        ),
+
+
+                       Positioned.fill(
+                          child:  Material(
+                            color: Colors.transparent,
+                            child:   InkWell(
+                              borderRadius:const BorderRadius.all(Radius.circular(20)),
+                              splashColor: Colors.black,
+                              overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+                              onTap: (){widget.onChanged(1);},
                             ),
 
-                          ),
-                          child: Center(child: Text(getTranslated(context, "ORDER NOW")!, style: TextStyle(fontFamily:(languageflag=="en")? getTranslated(context, "fontFamilyButtons")!:getTranslated(context, "fontFamilyBody")!, fontSize: 40, color: Colors.white),))
-
+                          )
                       ),
-                    ),
 
-                     Positioned.fill(
-                        child:  Material(
-                          color: Colors.transparent,
-                          child:   InkWell(
-                            borderRadius:const BorderRadius.all(Radius.circular(20)),
-                            splashColor: Colors.black,
-                            overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
-                            onTap: (){widget.onChanged(1);},
-                          ),
-
-                        )
-                    ),
-
-                  ],
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 10,),
                 /// - Dashboard
@@ -320,7 +322,7 @@ class _MainMenuState extends State<MainMenu> {
                                           overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
 
                                           onTap: (){
-                                            print("text");
+
                                           },
                                         ),
 
@@ -340,15 +342,20 @@ class _MainMenuState extends State<MainMenu> {
                                     ],
                                   ),
                                   Positioned.fill(
-                                      child: new Material(
+                                      child:  Material(
                                         color: Colors.transparent,
-                                        child:  new InkWell(
+                                        child:   InkWell(
                                           borderRadius: BorderRadius.all(Radius.circular(0)),
                                           splashColor: Colors.black,
                                           overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
 
                                           onTap: (){
-                                            print("text");
+                                            PersistentNavBarNavigator.pushNewScreen(
+                                              context,
+                                              screen: MyRewards(),
+                                              withNavBar: true, // OPTIONAL VALUE. True by default.
+                                              pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                            );
                                           },
                                         ),
 

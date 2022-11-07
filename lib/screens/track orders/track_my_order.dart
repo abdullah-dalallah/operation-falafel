@@ -59,7 +59,7 @@ class _TrackMyOrderState extends State<TrackMyOrder> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const    SizedBox(width: 30,child:  Divider(color: Colors.white,thickness: 2,)),
+                      const  SizedBox(width: 30,child:  Divider(color: Colors.white,thickness: 2,)),
                       Container(
                         decoration: const BoxDecoration(
                           borderRadius: BorderRadius.only(
@@ -144,23 +144,27 @@ class _TrackMyOrderState extends State<TrackMyOrder> {
                   ),
                   const SizedBox(height: 15,),
                   Padding(
-                    padding: const EdgeInsets.only(left: 30.0, right: 30),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        // const  SizedBox(width: 65,),
-                       Expanded(child: Text(getTranslated(context, "orderAccepted")!,style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,fontSize:13, color: Colors.white, fontWeight: FontWeight.w300,),textAlign: TextAlign.center,)),
-                        // const  SizedBox(width: 30,),
-                       Expanded(child: Text(getTranslated(context, "inTheKitchen")!,style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,fontSize:13,color: Colors.white, fontWeight: FontWeight.w300,),textAlign: TextAlign.center,)),
+                    padding: const EdgeInsets.only(left: 30, right: 30),
+                    child:SizedBox(
+                      width: 320,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            // const  SizedBox(width: 65,),
+                           Expanded(child: Text(getTranslated(context, "orderAccepted")!,style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,fontSize:13, color: Colors.white, fontWeight: FontWeight.w300,),textAlign: TextAlign.center,)),
+                            // const  SizedBox(width: 30,),
+                           Expanded(child: Text(getTranslated(context, "inTheKitchen")!,style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,fontSize:13,color: Colors.white, fontWeight: FontWeight.w300,),textAlign: TextAlign.center,)),
 
-                        // const  SizedBox(width: 40,),
-                       Expanded(child: Text(getTranslated(context, "onTheWay")!,style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,fontSize:13,color: Colors.white, fontWeight: FontWeight.w300,),textAlign: TextAlign.center,)),
+                            // const  SizedBox(width: 40,),
+                           Expanded(child: Text(getTranslated(context, "onTheWay")!,style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,fontSize:13,color: Colors.white, fontWeight: FontWeight.w300,),textAlign: TextAlign.center,)),
 
-                        // const  SizedBox(width: 30,),
-                        Expanded(child: Text(getTranslated(context, "orderDelivered")!,style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,fontSize:13,color: Colors.white, fontWeight: FontWeight.w300,),textAlign: TextAlign.center,)),
-                        // const  SizedBox(width: 65,),
-                      ],
+                            // const  SizedBox(width: 30,),
+                            Expanded(child: Text(getTranslated(context, "orderDelivered")!,style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,fontSize:13,color: Colors.white, fontWeight: FontWeight.w300,),textAlign: TextAlign.center,)),
+                            // const  SizedBox(width: 65,),
+                          ],
+                        ),
                     ),
+
                   ),
                 ],
               ),
