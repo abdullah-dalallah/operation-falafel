@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -22,7 +24,9 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
   @override
   void initState() {
     super.initState();
-
+    // Get the language set as default on the users phone
+    // String? systemCountryCode = window.locale.countryCode;
+    countryCode= CountryCode(code: "AE",name: "United Arab Emirates",dialCode: "+971" );
 
 
   }
@@ -262,17 +266,28 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                         ),
                         child: Row(
                           children: [
-                            Expanded(flex:5, child: Padding(
+                            Expanded(flex:4, child: Padding(
                               padding: const EdgeInsets.only(left:10, right: 10),
                               child: Text("${getTranslated(context, "mobileNo")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),),
                             )),
-                            Expanded(flex:1, child: Padding(
+                            Expanded(
+                                flex:2,
+                                child: Padding(
                                 padding: const EdgeInsets.only(left:0, right:0),
-                                child: IconButton(icon: countryCode!=null?ImageIcon(AssetImage(countryCode!.code)):Icon(Icons.flag_outlined),onPressed: () async {
+                                child: IconButton(
+                                  icon:
+                                countryCode!=null?
+                                SizedBox(width: 30,height: 30, child: countryCode!.flagImage)
+                                    :Icon(Icons.flag_outlined),
+                                  padding: EdgeInsets.zero,
+                                  onPressed: () async {
 
-                                  final code = await countryPicker.showPicker(context: context);
+                                  final code = await countryPicker.showPicker(context: context,initialSelectedLocale: "AE");
                                   if (code != null) {
-                                    countryCode =code;
+                                    setState((){
+                                      countryCode =code;
+                                    });
+
 
                                   };
                                 },)

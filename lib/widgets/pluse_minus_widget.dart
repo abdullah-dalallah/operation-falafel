@@ -1,7 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class PluseMinusWidget extends StatelessWidget{
+class PluseMinusWidget extends StatefulWidget{
+  const PluseMinusWidget({super.key});
+
+  @override
+  State<PluseMinusWidget> createState() => _PluseMinusWidgetState();
+}
+
+class _PluseMinusWidgetState extends State<PluseMinusWidget> {
+  int ItemQuantity = 0;
   @override
   Widget build(BuildContext context) {
      return Align(
@@ -37,7 +45,14 @@ class PluseMinusWidget extends StatelessWidget{
                height:25,
 
                child: ElevatedButton(
-                 onPressed: () {},
+                 onPressed: () {
+                   if(ItemQuantity>0){
+                     setState(() {
+                       ItemQuantity--;
+                     });
+                   }
+
+                 },
                  style: ButtonStyle(
                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                          (Localizations.localeOf(context).languageCode=='en')?
@@ -73,13 +88,20 @@ class PluseMinusWidget extends StatelessWidget{
                  child:const Icon(Icons.remove,size: 18,),
                ),
              ),
-             const SizedBox(width:30, child: Text("9",textAlign: TextAlign.center,style: TextStyle(color: Colors.white),),),
+              SizedBox(width:30, child: Text(  "${ItemQuantity}" ,textAlign: TextAlign.center,style: TextStyle(color: Colors.white),),),
              SizedBox(
                width:30,
                height:25,
 
                child: ElevatedButton(
-                 onPressed: () {},
+                 onPressed: () {
+                   if(ItemQuantity>=0){
+                     setState(() {
+                       ItemQuantity++;
+                     });
+                   }
+
+                 },
                  style: ButtonStyle(
                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                          (Localizations.localeOf(context).languageCode=='en')?
@@ -120,5 +142,4 @@ class PluseMinusWidget extends StatelessWidget{
        ),
      );
   }
-
 }

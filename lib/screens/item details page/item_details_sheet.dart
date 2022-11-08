@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/widgets/add_on_tile_widget.dart';
 import 'package:operation_falafel/widgets/checkbox_option.dart';
 import 'package:operation_falafel/widgets/radio_option.dart';
 import 'package:getwidget/getwidget.dart';
@@ -69,8 +70,7 @@ class _ItemDetailsSheetState extends State<ItemDetailsSheet> {
 
   }
 
-
-
+   int itemQuantity = 0;
 
 
   @override
@@ -176,7 +176,8 @@ class _ItemDetailsSheetState extends State<ItemDetailsSheet> {
                                             itemCount: itemOptions[itemOptions.keys.elementAt(index)].length,
                                               itemBuilder: (context, Index) =>
 
-                                                  CheckboxOption(
+                                              (itemOptions.keys.elementAt(index)!="Add on")?
+                                              CheckboxOption(
                                                     value: itemOptions[itemOptions.keys.elementAt(index)][Index]['${itemOptions[itemOptions.keys.elementAt(index)][Index].keys.elementAt(0)}']["flag"],
                                                     onChanged:_valueChangedHandler(index,Index, (itemOptions.keys.elementAt(index)=="Add on")?true:false),
                                                     label: '1',
@@ -186,6 +187,12 @@ class _ItemDetailsSheetState extends State<ItemDetailsSheet> {
                                                     fontFamily: getTranslated(context, "fontFamilyBody")!,
                                                     priceText: "${itemOptions[itemOptions.keys.elementAt(index)][Index]['${itemOptions[itemOptions.keys.elementAt(index)][Index].keys.elementAt(0)}']["Price"]} AED",
 
+                                                  )
+                                                  :AddOnTileWidget(
+                                                    fontFamily: getTranslated(context, "fontFamilyBody")!,
+                                                    priceText: "${itemOptions[itemOptions.keys.elementAt(index)][Index]['${itemOptions[itemOptions.keys.elementAt(index)][Index].keys.elementAt(0)}']["Price"]} AED",
+                                                    text: '${itemOptions[itemOptions.keys.elementAt(index)][Index].keys.elementAt(0)} ',
+                                                    colorOfText: Colors.white,
                                                   ),
 
 
@@ -248,7 +255,14 @@ class _ItemDetailsSheetState extends State<ItemDetailsSheet> {
                                     height:45,
 
                                     child: ElevatedButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        if(itemQuantity>0){
+                                          setState(() {
+                                            itemQuantity--;
+                                          });
+
+                                        }
+                                      },
                                       style: ButtonStyle(
                                           // shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                           //     (Localizations.localeOf(context).languageCode=='en')?
@@ -284,12 +298,19 @@ class _ItemDetailsSheetState extends State<ItemDetailsSheet> {
                                       child:const Icon(Icons.remove,size: 18,),
                                     ),
                                   ),
-                                  const SizedBox(width:30, child: Text("199",textAlign: TextAlign.center,style: TextStyle(color: Colors.white),),),
+                                  SizedBox(width:30, child: Text("${itemQuantity}",textAlign: TextAlign.center,style: TextStyle(color: Colors.white),),),
                                   SizedBox(
                                     width:45,
                                     height:45,
                                     child: ElevatedButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        if(itemQuantity>=0){
+                                          setState(() {
+                                            itemQuantity++;
+                                          });
+
+                                        }
+                                      },
                                       style: ButtonStyle(
                                           // shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                           //     (Localizations.localeOf(context).languageCode=='en')?

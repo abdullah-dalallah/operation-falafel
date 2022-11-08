@@ -86,7 +86,11 @@
   "help": "Help",
   "sighOut": "Sign\nOut",
   "choose": "Choose",
-  "uploadId": "Upload ID"
+  "uploadId": "Upload ID",
+  "add": "ADD",
+
+  "yourCartIsEmpity": "YOUR CART IS EMPTY"
+
 
 
 

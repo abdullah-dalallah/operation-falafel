@@ -85,6 +85,8 @@
   "help": "مساعدة",
   "sighOut": "تسجيل\nخروج",
   "choose": "إختر",
-  "uploadId": "تحميل الهويه"
+  "uploadId": "تحميل الهويه",
+  "add": "أضف",
+  "yourCartIsEmpity": "عربة التسوق فارغة"
 
 }

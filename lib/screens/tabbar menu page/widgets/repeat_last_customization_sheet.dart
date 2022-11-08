@@ -51,7 +51,7 @@ class RepeatLastCustomizationSheet extends StatelessWidget{
                 const Divider(color: Colors.grey,),
                 const ListTile(
                   title:
-                  Text("Build-your-Owen Slider box", style: TextStyle(color: Colors.amber,fontWeight: FontWeight.bold),),
+                  Text("Chicken Fatteh", style: TextStyle(color: Colors.amber,fontWeight: FontWeight.bold),),
                   subtitle:Text("perfect for shharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w300),),
 
                 ),
@@ -64,60 +64,64 @@ class RepeatLastCustomizationSheet extends StatelessWidget{
         ),
       ),
       bottomSheet:    Container(
+
         color: Colors.black,
-        child: SizedBox(
-          width: double.maxFinite,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: SizedBox(
-                  // width:190,
-                  height:40,
-                  child: OutlinedButton(
-                    onPressed: () {},
-                    style: OutlinedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SizedBox(
+            width: double.maxFinite,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: SizedBox(
+                    // width:190,
+                    height:40,
+                    child: OutlinedButton(
+                      onPressed: () {},
+                      style: OutlinedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
 
-                      side: BorderSide(
+                        side: BorderSide(
 
-                        width: 1.0,
-                        color: Colors.amber,
-                        style: BorderStyle.solid,
+                          width: 1.0,
+                          color: Colors.amber,
+                          style: BorderStyle.solid,
+                        ),
                       ),
+                      child: Text( getTranslated(context, "addNew")!,style: TextStyle(color: Colors.amber,  fontFamily:  getTranslated(context, "fontFamilyBody")!,), ),
                     ),
-                    child: Text( getTranslated(context, "addNew")!,style: TextStyle(color: Colors.amber,  fontFamily:  getTranslated(context, "fontFamilyBody")!,), ),
                   ),
                 ),
-              ),
-              SizedBox(width: 15,),
-              Expanded(
-                child: SizedBox(
-                  // width:190,
-                  height:40,
+                SizedBox(width: 15,),
+                Expanded(
+                  child: SizedBox(
+                    // width:190,
+                    height:40,
 
-                  child: OutlinedButton(
-                    onPressed: () {},
-                    style: OutlinedButton.styleFrom(
+                    child: OutlinedButton(
+                      onPressed: () {},
+                      style: OutlinedButton.styleFrom(
 
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+
+                        side: BorderSide(
+
+                          width: 1.0,
+                          color: Colors.white,
+                          style: BorderStyle.solid,
+                        ),
                       ),
-
-                      side: BorderSide(
-
-                        width: 1.0,
-                        color: Colors.white,
-                        style: BorderStyle.solid,
-                      ),
+                      child: Text( getTranslated(context, "repeatLast")!, style: TextStyle(color: Colors.white, fontFamily:  getTranslated(context, "fontFamilyBody")!,)),
                     ),
-                    child: Text( getTranslated(context, "repeatLast")!, style: TextStyle(color: Colors.white, fontFamily:  getTranslated(context, "fontFamilyBody")!,)),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
