@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 
 
 class TrackMyOrder extends StatefulWidget{
@@ -12,6 +13,11 @@ class TrackMyOrder extends StatefulWidget{
 
 class _TrackMyOrderState extends State<TrackMyOrder> {
 
+  final List<String> genderItems = [
+    'Male',
+    'Female',
+  ];
+  String? selectedValue;
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey(); // Cre
   @override
   Widget build(BuildContext context) {
@@ -47,6 +53,95 @@ class _TrackMyOrderState extends State<TrackMyOrder> {
             children: [
 
               Text(getTranslated(context, "noOrder")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber.shade400, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
+
+              /// - DropDown
+              Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: DropdownButtonFormField2(
+                  decoration: InputDecoration(
+                    //Add isDense true and zero Padding.
+                    //Add Horizontal padding using buttonPadding and Vertical padding by increasing buttonHeight instead of add Padding here so that The whole TextField Button become clickable, and also the dropdown menu open under The whole TextField Button.
+                    isDense: true,
+                    contentPadding:const EdgeInsets.only(),
+                    border: OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.green, width: 40.0, style: BorderStyle.solid ),
+                      borderRadius: BorderRadius.circular(10),
+
+                    ),
+                    focusColor: Colors.amber,
+                    focusedBorder:const OutlineInputBorder(
+                      borderRadius:  BorderRadius.all(
+                        Radius.circular(10.0),
+                      ),
+                      borderSide: BorderSide(color: Colors.amber, width: 2.0, ),
+                    ),
+                    enabledBorder:const OutlineInputBorder(
+                      borderRadius:  BorderRadius.all(
+                        Radius.circular(10.0),
+                      ),
+                      borderSide: BorderSide(color: Colors.white60, width: 2.0),
+                    ),
+
+                    //Add more decoration as you want here
+                    //Add label If you want but add hint outside the decoration to be aligned in the button perfectly.
+                  ),
+                  isExpanded: true,
+                  hint:  Text(
+                    'Select Order',
+                    style: TextStyle(fontSize: 16, color: Colors.white60 ,fontFamily: getTranslated(context, "fontFamilyBody")!),
+                  ),
+                  icon: const Icon(
+                    Icons.arrow_drop_down,
+                    color: Colors.white60,
+                  ),
+                  iconSize: 30,
+                  buttonHeight: 60,
+                  buttonPadding: const EdgeInsets.only(left: 20, right: 20),
+                  dropdownDecoration: BoxDecoration(
+                     color: Colors.black,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+
+                  items: genderItems
+                      .map((item) =>
+                      DropdownMenuItem<String>(
+                        value: item,
+                        child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                      item,
+                                      style:  TextStyle(fontSize: 18,color: Colors.white, fontFamily: getTranslated(context, "fontFamilyBody")!),
+                                    ),
+                                Text(
+                                  item,
+                                  style:  TextStyle(fontSize: 12,color: Colors.amber, fontFamily: getTranslated(context, "fontFamilyBody")!),
+                                ),
+                              ],
+                            ),
+
+
+
+
+                      ))
+                      .toList(),
+                  validator: (value) {
+                    if (value == null) {
+                      return 'Please select gender.';
+                    }
+                  },
+                  onChanged: (value) {
+                    //Do something when changing the item if you want.
+                  },
+                  onSaved: (value) {
+                    selectedValue = value.toString();
+                  },
+                ),
+              ),
+              /// - DropDown
+
+
+
 
               Expanded(
                   flex: 5,

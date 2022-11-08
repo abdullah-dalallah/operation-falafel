@@ -122,12 +122,12 @@ class _MainMenuState extends State<MainMenu> {
               children: [
                 /// - Slider - Done Design
                 ClipRRect(
-                  borderRadius: BorderRadius.only(),
+                  borderRadius: const BorderRadius.only(),
                   child: CarouselSlider(
 
                       options: CarouselOptions(
-                        height: 340,
-                        aspectRatio: 1,
+                        // height: MediaQuery. of(context). size. height-470,
+                        aspectRatio: 1.2,
                         viewportFraction: 1,
                         initialPage: 0,
                         enableInfiniteScroll: true,
@@ -231,9 +231,9 @@ class _MainMenuState extends State<MainMenu> {
                       Container(
                             // width: MediaQuery. of(context). size. width,
                             padding: const EdgeInsets.only(left: 18, right: 18, top: 5, bottom: 5),
-                            decoration: BoxDecoration(
+                            decoration:const BoxDecoration(
                               color: Colors.amber,
-                              borderRadius: const BorderRadius.only(
+                              borderRadius:  BorderRadius.only(
                                 topRight: Radius.circular(20),
                                 bottomLeft: Radius.circular(20),
                                 topLeft: Radius.circular(20),
@@ -244,9 +244,7 @@ class _MainMenuState extends State<MainMenu> {
                             child: Center(child: Text(getTranslated(context, "ORDER NOW")!, style: TextStyle(fontFamily:(languageflag=="en")? getTranslated(context, "fontFamilyButtons")!:getTranslated(context, "fontFamilyBody")!, fontSize: 40, color: Colors.white),))
 
                         ),
-
-
-                       Positioned.fill(
+                      Positioned.fill(
                           child:  Material(
                             color: Colors.transparent,
                             child:   InkWell(
@@ -258,7 +256,6 @@ class _MainMenuState extends State<MainMenu> {
 
                           )
                       ),
-
                     ],
                   ),
                 ),
