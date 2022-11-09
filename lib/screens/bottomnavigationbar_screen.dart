@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/main.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/providers/demo_cart/demo_cart_provider.dart';
 import 'package:operation_falafel/providers/parsistent_tabview_provider.dart';
 import 'package:operation_falafel/screens/cart%20page/cart_screen.dart';
 import 'package:operation_falafel/screens/homepage/of_homepage.dart';
@@ -14,7 +15,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-
+import 'package:badges/badges.dart';
 
 class Tabs_Screen extends StatefulWidget{
   final String title;
@@ -60,7 +61,10 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
       extendBody: true,
       extendBodyBehindAppBar: true,
 
-      body: PersistentTabView(
+      body:
+      Consumer<DemoCartProvider>(
+        builder: (context, value, child)
+           {return  PersistentTabView(
 
         context,
         controller: _controller,
@@ -97,9 +101,16 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
           ),
           PersistentBottomNavBarItem(
             textStyle: TextStyle(fontSize: 9),
-            icon: ImageIcon(
-              size: 28,
-              AssetImage("assets/images/icon_cart.png"),
+            icon: Badge(
+              padding:
+              (Localizations.localeOf(context).languageCode=='ar')? EdgeInsets.only(bottom: 9, left: 7, right: 7, top:7):EdgeInsets.only(bottom: 9, left: 7, right: 7, top:5),
+              badgeContent: Text('${value.cartItems.length}', style: TextStyle(color: (value.cartItems.isNotEmpty)?Colors.white:Colors.transparent,
+                  fontFamily: getTranslated(context, "fontFamilyBody")),),
+              badgeColor: (value.cartItems.isNotEmpty)?Colors.red:Colors.transparent,
+              child: ImageIcon(
+                size: 40,
+                AssetImage("assets/images/icon_cart.png"),
+              ),
             ),
 
             activeColorPrimary: CupertinoColors.activeOrange,
@@ -141,7 +152,7 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
           colorBehindNavBar: Colors.black,
         ),
         popAllScreensOnTapOfSelectedTab: true,
-        padding:  NavBarPadding.all(0),
+        // padding:  NavBarPadding.all(0),
         // hideNavigationBar: true,
         popActionScreens: PopActionScreensType.all,
         itemAnimationProperties:const ItemAnimationProperties( // Navigation Bar's items animation properties.
@@ -155,7 +166,9 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
         ),
         navBarStyle: NavBarStyle.style2, // Choose the nav bar style with this property.
 
-      ),
+      );}
+    )
+
     );
 
   }

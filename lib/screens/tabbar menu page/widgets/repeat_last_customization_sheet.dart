@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/screens/item%20details%20page/item_details_sheet.dart';
 
 class RepeatLastCustomizationSheet extends StatelessWidget{
   ScrollController? scrollController;
@@ -78,7 +80,28 @@ class RepeatLastCustomizationSheet extends StatelessWidget{
                     // width:190,
                     height:40,
                     child: OutlinedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pop(context);
+
+                        showMaterialModalBottomSheet(
+                            expand: false,
+                            context: context,
+                            backgroundColor: Colors.transparent,
+                            builder: (context) =>
+                                DraggableScrollableSheet(
+                                    initialChildSize: 0.8,
+                                    minChildSize: 0.6,
+                                    maxChildSize: 1,
+                                    expand: true,
+                                    builder: (context, scrollController) {
+                                      return ItemDetailsSheet(scrollController);
+                                    }
+
+                                )
+
+                        );
+
+                      },
                       style: OutlinedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -95,7 +118,7 @@ class RepeatLastCustomizationSheet extends StatelessWidget{
                     ),
                   ),
                 ),
-                SizedBox(width: 15,),
+                const SizedBox(width: 15,),
                 Expanded(
                   child: SizedBox(
                     // width:190,

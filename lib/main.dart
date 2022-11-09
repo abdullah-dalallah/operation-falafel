@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:operation_falafel/localization/demo_localization.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/providers/demo_cart/demo_cart_provider.dart';
 import 'package:operation_falafel/providers/parsistent_tabview_provider.dart';
 import 'package:operation_falafel/screens/bottomnavigationbar_screen.dart';
 import 'package:provider/provider.dart';
@@ -64,7 +65,7 @@ class _MyAppState extends State<MyApp> {
       return MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context) => PersistentTabviewProvider()),
-
+          ChangeNotifierProvider(create: (context) => DemoCartProvider()),
 
         ],
         child: MaterialApp(

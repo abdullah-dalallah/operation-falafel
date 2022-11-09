@@ -75,13 +75,15 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                      elevation: 0,
 
                      flexibleSpace: FlexibleSpaceBar(
+                       collapseMode:CollapseMode.parallax,
+                       expandedTitleScale:1.3,
                        // titlePadding: EdgeInsets.only(bottom: 20, left: 50),
                        title: Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),),
                        background: Image.asset(
                          'assets/images/items_top.png',
                          fit: BoxFit.fill,
                        ),
-
+                       centerTitle: true,
                      ),
                      leading:IconButton(
                        onPressed: (){
@@ -141,10 +143,6 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                          ),
                        ),],
                    ),
-
-
-
-
 
                    SliverAppBar(
                      toolbarHeight: 40,
@@ -230,13 +228,232 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                                children: [
                                  GestureDetector(
                                    onTap: (){
+                                     // showMaterialModalBottomSheet(
+                                     //     expand: false,
+                                     //     context: context,
+                                     //     backgroundColor: Colors.transparent,
+                                     //     builder: (context) =>
+                                     //         DraggableScrollableSheet(
+                                     //             initialChildSize: 0.8,
+                                     //             minChildSize: 0.6,
+                                     //             maxChildSize: 1,
+                                     //             expand: true,
+                                     //             builder: (context, scrollController) {
+                                     //               return ItemDetailsSheet(scrollController);
+                                     //             }
+                                     //
+                                     //         )
+                                     //
+                                     // );
+
+                                   },
+                                   child: CustomListTile(),
+                                 ),
+
+                               ],
+                             ),
+                             ListView(
+                               shrinkWrap:true,
+                               padding:const EdgeInsets.only(top: 10,bottom: 20),
+                               physics: const NeverScrollableScrollPhysics(),
+                               children: [
+                                 GestureDetector(
+                                   onTap: (){
                                      showMaterialModalBottomSheet(
                                          expand: false,
                                          context: context,
                                          backgroundColor: Colors.transparent,
                                          builder: (context) =>
                                              DraggableScrollableSheet(
-                                                 initialChildSize: 0.8,
+                                                 initialChildSize: 0.6,
+                                                 minChildSize: 0.6,
+                                                 maxChildSize: 1,
+                                                 expand: true,
+                                                 builder: (context, scrollController) {
+                                                   return ItemDetailsSheet(scrollController);
+                                                 }
+
+                                             )
+
+                                     );
+
+                                   },
+                                   child: CustomListTile(),
+                                 ),
+
+                               ],
+                             ),
+                             ListView(
+                               shrinkWrap:true,
+                               padding:const EdgeInsets.only(top: 10,bottom: 20),
+                               physics: const NeverScrollableScrollPhysics(),
+                               children: [
+                                 GestureDetector(
+                                   onTap: (){
+                                     showMaterialModalBottomSheet(
+                                         expand: false,
+                                         context: context,
+                                         backgroundColor: Colors.transparent,
+                                         builder: (context) =>
+                                             DraggableScrollableSheet(
+                                                 initialChildSize: 0.6,
+                                                 minChildSize: 0.6,
+                                                 maxChildSize: 1,
+                                                 expand: true,
+                                                 builder: (context, scrollController) {
+                                                   return ItemDetailsSheet(scrollController);
+                                                 }
+
+                                             )
+
+                                     );
+
+                                   },
+                                   child: CustomListTile(),
+                                 ),
+
+                               ],
+                             ),
+
+                             ListView(
+                               shrinkWrap:true,
+                               padding:const EdgeInsets.only(top: 10,bottom: 20),
+                               physics: const NeverScrollableScrollPhysics(),
+                               children: [
+                                 GestureDetector(
+                                   onTap: (){
+                                     showMaterialModalBottomSheet(
+                                         expand: false,
+                                         context: context,
+                                         backgroundColor: Colors.transparent,
+                                         builder: (context) =>
+                                             DraggableScrollableSheet(
+                                                 initialChildSize: 0.6,
+                                                 minChildSize: 0.6,
+                                                 maxChildSize: 1,
+                                                 expand: true,
+                                                 builder: (context, scrollController) {
+                                                   return ItemDetailsSheet(scrollController);
+                                                 }
+
+                                             )
+
+                                     );
+
+                                   },
+                                   child: CustomListTile(),
+                                 ),
+
+                               ],
+                             ),
+                             ListView(
+                               shrinkWrap:true,
+                               padding:const EdgeInsets.only(top: 10,bottom: 20),
+                               physics: const NeverScrollableScrollPhysics(),
+                               children: [
+                                 GestureDetector(
+                                   onTap: (){
+                                     showMaterialModalBottomSheet(
+                                         expand: false,
+                                         context: context,
+                                         backgroundColor: Colors.transparent,
+                                         builder: (context) =>
+                                             DraggableScrollableSheet(
+                                                 initialChildSize: 0.6,
+                                                 minChildSize: 0.6,
+                                                 maxChildSize: 1,
+                                                 expand: true,
+                                                 builder: (context, scrollController) {
+                                                   return ItemDetailsSheet(scrollController);
+                                                 }
+
+                                             )
+
+                                     );
+
+                                   },
+                                   child: CustomListTile(),
+                                 ),
+
+                               ],
+                             ),
+                             ListView(
+                               shrinkWrap:true,
+                               padding:const EdgeInsets.only(top: 10,bottom: 20),
+                               physics: const NeverScrollableScrollPhysics(),
+                               children: [
+                                 GestureDetector(
+                                   onTap: (){
+                                     showMaterialModalBottomSheet(
+                                         expand: false,
+                                         context: context,
+                                         backgroundColor: Colors.transparent,
+                                         builder: (context) =>
+                                             DraggableScrollableSheet(
+                                                 initialChildSize: 0.6,
+                                                 minChildSize: 0.6,
+                                                 maxChildSize: 1,
+                                                 expand: true,
+                                                 builder: (context, scrollController) {
+                                                   return ItemDetailsSheet(scrollController);
+                                                 }
+
+                                             )
+
+                                     );
+
+                                   },
+                                   child: CustomListTile(),
+                                 ),
+
+                               ],
+                             ),
+
+                             ListView(
+                               shrinkWrap:true,
+                               padding:const EdgeInsets.only(top: 10,bottom: 20),
+                               physics: const NeverScrollableScrollPhysics(),
+                               children: [
+                                 GestureDetector(
+                                   onTap: (){
+                                     showMaterialModalBottomSheet(
+                                         expand: false,
+                                         context: context,
+                                         backgroundColor: Colors.transparent,
+                                         builder: (context) =>
+                                             DraggableScrollableSheet(
+                                                 initialChildSize: 0.6,
+                                                 minChildSize: 0.6,
+                                                 maxChildSize: 1,
+                                                 expand: true,
+                                                 builder: (context, scrollController) {
+                                                   return ItemDetailsSheet(scrollController);
+                                                 }
+
+                                             )
+
+                                     );
+
+                                   },
+                                   child: CustomListTile(),
+                                 ),
+
+                               ],
+                             ),
+                             ListView(
+                               shrinkWrap:true,
+                               padding:const EdgeInsets.only(top: 10,bottom: 20),
+                               physics: const NeverScrollableScrollPhysics(),
+                               children: [
+                                 GestureDetector(
+                                   onTap: (){
+                                     showMaterialModalBottomSheet(
+                                         expand: false,
+                                         context: context,
+                                         backgroundColor: Colors.transparent,
+                                         builder: (context) =>
+                                             DraggableScrollableSheet(
+                                                 initialChildSize: 0.6,
                                                  minChildSize: 0.6,
                                                  maxChildSize: 1,
                                                  expand: true,
@@ -316,160 +533,7 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
 
                                ],
                              ),
-
                              ListView(
-                               shrinkWrap:true,
-                               padding:const EdgeInsets.only(top: 10,bottom: 20),
-                               physics: const NeverScrollableScrollPhysics(),
-                               children: [
-                                 GestureDetector(
-                                   onTap: (){
-                                     showMaterialModalBottomSheet(
-                                         expand: false,
-                                         context: context,
-                                         backgroundColor: Colors.transparent,
-                                         builder: (context) =>
-                                             DraggableScrollableSheet(
-                                                 initialChildSize: 0.6,
-                                                 minChildSize: 0.6,
-                                                 maxChildSize: 1,
-                                                 expand: true,
-                                                 builder: (context, scrollController) {
-                                                   return ItemDetailsSheet(scrollController);
-                                                 }
-
-                                             )
-
-                                     );
-
-                                   },
-                                   child: CustomListTile(),
-                                 ),
-
-                               ],
-                             ),ListView(
-                               shrinkWrap:true,
-                               padding:const EdgeInsets.only(top: 10,bottom: 20),
-                               physics: const NeverScrollableScrollPhysics(),
-                               children: [
-                                 GestureDetector(
-                                   onTap: (){
-                                     showMaterialModalBottomSheet(
-                                         expand: false,
-                                         context: context,
-                                         backgroundColor: Colors.transparent,
-                                         builder: (context) =>
-                                             DraggableScrollableSheet(
-                                                 initialChildSize: 0.6,
-                                                 minChildSize: 0.6,
-                                                 maxChildSize: 1,
-                                                 expand: true,
-                                                 builder: (context, scrollController) {
-                                                   return ItemDetailsSheet(scrollController);
-                                                 }
-
-                                             )
-
-                                     );
-
-                                   },
-                                   child: CustomListTile(),
-                                 ),
-
-                               ],
-                             ),ListView(
-                               shrinkWrap:true,
-                               padding:const EdgeInsets.only(top: 10,bottom: 20),
-                               physics: const NeverScrollableScrollPhysics(),
-                               children: [
-                                 GestureDetector(
-                                   onTap: (){
-                                     showMaterialModalBottomSheet(
-                                         expand: false,
-                                         context: context,
-                                         backgroundColor: Colors.transparent,
-                                         builder: (context) =>
-                                             DraggableScrollableSheet(
-                                                 initialChildSize: 0.6,
-                                                 minChildSize: 0.6,
-                                                 maxChildSize: 1,
-                                                 expand: true,
-                                                 builder: (context, scrollController) {
-                                                   return ItemDetailsSheet(scrollController);
-                                                 }
-
-                                             )
-
-                                     );
-
-                                   },
-                                   child: CustomListTile(),
-                                 ),
-
-                               ],
-                             ),
-
-                             ListView(
-                               shrinkWrap:true,
-                               padding:const EdgeInsets.only(top: 10,bottom: 20),
-                               physics: const NeverScrollableScrollPhysics(),
-                               children: [
-                                 GestureDetector(
-                                   onTap: (){
-                                     showMaterialModalBottomSheet(
-                                         expand: false,
-                                         context: context,
-                                         backgroundColor: Colors.transparent,
-                                         builder: (context) =>
-                                             DraggableScrollableSheet(
-                                                 initialChildSize: 0.6,
-                                                 minChildSize: 0.6,
-                                                 maxChildSize: 1,
-                                                 expand: true,
-                                                 builder: (context, scrollController) {
-                                                   return ItemDetailsSheet(scrollController);
-                                                 }
-
-                                             )
-
-                                     );
-
-                                   },
-                                   child: CustomListTile(),
-                                 ),
-
-                               ],
-                             ),ListView(
-                               shrinkWrap:true,
-                               padding:const EdgeInsets.only(top: 10,bottom: 20),
-                               physics: const NeverScrollableScrollPhysics(),
-                               children: [
-                                 GestureDetector(
-                                   onTap: (){
-                                     showMaterialModalBottomSheet(
-                                         expand: false,
-                                         context: context,
-                                         backgroundColor: Colors.transparent,
-                                         builder: (context) =>
-                                             DraggableScrollableSheet(
-                                                 initialChildSize: 0.6,
-                                                 minChildSize: 0.6,
-                                                 maxChildSize: 1,
-                                                 expand: true,
-                                                 builder: (context, scrollController) {
-                                                   return ItemDetailsSheet(scrollController);
-                                                 }
-
-                                             )
-
-                                     );
-
-                                   },
-                                   child: CustomListTile(),
-                                 ),
-
-                               ],
-                             ),ListView(
                                shrinkWrap:true,
                                padding:const EdgeInsets.only(top: 10,bottom: 20),
                                physics: const NeverScrollableScrollPhysics(),
@@ -501,66 +565,6 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                                ],
                              ),
                              ListView(
-                               shrinkWrap:true,
-                               padding:const EdgeInsets.only(top: 10,bottom: 20),
-                               physics: const NeverScrollableScrollPhysics(),
-                               children: [
-                                 GestureDetector(
-                                   onTap: (){
-                                     showMaterialModalBottomSheet(
-                                         expand: false,
-                                         context: context,
-                                         backgroundColor: Colors.transparent,
-                                         builder: (context) =>
-                                             DraggableScrollableSheet(
-                                                 initialChildSize: 0.6,
-                                                 minChildSize: 0.6,
-                                                 maxChildSize: 1,
-                                                 expand: true,
-                                                 builder: (context, scrollController) {
-                                                   return ItemDetailsSheet(scrollController);
-                                                 }
-
-                                             )
-
-                                     );
-
-                                   },
-                                   child: CustomListTile(),
-                                 ),
-
-                               ],
-                             ),ListView(
-                               shrinkWrap:true,
-                               padding:const EdgeInsets.only(top: 10,bottom: 20),
-                               physics: const NeverScrollableScrollPhysics(),
-                               children: [
-                                 GestureDetector(
-                                   onTap: (){
-                                     showMaterialModalBottomSheet(
-                                         expand: false,
-                                         context: context,
-                                         backgroundColor: Colors.transparent,
-                                         builder: (context) =>
-                                             DraggableScrollableSheet(
-                                                 initialChildSize: 0.6,
-                                                 minChildSize: 0.6,
-                                                 maxChildSize: 1,
-                                                 expand: true,
-                                                 builder: (context, scrollController) {
-                                                   return ItemDetailsSheet(scrollController);
-                                                 }
-
-                                             )
-
-                                     );
-
-                                   },
-                                   child: CustomListTile(),
-                                 ),
-
-                               ],
-                             ),ListView(
                                shrinkWrap:true,
                                padding:const EdgeInsets.only(top: 10,bottom: 20),
                                physics: const NeverScrollableScrollPhysics(),

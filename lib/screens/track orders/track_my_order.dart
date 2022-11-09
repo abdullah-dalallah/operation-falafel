@@ -13,11 +13,13 @@ class TrackMyOrder extends StatefulWidget{
 
 class _TrackMyOrderState extends State<TrackMyOrder> {
 
-  final List<String> genderItems = [
-    'Male',
-    'Female',
+  final List<dynamic> recentOrders = [
+    {'Delivery - 23746827236187236':{"meal":"1x Chiken Shawerma Saj","date":"2022-11-07 15:40:18", "orderId":"23746827236187236", "expectedtime":"16:59"}},
+    {'Delivery - 17832828327834637':{"meal":"1x XL Hummus","date":"2022-11-07 15:20:18", "orderId":"17832828327834637", "expectedtime":"16:54"}},
+    {'Delivery - 23984781236132198':{"meal":"1x XL Hummus","date":"2022-11-07 15:52:18", "orderId":"23984781236132198", "expectedtime":"16:37"}},
   ];
-  String? selectedValue;
+  dynamic? selectedValue;
+
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey(); // Cre
   @override
   Widget build(BuildContext context) {
@@ -58,10 +60,14 @@ class _TrackMyOrderState extends State<TrackMyOrder> {
               Padding(
                 padding: const EdgeInsets.all(18.0),
                 child: DropdownButtonFormField2(
+
+                  scrollbarAlwaysShow: true,
+
                   decoration: InputDecoration(
                     //Add isDense true and zero Padding.
                     //Add Horizontal padding using buttonPadding and Vertical padding by increasing buttonHeight instead of add Padding here so that The whole TextField Button become clickable, and also the dropdown menu open under The whole TextField Button.
                     isDense: true,
+
                     contentPadding:const EdgeInsets.only(),
                     border: OutlineInputBorder(
                       borderSide: const BorderSide(color: Colors.green, width: 40.0, style: BorderStyle.solid ),
@@ -90,35 +96,77 @@ class _TrackMyOrderState extends State<TrackMyOrder> {
                     'Select Order',
                     style: TextStyle(fontSize: 16, color: Colors.white60 ,fontFamily: getTranslated(context, "fontFamilyBody")!),
                   ),
-                  icon: const Icon(
-                    Icons.arrow_drop_down,
-                    color: Colors.white60,
-                  ),
+                  icon:ImageIcon(AssetImage("assets/images/down.png"),),
+                  // const Icon(
+                  //   Icons.arrow_drop_down,
+                  //   color: Colors.white60,
+                  // ),
                   iconSize: 30,
-                  buttonHeight: 60,
+                  buttonHeight: (selectedValue!=null)?100:50,
                   buttonPadding: const EdgeInsets.only(left: 20, right: 20),
                   dropdownDecoration: BoxDecoration(
+
                      color: Colors.black,
                     borderRadius: BorderRadius.circular(10),
                   ),
+                   itemHeight: 100,
 
-                  items: genderItems
-                      .map((item) =>
-                      DropdownMenuItem<String>(
-                        value: item,
-                        child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                      item,
-                                      style:  TextStyle(fontSize: 18,color: Colors.white, fontFamily: getTranslated(context, "fontFamilyBody")!),
+                  items: recentOrders
+                      .map((order) =>
+                      DropdownMenuItem<dynamic>(
+                        value: order,
+                        child:
+                          Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+
+                                  Row(
+                                    children: [
+
+                                      (selectedValue!=null)? (selectedValue.keys.elementAt(0)==order.keys.elementAt(0))?
+                                      Image.asset("assets/images/page2_icon.png", height: 15,width: 15,)
+                                          :SizedBox(width: 15,):SizedBox(width: 15,),
+                                      SizedBox(width: 5,),
+                                      Text(order.keys.elementAt(0),
+                                            style:  TextStyle(fontSize: 13,color: Colors.amber, fontFamily: getTranslated(context, "fontFamilyBody")!),
+                                          ),
+                                    ],
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left:20.0, right:20),
+                                    child: Text(
+                                     "${ order[order.keys.elementAt(0)]["meal"].toString()} ...",
+                                      style:  TextStyle(fontSize: 12,color: Colors.white, fontFamily: getTranslated(context, "fontFamilyBody")!),
                                     ),
-                                Text(
-                                  item,
-                                  style:  TextStyle(fontSize: 12,color: Colors.amber, fontFamily: getTranslated(context, "fontFamilyBody")!),
-                                ),
-                              ],
-                            ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left:20.0, right:20),
+                                    child: Text(
+                                      order[order.keys.elementAt(0)]["date"].toString(),
+                                      style:  TextStyle(fontSize: 12,color: Colors.white, fontFamily: getTranslated(context, "fontFamilyBody")!),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left:20.0, right:20),
+                                    child: Text(
+                                      "Order Id: ${order[order.keys.elementAt(0)]["orderId"].toString()}",
+                                      style:  TextStyle(fontSize: 12,color: Colors.white, fontFamily: getTranslated(context, "fontFamilyBody")!),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left:20.0, right:20),
+                                    child: Text(
+                                      "Expected: ${order[order.keys.elementAt(0)]["expectedtime"].toString()}",
+                                      style:  TextStyle(fontSize: 12,color: Colors.white, fontFamily: getTranslated(context, "fontFamilyBody")!),
+                                    ),
+                                  ),
+
+
+
+                                ],
+                              ),
+
 
 
 
@@ -132,9 +180,17 @@ class _TrackMyOrderState extends State<TrackMyOrder> {
                   },
                   onChanged: (value) {
                     //Do something when changing the item if you want.
+                   setState((){
+                     selectedValue = value;
+                   });
+
+
+                    print(selectedValue.keys.elementAt(0));
                   },
                   onSaved: (value) {
-                    selectedValue = value.toString();
+                    setState((){
+                      selectedValue = value;
+                    });
                   },
                 ),
               ),
