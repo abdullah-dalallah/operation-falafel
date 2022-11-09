@@ -39,7 +39,7 @@ class DemoCartProvider with ChangeNotifier{
       tempTotal+= element[element.keys.elementAt(0)]["Price"]*element[element.keys.elementAt(0)]["quantity"];
     });
     item.itemUnitPrice += tempTotal;
-    tempTotal +=  item.itemTotalPrice*item.itemQuantity;
+    tempTotal =  item.itemUnitPrice*item.itemQuantity;
     return tempTotal;
   }
 

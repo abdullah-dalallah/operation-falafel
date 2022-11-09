@@ -717,17 +717,17 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                           const RoundedRectangleBorder(
                                               borderRadius: BorderRadius.all(Radius.circular(10)),
-                                              side: BorderSide(color: Colors.white30,width: 1)
+                                              side: BorderSide(color: Colors.transparent,width: 1)
                                           )
                                       ),
-                                      overlayColor: MaterialStateProperty.all(Colors.black12),
+                                      overlayColor: MaterialStateProperty.all(Colors.white12),
                                       elevation:MaterialStateProperty.all(0),
                                       shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                      backgroundColor: MaterialStateProperty.all(Colors.transparent),
+                                      backgroundColor: MaterialStateProperty.all(Colors.black),
                                       foregroundColor: MaterialStateProperty.all(Colors.black),
                                       padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
                                       textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                                  child:  Text(getTranslated(context, "oderHistory")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300),),
+                                  child:  Text(getTranslated(context, "oderHistory")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.amber, fontSize: 17, fontWeight: FontWeight.w300),),
                                 ),
                               ),
                             ),
@@ -746,17 +746,17 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                           const RoundedRectangleBorder(
                                               borderRadius: BorderRadius.all(Radius.circular(10)),
-                                              side: BorderSide(color: Colors.white30,width: 1)
+                                              side: BorderSide(color: Colors.transparent,width: 1)
                                           )
                                       ),
-                                      overlayColor: MaterialStateProperty.all(Colors.black12),
+                                      overlayColor: MaterialStateProperty.all(Colors.white12),
                                       elevation:MaterialStateProperty.all(0),
                                       shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                      backgroundColor: MaterialStateProperty.all(Colors.transparent),
+                                      backgroundColor: MaterialStateProperty.all(Colors.black),
                                       foregroundColor: MaterialStateProperty.all(Colors.black),
                                       padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
                                       textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                                  child:  Text(getTranslated(context, "savedAddress")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300,),textAlign: TextAlign.center,),
+                                  child:  Text(getTranslated(context, "savedAddress")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.amber, fontSize: 17, fontWeight: FontWeight.w300,),textAlign: TextAlign.center,),
                                 ),
                               ),
                             ),
@@ -775,17 +775,17 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                           const RoundedRectangleBorder(
                                               borderRadius: BorderRadius.all(Radius.circular(10)),
-                                              side: BorderSide(color: Colors.white30,width: 1)
+                                              side: BorderSide(color: Colors.transparent,width: 1)
                                           )
                                       ),
-                                      overlayColor: MaterialStateProperty.all(Colors.black12),
+                                      overlayColor: MaterialStateProperty.all(Colors.white12),
                                       elevation:MaterialStateProperty.all(0),
                                       shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                      backgroundColor: MaterialStateProperty.all(Colors.transparent),
+                                      backgroundColor: MaterialStateProperty.all(Colors.black),
                                       foregroundColor: MaterialStateProperty.all(Colors.black),
                                       // padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
                                       textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                                  child:  Text(getTranslated(context, "savedCards")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
+                                  child:  Text(getTranslated(context, "savedCards")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.amber, fontSize: 17, fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
                                 ),
                               ),
                             ),
@@ -808,17 +808,17 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                           const RoundedRectangleBorder(
                                               borderRadius: BorderRadius.all(Radius.circular(10)),
-                                              side: BorderSide(color: Colors.white30,width: 1)
+                                              side: BorderSide(color: Colors.transparent,width: 1)
                                           )
                                       ),
-                                      overlayColor: MaterialStateProperty.all(Colors.black12),
+                                      overlayColor: MaterialStateProperty.all(Colors.white12),
                                       elevation:MaterialStateProperty.all(0),
                                       shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                      backgroundColor: MaterialStateProperty.all(Colors.transparent),
+                                      backgroundColor: MaterialStateProperty.all(Colors.black),
                                       foregroundColor: MaterialStateProperty.all(Colors.black),
                                       padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10)),
                                       textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                                  child:  Text(getTranslated(context, "loyalty")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300),),
+                                  child:  Text(getTranslated(context, "loyalty")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.amber, fontSize: 17, fontWeight: FontWeight.w300),),
                                 ),
                               ),
                             ),
@@ -837,17 +837,17 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                           const RoundedRectangleBorder(
                                               borderRadius: BorderRadius.all(Radius.circular(10)),
-                                              side: BorderSide(color: Colors.white30,width: 1)
+                                              side: BorderSide(color: Colors.transparent,width: 1)
                                           )
                                       ),
-                                      overlayColor: MaterialStateProperty.all(Colors.black12),
+                                      overlayColor: MaterialStateProperty.all(Colors.white12),
                                       elevation:MaterialStateProperty.all(0),
                                       shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                      backgroundColor: MaterialStateProperty.all(Colors.transparent),
+                                      backgroundColor: MaterialStateProperty.all(Colors.black),
                                       foregroundColor: MaterialStateProperty.all(Colors.black),
                                       padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
                                       textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                                  child:  Text(getTranslated(context, "help")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300),),
+                                  child:  Text(getTranslated(context, "help")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.amber, fontSize: 17, fontWeight: FontWeight.w300),),
                                 ),
                               ),
                             ),
@@ -866,17 +866,17 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                           const RoundedRectangleBorder(
                                               borderRadius: BorderRadius.all(Radius.circular(10)),
-                                              side: BorderSide(color: Colors.white30,width: 1)
+                                              side: BorderSide(color: Colors.transparent,width: 1)
                                           )
                                       ),
                                       overlayColor: MaterialStateProperty.all(Colors.black12),
                                       elevation:MaterialStateProperty.all(0),
                                       shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                      backgroundColor: MaterialStateProperty.all(Colors.transparent),
+                                      backgroundColor: MaterialStateProperty.all(Colors.black),
                                       foregroundColor: MaterialStateProperty.all(Colors.black),
                                       padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
                                       textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                                  child:  Text(getTranslated(context, "sighOut")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300, ),textAlign: TextAlign.center,),
+                                  child:  Text(getTranslated(context, "sighOut")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.amber, fontSize: 17, fontWeight: FontWeight.w300, ),textAlign: TextAlign.center,),
                                 ),
                               ),
                             ),

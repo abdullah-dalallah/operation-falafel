@@ -220,7 +220,9 @@ class _ImageWithAddButtonState extends State<ImageWithAddButton> {
                                   child:const Icon(Icons.remove,size: 18,),
                                 ),
                               ),
-                              const SizedBox(width:30, child: Text("1",textAlign: TextAlign.center,),),
+                              (value.cartItems.isEmpty)?
+                              SizedBox(width:30, child: Text("0",textAlign: TextAlign.center,),):
+                              SizedBox(width:30, child: Text("${value.cartItems[0].itemQuantity}",textAlign: TextAlign.center,),),
                               SizedBox(
                                 width:30,
                                 height:30,
