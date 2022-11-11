@@ -64,7 +64,8 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
       body:
       Consumer<DemoCartProvider>(
         builder: (context, value, child)
-           {return  PersistentTabView(
+           {
+             return  PersistentTabView(
 
         context,
         controller: _controller,

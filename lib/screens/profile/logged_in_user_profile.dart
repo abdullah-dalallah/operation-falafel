@@ -191,16 +191,16 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
 
                         padding: EdgeInsets.only(left:10, right: 10),
                         decoration: BoxDecoration(
-                          color: Colors.black12,
+                          color: Colors.black45,
                           borderRadius:const BorderRadius.only(
-                            topRight: Radius.circular(0),
-                            bottomLeft: Radius.circular(0),
-                            topLeft: Radius.circular(0),
-                            bottomRight: Radius.circular(0),
+                            topRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10),
+                            topLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
                           ),
                           border: Border.all(
                             width: 1.5,
-                            color: Colors.white30,
+                            color: Colors.transparent,
                             style: BorderStyle.solid,
                           ),
                         ),
@@ -249,24 +249,26 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                     Padding(
                       padding: const EdgeInsets.only(left:18.0, right: 18),
                       child: Container(
-
+                        padding:  EdgeInsets.only(top:0),
+                        margin: EdgeInsets.zero,
                         decoration: BoxDecoration(
-                          color: Colors.black12,
+                          color: Colors.black45,
+
                           borderRadius:const BorderRadius.only(
-                            topRight: Radius.circular(0),
-                            bottomLeft: Radius.circular(0),
-                            topLeft: Radius.circular(0),
-                            bottomRight: Radius.circular(0),
+                            topRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10),
+                            topLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
                           ),
                           border: Border.all(
-                            width: 1.5,
-                            color: Colors.white30,
+                            width: 0,
+                            color: Colors.transparent,
                             style: BorderStyle.solid,
                           ),
                         ),
                         child: Row(
                           children: [
-                            Expanded(flex:4, child: Padding(
+                            Expanded(flex:5, child: Padding(
                               padding: const EdgeInsets.only(left:10, right: 10),
                               child: Text("${getTranslated(context, "mobileNo")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),),
                             )),
@@ -278,7 +280,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                   icon:
                                 countryCode!=null?
                                 SizedBox(width: 30,height: 30, child: countryCode!.flagImage)
-                                    :Icon(Icons.flag_outlined),
+                                    :const Icon(Icons.flag_outlined),
                                   padding: EdgeInsets.zero,
                                   onPressed: () async {
 
@@ -292,19 +294,17 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                   };
                                 },)
                             )),
-
-
-                          const  Expanded(
+                             const Expanded(
                               flex: 7,
                               child: SizedBox(
-                                child:   TextField(
 
+                                child:   TextField(
                                   autofocus: false,
-                                  style: const TextStyle(color: Colors.white),
-                                  decoration:const  InputDecoration(
+                                  style:  TextStyle(color: Colors.white),
+                                  decoration:  InputDecoration(
                                     filled: true,
                                     fillColor: Colors.transparent,
-                                    contentPadding:const EdgeInsets.only(left:10, right: 10),
+                                    contentPadding: EdgeInsets.only(left:10, right: 10),
                                     focusedBorder: OutlineInputBorder(
                                       borderRadius:  BorderRadius.all(
                                         Radius.circular(0.0),
@@ -327,18 +327,34 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                               ),
                             ),
                             Expanded(
+
                               flex: 3,
                               child: SizedBox(
                                   height: 50,
                                   child: Container(
-                                    decoration: const BoxDecoration(
-                                      borderRadius:  BorderRadius.only(
-                                        topRight: Radius.circular(0),
-                                        bottomLeft: Radius.circular(0),
-                                        topLeft: Radius.circular(0),
-                                        bottomRight: Radius.circular(0),
+                                    decoration:  BoxDecoration(
+                                      borderRadius:
 
+                                      (Localizations.localeOf(context).languageCode=='en')?
+                                      const BorderRadius.only(
+                                        bottomRight:     Radius.circular(10),
+                                        topRight: Radius.circular(10),
+                                      ):
+                                      (Localizations.localeOf(context).languageCode=='ar')?
+                                      const BorderRadius.only(
+                                        bottomLeft:  Radius.circular(10.0),
+                                        topLeft: Radius.circular(10.0),
+                                      ):
+                                      const BorderRadius.only(
+                                        bottomRight:     Radius.circular(10),
+                                        topRight: Radius.circular(10),
                                       ),
+
+
+
+
+
+
                                       color: Colors.green,
                                       // border: Border.all(
                                       //   width: 0.8,
@@ -363,16 +379,16 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                       child: Container(
                         padding: const EdgeInsets.only(left:10, right: 10),
                         decoration: BoxDecoration(
-                          color: Colors.black12,
+                          color: Colors.black45,
                           borderRadius:const BorderRadius.only(
-                            topRight: Radius.circular(0),
-                            bottomLeft: Radius.circular(0),
-                            topLeft: Radius.circular(0),
-                            bottomRight: Radius.circular(0),
+                            topRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10),
+                            topLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
                           ),
                           border: Border.all(
-                            width: 1.5,
-                            color: Colors.white30,
+                            width: 0,
+                            color: Colors.transparent,
                             style: BorderStyle.solid,
                           ),
                         ),
@@ -423,16 +439,16 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                       child: Container(
                         padding: const EdgeInsets.only(left:10, right: 10),
                         decoration: BoxDecoration(
-                          color: Colors.black12,
+                          color: Colors.black45,
                           borderRadius:const BorderRadius.only(
-                            topRight: Radius.circular(0),
-                            bottomLeft: Radius.circular(0),
-                            topLeft: Radius.circular(0),
-                            bottomRight: Radius.circular(0),
+                            topRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10),
+                            topLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
                           ),
                           border: Border.all(
-                            width: 1.5,
-                            color: Colors.white30,
+                            width: 0,
+                            color: Colors.transparent,
                             style: BorderStyle.solid,
                           ),
                         ),
@@ -483,16 +499,16 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                       child: Container(
                         padding: const EdgeInsets.only(left:10, right: 10),
                         decoration: BoxDecoration(
-                          color: Colors.black12,
+                          color: Colors.black45,
                           borderRadius:const BorderRadius.only(
-                            topRight: Radius.circular(0),
-                            bottomLeft: Radius.circular(0),
-                            topLeft: Radius.circular(0),
-                            bottomRight: Radius.circular(0),
+                            topRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10),
+                            topLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
                           ),
                           border: Border.all(
-                            width: 1.5,
-                            color: Colors.white30,
+                            width: 0,
+                            color: Colors.transparent,
                             style: BorderStyle.solid,
                           ),
                         ),
@@ -542,48 +558,50 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                       child: Container(
                         padding: const EdgeInsets.only(left:10, right: 10),
                         decoration: BoxDecoration(
-                          color: Colors.black12,
+                          color: Colors.black45,
                           borderRadius:const BorderRadius.only(
-                            topRight: Radius.circular(0),
-                            bottomLeft: Radius.circular(0),
-                            topLeft: Radius.circular(0),
-                            bottomRight: Radius.circular(0),
+                            topRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10),
+                            topLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
                           ),
                           border: Border.all(
-                            width: 1.5,
-                            color: Colors.white30,
+                            width: 0,
+                            color: Colors.transparent,
                             style: BorderStyle.solid,
                           ),
                         ),
                         child: Row(
                           children: [
                             Expanded(flex:2, child: Text("${getTranslated(context, "password")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)),
-                            Expanded(
+                            const Expanded(
                               flex: 5,
-                              child: SizedBox(
+                              child:  SizedBox(
 
                                 child:   TextField(
-
+                                  obscureText: true,
+                                  enableSuggestions: false,
+                                  autocorrect: false,
                                   autofocus: false,
                                   style: const TextStyle(color: Colors.white),
                                   decoration:  InputDecoration(
+
                                     filled: true,
                                     fillColor: Colors.transparent,
-                                    contentPadding:const EdgeInsets.only(left:10, right: 10),
-                                    focusedBorder:const OutlineInputBorder(
+                                    contentPadding: EdgeInsets.only(left:10, right: 10),
+                                    focusedBorder: OutlineInputBorder(
                                       borderRadius:  BorderRadius.all(
                                         Radius.circular(0.0),
                                       ),
                                       borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
                                     ),
-                                    enabledBorder:const OutlineInputBorder(
+                                    enabledBorder: OutlineInputBorder(
                                       borderRadius:  BorderRadius.all(
                                         Radius.circular(0.0),
                                       ),
                                       borderSide: BorderSide(color: Colors.transparent, width: 0.0),
                                     ),
                                     hintText: '',
-
                                     // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
 
                                   ),
@@ -602,16 +620,16 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                       child: Container(
                         padding: const EdgeInsets.only(left:10, right: 10),
                         decoration: BoxDecoration(
-                          color: Colors.black12,
+                          color: Colors.black45,
                           borderRadius:const BorderRadius.only(
-                            topRight: Radius.circular(0),
-                            bottomLeft: Radius.circular(0),
-                            topLeft: Radius.circular(0),
-                            bottomRight: Radius.circular(0),
+                            topRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10),
+                            topLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
                           ),
                           border: Border.all(
-                            width: 1.5,
-                            color: Colors.white30,
+                            width: 0,
+                            color: Colors.transparent,
                             style: BorderStyle.solid,
                           ),
                         ),
@@ -620,25 +638,25 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                             Expanded(flex:3, child:
                             Text("${getTranslated(context, "referralCode")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)
                             ),
-                            Expanded(
+                            const Expanded(
                               flex: 5,
                               child: SizedBox(
 
                                 child:   TextField(
 
                                   autofocus: false,
-                                  style: const TextStyle(color: Colors.white),
+                                  style:  TextStyle(color: Colors.white),
                                   decoration:  InputDecoration(
                                     filled: true,
                                     fillColor: Colors.transparent,
-                                    contentPadding:const EdgeInsets.only(left:10, right: 10),
-                                    focusedBorder:const OutlineInputBorder(
+                                    contentPadding: EdgeInsets.only(left:10, right: 10),
+                                    focusedBorder: OutlineInputBorder(
                                       borderRadius:  BorderRadius.all(
                                         Radius.circular(0.0),
                                       ),
                                       borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
                                     ),
-                                    enabledBorder:const OutlineInputBorder(
+                                    enabledBorder: OutlineInputBorder(
                                       borderRadius:  BorderRadius.all(
                                         Radius.circular(0.0),
                                       ),

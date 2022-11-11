@@ -59,33 +59,34 @@ class _TrackMyOrderState extends State<TrackMyOrder> {
               /// - DropDown
               Padding(
                 padding: const EdgeInsets.all(18.0),
-                child: DropdownButtonFormField2(
+                child:  DropdownButtonFormField2(
 
-                  scrollbarAlwaysShow: true,
+                          scrollbarAlwaysShow: true,
 
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     //Add isDense true and zero Padding.
                     //Add Horizontal padding using buttonPadding and Vertical padding by increasing buttonHeight instead of add Padding here so that The whole TextField Button become clickable, and also the dropdown menu open under The whole TextField Button.
                     isDense: true,
-
-                    contentPadding:const EdgeInsets.only(),
-                    border: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.green, width: 40.0, style: BorderStyle.solid ),
-                      borderRadius: BorderRadius.circular(10),
-
-                    ),
+                    // fillColor: Colors.black,
+                    filled: false,
+                    contentPadding: EdgeInsets.only(),
+                    // border: OutlineInputBorder(
+                    //   borderSide: const BorderSide(color: Colors.green, width: 40.0, style: BorderStyle.solid ),
+                    //   borderRadius: BorderRadius.circular(10),
+                    //
+                    // ),
                     focusColor: Colors.amber,
-                    focusedBorder:const OutlineInputBorder(
+                    focusedBorder: OutlineInputBorder(
                       borderRadius:  BorderRadius.all(
                         Radius.circular(10.0),
                       ),
                       borderSide: BorderSide(color: Colors.amber, width: 2.0, ),
                     ),
-                    enabledBorder:const OutlineInputBorder(
+                    enabledBorder: OutlineInputBorder(
                       borderRadius:  BorderRadius.all(
                         Radius.circular(10.0),
                       ),
-                      borderSide: BorderSide(color: Colors.white60, width: 2.0),
+                      borderSide: BorderSide(color: Colors.white54, width: 2.0),
                     ),
 
                     //Add more decoration as you want here
@@ -96,7 +97,7 @@ class _TrackMyOrderState extends State<TrackMyOrder> {
                     'Select Order',
                     style: TextStyle(fontSize: 16, color: Colors.white60 ,fontFamily: getTranslated(context, "fontFamilyBody")!),
                   ),
-                  icon:ImageIcon(AssetImage("assets/images/down.png"),),
+                  icon: const ImageIcon(AssetImage("assets/images/down.png"),),
                   // const Icon(
                   //   Icons.arrow_drop_down,
                   //   color: Colors.white60,

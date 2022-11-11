@@ -161,7 +161,7 @@ class _ImageWithAddButtonState extends State<ImageWithAddButton> {
                               topLeft: Radius.circular(10),
                               bottomRight: Radius.circular(10),
                             ),
-                            color: Colors.amber,
+                            color: Colors.black,
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.black12,
@@ -221,8 +221,8 @@ class _ImageWithAddButtonState extends State<ImageWithAddButton> {
                                 ),
                               ),
                               (value.cartItems.isEmpty)?
-                              SizedBox(width:30, child: Text("0",textAlign: TextAlign.center,),):
-                              SizedBox(width:30, child: Text("${value.cartItems[0].itemQuantity}",textAlign: TextAlign.center,),),
+                              const SizedBox(width:30, child: Text("0",textAlign: TextAlign.center,),):
+                              SizedBox(width:30, child: Text("${value.cartItems[0].itemQuantity}",textAlign: TextAlign.center,style:TextStyle(color: Colors.white)),),
                               SizedBox(
                                 width:30,
                                 height:30,
