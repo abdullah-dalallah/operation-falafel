@@ -3,6 +3,7 @@
   "fontFamilyBody": "Raleway-Regular",
   "fontFamilyButtons" : "oldpress",
   "fontFamilyButtonsSize" : 35,
+  "fontFamilyTitleُSize" : 45,
 
 
   "Main_Text":"You have Selected This Language",
@@ -15,7 +16,7 @@
 
   "ORDER NOW": "ORDER NOW!",
 
-  "dashBoardTitle-youHave": "you have 12 ",
+  "dashBoardTitle-youHave": "you have ",
   "dashBoardTitle-credit": "12 Credit ",
   "dashBoardTitle-valid": "valid until ",
   "dashBoardTitle-transferCredit" : "Transfer\nCredit",
@@ -89,13 +90,41 @@
   "uploadId": "Upload ID",
   "add": "ADD",
 
-  "yourCartIsEmpity": "YOUR CART IS EMPTY"
+  "yourCartIsEmpity": "YOUR CART IS EMPTY",
+  "ofLoyalty": "O:F LOYALTY",
 
+  "howItworks": "How It\nWorks",
+  "myRewards": "My\nRewards",
+  "referFriend": "Refer a\nFriend",
+  "transferCredits": "Transfer\nCredits",
+  "creditsCalculator": "Credits\nCalculator",
+  "history": "History",
 
+  "howItworksTitle": "HOW IT WORKS",
+  "howItWorksIntro": "Hello! Welcome to the Operation: Falafel app... for all falafel fans and shawerma lovers!\n\nOF family members will receive exclusive gifts! DON'T FORGET to ensure you activate your PUSH NOTIFICATIONS to hear about your REWARDS.",
 
+  "welcomeOF": "Once you become an OF App family member, you will receive 25% discount on your first dine in or delivery order!",
+  "welcomeGifts": "WELCOME GIFTS",
 
+  "ofRewardsTitle": "O:F REWARDS",
+  "ofRewardsSubTitle": "Enjoy 15% credit back in your wallet on all future delivery orders! T&C apply",
 
+  "giftVoucherTitle": "GIFT VOUCHERS",
+  "giftVoucherSubTitle": "Want to share the love? your loyalty credits can be used to buy a gift voucher & send it to a friend.",
 
+  "transferCreditTitle": "TRANSFER CREDIT",
+  "transferCreditSubTitle": "You can transfer your credit to a friend or you can redeem them when you place an order for delivery, take away or dine in.",
+
+  "referFriendTitle" : "REFER A FRIEND",
+  "referFriendSubTitle": "Tell your friends and invite another falafel & shawerma lover to register with us and enjoy you're the reward.\nOnce your friend downloads the app & register, both of you will instantly receive 5DHS credit to your account.",
+
+  "terms&conditionsTitle": "TERMS & CONDITIONS",
+  "terms&conditionsSubTitle": "- All our offers, rewards and loyalty points are registered, used and redeemed on dine-in, takeaway and delivery orders.\n- All rewards, loyalty points and gifts are to be redeemed and spent at the restaurants as food or drink items.\nThere are no money refunds and credit cannot be exchanged for cash.\n- According to the UAE law, 5% VAT will be added to all bills. The system excludes the 5% VAT, you will receive your credit on the total bill without the addition of the 5% VAT.- Offers, gifts © and promotions may be subjected to\nchange at any time.\n- This application is owned by Operation: Falafel and all offers promotions, loyalty credits and information belong to Operation:\nFalafel UAE\n- Upon visit or purchase, one reward is applicable to redeem per table / order.\n- Rewards can only be redeemed at the time of the purchase transaction.\n- The app cannot be used in\nOutlet Village.",
+
+  "myRewardsTitle": "MY REWARDS",
+  "myGifts": "MY GIFTS",
+  "buyGifts": "BUY GIFTS",
+  "myCode": "My Code"
 
 
 

@@ -86,7 +86,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
 
                      children: [
                        const  SizedBox(height: 20,),
-                       Text(getTranslated(context, "my o:f cart")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
+                       Text(getTranslated(context, "my o:f cart")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber, fontSize: double.parse(getTranslated(context, "fontFamilyTitleُSize")!)),),
 
                        const  SizedBox(height: 50,),
 
