@@ -123,8 +123,22 @@
 
   "myRewardsTitle": "MY REWARDS",
   "myGifts": "MY GIFTS",
-  "buyGifts": "BUY GIFTS",
-  "myCode": "My Code"
+  "buyGifts": "BUY A GIFT",
+  "myCode": "My Code",
+
+  "registrationGift": "registration_gift",
+
+  "welcomeToOFFamily": "Welcome to O:F Family",
+  "voucherTitle": "Voucher",
+  "voucherBody": "- This voucher is valid for dine in And Devlivery.\n- This voucher cannot be used in conjunction with any other discount or promotion.\n- This voucher is only valid at the listed locations.\n- This voucher can be used one time only.\n- Only one voucher can be used per table/ transaction.",
+   "redeem": "REDEEM",
+  "sendAsGift": "SEND AS A GIFT",
+
+  "giftfriend": "GIFT A FRIEND",
+
+  "addNots": "Add Notes (Optional)",
+
+  "pleaseSelectPaymentType": "Please Select Payment method"
 
 
 

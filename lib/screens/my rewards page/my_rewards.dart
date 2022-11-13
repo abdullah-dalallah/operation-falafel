@@ -9,7 +9,7 @@ import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/how_
 import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/my_gifts.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
 import 'dart:math' as math;
-
+import 'package:share_plus/share_plus.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class MyRewards extends StatefulWidget{
@@ -279,6 +279,12 @@ class _MyRewardsState extends State<MyRewards> {
                                 // width: 130,
                                 child: ElevatedButton(
                                   onPressed: () {
+                                    final RenderBox renderBox = context.findRenderObject() as RenderBox;
+                                    Share.share(
+                                      "You have been invited by Abdullh to join the O:F Family! Click below to install our app. Onelink.to/dhdbm3. Once you join, you will receive a 25% discount on your first order & 5Dhs credit when you use code 248921 in your registration page"
+                                      ,subject: "check out The website"
+                                      ,sharePositionOrigin: renderBox.localToGlobal(Offset.zero)&renderBox.size,
+                                    );
 
                                   },
                                   style: ButtonStyle(

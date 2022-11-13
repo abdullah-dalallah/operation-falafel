@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/gift_details.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class MyGiftsList extends StatefulWidget{
   @override
@@ -38,6 +40,49 @@ class _MyGiftsListState extends State<MyGiftsList> {
            centerTitle: true,
            title:Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),),
            actions: [],
+         ),
+         body:Center(
+           child: Column(
+
+             children: [
+
+               Text(getTranslated(context, "myGifts")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber, fontSize: double.parse(getTranslated(context, "fontFamilyTitleُSize")!)),),
+               Expanded(child:
+               Padding(
+                 padding: const EdgeInsets.all(18.0),
+                 child: ListView.builder(
+                     itemCount: 1,
+                     itemBuilder: (context, Index)=>
+                 Column(
+                   children: [
+                     ListTile(
+                     onTap: (){
+                       PersistentNavBarNavigator.pushNewScreen(
+                         context,
+                         screen: GiftDetails(),
+                         withNavBar: true, // OPTIONAL VALUE. True by default.
+                         pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                       );
+                     },
+                     leading: Image.asset("assets/images/of_credit_icon.png", height: 60,width: 60,),
+                     title: Text(getTranslated(context, "registrationGift")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,),),
+                       subtitle: Text("2023-10-18",style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white12,),)
+                     ),
+                     Row(
+                       children: List.generate(800~/10, (index) => Expanded(
+                         child: Container(
+                           color: index%2==0?Colors.transparent
+                               :Colors.grey,
+                           height: 1,
+                         ),
+                       )),
+                     ),
+                   ],
+                 )
+                 ),
+               ))
+             ],
+           ),
          ),
 
        )

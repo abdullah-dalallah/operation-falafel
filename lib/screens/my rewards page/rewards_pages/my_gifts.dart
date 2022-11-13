@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/buy_gift.dart';
 import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/my_gifts_list.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
@@ -100,7 +101,12 @@ class _MyGiftsState extends State<MyGifts> {
                        padding: const EdgeInsets.all(18.0),
                        child: ElevatedButton(
                          onPressed: () {
-
+                           PersistentNavBarNavigator.pushNewScreen(
+                             context,
+                             screen: BuyGift(),
+                             withNavBar: true, // OPTIONAL VALUE. True by default.
+                             pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                           );
                          },
                          style: ButtonStyle(
                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
