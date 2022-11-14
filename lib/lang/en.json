@@ -138,7 +138,22 @@
 
   "addNots": "Add Notes (Optional)",
 
-  "pleaseSelectPaymentType": "Please Select Payment method"
+  "pleaseSelectPaymentType": "Please Select Payment method",
+  "transferCreditsTitle": "TARNSFER\nCREDITS",
+  "enterAmount": "ENTER AMOUNT",
+
+  "creditLefts": "Credits left",
+  "creditCalculator": "CREDIT CALCULATOR",
+  "earned credits": "EARNED CREDITS",
+  "history": "HISTORY",
+
+  "earnd": "Earned",
+  "pointEarnd":"Points earned on spending of"
+
+
+
+
+
 
 
 

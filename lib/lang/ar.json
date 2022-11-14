@@ -134,6 +134,16 @@
   "sendAsGift": "ابعثها كهدية",
   "giftfriend": "اهدي صديق",
   "addNots": "آضف ملاحضات (إختياري)",
-  "pleaseSelectPaymentType": "يرجى إختيار طريقة الدفع"
+  "pleaseSelectPaymentType": "يرجى إختيار طريقة الدفع",
+  "transferCreditsTitle": "تحويل\nرصيد",
+  "creditLefts": "الرصيد المتبقي",
+  "enterAmount": "إدخل الكميه",
+
+  "creditCalculator": "حساب الرصيد",
+  "earned credits": "الرصيد المكتسب",
+  "history": "الارصيده المكتسبه",
+
+  "earnd": "إكتسب",
+  "pointEarnd":"نقاط مكتسبه من خلال انفاق"
 
 }

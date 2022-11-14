@@ -5,12 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/credit_calculator.dart';
 import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/how_it_works.dart';
 import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/my_gifts.dart';
+import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/rewards_histoy.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
 import 'dart:math' as math;
 import 'package:share_plus/share_plus.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+
+import 'rewards_pages/transfer_credits.dart';
 
 class MyRewards extends StatefulWidget{
   const MyRewards({super.key});
@@ -318,7 +322,12 @@ class _MyRewardsState extends State<MyRewards> {
                                 height: 60,
                                 child: ElevatedButton(
                                   onPressed: () {
-
+                                    PersistentNavBarNavigator.pushNewScreen(
+                                      context,
+                                      screen: TransferCredit(),
+                                      withNavBar: true, // OPTIONAL VALUE. True by default.
+                                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                    );
                                   },
                                   style: ButtonStyle(
                                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -347,7 +356,12 @@ class _MyRewardsState extends State<MyRewards> {
 
                                 child: ElevatedButton(
                                   onPressed: () {
-
+                                    PersistentNavBarNavigator.pushNewScreen(
+                                      context,
+                                      screen: CreditCalculator(),
+                                      withNavBar: true, // OPTIONAL VALUE. True by default.
+                                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                    );
                                   },
                                   style: ButtonStyle(
                                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -376,7 +390,12 @@ class _MyRewardsState extends State<MyRewards> {
 
                                 child: ElevatedButton(
                                   onPressed: () {
-
+                                    PersistentNavBarNavigator.pushNewScreen(
+                                      context,
+                                      screen: RewardsHistory(),
+                                      withNavBar: true, // OPTIONAL VALUE. True by default.
+                                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                    );
                                   },
                                   style: ButtonStyle(
                                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(

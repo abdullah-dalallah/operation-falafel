@@ -32,8 +32,14 @@ class _GiftDetailsState extends State<GiftDetails> {
               onPressed: (){
                 Navigator.pop(context);
               },
-              icon: const ImageIcon(
+              icon:
+              (Localizations.localeOf(context).languageCode=='en')?
+              const ImageIcon(
                 AssetImage("assets/images/back_new.png",),
+                size: 35,
+              ):
+              const ImageIcon(
+                AssetImage("assets/images/back_arabic.png",),
                 size: 35,
               ),
             ),
