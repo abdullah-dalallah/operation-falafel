@@ -112,12 +112,12 @@ class FullMenu extends StatelessWidget{
                                   overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
 
                                   onTap: (){
-                                    PersistentNavBarNavigator.pushNewScreen(
-                                      context,
-                                      screen: TabeBarMenu(),
-                                      withNavBar: true, // OPTIONAL VALUE. True by default.
-                                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                    );
+                                    // PersistentNavBarNavigator.pushNewScreen(
+                                    //   context,
+                                    //   screen: TabeBarMenu(),
+                                    //   withNavBar: true, // OPTIONAL VALUE. True by default.
+                                    //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                    // );
                                   },
                                 ),
 

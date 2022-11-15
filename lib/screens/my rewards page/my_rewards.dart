@@ -75,9 +75,23 @@ class _MyRewardsState extends State<MyRewards> {
           backgroundColor: Colors.transparent,
           key: _drawerKey,
           appBar:AppBar(
-            leading:IconButton(onPressed: (){
-              _drawerKey.currentState?.openDrawer();
-            },icon: FaIcon(FontAwesomeIcons.bars,size: 30,),) ,
+            leading:
+
+            IconButton(
+              onPressed: (){
+                Navigator.pop(context);
+              },
+              icon:
+              (Localizations.localeOf(context).languageCode=='en')?
+              const ImageIcon(
+                AssetImage("assets/images/back_new.png",),
+                size: 35,
+              ):
+              const ImageIcon(
+                AssetImage("assets/images/back_arabic.png",),
+                size: 35,
+              ),
+            ),
             backgroundColor: Colors.transparent,
             elevation: 0,
             centerTitle: true,
@@ -429,7 +443,7 @@ class _MyRewardsState extends State<MyRewards> {
 
             ],
           ),
-         drawer: DrawerWidget(),
+
         ),
       ],
     );

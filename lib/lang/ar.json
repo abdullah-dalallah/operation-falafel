@@ -144,6 +144,29 @@
   "history": "الارصيده المكتسبه",
 
   "earnd": "إكتسب",
-  "pointEarnd":"نقاط مكتسبه من خلال انفاق"
+  "pointEarnd":"نقاط مكتسبه من خلال انفاق",
+  "notificationsTitle": "الإشعارات",
+  "partnersTitle": "الشركاء",
+  "locationsTitle":"الأماكن",
+  "feedbackTitle": "أراء المستخدمين",
+  "contactUsTitle": "تواصل معنا",
+  "orderInitiated": "تم تفعيل الطلب",
+  "validOnAppDlivery": "متاحه فقط على تطبيق توصيل الطلبات",
+  "audTitle": "خصم الى طلاب والعالمين في الAUD",
+  "dhaTitle": "خصم للعاملين في الصحة",
+
+  "weLoveToHereFromYou": "نحب أن نسمع منك",
+  "yourComments": "تعليقك",
+  "submit": "إبعث",
+
+  "pleaseFillTheFormBelow": "يرجى ملء النموذج أدناه",
+  "message": "رسالة",
+  "typeOfInquiry": "نوع الاستفسار",
+
+  "generalEnquiry": "استفسار عام",
+  "comments": "تعليقات",
+  "careers": "وظائف",
+  "procurement": "تحصيل"
+
 
 }

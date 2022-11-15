@@ -148,13 +148,28 @@
   "history": "HISTORY",
 
   "earnd": "Earned",
-  "pointEarnd":"Points earned on spending of"
+  "pointEarnd":"Points earned on spending of",
+  "notificationsTitle": "NOTIFICATIONS",
+  "partnersTitle": "PARTNERS",
+  "locationsTitle":"LOCATIONS",
+  "feedbackTitle": "FEEDBACK",
 
+  "orderInitiated": "Order Initiated",
+  "validOnAppDlivery": "Valid on App delivery orders only",
+  "audTitle": "20% OFF for AUD Students and staff",
+  "dhaTitle": "20% OFF for DHA Staff",
 
+  "weLoveToHereFromYou": "WE LOVE TO HERE FROM YOU",
+  "yourComments": "Your Comments",
+  "submit": "Submit",
 
+  "contactUsTitle": "CONTACT US",
+  "pleaseFillTheFormBelow": "Please fill the form below",
+  "message": "Message",
+  "typeOfInquiry": "Type of inquiry",
 
-
-
-
-
+  "generalEnquiry": "General Enquiry",
+  "comments": "Comments",
+  "careers": "Careers",
+  "procurement": "Procurement"
 }

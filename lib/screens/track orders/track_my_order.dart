@@ -7,6 +7,8 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 
 
 class TrackMyOrder extends StatefulWidget{
+  final ValueChanged onChanged;
+  const TrackMyOrder(this.onChanged,{super.key});
   @override
   State<TrackMyOrder> createState() => _TrackMyOrderState();
 }
@@ -37,11 +39,16 @@ class _TrackMyOrderState extends State<TrackMyOrder> {
         backgroundColor: Colors.transparent,
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          leading:IconButton(onPressed: (){
-
-            _drawerKey.currentState?.openDrawer();
-          },
-            icon: const FaIcon(FontAwesomeIcons.bars,size: 30,),) ,
+          leading:
+          IconButton(
+            onPressed: (){
+              _drawerKey.currentState?.openDrawer();
+            },
+            icon: const ImageIcon(
+              AssetImage("assets/images/icon_menu.png",),
+              size: 35,
+            ),
+          ) ,
           backgroundColor: Colors.transparent,
           elevation: 0,
           centerTitle: true,
@@ -372,7 +379,7 @@ class _TrackMyOrderState extends State<TrackMyOrder> {
           ),
         ),
 
-        drawer: DrawerWidget()
+        drawer: DrawerWidget(onChanged: (value) {widget.onChanged(value);},),
       ),
     ],
   );

@@ -3,8 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/main.dart';
+import 'package:operation_falafel/screens/drawer_pages/contact_us.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+
+import '../screens/drawer_pages/notifications.dart';
+import '../screens/drawer_pages/feedback.dart';
+import '../screens/drawer_pages/partners.dart';
 
 class DrawerWidget extends StatefulWidget{
+   ValueChanged onChanged;
+   DrawerWidget({required this.onChanged,super.key});
   @override
   State<DrawerWidget> createState() => _DrawerState();
 }
@@ -50,7 +58,10 @@ class _DrawerState extends State<DrawerWidget> {
 
                         /// - Home
                         ListTile(
-                          onTap: (){},
+                          onTap: (){
+                            widget.onChanged(0);
+                            Navigator.pop(context);
+                          },
                           title: Text(getTranslated(context, "home")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),),
 
                         ),
@@ -62,10 +73,17 @@ class _DrawerState extends State<DrawerWidget> {
                               height: 0,
                               child: Divider(color: Colors.white,)),
                         ),
-
-
                         /// - Notification
                         ListTile(
+                          onTap: (){
+                            Navigator.pop(context);
+                            PersistentNavBarNavigator.pushNewScreen(
+                              context,
+                              screen: Notifications(),
+                              withNavBar: true, // OPTIONAL VALUE. True by default.
+                              pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                            );
+                          },
                           title: Text(getTranslated(context, "notification")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),),
                         ),
                         const Padding(
@@ -77,6 +95,14 @@ class _DrawerState extends State<DrawerWidget> {
                         ),
                         /// - Partners
                         ListTile(
+                          onTap:(){
+                            PersistentNavBarNavigator.pushNewScreen(
+                              context,
+                              screen: Partners(),
+                              withNavBar: true, // OPTIONAL VALUE. True by default.
+                              pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                            );
+                          },
                           title: Text(getTranslated(context, "partners")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),),
                         ),
                         const Padding(
@@ -99,6 +125,14 @@ class _DrawerState extends State<DrawerWidget> {
                         ),
                         /// - Feedback
                         ListTile(
+                          onTap: (){
+                            PersistentNavBarNavigator.pushNewScreen(
+                              context,
+                              screen: FeedbackPage(),
+                              withNavBar: true,
+                              pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                            );
+                          },
                           title: Text(getTranslated(context, "feedback")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),),
                         ),
                         const Padding(
@@ -110,6 +144,14 @@ class _DrawerState extends State<DrawerWidget> {
                         ),
                         /// - Contact us
                         ListTile(
+                          onTap: (){
+                            PersistentNavBarNavigator.pushNewScreen(
+                              context,
+                              screen: ContactUs(),
+                              withNavBar: true,
+                              pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                            );
+                          },
                           title: Text(getTranslated(context, "contact us")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),),
                         ),
                       ],

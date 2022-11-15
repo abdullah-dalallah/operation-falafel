@@ -30,17 +30,18 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
 
   void _changeLanguage (String languageCode) async {
     Locale _temp =await setLocale(languageCode);
-
     MyApp.setLocale(context,_temp);
   }
 
 
   late PersistentTabController _controller;
   void changePage(index){
+    print("changing to index ${index}");
     setState(() {
       _controller.index=index;
     });
   }
+
   @override
   void initState() {
     super.initState();
@@ -71,10 +72,10 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
         controller: _controller,
         screens: [
           MainMenu((value) => changePage(value),),
-          TabeBarMenu(),
-          Cart_Screen(),
-          TrackMyOrder(),
-          LoggedInUserProfile(),
+          TabeBarMenu((value) => changePage(value),),
+          Cart_Screen((value) => changePage(value),),
+          TrackMyOrder((value) => changePage(value),),
+          LoggedInUserProfile((value) => changePage(value),),
         ],
         items: [
           PersistentBottomNavBarItem(

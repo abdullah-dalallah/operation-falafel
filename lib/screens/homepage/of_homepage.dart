@@ -1704,7 +1704,7 @@ class _MainMenuState extends State<MainMenu> {
 
 
 
-          drawer: DrawerWidget(),
+          drawer: DrawerWidget(onChanged: (value) {widget.onChanged(value);},),
 
           // bottomSheet:Container(
           //   color: Colors.transparent,

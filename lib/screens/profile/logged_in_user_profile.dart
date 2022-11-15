@@ -11,6 +11,8 @@ import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
 class LoggedInUserProfile extends StatefulWidget{
+  final ValueChanged onChanged;
+  const LoggedInUserProfile(this.onChanged,{super.key});
   @override
   State<LoggedInUserProfile> createState() => _LoggedInUserProfileState();
 }
@@ -59,10 +61,15 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
           key: _drawerKey,
           backgroundColor: Colors.transparent,
           appBar: AppBar(
-            leading:IconButton(onPressed: (){
-              print("open drwaer");
-              _drawerKey.currentState?.openDrawer();
-            },icon: FaIcon(FontAwesomeIcons.bars,size: 30,),) ,
+            leading:IconButton(
+              onPressed: (){
+                _drawerKey.currentState?.openDrawer();
+              },
+              icon: const ImageIcon(
+                AssetImage("assets/images/icon_menu.png",),
+                size: 35,
+              ),
+            ) ,
             backgroundColor: Colors.transparent,
             elevation: 0,
             centerTitle: true,
@@ -913,7 +920,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
             ],
           ),
 
-          drawer: DrawerWidget(),
+          drawer: DrawerWidget(onChanged: (value) {widget.onChanged(value);},),
 
         ),
       ],

@@ -11,6 +11,8 @@ import 'package:operation_falafel/widgets/pluse_minus_widget.dart';
 import 'package:provider/provider.dart';
 
 class Cart_Screen extends StatefulWidget{
+  final ValueChanged onChanged;
+  const Cart_Screen(this.onChanged,{super.key});
   @override
   State<Cart_Screen> createState() => _Cart_ScreenState();
 }
@@ -54,9 +56,15 @@ class _Cart_ScreenState extends State<Cart_Screen> {
          key: _drawerKey,
          backgroundColor: Colors.transparent,
          appBar: AppBar(
-           leading:IconButton(onPressed: (){
-             _drawerKey.currentState?.openDrawer();
-           },icon: FaIcon(FontAwesomeIcons.bars,size: 30,),) ,
+           leading:IconButton(
+             onPressed: (){
+               _drawerKey.currentState?.openDrawer();
+             },
+             icon: const ImageIcon(
+               AssetImage("assets/images/icon_menu.png",),
+               size: 35,
+             ),
+           ) ,
            backgroundColor: Colors.transparent,
            elevation: 0,
            centerTitle: true,
@@ -75,8 +83,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
            ],
          ),
 
-         body:
-          Consumer<DemoCartProvider>(
+         body: Consumer<DemoCartProvider>(
           builder: (context, value, child) {
           bool cartEmpty = value.cartItems.isEmpty;
           return  SizedBox(
@@ -724,8 +731,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
 
                );
           }),
-
-         drawer: DrawerWidget(),
+         drawer: DrawerWidget(onChanged: (value) {widget.onChanged(value);},),
        ),
      ],
    );

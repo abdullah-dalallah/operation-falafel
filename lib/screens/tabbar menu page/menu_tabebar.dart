@@ -9,6 +9,8 @@ import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class TabeBarMenu extends StatefulWidget{
+  final ValueChanged onChanged;
+  const TabeBarMenu(this.onChanged,{super.key});
   @override
   State<TabeBarMenu> createState() => _TabeBarMenuState();
 }
@@ -608,7 +610,7 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                ),
            )
          ),
-        drawer:  DrawerWidget(),
+        drawer:  DrawerWidget(onChanged: (value) {widget.onChanged(value);},),
        ),
      ],
    );
