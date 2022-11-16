@@ -6,6 +6,7 @@ import 'package:operation_falafel/main.dart';
 import 'package:operation_falafel/screens/drawer_pages/contact_us.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
+import '../screens/drawer_pages/locations.dart';
 import '../screens/drawer_pages/notifications.dart';
 import '../screens/drawer_pages/feedback.dart';
 import '../screens/drawer_pages/partners.dart';
@@ -114,6 +115,14 @@ class _DrawerState extends State<DrawerWidget> {
                         ),
                         /// - Location
                         ListTile(
+                          onTap: (){
+                            PersistentNavBarNavigator.pushNewScreen(
+                              context,
+                              screen: Locations(),
+                              withNavBar: true, // OPTIONAL VALUE. True by default.
+                              pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                            );
+                          },
                           title: Text(getTranslated(context, "locations")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),),
                         ),
                         const Padding(

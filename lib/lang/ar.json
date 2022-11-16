@@ -166,7 +166,13 @@
   "generalEnquiry": "استفسار عام",
   "comments": "تعليقات",
   "careers": "وظائف",
-  "procurement": "تحصيل"
+  "procurement": "تحصيل",
+
+  "uae": "الامارات",
+  "ksa": "السعوديه",
+  "france": "فرنسا",
+  "usa": "امريكا",
+  "uk": "بريطانيا"
 
 
 }

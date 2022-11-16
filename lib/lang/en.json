@@ -171,5 +171,11 @@
   "generalEnquiry": "General Enquiry",
   "comments": "Comments",
   "careers": "Careers",
-  "procurement": "Procurement"
+  "procurement": "Procurement",
+
+  "uae": "UAE",
+  "ksa": "KSA",
+  "france": "FRANCE",
+  "usa": "USA",
+  "uk": "UK"
 }
