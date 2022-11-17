@@ -80,7 +80,7 @@
   "gender": "Gender",
   "password": "Password",
   "referralCode": "Referral Code",
-  "oderHistory": "Order History",
+  "oderHistory": "Order\nHistory",
   "savedAddress": "Saved Addresses",
   "savedCards": "Saved Cards",
   "loyalty": "Loyalty",
@@ -177,5 +177,38 @@
   "ksa": "KSA",
   "france": "FRANCE",
   "usa": "USA",
-  "uk": "UK"
+  "uk": "UK",
+
+  "gotAnyQuestions": "GOT ANY QUESTIONS?",
+
+  "orderHistory": "ORDER HISTORY",
+  "newOrder": "New Order",
+  "viewReceipt": "VIEW RECEIPT",
+  "reOrder": "REORDER",
+  "orderDetails": "ORDER DETAILS",
+  "orderSummary": "Order Summary",
+  "paymentMethod": "Payment Method",
+  "subTotalDetails": "Sub total",
+  "o:fLoyalityCredits": "O:F Loyality Credits",
+  "serviceCharge": "Service Charge",
+  "totalDetails": "Total",
+
+  "savedAddressTitl": "SAVED ADDRESSES",
+  "addNewAddress": "Add New Address",
+
+  "addressLine": "Address Line",
+  "buildingName": "Building Name",
+  "villa": "Villa/Flat No.",
+  "area": "Area",
+  "addressType": "Address Type",
+  "flat": "Flat",
+  "house": "House",
+  "villa": "Villa",
+  "office": "Office",
+  "makePrimaryAddress": "Make Primary Address",
+  "saveAddress": "Save Address",
+  "updateAddress": "Update Address",
+  "savedCards": "SAVED CARDS",
+  "youHaveNoSavedCards": "YOU HAVE NO SAVED CARDS",
+  "orderId": "Order ID"
 }

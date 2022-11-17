@@ -58,7 +58,7 @@
   "pleaseSelectPayment": "يرجى تحديد طريقة الدفع",
   "optional": "اختياري",
   "bringItOn": "إجلبه!",
-  "address": "الاماكن",
+  "address": "العنوان",
   "noOrder": "لا توجد طلبات",
 
   "callUs": "إتصل بنا",
@@ -172,7 +172,42 @@
   "ksa": "السعوديه",
   "france": "فرنسا",
   "usa": "امريكا",
-  "uk": "بريطانيا"
+  "uk": "بريطانيا",
+
+
+  "gotAnyQuestions": "هل لديك أي إستفسار؟",
+
+  "orderHistory": "الطلبات السابقه",
+  "newOrder": "طلب جديد",
+  "viewReceipt": "عرض الإيصال",
+  "reOrder": "اطلب من جديد",
+  "orderDetails": "تفاصيل الطلب",
+  "orderSummary": "موجز الطلب",
+  "paymentMethod": "طريقة الدفع",
+  "subTotalDetails": "المجموع الفرعي",
+  "o:fLoyalityCredits": "نقاط أوبريشن : فلافل",
+  "serviceCharge": "تكلفة الخدمة",
+  "totalDetails": "المجموع",
+
+  "savedAddressTitl": "العناوين المحفوضه",
+  "addNewAddress": "اضف عنوان جديد",
+
+  "addressLine": "خط عنوان",
+  "buildingName": "اسم المبنى",
+  "villa": "رقم الفيلا/الشقه",
+  "area": "المنطقه",
+  "addressType": "نوع العنوان",
+  "flat": "شقه",
+  "house": "بيت",
+  "villa": "فيلا",
+  "office": "مكتب",
+  "makePrimaryAddress": "اجعل العنوان اساسي",
+  "saveAddress": "حفظ العنوان",
+  "updateAddress": "عدل العنوان",
+  "savedCards": "البطاقات المحفوظه",
+  "youHaveNoSavedCards": "ليس لديك بطاقات محفوظة",
+
+  "orderId": "رقم الطلب"
 
 
 }

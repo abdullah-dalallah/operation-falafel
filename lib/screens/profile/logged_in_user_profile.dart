@@ -1,11 +1,16 @@
 import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/parsistent_tabview_provider.dart';
+import 'package:operation_falafel/screens/my%20rewards%20page/my_rewards.dart';
+import 'package:operation_falafel/screens/profile/profile_pages/help_page.dart';
+import 'package:operation_falafel/screens/profile/profile_pages/order_history.dart';
+import 'package:operation_falafel/screens/profile/profile_pages/saved_address.dart';
+import 'package:operation_falafel/screens/profile/profile_pages/saved_cards.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
@@ -736,7 +741,12 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                 // width: 130,
                                 child: ElevatedButton(
                                   onPressed: () {
-
+                                    PersistentNavBarNavigator.pushNewScreen(
+                                      context,
+                                      screen: OrderHistory(),
+                                      withNavBar: true, // OPTIONAL VALUE. True by default.
+                                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                    );
                                   },
                                   style: ButtonStyle(
                                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -752,7 +762,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                       foregroundColor: MaterialStateProperty.all(Colors.black),
                                       padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
                                       textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                                  child:  Text(getTranslated(context, "oderHistory")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.amber, fontSize: 17, fontWeight: FontWeight.w300),),
+                                  child:  Text(getTranslated(context, "oderHistory")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.amber, fontSize: 17, fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
                                 ),
                               ),
                             ),
@@ -765,7 +775,12 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                 // width: 130,
                                 child: ElevatedButton(
                                   onPressed: () {
-
+                                    PersistentNavBarNavigator.pushNewScreen(
+                                      context,
+                                      screen: SavedAddress(),
+                                      withNavBar: true, // OPTIONAL VALUE. True by default.
+                                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                    );
                                   },
                                   style: ButtonStyle(
                                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -794,7 +809,12 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                 // width: 130,
                                 child: ElevatedButton(
                                   onPressed: () {
-
+                                    PersistentNavBarNavigator.pushNewScreen(
+                                      context,
+                                      screen: SavedCards(),
+                                      withNavBar: true, // OPTIONAL VALUE. True by default.
+                                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                    );
                                   },
                                   style: ButtonStyle(
                                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -827,6 +847,12 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                 height: 60,
                                 child: ElevatedButton(
                                   onPressed: () {
+                                    PersistentNavBarNavigator.pushNewScreen(
+                                      context,
+                                      screen: MyRewards(),
+                                      withNavBar: true, // OPTIONAL VALUE. True by default.
+                                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                    );
 
                                   },
                                   style: ButtonStyle(
@@ -856,6 +882,12 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
 
                                 child: ElevatedButton(
                                   onPressed: () {
+                                    PersistentNavBarNavigator.pushNewScreen(
+                                      context,
+                                      screen: HelpPage(),
+                                      withNavBar: true, // OPTIONAL VALUE. True by default.
+                                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                    );
 
                                   },
                                   style: ButtonStyle(

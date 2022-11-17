@@ -12,6 +12,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'dart:math' as math;
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:share_plus/share_plus.dart';
+
+import '../my rewards page/rewards_pages/transfer_credits.dart';
 
 
 class MainMenu extends StatefulWidget{
@@ -1654,7 +1657,13 @@ class _MainMenuState extends State<MainMenu> {
                                         overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
 
                                         onTap: (){
-                                          print("text");
+                                          final RenderBox renderBox = context.findRenderObject() as RenderBox;
+                                          Share.share(
+                                            "You have been invited by Abdullh to join the O:F Family! Click below to install our app. Onelink.to/dhdbm3. Once you join, you will receive a 25% discount on your first order & 5Dhs credit when you use code 248921 in your registration page"
+                                            ,subject: "check out The website"
+                                            ,sharePositionOrigin: renderBox.localToGlobal(Offset.zero)&renderBox.size,
+                                          );
+
                                         },
                                       ),
 
@@ -1681,7 +1690,12 @@ class _MainMenuState extends State<MainMenu> {
                                         overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
 
                                         onTap: (){
-                                          print("text");
+                                          PersistentNavBarNavigator.pushNewScreen(
+                                            context,
+                                            screen: TransferCredit(),
+                                            withNavBar: true, // OPTIONAL VALUE. True by default.
+                                            pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                          );
                                         },
                                       ),
 
