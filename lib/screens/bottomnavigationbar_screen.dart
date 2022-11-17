@@ -80,13 +80,14 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
         items: [
           PersistentBottomNavBarItem(
             textStyle: TextStyle(fontSize: 9),
-            icon: Icon(Icons.home, size:40,),
+            icon: Icon(Icons.home, size:30,),
             // const ImageIcon(
             //   AssetImage("assets/images/icon_order.png", ),
             //   size: 28,
             // ),
             title: ("home"),
-            activeColorPrimary: CupertinoColors.activeOrange,
+
+            activeColorPrimary:Colors.amber,
             inactiveColorPrimary: CupertinoColors.systemBackground,
           ),
           PersistentBottomNavBarItem(
@@ -98,7 +99,7 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
             // FaIcon(CupertinoIcons.doc_plaintext),
             // title: ("Order"),
             // textStyle: TextStyle(fontSize: 9),
-            activeColorPrimary: CupertinoColors.activeOrange,
+            activeColorPrimary:Colors.amber,
             inactiveColorPrimary: CupertinoColors.systemBackground,
           ),
           PersistentBottomNavBarItem(
@@ -115,7 +116,7 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
               ),
             ),
 
-            activeColorPrimary: CupertinoColors.activeOrange,
+            activeColorPrimary:Colors.amber,
             inactiveColorPrimary: CupertinoColors.systemBackground,
           ),
           PersistentBottomNavBarItem(
@@ -126,7 +127,7 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
               AssetImage("assets/images/icon_track.png"),
             ),
 
-            activeColorPrimary: CupertinoColors.activeOrange,
+            activeColorPrimary:Colors.amber,
             inactiveColorPrimary: CupertinoColors.systemBackground,
           ),
           PersistentBottomNavBarItem(
@@ -166,7 +167,7 @@ class _Tabs_ScreenState extends State<Tabs_Screen> {
           curve: Curves.ease,
           duration: Duration(milliseconds: 200),
         ),
-        navBarStyle: NavBarStyle.style2, // Choose the nav bar style with this property.
+        navBarStyle: NavBarStyle.style8, // Choose the nav bar style with this property.
 
       );}
     )

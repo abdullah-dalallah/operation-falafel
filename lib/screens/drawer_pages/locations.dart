@@ -98,25 +98,60 @@ class _LocationsState extends State<Locations> {
                                          hasIcon: false,
                                          useInkWell: true
                                      ),
-                                     header: Padding(
+                                     header:  Padding(
                                        padding: const EdgeInsets.only(left:18.0, right:18, top: 8,bottom: 8),
                                        child: Container(
-                                         padding:  const EdgeInsets.all(5),
-                                         decoration: const BoxDecoration(
+                                           height: 55,
+                                           padding:  const EdgeInsets.all(5),
+                                           decoration: const BoxDecoration(
 
-                                           color: Colors.white,
-                                           borderRadius: BorderRadius.only(
-                                             bottomRight: Radius.circular(0.0),
-                                             bottomLeft: Radius.circular(0.0),
-                                             topLeft: Radius.circular(0.0),
-                                             topRight: Radius.circular(0.0),
-                                           ),),
-                                         child:  Column(
-                                           children:  [
-                                             Text(getTranslated(context, "uae")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.black, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
-                                           ],
-                                         ),
+                                             color: Colors.white,
+                                             borderRadius: BorderRadius.only(
+                                               bottomRight: Radius.circular(0.0),
+                                               bottomLeft: Radius.circular(0.0),
+                                               topLeft: Radius.circular(0.0),
+                                               topRight: Radius.circular(0.0),
+                                             ),),
+                                           child:
 
+                                           IntrinsicHeight(
+                                             child: Stack(
+                                               children: [
+                                                 Align(child:Text(getTranslated(context, "uae")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.black, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
+                                                 ),
+                                                 Visibility(
+                                                   visible: false,
+                                                   child: Positioned(right: 0, child:  RotationTransition(
+                                                     turns:  AlwaysStoppedAnimation(-15 / 600 ),
+                                                     child: Padding(
+                                                       padding: const EdgeInsets.all(8.0),
+                                                       child: Container(
+                                                         padding: const EdgeInsets.only(left:15, right:15, top:2, bottom: 2),
+                                                         decoration: BoxDecoration(
+                                                           color: Colors.transparent,
+                                                           borderRadius: const BorderRadius.only(
+                                                             topRight: Radius.circular(2),
+                                                             bottomLeft: Radius.circular(2),
+                                                             topLeft: Radius.circular(2),
+                                                             bottomRight: Radius.circular(2),
+                                                           ),
+                                                           border: Border.all(
+                                                             width: 3,
+                                                             color: Colors.amber,
+                                                             style: BorderStyle.solid,
+                                                           ),
+                                                         ),
+                                                         child: Text(getTranslated(context, "commingSoon")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber),),
+
+
+
+                                                       ),
+                                                     ),
+                                                   ),),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
                                        ),
                                      ),
                                      expanded: GridView(
@@ -574,25 +609,60 @@ class _LocationsState extends State<Locations> {
                                      hasIcon: false,
                                      useInkWell: true
                                  ),
-                                 header: Padding(
+                                 header:   Padding(
                                    padding: const EdgeInsets.only(left:18.0, right:18, top: 8,bottom: 8),
                                    child: Container(
-                                     padding:  const EdgeInsets.all(5),
-                                     decoration: const BoxDecoration(
+                                       height: 55,
+                                       padding:  const EdgeInsets.all(5),
+                                       decoration: const BoxDecoration(
 
-                                       color: Colors.white,
-                                       borderRadius: BorderRadius.only(
-                                         bottomRight: Radius.circular(0.0),
-                                         bottomLeft: Radius.circular(0.0),
-                                         topLeft: Radius.circular(0.0),
-                                         topRight: Radius.circular(0.0),
-                                       ),),
-                                     child:  Column(
-                                       children:  [
-                                         Text(getTranslated(context, "ksa")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.black, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
-                                       ],
-                                     ),
+                                         color: Colors.white,
+                                         borderRadius: BorderRadius.only(
+                                           bottomRight: Radius.circular(0.0),
+                                           bottomLeft: Radius.circular(0.0),
+                                           topLeft: Radius.circular(0.0),
+                                           topRight: Radius.circular(0.0),
+                                         ),),
+                                       child:
 
+                                       IntrinsicHeight(
+                                         child: Stack(
+                                           children: [
+                                             Align(child:Text(getTranslated(context, "ksa")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.black, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
+                                             ),
+                                             Visibility(
+                                               visible: false,
+                                               child: Positioned(right: 0, child:  RotationTransition(
+                                                 turns:  AlwaysStoppedAnimation(-15 / 600 ),
+                                                 child: Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Container(
+                                                     padding: const EdgeInsets.only(left:15, right:15, top:2, bottom: 2),
+                                                     decoration: BoxDecoration(
+                                                       color: Colors.transparent,
+                                                       borderRadius: const BorderRadius.only(
+                                                         topRight: Radius.circular(2),
+                                                         bottomLeft: Radius.circular(2),
+                                                         topLeft: Radius.circular(2),
+                                                         bottomRight: Radius.circular(2),
+                                                       ),
+                                                       border: Border.all(
+                                                         width: 3,
+                                                         color: Colors.amber,
+                                                         style: BorderStyle.solid,
+                                                       ),
+                                                     ),
+                                                     child: Text(getTranslated(context, "commingSoon")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber),),
+
+
+
+                                                   ),
+                                                 ),
+                                               ),),
+                                             ),
+                                           ],
+                                         ),
+                                       )
                                    ),
                                  ),
                                  expanded: GridView(
@@ -858,138 +928,113 @@ class _LocationsState extends State<Locations> {
                        Padding(
                          padding: const EdgeInsets.only(left:18.0, right:18, top: 8,bottom: 8),
                          child: Container(
-                           padding:  const EdgeInsets.all(5),
-                           decoration: const BoxDecoration(
+                             height: 55,
+                             padding:  const EdgeInsets.all(5),
+                             decoration: const BoxDecoration(
 
-                             color: Colors.white,
-                             borderRadius: BorderRadius.only(
-                               bottomRight: Radius.circular(0.0),
-                               bottomLeft: Radius.circular(0.0),
-                               topLeft: Radius.circular(0.0),
-                               topRight: Radius.circular(0.0),
-                             ),),
-                           child:  Row(
-                             mainAxisAlignment: MainAxisAlignment.center,
-                             children:  [
-                               SizedBox(width: 15,),
-                               Expanded(
-                                   flex:4,
-                                   child: Row(
-                                     mainAxisAlignment: MainAxisAlignment.end,
-                                     children: [
-                                       Text(getTranslated(context, "france")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.black, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
-                                     ],
-                                   )
-                               ),
-                               Expanded(
-                                 flex:3,
-                                 child: Row(
-                                   mainAxisAlignment: MainAxisAlignment.end,
-                                   children: [
-                                     RotationTransition(
-                                       turns:  AlwaysStoppedAnimation(-15 / 600 ),
-                                       child: Padding(
-                                         padding: const EdgeInsets.all(8.0),
-                                         child: Container(
-                                           padding: const EdgeInsets.only(left:15, right:15, top:2, bottom: 2),
-                                           decoration: BoxDecoration(
-                                             color: Colors.transparent,
-                                             borderRadius: const BorderRadius.only(
-                                               topRight: Radius.circular(2),
-                                               bottomLeft: Radius.circular(2),
-                                               topLeft: Radius.circular(2),
-                                               bottomRight: Radius.circular(2),
-                                             ),
-                                             border: Border.all(
-                                               width: 3,
-                                               color: Colors.amber,
-                                               style: BorderStyle.solid,
-                                             ),
+                               color: Colors.white,
+                               borderRadius: BorderRadius.only(
+                                 bottomRight: Radius.circular(0.0),
+                                 bottomLeft: Radius.circular(0.0),
+                                 topLeft: Radius.circular(0.0),
+                                 topRight: Radius.circular(0.0),
+                               ),),
+                             child:
+
+                             IntrinsicHeight(
+                               child: Stack(
+                                 children: [
+                                   Align(child:Text(getTranslated(context, "france")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.black, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
+                                   ),
+                                   Positioned(right: 0, child:  RotationTransition(
+                                     turns:  AlwaysStoppedAnimation(-15 / 600 ),
+                                     child: Padding(
+                                       padding: const EdgeInsets.all(8.0),
+                                       child: Container(
+                                         padding: const EdgeInsets.only(left:15, right:15, top:2, bottom: 2),
+                                         decoration: BoxDecoration(
+                                           color: Colors.transparent,
+                                           borderRadius: const BorderRadius.only(
+                                             topRight: Radius.circular(2),
+                                             bottomLeft: Radius.circular(2),
+                                             topLeft: Radius.circular(2),
+                                             bottomRight: Radius.circular(2),
                                            ),
-                                           child: Text("COMMING SOON", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber),),
-
-
-
+                                           border: Border.all(
+                                             width: 3,
+                                             color: Colors.amber,
+                                             style: BorderStyle.solid,
+                                           ),
                                          ),
+                                         child: Text(getTranslated(context, "commingSoon")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber),),
+
+
+
                                        ),
                                      ),
-                                   ],
-                                 ),
+                                   ),),
+                                 ],
                                ),
-                             ],
-                           ),
-
+                             )
                          ),
                        ),
                        Padding(
                          padding: const EdgeInsets.only(left:18.0, right:18, top: 8,bottom: 8),
                          child: Container(
-                           padding:  const EdgeInsets.all(5),
-                           decoration: const BoxDecoration(
+                             height: 55,
+                             padding:  const EdgeInsets.all(5),
+                             decoration: const BoxDecoration(
 
-                             color: Colors.white,
-                             borderRadius: BorderRadius.only(
-                               bottomRight: Radius.circular(0.0),
-                               bottomLeft: Radius.circular(0.0),
-                               topLeft: Radius.circular(0.0),
-                               topRight: Radius.circular(0.0),
-                             ),),
-                           child:  Row(
-                             mainAxisAlignment: MainAxisAlignment.center,
-                             children:  [
-                              const SizedBox(width: 30,),
-                               Expanded(
-                                   flex:3,
-                                   child: Row(
-                                     mainAxisAlignment: MainAxisAlignment.end,
-                                     children: [
-                                       Text(getTranslated(context, "usa")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.black, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
-                                     ],
-                                   )
-                               ),
-                               Expanded(
-                                 flex:3,
-                                 child: Row(
-                                   mainAxisAlignment: MainAxisAlignment.end,
-                                   children: [
-                                     RotationTransition(
-                                       turns:  AlwaysStoppedAnimation(-15 / 600 ),
-                                       child: Padding(
-                                         padding: const EdgeInsets.all(8.0),
-                                         child: Container(
-                                           padding: const EdgeInsets.only(left:15, right:15, top:2, bottom: 2),
-                                           decoration: BoxDecoration(
-                                             color: Colors.transparent,
-                                             borderRadius: const BorderRadius.only(
-                                               topRight: Radius.circular(2),
-                                               bottomLeft: Radius.circular(2),
-                                               topLeft: Radius.circular(2),
-                                               bottomRight: Radius.circular(2),
-                                             ),
-                                             border: Border.all(
-                                               width: 3,
-                                               color: Colors.amber,
-                                               style: BorderStyle.solid,
-                                             ),
+                               color: Colors.white,
+                               borderRadius: BorderRadius.only(
+                                 bottomRight: Radius.circular(0.0),
+                                 bottomLeft: Radius.circular(0.0),
+                                 topLeft: Radius.circular(0.0),
+                                 topRight: Radius.circular(0.0),
+                               ),),
+                             child:
+
+                             IntrinsicHeight(
+                               child: Stack(
+                                 children: [
+                                   Align(child:Text(getTranslated(context, "usa")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.black, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
+                                   ),
+                                   Positioned(right: 0, child:  RotationTransition(
+                                     turns:  AlwaysStoppedAnimation(-15 / 600 ),
+                                     child: Padding(
+                                       padding: const EdgeInsets.all(8.0),
+                                       child: Container(
+                                         padding: const EdgeInsets.only(left:15, right:15, top:2, bottom: 2),
+                                         decoration: BoxDecoration(
+                                           color: Colors.transparent,
+                                           borderRadius: const BorderRadius.only(
+                                             topRight: Radius.circular(2),
+                                             bottomLeft: Radius.circular(2),
+                                             topLeft: Radius.circular(2),
+                                             bottomRight: Radius.circular(2),
                                            ),
-                                           child: Text("COMMING SOON", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber),),
-
-
-
+                                           border: Border.all(
+                                             width: 3,
+                                             color: Colors.amber,
+                                             style: BorderStyle.solid,
+                                           ),
                                          ),
+                                         child: Text(getTranslated(context, "commingSoon")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber),),
+
+
+
                                        ),
                                      ),
-                                   ],
-                                 ),
+                                   ),),
+                                 ],
                                ),
-                             ],
-                           ),
-
+                             )
                          ),
                        ),
                        Padding(
                          padding: const EdgeInsets.only(left:18.0, right:18, top: 8,bottom: 8),
                          child: Container(
+                           height: 55,
                            padding:  const EdgeInsets.all(5),
                            decoration: const BoxDecoration(
 
@@ -1000,59 +1045,49 @@ class _LocationsState extends State<Locations> {
                                topLeft: Radius.circular(0.0),
                                topRight: Radius.circular(0.0),
                              ),),
-                           child:  Row(
-                             mainAxisAlignment: MainAxisAlignment.center,
-                             children:  [
-                               const SizedBox(width: 27,),
-                               Expanded(
-                                   flex:3,
-                                   child: Row(
-                                     mainAxisAlignment: MainAxisAlignment.end,
-                                     children: [
-                                       Text(getTranslated(context, "uk")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.black, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
-                                     ],
-                                   )
-                               ),
-                               Expanded(
-                                 flex:3,
-                                 child: Row(
-                                   mainAxisAlignment: MainAxisAlignment.end,
-                                   children: [
-                                     RotationTransition(
-                                       turns:  AlwaysStoppedAnimation(-15 / 600 ),
-                                       child: Padding(
-                                         padding: const EdgeInsets.all(8.0),
-                                         child: Container(
-                                           padding: const EdgeInsets.only(left:15, right:15, top:2, bottom: 2),
-                                           decoration: BoxDecoration(
-                                             color: Colors.transparent,
-                                             borderRadius: const BorderRadius.only(
-                                               topRight: Radius.circular(2),
-                                               bottomLeft: Radius.circular(2),
-                                               topLeft: Radius.circular(2),
-                                               bottomRight: Radius.circular(2),
-                                             ),
-                                             border: Border.all(
-                                               width: 3,
-                                               color: Colors.amber,
-                                               style: BorderStyle.solid,
-                                             ),
-                                           ),
-                                           child: Text("COMMING SOON", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber),),
+                           child:
 
-
-
+                           IntrinsicHeight(
+                             child: Stack(
+                               children: [
+                                 Align(child:                                        Text(getTranslated(context, "uk")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.black, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
+                                 ),
+                                 Positioned(right: 0, child:  RotationTransition(
+                                   turns:  AlwaysStoppedAnimation(-15 / 600 ),
+                                   child: Padding(
+                                     padding: const EdgeInsets.all(8.0),
+                                     child: Container(
+                                       padding: const EdgeInsets.only(left:15, right:15, top:2, bottom: 2),
+                                       decoration: BoxDecoration(
+                                         color: Colors.transparent,
+                                         borderRadius: const BorderRadius.only(
+                                           topRight: Radius.circular(2),
+                                           bottomLeft: Radius.circular(2),
+                                           topLeft: Radius.circular(2),
+                                           bottomRight: Radius.circular(2),
+                                         ),
+                                         border: Border.all(
+                                           width: 3,
+                                           color: Colors.amber,
+                                           style: BorderStyle.solid,
                                          ),
                                        ),
-                                     ),
-                                   ],
-                                 ),
-                               ),
-                             ],
-                           ),
+                                       child: Text(getTranslated(context, "commingSoon")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber),),
 
+
+
+                                     ),
+                                   ),
+                                 ),),
+                               ],
+                             ),
+                           )
                          ),
                        ),
+
+
+
+
                      ],
 
                   ),

@@ -70,7 +70,7 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                    SliverAppBar(
 
 
-
+                     title: Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),),
                      backgroundColor: Colors.orangeAccent,
                      pinned: true,
                      expandedHeight: 210.0,
@@ -80,7 +80,6 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                        collapseMode:CollapseMode.parallax,
                        expandedTitleScale:1.3,
                        // titlePadding: EdgeInsets.only(bottom: 20, left: 50),
-                       title: Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),),
                        background: Image.asset(
                          'assets/images/items_top.png',
                          fit: BoxFit.fill,
@@ -145,7 +144,6 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                          ),
                        ),],
                    ),
-
                    SliverAppBar(
                      toolbarHeight: 40,
                      backgroundColor: Colors.orangeAccent,

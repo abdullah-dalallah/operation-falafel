@@ -207,7 +207,9 @@
   "savedCards": "البطاقات المحفوظه",
   "youHaveNoSavedCards": "ليس لديك بطاقات محفوظة",
 
-  "orderId": "رقم الطلب"
+  "orderId": "رقم الطلب",
+  "commingSoon": "قريباً"
+
 
 
 }
