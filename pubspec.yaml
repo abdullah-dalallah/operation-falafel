@@ -29,6 +29,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  syncfusion_flutter_datepicker: ^20.3.57
   url_launcher: ^6.1.6
   expandable: ^5.0.1
   share_plus: ^6.2.0

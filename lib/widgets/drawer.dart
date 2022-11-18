@@ -49,6 +49,7 @@ class _DrawerState extends State<DrawerWidget> {
 
                 ],),
                 const SizedBox(height: 20,),
+
                 Expanded(
                   flex: 8,
                   child: SizedBox(
@@ -66,7 +67,6 @@ class _DrawerState extends State<DrawerWidget> {
                           title: Text(getTranslated(context, "home")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),),
 
                         ),
-
                         const Padding(
                           padding:  EdgeInsets.only(left: 8.0, right: 8),
                           child:  SizedBox(

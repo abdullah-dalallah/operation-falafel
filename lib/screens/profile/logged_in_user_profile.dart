@@ -14,6 +14,10 @@ import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
+// ignore: depend_on_referenced_packages
+import 'package:intl/intl.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class LoggedInUserProfile extends StatefulWidget{
   final ValueChanged onChanged;
@@ -39,6 +43,126 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
   }
 
 
+  String _selectedDate = '';
+  String _dateCount = '';
+  String _range = '';
+  String _rangeCount = '';
+
+  /// The method for [DateRangePickerSelectionChanged] callback, which will be
+  /// called whenever a selection changed on the date picker widget.
+  void _onSelectionChanged(DateRangePickerSelectionChangedArgs args, ) {
+    /// The argument value will return the changed date as [DateTime] when the
+    /// widget [SfDateRangeSelectionMode] set as single.
+    ///
+    /// The argument value will return the changed dates as [List<DateTime>]
+    /// when the widget [SfDateRangeSelectionMode] set as multiple.
+    ///
+    /// The argument value will return the changed range as [PickerDateRange]
+    /// when the widget [SfDateRangeSelectionMode] set as range.
+    ///
+    /// The argument value will return the changed ranges as
+    /// [List<PickerDateRange] when the widget [SfDateRangeSelectionMode] set as
+    /// multi range.
+    setState(() {
+      if (args.value is PickerDateRange) {
+        _range = '${DateFormat('dd/MM/yyyy').format(args.value.startDate)} -'
+        // ignore: lines_longer_than_80_chars
+            ' ${DateFormat('dd/MM/yyyy').format(args.value.endDate ?? args.value.startDate)}';
+         print("Date range");
+        // showDatePicker = false;
+
+      }
+      else if (args.value is DateTime) {
+        _selectedDate = DateFormat('dd/MM/yyyy').format(args.value).toString();
+        // showDatePicker = false;
+        print("DateTime");
+        birthDateController.text = _selectedDate;
+      }
+      else if (args.value is List<DateTime>) {
+        _dateCount = args.value.length.toString();
+        birthDateController.text = _selectedDate;
+        print("List DateTime");
+        // showDatePicker = false;
+      }
+      else {
+        _rangeCount = args.value.length.toString();
+        birthDateController.text = _selectedDate;
+        print("default");
+        // showDatePicker = false;
+      }
+    });
+  }
+
+  bool showDatePicker = false;
+
+  void showCustomDialog(BuildContext context) {
+    showGeneralDialog(
+      context: context,
+      barrierLabel: "Barrier",
+      barrierDismissible: true,
+      barrierColor: Colors.black.withOpacity(0.5),
+      transitionDuration: Duration(milliseconds: 200),
+      pageBuilder: (context, __, ___) {
+        return Center(
+          child: Container(
+            height: 450,
+            margin: const EdgeInsets.symmetric(horizontal: 20),
+            decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(40)),
+            child: SizedBox.expand(
+              child: SfDateRangePicker(
+             navigationMode: DateRangePickerNavigationMode.snap,
+              allowViewNavigation: true,
+              monthViewSettings:const DateRangePickerMonthViewSettings(weekNumberStyle: DateRangePickerWeekNumberStyle(textStyle: TextStyle(color:Colors.white,backgroundColor: Colors.white)),viewHeaderStyle: DateRangePickerViewHeaderStyle(textStyle: TextStyle(color:Colors.white))),
+              showActionButtons: true,
+              onSubmit: (value){if(value!=null){
+                Navigator.pop(context);
+              }},
+              onCancel: (){ Navigator.pop(context);},
+              backgroundColor: Colors.black,
+             todayHighlightColor: Colors.amber,
+             startRangeSelectionColor: Colors.amber,
+             endRangeSelectionColor: Colors.amber,
+                rangeSelectionColor: Colors.amber,
+              selectionColor: Colors.amber,
+
+
+                headerStyle: DateRangePickerHeaderStyle(textStyle: TextStyle(color:Colors.white),backgroundColor: Colors.black,textAlign: TextAlign.center),
+                monthCellStyle: DateRangePickerMonthCellStyle(textStyle: TextStyle(color:Colors.white),blackoutDateTextStyle: TextStyle(color:Colors.white), todayTextStyle:TextStyle(color:Colors.white),leadingDatesTextStyle: TextStyle(color:Colors.white),weekendTextStyle:  TextStyle(color:Colors.grey),disabledDatesTextStyle: TextStyle(color:Colors.white),trailingDatesTextStyle: TextStyle(color:Colors.white),specialDatesTextStyle: TextStyle(color:Colors.white),),
+                yearCellStyle: DateRangePickerYearCellStyle(textStyle: TextStyle(color:Colors.white),disabledDatesTextStyle: TextStyle(color:Colors.white), todayTextStyle:TextStyle(color:Colors.white),leadingDatesTextStyle: TextStyle(color:Colors.white), ),
+              selectionTextStyle: TextStyle(color:Colors.white),
+               rangeTextStyle: TextStyle(color:Colors.white),
+
+              onSelectionChanged: _onSelectionChanged,
+              selectionMode: DateRangePickerSelectionMode.single,
+              initialSelectedDate: (_selectedDate!='')?DateFormat('dd/MM/yyyy').parse(_selectedDate):DateTime.now().subtract(const Duration(days: 4)),//(_selectedDate!='')?DateFormat('dd/MM/yyyy').parse(_selectedDate):
+              // initialSelectedRange: PickerDateRange(DateTime.now().subtract(const Duration(days: 4)), DateTime.now().add(const Duration(days: 3))),
+            ),),
+          ),
+        );
+      },
+      transitionBuilder: (_, anim, __, child) {
+        Tween<Offset> tween;
+        if (anim.status == AnimationStatus.reverse) {
+          tween = Tween(begin: Offset(-1, 0), end: Offset.zero);
+        }
+        else {
+          tween = Tween(begin: Offset(1, 0), end: Offset.zero);
+        }
+
+        return SlideTransition(
+          position: tween.animate(anim),
+          child: FadeTransition(
+            opacity: anim,
+            child: child,
+          ),
+        );
+      },
+    );
+  }
+
+
+
+  TextEditingController birthDateController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -471,32 +595,59 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                               flex: 5,
                               child: SizedBox(
 
-                                child:   TextField(
-                                  enabled: false,
-                                  autofocus: false,
-                                  style: const TextStyle(color: Colors.white),
-                                  decoration:  InputDecoration(
-                                    filled: true,
-                                    fillColor: Colors.transparent,
-                                    contentPadding:const EdgeInsets.only(left:10, right: 10),
-                                    focusedBorder:const OutlineInputBorder(
-                                      borderRadius:  BorderRadius.all(
-                                        Radius.circular(0.0),
+                                child:   Stack(
+                                  children: [
+                                     TextField(
+                                      controller: birthDateController,
+                                      enabled: false,
+                                      autofocus: false,
+                                      style:  TextStyle(color: Colors.white),
+
+                                      decoration:  const InputDecoration(
+                                        filled: true,
+                                        fillColor: Colors.transparent,
+                                        contentPadding: EdgeInsets.only(left:10, right: 10),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius:  BorderRadius.all(
+                                            Radius.circular(0.0),
+                                          ),
+                                          borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius:  BorderRadius.all(
+                                            Radius.circular(0.0),
+                                          ),
+                                          borderSide: BorderSide(color: Colors.transparent, width: 0.0),
+                                        ),
+                                        hintText: '',
+
+                                        // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+
                                       ),
-                                      borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
+
                                     ),
-                                    enabledBorder:const OutlineInputBorder(
-                                      borderRadius:  BorderRadius.all(
-                                        Radius.circular(0.0),
-                                      ),
-                                      borderSide: BorderSide(color: Colors.transparent, width: 0.0),
+                                    Positioned.fill(
+                                        child: new Material(
+                                          color: Colors.transparent,
+                                          child:  new InkWell(
+                                            borderRadius: BorderRadius.all(Radius.circular(0)),
+                                            splashColor: Colors.black,
+                                            overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                            onTap: (){
+
+                                              showCustomDialog(context);
+
+                                              setState(() {
+                                                // showDatePicker =true;
+                                              });
+
+                                            },
+                                          ),
+
+                                        )
                                     ),
-                                    hintText: '',
-
-                                    // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
-
-                                  ),
-
+                                  ],
                                 ),
                               ),
                             ),
@@ -527,36 +678,40 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                         child: Row(
                           children: [
                             Expanded(flex:2, child: Text("${getTranslated(context, "gender")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)),
-                            const  Expanded(
+                              Expanded(
                               flex: 5,
                               child: SizedBox(
-                                child:TextField(
-                                  enabled: false,
-                                  autofocus: false,
-                                  style: const TextStyle(color: Colors.white),
-                                  decoration:  InputDecoration(
-                                    filled: true,
-                                    fillColor: Colors.transparent,
-                                    contentPadding:const EdgeInsets.only(left:10, right: 10),
-                                    focusedBorder:const OutlineInputBorder(
-                                      borderRadius:  BorderRadius.all(
-                                        Radius.circular(0.0),
+                                child: TextField(
+                                        enabled: false,
+                                        autofocus: false,
+                                        style:  TextStyle(color: Colors.white),
+                                        decoration:  InputDecoration(
+                                          filled: true,
+                                          fillColor: Colors.transparent,
+                                          contentPadding: EdgeInsets.only(left:10, right: 10),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderRadius:  BorderRadius.all(
+                                              Radius.circular(0.0),
+                                            ),
+                                            borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderRadius:  BorderRadius.all(
+                                              Radius.circular(0.0),
+                                            ),
+                                            borderSide: BorderSide(color: Colors.transparent, width: 0.0),
+                                          ),
+                                          hintText: '',
+
+                                          // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+
+                                        ),
+
                                       ),
-                                      borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
-                                    ),
-                                    enabledBorder:const OutlineInputBorder(
-                                      borderRadius:  BorderRadius.all(
-                                        Radius.circular(0.0),
-                                      ),
-                                      borderSide: BorderSide(color: Colors.transparent, width: 0.0),
-                                    ),
-                                    hintText: '',
 
-                                    // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
 
-                                  ),
 
-                                ),
+
                               ),
                             ),
                           ],
@@ -762,7 +917,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                       foregroundColor: MaterialStateProperty.all(Colors.black),
                                       padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
                                       textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                                  child:  Text(getTranslated(context, "oderHistory")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.amber, fontSize: 17, fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
+                                  child:  Text(getTranslated(context, "oderHistory")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
                                 ),
                               ),
                             ),
@@ -796,7 +951,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                       foregroundColor: MaterialStateProperty.all(Colors.black),
                                       padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
                                       textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                                  child:  Text(getTranslated(context, "savedAddress")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.amber, fontSize: 17, fontWeight: FontWeight.w300,),textAlign: TextAlign.center,),
+                                  child:  Text(getTranslated(context, "savedAddress")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300,),textAlign: TextAlign.center,),
                                 ),
                               ),
                             ),
@@ -830,7 +985,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                       foregroundColor: MaterialStateProperty.all(Colors.black),
                                       // padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
                                       textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                                  child:  Text(getTranslated(context, "savedCards")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.amber, fontSize: 17, fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
+                                  child:  Text(getTranslated(context, "savedCards")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
                                 ),
                               ),
                             ),
@@ -869,7 +1024,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                       foregroundColor: MaterialStateProperty.all(Colors.black),
                                       padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10)),
                                       textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                                  child:  Text(getTranslated(context, "loyalty")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.amber, fontSize: 17, fontWeight: FontWeight.w300),),
+                                  child:  Text(getTranslated(context, "loyalty")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
                                 ),
                               ),
                             ),
@@ -904,7 +1059,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                       foregroundColor: MaterialStateProperty.all(Colors.black),
                                       padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
                                       textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                                  child:  Text(getTranslated(context, "help")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.amber, fontSize: 17, fontWeight: FontWeight.w300),),
+                                  child:  Text(getTranslated(context, "help")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
                                 ),
                               ),
                             ),
@@ -933,7 +1088,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                       foregroundColor: MaterialStateProperty.all(Colors.black),
                                       padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
                                       textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                                  child:  Text(getTranslated(context, "sighOut")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.amber, fontSize: 17, fontWeight: FontWeight.w300, ),textAlign: TextAlign.center,),
+                                  child:  Text(getTranslated(context, "sighOut")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300, ),textAlign: TextAlign.center,),
                                 ),
                               ),
                             ),
@@ -955,6 +1110,30 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
           drawer: DrawerWidget(onChanged: (value) {widget.onChanged(value);},),
 
         ),
+        Visibility(
+          visible: showDatePicker,
+          child: Positioned(
+            left: 50,
+            top: 180,
+            right: 50,
+            bottom: 180,
+            child: SfDateRangePicker(
+              confirmText:"Okay",
+              cancelText: "Canecl",
+
+              onSubmit: (value){
+                if(value!=null){
+                  showDatePicker = false;
+                 }},
+
+              backgroundColor: Colors.white,
+              onSelectionChanged: _onSelectionChanged,
+              selectionMode: DateRangePickerSelectionMode.single,
+              initialSelectedDate: DateTime.now().subtract(const Duration(days: 4)),//(_selectedDate!='')?DateFormat('dd/MM/yyyy').parse(_selectedDate):
+              // initialSelectedRange: PickerDateRange(DateTime.now().subtract(const Duration(days: 4)), DateTime.now().add(const Duration(days: 3))),
+            ),
+          ),
+        )
       ],
 
     );
