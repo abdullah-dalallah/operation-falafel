@@ -10,7 +10,8 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class TabeBarMenu extends StatefulWidget{
   final ValueChanged onChanged;
-  const TabeBarMenu(this.onChanged,{super.key});
+  final String layOut ;
+  const TabeBarMenu(this.onChanged,{super.key,required this.layOut});
   @override
   State<TabeBarMenu> createState() => _TabeBarMenuState();
 }
@@ -86,13 +87,16 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                        ),
                        centerTitle: true,
                      ),
-                     leading:IconButton(
-                       onPressed: (){
-                         _drawerKey.currentState?.openDrawer();
-                       },
-                       icon: const ImageIcon(
-                         AssetImage("assets/images/icon_menu.png",),
-                         size: 35,
+                     leading:Visibility(
+                       visible: (widget.layOut=="Mobile")?true:false,
+                       child: IconButton(
+                         onPressed: (){
+                           _drawerKey.currentState?.openDrawer();
+                         },
+                         icon: const ImageIcon(
+                           AssetImage("assets/images/icon_menu.png",),
+                           size: 35,
+                         ),
                        ),
                      ) ,
                      actions: [

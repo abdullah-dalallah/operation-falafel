@@ -21,7 +21,8 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class LoggedInUserProfile extends StatefulWidget{
   final ValueChanged onChanged;
-  const LoggedInUserProfile(this.onChanged,{super.key});
+  final String layOut ;
+  const LoggedInUserProfile(this.onChanged,{super.key,required this.layOut});
   @override
   State<LoggedInUserProfile> createState() => _LoggedInUserProfileState();
 }
@@ -190,13 +191,16 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
           key: _drawerKey,
           backgroundColor: Colors.transparent,
           appBar: AppBar(
-            leading:IconButton(
-              onPressed: (){
-                _drawerKey.currentState?.openDrawer();
-              },
-              icon: const ImageIcon(
-                AssetImage("assets/images/icon_menu.png",),
-                size: 35,
+            leading:Visibility(
+              visible: (widget.layOut=="Mobile")?true:false,
+              child: IconButton(
+                onPressed: (){
+                  _drawerKey.currentState?.openDrawer();
+                },
+                icon: const ImageIcon(
+                  AssetImage("assets/images/icon_menu.png",),
+                  size: 35,
+                ),
               ),
             ) ,
             backgroundColor: Colors.transparent,

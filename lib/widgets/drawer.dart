@@ -32,7 +32,7 @@ class _DrawerState extends State<DrawerWidget> {
       backgroundColor: Colors.black,
       child:SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(left:30.0, top: 15, right: 30),
+          padding: const EdgeInsets.only(left:0.0, top: 15, right: 0),
           child:  Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -49,7 +49,6 @@ class _DrawerState extends State<DrawerWidget> {
 
                 ],),
                 const SizedBox(height: 20,),
-
                 Expanded(
                   flex: 8,
                   child: SizedBox(
@@ -62,7 +61,7 @@ class _DrawerState extends State<DrawerWidget> {
                         ListTile(
                           onTap: (){
                             widget.onChanged(0);
-                            Navigator.pop(context);
+                            // Navigator.pop(context);
                           },
                           title: Text(getTranslated(context, "home")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),),
 
@@ -77,7 +76,7 @@ class _DrawerState extends State<DrawerWidget> {
                         /// - Notification
                         ListTile(
                           onTap: (){
-                            Navigator.pop(context);
+                            // Navigator.pop(context);
                             PersistentNavBarNavigator.pushNewScreen(
                               context,
                               screen: Notifications(),

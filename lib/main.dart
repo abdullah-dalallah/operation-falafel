@@ -4,6 +4,10 @@ import 'package:operation_falafel/localization/demo_localization.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/demo_cart/demo_cart_provider.dart';
 import 'package:operation_falafel/providers/parsistent_tabview_provider.dart';
+import 'package:operation_falafel/responsive/desktop_scaffold.dart';
+import 'package:operation_falafel/responsive/mobile_scaffold.dart';
+import 'package:operation_falafel/responsive/responsive_layout.dart';
+import 'package:operation_falafel/responsive/tablet_scaffold.dart';
 import 'package:operation_falafel/screens/bottomnavigationbar_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
@@ -59,6 +63,9 @@ class _MyAppState extends State<MyApp> {
     }
     else{
       return MultiProvider(
+
+
+
         providers: [
           ChangeNotifierProvider(create: (context) => PersistentTabviewProvider()),
           ChangeNotifierProvider(create: (context) => DemoCartProvider()),
@@ -96,7 +103,13 @@ class _MyAppState extends State<MyApp> {
 
               primarySwatch: Colors.blue,
             ),
-            home: KeyboardVisibilityProvider(child: const Tabs_Screen(title: 'Flutter Demo Home Page')),
+            home: KeyboardVisibilityProvider(child:
+            ResponsiveLayout(DesktopScaffold: DesktopScaffold(),MobileScaffold: MobileScaffold(),TabletScaffold: TabletScaffold(), ),
+
+            // const Tabs_Screen()
+
+
+            ),
           ),
       );
     }

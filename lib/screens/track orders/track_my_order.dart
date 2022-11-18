@@ -8,7 +8,8 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 
 class TrackMyOrder extends StatefulWidget{
   final ValueChanged onChanged;
-  const TrackMyOrder(this.onChanged,{super.key});
+  final String layOut ;
+  const TrackMyOrder(this.onChanged,{super.key,required this.layOut});
   @override
   State<TrackMyOrder> createState() => _TrackMyOrderState();
 }
@@ -40,13 +41,16 @@ class _TrackMyOrderState extends State<TrackMyOrder> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           leading:
-          IconButton(
-            onPressed: (){
-              _drawerKey.currentState?.openDrawer();
-            },
-            icon: const ImageIcon(
-              AssetImage("assets/images/icon_menu.png",),
-              size: 35,
+          Visibility(
+            visible: (widget.layOut=="Mobile")?true:false,
+            child: IconButton(
+              onPressed: (){
+                _drawerKey.currentState?.openDrawer();
+              },
+              icon: const ImageIcon(
+                AssetImage("assets/images/icon_menu.png",),
+                size: 35,
+              ),
             ),
           ) ,
           backgroundColor: Colors.transparent,

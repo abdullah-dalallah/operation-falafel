@@ -12,7 +12,8 @@ import 'package:provider/provider.dart';
 
 class Cart_Screen extends StatefulWidget{
   final ValueChanged onChanged;
-  const Cart_Screen(this.onChanged,{super.key});
+  final String layOut ;
+  const Cart_Screen(this.onChanged,{super.key,required this.layOut});
   @override
   State<Cart_Screen> createState() => _Cart_ScreenState();
 }
@@ -56,13 +57,16 @@ class _Cart_ScreenState extends State<Cart_Screen> {
          key: _drawerKey,
          backgroundColor: Colors.transparent,
          appBar: AppBar(
-           leading:IconButton(
-             onPressed: (){
-               _drawerKey.currentState?.openDrawer();
-             },
-             icon: const ImageIcon(
-               AssetImage("assets/images/icon_menu.png",),
-               size: 35,
+           leading:Visibility(
+             visible: (widget.layOut=="Mobile")?true:false,
+             child: IconButton(
+               onPressed: (){
+                 _drawerKey.currentState?.openDrawer();
+               },
+               icon: const ImageIcon(
+                 AssetImage("assets/images/icon_menu.png",),
+                 size: 35,
+               ),
              ),
            ) ,
            backgroundColor: Colors.transparent,
