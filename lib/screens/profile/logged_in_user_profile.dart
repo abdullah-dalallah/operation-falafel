@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -74,6 +75,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
 
       }
       else if (args.value is DateTime) {
+
         _selectedDate = DateFormat('dd/MM/yyyy').format(args.value).toString();
         // showDatePicker = false;
         print("DateTime");
@@ -81,14 +83,14 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
       }
       else if (args.value is List<DateTime>) {
         _dateCount = args.value.length.toString();
-        birthDateController.text = _selectedDate;
-        print("List DateTime");
+        // birthDateController.text = _selectedDate;
+        // print("List DateTime");
         // showDatePicker = false;
       }
       else {
         _rangeCount = args.value.length.toString();
-        birthDateController.text = _selectedDate;
-        print("default");
+        // birthDateController.text = _selectedDate;
+        // print("default");
         // showDatePicker = false;
       }
     });
@@ -102,11 +104,12 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
       barrierLabel: "Barrier",
       barrierDismissible: true,
       barrierColor: Colors.black.withOpacity(0.5),
-      transitionDuration: Duration(milliseconds: 200),
+      transitionDuration: Duration(milliseconds: 500),
       pageBuilder: (context, __, ___) {
         return Center(
           child: Container(
             height: 450,
+            constraints: BoxConstraints(maxWidth: 450, ),
             margin: const EdgeInsets.symmetric(horizontal: 20),
             decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(40)),
             child: SizedBox.expand(
@@ -115,27 +118,35 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
               allowViewNavigation: true,
               monthViewSettings:const DateRangePickerMonthViewSettings(weekNumberStyle: DateRangePickerWeekNumberStyle(textStyle: TextStyle(color:Colors.white,backgroundColor: Colors.white)),viewHeaderStyle: DateRangePickerViewHeaderStyle(textStyle: TextStyle(color:Colors.white))),
               showActionButtons: true,
-              onSubmit: (value){if(value!=null){
+              onSubmit: (value){
+
+               DateTime tempValue =value as DateTime;
+               if(tempValue!=null){
+                 _selectedDate = DateFormat('dd/MM/yyyy').format(tempValue).toString();
+                 // showDatePicker = false;
+                 print("DateTime");
+                 birthDateController.text = _selectedDate;
+
+
                 Navigator.pop(context);
               }},
               onCancel: (){ Navigator.pop(context);},
               backgroundColor: Colors.black,
-             todayHighlightColor: Colors.amber,
-             startRangeSelectionColor: Colors.amber,
-             endRangeSelectionColor: Colors.amber,
-                rangeSelectionColor: Colors.amber,
+              todayHighlightColor: Colors.amber,
+              startRangeSelectionColor: Colors.amber,
+              endRangeSelectionColor: Colors.amber,
+              rangeSelectionColor: Colors.amber,
               selectionColor: Colors.amber,
-
-
-                headerStyle: DateRangePickerHeaderStyle(textStyle: TextStyle(color:Colors.white),backgroundColor: Colors.black,textAlign: TextAlign.center),
-                monthCellStyle: DateRangePickerMonthCellStyle(textStyle: TextStyle(color:Colors.white),blackoutDateTextStyle: TextStyle(color:Colors.white), todayTextStyle:TextStyle(color:Colors.white),leadingDatesTextStyle: TextStyle(color:Colors.white),weekendTextStyle:  TextStyle(color:Colors.grey),disabledDatesTextStyle: TextStyle(color:Colors.white),trailingDatesTextStyle: TextStyle(color:Colors.white),specialDatesTextStyle: TextStyle(color:Colors.white),),
-                yearCellStyle: DateRangePickerYearCellStyle(textStyle: TextStyle(color:Colors.white),disabledDatesTextStyle: TextStyle(color:Colors.white), todayTextStyle:TextStyle(color:Colors.white),leadingDatesTextStyle: TextStyle(color:Colors.white), ),
+              headerStyle: DateRangePickerHeaderStyle(textStyle: TextStyle(color:Colors.white),backgroundColor: Colors.black,textAlign: TextAlign.center),
+              monthCellStyle: DateRangePickerMonthCellStyle(textStyle: TextStyle(color:Colors.white),blackoutDateTextStyle: TextStyle(color:Colors.white), todayTextStyle:TextStyle(color:Colors.white),leadingDatesTextStyle: TextStyle(color:Colors.white),weekendTextStyle:  TextStyle(color:Colors.grey),disabledDatesTextStyle: TextStyle(color:Colors.white),trailingDatesTextStyle: TextStyle(color:Colors.white),specialDatesTextStyle: TextStyle(color:Colors.white),),
+              yearCellStyle: DateRangePickerYearCellStyle(textStyle: TextStyle(color:Colors.white),disabledDatesTextStyle: TextStyle(color:Colors.white), todayTextStyle:TextStyle(color:Colors.white),leadingDatesTextStyle: TextStyle(color:Colors.white), ),
               selectionTextStyle: TextStyle(color:Colors.white),
-               rangeTextStyle: TextStyle(color:Colors.white),
+              rangeTextStyle: TextStyle(color:Colors.white),
 
               onSelectionChanged: _onSelectionChanged,
               selectionMode: DateRangePickerSelectionMode.single,
-              initialSelectedDate: (_selectedDate!='')?DateFormat('dd/MM/yyyy').parse(_selectedDate):DateTime.now().subtract(const Duration(days: 4)),//(_selectedDate!='')?DateFormat('dd/MM/yyyy').parse(_selectedDate):
+              initialDisplayDate:(_selectedDate!='')?DateFormat('dd/MM/yyyy').parse(_selectedDate):DateTime.now().subtract(const Duration(days: 0)),
+              initialSelectedDate: (_selectedDate!='')?DateFormat('dd/MM/yyyy').parse(_selectedDate):DateTime.now().subtract(const Duration(days: 0)),//(_selectedDate!='')?DateFormat('dd/MM/yyyy').parse(_selectedDate):
               // initialSelectedRange: PickerDateRange(DateTime.now().subtract(const Duration(days: 4)), DateTime.now().add(const Duration(days: 3))),
             ),),
           ),
@@ -164,6 +175,15 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
 
 
   TextEditingController birthDateController = new TextEditingController();
+
+
+  final List<String> gender = [
+    "male",
+    "female",
+
+  ];
+  dynamic? selectedValue;
+
 
   @override
   Widget build(BuildContext context) {
@@ -220,394 +240,230 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
               // ),
             ],
           ),
-          body: Column(
-            children: [
-              /// - Image & Name & Edit
-              const SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          body: Center(
+            child: Container(
+              constraints: BoxConstraints(maxWidth: 450, ),
+              child: Column(
                 children: [
-                  Stack(
-                    alignment: Alignment.topRight,
+                  /// - Image & Name & Edit
+                  const SizedBox(height: 20,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Container(
-                        padding: EdgeInsets.all(0),
-                        width: 110,
-                        height: 110,
-                        decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.4),
-                          borderRadius:const BorderRadius.only(
-                            topRight: Radius.circular(100),
-                            bottomLeft: Radius.circular(100),
-                            topLeft: Radius.circular(100),
-                            bottomRight: Radius.circular(100),
-                          ),
-                          border: Border.all(
-                            width: 2,
-                            color: Colors.amber,
-                            style: BorderStyle.solid,
-                          ),
-                        ),
-                        child: ClipRRect(
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(100),
-                              topRight: Radius.circular(100),
-                              bottomLeft: Radius.circular(100),
-                              bottomRight: Radius.circular(100),
-
+                      Stack(
+                        alignment: Alignment.topRight,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(0),
+                            width: 110,
+                            height: 110,
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.4),
+                              borderRadius:const BorderRadius.only(
+                                topRight: Radius.circular(100),
+                                bottomLeft: Radius.circular(100),
+                                topLeft: Radius.circular(100),
+                                bottomRight: Radius.circular(100),
+                              ),
+                              border: Border.all(
+                                width: 2,
+                                color: Colors.amber,
+                                style: BorderStyle.solid,
+                              ),
                             ),
-                            child: Image.asset("assets/images/tempuser.gif",height: 100,width: 100,fit: BoxFit.cover,)),
-                      ),
-                      Positioned(
-                        child: SizedBox(
-                          width:40,
-                          height:40,
+                            child: ClipRRect(
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(100),
+                                  topRight: Radius.circular(100),
+                                  bottomLeft: Radius.circular(100),
+                                  bottomRight: Radius.circular(100),
 
-                          child: ElevatedButton(
-                              onPressed: () {
-
-                              },
-                              style: ButtonStyle(
-                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                      const RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(Radius.circular(100)),
-                                          side: BorderSide(color: Colors.transparent,width: 1)
-                                      )
-                                  ),
-                                  overlayColor: MaterialStateProperty.all(Colors.white30),
-                                  elevation:MaterialStateProperty.all(0),
-                                  shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                  backgroundColor: MaterialStateProperty.all(Colors.black),
-                                  foregroundColor: MaterialStateProperty.all(Colors.white),
-                                  padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
-                                  textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                              child: const Icon(Icons.mode_edit_outline_outlined, color: Colors.white,)
+                                ),
+                                child: Image.asset("assets/images/tempuser.gif",height: 100,width: 100,fit: BoxFit.cover,)),
                           ),
-                        ),
+                          Positioned(
+                            child: SizedBox(
+                              width:40,
+                              height:40,
+
+                              child: ElevatedButton(
+                                  onPressed: () {
+
+                                  },
+                                  style: ButtonStyle(
+                                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                          const RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(Radius.circular(100)),
+                                              side: BorderSide(color: Colors.transparent,width: 1)
+                                          )
+                                      ),
+                                      overlayColor: MaterialStateProperty.all(Colors.white30),
+                                      elevation:MaterialStateProperty.all(0),
+                                      shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                      backgroundColor: MaterialStateProperty.all(Colors.black),
+                                      foregroundColor: MaterialStateProperty.all(Colors.white),
+                                      padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
+                                      textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
+                                  child: const Icon(Icons.mode_edit_outline_outlined, color: Colors.white,)
+                              ),
+                            ),
+                          ),
+
+
+                        ],
                       ),
+                      Column(
+                        children: [
+                          Text("ABDULLH", style: TextStyle(fontFamily: getTranslated(context, "fontFamilyButtons"),color: Colors.amber,fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
+                          SizedBox(
+
+                            child: DecoratedBox(
+
+                              decoration:const BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(color: Colors.white),
+                                ),
+                              ),
+                              child: TextButton(
+                                style: TextButton.styleFrom(
+                                  foregroundColor: Colors.white,
+                                ),
+                                onPressed: () { },
+                                child: Text(getTranslated(context, "editProfile")!,style: TextStyle(fontWeight: FontWeight.w400, fontFamily:  getTranslated(context, "fontFamilyBody")!,color: Colors.amber),),
 
 
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
-                  Column(
-                    children: [
-                      Text("ABDULLH", style: TextStyle(fontFamily: getTranslated(context, "fontFamilyButtons"),color: Colors.amber,fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
-                      SizedBox(
 
-                        child: DecoratedBox(
+                  const SizedBox(height: 50,),
+                  /// - Form
+                  Expanded(
+                    child: ListView(
+                      // physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      children: [
+                        /// - Name
+                        Padding(
+                          padding: const EdgeInsets.only(left:18.0, right: 18),
+                          child: Container(
 
-                          decoration:const BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(color: Colors.white),
-                            ),
-                          ),
-                          child: TextButton(
-                            style: TextButton.styleFrom(
-                              foregroundColor: Colors.white,
-                            ),
-                            onPressed: () { },
-                            child: Text(getTranslated(context, "editProfile")!,style: TextStyle(fontWeight: FontWeight.w400, fontFamily:  getTranslated(context, "fontFamilyBody")!,color: Colors.amber),),
-
-
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-
-              const SizedBox(height: 50,),
-              /// - Form
-              Expanded(
-                child: ListView(
-                  // physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  children: [
-                    /// - Name
-                    Padding(
-                      padding: const EdgeInsets.only(left:18.0, right: 18),
-                      child: Container(
-
-                        padding: EdgeInsets.only(left:10, right: 10),
-                        decoration: BoxDecoration(
-                          color: Colors.black45,
-                          borderRadius:const BorderRadius.only(
-                            topRight: Radius.circular(10),
-                            bottomLeft: Radius.circular(10),
-                            topLeft: Radius.circular(10),
-                            bottomRight: Radius.circular(10),
-                          ),
-                          border: Border.all(
-                            width: 1.5,
-                            color: Colors.transparent,
-                            style: BorderStyle.solid,
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(flex:1, child: Text("${getTranslated(context, "name")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)),
-                           const  Expanded(
-                              flex: 5,
-                              child: SizedBox(
-
-                                child:   TextField(
-
-                                  autofocus: false,
-                                  style:  TextStyle(color: Colors.white),
-                                  decoration:  InputDecoration(
-                                    filled: true,
-                                    fillColor: Colors.transparent,
-                                    contentPadding: EdgeInsets.only(left:10, right: 10),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius:  BorderRadius.all(
-                                        Radius.circular(0.0),
-                                      ),
-                                      borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderRadius:  BorderRadius.all(
-                                        Radius.circular(0.0),
-                                      ),
-                                      borderSide: BorderSide(color: Colors.transparent, width: 0.0),
-                                    ),
-                                    hintText: '',
-
-                                    // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
-
-                                  ),
-
-                                ),
+                            padding: EdgeInsets.only(left:10, right: 10),
+                            decoration: BoxDecoration(
+                              color: Colors.black45,
+                              borderRadius:const BorderRadius.only(
+                                topRight: Radius.circular(10),
+                                bottomLeft: Radius.circular(10),
+                                topLeft: Radius.circular(10),
+                                bottomRight: Radius.circular(10),
+                              ),
+                              border: Border.all(
+                                width: 1.5,
+                                color: Colors.transparent,
+                                style: BorderStyle.solid,
                               ),
                             ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 10,),
-                    /// - Phone number
-                    Padding(
-                      padding: const EdgeInsets.only(left:18.0, right: 18),
-                      child: Container(
-                        padding:  EdgeInsets.only(top:0),
-                        margin: EdgeInsets.zero,
-                        decoration: BoxDecoration(
-                          color: Colors.black45,
+                            child: Row(
+                              children: [
+                                Expanded(flex:1, child: Text("${getTranslated(context, "name")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)),
+                               const  Expanded(
+                                  flex: 5,
+                                  child: SizedBox(
 
-                          borderRadius:const BorderRadius.only(
-                            topRight: Radius.circular(10),
-                            bottomLeft: Radius.circular(10),
-                            topLeft: Radius.circular(10),
-                            bottomRight: Radius.circular(10),
-                          ),
-                          border: Border.all(
-                            width: 0,
-                            color: Colors.transparent,
-                            style: BorderStyle.solid,
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(flex:5, child: Padding(
-                              padding: const EdgeInsets.only(left:10, right: 10),
-                              child: Text("${getTranslated(context, "mobileNo")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),),
-                            )),
-                            Expanded(
-                                flex:2,
-                                child: Padding(
-                                padding: const EdgeInsets.only(left:0, right:0),
-                                child: IconButton(
-                                  icon:
-                                countryCode!=null?
-                                SizedBox(width: 30,height: 30, child: countryCode!.flagImage)
-                                    :const Icon(Icons.flag_outlined),
-                                  padding: EdgeInsets.zero,
-                                  onPressed: () async {
+                                    child:   TextField(
 
-                                  final code = await countryPicker.showPicker(context: context,initialSelectedLocale: "AE");
-                                  if (code != null) {
-                                    setState((){
-                                      countryCode =code;
-                                    });
-
-
-                                  };
-                                },)
-                            )),
-                             const Expanded(
-                              flex: 7,
-                              child: SizedBox(
-
-                                child:   TextField(
-                                  autofocus: false,
-                                  style:  TextStyle(color: Colors.white),
-                                  decoration:  InputDecoration(
-                                    filled: true,
-                                    fillColor: Colors.transparent,
-                                    contentPadding: EdgeInsets.only(left:10, right: 10),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius:  BorderRadius.all(
-                                        Radius.circular(0.0),
-                                      ),
-                                      borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderRadius:  BorderRadius.all(
-                                        Radius.circular(0.0),
-                                      ),
-                                      borderSide: BorderSide(color: Colors.transparent, width: 0.0),
-                                    ),
-                                    hintText: '',
-
-                                    // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
-
-                                  ),
-
-                                ),
-                              ),
-                            ),
-                            Expanded(
-
-                              flex: 3,
-                              child: SizedBox(
-                                  height: 50,
-                                  child: Container(
-                                    decoration:  BoxDecoration(
-                                      borderRadius:
-
-                                      (Localizations.localeOf(context).languageCode=='en')?
-                                      const BorderRadius.only(
-                                        bottomRight:     Radius.circular(10),
-                                        topRight: Radius.circular(10),
-                                      ):
-                                      (Localizations.localeOf(context).languageCode=='ar')?
-                                      const BorderRadius.only(
-                                        bottomLeft:  Radius.circular(10.0),
-                                        topLeft: Radius.circular(10.0),
-                                      ):
-                                      const BorderRadius.only(
-                                        bottomRight:     Radius.circular(10),
-                                        topRight: Radius.circular(10),
-                                      ),
-
-
-
-
-
-
-                                      color: Colors.green,
-                                      // border: Border.all(
-                                      //   width: 0.8,
-                                      //   color: Colors.white,
-                                      //   style: BorderStyle.solid,
-                                      // ),
-                                    ),
-                                    child: Icon(Icons.check, color: Colors.white,),
-                                  )
-                              ),
-                            ),
-
-
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 10,),
-                    /// - email address
-                    Padding(
-                      padding: const EdgeInsets.only(left:18.0, right: 18),
-                      child: Container(
-                        padding: const EdgeInsets.only(left:10, right: 10),
-                        decoration: BoxDecoration(
-                          color: Colors.black45,
-                          borderRadius:const BorderRadius.only(
-                            topRight: Radius.circular(10),
-                            bottomLeft: Radius.circular(10),
-                            topLeft: Radius.circular(10),
-                            bottomRight: Radius.circular(10),
-                          ),
-                          border: Border.all(
-                            width: 0,
-                            color: Colors.transparent,
-                            style: BorderStyle.solid,
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(flex:3, child: Text("${getTranslated(context, "emailAddress")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)),
-                            Expanded(
-                              flex: 5,
-                              child: SizedBox(
-
-                                child:   TextField(
-
-                                  autofocus: false,
-                                  style: const TextStyle(color: Colors.white),
-                                  decoration:  InputDecoration(
-                                    filled: true,
-                                    fillColor: Colors.transparent,
-                                    contentPadding:const EdgeInsets.only(left:10, right: 10),
-                                    focusedBorder:const OutlineInputBorder(
-                                      borderRadius:  BorderRadius.all(
-                                        Radius.circular(0.0),
-                                      ),
-                                      borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
-                                    ),
-                                    enabledBorder:const OutlineInputBorder(
-                                      borderRadius:  BorderRadius.all(
-                                        Radius.circular(0.0),
-                                      ),
-                                      borderSide: BorderSide(color: Colors.transparent, width: 0.0),
-                                    ),
-                                    hintText: '',
-
-                                    // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
-
-                                  ),
-
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 10,),
-                    /// - date of birth
-                    Padding(
-                      padding: const EdgeInsets.only(left:18.0, right: 18),
-                      child: Container(
-                        padding: const EdgeInsets.only(left:10, right: 10),
-                        decoration: BoxDecoration(
-                          color: Colors.black45,
-                          borderRadius:const BorderRadius.only(
-                            topRight: Radius.circular(10),
-                            bottomLeft: Radius.circular(10),
-                            topLeft: Radius.circular(10),
-                            bottomRight: Radius.circular(10),
-                          ),
-                          border: Border.all(
-                            width: 0,
-                            color: Colors.transparent,
-                            style: BorderStyle.solid,
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(flex:2, child: Text("${getTranslated(context, "dateOfBirth")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)),
-                            Expanded(
-                              flex: 5,
-                              child: SizedBox(
-
-                                child:   Stack(
-                                  children: [
-                                     TextField(
-                                      controller: birthDateController,
-                                      enabled: false,
                                       autofocus: false,
                                       style:  TextStyle(color: Colors.white),
+                                      decoration:  InputDecoration(
+                                        filled: true,
+                                        fillColor: Colors.transparent,
+                                        contentPadding: EdgeInsets.only(left:10, right: 10),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius:  BorderRadius.all(
+                                            Radius.circular(0.0),
+                                          ),
+                                          borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius:  BorderRadius.all(
+                                            Radius.circular(0.0),
+                                          ),
+                                          borderSide: BorderSide(color: Colors.transparent, width: 0.0),
+                                        ),
+                                        hintText: '',
+                                        // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
 
-                                      decoration:  const InputDecoration(
+                                      ),
+
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 10,),
+                        /// - Phone number
+                        Padding(
+                          padding: const EdgeInsets.only(left:18.0, right: 18),
+                          child: Container(
+                            padding:  EdgeInsets.only(top:0),
+                            margin: EdgeInsets.zero,
+                            decoration: BoxDecoration(
+                              color: Colors.black45,
+
+                              borderRadius:const BorderRadius.only(
+                                topRight: Radius.circular(10),
+                                bottomLeft: Radius.circular(10),
+                                topLeft: Radius.circular(10),
+                                bottomRight: Radius.circular(10),
+                              ),
+                              border: Border.all(
+                                width: 0,
+                                color: Colors.transparent,
+                                style: BorderStyle.solid,
+                              ),
+                            ),
+                            child: Row(
+                              children: [
+                                Expanded(flex:5, child: Padding(
+                                  padding: const EdgeInsets.only(left:10, right: 10),
+                                  child: Text("${getTranslated(context, "mobileNo")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),),
+                                )),
+                                Expanded(
+                                    flex:2,
+                                    child: Padding(
+                                    padding: const EdgeInsets.only(left:0, right:0),
+                                    child: IconButton(
+                                      icon:
+                                    countryCode!=null?
+                                    SizedBox(width: 30,height: 30, child: countryCode!.flagImage)
+                                        :const Icon(Icons.flag_outlined),
+                                      padding: EdgeInsets.zero,
+                                      onPressed: () async {
+
+                                      final code = await countryPicker.showPicker(context: context,initialSelectedLocale: "AE");
+                                      if (code != null) {
+                                        setState((){
+                                          countryCode =code;
+                                        });
+
+
+                                      };
+                                    },)
+                                )),
+                                 const Expanded(
+                                  flex: 7,
+                                  child: SizedBox(
+
+                                    child:   TextField(
+                                      autofocus: false,
+                                      style:  TextStyle(color: Colors.white),
+                                      decoration:  InputDecoration(
                                         filled: true,
                                         fillColor: Colors.transparent,
                                         contentPadding: EdgeInsets.only(left:10, right: 10),
@@ -630,488 +486,734 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                       ),
 
                                     ),
-                                    Positioned.fill(
-                                        child: new Material(
-                                          color: Colors.transparent,
-                                          child:  new InkWell(
-                                            borderRadius: BorderRadius.all(Radius.circular(0)),
-                                            splashColor: Colors.black,
-                                            overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+                                  ),
+                                ),
+                                Expanded(
 
-                                            onTap: (){
+                                  flex: 3,
+                                  child: SizedBox(
+                                      height: 50,
+                                      child: Container(
+                                        decoration:  BoxDecoration(
+                                          borderRadius:
 
-                                              showCustomDialog(context);
-
-                                              setState(() {
-                                                // showDatePicker =true;
-                                              });
-
-                                            },
+                                          (Localizations.localeOf(context).languageCode=='en')?
+                                          const BorderRadius.only(
+                                            bottomRight:     Radius.circular(10),
+                                            topRight: Radius.circular(10),
+                                          ):
+                                          (Localizations.localeOf(context).languageCode=='ar')?
+                                          const BorderRadius.only(
+                                            bottomLeft:  Radius.circular(10.0),
+                                            topLeft: Radius.circular(10.0),
+                                          ):
+                                          const BorderRadius.only(
+                                            bottomRight:     Radius.circular(10),
+                                            topRight: Radius.circular(10),
                                           ),
 
-                                        )
-                                    ),
-                                  ],
+
+
+
+
+
+                                          color: Colors.green,
+                                          // border: Border.all(
+                                          //   width: 0.8,
+                                          //   color: Colors.white,
+                                          //   style: BorderStyle.solid,
+                                          // ),
+                                        ),
+                                        child: Icon(Icons.check, color: Colors.white,),
+                                      )
+                                  ),
                                 ),
+
+
+                              ],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 10,),
+                        /// - email address
+                        Padding(
+                          padding: const EdgeInsets.only(left:18.0, right: 18),
+                          child: Container(
+                            padding: const EdgeInsets.only(left:10, right: 10),
+                            decoration: BoxDecoration(
+                              color: Colors.black45,
+                              borderRadius:const BorderRadius.only(
+                                topRight: Radius.circular(10),
+                                bottomLeft: Radius.circular(10),
+                                topLeft: Radius.circular(10),
+                                bottomRight: Radius.circular(10),
+                              ),
+                              border: Border.all(
+                                width: 0,
+                                color: Colors.transparent,
+                                style: BorderStyle.solid,
                               ),
                             ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 10,),
-                    /// - gender
-                    Padding(
-                      padding: const EdgeInsets.only(left:18.0, right: 18),
-                      child: Container(
-                        padding: const EdgeInsets.only(left:10, right: 10),
-                        decoration: BoxDecoration(
-                          color: Colors.black45,
-                          borderRadius:const BorderRadius.only(
-                            topRight: Radius.circular(10),
-                            bottomLeft: Radius.circular(10),
-                            topLeft: Radius.circular(10),
-                            bottomRight: Radius.circular(10),
-                          ),
-                          border: Border.all(
-                            width: 0,
-                            color: Colors.transparent,
-                            style: BorderStyle.solid,
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(flex:2, child: Text("${getTranslated(context, "gender")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)),
-                              Expanded(
-                              flex: 5,
-                              child: SizedBox(
-                                child: TextField(
-                                        enabled: false,
-                                        autofocus: false,
-                                        style:  TextStyle(color: Colors.white),
-                                        decoration:  InputDecoration(
-                                          filled: true,
-                                          fillColor: Colors.transparent,
-                                          contentPadding: EdgeInsets.only(left:10, right: 10),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderRadius:  BorderRadius.all(
-                                              Radius.circular(0.0),
-                                            ),
-                                            borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
-                                          ),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderRadius:  BorderRadius.all(
-                                              Radius.circular(0.0),
-                                            ),
-                                            borderSide: BorderSide(color: Colors.transparent, width: 0.0),
-                                          ),
-                                          hintText: '',
+                            child: Row(
+                              children: [
+                                Expanded(flex:3, child: Text("${getTranslated(context, "emailAddress")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)),
+                                Expanded(
+                                  flex: 5,
+                                  child: SizedBox(
 
-                                          // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+                                    child:   TextField(
+
+                                      autofocus: false,
+                                      style: const TextStyle(color: Colors.white),
+                                      decoration:  InputDecoration(
+                                        filled: true,
+                                        fillColor: Colors.transparent,
+                                        contentPadding:const EdgeInsets.only(left:10, right: 10),
+                                        focusedBorder:const OutlineInputBorder(
+                                          borderRadius:  BorderRadius.all(
+                                            Radius.circular(0.0),
+                                          ),
+                                          borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
+                                        ),
+                                        enabledBorder:const OutlineInputBorder(
+                                          borderRadius:  BorderRadius.all(
+                                            Radius.circular(0.0),
+                                          ),
+                                          borderSide: BorderSide(color: Colors.transparent, width: 0.0),
+                                        ),
+                                        hintText: '',
+
+                                        // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+
+                                      ),
+
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 10,),
+                        /// - date of birth
+                        Padding(
+                          padding: const EdgeInsets.only(left:18.0, right: 18),
+                          child: Container(
+                            padding: const EdgeInsets.only(left:10, right: 10),
+                            decoration: BoxDecoration(
+                              color: Colors.black45,
+                              borderRadius:const BorderRadius.only(
+                                topRight: Radius.circular(10),
+                                bottomLeft: Radius.circular(10),
+                                topLeft: Radius.circular(10),
+                                bottomRight: Radius.circular(10),
+                              ),
+                              border: Border.all(
+                                width: 0,
+                                color: Colors.transparent,
+                                style: BorderStyle.solid,
+                              ),
+                            ),
+                            child: Row(
+                              children: [
+                                Expanded(flex:2, child: Text("${getTranslated(context, "dateOfBirth")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)),
+                                Expanded(
+                                  flex: 5,
+                                  child: SizedBox(
+
+                                    child:   Stack(
+                                      children: [
+                                         TextField(
+                                          controller: birthDateController,
+                                          enabled: false,
+                                          autofocus: false,
+                                          style:  TextStyle(color: Colors.white),
+
+                                          decoration:  const InputDecoration(
+                                            filled: true,
+                                            fillColor: Colors.transparent,
+                                            contentPadding: EdgeInsets.only(left:10, right: 10),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderRadius:  BorderRadius.all(
+                                                Radius.circular(0.0),
+                                              ),
+                                              borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
+                                            ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderRadius:  BorderRadius.all(
+                                                Radius.circular(0.0),
+                                              ),
+                                              borderSide: BorderSide(color: Colors.transparent, width: 0.0),
+                                            ),
+                                            hintText: '',
+
+                                            // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+
+                                          ),
 
                                         ),
+                                         Positioned.fill(
+                                            child: new Material(
+                                              color: Colors.transparent,
+                                              child:  new InkWell(
+                                                borderRadius: BorderRadius.all(Radius.circular(0)),
+                                                splashColor: Colors.black,
+                                                overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
 
-                                      ),
+                                                onTap: (){
 
+                                                  showCustomDialog(context);
 
+                                                  setState(() {
+                                                    // showDatePicker =true;
+                                                  });
 
+                                                },
+                                              ),
 
+                                            )
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 10,),
+                        /// - gender
+                        Padding(
+                          padding: const EdgeInsets.only(left:18.0, right: 18),
+                          child: Container(
+                            padding: const EdgeInsets.only(left:10, right: 10),
+                            decoration: BoxDecoration(
+                              color: Colors.black45,
+                              borderRadius:const BorderRadius.only(
+                                topRight: Radius.circular(10),
+                                bottomLeft: Radius.circular(10),
+                                topLeft: Radius.circular(10),
+                                bottomRight: Radius.circular(10),
+                              ),
+                              border: Border.all(
+                                width: 0,
+                                color: Colors.transparent,
+                                style: BorderStyle.solid,
                               ),
                             ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 10,),
-                    /// - Password
-                    Padding(
-                      padding: const EdgeInsets.only(left:18.0, right: 18),
-                      child: Container(
-                        padding: const EdgeInsets.only(left:10, right: 10),
-                        decoration: BoxDecoration(
-                          color: Colors.black45,
-                          borderRadius:const BorderRadius.only(
-                            topRight: Radius.circular(10),
-                            bottomLeft: Radius.circular(10),
-                            topLeft: Radius.circular(10),
-                            bottomRight: Radius.circular(10),
-                          ),
-                          border: Border.all(
-                            width: 0,
-                            color: Colors.transparent,
-                            style: BorderStyle.solid,
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(flex:2, child: Text("${getTranslated(context, "password")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)),
-                            const Expanded(
-                              flex: 5,
-                              child:  SizedBox(
+                            child: Row(
+                              children: [
+                                Expanded(flex:2, child: Text("${getTranslated(context, "gender")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)),
+                                Expanded(
+                                  flex: 5,
+                                  child: SizedBox(
+                                    child: DropdownButtonFormField2(
 
-                                child:   TextField(
-                                  obscureText: true,
-                                  enableSuggestions: false,
-                                  autocorrect: false,
-                                  autofocus: false,
-                                  style: const TextStyle(color: Colors.white),
-                                  decoration:  InputDecoration(
+                                      scrollbarAlwaysShow: true,
+                                      style: const TextStyle(color: Colors.white),
+                                      decoration: const InputDecoration(
+                                        //Add isDense true and zero Padding.
+                                        //Add Horizontal padding using buttonPadding and Vertical padding by increasing buttonHeight instead of add Padding here so that The whole TextField Button become clickable, and also the dropdown menu open under The whole TextField Button.
+                                        isDense: true,
+                                        fillColor: Colors.transparent,
+                                        filled: true,
+                                        contentPadding: EdgeInsets.only(),
+                                        // border: OutlineInputBorder(
+                                        //   borderSide: const BorderSide(color: Colors.green, width: 40.0, style: BorderStyle.solid ),
+                                        //   borderRadius: BorderRadius.circular(10),
+                                        //
+                                        // ),
+                                        focusColor: Colors.transparent,
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius:  BorderRadius.all(
+                                            Radius.circular(10.0),
+                                          ),
+                                          borderSide: BorderSide(color: Colors.transparent, width: 2.0, ),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius:  BorderRadius.all(
+                                            Radius.circular(10.0),
+                                          ),
+                                          borderSide: BorderSide(color: Colors.transparent, width: 2.0),
+                                        ),
 
-                                    filled: true,
-                                    fillColor: Colors.transparent,
-                                    contentPadding: EdgeInsets.only(left:10, right: 10),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius:  BorderRadius.all(
-                                        Radius.circular(0.0),
+                                        //Add more decoration as you want here
+                                        //Add label If you want but add hint outside the decoration to be aligned in the button perfectly.
                                       ),
-                                      borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderRadius:  BorderRadius.all(
-                                        Radius.circular(0.0),
+                                      isExpanded: true,
+                                      hint:  Text(
+                                        'Select Gender',
+                                        style: TextStyle(fontSize: 16, color: Colors.white60 ,fontFamily: getTranslated(context, "fontFamilyBody")!),
                                       ),
-                                      borderSide: BorderSide(color: Colors.transparent, width: 0.0),
+
+                                      icon: const ImageIcon(AssetImage("assets/images/down.png"),),
+                                      // const Icon(
+                                      //   Icons.arrow_drop_down,
+                                      //   color: Colors.white60,
+                                      // ),
+                                      iconSize: 30,
+                                      buttonHeight: (selectedValue!=null)?50:50,
+                                      buttonPadding: const EdgeInsets.only(left: 20, right: 20),
+                                      dropdownDecoration: BoxDecoration(
+                                        color: Colors.black,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      itemHeight: 30,
+
+                                      items: gender
+                                          .map((gender) =>
+                                          DropdownMenuItem<dynamic>(
+                                            value: gender,
+                                            child:
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+
+                                                Row(
+                                                  children: [
+
+                                                    (selectedValue!=null)?
+                                                    (selectedValue==gender)?
+                                                    Image.asset("assets/images/page2_icon.png", height: 15,width: 15,) :SizedBox(width: 15,):SizedBox(width: 15,),
+                                                    SizedBox(width: 5,),
+                                                    Text(getTranslated(context, gender)!, style:  TextStyle(fontSize: 13,color: Colors.white, fontFamily: getTranslated(context, "fontFamilyBody")!),
+                                                    ),
+                                                  ],
+                                                ),
+
+
+
+
+                                              ],
+                                            ),
+
+
+
+
+
+                                          ))
+                                          .toList(),
+                                      validator: (value) {
+                                        if (value == null) {
+                                          return 'Please select gender.';
+                                        }
+                                      },
+                                      onChanged: (value) {
+                                        //Do something when changing the item if you want.
+                                        setState((){
+                                          selectedValue = value;
+                                        });
+
+                                      },
+                                      onSaved: (value) {
+                                        setState((){
+                                          selectedValue = value;
+                                        });
+                                      },
                                     ),
-                                    hintText: '',
-                                    // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+
+
+
 
                                   ),
-
                                 ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 10,),
+                        /// - Password
+                        Padding(
+                          padding: const EdgeInsets.only(left:18.0, right: 18),
+                          child: Container(
+                            padding: const EdgeInsets.only(left:10, right: 10),
+                            decoration: BoxDecoration(
+                              color: Colors.black45,
+                              borderRadius:const BorderRadius.only(
+                                topRight: Radius.circular(10),
+                                bottomLeft: Radius.circular(10),
+                                topLeft: Radius.circular(10),
+                                bottomRight: Radius.circular(10),
+                              ),
+                              border: Border.all(
+                                width: 0,
+                                color: Colors.transparent,
+                                style: BorderStyle.solid,
                               ),
                             ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 10,),
-                    /// - refferal code
-                    Padding(
-                      padding: const EdgeInsets.only(left:18.0, right: 18),
-                      child: Container(
-                        padding: const EdgeInsets.only(left:10, right: 10),
-                        decoration: BoxDecoration(
-                          color: Colors.black45,
-                          borderRadius:const BorderRadius.only(
-                            topRight: Radius.circular(10),
-                            bottomLeft: Radius.circular(10),
-                            topLeft: Radius.circular(10),
-                            bottomRight: Radius.circular(10),
-                          ),
-                          border: Border.all(
-                            width: 0,
-                            color: Colors.transparent,
-                            style: BorderStyle.solid,
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(flex:3, child:
-                            Text("${getTranslated(context, "referralCode")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)
-                            ),
-                            const Expanded(
-                              flex: 5,
-                              child: SizedBox(
+                            child: Row(
+                              children: [
+                                Expanded(flex:2, child: Text("${getTranslated(context, "password")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)),
+                                const Expanded(
+                                  flex: 5,
+                                  child:  SizedBox(
 
-                                child:   TextField(
+                                    child:   TextField(
+                                      obscureText: true,
+                                      enableSuggestions: false,
+                                      autocorrect: false,
+                                      autofocus: false,
+                                      style: const TextStyle(color: Colors.white),
+                                      decoration:  InputDecoration(
 
-                                  autofocus: false,
-                                  style:  TextStyle(color: Colors.white),
-                                  decoration:  InputDecoration(
-                                    filled: true,
-                                    fillColor: Colors.transparent,
-                                    contentPadding: EdgeInsets.only(left:10, right: 10),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius:  BorderRadius.all(
-                                        Radius.circular(0.0),
+                                        filled: true,
+                                        fillColor: Colors.transparent,
+                                        contentPadding: EdgeInsets.only(left:10, right: 10),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius:  BorderRadius.all(
+                                            Radius.circular(0.0),
+                                          ),
+                                          borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius:  BorderRadius.all(
+                                            Radius.circular(0.0),
+                                          ),
+                                          borderSide: BorderSide(color: Colors.transparent, width: 0.0),
+                                        ),
+                                        hintText: '',
+                                        // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+
                                       ),
-                                      borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderRadius:  BorderRadius.all(
-                                        Radius.circular(0.0),
-                                      ),
-                                      borderSide: BorderSide(color: Colors.transparent, width: 0.0),
-                                    ),
-                                    // hintText: '',
-                                    // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
 
+                                    ),
                                   ),
-
                                 ),
-                              ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
-                      ),
+                        const SizedBox(height: 10,),
+                        /// - refferal code
+                        Padding(
+                          padding: const EdgeInsets.only(left:18.0, right: 18),
+                          child: Container(
+                            padding: const EdgeInsets.only(left:10, right: 10),
+                            decoration: BoxDecoration(
+                              color: Colors.black45,
+                              borderRadius:const BorderRadius.only(
+                                topRight: Radius.circular(10),
+                                bottomLeft: Radius.circular(10),
+                                topLeft: Radius.circular(10),
+                                bottomRight: Radius.circular(10),
+                              ),
+                              border: Border.all(
+                                width: 0,
+                                color: Colors.transparent,
+                                style: BorderStyle.solid,
+                              ),
+                            ),
+                            child: Row(
+                              children: [
+                                Expanded(flex:3, child:
+                                Text("${getTranslated(context, "referralCode")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)
+                                ),
+                                const Expanded(
+                                  flex: 5,
+                                  child: SizedBox(
+
+                                    child:   TextField(
+
+                                      autofocus: false,
+                                      style:  TextStyle(color: Colors.white),
+                                      decoration:  InputDecoration(
+                                        filled: true,
+                                        fillColor: Colors.transparent,
+                                        contentPadding: EdgeInsets.only(left:10, right: 10),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius:  BorderRadius.all(
+                                            Radius.circular(0.0),
+                                          ),
+                                          borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius:  BorderRadius.all(
+                                            Radius.circular(0.0),
+                                          ),
+                                          borderSide: BorderSide(color: Colors.transparent, width: 0.0),
+                                        ),
+                                        // hintText: '',
+                                        // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+
+                                      ),
+
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 10,),
+                        Padding(
+                          padding: const EdgeInsets.all(18.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("${getTranslated(context, "uploadId")!}", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),),
+                              ElevatedButton(
+                                onPressed: () {
+
+                                },
+                                style: ButtonStyle(
+                                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                        const RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.all(Radius.circular(5)),
+                                            side: BorderSide(color: Colors.transparent,width: 1)
+                                        )
+                                    ),
+                                    overlayColor: MaterialStateProperty.all(Colors.white30),
+                                    elevation:MaterialStateProperty.all(0),
+                                    shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                    backgroundColor: MaterialStateProperty.all(Colors.green),
+                                    foregroundColor: MaterialStateProperty.all(Colors.white),
+                                    padding: MaterialStateProperty.all(const EdgeInsets.only(top:10,bottom: 10, right: 30,left: 30)),
+                                    textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 15))),
+                                child: Text("${getTranslated(context, "choose")!}", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white),),
+                              ),
+                            ],),
+                        ),
+
+
+
+                      ],
                     ),
-                    const SizedBox(height: 10,),
-                    Padding(
-                      padding: const EdgeInsets.all(18.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("${getTranslated(context, "uploadId")!}", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),),
-                          ElevatedButton(
-                            onPressed: () {
-
-                            },
-                            style: ButtonStyle(
-                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                    const RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(Radius.circular(5)),
-                                        side: BorderSide(color: Colors.transparent,width: 1)
-                                    )
-                                ),
-                                overlayColor: MaterialStateProperty.all(Colors.white30),
-                                elevation:MaterialStateProperty.all(0),
-                                shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                backgroundColor: MaterialStateProperty.all(Colors.green),
-                                foregroundColor: MaterialStateProperty.all(Colors.white),
-                                padding: MaterialStateProperty.all(const EdgeInsets.only(top:10,bottom: 10, right: 30,left: 30)),
-                                textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 15))),
-                            child: Text("${getTranslated(context, "choose")!}", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white),),
-                          ),
-                        ],),
-                    ),
-
-
-
-                  ],
-                ),
-              ),
-
-              /// - Buttons
-              Visibility(
-                visible: !isKeyboardVisible,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(3.0),
-                              child: SizedBox(
-                                height: 60,
-                                // width: 130,
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    PersistentNavBarNavigator.pushNewScreen(
-                                      context,
-                                      screen: OrderHistory(),
-                                      withNavBar: true, // OPTIONAL VALUE. True by default.
-                                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                    );
-                                  },
-                                  style: ButtonStyle(
-                                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                          const RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(Radius.circular(10)),
-                                              side: BorderSide(color: Colors.transparent,width: 1)
-                                          )
-                                      ),
-                                      overlayColor: MaterialStateProperty.all(Colors.white12),
-                                      elevation:MaterialStateProperty.all(0),
-                                      shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                      backgroundColor: MaterialStateProperty.all(Colors.black),
-                                      foregroundColor: MaterialStateProperty.all(Colors.black),
-                                      padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
-                                      textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                                  child:  Text(getTranslated(context, "oderHistory")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(3.0),
-                              child: SizedBox(
-                                height: 60,
-                                // width: 130,
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    PersistentNavBarNavigator.pushNewScreen(
-                                      context,
-                                      screen: SavedAddress(),
-                                      withNavBar: true, // OPTIONAL VALUE. True by default.
-                                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                    );
-                                  },
-                                  style: ButtonStyle(
-                                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                          const RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(Radius.circular(10)),
-                                              side: BorderSide(color: Colors.transparent,width: 1)
-                                          )
-                                      ),
-                                      overlayColor: MaterialStateProperty.all(Colors.white12),
-                                      elevation:MaterialStateProperty.all(0),
-                                      shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                      backgroundColor: MaterialStateProperty.all(Colors.black),
-                                      foregroundColor: MaterialStateProperty.all(Colors.black),
-                                      padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
-                                      textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                                  child:  Text(getTranslated(context, "savedAddress")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300,),textAlign: TextAlign.center,),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(3.0),
-                              child: SizedBox(
-                                height: 60,
-                                // width: 130,
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    PersistentNavBarNavigator.pushNewScreen(
-                                      context,
-                                      screen: SavedCards(),
-                                      withNavBar: true, // OPTIONAL VALUE. True by default.
-                                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                    );
-                                  },
-                                  style: ButtonStyle(
-                                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                          const RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(Radius.circular(10)),
-                                              side: BorderSide(color: Colors.transparent,width: 1)
-                                          )
-                                      ),
-                                      overlayColor: MaterialStateProperty.all(Colors.white12),
-                                      elevation:MaterialStateProperty.all(0),
-                                      shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                      backgroundColor: MaterialStateProperty.all(Colors.black),
-                                      foregroundColor: MaterialStateProperty.all(Colors.black),
-                                      // padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
-                                      textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                                  child:  Text(getTranslated(context, "savedCards")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(3.0),
-                              child: SizedBox(
-                                height: 60,
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    PersistentNavBarNavigator.pushNewScreen(
-                                      context,
-                                      screen: MyRewards(),
-                                      withNavBar: true, // OPTIONAL VALUE. True by default.
-                                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                    );
-
-                                  },
-                                  style: ButtonStyle(
-                                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                          const RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(Radius.circular(10)),
-                                              side: BorderSide(color: Colors.transparent,width: 1)
-                                          )
-                                      ),
-                                      overlayColor: MaterialStateProperty.all(Colors.white12),
-                                      elevation:MaterialStateProperty.all(0),
-                                      shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                      backgroundColor: MaterialStateProperty.all(Colors.black),
-                                      foregroundColor: MaterialStateProperty.all(Colors.black),
-                                      padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10)),
-                                      textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                                  child:  Text(getTranslated(context, "loyalty")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(3.0),
-                              child: SizedBox(
-                                height: 60,
-
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    PersistentNavBarNavigator.pushNewScreen(
-                                      context,
-                                      screen: HelpPage(),
-                                      withNavBar: true, // OPTIONAL VALUE. True by default.
-                                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                    );
-
-                                  },
-                                  style: ButtonStyle(
-                                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                          const RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(Radius.circular(10)),
-                                              side: BorderSide(color: Colors.transparent,width: 1)
-                                          )
-                                      ),
-                                      overlayColor: MaterialStateProperty.all(Colors.white12),
-                                      elevation:MaterialStateProperty.all(0),
-                                      shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                      backgroundColor: MaterialStateProperty.all(Colors.black),
-                                      foregroundColor: MaterialStateProperty.all(Colors.black),
-                                      padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
-                                      textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                                  child:  Text(getTranslated(context, "help")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(3.0),
-                              child: SizedBox(
-                                height: 60,
-
-                                child: ElevatedButton(
-                                  onPressed: () {
-
-                                  },
-                                  style: ButtonStyle(
-                                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                          const RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(Radius.circular(10)),
-                                              side: BorderSide(color: Colors.transparent,width: 1)
-                                          )
-                                      ),
-                                      overlayColor: MaterialStateProperty.all(Colors.black12),
-                                      elevation:MaterialStateProperty.all(0),
-                                      shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                      backgroundColor: MaterialStateProperty.all(Colors.black),
-                                      foregroundColor: MaterialStateProperty.all(Colors.black),
-                                      padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
-                                      textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                                  child:  Text(getTranslated(context, "sighOut")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300, ),textAlign: TextAlign.center,),
-                                ),
-                              ),
-                            ),
-                          ),
-
-
-
-                        ],
-                      ),
-
-                    ],
                   ),
-                ),
-              ),
 
-            ],
+                  /// - Buttons
+                  Visibility(
+                    visible: !isKeyboardVisible,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(3.0),
+                                  child: SizedBox(
+                                    height: 60,
+                                    // width: 130,
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        PersistentNavBarNavigator.pushNewScreen(
+                                          context,
+                                          screen: OrderHistory(),
+                                          withNavBar: true, // OPTIONAL VALUE. True by default.
+                                          pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                        );
+                                      },
+                                      style: ButtonStyle(
+                                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                              const RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                  side: BorderSide(color: Colors.transparent,width: 1)
+                                              )
+                                          ),
+                                          overlayColor: MaterialStateProperty.all(Colors.white12),
+                                          elevation:MaterialStateProperty.all(0),
+                                          shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                          backgroundColor: MaterialStateProperty.all(Colors.black),
+                                          foregroundColor: MaterialStateProperty.all(Colors.black),
+                                          padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
+                                          textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
+                                      child:  Text(getTranslated(context, "oderHistory")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(3.0),
+                                  child: SizedBox(
+                                    height: 60,
+                                    // width: 130,
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        PersistentNavBarNavigator.pushNewScreen(
+                                          context,
+                                          screen: SavedAddress(),
+                                          withNavBar: true, // OPTIONAL VALUE. True by default.
+                                          pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                        );
+                                      },
+                                      style: ButtonStyle(
+                                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                              const RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                  side: BorderSide(color: Colors.transparent,width: 1)
+                                              )
+                                          ),
+                                          overlayColor: MaterialStateProperty.all(Colors.white12),
+                                          elevation:MaterialStateProperty.all(0),
+                                          shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                          backgroundColor: MaterialStateProperty.all(Colors.black),
+                                          foregroundColor: MaterialStateProperty.all(Colors.black),
+                                          padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
+                                          textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
+                                      child:  Text(getTranslated(context, "savedAddress")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300,),textAlign: TextAlign.center,),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(3.0),
+                                  child: SizedBox(
+                                    height: 60,
+                                    // width: 130,
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        PersistentNavBarNavigator.pushNewScreen(
+                                          context,
+                                          screen: SavedCards(),
+                                          withNavBar: true, // OPTIONAL VALUE. True by default.
+                                          pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                        );
+                                      },
+                                      style: ButtonStyle(
+                                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                              const RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                  side: BorderSide(color: Colors.transparent,width: 1)
+                                              )
+                                          ),
+                                          overlayColor: MaterialStateProperty.all(Colors.white12),
+                                          elevation:MaterialStateProperty.all(0),
+                                          shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                          backgroundColor: MaterialStateProperty.all(Colors.black),
+                                          foregroundColor: MaterialStateProperty.all(Colors.black),
+                                          // padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
+                                          textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
+                                      child:  Text(getTranslated(context, "savedCards")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(3.0),
+                                  child: SizedBox(
+                                    height: 60,
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        PersistentNavBarNavigator.pushNewScreen(
+                                          context,
+                                          screen: MyRewards(layOut: widget.layOut),
+                                          withNavBar: true, // OPTIONAL VALUE. True by default.
+                                          pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                        );
+
+                                      },
+                                      style: ButtonStyle(
+                                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                              const RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                  side: BorderSide(color: Colors.transparent,width: 1)
+                                              )
+                                          ),
+                                          overlayColor: MaterialStateProperty.all(Colors.white12),
+                                          elevation:MaterialStateProperty.all(0),
+                                          shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                          backgroundColor: MaterialStateProperty.all(Colors.black),
+                                          foregroundColor: MaterialStateProperty.all(Colors.black),
+                                          padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10)),
+                                          textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
+                                      child:  Text(getTranslated(context, "loyalty")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(3.0),
+                                  child: SizedBox(
+                                    height: 60,
+
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        PersistentNavBarNavigator.pushNewScreen(
+                                          context,
+                                          screen: HelpPage(),
+                                          withNavBar: true, // OPTIONAL VALUE. True by default.
+                                          pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                        );
+
+                                      },
+                                      style: ButtonStyle(
+                                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                              const RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                  side: BorderSide(color: Colors.transparent,width: 1)
+                                              )
+                                          ),
+                                          overlayColor: MaterialStateProperty.all(Colors.white12),
+                                          elevation:MaterialStateProperty.all(0),
+                                          shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                          backgroundColor: MaterialStateProperty.all(Colors.black),
+                                          foregroundColor: MaterialStateProperty.all(Colors.black),
+                                          padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
+                                          textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
+                                      child:  Text(getTranslated(context, "help")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(3.0),
+                                  child: SizedBox(
+                                    height: 60,
+
+                                    child: ElevatedButton(
+                                      onPressed: () {
+
+                                      },
+                                      style: ButtonStyle(
+                                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                              const RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                  side: BorderSide(color: Colors.transparent,width: 1)
+                                              )
+                                          ),
+                                          overlayColor: MaterialStateProperty.all(Colors.black12),
+                                          elevation:MaterialStateProperty.all(0),
+                                          shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                          backgroundColor: MaterialStateProperty.all(Colors.black),
+                                          foregroundColor: MaterialStateProperty.all(Colors.black),
+                                          padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
+                                          textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
+                                      child:  Text(getTranslated(context, "sighOut")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300, ),textAlign: TextAlign.center,),
+                                    ),
+                                  ),
+                                ),
+                              ),
+
+
+
+                            ],
+                          ),
+
+                        ],
+                      ),
+                    ),
+                  ),
+
+                ],
+              ),
+            ),
           ),
 
-          drawer: DrawerWidget(onChanged: (value) {widget.onChanged(value);},),
+          drawer: DrawerWidget(layOut: widget.layOut,onChanged: (value) {widget.onChanged(value);},),
 
         ),
         Visibility(

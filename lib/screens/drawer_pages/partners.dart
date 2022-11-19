@@ -44,82 +44,85 @@ class _PartnersState extends State<Partners> {
             actions: [],
           ),
           body:Center(
-            child: Column(
+            child: Container(
+              constraints: BoxConstraints(maxWidth: 450, ),
+              child: Column(
 
-              children: [
-                Text(getTranslated(context, "partnersTitle")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber, fontSize: double.parse(getTranslated(context, "fontFamilyTitleُSize")!)),),
-                Expanded(child:
-                Padding(
-                  padding: const EdgeInsets.all(18.0),
-                  child: ListView(
-                     children: [
-                       Padding(
-                         padding: const EdgeInsets.all(18.0),
-                         child: Row(
-                           children: [
-                            Expanded(
-                              child: ClipRRect(
-                                  borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(10),
-                                  topRight: Radius.circular(10),
-                                  bottomLeft: Radius.circular(10),
-                                  bottomRight: Radius.circular(10),
+                children: [
+                  Text(getTranslated(context, "partnersTitle")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber, fontSize: double.parse(getTranslated(context, "fontFamilyTitleُSize")!)),),
+                  Expanded(child:
+                  Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: ListView(
+                       children: [
+                         Padding(
+                           padding: const EdgeInsets.all(18.0),
+                           child: Row(
+                             children: [
+                              Expanded(
+                                child: ClipRRect(
+                                    borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(10),
+                                    topRight: Radius.circular(10),
+                                    bottomLeft: Radius.circular(10),
+                                    bottomRight: Radius.circular(10),
 
+                                ),
+                                child: Image.asset("assets/images/aud.png", width: 80,height:80,fit: BoxFit.cover,)),
                               ),
-                              child: Image.asset("assets/images/aud.png", width: 80,height:80,fit: BoxFit.cover,)),
-                            ),
-                             SizedBox(width: 15,),
-                             Expanded(
-                               flex: 3,
-                               child: Column(
-                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                 children: [
-                                 Text(getTranslated(context, "audTitle")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,),),
-                                 Text(getTranslated(context, "validOnAppDlivery")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white60,fontSize: 13),)
-                               ],),
-                             ),
-                           ],
-                         ),
-                       ),
-
-
-                       Padding(
-                         padding: const EdgeInsets.all(18.0),
-                         child: Row(
-                           children: [
-                             Expanded(
-                               child: ClipRRect(
-                                   borderRadius: const BorderRadius.only(
-                                     topLeft: Radius.circular(10),
-                                     topRight: Radius.circular(10),
-                                     bottomLeft: Radius.circular(10),
-                                     bottomRight: Radius.circular(10),
-
-                                   ),
-                                   child: Image.asset("assets/images/dha.jpg", width: 80,height:80,fit: BoxFit.cover,)),
-                             ),
-                             SizedBox(width: 15,),
-                             Expanded(
-                               flex: 3,
-                               child: Column(
-                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                 children: [
-                                   Text(getTranslated(context, "dhaTitle")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,),),
+                               SizedBox(width: 15,),
+                               Expanded(
+                                 flex: 3,
+                                 child: Column(
+                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                   children: [
+                                   Text(getTranslated(context, "audTitle")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,),),
                                    Text(getTranslated(context, "validOnAppDlivery")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white60,fontSize: 13),)
                                  ],),
-                             ),
-                           ],
+                               ),
+                             ],
+                           ),
                          ),
-                       ),
 
 
-                     ],
+                         Padding(
+                           padding: const EdgeInsets.all(18.0),
+                           child: Row(
+                             children: [
+                               Expanded(
+                                 child: ClipRRect(
+                                     borderRadius: const BorderRadius.only(
+                                       topLeft: Radius.circular(10),
+                                       topRight: Radius.circular(10),
+                                       bottomLeft: Radius.circular(10),
+                                       bottomRight: Radius.circular(10),
+
+                                     ),
+                                     child: Image.asset("assets/images/dha.jpg", width: 80,height:80,fit: BoxFit.cover,)),
+                               ),
+                               SizedBox(width: 15,),
+                               Expanded(
+                                 flex: 3,
+                                 child: Column(
+                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                   children: [
+                                     Text(getTranslated(context, "dhaTitle")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,),),
+                                     Text(getTranslated(context, "validOnAppDlivery")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white60,fontSize: 13),)
+                                   ],),
+                               ),
+                             ],
+                           ),
+                         ),
 
 
-                  ),
-                )
-                )
-              ],
+                       ],
+
+
+                    ),
+                  )
+                  )
+                ],
+              ),
             ),
           ),
 

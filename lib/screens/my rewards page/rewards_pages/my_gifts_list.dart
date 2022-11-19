@@ -48,46 +48,49 @@ class _MyGiftsListState extends State<MyGiftsList> {
            actions: [],
          ),
          body:Center(
-           child: Column(
+           child: Container(
+             constraints: BoxConstraints(maxWidth: 450, ),
+             child: Column(
 
-             children: [
+               children: [
 
-               Text(getTranslated(context, "myGifts")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber, fontSize: double.parse(getTranslated(context, "fontFamilyTitleُSize")!)),),
-               Expanded(child:
-               Padding(
-                 padding: const EdgeInsets.all(18.0),
-                 child: ListView.builder(
-                     itemCount: 1,
-                     itemBuilder: (context, Index)=>
-                 Column(
-                   children: [
-                     ListTile(
-                     onTap: (){
-                       PersistentNavBarNavigator.pushNewScreen(
-                         context,
-                         screen: GiftDetails(),
-                         withNavBar: true, // OPTIONAL VALUE. True by default.
-                         pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                       );
-                     },
-                     leading: Image.asset("assets/images/of_credit_icon.png", height: 60,width: 60,),
-                     title: Text(getTranslated(context, "registrationGift")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,),),
-                       subtitle: Text("2023-10-18",style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white12,),)
-                     ),
-                     Row(
-                       children: List.generate(800~/10, (index) => Expanded(
-                         child: Container(
-                           color: index%2==0?Colors.transparent
-                               :Colors.grey,
-                           height: 1,
-                         ),
-                       )),
-                     ),
-                   ],
-                 )
-                 ),
-               ))
-             ],
+                 Text(getTranslated(context, "myGifts")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber, fontSize: double.parse(getTranslated(context, "fontFamilyTitleُSize")!)),),
+                 Expanded(child:
+                 Padding(
+                   padding: const EdgeInsets.all(18.0),
+                   child: ListView.builder(
+                       itemCount: 1,
+                       itemBuilder: (context, Index)=>
+                   Column(
+                     children: [
+                       ListTile(
+                       onTap: (){
+                         PersistentNavBarNavigator.pushNewScreen(
+                           context,
+                           screen: GiftDetails(),
+                           withNavBar: true, // OPTIONAL VALUE. True by default.
+                           pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                         );
+                       },
+                       leading: Image.asset("assets/images/of_credit_icon.png", height: 60,width: 60,),
+                       title: Text(getTranslated(context, "registrationGift")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,),),
+                         subtitle: Text("2023-10-18",style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white12,),)
+                       ),
+                       Row(
+                         children: List.generate(800~/10, (index) => Expanded(
+                           child: Container(
+                             color: index%2==0?Colors.transparent
+                                 :Colors.grey,
+                             height: 1,
+                           ),
+                         )),
+                       ),
+                     ],
+                   )
+                   ),
+                 ))
+               ],
+             ),
            ),
          ),
 

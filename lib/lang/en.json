@@ -211,5 +211,7 @@
   "savedCards": "SAVED CARDS",
   "youHaveNoSavedCards": "YOU HAVE NO SAVED CARDS",
   "orderId": "Order ID",
-  "commingSoon": "COMMING SOON"
+  "commingSoon": "COMMING SOON",
+  "male": "Male",
+  "female": "Female"
 }

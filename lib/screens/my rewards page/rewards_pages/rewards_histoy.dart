@@ -44,47 +44,50 @@ class _RewardsHistoryState extends State<RewardsHistory> {
             actions: [],
           ),
           body: Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const SizedBox(height: 25,),
-                /// - Title
-                Text(getTranslated(context, "history")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber, fontSize: double.parse(getTranslated(context, "fontFamilyTitleُSize")!)),textAlign: TextAlign.center,),
-                const SizedBox(height: 25,),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: 5,
-                    itemBuilder: (context,index){
-                       return  Padding(
-                         padding: const EdgeInsets.only(left: 50.0, right: 50),
-                         child: ListTile(
-                          title:  Text("${getTranslated(context, "earnd")!}", style: TextStyle(color: Colors.green),),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("2.09625 ${getTranslated(context, "pointEarnd")!} 19.75", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.amber),),
-                              Text("2022-10-19 20:22:17", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.white60),),
-                              const SizedBox(height: 10,),
-                              Row(
-                                children: List.generate(800~/10, (index) => Expanded(
-                                  child: Container(
-                                    color: index%2==0?Colors.transparent
-                                        :Colors.grey,
-                                    height: 1,
-                                  ),
-                                )),
-                              ),
-                            ],
-                          ),
-                      ),
-                       );
-                    },
+            child: Container(
+              constraints: BoxConstraints(maxWidth: 450, ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 25,),
+                  /// - Title
+                  Text(getTranslated(context, "history")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber, fontSize: double.parse(getTranslated(context, "fontFamilyTitleُSize")!)),textAlign: TextAlign.center,),
+                  const SizedBox(height: 25,),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: 5,
+                      itemBuilder: (context,index){
+                         return  Padding(
+                           padding: const EdgeInsets.only(left: 50.0, right: 50),
+                           child: ListTile(
+                            title:  Text("${getTranslated(context, "earnd")!}", style: TextStyle(color: Colors.green),),
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("2.09625 ${getTranslated(context, "pointEarnd")!} 19.75", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.amber),),
+                                Text("2022-10-19 20:22:17", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.white60),),
+                                const SizedBox(height: 10,),
+                                Row(
+                                  children: List.generate(800~/10, (index) => Expanded(
+                                    child: Container(
+                                      color: index%2==0?Colors.transparent
+                                          :Colors.grey,
+                                      height: 1,
+                                    ),
+                                  )),
+                                ),
+                              ],
+                            ),
+                        ),
+                         );
+                      },
+                    ),
                   ),
-                ),
 
 
 
-              ],
+                ],
+              ),
             ),
           ),
         ),

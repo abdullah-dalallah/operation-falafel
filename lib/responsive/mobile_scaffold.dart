@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:operation_falafel/screens/bottomnavigationbar_screen.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/main.dart';
@@ -55,7 +55,10 @@ class _MobileScaffoldState extends State<MobileScaffold> {
   @override
   Widget build(BuildContext context) {
     final bool isKeyboardVisible = KeyboardVisibilityProvider.isKeyboardVisible(context);
-
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return Scaffold(
       extendBody: true,
       extendBodyBehindAppBar: true,

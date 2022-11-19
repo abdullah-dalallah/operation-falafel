@@ -4,13 +4,16 @@ import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/screens/tabbar%20menu%20page/widgets/image_with_add_button.dart';
 
 class CustomListTile extends StatelessWidget{
+  final String layOut ;
+  const CustomListTile({super.key,required this.layOut});
+
   @override
   Widget build(BuildContext context) {
   return Row(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
       /// -  Image & add button
-      ImageWithAddButton(),
+      ImageWithAddButton(layOut: layOut,),
 
       const SizedBox(width: 5,),
       Expanded(

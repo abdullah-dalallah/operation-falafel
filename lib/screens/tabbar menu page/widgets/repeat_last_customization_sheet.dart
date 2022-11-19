@@ -6,7 +6,8 @@ import 'package:operation_falafel/screens/item%20details%20page/item_details_she
 
 class RepeatLastCustomizationSheet extends StatelessWidget{
   ScrollController? scrollController;
-  RepeatLastCustomizationSheet({super.key,this.scrollController});
+  final String layOut ;
+  RepeatLastCustomizationSheet({super.key,this.scrollController, required this.layOut});
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +95,7 @@ class RepeatLastCustomizationSheet extends StatelessWidget{
                                     maxChildSize: 1,
                                     expand: true,
                                     builder: (context, scrollController) {
-                                      return ItemDetailsSheet(scrollController);
+                                      return ItemDetailsSheet(layOut: layOut,scrollController);
                                     }
 
                                 )

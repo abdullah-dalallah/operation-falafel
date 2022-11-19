@@ -5,7 +5,7 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/main.dart';
 import 'package:operation_falafel/providers/demo_cart/demo_cart_provider.dart';
-import 'package:operation_falafel/screens/bottomnavigationbar_screen.dart';
+
 import 'package:operation_falafel/screens/cart%20page/cart_screen.dart';
 import 'package:operation_falafel/screens/homepage/of_homepage.dart';
 import 'package:operation_falafel/screens/tabbar%20menu%20page/menu_tabebar.dart';
@@ -59,7 +59,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
               builder: (context, value, child)
               {
                 return   Expanded(
-                  flex: 3,
+                  flex: 4,
                   child: PersistentTabView(
 
                     context,
@@ -69,16 +69,16 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                         children: [
                           Expanded(
 
-                              child: DrawerWidget(onChanged: (value) {changePage(value);},)),
-                          Expanded( flex: 2,child: MainMenu(layOut: "",(value) => changePage(value),)),
+                              child: DrawerWidget(layOut: "Desktop",onChanged: (value) {changePage(value);},)),
+                          Expanded( flex: 2,child: MainMenu(layOut: "Desktop",(value) => changePage(value),)),
                         ],
                       ),
                       Row(
                         children: [
                           Expanded(
 
-                              child: DrawerWidget(onChanged: (value) {changePage(value);},)),
-                          Expanded( flex: 2,child: TabeBarMenu(layOut: "",(value) => changePage(value),)),
+                              child: DrawerWidget(layOut: "Desktop",onChanged: (value) {changePage(value);},)),
+                          Expanded( flex: 2,child: TabeBarMenu(layOut: "Desktop",(value) => changePage(value),)),
                         ],
                       ),
                       // Row(
@@ -93,16 +93,16 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                         children: [
                           Expanded(
 
-                              child: DrawerWidget(onChanged: (value) {changePage(value);},)),
-                          Expanded( flex: 2,child: TrackMyOrder(layOut: "",(value) => changePage(value),)),
+                              child: DrawerWidget(layOut: "Desktop",onChanged: (value) {changePage(value);},)),
+                          Expanded( flex: 2,child: TrackMyOrder(layOut: "Desktop",(value) => changePage(value),)),
                         ],
                       ),
                       Row(
                         children: [
                           Expanded(
 
-                              child: DrawerWidget(onChanged: (value) {changePage(value);},)),
-                          Expanded( flex: 2,child: LoggedInUserProfile(layOut: "",(value) => changePage(value),)),
+                              child: DrawerWidget(layOut: "Desktop",onChanged: (value) {changePage(value);},)),
+                          Expanded( flex: 2,child: LoggedInUserProfile(layOut: "Desktop",(value) => changePage(value),)),
                         ],
                       ),
                     ],
@@ -203,7 +203,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
 
               }
           ),
-          Expanded(flex:2,child: Cart_Screen(layOut: "",(value) {changePage(value);},)),
+          Expanded(flex:2,child: Cart_Screen(layOut: "Desktop",(value) {changePage(value);},)),
         ],
       ),
 

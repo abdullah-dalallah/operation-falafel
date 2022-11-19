@@ -59,84 +59,89 @@ class _BuyGiftState extends State<BuyGift> {
           actions: [],
         ),
         body:
-        Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
+        Center(
+          child: Container(
+            constraints: BoxConstraints(maxWidth: 450, ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
 
-           Text(getTranslated(context, "buyGifts")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber, fontSize: double.parse(getTranslated(context, "fontFamilyTitleُSize")!)),),
+               Text(getTranslated(context, "buyGifts")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber, fontSize: double.parse(getTranslated(context, "fontFamilyTitleُSize")!)),),
 
-            Expanded(
-              child: GridView.builder(
-                padding: const EdgeInsets.all(10),
-                gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing:5,
-                  childAspectRatio: 1.39,
-                ),
+                Expanded(
+                  child: GridView.builder(
+                    padding: const EdgeInsets.all(10),
+                    gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing:5,
+                      childAspectRatio: 1.39,
+                    ),
 
-                itemBuilder: (context, index) =>  Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: Stack(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.4),
-                          borderRadius:const BorderRadius.only(
-                            topRight: Radius.circular(0),
-                            bottomLeft: Radius.circular(0),
-                            topLeft: Radius.circular(0),
-                            bottomRight: Radius.circular(0),
-                          ),
-                          border: Border.all(
-                            width: 1,
-                            color: Colors.amber,
-                            style: BorderStyle.solid,
-                          ),
-                        ),
-                        child:  Image.asset(giftImgs[index],),
-
-                      ),
-
-                      Positioned.fill(
-                          child:  Material(
-                            color: Colors.transparent,
-                            child:   InkWell(
-                              borderRadius: BorderRadius.all(Radius.circular(0)),
-                              splashColor: Colors.black,
-                              overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
-
-                              onTap: (){
-                                showMaterialModalBottomSheet(
-                                    expand: false,
-                                    context: context,
-                                    backgroundColor: Colors.transparent,
-                                    builder: (context) => DraggableScrollableSheet(
-                                        initialChildSize: 0.33,
-                                        minChildSize: 0.3,
-                                        maxChildSize: 0.4,
-                                        expand: true,
-                                        builder: (context, scrollController) {
-                                          return BuyGiftPaymentSheet(scrollController: scrollController);
-                                        }
-
-                                    )
-                                );
-                              },
+                    itemBuilder: (context, index) =>  Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Stack(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.4),
+                              borderRadius:const BorderRadius.only(
+                                topRight: Radius.circular(0),
+                                bottomLeft: Radius.circular(0),
+                                topLeft: Radius.circular(0),
+                                bottomRight: Radius.circular(0),
+                              ),
+                              border: Border.all(
+                                width: 1,
+                                color: Colors.amber,
+                                style: BorderStyle.solid,
+                              ),
                             ),
+                            child:  Image.asset(giftImgs[index],),
 
-                          )
+                          ),
+
+                          Positioned.fill(
+                              child:  Material(
+                                color: Colors.transparent,
+                                child:   InkWell(
+                                  borderRadius: BorderRadius.all(Radius.circular(0)),
+                                  splashColor: Colors.black,
+                                  overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                  onTap: (){
+                                    showMaterialModalBottomSheet(
+                                        expand: false,
+                                        context: context,
+                                        backgroundColor: Colors.transparent,
+                                        builder: (context) => DraggableScrollableSheet(
+                                            initialChildSize: 0.33,
+                                            minChildSize: 0.3,
+                                            maxChildSize: 0.4,
+                                            expand: true,
+                                            builder: (context, scrollController) {
+                                              return BuyGiftPaymentSheet(scrollController: scrollController);
+                                            }
+
+                                        )
+                                    );
+                                  },
+                                ),
+
+                              )
+                          ),
+
+                        ],
                       ),
+                    ),
 
-                    ],
+
+                    itemCount: giftImgs.length,
                   ),
-                ),
+                )
 
-
-                itemCount: giftImgs.length,
-              ),
-            )
-
-          ],
+              ],
+            ),
+          ),
         ),
 
 

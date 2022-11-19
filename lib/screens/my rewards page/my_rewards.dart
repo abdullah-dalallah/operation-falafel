@@ -17,7 +17,9 @@ import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'rewards_pages/transfer_credits.dart';
 
 class MyRewards extends StatefulWidget{
-  const MyRewards({super.key});
+  final String layOut ;
+  const MyRewards({super.key,required this.layOut});
+
 
   @override
   State<MyRewards> createState() => _MyRewardsState();
@@ -113,6 +115,8 @@ class _MyRewardsState extends State<MyRewards> {
             children: [
 
               Text(getTranslated(context, "ofLoyalty")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber, fontSize: double.parse(getTranslated(context, "fontFamilyTitleُSize")!)),),
+              (widget.layOut=="Mobile")?SizedBox(height: 0,):(widget.layOut=="Tablet")?SizedBox(height: 60,):SizedBox(height: 100,),
+
               Expanded(
 
                 child: ListView(
@@ -124,7 +128,7 @@ class _MyRewardsState extends State<MyRewards> {
 
                           options: CarouselOptions(
                             // height: MediaQuery. of(context). size. height-470,
-                              aspectRatio: 1.2,
+                              aspectRatio: (widget.layOut=="Mobile")?1.2:(widget.layOut=="Tablet")?1.5:1.7,
                               viewportFraction: 1,
                               initialPage: 0,
                               enableInfiniteScroll: true,
@@ -215,228 +219,231 @@ class _MyRewardsState extends State<MyRewards> {
                 visible: !isKeyboardVisible,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(3.0),
-                              child: SizedBox(
-                                height: 60,
-                                // width: 130,
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    PersistentNavBarNavigator.pushNewScreen(
-                                      context,
-                                      screen: HowItWorks(),
-                                      withNavBar: true, // OPTIONAL VALUE. True by default.
-                                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                    );
-                                  },
-                                  style: ButtonStyle(
-                                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                          const RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(Radius.circular(10)),
-                                              side: BorderSide(color: Colors.transparent,width: 1)
-                                          )
-                                      ),
-                                      overlayColor: MaterialStateProperty.all(Colors.white12),
-                                      elevation:MaterialStateProperty.all(0),
-                                      shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                      backgroundColor: MaterialStateProperty.all(Colors.black),
-                                      foregroundColor: MaterialStateProperty.all(Colors.black),
-                                      padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
-                                      textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                                  child:  Text(getTranslated(context, "howItworks")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300),),
+                  child: Container(
+                    constraints: BoxConstraints(maxWidth: 450, ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(3.0),
+                                child: SizedBox(
+                                  height: 60,
+                                  // width: 130,
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      PersistentNavBarNavigator.pushNewScreen(
+                                        context,
+                                        screen: HowItWorks(),
+                                        withNavBar: true, // OPTIONAL VALUE. True by default.
+                                        pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                      );
+                                    },
+                                    style: ButtonStyle(
+                                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                            const RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                side: BorderSide(color: Colors.transparent,width: 1)
+                                            )
+                                        ),
+                                        overlayColor: MaterialStateProperty.all(Colors.white12),
+                                        elevation:MaterialStateProperty.all(0),
+                                        shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                        backgroundColor: MaterialStateProperty.all(Colors.black),
+                                        foregroundColor: MaterialStateProperty.all(Colors.black),
+                                        padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
+                                        textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
+                                    child:  Text(getTranslated(context, "howItworks")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300),),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(3.0),
-                              child: SizedBox(
-                                height: 60,
-                                // width: 130,
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    PersistentNavBarNavigator.pushNewScreen(
-                                      context,
-                                      screen: MyGifts(),
-                                      withNavBar: true, // OPTIONAL VALUE. True by default.
-                                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                    );
-                                  },
-                                  style: ButtonStyle(
-                                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                          const RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(Radius.circular(10)),
-                                              side: BorderSide(color: Colors.transparent,width: 1)
-                                          )
-                                      ),
-                                      overlayColor: MaterialStateProperty.all(Colors.white12),
-                                      elevation:MaterialStateProperty.all(0),
-                                      shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                      backgroundColor: MaterialStateProperty.all(Colors.black),
-                                      foregroundColor: MaterialStateProperty.all(Colors.black),
-                                      padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
-                                      textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                                  child:  Text(getTranslated(context, "myRewards")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300,),textAlign: TextAlign.center,),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(3.0),
+                                child: SizedBox(
+                                  height: 60,
+                                  // width: 130,
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      PersistentNavBarNavigator.pushNewScreen(
+                                        context,
+                                        screen: MyGifts(),
+                                        withNavBar: true, // OPTIONAL VALUE. True by default.
+                                        pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                      );
+                                    },
+                                    style: ButtonStyle(
+                                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                            const RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                side: BorderSide(color: Colors.transparent,width: 1)
+                                            )
+                                        ),
+                                        overlayColor: MaterialStateProperty.all(Colors.white12),
+                                        elevation:MaterialStateProperty.all(0),
+                                        shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                        backgroundColor: MaterialStateProperty.all(Colors.black),
+                                        foregroundColor: MaterialStateProperty.all(Colors.black),
+                                        padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
+                                        textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
+                                    child:  Text(getTranslated(context, "myRewards")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300,),textAlign: TextAlign.center,),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(3.0),
-                              child: SizedBox(
-                                height: 60,
-                                // width: 130,
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    final RenderBox renderBox = context.findRenderObject() as RenderBox;
-                                    Share.share(
-                                      "You have been invited by Abdullh to join the O:F Family! Click below to install our app. Onelink.to/dhdbm3. Once you join, you will receive a 25% discount on your first order & 5Dhs credit when you use code 248921 in your registration page"
-                                      ,subject: "check out The website"
-                                      ,sharePositionOrigin: renderBox.localToGlobal(Offset.zero)&renderBox.size,
-                                    );
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(3.0),
+                                child: SizedBox(
+                                  height: 60,
+                                  // width: 130,
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      final RenderBox renderBox = context.findRenderObject() as RenderBox;
+                                      Share.share(
+                                        "You have been invited by Abdullh to join the O:F Family! Click below to install our app. Onelink.to/dhdbm3. Once you join, you will receive a 25% discount on your first order & 5Dhs credit when you use code 248921 in your registration page"
+                                        ,subject: "check out The website"
+                                        ,sharePositionOrigin: renderBox.localToGlobal(Offset.zero)&renderBox.size,
+                                      );
 
-                                  },
-                                  style: ButtonStyle(
-                                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                          const RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(Radius.circular(10)),
-                                              side: BorderSide(color: Colors.transparent,width: 1)
-                                          )
-                                      ),
-                                      overlayColor: MaterialStateProperty.all(Colors.white12),
-                                      elevation:MaterialStateProperty.all(0),
-                                      shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                      backgroundColor: MaterialStateProperty.all(Colors.black),
-                                      foregroundColor: MaterialStateProperty.all(Colors.black),
-                                      // padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
-                                      textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                                  child:  Text(getTranslated(context, "referFriend")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
+                                    },
+                                    style: ButtonStyle(
+                                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                            const RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                side: BorderSide(color: Colors.transparent,width: 1)
+                                            )
+                                        ),
+                                        overlayColor: MaterialStateProperty.all(Colors.white12),
+                                        elevation:MaterialStateProperty.all(0),
+                                        shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                        backgroundColor: MaterialStateProperty.all(Colors.black),
+                                        foregroundColor: MaterialStateProperty.all(Colors.black),
+                                        // padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
+                                        textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
+                                    child:  Text(getTranslated(context, "referFriend")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(3.0),
-                              child: SizedBox(
-                                height: 60,
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    PersistentNavBarNavigator.pushNewScreen(
-                                      context,
-                                      screen: TransferCredit(),
-                                      withNavBar: true, // OPTIONAL VALUE. True by default.
-                                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                    );
-                                  },
-                                  style: ButtonStyle(
-                                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                          const RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(Radius.circular(10)),
-                                              side: BorderSide(color: Colors.transparent,width: 1)
-                                          )
-                                      ),
-                                      overlayColor: MaterialStateProperty.all(Colors.white12),
-                                      elevation:MaterialStateProperty.all(0),
-                                      shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                      backgroundColor: MaterialStateProperty.all(Colors.black),
-                                      foregroundColor: MaterialStateProperty.all(Colors.black),
-                                      padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10)),
-                                      textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                                  child:  Text(getTranslated(context, "transferCredits")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(3.0),
+                                child: SizedBox(
+                                  height: 60,
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      PersistentNavBarNavigator.pushNewScreen(
+                                        context,
+                                        screen: TransferCredit(),
+                                        withNavBar: true, // OPTIONAL VALUE. True by default.
+                                        pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                      );
+                                    },
+                                    style: ButtonStyle(
+                                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                            const RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                side: BorderSide(color: Colors.transparent,width: 1)
+                                            )
+                                        ),
+                                        overlayColor: MaterialStateProperty.all(Colors.white12),
+                                        elevation:MaterialStateProperty.all(0),
+                                        shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                        backgroundColor: MaterialStateProperty.all(Colors.black),
+                                        foregroundColor: MaterialStateProperty.all(Colors.black),
+                                        padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10)),
+                                        textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
+                                    child:  Text(getTranslated(context, "transferCredits")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(3.0),
-                              child: SizedBox(
-                                height: 60,
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(3.0),
+                                child: SizedBox(
+                                  height: 60,
 
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    PersistentNavBarNavigator.pushNewScreen(
-                                      context,
-                                      screen: CreditCalculator(),
-                                      withNavBar: true, // OPTIONAL VALUE. True by default.
-                                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                    );
-                                  },
-                                  style: ButtonStyle(
-                                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                          const RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(Radius.circular(10)),
-                                              side: BorderSide(color: Colors.transparent,width: 1)
-                                          )
-                                      ),
-                                      overlayColor: MaterialStateProperty.all(Colors.white12),
-                                      elevation:MaterialStateProperty.all(0),
-                                      shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                      backgroundColor: MaterialStateProperty.all(Colors.black),
-                                      foregroundColor: MaterialStateProperty.all(Colors.black),
-                                      padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
-                                      textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                                  child:  Text(getTranslated(context, "creditsCalculator")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      PersistentNavBarNavigator.pushNewScreen(
+                                        context,
+                                        screen: CreditCalculator(),
+                                        withNavBar: true, // OPTIONAL VALUE. True by default.
+                                        pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                      );
+                                    },
+                                    style: ButtonStyle(
+                                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                            const RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                side: BorderSide(color: Colors.transparent,width: 1)
+                                            )
+                                        ),
+                                        overlayColor: MaterialStateProperty.all(Colors.white12),
+                                        elevation:MaterialStateProperty.all(0),
+                                        shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                        backgroundColor: MaterialStateProperty.all(Colors.black),
+                                        foregroundColor: MaterialStateProperty.all(Colors.black),
+                                        padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
+                                        textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
+                                    child:  Text(getTranslated(context, "creditsCalculator")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(3.0),
-                              child: SizedBox(
-                                height: 60,
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(3.0),
+                                child: SizedBox(
+                                  height: 60,
 
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    PersistentNavBarNavigator.pushNewScreen(
-                                      context,
-                                      screen: RewardsHistory(),
-                                      withNavBar: true, // OPTIONAL VALUE. True by default.
-                                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                    );
-                                  },
-                                  style: ButtonStyle(
-                                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                          const RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(Radius.circular(10)),
-                                              side: BorderSide(color: Colors.transparent,width: 1)
-                                          )
-                                      ),
-                                      overlayColor: MaterialStateProperty.all(Colors.black12),
-                                      elevation:MaterialStateProperty.all(0),
-                                      shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                      backgroundColor: MaterialStateProperty.all(Colors.black),
-                                      foregroundColor: MaterialStateProperty.all(Colors.black),
-                                      padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
-                                      textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                                  child:  Text(getTranslated(context, "history")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300, ),textAlign: TextAlign.center,),
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      PersistentNavBarNavigator.pushNewScreen(
+                                        context,
+                                        screen: RewardsHistory(),
+                                        withNavBar: true, // OPTIONAL VALUE. True by default.
+                                        pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                      );
+                                    },
+                                    style: ButtonStyle(
+                                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                            const RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                side: BorderSide(color: Colors.transparent,width: 1)
+                                            )
+                                        ),
+                                        overlayColor: MaterialStateProperty.all(Colors.black12),
+                                        elevation:MaterialStateProperty.all(0),
+                                        shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                        backgroundColor: MaterialStateProperty.all(Colors.black),
+                                        foregroundColor: MaterialStateProperty.all(Colors.black),
+                                        padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
+                                        textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
+                                    child:  Text(getTranslated(context, "history")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300, ),textAlign: TextAlign.center,),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
 
 
 
-                        ],
-                      ),
+                          ],
+                        ),
 
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

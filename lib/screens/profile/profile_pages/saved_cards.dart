@@ -59,19 +59,22 @@ class _SavedCardsState extends State<SavedCards> {
             actions: [],
           ),
           body: Center(
-            child: Column(
-              children: [
-                Text(getTranslated(context, "savedCards")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber, fontSize: double.parse(getTranslated(context, "fontFamilyTitleُSize")!)),),
-                const  SizedBox(height: 15,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(getTranslated(context, "youHaveNoSavedCards")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.white, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
-                    const  SizedBox(width: 10,),
+            child: Container(
+              constraints: BoxConstraints(maxWidth: 450, ),
+              child: Column(
+                children: [
+                  Text(getTranslated(context, "savedCards")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber, fontSize: double.parse(getTranslated(context, "fontFamilyTitleُSize")!)),),
+                  const  SizedBox(height: 15,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(getTranslated(context, "youHaveNoSavedCards")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.white, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
+                      const  SizedBox(width: 10,),
 
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),

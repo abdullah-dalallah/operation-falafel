@@ -12,7 +12,8 @@ import 'package:video_player/video_player.dart';
 
 class ItemDetailsSheet extends StatefulWidget{
   ScrollController scrollController;
-  ItemDetailsSheet(this.scrollController,{super.key});
+  final String layOut ;
+  ItemDetailsSheet(this.scrollController,{super.key, required this.layOut});
 
   @override
   State<ItemDetailsSheet> createState() => _ItemDetailsSheetState();
@@ -197,9 +198,8 @@ class _ItemDetailsSheetState extends State<ItemDetailsSheet> {
                           topLeft: Radius.circular(20),
                           topRight: Radius.circular(20),
 
-
                         ),
-                        child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height: 280,width: double.maxFinite,fit: BoxFit.cover,)),
+                        child: Image.asset("assets/images/OF Chicken Fatteh.jpg", height:(widget.layOut=="Mobile")? 280:480,width: double.maxFinite,fit: BoxFit.cover,)),
                     /// - item title & subtitle & price
                     Padding(
                       padding: const EdgeInsets.only(left: 18.0, right: 18,top: 18),

@@ -12,8 +12,9 @@ import '../screens/drawer_pages/feedback.dart';
 import '../screens/drawer_pages/partners.dart';
 
 class DrawerWidget extends StatefulWidget{
+  final String layOut ;
    ValueChanged onChanged;
-   DrawerWidget({required this.onChanged,super.key});
+   DrawerWidget({required this.onChanged,super.key, required this.layOut});
   @override
   State<DrawerWidget> createState() => _DrawerState();
 }
@@ -32,17 +33,23 @@ class _DrawerState extends State<DrawerWidget> {
       backgroundColor: Colors.black,
       child:SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(left:0.0, top: 15, right: 0),
+          padding: const EdgeInsets.only(left:10.0, top: 15, right: 10),
           child:  Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 /// - Name
                 Row(children: [
-                  const ImageIcon(
+
+                  IconButton(onPressed: (){
+                   if(widget.layOut!="Desktop" && widget.layOut!="Tablet") {
+                     Navigator.pop(context);
+                   }
+                  }, icon: const ImageIcon(
                     AssetImage("assets/images/icon_menu.png",),
                     size: 35,
                     color: Colors.white,
-                  ),
+                  ),),
+
                   // FaIcon(FontAwesomeIcons.bars, color: Colors.white,size: 30,),
                   const  SizedBox(width: 15,),
                   Text("HI ABDULLH",style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,fontWeight: FontWeight.w300,fontSize: 20 ),),

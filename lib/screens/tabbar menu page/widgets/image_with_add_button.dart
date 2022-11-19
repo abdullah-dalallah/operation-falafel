@@ -7,6 +7,9 @@ import 'package:operation_falafel/screens/tabbar%20menu%20page/widgets/repeat_la
 import 'package:provider/provider.dart';
 
 class ImageWithAddButton extends StatefulWidget{
+  final String layOut ;
+
+  const ImageWithAddButton({super.key, required this.layOut});
 
   @override
   State<ImageWithAddButton> createState() => _ImageWithAddButtonState();
@@ -110,7 +113,7 @@ class _ImageWithAddButtonState extends State<ImageWithAddButton> {
                                                     maxChildSize: 1,
                                                     expand: true,
                                                     builder: (context, scrollController) {
-                                                      return ItemDetailsSheet(scrollController);
+                                                      return ItemDetailsSheet(layOut: widget.layOut,scrollController);
                                                     }
 
                                                 )
@@ -239,7 +242,7 @@ class _ImageWithAddButtonState extends State<ImageWithAddButton> {
                                             maxChildSize: 0.4,
                                             expand: true,
                                             builder: (context, scrollController) {
-                                              return RepeatLastCustomizationSheet(scrollController: scrollController);
+                                              return RepeatLastCustomizationSheet(layOut: widget.layOut,scrollController: scrollController);
                                             }
 
                                         )

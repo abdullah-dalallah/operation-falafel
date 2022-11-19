@@ -45,97 +45,100 @@ class _FeedbackPageState extends State<FeedbackPage> {
             actions: [],
           ),
           body:Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                /// - Title
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+            child: Container(
+              constraints: BoxConstraints(maxWidth: 450, ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  /// - Title
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
 
-                  children: [
+                    children: [
 
-                    Expanded(child: Image.asset("assets/images/feed_back_im.png", height: 170,width: 170,),),
+                      Expanded(child: Image.asset("assets/images/feed_back_im.png", height: 170,width: 170,),),
 
-                  ],
-                ),
+                    ],
+                  ),
 
-                Expanded(
-                    child:
-                    Padding(
-                      padding: const EdgeInsets.all(18.0),
-                      child: ListView(
-                        children: [
-                          StarsWidgets(),
-                          const SizedBox(height: 10,),
-                          Text(getTranslated(context, "weLoveToHereFromYou")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,fontSize: 20),textAlign: TextAlign.center,),
-                          const SizedBox(height: 10,),
-                          TextFormField(
-
-                              autofocus: false,
-                              style:  TextStyle(fontSize: 14.0,color: Colors.white,fontFamily:getTranslated(context, "fontFamilyBody")!,),
-                              maxLength: 1000,
-                              decoration:  InputDecoration(
-                                filled: true,
-                                fillColor: Colors.black,
-                                //amber.withOpacity(0.1),
-                                contentPadding:const EdgeInsets.only(left:10, top: 10, bottom: 10, right: 10),
-                                focusedBorder: const OutlineInputBorder(
-                                  borderRadius:  BorderRadius.all(
-                                    Radius.circular(5.0),
+                  Expanded(
+                      child:
+                      Padding(
+                        padding: const EdgeInsets.all(18.0),
+                        child: ListView(
+                          children: [
+                            StarsWidgets(),
+                            const SizedBox(height: 10,),
+                            Text(getTranslated(context, "weLoveToHereFromYou")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,fontSize: 20),textAlign: TextAlign.center,),
+                            const SizedBox(height: 10,),
+                            TextFormField(
+                                autofocus: false,
+                                style:  TextStyle(fontSize: 14.0,color: Colors.white,fontFamily:getTranslated(context, "fontFamilyBody")!,),
+                                maxLength: 1000,
+                                decoration:  InputDecoration(
+                                  filled: true,
+                                  fillColor: Colors.black45,
+                                  //amber.withOpacity(0.1),
+                                  contentPadding:const EdgeInsets.only(left:10, top: 10, bottom: 10, right: 10),
+                                  focusedBorder: const OutlineInputBorder(
+                                    borderRadius:  BorderRadius.all(
+                                      Radius.circular(5.0),
+                                    ),
+                                    borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
                                   ),
-                                  borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
-                                ),
-                                enabledBorder:const  OutlineInputBorder(
-                                  borderRadius:  BorderRadius.all(
-                                    Radius.circular(5.0),
+                                  enabledBorder:const  OutlineInputBorder(
+                                    borderRadius:  BorderRadius.all(
+                                      Radius.circular(5.0),
+                                    ),
+                                    borderSide: BorderSide(color: Colors.transparent, width: 0.0),
                                   ),
-                                  borderSide: BorderSide(color: Colors.transparent, width: 0.0),
+                                  hintText: getTranslated(context, "yourComments")!,
+                                  hintStyle:TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),
+
+
                                 ),
-                                hintText: '',
-                                label: Text(getTranslated(context, "yourComments")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+                                minLines: 4,
+                                maxLines:50,
+                                keyboardType: TextInputType.multiline,
+                                textInputAction: TextInputAction.next,
 
                               ),
-                              minLines: 4,
-                              maxLines:50,
-                              keyboardType: TextInputType.multiline,
-                              textInputAction: TextInputAction.next,
+                            SizedBox(
+                                width: 330,
+                                height: 38,
+                                child: ElevatedButton(
+                                    onPressed: null,
+                                    style: ButtonStyle(
+                                      backgroundColor:  MaterialStateProperty.all<Color>(Color(0xFF84ab24)),
+                                      foregroundColor:
+                                      MaterialStateProperty.all<Color>(Colors.black),
+                                      shape: MaterialStateProperty.all(
+                                          RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(10.0),
+                                              side:const BorderSide(color: Colors.transparent,width: 1.5)
+                                          )
+                                      ),
 
-                            ),
-                          SizedBox(
-                              width: 330,
-                              height: 38,
-                              child: ElevatedButton(
-                                  onPressed: null,
-                                  style: ButtonStyle(
-                                    backgroundColor:  MaterialStateProperty.all<Color>(Color(0xFF84ab24)),
-                                    foregroundColor:
-                                    MaterialStateProperty.all<Color>(Colors.black),
-                                    shape: MaterialStateProperty.all(
-                                        RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(10.0),
-                                            side:const BorderSide(color: Colors.transparent,width: 1.5)
-                                        )
+
                                     ),
+                                    child: Text(getTranslated(context, "submit")!,style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 20),)
 
-
-                                  ),
-                                  child: Text(getTranslated(context, "submit")!,style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 20),)
-
-                              )
-                          ),
+                                )
+                            ),
 
 
 
 
 
 
-                        ],
+                          ],
 
-                      ),
-                )),
+                        ),
+                  )),
 
 
-              ],
+                ],
+              ),
             ),
           ),
 

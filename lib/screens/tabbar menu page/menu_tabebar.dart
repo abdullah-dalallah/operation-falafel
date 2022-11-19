@@ -74,10 +74,12 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                      title: Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),),
                      backgroundColor: Colors.orangeAccent,
                      pinned: true,
-                     expandedHeight: 210.0,
+
+                     expandedHeight:(widget.layOut=="Mobile")? 210.0:310,
                      elevation: 0,
 
                      flexibleSpace: FlexibleSpaceBar(
+
                        collapseMode:CollapseMode.parallax,
                        expandedTitleScale:1.3,
                        // titlePadding: EdgeInsets.only(bottom: 20, left: 50),
@@ -251,7 +253,7 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                                      // );
 
                                    },
-                                   child: CustomListTile(),
+                                   child: CustomListTile(layOut: widget.layOut,),
                                  ),
 
                                ],
@@ -274,7 +276,7 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                                                  maxChildSize: 1,
                                                  expand: true,
                                                  builder: (context, scrollController) {
-                                                   return ItemDetailsSheet(scrollController);
+                                                   return ItemDetailsSheet(layOut: widget.layOut,scrollController);
                                                  }
 
                                              )
@@ -282,7 +284,7 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                                      );
 
                                    },
-                                   child: CustomListTile(),
+                                   child: CustomListTile(layOut: widget.layOut,),
                                  ),
 
                                ],
@@ -305,7 +307,7 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                                                  maxChildSize: 1,
                                                  expand: true,
                                                  builder: (context, scrollController) {
-                                                   return ItemDetailsSheet(scrollController);
+                                                   return ItemDetailsSheet(layOut: widget.layOut,scrollController);
                                                  }
 
                                              )
@@ -313,101 +315,7 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                                      );
 
                                    },
-                                   child: CustomListTile(),
-                                 ),
-
-                               ],
-                             ),
-
-                             ListView(
-                               shrinkWrap:true,
-                               padding:const EdgeInsets.only(top: 10,bottom: 20),
-                               physics: const NeverScrollableScrollPhysics(),
-                               children: [
-                                 GestureDetector(
-                                   onTap: (){
-                                     showMaterialModalBottomSheet(
-                                         expand: false,
-                                         context: context,
-                                         backgroundColor: Colors.transparent,
-                                         builder: (context) =>
-                                             DraggableScrollableSheet(
-                                                 initialChildSize: 0.6,
-                                                 minChildSize: 0.6,
-                                                 maxChildSize: 1,
-                                                 expand: true,
-                                                 builder: (context, scrollController) {
-                                                   return ItemDetailsSheet(scrollController);
-                                                 }
-
-                                             )
-
-                                     );
-
-                                   },
-                                   child: CustomListTile(),
-                                 ),
-
-                               ],
-                             ),
-                             ListView(
-                               shrinkWrap:true,
-                               padding:const EdgeInsets.only(top: 10,bottom: 20),
-                               physics: const NeverScrollableScrollPhysics(),
-                               children: [
-                                 GestureDetector(
-                                   onTap: (){
-                                     showMaterialModalBottomSheet(
-                                         expand: false,
-                                         context: context,
-                                         backgroundColor: Colors.transparent,
-                                         builder: (context) =>
-                                             DraggableScrollableSheet(
-                                                 initialChildSize: 0.6,
-                                                 minChildSize: 0.6,
-                                                 maxChildSize: 1,
-                                                 expand: true,
-                                                 builder: (context, scrollController) {
-                                                   return ItemDetailsSheet(scrollController);
-                                                 }
-
-                                             )
-
-                                     );
-
-                                   },
-                                   child: CustomListTile(),
-                                 ),
-
-                               ],
-                             ),
-                             ListView(
-                               shrinkWrap:true,
-                               padding:const EdgeInsets.only(top: 10,bottom: 20),
-                               physics: const NeverScrollableScrollPhysics(),
-                               children: [
-                                 GestureDetector(
-                                   onTap: (){
-                                     showMaterialModalBottomSheet(
-                                         expand: false,
-                                         context: context,
-                                         backgroundColor: Colors.transparent,
-                                         builder: (context) =>
-                                             DraggableScrollableSheet(
-                                                 initialChildSize: 0.6,
-                                                 minChildSize: 0.6,
-                                                 maxChildSize: 1,
-                                                 expand: true,
-                                                 builder: (context, scrollController) {
-                                                   return ItemDetailsSheet(scrollController);
-                                                 }
-
-                                             )
-
-                                     );
-
-                                   },
-                                   child: CustomListTile(),
+                                   child: CustomListTile(layOut: widget.layOut,),
                                  ),
 
                                ],
@@ -431,7 +339,7 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                                                  maxChildSize: 1,
                                                  expand: true,
                                                  builder: (context, scrollController) {
-                                                   return ItemDetailsSheet(scrollController);
+                                                   return ItemDetailsSheet(layOut: widget.layOut,scrollController);
                                                  }
 
                                              )
@@ -439,7 +347,7 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                                      );
 
                                    },
-                                   child: CustomListTile(),
+                                   child: CustomListTile(layOut: widget.layOut,),
                                  ),
 
                                ],
@@ -462,7 +370,7 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                                                  maxChildSize: 1,
                                                  expand: true,
                                                  builder: (context, scrollController) {
-                                                   return ItemDetailsSheet(scrollController);
+                                                   return ItemDetailsSheet(layOut: widget.layOut,scrollController);
                                                  }
 
                                              )
@@ -470,7 +378,7 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                                      );
 
                                    },
-                                   child: CustomListTile(),
+                                   child: CustomListTile(layOut: widget.layOut,),
                                  ),
 
                                ],
@@ -493,7 +401,7 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                                                  maxChildSize: 1,
                                                  expand: true,
                                                  builder: (context, scrollController) {
-                                                   return ItemDetailsSheet(scrollController);
+                                                   return ItemDetailsSheet(layOut: widget.layOut,scrollController);
                                                  }
 
                                              )
@@ -501,7 +409,39 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                                      );
 
                                    },
-                                   child: CustomListTile(),
+                                   child: CustomListTile(layOut: widget.layOut,),
+                                 ),
+
+                               ],
+                             ),
+
+                             ListView(
+                               shrinkWrap:true,
+                               padding:const EdgeInsets.only(top: 10,bottom: 20),
+                               physics: const NeverScrollableScrollPhysics(),
+                               children: [
+                                 GestureDetector(
+                                   onTap: (){
+                                     showMaterialModalBottomSheet(
+                                         expand: false,
+                                         context: context,
+                                         backgroundColor: Colors.transparent,
+                                         builder: (context) =>
+                                             DraggableScrollableSheet(
+                                                 initialChildSize: 0.6,
+                                                 minChildSize: 0.6,
+                                                 maxChildSize: 1,
+                                                 expand: true,
+                                                 builder: (context, scrollController) {
+                                                   return ItemDetailsSheet(layOut: widget.layOut,scrollController);
+                                                 }
+
+                                             )
+
+                                     );
+
+                                   },
+                                   child: CustomListTile(layOut: widget.layOut,),
                                  ),
 
                                ],
@@ -524,7 +464,7 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                                                  maxChildSize: 1,
                                                  expand: true,
                                                  builder: (context, scrollController) {
-                                                   return ItemDetailsSheet(scrollController);
+                                                   return ItemDetailsSheet(layOut: widget.layOut,scrollController);
                                                  }
 
                                              )
@@ -532,7 +472,7 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                                      );
 
                                    },
-                                   child: CustomListTile(),
+                                   child: CustomListTile(layOut: widget.layOut,),
                                  ),
 
                                ],
@@ -555,7 +495,7 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                                                  maxChildSize: 1,
                                                  expand: true,
                                                  builder: (context, scrollController) {
-                                                   return ItemDetailsSheet(scrollController);
+                                                   return ItemDetailsSheet(layOut: widget.layOut,scrollController);
                                                  }
 
                                              )
@@ -563,7 +503,7 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                                      );
 
                                    },
-                                   child: CustomListTile(),
+                                   child: CustomListTile(layOut: widget.layOut,),
                                  ),
 
                                ],
@@ -586,7 +526,7 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                                                  maxChildSize: 1,
                                                  expand: true,
                                                  builder: (context, scrollController) {
-                                                   return ItemDetailsSheet(scrollController);
+                                                   return ItemDetailsSheet(layOut: widget.layOut,scrollController);
                                                  }
 
                                              )
@@ -594,7 +534,69 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                                      );
 
                                    },
-                                   child: CustomListTile(),
+                                   child: CustomListTile(layOut: widget.layOut,),
+                                 ),
+
+                               ],
+                             ),
+                             ListView(
+                               shrinkWrap:true,
+                               padding:const EdgeInsets.only(top: 10,bottom: 20),
+                               physics: const NeverScrollableScrollPhysics(),
+                               children: [
+                                 GestureDetector(
+                                   onTap: (){
+                                     showMaterialModalBottomSheet(
+                                         expand: false,
+                                         context: context,
+                                         backgroundColor: Colors.transparent,
+                                         builder: (context) =>
+                                             DraggableScrollableSheet(
+                                                 initialChildSize: 0.6,
+                                                 minChildSize: 0.6,
+                                                 maxChildSize: 1,
+                                                 expand: true,
+                                                 builder: (context, scrollController) {
+                                                   return ItemDetailsSheet(layOut: widget.layOut,scrollController);
+                                                 }
+
+                                             )
+
+                                     );
+
+                                   },
+                                   child: CustomListTile(layOut: widget.layOut,),
+                                 ),
+
+                               ],
+                             ),
+                             ListView(
+                               shrinkWrap:true,
+                               padding:const EdgeInsets.only(top: 10,bottom: 20),
+                               physics: const NeverScrollableScrollPhysics(),
+                               children: [
+                                 GestureDetector(
+                                   onTap: (){
+                                     showMaterialModalBottomSheet(
+                                         expand: false,
+                                         context: context,
+                                         backgroundColor: Colors.transparent,
+                                         builder: (context) =>
+                                             DraggableScrollableSheet(
+                                                 initialChildSize: 0.6,
+                                                 minChildSize: 0.6,
+                                                 maxChildSize: 1,
+                                                 expand: true,
+                                                 builder: (context, scrollController) {
+                                                   return ItemDetailsSheet(layOut: widget.layOut,scrollController);
+                                                 }
+
+                                             )
+
+                                     );
+
+                                   },
+                                   child: CustomListTile(layOut: widget.layOut,),
                                  ),
 
                                ],
@@ -612,7 +614,7 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                ),
            )
          ),
-        drawer:  DrawerWidget(onChanged: (value) {widget.onChanged(value);},),
+        drawer:  DrawerWidget(layOut: widget.layOut,onChanged: (value) {widget.onChanged(value);},),
        ),
      ],
    );

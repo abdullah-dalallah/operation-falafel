@@ -1657,7 +1657,7 @@ class _MainMenuState extends State<MainMenu> {
                                               onTap: (){
                                                 PersistentNavBarNavigator.pushNewScreen(
                                                   context,
-                                                  screen: MyRewards(),
+                                                  screen: MyRewards(layOut: widget.layOut),
                                                   withNavBar: true, // OPTIONAL VALUE. True by default.
                                                   pageTransitionAnimation: PageTransitionAnimation.cupertino,
                                                 );
@@ -1748,7 +1748,7 @@ class _MainMenuState extends State<MainMenu> {
                 ),
 
 
-                drawer: DrawerWidget(onChanged: (value) {widget.onChanged(value);},),
+                drawer: DrawerWidget(layOut: widget.layOut,onChanged: (value) {widget.onChanged(value);},),
 
                 // bottomSheet:Container(
                 //   color: Colors.transparent,

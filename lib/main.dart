@@ -8,7 +8,6 @@ import 'package:operation_falafel/responsive/desktop_scaffold.dart';
 import 'package:operation_falafel/responsive/mobile_scaffold.dart';
 import 'package:operation_falafel/responsive/responsive_layout.dart';
 import 'package:operation_falafel/responsive/tablet_scaffold.dart';
-import 'package:operation_falafel/screens/bottomnavigationbar_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 

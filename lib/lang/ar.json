@@ -1,6 +1,6 @@
 {
   "fontFamilyTitle": "GE SS Two Medium",
-  "fontFamilyBody": "GE SS Two Medium",
+  "fontFamilyBody": "GE SS Two Light",
   "fontFamilyButtons" : "GE SS Two Medium",
   "fontFamilyButtonsSize" : 20,
   "fontFamilyTitleُSize" : 25,
@@ -208,7 +208,10 @@
   "youHaveNoSavedCards": "ليس لديك بطاقات محفوظة",
 
   "orderId": "رقم الطلب",
-  "commingSoon": "قريباً"
+  "commingSoon": "قريباً",
+
+  "male": "ذكر",
+  "female": "أنثي"
 
 
 
