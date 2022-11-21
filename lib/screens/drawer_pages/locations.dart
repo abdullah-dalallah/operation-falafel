@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:expandable/expandable.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class Locations extends StatefulWidget{
   @override
@@ -156,162 +157,153 @@ class _LocationsState extends State<Locations> {
                                              )
                                          ),
                                        ),
-                                       expanded: GridView(
-                                               physics: const NeverScrollableScrollPhysics(),
+                                       expanded: MasonryGridView.count(
                                                shrinkWrap: true,
+                                               crossAxisCount: 2,
+                                               crossAxisSpacing: 10,
+                                               mainAxisSpacing: 10,
+                                               physics: const NeverScrollableScrollPhysics(),
                                                padding: const EdgeInsets.only(left:25, right: 25),
-                                               gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
-                                                 crossAxisCount: 2,
-                                                 // crossAxisSpacing:5,
-                                                 childAspectRatio: 1.39,
-                                               ),
-                                                 children: [
-                                                   /// - JBR
-                                                   Padding(
+                                               itemCount: 5,
+
+                                               itemBuilder: (context, index) {
+                                                 switch (index){
+                                                   case 0:{
+                                                     /// - JBR
+                                                     return Padding(
                                                      padding: const EdgeInsets.all(5.0),
                                                      child: Column(
                                                        children: [
-                                                         Expanded(
-                                                          
-                                                           child: Stack(
-                                                             children: [
-                                                               Container(
-                                                                 decoration:const BoxDecoration(
+                                                         Stack(
+                                                           children: [
+                                                             Container(
+                                                               decoration:const BoxDecoration(
+                                                                 color: Colors.transparent,
+                                                                 borderRadius: BorderRadius.only(
+                                                                   topRight: Radius.circular(0),
+                                                                   bottomLeft: Radius.circular(0),
+                                                                   topLeft: Radius.circular(0),
+                                                                   bottomRight: Radius.circular(0),
+                                                                 ),
+                                                                 // border: Border.all(
+                                                                 //   width: 1,
+                                                                 //   color: Colors.amber,
+                                                                 //   style: BorderStyle.solid,
+                                                                 // ),
+                                                               ),
+                                                               child:Column(
+                                                                 children: [
+                                                                  Row(crossAxisAlignment: CrossAxisAlignment.start,
+                                                                       children:  [
+                                                                         Image.asset("assets/images/driver.png",height: 30,),
+                                                                         const SizedBox(width: 10,),
+                                                                         Expanded(child:  Text("The Beach Mall JBR 24 hours", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                                       ],
+                                                                     ),
+                                                                   const SizedBox(height: 15,),
+                                                                   Text("Dine In and Takeaway", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),),
+
+                                                                 ],
+                                                               ),
+
+                                                             ),
+
+                                                             Positioned.fill(
+                                                                 child:  Material(
                                                                    color: Colors.transparent,
-                                                                   borderRadius: BorderRadius.only(
-                                                                     topRight: Radius.circular(0),
-                                                                     bottomLeft: Radius.circular(0),
-                                                                     topLeft: Radius.circular(0),
-                                                                     bottomRight: Radius.circular(0),
+                                                                   child:   InkWell(
+                                                                     borderRadius: BorderRadius.all(Radius.circular(0)),
+                                                                     splashColor: Colors.black,
+                                                                     overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                                                     onTap: (){
+                                                                       _launchMapsUrl( 25.076743,  55.132394);
+                                                                     },
                                                                    ),
-                                                                   // border: Border.all(
-                                                                   //   width: 1,
-                                                                   //   color: Colors.amber,
-                                                                   //   style: BorderStyle.solid,
-                                                                   // ),
-                                                                 ),
-                                                                 child:Column(
-                                                                   children: [
-                                                                     Expanded(
-                                                                       child: Row(crossAxisAlignment: CrossAxisAlignment.start,
-                                                                         children:  [
-                                                                           Image.asset("assets/images/driver.png",height: 30,),
-                                                                           const SizedBox(width: 10,),
-                                                                           Expanded(child:  Text("The Beach Mall JBR 24 hours", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
-                                                                         ],
-                                                                       ),
-                                                                     ),
-                                                                     const SizedBox(height: 15,),
-                                                                      Text("Dine In and Takeaway", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),),
 
-                                                                   ],
-                                                                 ),
+                                                                 )
+                                                             ),
 
-                                                               ),
+                                                           ],
+                                                         ),
+                                                         Row(
+                                                             children: [
+                                                               Image.asset("assets/images/page8_phone.png", color: Colors.amber,height: 20,),
+                                                               const  SizedBox(width: 15,),
+                                                               Expanded(flex:2, child:  GestureDetector(
+                                                                   onTap: (){
+                                                                     launch("tel://0442430069");
+                                                                   },
+                                                                   child: Text("0442430069", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,decoration: TextDecoration.underline),))),
 
-                                                               Positioned.fill(
-                                                                   child:  Material(
-                                                                     color: Colors.transparent,
-                                                                     child:   InkWell(
-                                                                       borderRadius: BorderRadius.all(Radius.circular(0)),
-                                                                       splashColor: Colors.black,
-                                                                       overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
-
-                                                                       onTap: (){
-                                                                         _launchMapsUrl( 25.076743,  55.132394);
-                                                                       },
-                                                                     ),
-
-                                                                   )
-                                                               ),
 
                                                              ],
                                                            ),
-                                                         ),
-                                                         Expanded(
-                                                           child: Row(
-                                                               children: [
-                                                                 Image.asset("assets/images/page8_phone.png", color: Colors.amber,height: 20,),
-                                                                 const  SizedBox(width: 15,),
-                                                                 Expanded(flex:2, child:  GestureDetector(
-                                                                     onTap: (){
-                                                                       launch("tel://0442430069");
-                                                                     },
-                                                                     child: Text("0442430069", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,decoration: TextDecoration.underline),))),
 
-
-                                                               ],
-                                                             ),
-                                                         ),
 
                                                        ],
                                                      ),
-                                                   ),
-                                                   /// - bolevard
-                                                   Padding(
-                                                     padding: const EdgeInsets.all(5.0),
-                                                     child: Column(
-                                                       children: [
-                                                         Expanded(
-                                                           flex: 2,
-                                                           child: Stack(
-                                                             children: [
-                                                               Container(
-                                                                 decoration:const BoxDecoration(
-                                                                   color: Colors.transparent,
-                                                                   borderRadius: BorderRadius.only(
-                                                                     topRight: Radius.circular(0),
-                                                                     bottomLeft: Radius.circular(0),
-                                                                     topLeft: Radius.circular(0),
-                                                                     bottomRight: Radius.circular(0),
-                                                                   ),
-                                                                   // border: Border.all(
-                                                                   //   width: 1,
-                                                                   //   color: Colors.amber,
-                                                                   //   style: BorderStyle.solid,
-                                                                   // ),
-                                                                 ),
-                                                                 child:Column(
-                                                                   crossAxisAlignment: CrossAxisAlignment.end,
-                                                                   children: [
-                                                                     Expanded(
-                                                                       child: Row(
-                                                                         crossAxisAlignment: CrossAxisAlignment.start,
-                                                                         children:  [
-                                                                           Image.asset("assets/images/driver.png",height: 30,),
-                                                                           const SizedBox(width: 10,),
-                                                                           Expanded(child:  Text("MBR Bolevard Downtown 24 hours", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
-                                                                         ],
-                                                                       ),
-                                                                     ),
-                                                                     Center(child: Text("Dine In,Delivery and Takeaway", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
-                                                                     const SizedBox(height: 15,),
-                                                                   ],
-                                                                 ),
-
-                                                               ),
-
-                                                               Positioned.fill(
-                                                                   child:  Material(
+                                                   );}break;
+                                                   case 1:{
+                                                     /// - Bolevard
+                                                     return  Padding(
+                                                       padding: const EdgeInsets.all(5.0),
+                                                       child: Column(
+                                                         children: [
+                                                           Stack(
+                                                               children: [
+                                                                 Container(
+                                                                   decoration:const BoxDecoration(
                                                                      color: Colors.transparent,
-                                                                     child:   InkWell(
-                                                                       borderRadius: BorderRadius.all(Radius.circular(0)),
-                                                                       splashColor: Colors.black,
-                                                                       overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
-
-                                                                       onTap: (){
-                                                                         _launchMapsUrl( 25.191180, 55.273305);
-                                                                       },
+                                                                     borderRadius: BorderRadius.only(
+                                                                       topRight: Radius.circular(0),
+                                                                       bottomLeft: Radius.circular(0),
+                                                                       topLeft: Radius.circular(0),
+                                                                       bottomRight: Radius.circular(0),
                                                                      ),
+                                                                     // border: Border.all(
+                                                                     //   width: 1,
+                                                                     //   color: Colors.amber,
+                                                                     //   style: BorderStyle.solid,
+                                                                     // ),
+                                                                   ),
+                                                                   child:Column(
+                                                                     crossAxisAlignment: CrossAxisAlignment.end,
+                                                                     children: [
+                                                                       Row(
+                                                                           crossAxisAlignment: CrossAxisAlignment.start,
+                                                                           children:  [
+                                                                             Image.asset("assets/images/driver.png",height: 30,),
+                                                                             const SizedBox(width: 10,),
+                                                                             Expanded(child:  Text("MBR Bolevard Downtown 24 hours", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                                           ],
+                                                                         ),
+                                                                       Center(child: Text("Dine In,Delivery and Takeaway", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                                       const SizedBox(height: 15,),
+                                                                     ],
+                                                                   ),
 
-                                                                   )
-                                                               ),
+                                                                 ),
 
-                                                             ],
-                                                           ),
-                                                         ),
-                                                         Expanded(
-                                                           child: Row(
+                                                                 Positioned.fill(
+                                                                     child:  Material(
+                                                                       color: Colors.transparent,
+                                                                       child:   InkWell(
+                                                                         borderRadius: BorderRadius.all(Radius.circular(0)),
+                                                                         splashColor: Colors.black,
+                                                                         overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                                                         onTap: (){
+                                                                           _launchMapsUrl( 25.191180, 55.273305);
+                                                                         },
+                                                                       ),
+
+                                                                     )
+                                                                 ),
+
+                                                               ],
+                                                             ),
+                                                           Row(
                                                                children: [
                                                                  Image.asset("assets/images/page8_phone.png", color: Colors.amber,height: 20,),
                                                                  const  SizedBox(width: 15,),
@@ -324,159 +316,153 @@ class _LocationsState extends State<Locations> {
 
                                                                ],
                                                              ),
-                                                         ),
 
-                                                       ],
-                                                     ),
-                                                   ),
-                                                   /// - motor city
-                                                   Padding(
-                                                     padding: const EdgeInsets.all(0.0),
-                                                     child: Column(
-                                                       children: [
-                                                         Expanded(
-                                                           flex: 2,
-                                                           child: Stack(
-                                                             children: [
-                                                               Container(
-                                                                 decoration:const BoxDecoration(
-                                                                   color: Colors.transparent,
-                                                                   borderRadius: BorderRadius.only(
-                                                                     topRight: Radius.circular(0),
-                                                                     bottomLeft: Radius.circular(0),
-                                                                     topLeft: Radius.circular(0),
-                                                                     bottomRight: Radius.circular(0),
-                                                                   ),
-                                                                   // border: Border.all(
-                                                                   //   width: 1,
-                                                                   //   color: Colors.amber,
-                                                                   //   style: BorderStyle.solid,
-                                                                   // ),
-                                                                 ),
-                                                                 child:Column(
-                                                                   crossAxisAlignment: CrossAxisAlignment.end,
-                                                                   children: [
-                                                                     Expanded(
-                                                                       child: Row(
-                                                                         crossAxisAlignment: CrossAxisAlignment.start,
-                                                                         children:  [
-                                                                           Image.asset("assets/images/driver.png",height: 30,),
-                                                                           const SizedBox(width: 10,),
-                                                                           Expanded(child:  Text("The Ribbon Motor City 9:00 am -1 am", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
-                                                                         ],
+
+                                                         ],
+                                                       ),
+                                                     );
+                                                   }break;
+                                                   case 2:{
+                                                     /// - MotorCity
+                                                     return
+                                                       Padding(
+                                                         padding: const EdgeInsets.all(0.0),
+                                                         child: Column(
+                                                           children: [
+                                                              Stack(
+                                                                 children: [
+                                                                   Container(
+                                                                     decoration:const BoxDecoration(
+                                                                       color: Colors.transparent,
+                                                                       borderRadius: BorderRadius.only(
+                                                                         topRight: Radius.circular(0),
+                                                                         bottomLeft: Radius.circular(0),
+                                                                         topLeft: Radius.circular(0),
+                                                                         bottomRight: Radius.circular(0),
                                                                        ),
+                                                                       // border: Border.all(
+                                                                       //   width: 1,
+                                                                       //   color: Colors.amber,
+                                                                       //   style: BorderStyle.solid,
+                                                                       // ),
                                                                      ),
-                                                                     Center(child: Text("Dine In,Delivery and Takeaway", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
-                                                                     const SizedBox(height: 15,),
-                                                                   ],
+                                                                     child:Column(
+                                                                       crossAxisAlignment: CrossAxisAlignment.end,
+                                                                       children: [
+                                                                         Row(
+                                                                             crossAxisAlignment: CrossAxisAlignment.start,
+                                                                             children:  [
+                                                                               Image.asset("assets/images/driver.png",height: 30,),
+                                                                               const SizedBox(width: 10,),
+                                                                               Expanded(child:  Text("The Ribbon Motor City 9:00 am -1 am", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                                             ],
+                                                                           ),
+                                                                         Center(child: Text("Dine In,Delivery and Takeaway", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                                         const SizedBox(height: 15,),
+                                                                       ],
+                                                                     ),
+
+                                                                   ),
+
+                                                                   Positioned.fill(
+                                                                       child:  Material(
+                                                                         color: Colors.transparent,
+                                                                         child:   InkWell(
+                                                                           borderRadius: BorderRadius.all(Radius.circular(0)),
+                                                                           splashColor: Colors.black,
+                                                                           overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                                                           onTap: (){
+                                                                             _launchMapsUrl( 25.045966, 55.239003);
+                                                                           },
+                                                                         ),
+
+                                                                       )
+                                                                   ),
+
+                                                                 ],
+                                                               ),
+
+                                                              Row(
+                                                                 children: [
+                                                                   Image.asset("assets/images/page8_phone.png", color: Colors.amber,height: 20,),
+                                                                   const  SizedBox(width: 15,),
+                                                                   Expanded(flex:2, child:
+                                                                   GestureDetector(
+                                                                       onTap: (){
+                                                                         launch("tel://045142805");
+                                                                       },
+                                                                       child: Text("04 514 2805", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,decoration: TextDecoration.underline),))),
+
+
+                                                                 ],
+                                                               ),
+
+
+                                                           ],
+                                                         ),
+                                                       );
+                                                   }break;
+                                                   case 3:{
+                                                     /// -The Outlet Village
+                                                     return  Padding(
+                                                       padding: const EdgeInsets.all(0.0),
+                                                       child: Column(
+                                                         children: [
+                                                          Stack(
+                                                               children: [
+                                                                 Container(
+                                                                   decoration:const BoxDecoration(
+                                                                     color: Colors.transparent,
+                                                                     borderRadius: BorderRadius.only(
+                                                                       topRight: Radius.circular(0),
+                                                                       bottomLeft: Radius.circular(0),
+                                                                       topLeft: Radius.circular(0),
+                                                                       bottomRight: Radius.circular(0),
+                                                                     ),
+                                                                     // border: Border.all(
+                                                                     //   width: 1,
+                                                                     //   color: Colors.amber,
+                                                                     //   style: BorderStyle.solid,
+                                                                     // ),
+                                                                   ),
+                                                                   child:Column(
+                                                                     crossAxisAlignment: CrossAxisAlignment.end,
+                                                                     children: [
+                                                                       Row(
+                                                                           crossAxisAlignment: CrossAxisAlignment.start,
+                                                                           children:  [
+                                                                             Image.asset("assets/images/driver.png",height: 30,),
+                                                                             const SizedBox(width: 10,),
+                                                                             Expanded(child:  Text("The Outlet Village 10:00 am - 12:00 am", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                                           ],
+                                                                         ),
+                                                                       Center(child: Text("Dine In and Takeaway", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                                       const SizedBox(height: 15,),
+                                                                     ],
+                                                                   ),
+
                                                                  ),
 
-                                                               ),
+                                                                 Positioned.fill(
+                                                                     child:  Material(
+                                                                       color: Colors.transparent,
+                                                                       child:   InkWell(
+                                                                         borderRadius: BorderRadius.all(Radius.circular(0)),
+                                                                         splashColor: Colors.black,
+                                                                         overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
 
-                                                               Positioned.fill(
-                                                                   child:  Material(
-                                                                     color: Colors.transparent,
-                                                                     child:   InkWell(
-                                                                       borderRadius: BorderRadius.all(Radius.circular(0)),
-                                                                       splashColor: Colors.black,
-                                                                       overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+                                                                         onTap: (){
+                                                                           _launchMapsUrl( 24.911175,  55.011204);
+                                                                         },
+                                                                       ),
 
-                                                                       onTap: (){
-                                                                         _launchMapsUrl( 25.045966, 55.239003);
-                                                                       },
-                                                                     ),
-
-                                                                   )
-                                                               ),
-
-                                                             ],
-                                                           ),
-                                                         ),
-                                                         Expanded(
-                                                           child: Row(
-                                                               children: [
-                                                                 Image.asset("assets/images/page8_phone.png", color: Colors.amber,height: 20,),
-                                                                 const  SizedBox(width: 15,),
-                                                                 Expanded(flex:2, child:
-                                                                 GestureDetector(
-                                                                     onTap: (){
-                                                                       launch("tel://045142805");
-                                                                     },
-                                                                     child: Text("04 514 2805", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,decoration: TextDecoration.underline),))),
-
+                                                                     )
+                                                                 ),
 
                                                                ],
                                                              ),
-                                                         ),
-
-                                                       ],
-                                                     ),
-                                                   ),
-                                                   /// - outlit village
-                                                   Padding(
-                                                     padding: const EdgeInsets.all(0.0),
-                                                     child: Column(
-                                                       children: [
-                                                         Expanded(
-                                                           flex: 2,
-                                                           child: Stack(
-                                                             children: [
-                                                               Container(
-                                                                 decoration:const BoxDecoration(
-                                                                   color: Colors.transparent,
-                                                                   borderRadius: BorderRadius.only(
-                                                                     topRight: Radius.circular(0),
-                                                                     bottomLeft: Radius.circular(0),
-                                                                     topLeft: Radius.circular(0),
-                                                                     bottomRight: Radius.circular(0),
-                                                                   ),
-                                                                   // border: Border.all(
-                                                                   //   width: 1,
-                                                                   //   color: Colors.amber,
-                                                                   //   style: BorderStyle.solid,
-                                                                   // ),
-                                                                 ),
-                                                                 child:Column(
-                                                                   crossAxisAlignment: CrossAxisAlignment.end,
-                                                                   children: [
-                                                                     Expanded(
-                                                                       child: Row(
-                                                                         crossAxisAlignment: CrossAxisAlignment.start,
-                                                                         children:  [
-                                                                           Image.asset("assets/images/driver.png",height: 30,),
-                                                                           const SizedBox(width: 10,),
-                                                                           Expanded(child:  Text("The Outlet Village 10:00 am - 12:00 am", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
-                                                                         ],
-                                                                       ),
-                                                                     ),
-                                                                     Center(child: Text("Dine In and Takeaway", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
-                                                                     const SizedBox(height: 15,),
-                                                                   ],
-                                                                 ),
-
-                                                               ),
-
-                                                               Positioned.fill(
-                                                                   child:  Material(
-                                                                     color: Colors.transparent,
-                                                                     child:   InkWell(
-                                                                       borderRadius: BorderRadius.all(Radius.circular(0)),
-                                                                       splashColor: Colors.black,
-                                                                       overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
-
-                                                                       onTap: (){
-                                                                         _launchMapsUrl( 24.911175,  55.011204);
-                                                                       },
-                                                                     ),
-
-                                                                   )
-                                                               ),
-
-                                                             ],
-                                                           ),
-                                                         ),
-                                                         Expanded(
-                                                           child: Row(
+                                                           Row(
                                                                children: [
                                                                  Image.asset("assets/images/page8_phone.png", color: Colors.amber,height: 20,),
                                                                  const  SizedBox(width: 15,),
@@ -490,76 +476,72 @@ class _LocationsState extends State<Locations> {
 
                                                                ],
                                                              ),
-                                                         ),
 
-                                                       ],
-                                                     ),
-                                                   ),
-                                                   /// - media city
-                                                   Padding(
-                                                     padding: const EdgeInsets.all(0.0),
-                                                     child: Column(
-                                                       children: [
-                                                         Expanded(
-                                                           flex: 4,
-                                                           child: Stack(
-                                                             children: [
-                                                               Container(
-                                                                 decoration:const BoxDecoration(
-                                                                   color: Colors.transparent,
-                                                                   borderRadius: BorderRadius.only(
-                                                                     topRight: Radius.circular(0),
-                                                                     bottomLeft: Radius.circular(0),
-                                                                     topLeft: Radius.circular(0),
-                                                                     bottomRight: Radius.circular(0),
-                                                                   ),
-                                                                   // border: Border.all(
-                                                                   //   width: 1,
-                                                                   //   color: Colors.amber,
-                                                                   //   style: BorderStyle.solid,
-                                                                   // ),
-                                                                 ),
-                                                                 child:Column(
-                                                                   crossAxisAlignment: CrossAxisAlignment.end,
-                                                                   children: [
-                                                                     Expanded(
-                                                                       child: Row(
-                                                                         crossAxisAlignment: CrossAxisAlignment.start,
-                                                                         children:  [
-                                                                           Image.asset("assets/images/driver.png",height: 30,),
-                                                                           const SizedBox(width: 10,),
-                                                                           Expanded(child:  Text("Dubai Media City CNBC Building C7 - G Floor - Dubai\nOpen 24 hours", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
-                                                                         ],
-                                                                       ),
-                                                                     ),
-                                                                     Center(child: Text("Dine In,Delivery and Takeaway", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
-                                                                     const SizedBox(height: 15,),
-                                                                   ],
-                                                                 ),
 
-                                                               ),
-                                                               Positioned.fill(
-                                                                   child:  Material(
+                                                         ],
+                                                       ),
+                                                     );
+                                                   }break;
+                                                   case 4:{
+                                                     /// - Dubai Media city
+                                                     return  Padding(
+                                                       padding: const EdgeInsets.all(0.0),
+                                                       child: Column(
+                                                         children: [
+                                                           Stack(
+                                                               children: [
+                                                                 Container(
+                                                                   decoration:const BoxDecoration(
                                                                      color: Colors.transparent,
-                                                                     child:   InkWell(
-                                                                       borderRadius: BorderRadius.all(Radius.circular(0)),
-                                                                       splashColor: Colors.black,
-                                                                       overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
-
-                                                                       onTap: (){
-                                                                         _launchMapsUrl( 25.0953904,55.156927);
-                                                                       },
+                                                                     borderRadius: BorderRadius.only(
+                                                                       topRight: Radius.circular(0),
+                                                                       bottomLeft: Radius.circular(0),
+                                                                       topLeft: Radius.circular(0),
+                                                                       bottomRight: Radius.circular(0),
                                                                      ),
+                                                                     // border: Border.all(
+                                                                     //   width: 1,
+                                                                     //   color: Colors.amber,
+                                                                     //   style: BorderStyle.solid,
+                                                                     // ),
+                                                                   ),
+                                                                   child:Column(
+                                                                     crossAxisAlignment: CrossAxisAlignment.end,
+                                                                     children: [
+                                                                        Row(
+                                                                           crossAxisAlignment: CrossAxisAlignment.start,
+                                                                           children:  [
+                                                                             Image.asset("assets/images/driver.png",height: 30,),
+                                                                             const SizedBox(width: 10,),
+                                                                             Expanded(child:  Text("Dubai Media City CNBC Building C7 - G Floor - Dubai\nOpen 24 hours", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                                           ],
+                                                                         ),
 
-                                                                   )
-                                                               ),
+                                                                       Center(child: Text("Dine In,Delivery and Takeaway", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                                       const SizedBox(height: 15,),
+                                                                     ],
+                                                                   ),
 
-                                                             ],
-                                                           ),
-                                                         ),
-                                                         Expanded(
-                                                           flex: 1,
-                                                            child: Row(
+                                                                 ),
+                                                                 Positioned.fill(
+                                                                     child:  Material(
+                                                                       color: Colors.transparent,
+                                                                       child:   InkWell(
+                                                                         borderRadius: BorderRadius.all(Radius.circular(0)),
+                                                                         splashColor: Colors.black,
+                                                                         overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                                                         onTap: (){
+                                                                           _launchMapsUrl( 25.0953904,55.156927);
+                                                                         },
+                                                                       ),
+
+                                                                     )
+                                                                 ),
+
+                                                               ],
+                                                             ),
+                                                           Row(
                                                                children: [
                                                                  Image.asset("assets/images/page8_phone.png", color: Colors.amber,height: 20,),
                                                                  const  SizedBox(width: 15,),
@@ -573,12 +555,16 @@ class _LocationsState extends State<Locations> {
 
                                                                ],
                                                              ),
-                                                          ),
 
-                                                       ],
-                                                     ),
-                                                   ),
-                                                 ],
+                                                         ],
+                                                       ),
+                                                     );
+                                                   }break;
+                                                  
+
+                                                   default: return Text("location");
+                                                 };
+                                               }
                                        ),
                                      ),
                                ),
@@ -667,262 +653,260 @@ class _LocationsState extends State<Locations> {
                                          )
                                      ),
                                    ),
-                                   expanded: GridView(
-                                     physics: const NeverScrollableScrollPhysics(),
+                                   expanded: MasonryGridView.count(
                                      shrinkWrap: true,
+                                     crossAxisCount: 2,
+                                     crossAxisSpacing: 10,
+                                     mainAxisSpacing: 10,
+                                     physics: const NeverScrollableScrollPhysics(),
                                      padding: const EdgeInsets.only(left:25, right: 25),
-                                     gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
-                                       crossAxisCount: 2,
-                                       // crossAxisSpacing:5,
-                                       childAspectRatio: 1.39,
-                                     ),
-                                     children: [
-                                       /// - rubeen plaza
-                                       Padding(
-                                         padding: const EdgeInsets.all(5.0),
-                                         child: Column(
-                                           children: [
-                                             Expanded(
-                                              flex: 2,
-                                               child: Stack(
+                                     itemCount: 3,
+                                       itemBuilder: (context, index){
+                                       switch (index){
+                                         case 0:{
+                                           return
+                                             /// - rubeen plaza
+                                             Padding(
+                                               padding: const EdgeInsets.all(5.0),
+                                               child: Column(
                                                  children: [
-                                                   Container(
-                                                     decoration:const BoxDecoration(
-                                                       color: Colors.transparent,
-                                                       borderRadius: BorderRadius.only(
-                                                         topRight: Radius.circular(0),
-                                                         bottomLeft: Radius.circular(0),
-                                                         topLeft: Radius.circular(0),
-                                                         bottomRight: Radius.circular(0),
-                                                       ),
-                                                       // border: Border.all(
-                                                       //   width: 1,
-                                                       //   color: Colors.amber,
-                                                       //   style: BorderStyle.solid,
-                                                       // ),
-                                                     ),
-                                                     child:Column(
+                                                  Stack(
                                                        children: [
-                                                         Expanded(
-                                                           child: Row(crossAxisAlignment: CrossAxisAlignment.start,
-                                                             children:  [
-                                                               Image.asset("assets/images/driver.png",height: 30,),
-                                                               const SizedBox(width: 10,),
-                                                               Expanded(child:  Text("Rubeen Plaza,Northern Ring Branch Road,Hittin 7 am - 1 am", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                         Container(
+                                                           decoration:const BoxDecoration(
+                                                             color: Colors.transparent,
+                                                             borderRadius: BorderRadius.only(
+                                                               topRight: Radius.circular(0),
+                                                               bottomLeft: Radius.circular(0),
+                                                               topLeft: Radius.circular(0),
+                                                               bottomRight: Radius.circular(0),
+                                                             ),
+                                                             // border: Border.all(
+                                                             //   width: 1,
+                                                             //   color: Colors.amber,
+                                                             //   style: BorderStyle.solid,
+                                                             // ),
+                                                           ),
+                                                           child:Column(
+                                                             children: [
+                                                              Row(crossAxisAlignment: CrossAxisAlignment.start,
+                                                                   children:  [
+                                                                     Image.asset("assets/images/driver.png",height: 30,),
+                                                                     const SizedBox(width: 10,),
+                                                                     Expanded(child:  Text("Rubeen Plaza,Northern Ring Branch Road,Hittin 7 am - 1 am", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                                   ],
+                                                                 ),
+
+                                                               const SizedBox(height: 15,),
+                                                               Text("Dine In , Takeaway", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),),
+
                                                              ],
                                                            ),
+
                                                          ),
-                                                         const SizedBox(height: 15,),
-                                                         Text("Dine In , Takeaway", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),),
+
+                                                         Positioned.fill(
+                                                             child:  Material(
+                                                               color: Colors.transparent,
+                                                               child:   InkWell(
+                                                                 borderRadius: BorderRadius.all(Radius.circular(0)),
+                                                                 splashColor: Colors.black,
+                                                                 overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                                                 onTap: (){
+                                                                   _launchMapsUrl(24.7524000, 46.6255000);
+                                                                 },
+                                                               ),
+
+                                                             )
+                                                         ),
 
                                                        ],
                                                      ),
 
-                                                   ),
-
-                                                   Positioned.fill(
-                                                       child:  Material(
-                                                         color: Colors.transparent,
-                                                         child:   InkWell(
-                                                           borderRadius: BorderRadius.all(Radius.circular(0)),
-                                                           splashColor: Colors.black,
-                                                           overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
-
-                                                           onTap: (){
-                                                             _launchMapsUrl(24.7524000, 46.6255000);
-                                                           },
-                                                         ),
-
-                                                       )
-                                                   ),
-
-                                                 ],
-                                               ),
-                                             ),
-                                             Expanded(
-                                               child: Row(
-                                                 children: [
-                                                   Image.asset("assets/images/page8_phone.png", color: Colors.amber,height: 20,),
-                                                   const  SizedBox(width: 15,),
-                                                   Expanded(flex:2, child:  GestureDetector(
-                                                       onTap: (){
-                                                         launch("tel://0112465709");
-                                                       },
-                                                       child: Text("0112465709", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,decoration: TextDecoration.underline),))),
-
-
-                                                 ],
-                                               ),
-                                             ),
-                                           ],
-                                         ),
-                                       ),
-                                       /// - al-shatea square
-                                       Padding(
-                                         padding: const EdgeInsets.all(5.0),
-                                         child: Column(
-                                           children: [
-                                             Expanded(
-                                               flex: 3,
-                                               child: Stack(
-                                                 children: [
-                                                   Container(
-                                                     decoration:const BoxDecoration(
-                                                       color: Colors.transparent,
-                                                       borderRadius: BorderRadius.only(
-                                                         topRight: Radius.circular(0),
-                                                         bottomLeft: Radius.circular(0),
-                                                         topLeft: Radius.circular(0),
-                                                         bottomRight: Radius.circular(0),
-                                                       ),
-                                                       // border: Border.all(
-                                                       //   width: 1,
-                                                       //   color: Colors.amber,
-                                                       //   style: BorderStyle.solid,
-                                                       // ),
-                                                     ),
-                                                     child:Column(
-                                                       crossAxisAlignment: CrossAxisAlignment.end,
+                                                   Row(
                                                        children: [
-                                                         Expanded(
-                                                           child: Row(
-                                                             crossAxisAlignment: CrossAxisAlignment.start,
-                                                             children:  [
-                                                               Image.asset("assets/images/driver.png",height: 30,),
-                                                               const SizedBox(width: 10,),
-                                                               Expanded(child:  Text("Al-Shatea Square,Ash Shati Al Gharabi street 15 7am - 1 am", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
-                                                             ],
-                                                           ),
-                                                         ),
-                                                         Center(child: Text("Dine In,pickup", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
-                                                         const SizedBox(height: 15,),
+                                                         Image.asset("assets/images/page8_phone.png", color: Colors.amber,height: 20,),
+                                                         const  SizedBox(width: 15,),
+                                                         Expanded(flex:2, child:  GestureDetector(
+                                                             onTap: (){
+                                                               launch("tel://0112465709");
+                                                             },
+                                                             child: Text("0112465709", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,decoration: TextDecoration.underline),))),
+
+
                                                        ],
                                                      ),
 
-                                                   ),
-
-                                                   Positioned.fill(
-                                                       child:  Material(
-                                                         color: Colors.transparent,
-                                                         child:   InkWell(
-                                                           borderRadius: BorderRadius.all(Radius.circular(0)),
-                                                           splashColor: Colors.black,
-                                                           overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
-
-                                                           onTap: (){
-                                                             _launchMapsUrl(24.9126000, 55.0105000);
-                                                           },
-                                                         ),
-
-                                                       )
-                                                   ),
-
                                                  ],
                                                ),
-                                             ),
-                                             Expanded(
-                                               child: Row(
+                                             );
+                                         }break;
+                                         case 1:{
+                                           return
+                                             /// - al-shatea square
+                                             Padding(
+                                               padding: const EdgeInsets.all(5.0),
+                                               child: Column(
                                                  children: [
-                                                   Image.asset("assets/images/page8_phone.png", color: Colors.amber,height: 20,),
-                                                   const  SizedBox(width: 15,),
-                                                   Expanded(flex:2, child:  GestureDetector(
-                                                       onTap: (){
-                                                         launch("tel://920029970");
-                                                       },
-                                                       child: Text("920029970", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,decoration: TextDecoration.underline),))),
 
-
-                                                 ],
-                                               ),
-                                             ),
-
-                                           ],
-                                         ),
-                                       ),
-                                       /// - dhahran mall
-                                       Padding(
-                                         padding: const EdgeInsets.all(0.0),
-                                         child: Column(
-                                           children: [
-                                             Expanded(
-                                               flex: 2,
-                                               child: Stack(
-                                                 children: [
-                                                   Container(
-                                                     decoration:const BoxDecoration(
-                                                       color: Colors.transparent,
-                                                       borderRadius: BorderRadius.only(
-                                                         topRight: Radius.circular(0),
-                                                         bottomLeft: Radius.circular(0),
-                                                         topLeft: Radius.circular(0),
-                                                         bottomRight: Radius.circular(0),
-                                                       ),
-                                                       // border: Border.all(
-                                                       //   width: 1,
-                                                       //   color: Colors.amber,
-                                                       //   style: BorderStyle.solid,
-                                                       // ),
-                                                     ),
-                                                     child:Column(
-                                                       crossAxisAlignment: CrossAxisAlignment.end,
+                                                     Stack(
                                                        children: [
-                                                         Expanded(
-                                                           child: Row(
-                                                             crossAxisAlignment: CrossAxisAlignment.start,
-                                                             children:  [
-                                                               Image.asset("assets/images/driver.png",height: 30,),
-                                                               const SizedBox(width: 10,),
-                                                               Expanded(child:  Text("Dhahran Mall. Gate 10 9:00 am - 12:00 am", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                         Container(
+                                                           decoration:const BoxDecoration(
+                                                             color: Colors.transparent,
+                                                             borderRadius: BorderRadius.only(
+                                                               topRight: Radius.circular(0),
+                                                               bottomLeft: Radius.circular(0),
+                                                               topLeft: Radius.circular(0),
+                                                               bottomRight: Radius.circular(0),
+                                                             ),
+                                                             // border: Border.all(
+                                                             //   width: 1,
+                                                             //   color: Colors.amber,
+                                                             //   style: BorderStyle.solid,
+                                                             // ),
+                                                           ),
+                                                           child:Column(
+                                                             crossAxisAlignment: CrossAxisAlignment.end,
+                                                             children: [
+                                                               Row(
+                                                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                                                   children:  [
+                                                                     Image.asset("assets/images/driver.png",height: 30,),
+                                                                     const SizedBox(width: 10,),
+                                                                     Expanded(child:  Text("Al-Shatea Square,Ash Shati Al Gharabi street 15 7am - 1 am", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                                   ],
+                                                                 ),
+                                                               Center(child: Text("Dine In,pickup", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                               const SizedBox(height: 15,),
                                                              ],
                                                            ),
+
                                                          ),
-                                                         Center(child: Text("Dine in, Takeaway", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
-                                                         const SizedBox(height: 15,),
+                                                         Positioned.fill(
+                                                             child:  Material(
+                                                               color: Colors.transparent,
+                                                               child:   InkWell(
+                                                                 borderRadius: BorderRadius.all(Radius.circular(0)),
+                                                                 splashColor: Colors.black,
+                                                                 overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                                                 onTap: (){
+                                                                   _launchMapsUrl(24.9126000, 55.0105000);
+                                                                 },
+                                                               ),
+
+                                                             )
+                                                         ),
+
                                                        ],
                                                      ),
 
-                                                   ),
-                                                   Positioned.fill(
-                                                       child:  Material(
-                                                         color: Colors.transparent,
-                                                         child:   InkWell(
-                                                           borderRadius: BorderRadius.all(Radius.circular(0)),
-                                                           splashColor: Colors.black,
-                                                           overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+                                                   Row(
+                                                       children: [
+                                                         Image.asset("assets/images/page8_phone.png", color: Colors.amber,height: 20,),
+                                                         const  SizedBox(width: 15,),
+                                                         Expanded(flex:2, child:  GestureDetector(
+                                                             onTap: (){
+                                                               launch("tel://920029970");
+                                                             },
+                                                             child: Text("920029970", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,decoration: TextDecoration.underline),))),
 
-                                                           onTap: (){
-                                                             _launchMapsUrl(24.9126000, 55.0105000);
-                                                           },
+
+                                                       ],
+                                                     ),
+
+
+                                                 ],
+                                               ),
+                                             );
+                                         }break;
+                                         case 2:{
+                                           return   /// - dhahran mall
+                                             Padding(
+                                               padding: const EdgeInsets.all(0.0),
+                                               child: Column(
+                                                 children: [
+                                                   Stack(
+                                                       children: [
+                                                         Container(
+                                                           decoration:const BoxDecoration(
+                                                             color: Colors.transparent,
+                                                             borderRadius: BorderRadius.only(
+                                                               topRight: Radius.circular(0),
+                                                               bottomLeft: Radius.circular(0),
+                                                               topLeft: Radius.circular(0),
+                                                               bottomRight: Radius.circular(0),
+                                                             ),
+                                                             // border: Border.all(
+                                                             //   width: 1,
+                                                             //   color: Colors.amber,
+                                                             //   style: BorderStyle.solid,
+                                                             // ),
+                                                           ),
+                                                           child:Column(
+                                                             crossAxisAlignment: CrossAxisAlignment.end,
+                                                             children: [
+                                                               Row(
+                                                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                                                   children:  [
+                                                                     Image.asset("assets/images/driver.png",height: 30,),
+                                                                     const SizedBox(width: 10,),
+                                                                     Expanded(child:  Text("Dhahran Mall. Gate 10 9:00 am - 12:00 am", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                                   ],
+                                                                 ),
+
+                                                               Center(child: Text("Dine in, Takeaway", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                               const SizedBox(height: 15,),
+                                                             ],
+                                                           ),
+
+                                                         ),
+                                                         Positioned.fill(
+                                                             child:  Material(
+                                                               color: Colors.transparent,
+                                                               child:   InkWell(
+                                                                 borderRadius: BorderRadius.all(Radius.circular(0)),
+                                                                 splashColor: Colors.black,
+                                                                 overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                                                 onTap: (){
+                                                                   _launchMapsUrl(24.9126000, 55.0105000);
+                                                                 },
+                                                               ),
+
+                                                             )
                                                          ),
 
-                                                       )
-                                                   ),
+                                                       ],
+                                                     ),
+
+                                                   Row(
+                                                       children: [
+                                                         Image.asset("assets/images/page8_phone.png", color: Colors.amber,height: 20,),
+                                                         const  SizedBox(width: 15,),
+                                                         Expanded(flex:2, child:
+                                                         GestureDetector(
+                                                             onTap: (){
+                                                               launch("tel://920029970");
+                                                             },
+                                                             child: Text("920029970", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,decoration: TextDecoration.underline),))),
+
+
+                                                       ],
+                                                     ),
+
 
                                                  ],
                                                ),
-                                             ),
-                                             Expanded(
-                                               child: Row(
-                                                 children: [
-                                                   Image.asset("assets/images/page8_phone.png", color: Colors.amber,height: 20,),
-                                                   const  SizedBox(width: 15,),
-                                                   Expanded(flex:2, child:
-                                                   GestureDetector(
-                                                       onTap: (){
-                                                         launch("tel://920029970");
-                                                       },
-                                                       child: Text("920029970", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,decoration: TextDecoration.underline),))),
+                                             );
 
+                                         }break;
+                                         default:{return SizedBox(height: 10,);}break;
+                                       }
+                                       }
 
-                                                 ],
-                                               ),
-                                             ),
-
-                                           ],
-                                         ),
-                                       ),
-
-                                     ],
                                    ),
                                  ),
                                ),
