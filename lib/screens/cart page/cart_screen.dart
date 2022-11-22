@@ -111,8 +111,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
 
                        children: [
                          const  SizedBox(height: 20,),
-                         Text(getTranslated(context, "my o:f cart")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber, fontSize: double.parse(getTranslated(context, "fontFamilyTitleُSize")!)),),
-
+                         Text(getTranslated(context, "my o:f cart")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber, fontSize: double.parse(getTranslated(context, "cartpageHeader1")!)),),
                          const  SizedBox(height: 50,),
 
                          /// - cart with items
@@ -128,111 +127,109 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                    shrinkWrap: true,
                                    itemCount:value.cartItems.length,
                                    itemBuilder: (context, index) {
-                                     return Column(
-                                       children: [
-                                         ListTile(
+                                     return Padding(
+                                       padding: const EdgeInsets.only(left:15.0, right: 15, top: 0),
+                                       child: Column(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: [
+                                           Text("${value.cartItems[index].itemName}", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.amber, fontSize: double.parse(getTranslated(context, "cartpageHeader2")!), fontWeight: FontWeight.w300),),
+                                           const SizedBox(height: 5,),
+                                           Visibility(
+                                             visible: (value.cartItems[index].selectedOtions.length!=0 ||value.cartItems[index].selectedAddon.length !=0)?true:false,
+                                             child: Column(
 
-                                           title: Text("${value.cartItems[index].itemName}", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.amber, fontSize: 25, fontWeight: FontWeight.w300),),
-                                           subtitle:  Column(children: [
-                                             /// - Customiztion
-                                             ListView.builder(
-                                                 physics:const NeverScrollableScrollPhysics(),
-                                                 shrinkWrap: true,
-                                                 itemCount:value.cartItems[index].selectedOtions.length,
-                                                 itemBuilder: (context, index2) {
-                                                   return Padding(
-                                                     padding: const EdgeInsets.all(2.0),
-                                                     child: Row(
-                                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                       children: [
+                                               children: [
+                                                 /// - Customiztion
+                                                 ListView.builder(
+                                                     physics:const NeverScrollableScrollPhysics(),
+                                                     shrinkWrap: true,
+                                                     itemCount:value.cartItems[index].selectedOtions.length,
+                                                     itemBuilder: (context, index2) {
+                                                       return Padding(
+                                                         padding: const EdgeInsets.all(2.0),
+                                                         child: Row(
+                                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                           children: [
+                                                             Text("${value.cartItems[index].selectedOtions[index2].keys.elementAt(0)}", style: TextStyle(
+                                                                 fontSize: double.parse(getTranslated(context, "cartpageHeader3")!),
+                                                                 fontFamily: getTranslated(
+                                                                     context,
+                                                                     "fontFamilyBody")!,
+                                                                 color: Colors.white,
+                                                                 fontWeight: FontWeight.w300),),
+                                                             // Text("AED ${value.cartItems[index].selectedOtions[index2][value.cartItems[index].selectedOtions[index2].keys.elementAt(0)]["Price"]}",
+                                                             //   style: TextStyle(
+                                                             //       fontSize: 15,
+                                                             //       fontFamily: getTranslated(
+                                                             //           context,
+                                                             //           "fontFamilyBody")!,
+                                                             //       color: Colors.white,
+                                                             //       fontWeight: FontWeight.w300),),
+                                                           ],
+                                                         ),
+                                                       );
 
-                                                         Text("${value.cartItems[index].selectedOtions[index2].keys.elementAt(0)}", style: TextStyle(
-                                                             fontSize: 15,
-                                                             fontFamily: getTranslated(
-                                                                 context,
-                                                                 "fontFamilyBody")!,
-                                                             color: Colors.white,
-                                                             fontWeight: FontWeight.w300),),
-                                                         // Text("AED ${value.cartItems[index].selectedOtions[index2][value.cartItems[index].selectedOtions[index2].keys.elementAt(0)]["Price"]}",
-                                                         //   style: TextStyle(
-                                                         //       fontSize: 15,
-                                                         //       fontFamily: getTranslated(
-                                                         //           context,
-                                                         //           "fontFamilyBody")!,
-                                                         //       color: Colors.white,
-                                                         //       fontWeight: FontWeight.w300),),
-                                                       ],
-                                                     ),
-                                                   );
+                                                     }
+                                                 ),
+                                                 /// - AddON
+                                                 ListView.builder(
+                                                     physics:const NeverScrollableScrollPhysics(),
+                                                     shrinkWrap: true,
+                                                     itemCount:value.cartItems[index].selectedAddon.length,
+                                                     itemBuilder: (context, index2) {
+                                                       return Padding(
+                                                         padding: const EdgeInsets.all(2.0),
+                                                         child: Row(
+                                                           mainAxisAlignment: MainAxisAlignment.start,
+                                                           children: [
+                                                             Text("${value.cartItems[index].selectedAddon[index2][value.cartItems[index].selectedAddon[index2].keys.elementAt(0)]["quantity"]}X ", style: TextStyle(
+                                                                 fontSize: double.parse(getTranslated(context, "cartpageHeader3")!),
+                                                                 fontFamily: getTranslated(context, "fontFamilyBody")!,
+                                                                 color: Colors.white,
+                                                                 fontWeight: FontWeight.w300),),
+                                                             Text("${value.cartItems[index].selectedAddon[index2].keys.elementAt(0)}",
+                                                               style: TextStyle(
+                                                                   fontSize: double.parse(getTranslated(context, "cartpageHeader3")!),
+                                                                   fontFamily: getTranslated(
+                                                                       context,
+                                                                       "fontFamilyBody")!,
+                                                                   color: Colors.white,
+                                                                   fontWeight: FontWeight.w300),),
+                                                             Expanded(child: SizedBox(width: 2,)),
+                                                             Text("AED ${value.cartItems[index].selectedAddon[index2][value.cartItems[index].selectedAddon[index2].keys.elementAt(0)]["Price"]}",
+                                                               style: TextStyle(
+                                                                   fontSize: double.parse(getTranslated(context, "cartpageHeader3")!),
+                                                                   fontFamily: getTranslated(
+                                                                       context,
+                                                                       "fontFamilyBody")!,
+                                                                   color: Colors.white,
+                                                                   fontWeight: FontWeight.w300),),
+                                                           ],
+                                                         ),
+                                                       );
 
-                                                 }
-                                             ),
-                                             /// - AddON
-                                             ListView.builder(
-                                                 physics:const NeverScrollableScrollPhysics(),
-                                                 shrinkWrap: true,
-                                                 itemCount:value.cartItems[index].selectedAddon.length,
-                                                 itemBuilder: (context, index2) {
-                                                   return Padding(
-                                                     padding: const EdgeInsets.all(2.0),
-                                                     child: Row(
-                                                       mainAxisAlignment: MainAxisAlignment.start,
-                                                       children: [
-                                                         Text("${value.cartItems[index].selectedAddon[index2][value.cartItems[index].selectedAddon[index2].keys.elementAt(0)]["quantity"]}X", style: TextStyle(
-                                                             fontSize: 15,
-                                                             fontFamily: getTranslated(
-                                                                 context,
-                                                                 "fontFamilyBody")!,
-                                                             color: Colors.white,
-                                                             fontWeight: FontWeight.w300),),
-                                                         Text("${value.cartItems[index].selectedAddon[index2].keys.elementAt(0)}",
-                                                           style: TextStyle(
-                                                               fontSize: 15,
-                                                               fontFamily: getTranslated(
-                                                                   context,
-                                                                   "fontFamilyBody")!,
-                                                               color: Colors.white,
-                                                               fontWeight: FontWeight.w300),),
-                                                         Expanded(child: SizedBox(width: 2,)),
-                                                         Text("AED ${value.cartItems[index].selectedAddon[index2][value.cartItems[index].selectedAddon[index2].keys.elementAt(0)]["Price"]}",
-                                                           style: TextStyle(
-                                                               fontSize: 15,
-                                                               fontFamily: getTranslated(
-                                                                   context,
-                                                                   "fontFamilyBody")!,
-                                                               color: Colors.white,
-                                                               fontWeight: FontWeight.w300),),
-                                                       ],
-                                                     ),
-                                                   );
+                                                     }
+                                                 ),
 
-                                                 }
-                                             ),
-
-                                           ],),
-
-
-                                         ),
-
-
-                                         Padding(
-                                           padding: const EdgeInsets.only(left:15.0, right: 15, top: 10),
-                                           child: Row(
+                                               ],),
+                                           ),
+                                           const SizedBox(height: 5,),
+                                           Row(
                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                              children: [
                                                PluseMinusWidgetCart(ItemQuantity:value.cartItems[index].itemQuantity, itemIndex: index, ),
-                                               Text("AED ${value.cartItems[index].itemTotalPrice}", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,fontSize: 20, color: Colors.white, fontWeight: FontWeight.w300),)
+                                               Text("AED ${value.cartItems[index].itemTotalPrice}", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,fontSize: double.parse(getTranslated(context, "cartpageHeader2")!), color: Colors.white, fontWeight: FontWeight.w300),)
                                              ],
                                            ),
-                                         ),
 
-                                         (index <0)? const Padding(
-                                           padding: EdgeInsets.all(18.0),
-                                           child: Divider(
-                                             color: Colors.grey,
-                                           ),
-                                         ):const SizedBox(height: 15,)
-                                       ],
+                                           (index <value.cartItems.length-1 )? const Padding(
+                                             padding: EdgeInsets.all(18.0),
+                                             child: Divider(
+                                               color: Colors.grey,
+                                             ),
+                                           ):const SizedBox(height: 15,)
+                                         ],
+                                       ),
                                      );
                                    }
                                ),
@@ -241,7 +238,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                const SizedBox(height: 10,),
 
                                /// - Special Intructions
-                                Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.amber, fontSize: 25),),
+                                Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.amber, fontSize: double.parse(getTranslated(context, "cartpageHeader2")!),),),
                                const SizedBox(height: 10,),
                                Padding(
                                   padding: const EdgeInsets.only(left:18.0, right: 18),
@@ -434,7 +431,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                ),
 
                                const SizedBox(height: 15,),
-                               Text(getTranslated(context, "tip the driver")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.amber, fontSize: 20),),
+                               Text(getTranslated(context, "tip the driver")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.amber, fontSize: double.parse(getTranslated(context, "cartpageHeader2")!),),),
                                const SizedBox(height: 15,),
                                /// - tip the driver
                                Padding(
@@ -483,8 +480,8 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                        child: Row(
                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                          children: [
-                                           Text(getTranslated(context, "subTotal")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.white, fontSize: 17,fontWeight: FontWeight.w300),),
-                                           Text("AED ${value.Details.Total}", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.white, fontSize: 17,fontWeight: FontWeight.w300),),
+                                           Text(getTranslated(context, "subTotal")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.white, fontSize: double.parse(getTranslated(context, "cartpageHeader2SubTotal")!),fontWeight: FontWeight.w300),),
+                                           Text("AED ${value.Details.Total}", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.white, fontSize: double.parse(getTranslated(context, "cartpageHeader2SubTotal")!),fontWeight: FontWeight.w300),),
                                          ],),
                                      ),
                                      Padding(
@@ -492,8 +489,8 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                        child: Row(
                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                          children: [
-                                           Text(getTranslated(context, "totalAfterPromoCode")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.amber, fontSize: 17,fontWeight: FontWeight.w300),),
-                                           Text("AED ${value.Details.Total}", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.white, fontSize: 17,fontWeight: FontWeight.w300),),
+                                           Text(getTranslated(context, "totalAfterPromoCode")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.amber, fontSize: double.parse(getTranslated(context, "cartpageHeader2SubTotal")!),fontWeight: FontWeight.w300),),
+                                           Text("AED ${value.Details.Total}", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.white, fontSize: double.parse(getTranslated(context, "cartpageHeader2SubTotal")!),fontWeight: FontWeight.w300),),
                                          ],),
                                      ),
                                      Padding(
@@ -529,7 +526,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                    child: RichText(
                                      text:  TextSpan(
                                        text: getTranslated(context, "total")!,
-                                       style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber, fontWeight: FontWeight.w300,fontSize: 20),
+                                       style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber, fontWeight: FontWeight.w300,fontSize: double.parse(getTranslated(context, "cartpageHeader2")!),),
                                        children: [
                                          TextSpan(
                                            text: ' AED ${value.Details.Total}',
@@ -601,7 +598,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
 
                                          );
                                        },
-                                       title: Text(getTranslated(context, "pleaseSelectAddress")!,style: TextStyle(color:Colors.white60,fontWeight: FontWeight.w300,fontFamily: getTranslated(context, "fontFamilyBody")), ),
+                                       title: Text(getTranslated(context, "pleaseSelectAddress")!,style: TextStyle(color:Colors.white60,fontWeight: FontWeight.w300,fontFamily: getTranslated(context, "cartpageHeader2")), ),
                                        leading: Image.asset("assets/images/icon_location_address.png",scale:3,),
                                      )
                                  ),
@@ -633,14 +630,14 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                      // padding: EdgeInsets.all(18),
                                      child: ListTile(
                                        leading: Icon(Icons.credit_card, color: Colors.amber,),
-                                       title:  Text(getTranslated(context, "pleaseSelectPayment")!,style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody"),color:Colors.white60,fontWeight: FontWeight.w300), ),
+                                       title:  Text(getTranslated(context, "pleaseSelectPayment")!,style: TextStyle(fontFamily: getTranslated(context, "cartpageHeader2"),color:Colors.white60,fontWeight: FontWeight.w300), ),
                                        // leading: Image.asset("assets/images/icon_location_address.png",scale:3,),
                                      )
                                  ),
                                ),
                                /// - checkbox
                                const SizedBox(height: 15,),
-                               Text(getTranslated(context, "optional")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.amber, fontSize: 20),),
+                               Text(getTranslated(context, "optional")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.amber, fontSize: double.parse(getTranslated(context, "cartpageHeader2")!)),),
                                Padding(
                                  padding: const EdgeInsets.all(18.0),
                                  child: Column(
@@ -670,7 +667,6 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                    ],
                                  ),
                                ),
-
                                const SizedBox(height: 50,),
 
 

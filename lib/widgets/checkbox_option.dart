@@ -56,7 +56,7 @@ class CheckboxOption extends StatelessWidget{
     return Row(
 
       children: [
-        Text(text, style:  TextStyle(color: (colorOfText!=null)?colorOfText!:Colors.green, fontSize: 15,fontWeight: FontWeight.w300, fontFamily: fontFamily),),
+        Text(text, style:  TextStyle(color: (colorOfText!=null)?colorOfText!:Colors.green, fontSize: 13,fontWeight: FontWeight.w300, fontFamily: fontFamily),),
 
 
 

@@ -8,6 +8,7 @@ import 'package:operation_falafel/providers/demo_cart/demo_cart_provider.dart';
 
 import 'package:operation_falafel/screens/cart%20page/cart_screen.dart';
 import 'package:operation_falafel/screens/homepage/of_homepage.dart';
+import 'package:operation_falafel/screens/register%20&%20login%20pages/enter_of_world.dart';
 import 'package:operation_falafel/screens/tabbar%20menu%20page/menu_tabebar.dart';
 import 'package:operation_falafel/screens/track%20orders/track_my_order.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
@@ -102,7 +103,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                           Expanded(
 
                               child: DrawerWidget(layOut: "Desktop",onChanged: (value) {changePage(value);},)),
-                          Expanded( flex: 2,child: LoggedInUserProfile(layOut: "Desktop",(value) => changePage(value),)),
+                          Expanded( flex: 2,child: EnterOFWorld(layOut: "Desktop",(value) => changePage(value),),),
                         ],
                       ),
                     ],

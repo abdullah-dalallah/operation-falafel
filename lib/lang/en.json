@@ -4,7 +4,15 @@
   "fontFamilyButtons" : "oldpress",
   "fontFamilyButtonsSize" : 35,
   "fontFamilyTitleُSize" : 45,
+  "cartpageHeader1": 45,
+  "cartpageHeader2": 20,
+  "cartpageHeader2SubTotal": 15,
+  "cartpageHeader3": 13,
+
+
   "enterOfTitleSize": 100,
+  "enterOfTitleheight": 0.9,
+  "welcomeBackTitle": 80,
 
 
   "Main_Text":"You have Selected This Language",
@@ -43,7 +51,7 @@
   "contact us": "CONTACT US",
   "follow us": "FOLLOW US",
   "language": "Language",
-  "my o:f cart": "MY O:F CART",
+  "my o:f cart": "MY O:F CART!",
   "sepecial instructions": "SPECIAL INSTRUCTIONS",
   "tip the driver":"TIP THE DRIVER (OPTIONAL)",
   "enter promo code": "ENTER PROMO CODE",
@@ -224,6 +232,9 @@
   "login": "LOGIN",
   "signInWithApple": "Sign in with Apple",
   "termsTitleNewUser": "Terms And Conditions",
-  "accpetterms": "I accept Terms and Conditions"
+  "accpetterms": "I accept Terms and Conditions",
+  "welcomeBack": "WELCOME BACK",
+  "forgetPassword": "Forget Password",
+  "resetYourPassword": "RESET YOUR PASSWORD"
 
 }

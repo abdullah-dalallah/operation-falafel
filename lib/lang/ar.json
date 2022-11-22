@@ -4,7 +4,17 @@
   "fontFamilyButtons" : "GE SS Two Medium",
   "fontFamilyButtonsSize" : 20,
   "fontFamilyTitleُSize" : 25,
+
+  "cartpageHeader1": 25,
+  "cartpageHeader2": 20,
+  "cartpageHeader2SubTotal": 15,
+  "cartpageHeader3": 13,
+
+
   "enterOfTitleSize": 40,
+  "enterOfTitleheight": 1.2,
+  "welcomeBackTitle": 45,
+
 
   "Main_Text":"لقد أخترت هذه اللغه",
   "Title": "إختر اللغه من فضلك",
@@ -43,7 +53,7 @@
   "contact us": "اتصل بنا",
   "language": "اللغه",
   "follow us": "تابعنا",
-  "my o:f cart": "عربة أوبريشن : فلافل",
+  "my o:f cart": "عربة أوبريشن : فلافل!",
   "sepecial instructions": "تعليمات خاصة",
   "tip the driver":"تبرع للسائق (اختياري)",
   "enter promo code": "إدخال الرمز الترويجي",
@@ -221,11 +231,10 @@
   "regesterLater": "سجل لاحقا",
   "login": "دخول",
 
-  "signInWithApple": "سجل دخول من ابل",
+  "signInWithApple": "سجل عن طريق أبل",
   "termsTitleNewUser": "الشروط والاحكام",
-  "accpetterms": "أوفق على الشروط وألاحكام"
-
-
-
-
+  "accpetterms": "أوفق على الشروط وألاحكام",
+  "welcomeBack": "مرحبًا بعودتك",
+  "forgetPassword": "نسيت كلمة السر",
+  "resetYourPassword": "إعادة ضبط\nكلمة السر"
 }
