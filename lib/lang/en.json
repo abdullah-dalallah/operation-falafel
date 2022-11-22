@@ -4,6 +4,7 @@
   "fontFamilyButtons" : "oldpress",
   "fontFamilyButtonsSize" : 35,
   "fontFamilyTitleُSize" : 45,
+  "enterOfTitleSize": 100,
 
 
   "Main_Text":"You have Selected This Language",
@@ -78,6 +79,7 @@
   "emailAddress": "Email Address",
   "dateOfBirth": "Date Of Birth",
   "gender": "Gender",
+  "selectGender": "Select Gander",
   "password": "Password",
   "referralCode": "Referral Code",
   "oderHistory": "Order\nHistory",
@@ -213,5 +215,15 @@
   "orderId": "Order ID",
   "commingSoon": "COMMING SOON",
   "male": "Male",
-  "female": "Female"
+  "female": "Female",
+  "nationality": "Nationality",
+  "terms": "All our offers, rewards and loyalty points are registered,\nused and redeemed on dine-in and takeaway orders only.\n\nAll rewards, loyalty points and gifts are to be claimed in\nthe following branches only: Downtown, The Beach JBR.\nMotor City and Media City.\n\nAll rewards, loyalty points and gifts are to be redeemed\nand spent at the restaurants as food or drink items. There\nare no money refunds\n\nAccording to the UAE law, 5% VAT will be added to all bills.\nThe system excludes the 5% VAT, you will receive points\non the total bill without the addition of the 5% VAT\n\nOffers, gifts and promotions may be subjected to change\nat any time.\n\nThis application is owned by Operation: Falafel and all\noffers, promotions, loyalty points and information belong to Operation: Falafel UAE.\n\nUpon visit or purchase, one reward is applicable to redeem per table / order.\n\nPunch card offers will not accumulate points.\nYou may use\neither the punch card or build up loyalty points per visit.\n\nRewards can only be redeemed at the time of the purchase transaction.\n\nAll wallet credit will expire on 31st\nDecember 2020.\nMembers can rebuild wallet credit from 1st\nJanuary 2021.",
+  "enterOFWorld": "ENTER O:F\nWORLD!",
+  "register": "REGISTER",
+  "regesterLater": "REGISTER LATER",
+  "login": "LOGIN",
+  "signInWithApple": "Sign in with Apple",
+  "termsTitleNewUser": "Terms And Conditions",
+  "accpetterms": "I accept Terms and Conditions"
+
 }

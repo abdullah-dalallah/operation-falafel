@@ -10,6 +10,7 @@ import 'package:operation_falafel/screens/cart%20page/cart_screen.dart';
 import 'package:operation_falafel/screens/homepage/of_homepage.dart';
 import 'package:operation_falafel/screens/other_screen.dart';
 import 'package:operation_falafel/screens/profile/logged_in_user_profile.dart';
+import 'package:operation_falafel/screens/register%20&%20login%20pages/enter_of_world.dart';
 import 'package:operation_falafel/screens/tabbar%20menu%20page/menu_tabebar.dart';
 import 'package:operation_falafel/screens/track%20orders/track_my_order.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
@@ -75,7 +76,8 @@ class _MobileScaffoldState extends State<MobileScaffold> {
                 TabeBarMenu(layOut: "Mobile",(value) => changePage(value),),
                 Cart_Screen(layOut: "Mobile",(value) => changePage(value),),
                 TrackMyOrder(layOut: "Mobile",(value) => changePage(value),),
-                LoggedInUserProfile(layOut: "Mobile",(value) => changePage(value),),
+                EnterOFWorld(layOut: "Mobile",(value) => changePage(value),),
+                // LoggedInUserProfile(layOut: "Mobile",(value) => changePage(value),),
               ],
               items: [
                 PersistentBottomNavBarItem(

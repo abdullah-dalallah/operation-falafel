@@ -56,8 +56,8 @@ class _GiftDetailsState extends State<GiftDetails> {
                 children: [
                   Image.asset("assets/images/gift.png", height: 150,width: 150,),
                   const SizedBox(height: 15,),
-                  Text(getTranslated(context, "welcomeToOFFamily")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
-                  Text(getTranslated(context, "registrationGift")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
+                  Text(getTranslated(context, "welcomeToOFFamily")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,fontSize:25 ),),
+                  Text(getTranslated(context, "registrationGift")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,fontSize:20 ),),
                   const SizedBox(height: 25,),
                   Expanded(
                     child: Padding(
@@ -84,7 +84,7 @@ class _GiftDetailsState extends State<GiftDetails> {
                       child: ElevatedButton(
                           onPressed: null,
                           style: ButtonStyle(
-                            backgroundColor:  MaterialStateProperty.all<Color>(Color(0xFF84ab24)),
+                            backgroundColor:  MaterialStateProperty.all<Color>(Colors.amber),
                             foregroundColor:
                             MaterialStateProperty.all<Color>(Colors.black),
                             shape: MaterialStateProperty.all(

@@ -49,7 +49,7 @@ class _TrackMyOrderState extends State<TrackMyOrder> {
               },
               icon: const ImageIcon(
                 AssetImage("assets/images/icon_menu.png",),
-                size: 35,
+                size: 30,
               ),
             ),
           ) ,

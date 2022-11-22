@@ -142,7 +142,6 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
               yearCellStyle: DateRangePickerYearCellStyle(textStyle: TextStyle(color:Colors.white),disabledDatesTextStyle: TextStyle(color:Colors.white), todayTextStyle:TextStyle(color:Colors.white),leadingDatesTextStyle: TextStyle(color:Colors.white), ),
               selectionTextStyle: TextStyle(color:Colors.white),
               rangeTextStyle: TextStyle(color:Colors.white),
-
               onSelectionChanged: _onSelectionChanged,
               selectionMode: DateRangePickerSelectionMode.single,
               initialDisplayDate:(_selectedDate!='')?DateFormat('dd/MM/yyyy').parse(_selectedDate):DateTime.now().subtract(const Duration(days: 0)),
@@ -219,7 +218,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                 },
                 icon: const ImageIcon(
                   AssetImage("assets/images/icon_menu.png",),
-                  size: 35,
+                  size: 30,
                 ),
               ),
             ) ,
@@ -517,7 +516,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
 
 
 
-                                          color: Colors.green,
+                                          color: Colors.amber,
                                           // border: Border.all(
                                           //   width: 0.8,
                                           //   color: Colors.white,
@@ -886,65 +885,65 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                         ),
                         const SizedBox(height: 10,),
                         /// - refferal code
-                        Padding(
-                          padding: const EdgeInsets.only(left:18.0, right: 18),
-                          child: Container(
-                            padding: const EdgeInsets.only(left:10, right: 10),
-                            decoration: BoxDecoration(
-                              color: Colors.black45,
-                              borderRadius:const BorderRadius.only(
-                                topRight: Radius.circular(10),
-                                bottomLeft: Radius.circular(10),
-                                topLeft: Radius.circular(10),
-                                bottomRight: Radius.circular(10),
-                              ),
-                              border: Border.all(
-                                width: 0,
-                                color: Colors.transparent,
-                                style: BorderStyle.solid,
-                              ),
-                            ),
-                            child: Row(
-                              children: [
-                                Expanded(flex:3, child:
-                                Text("${getTranslated(context, "referralCode")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)
-                                ),
-                                const Expanded(
-                                  flex: 5,
-                                  child: SizedBox(
-
-                                    child:   TextField(
-
-                                      autofocus: false,
-                                      style:  TextStyle(color: Colors.white),
-                                      decoration:  InputDecoration(
-                                        filled: true,
-                                        fillColor: Colors.transparent,
-                                        contentPadding: EdgeInsets.only(left:10, right: 10),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderRadius:  BorderRadius.all(
-                                            Radius.circular(0.0),
-                                          ),
-                                          borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
-                                        ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderRadius:  BorderRadius.all(
-                                            Radius.circular(0.0),
-                                          ),
-                                          borderSide: BorderSide(color: Colors.transparent, width: 0.0),
-                                        ),
-                                        // hintText: '',
-                                        // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
-
-                                      ),
-
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                        // Padding(
+                        //   padding: const EdgeInsets.only(left:18.0, right: 18),
+                        //   child: Container(
+                        //     padding: const EdgeInsets.only(left:10, right: 10),
+                        //     decoration: BoxDecoration(
+                        //       color: Colors.black45,
+                        //       borderRadius:const BorderRadius.only(
+                        //         topRight: Radius.circular(10),
+                        //         bottomLeft: Radius.circular(10),
+                        //         topLeft: Radius.circular(10),
+                        //         bottomRight: Radius.circular(10),
+                        //       ),
+                        //       border: Border.all(
+                        //         width: 0,
+                        //         color: Colors.transparent,
+                        //         style: BorderStyle.solid,
+                        //       ),
+                        //     ),
+                        //     child: Row(
+                        //       children: [
+                        //         Expanded(flex:3, child:
+                        //         Text("${getTranslated(context, "referralCode")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)
+                        //         ),
+                        //         const Expanded(
+                        //           flex: 5,
+                        //           child: SizedBox(
+                        //
+                        //             child:   TextField(
+                        //
+                        //               autofocus: false,
+                        //               style:  TextStyle(color: Colors.white),
+                        //               decoration:  InputDecoration(
+                        //                 filled: true,
+                        //                 fillColor: Colors.transparent,
+                        //                 contentPadding: EdgeInsets.only(left:10, right: 10),
+                        //                 focusedBorder: OutlineInputBorder(
+                        //                   borderRadius:  BorderRadius.all(
+                        //                     Radius.circular(0.0),
+                        //                   ),
+                        //                   borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
+                        //                 ),
+                        //                 enabledBorder: OutlineInputBorder(
+                        //                   borderRadius:  BorderRadius.all(
+                        //                     Radius.circular(0.0),
+                        //                   ),
+                        //                   borderSide: BorderSide(color: Colors.transparent, width: 0.0),
+                        //                 ),
+                        //                 // hintText: '',
+                        //                 // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+                        //
+                        //               ),
+                        //
+                        //             ),
+                        //           ),
+                        //         ),
+                        //       ],
+                        //     ),
+                        //   ),
+                        // ),
                         const SizedBox(height: 10,),
                         Padding(
                           padding: const EdgeInsets.all(18.0),
@@ -966,7 +965,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                     overlayColor: MaterialStateProperty.all(Colors.white30),
                                     elevation:MaterialStateProperty.all(0),
                                     shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                    backgroundColor: MaterialStateProperty.all(Colors.green),
+                                    backgroundColor: MaterialStateProperty.all(Colors.amber),
                                     foregroundColor: MaterialStateProperty.all(Colors.white),
                                     padding: MaterialStateProperty.all(const EdgeInsets.only(top:10,bottom: 10, right: 30,left: 30)),
                                     textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 15))),

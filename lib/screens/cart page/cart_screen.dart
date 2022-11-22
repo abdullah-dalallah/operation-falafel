@@ -71,7 +71,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                },
                icon: const ImageIcon(
                  AssetImage("assets/images/icon_menu.png",),
-                 size: 35,
+                 size: 30,
                ),
              ),
            ) ,
@@ -131,6 +131,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                      return Column(
                                        children: [
                                          ListTile(
+
                                            title: Text("${value.cartItems[index].itemName}", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.amber, fontSize: 25, fontWeight: FontWeight.w300),),
                                            subtitle:  Column(children: [
                                              /// - Customiztion
@@ -177,7 +178,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                      child: Row(
                                                        mainAxisAlignment: MainAxisAlignment.start,
                                                        children: [
-                                                         Text("${value.cartItems[index].selectedAddon[index2][value.cartItems[index].selectedAddon[index2].keys.elementAt(0)]["quantity"]}X ", style: TextStyle(
+                                                         Text("${value.cartItems[index].selectedAddon[index2][value.cartItems[index].selectedAddon[index2].keys.elementAt(0)]["quantity"]}X", style: TextStyle(
                                                              fontSize: 15,
                                                              fontFamily: getTranslated(
                                                                  context,
@@ -208,9 +209,9 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                  }
                                              ),
 
-
-
                                            ],),
+
+
                                          ),
 
 
@@ -697,7 +698,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                    child: ElevatedButton(
                                        onPressed: (){widget.onChanged(1);},
                                        style: ButtonStyle(
-                                         backgroundColor:  MaterialStateProperty.all<Color>(Color(0xFF84ab24)),
+                                         backgroundColor:  MaterialStateProperty.all<Color>(Colors.amber),
                                          foregroundColor:
                                          MaterialStateProperty.all<Color>(Colors.black),
                                          shape: MaterialStateProperty.all(

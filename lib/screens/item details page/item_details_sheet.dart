@@ -452,9 +452,8 @@ class _ItemDetailsSheetState extends State<ItemDetailsSheet> {
                                     selectedOtions: selectedOptions).then((value) => Navigator.pop(context));
                               },
                               style: ButtonStyle(
-                                backgroundColor:  MaterialStateProperty.all<Color>(Color(0xFF84ab24)),
-                                foregroundColor:
-                                MaterialStateProperty.all<Color>(Colors.black),
+                                backgroundColor:  MaterialStateProperty.all<Color>(Colors.amber),
+                                foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
                                 shape: MaterialStateProperty.all(
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(0.0),

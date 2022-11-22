@@ -313,7 +313,8 @@ class _UpdateAddressState extends State<UpdateAddress> {
                         Padding(
                           padding: const EdgeInsets.only(left: 18.0, right: 18, top: 8, bottom: 8),
                           child: Row(children: [
-                            (primary==false)? GestureDetector(
+                            (primary==false)?
+                            GestureDetector(
                                 onTap: (){
                                   setState(() {
                                     primary = true;
@@ -337,7 +338,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
                                 child: ElevatedButton(
                                     onPressed: (){},
                                     style: ButtonStyle(
-                                      backgroundColor:  MaterialStateProperty.all<Color>(Color(0xFF84ab24)),
+                                      backgroundColor:  MaterialStateProperty.all<Color>(Colors.amber),
                                       foregroundColor:
                                       MaterialStateProperty.all<Color>(Colors.black),
                                       shape: MaterialStateProperty.all(

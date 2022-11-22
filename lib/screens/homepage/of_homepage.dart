@@ -62,7 +62,7 @@ class _MainMenuState extends State<MainMenu> {
                       },
                         icon: const ImageIcon(
                           AssetImage("assets/images/icon_menu.png",),
-                          size: 35,
+                          size: 30,
                         ),
                       ),
                     ) ,

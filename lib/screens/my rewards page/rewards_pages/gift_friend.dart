@@ -191,7 +191,10 @@ class _GiftFriendState extends State<GiftFriend> {
                        ),
                      ),
 
-                      Stack(
+                     /// - Submit button
+                     Center(
+                       child: Stack(
+                         alignment: Alignment.center,
                          children: [
                            Container(
                              width: 50,
@@ -210,7 +213,50 @@ class _GiftFriendState extends State<GiftFriend> {
                                //   style: BorderStyle.solid,
                                // ),
                              ),
-                             child: Image.asset("assets/images/page4_confirm_button.png",height: 60,width: 60,),
+                             child:Icon(Icons.check, color:Colors.white,),
+                           ),
+                           Container(
+                             width: 40,
+                             height: 40,
+                             decoration: BoxDecoration(
+                               color: Colors.amber,
+                               borderRadius:const BorderRadius.only(
+                                 topRight: Radius.circular(40),
+                                 bottomLeft: Radius.circular(40),
+                                 topLeft: Radius.circular(40),
+                                 bottomRight: Radius.circular(40),
+                               ),
+                               // border: Border.all(
+                               //   width: 0.5,
+                               //   color: Colors.white,
+                               //   style: BorderStyle.solid,
+                               // ),
+                             ),
+                             // child:Icon(Icons.check, color:Colors.white,),
+                           ),
+                           Positioned(
+                             bottom:8,
+                             right:9,
+
+                             child: Container(
+                               width: 40,
+                               height: 40,
+                               decoration: BoxDecoration(
+                                 color: Colors.transparent,
+                                 borderRadius:const BorderRadius.only(
+                                   topRight: Radius.circular(40),
+                                   bottomLeft: Radius.circular(40),
+                                   topLeft: Radius.circular(40),
+                                   bottomRight: Radius.circular(40),
+                                 ),
+                                 border: Border.all(
+                                   width: 3,
+                                   color: Colors.white,
+                                   style: BorderStyle.solid,
+                                 ),
+                               ),
+                               child:Icon(Icons.check, color:Colors.white,size: 30,),
+                             ),
                            ),
 
                            new Positioned.fill(
@@ -218,7 +264,7 @@ class _GiftFriendState extends State<GiftFriend> {
                                  color: Colors.transparent,
                                  child:  new InkWell(
                                    borderRadius: BorderRadius.all(Radius.circular(100)),
-                                   splashColor: Colors.black,
+                                   splashColor: Colors.black45,
                                    overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
 
                                    onTap: (){
@@ -231,6 +277,47 @@ class _GiftFriendState extends State<GiftFriend> {
 
                          ],
                        ),
+                     ),
+                      // Stack(
+                      //    children: [
+                      //      Container(
+                      //        width: 50,
+                      //        height: 50,
+                      //        decoration: BoxDecoration(
+                      //          color: Colors.transparent,
+                      //          borderRadius:const BorderRadius.only(
+                      //            topRight: Radius.circular(40),
+                      //            bottomLeft: Radius.circular(40),
+                      //            topLeft: Radius.circular(40),
+                      //            bottomRight: Radius.circular(40),
+                      //          ),
+                      //          // border: Border.all(
+                      //          //   width: 0.5,
+                      //          //   color: Colors.white,
+                      //          //   style: BorderStyle.solid,
+                      //          // ),
+                      //        ),
+                      //        child: Image.asset("assets/images/page4_confirm_button.png",height: 60,width: 60,),
+                      //      ),
+                      //
+                      //      new Positioned.fill(
+                      //          child: new Material(
+                      //            color: Colors.transparent,
+                      //            child:  new InkWell(
+                      //              borderRadius: BorderRadius.all(Radius.circular(100)),
+                      //              splashColor: Colors.black,
+                      //              overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+                      //
+                      //              onTap: (){
+                      //
+                      //              },
+                      //            ),
+                      //
+                      //          )
+                      //      ),
+                      //
+                      //    ],
+                      //  ),
 
                      const SizedBox(height:15,),
                    ],

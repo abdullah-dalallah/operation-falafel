@@ -72,9 +72,9 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
 
 
                      title: Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),),
-                     backgroundColor: Colors.orangeAccent,
+                     backgroundColor: Colors.amber,
                      pinned: true,
-
+                     centerTitle: true,
                      expandedHeight:(widget.layOut=="Mobile")? 210.0:310,
                      elevation: 0,
 
@@ -97,7 +97,7 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                          },
                          icon: const ImageIcon(
                            AssetImage("assets/images/icon_menu.png",),
-                           size: 35,
+                           size: 30,
                          ),
                        ),
                      ) ,
@@ -152,7 +152,7 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                    ),
                    SliverAppBar(
                      toolbarHeight: 40,
-                     backgroundColor: Colors.orangeAccent,
+                     backgroundColor: Colors.amber,
                      pinned: true,
                      primary: false,
                      backwardsCompatibility: false,
