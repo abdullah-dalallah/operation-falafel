@@ -121,7 +121,7 @@ class _GiftDetailsState extends State<GiftDetails> {
                             pageTransitionAnimation: PageTransitionAnimation.cupertino,
                           );
                         },
-                        child: Text(getTranslated(context, "sendAsGift")!,style: TextStyle(fontWeight: FontWeight.w400, fontFamily:  getTranslated(context, "fontFamilyBody")!,),textAlign: TextAlign.center,),
+                        child: Text(getTranslated(context, "sendAsGift")!,style: TextStyle(fontSize:15, fontWeight: FontWeight.w400, fontFamily:  getTranslated(context, "fontFamilyBody")!,),textAlign: TextAlign.center,),
 
                       ),
                     ),

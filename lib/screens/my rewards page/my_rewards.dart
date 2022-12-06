@@ -197,7 +197,7 @@ class _MyRewardsState extends State<MyRewards> {
                 ),
                 child: RichText(
 
-                  text:  TextSpan(text: getTranslated(context, "dashBoardTitle-youHave")!,style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300,fontFamily:getTranslated(context, "fontFamilyBody")!,), children: [
+                  text:  TextSpan(text: getTranslated(context, "dashBoardTitle-youHave")!,style: TextStyle(fontSize: 17, fontWeight: FontWeight.w300,fontFamily:getTranslated(context, "fontFamilyBody")!,), children: [
                     TextSpan(
                       text: '0 AED ',
                       style: TextStyle(color: Colors.amber),

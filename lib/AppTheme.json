@@ -1,0 +1,72 @@
+{
+
+"AppTheme": {
+        "FontSizes": {
+          "AR": {
+            "LogoTitle":21,
+            "TitleHeader1": 20,
+            "TitleHeader2": 25,
+            "Header1": 10,
+            "Header2": 13,
+            "Header3": 15,
+            "Header4": 17,
+            "Header5": 20
+          },
+          "EN": {
+            "LogoTitle":20,
+            "TitleHeader1": 35,
+            "TitleHeader2": 45,
+            "Header1": 10,
+            "Header2": 13,
+            "Header3": 15,
+            "Header4": 17,
+            "Header5": 20
+          }
+
+        },
+
+         "DesignPerPage": {
+
+               "HomePage": {
+                 "AppBar": {
+                   "DrawerIcon": { "ImageIcon":"imagePath", "Size":""},
+                   "SearchAction": {"ImageIcon":"imagePath", "Size":""}
+                 },
+                 "Body": {
+                   "LocationWidget":{
+                     "LocationIcon": {"ImageIcon":"imagePath", "Size":""},
+                     "LocationTile": {"Data": "text data", "Color": "text color", "Textfamily": "textFamily"},
+                     "LocationChangeButton": {"Data": "text data", "Color": "text color", "Textfamily": "textFamily"}
+                   },
+                   "OrderNowButtonWidget": {"Data": "text data", "Color": "text color", "TextFamily": "textFamily", "BackGroundColor": "color in hex"},
+                   "DashboardWidget": {
+                     "HeaderTitle":{
+                       "CreditText": {"Data": "text data", "Color": "text color", "TextFamily": "textFamily"},
+                       "Text": {"Data": "text data", "Color": "text color", "TextFamily": "textFamily"}
+                     },
+                     "Buttons": {
+                       "MyCode": {"visibility":"true","ImageIcon":"imagePath", "Size":"", "Data": "text data", "Color": "text color", "TextFamily": "textFamily"},
+                       "MyRewards": {"visibility":"true","ImageIcon":"imagePath", "Size":"", "Data": "text data", "Color": "text color", "TextFamily": "textFamily"},
+                       "ReferFriend": {"visibility":"true","ImageIcon":"imagePath", "Size":"", "Data": "text data", "Color": "text color", "TextFamily": "textFamily"},
+                       "TransferCredit": {"visibility":"true","ImageIcon":"imagePath", "Size":"", "Data": "text data", "Color": "text color", "TextFamily": "textFamily"}
+                     }
+                   }
+
+
+                 }
+               },
+               "BottomNavigationBar": {
+                 "Home": {"visibility":"true","ImageIcon":"imagePath", "Size":"", "ActiveColor": "color", "InactiveColor": "color"}
+                 "Order": {"visibility":"true","ImageIcon":"imagePath", "Size":"", "ActiveColor": "color", "InactiveColor": "color"}
+                 "Cart": {"visibility":"true","ImageIcon":"imagePath", "Size":"", "ActiveColor": "color", "InactiveColor": "color"}
+                 "TrackMyOrder": {"visibility":"true","ImageIcon":"imagePath", "Size":"", "ActiveColor": "color", "InactiveColor": "color"}
+                 "Profile": {"visibility":"true","ImageIcon":"imagePath", "Size":"", "ActiveColor": "color", "InactiveColor": "color"}
+               }
+
+
+
+         }
+
+
+  }
+}

@@ -60,12 +60,12 @@ class _RewardsHistoryState extends State<RewardsHistory> {
                          return  Padding(
                            padding: const EdgeInsets.only(left: 50.0, right: 50),
                            child: ListTile(
-                            title:  Text("${getTranslated(context, "earnd")!}", style: TextStyle(color: Colors.green),),
+                            title:  Text("${getTranslated(context, "earnd")!}", style: TextStyle(fontSize: 15,color: Colors.green),),
                             subtitle: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("2.09625 ${getTranslated(context, "pointEarnd")!} 19.75", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.amber),),
-                                Text("2022-10-19 20:22:17", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.white60),),
+                                Text("2.09625 ${getTranslated(context, "pointEarnd")!} 19.75", style: TextStyle(fontSize:15,fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.amber),),
+                                Text("2022-10-19 20:22:17", style: TextStyle(fontSize: 13,fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.white60),),
                                 const SizedBox(height: 10,),
                                 Row(
                                   children: List.generate(800~/10, (index) => Expanded(

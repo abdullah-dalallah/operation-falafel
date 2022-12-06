@@ -192,7 +192,7 @@ class _MainMenuState extends State<MainMenu> {
                                     Image.asset("assets/images/home_pin.png", scale: 2.5,),
 
                                     const SizedBox(width: 10,),
-                                    const Text("Al Souq Al Kabeer", style: TextStyle(fontFamily:"Raleway-Regular",color: Colors.white, fontWeight: FontWeight.w300,fontSize: 12),), Expanded(child: SizedBox(width: 10,)),
+                                    const Text("Al Souq Al Kabeer", style: TextStyle(fontFamily:"Raleway-Regular",color: Colors.white, fontWeight: FontWeight.w300,fontSize: 13),), Expanded(child: SizedBox(width: 10,)),
 
                                     TextButton(
                                       onPressed: () {
@@ -225,7 +225,7 @@ class _MainMenuState extends State<MainMenu> {
                                         foregroundColor: Colors.amber,
                                       ),
                                       child:
-                                      Text(getTranslated(context, "changeLocation")!, style: TextStyle(fontFamily:"${getTranslated(context, "fontFamilyBody")!}",fontWeight: FontWeight.w300, ),)
+                                      Text(getTranslated(context, "changeLocation")!, style: TextStyle(fontFamily:"${getTranslated(context, "fontFamilyBody")!}",fontWeight: FontWeight.w300,fontSize: 15 ),)
                                     )
                                   ],),
 

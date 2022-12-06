@@ -208,7 +208,7 @@ class _ItemDetailsSheetState extends State<ItemDetailsSheet> {
                         children: [
                           const Text("Chicken Fatteh", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
                           const SizedBox(height: 8,),
-                          const Text("Chicken topped with rice, fatteh yogurt,fried bread,pine nuts,sumac. parsley and gheee.", style: TextStyle(color: Colors.white),),
+                          const Text("Chicken topped with rice, fatteh yogurt,fried bread,pine nuts,sumac. parsley and gheee.", style: TextStyle(color: Colors.white, fontSize: 15),),
                           const SizedBox(height: 8,),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,

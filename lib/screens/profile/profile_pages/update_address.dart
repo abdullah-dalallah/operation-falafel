@@ -330,7 +330,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
                                 child: Image.asset("assets/images/star_full.png", height: 40,width: 40,)),
 
                             const SizedBox(width: 10,),
-                            Text(getTranslated(context, "makePrimaryAddress")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontSize: 14),),
+                            Text(getTranslated(context, "makePrimaryAddress")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontSize: 15),),
                             const Expanded(child: SizedBox(width: 10,)),
                             SizedBox(
                                 width: 150,
@@ -348,7 +348,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
                                           )
                                       ),
                                     ),
-                                    child: Text(getTranslated(context, "updateAddress")!,style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 14),)
+                                    child: Text(getTranslated(context, "updateAddress")!,style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 15),)
 
                                 )
                             ),

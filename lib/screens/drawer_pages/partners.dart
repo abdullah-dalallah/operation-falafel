@@ -76,7 +76,7 @@ class _PartnersState extends State<Partners> {
                                  child: Column(
                                    crossAxisAlignment: CrossAxisAlignment.start,
                                    children: [
-                                   Text(getTranslated(context, "audTitle")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,),),
+                                   Text(getTranslated(context, "audTitle")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,fontSize: 15),),
                                    Text(getTranslated(context, "validOnAppDlivery")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white60,fontSize: 13),)
                                  ],),
                                ),
@@ -106,7 +106,7 @@ class _PartnersState extends State<Partners> {
                                  child: Column(
                                    crossAxisAlignment: CrossAxisAlignment.start,
                                    children: [
-                                     Text(getTranslated(context, "dhaTitle")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,),),
+                                     Text(getTranslated(context, "dhaTitle")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,fontSize: 15),),
                                      Text(getTranslated(context, "validOnAppDlivery")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white60,fontSize: 13),)
                                    ],),
                                ),

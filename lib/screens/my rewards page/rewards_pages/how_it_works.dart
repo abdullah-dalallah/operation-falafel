@@ -73,7 +73,7 @@ class _HowItWorksState extends State<HowItWorks> {
                         Padding(
                           padding: const EdgeInsets.all(28.0),
                           child:
-                          Text(getTranslated(context, "howItWorksIntro")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.white, fontSize: 14, fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
+                          Text(getTranslated(context, "howItWorksIntro")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
                         ),
 
                         /// - Welcome to Gifts
@@ -87,8 +87,8 @@ class _HowItWorksState extends State<HowItWorks> {
                                   //welcomeOF
                                    contentPadding: EdgeInsets.zero,
 
-                                  title:Text(getTranslated(context, "welcomeGifts")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.amber, fontSize: 14, fontWeight: FontWeight.w300)),
-                                  subtitle:Text(getTranslated(context, "welcomeOF")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.white, fontSize: 14, fontWeight: FontWeight.w300)),
+                                  title:Text(getTranslated(context, "welcomeGifts")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.amber, fontSize: 13, fontWeight: FontWeight.w300)),
+                                  subtitle:Text(getTranslated(context, "welcomeOF")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.white, fontSize: 13, fontWeight: FontWeight.w300)),
                                   // trailing: Image.asset("assets/images/welcome_g.png", ),
                                 ),
                               ),
@@ -109,8 +109,8 @@ class _HowItWorksState extends State<HowItWorks> {
                                 child: ListTile(
                                   //welcomeOF
                                   contentPadding: EdgeInsets.zero,
-                                  title:Text(getTranslated(context, "ofRewardsTitle")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.amber, fontSize: 14, fontWeight: FontWeight.w300)),
-                                  subtitle:Text(getTranslated(context, "ofRewardsSubTitle")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.white, fontSize: 14, fontWeight: FontWeight.w300)),
+                                  title:Text(getTranslated(context, "ofRewardsTitle")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.amber, fontSize: 13, fontWeight: FontWeight.w300)),
+                                  subtitle:Text(getTranslated(context, "ofRewardsSubTitle")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.white, fontSize: 13, fontWeight: FontWeight.w300)),
                                   // trailing: Image.asset("assets/images/welcome_g.png", ),
                                 ),
                               ),
@@ -128,8 +128,8 @@ class _HowItWorksState extends State<HowItWorks> {
                                 child: ListTile(
                                   //welcomeOF
                                   contentPadding: EdgeInsets.zero,
-                                  title:Text(getTranslated(context, "giftVoucherTitle")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.amber, fontSize: 14, fontWeight: FontWeight.w300)),
-                                  subtitle:Text(getTranslated(context, "giftVoucherSubTitle")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.white, fontSize: 14, fontWeight: FontWeight.w300)),
+                                  title:Text(getTranslated(context, "giftVoucherTitle")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.amber, fontSize: 13, fontWeight: FontWeight.w300)),
+                                  subtitle:Text(getTranslated(context, "giftVoucherSubTitle")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.white, fontSize: 13, fontWeight: FontWeight.w300)),
                                   // trailing: Image.asset("assets/images/welcome_g.png", ),
                                 ),
                               ),
@@ -151,8 +151,8 @@ class _HowItWorksState extends State<HowItWorks> {
                                 child: ListTile(
                                   //welcomeOF
                                   contentPadding: EdgeInsets.zero,
-                                  title:Text(getTranslated(context, "transferCreditTitle")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.amber, fontSize: 14, fontWeight: FontWeight.w300)),
-                                  subtitle:Text(getTranslated(context, "transferCreditSubTitle")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.white, fontSize: 14, fontWeight: FontWeight.w300)),
+                                  title:Text(getTranslated(context, "transferCreditTitle")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.amber, fontSize: 13, fontWeight: FontWeight.w300)),
+                                  subtitle:Text(getTranslated(context, "transferCreditSubTitle")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.white, fontSize: 13, fontWeight: FontWeight.w300)),
                                   // trailing: Image.asset("assets/images/welcome_g.png", ),
                                 ),
                               ),
@@ -171,8 +171,8 @@ class _HowItWorksState extends State<HowItWorks> {
                                 child: ListTile(
                                   //welcomeOF
                                   contentPadding: EdgeInsets.zero,
-                                  title:Text(getTranslated(context, "referFriendTitle")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.amber, fontSize: 14, fontWeight: FontWeight.w300)),
-                                  subtitle:Text(getTranslated(context, "referFriendSubTitle")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.white, fontSize: 14, fontWeight: FontWeight.w300)),
+                                  title:Text(getTranslated(context, "referFriendTitle")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.amber, fontSize: 13, fontWeight: FontWeight.w300)),
+                                  subtitle:Text(getTranslated(context, "referFriendSubTitle")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.white, fontSize: 13, fontWeight: FontWeight.w300)),
                                   // trailing: Image.asset("assets/images/welcome_g.png", ),
                                 ),
                               ),
@@ -199,8 +199,8 @@ class _HowItWorksState extends State<HowItWorks> {
                                 child: ListTile(
                                   //welcomeOF
                                   contentPadding: EdgeInsets.zero,
-                                  title:Text(getTranslated(context, "terms&conditionsTitle")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.amber, fontSize: 14, fontWeight: FontWeight.w300)),
-                                  subtitle:Text(getTranslated(context, "terms&conditionsSubTitle")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.white, fontSize: 14, fontWeight: FontWeight.w300)),
+                                  title:Text(getTranslated(context, "terms&conditionsTitle")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.amber, fontSize: 13, fontWeight: FontWeight.w300)),
+                                  subtitle:Text(getTranslated(context, "terms&conditionsSubTitle")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!, color: Colors.white, fontSize: 13, fontWeight: FontWeight.w300)),
                                   // trailing: Image.asset("assets/images/welcome_g.png", ),
                                 ),
                               ),

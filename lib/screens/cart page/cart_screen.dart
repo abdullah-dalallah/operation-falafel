@@ -498,8 +498,8 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                        child: Row(
                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                          children: [
-                                           Text(getTranslated(context, "delivery fee")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.white, fontSize: 17,fontWeight: FontWeight.w300),),
-                                           Text("AED 0.00", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.white, fontSize: 17,fontWeight: FontWeight.w300),),
+                                           Text(getTranslated(context, "delivery fee")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.white, fontSize: 15,fontWeight: FontWeight.w300),),
+                                           Text("AED 0.00", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Colors.white, fontSize: 15,fontWeight: FontWeight.w300),),
                                          ],),
                                      ),
                                    ],

@@ -73,8 +73,8 @@ class _MyGiftsListState extends State<MyGiftsList> {
                          );
                        },
                        leading: Image.asset("assets/images/of_credit_icon.png", height: 60,width: 60,),
-                       title: Text(getTranslated(context, "registrationGift")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,),),
-                         subtitle: Text("2023-10-18",style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white12,),)
+                       title: Text(getTranslated(context, "registrationGift")!,style: TextStyle(fontSize:17,fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,),),
+                         subtitle: Text("2023-10-18",style: TextStyle(fontSize:15,fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white12,),)
                        ),
                        Row(
                          children: List.generate(800~/10, (index) => Expanded(

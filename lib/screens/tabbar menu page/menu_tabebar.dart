@@ -71,7 +71,7 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                    SliverAppBar(
 
 
-                     title: Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),),
+                     title: Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold,),),
                      backgroundColor: Colors.amber,
                      pinned: true,
                      centerTitle: true,

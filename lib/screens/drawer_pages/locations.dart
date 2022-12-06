@@ -197,11 +197,11 @@ class _LocationsState extends State<Locations> {
                                                                        children:  [
                                                                          Image.asset("assets/images/driver.png",height: 30,),
                                                                          const SizedBox(width: 10,),
-                                                                         Expanded(child:  Text("The Beach Mall JBR 24 hours", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                                         Expanded(child:  Text("The Beach Mall JBR 24 hours", style: TextStyle(fontSize:13,fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
                                                                        ],
                                                                      ),
                                                                    const SizedBox(height: 15,),
-                                                                   Text("Dine In and Takeaway", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),),
+                                                                   Text("Dine In and Takeaway", style: TextStyle(fontSize:13,fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),),
 
                                                                  ],
                                                                ),
@@ -234,7 +234,7 @@ class _LocationsState extends State<Locations> {
                                                                    onTap: (){
                                                                      launch("tel://0442430069");
                                                                    },
-                                                                   child: Text("0442430069", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,decoration: TextDecoration.underline),))),
+                                                                   child: Text("0442430069", style: TextStyle(fontSize:13,fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,decoration: TextDecoration.underline),))),
 
 
                                                              ],

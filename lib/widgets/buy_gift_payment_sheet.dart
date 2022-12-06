@@ -66,7 +66,7 @@ class _BuyGiftPaymentSheetState extends State<BuyGiftPaymentSheet> {
                 ),
                 const Divider(color: Colors.grey,),
                  ListTile(
-                  title: Text(getTranslated(context, "pleaseSelectPaymentType")!, style: TextStyle( fontFamily:  getTranslated(context, "fontFamilyBody")!,color: Colors.amber,fontWeight: FontWeight.bold),),
+                  title: Text(getTranslated(context, "pleaseSelectPaymentType")!, style: TextStyle( fontSize:15,fontFamily:  getTranslated(context, "fontFamilyBody")!,color: Colors.amber,fontWeight: FontWeight.bold),),
                   // subtitle:Text("perfect for shharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w300),),
 
                 ),

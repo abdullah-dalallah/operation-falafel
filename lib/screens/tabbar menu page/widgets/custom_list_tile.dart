@@ -24,9 +24,14 @@ class CustomListTile extends StatelessWidget{
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text("Chicken Fatteh", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
-              Text("Chicken topped with rice, fatteh yogurt,fried bread,pine nuts,sumac. parsley and gheee.", style: TextStyle(color: Colors.white,fontFamily:getTranslated(context, "fontFamilyBody")!,),),
+              Text("Chicken topped with rice, fatteh yogurt,fried bread,pine nuts,sumac. parsley and gheee.", style: TextStyle(fontSize: 15, color: Colors.white,fontFamily:getTranslated(context, "fontFamilyBody")!,),),
 
-              Text("AED 44", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.white,fontSize: 18, fontWeight: FontWeight.w300),),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text("AED 44", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                ],
+              ),
             ],
           ),
         ),

@@ -78,8 +78,8 @@ class _SavedAddressState extends State<SavedAddress> {
                                Column(
                                  crossAxisAlignment: CrossAxisAlignment.start,
                                  children: [
-                                   Text("Dubai - Jumeirah Lake Tower -ma...", style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.amber, fontSize:14 )),
-                                   Text("Flat | Jumeirah Lakes Tower", style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize:13 )),
+                                   Text("Dubai - Jumeirah Lake Tower -ma...", style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.amber, fontSize:15 )),
+                                   Text("Flat | Jumeirah Lakes Tower", style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize:15 )),
                                  ],
                                ),
                               const SizedBox(width: 20,),

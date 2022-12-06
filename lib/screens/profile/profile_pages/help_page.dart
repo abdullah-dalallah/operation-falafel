@@ -84,7 +84,7 @@ class _HelpPageState extends State<HelpPage> {
                               padding: const EdgeInsets.only(top: 10.0),
                               child: Column(
                                 children: [
-                                  Text(getTranslated(context, "callUs")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, ),),
+                                  Text(getTranslated(context, "callUs")!,style: TextStyle(fontSize: 13, fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, ),),
                                   SizedBox(width:60,child: Divider(color:Colors.white,thickness: 1,))
                                 ],
                               ),
@@ -99,7 +99,7 @@ class _HelpPageState extends State<HelpPage> {
                               padding: const EdgeInsets.only(top: 10.0),
                               child: Column(
                                 children: [
-                                  Text(getTranslated(context, "emailUs")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, ),),
+                                  Text(getTranslated(context, "emailUs")!,style: TextStyle(fontSize: 13,fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, ),),
                                   SizedBox(width:double.parse(getTranslated(context, "emailUsDividerLength")!),child: Divider(color:Colors.white,thickness: 1,))
                                 ],
                               ),

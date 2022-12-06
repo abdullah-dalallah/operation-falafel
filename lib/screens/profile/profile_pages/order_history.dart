@@ -47,7 +47,7 @@ class OrderHistory extends StatelessWidget{
               constraints: BoxConstraints(maxWidth: 450, ),
               child: Column(
                 children: [
-                  Text(getTranslated(context, "savedAddressTitl")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber, fontSize: double.parse(getTranslated(context, "fontFamilyTitleُSize")!)),),
+                  Text(getTranslated(context, "orderHistory")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber, fontSize: double.parse(getTranslated(context, "fontFamilyTitleُSize")!)),),
                   const  SizedBox(height: 15,),
                   Expanded(
                     child: ListView(

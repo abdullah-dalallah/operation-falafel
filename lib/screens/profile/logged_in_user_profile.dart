@@ -328,7 +328,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                   foregroundColor: Colors.white,
                                 ),
                                 onPressed: () { },
-                                child: Text(getTranslated(context, "editProfile")!,style: TextStyle(fontWeight: FontWeight.w400, fontFamily:  getTranslated(context, "fontFamilyBody")!,color: Colors.amber),),
+                                child: Text(getTranslated(context, "editProfile")!,style: TextStyle(fontSize:13,fontWeight: FontWeight.w400, fontFamily:  getTranslated(context, "fontFamilyBody")!,color: Colors.amber),),
 
 
                               ),
@@ -368,7 +368,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                             ),
                             child: Row(
                               children: [
-                                Expanded(flex:1, child: Text("${getTranslated(context, "name")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)),
+                                Expanded(flex:1, child: Text("${getTranslated(context, "name")!} :", style: TextStyle(fontSize:13,fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)),
                                const  Expanded(
                                   flex: 5,
                                   child: SizedBox(
@@ -950,7 +950,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("${getTranslated(context, "uploadId")!}", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),),
+                              Text("${getTranslated(context, "uploadId")!}", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber, fontSize: 15),),
                               ElevatedButton(
                                 onPressed: () {
 
@@ -1162,7 +1162,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                           foregroundColor: MaterialStateProperty.all(Colors.black),
                                           padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
                                           textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                                      child:  Text(getTranslated(context, "help")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 17, fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
+                                      child:  Text(getTranslated(context, "help")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize: 20, fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
                                     ),
                                   ),
                                 ),

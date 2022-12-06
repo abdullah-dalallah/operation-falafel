@@ -32,7 +32,7 @@ class AddressListSheet extends StatelessWidget{
                   getTranslated(context, "selectAddress")!,
                    style: TextStyle(
                      fontFamily:  getTranslated(context, "fontFamilyBody")!,
-                     fontSize: 22,
+                     fontSize: 20,
                      fontWeight: FontWeight.w400,
                      color: Colors.amber
                    )),
@@ -61,7 +61,7 @@ class AddressListSheet extends StatelessWidget{
                onPressed: () { },
                child: Row(
                  children: [
-                   Text(getTranslated(context, "addAddress")!,style: TextStyle(fontWeight: FontWeight.w400, fontFamily:  getTranslated(context, "fontFamilyBody")!,),),
+                   Text(getTranslated(context, "addAddress")!,style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400, fontFamily:  getTranslated(context, "fontFamilyBody")!,),),
                  ],
                ),
              ),

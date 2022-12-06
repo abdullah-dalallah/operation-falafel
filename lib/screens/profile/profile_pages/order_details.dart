@@ -93,7 +93,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                                     children: [
                                       Icon(Icons.refresh, color: Colors.white54,size: 14,),
                                       SizedBox(width: 10,),
-                                      Text(getTranslated(context, "reOrder")!,style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize:12)),
+                                      Text(getTranslated(context, "reOrder")!,style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,color: Colors.white, fontSize:13)),
 
                                     ],
                                   ),)
@@ -149,8 +149,8 @@ class _OrderDetailsState extends State<OrderDetails> {
                            padding: const EdgeInsets.only(left:18.0, right: 18, bottom: 10),
                            child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                              children: [
-                               Text("X1 Chicken Shawerma Pita",style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber, fontSize: 17),),
-                               Text("AED 17",style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white70, fontSize: 16),),
+                               Text("X1 Chicken Shawerma Pita",style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber, fontSize: 15),),
+                               Text("AED 17",style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white70, fontSize: 15),),
                              ],
                            ),
                          ),
@@ -158,8 +158,8 @@ class _OrderDetailsState extends State<OrderDetails> {
                             padding: const EdgeInsets.only(left:18.0, right: 18, bottom: 10),
                             child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("X1 Fries Filling",style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber, fontSize: 17),),
-                                Text("AED 17",style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white70, fontSize: 16),),
+                                Text("X1 Fries Filling",style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber, fontSize: 15),),
+                                Text("AED 17",style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white70, fontSize: 15),),
                               ],
                             ),
                         ),

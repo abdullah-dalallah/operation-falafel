@@ -108,7 +108,7 @@ class _TrackMyOrderState extends State<TrackMyOrder> {
                     isExpanded: true,
                     hint:  Text(
                       'Select Order',
-                      style: TextStyle(fontSize: 16, color: Colors.white60 ,fontFamily: getTranslated(context, "fontFamilyBody")!),
+                      style: TextStyle(fontSize: 15, color: Colors.white60 ,fontFamily: getTranslated(context, "fontFamilyBody")!),
                     ),
                     icon: const ImageIcon(AssetImage("assets/images/down.png"),),
                     // const Icon(
@@ -151,28 +151,28 @@ class _TrackMyOrderState extends State<TrackMyOrder> {
                                       padding: const EdgeInsets.only(left:20.0, right:20),
                                       child: Text(
                                        "${ order[order.keys.elementAt(0)]["meal"].toString()} ...",
-                                        style:  TextStyle(fontSize: 12,color: Colors.white, fontFamily: getTranslated(context, "fontFamilyBody")!),
+                                        style:  TextStyle(fontSize: 13,color: Colors.white, fontFamily: getTranslated(context, "fontFamilyBody")!),
                                       ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left:20.0, right:20),
                                       child: Text(
                                         order[order.keys.elementAt(0)]["date"].toString(),
-                                        style:  TextStyle(fontSize: 12,color: Colors.white, fontFamily: getTranslated(context, "fontFamilyBody")!),
+                                        style:  TextStyle(fontSize: 13,color: Colors.white, fontFamily: getTranslated(context, "fontFamilyBody")!),
                                       ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left:20.0, right:20),
                                       child: Text(
                                         "Order Id: ${order[order.keys.elementAt(0)]["orderId"].toString()}",
-                                        style:  TextStyle(fontSize: 12,color: Colors.white, fontFamily: getTranslated(context, "fontFamilyBody")!),
+                                        style:  TextStyle(fontSize: 13,color: Colors.white, fontFamily: getTranslated(context, "fontFamilyBody")!),
                                       ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left:20.0, right:20),
                                       child: Text(
                                         "Expected: ${order[order.keys.elementAt(0)]["expectedtime"].toString()}",
-                                        style:  TextStyle(fontSize: 12,color: Colors.white, fontFamily: getTranslated(context, "fontFamilyBody")!),
+                                        style:  TextStyle(fontSize: 13,color: Colors.white, fontFamily: getTranslated(context, "fontFamilyBody")!),
                                       ),
                                     ),
 
@@ -350,7 +350,7 @@ class _TrackMyOrderState extends State<TrackMyOrder> {
                                 padding: const EdgeInsets.only(top: 10.0),
                                 child: Column(
                                   children: [
-                                    Text(getTranslated(context, "callUs")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, ),),
+                                    Text(getTranslated(context, "callUs")!,style: TextStyle(fontSize:13,fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, ),),
                                     SizedBox(width:60,child: Divider(color:Colors.white,thickness: 1,))
                                   ],
                                 ),
@@ -366,7 +366,7 @@ class _TrackMyOrderState extends State<TrackMyOrder> {
                               padding: const EdgeInsets.only(top: 10.0),
                               child: Column(
                                 children: [
-                                  Text(getTranslated(context, "emailUs")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, ),),
+                                  Text(getTranslated(context, "emailUs")!,style: TextStyle(fontSize:13,fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, ),),
                                     SizedBox(width:double.parse(getTranslated(context, "emailUsDividerLength")!),child: Divider(color:Colors.white,thickness: 1,))
                                 ],
                               ),

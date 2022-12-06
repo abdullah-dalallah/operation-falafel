@@ -62,7 +62,7 @@ class _NotificationsState extends State<Notifications> {
 
                                   },
 
-                                  title: Text(getTranslated(context, "orderInitiated")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,),),
+                                  title: Text(getTranslated(context, "orderInitiated")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,fontSize: 15),),
                                   subtitle: Text("10/19/2022 08:22:17",style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white60,fontSize: 13),)
                               ),
 
