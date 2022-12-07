@@ -8,8 +8,6 @@ class DemoCartDetails extends ChangeNotifier{
 
   double get Total => _total;
   int get Items => _items;
-
-
   set Total(double value) {
     _total = value;
   }

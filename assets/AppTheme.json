@@ -44,7 +44,7 @@
                      "LocationTile": {"Data": "text data", "Color": "text color", "Textfamily": "textFamily"},
                      "LocationChangeButton": {"Data": "text data", "Color": "text color", "Textfamily": "textFamily"}
                    },
-                   "OrderNowButtonWidget": {"Data": "text data", "Color": "text color", "TextFamily": "textFamily", "BackGroundColor": "color in hex"},
+                   "OrderNowButtonWidget": {"Data": "Order Now", "Color": "text color", "TextFamily": "textFamily", "BackGroundColor": "color in hex"},
                    "DashboardWidget": {
                      "HeaderTitle":{
                        "CreditText": {"Data": "text data", "Color": "text color", "TextFamily": "textFamily"},
