@@ -317,7 +317,6 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                           SizedBox(
 
                             child: DecoratedBox(
-
                               decoration:const BoxDecoration(
                                 border: Border(
                                   bottom: BorderSide(color: Colors.white),
