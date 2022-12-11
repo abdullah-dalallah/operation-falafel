@@ -1,0 +1,683 @@
+{
+
+  "AppTheme": {
+    "FontSizes": {
+      "AR": {
+        "LogoTitle":{
+          "Size": 21.0,
+          "TextFamily": "textFamily"
+        },
+        "TitleHeader1":   {
+          "Size": 20.0,
+          "TextFamily": "textFamily"
+        },
+        "TitleHeader2": {
+          "Size": 25.0,
+          "TextFamily": "textFamily"
+        },
+        "Header1": {
+          "Size": 10.0,
+          "TextFamily": "textFamily"
+        },
+        "Header2": {
+          "Size": 13.0,
+          "TextFamily": "textFamily"
+        },
+        "Header3": {
+          "Size": 15.0,
+          "TextFamily": "textFamily"
+        },
+        "Header4":{
+          "Size": 17.0,
+          "TextFamily": "textFamily"
+        },
+        "Header5":{
+          "Size":20.0,
+          "TextFamily": "textFamily"
+        }
+      },
+      "EN": {
+        "LogoTitle":{
+          "Size": 20.0,
+          "TextFamily": "textFamily"
+        },
+        "TitleHeader1":   {
+          "Size":  35.0,
+          "TextFamily": "textFamily"
+        },
+        "TitleHeader2": {
+          "Size": 45.0,
+          "TextFamily": "textFamily"
+        },
+        "Header1": {
+          "Size": 10.0,
+          "TextFamily": "textFamily"
+        },
+        "Header2": {
+          "Size": 13.0,
+          "TextFamily": "textFamily"
+        },
+        "Header3": {
+          "Size": 15.0,
+          "TextFamily": "textFamily"
+        },
+        "Header4":{
+          "Size": 17.0,
+          "TextFamily": "textFamily"
+        },
+        "Header5":{
+          "Size":20.0,
+          "TextFamily": "textFamily"
+        }
+      }
+
+    },
+
+    "DesignPerPage": {
+      "BottomNavigationBar": {
+        "Home": {"visibility":"true","ImageIcon":"imagePath", "Text": {"Data": "text data", "Color": "text color"},"Size":"30", "ActiveColor": "color", "InactiveColor": "color"},
+        "Order": {"visibility":"true","ImageIcon":"imagePath", "Text": {}, "MobileSize":"28","TabletSize":"28", "ActiveColor": "color", "InactiveColor": "color"},
+        "Cart": {"visibility":"true","ImageIcon":"imagePath", "Text": {},"Size":"", "ActiveColor": "color", "InactiveColor": "color"},
+        "TrackMyOrder": {"visibility":"true","ImageIcon":"imagePath","Text": {}, "Size":"", "ActiveColor": "color", "InactiveColor": "color"},
+        "Profile": {"visibility":"true","ImageIcon":"imagePath","Text": {}, "Size":"", "ActiveColor": "color", "InactiveColor": "color"}
+      },
+      "HomePage": {
+        "AppBar": {
+          "DrawerIcon": { "ImageIcon":"imagePath", "Size":"", "center": "true"},
+          "TitleText": {"Data": "text data", "Color": "text color"},
+          "SearchAction": {"ImageIcon":"imagePath", "Size":""}
+        },
+        "Body": {
+          "LocationWidget":{
+            "LocationIcon": {"ImageIcon":"imagePath", "Size":""},
+            "LocationTile": { "Color": "0xFFB74093"},
+            "LocationChangeButton": {"Data": "text data", "Color": "text color"}
+          },
+          "OrderNowButtonWidget": {"Data": "Order Now", "Color": "text color", "BackGroundColor": "color in hex"},
+          "DashboardWidget": {
+            "HeaderTitle":{
+              "CreditText": {"Data": "text data", "Color": "text color" },
+              "Text": {"Data": "text data", "Color": "text color" }
+            },
+            "Buttons": {
+              "MyCode": {"visibility":"true","ImageIcon":"imagePath", "Size":"", "Data": "text data", "Color": "text color"},
+              "MyRewards": {"visibility":"true","ImageIcon":"imagePath", "Size":"", "Data": "text data", "Color": "text color" },
+              "ReferFriend": {"visibility":"true","ImageIcon":"imagePath", "Size":"", "Data": "text data", "Color": "text color"},
+              "TransferCredit": {"visibility":"true","ImageIcon":"imagePath", "Size":"", "Data": "text data", "Color": "text color"}
+            }
+          }
+        }
+      },
+      "TarckOrderPage": {
+        "AppBar": {
+          "DrawerIcon": { "ImageIcon":"imagePath", "Size":""},
+          "Title": {"Data": "text data", "Color": "text color"}
+        },
+        "Body":{
+          "PageTile": {"Data": "text data", "Color": "text color"},
+          "DropDownWidget": {
+            "LabelText": {"Data": "text data", "Color": "text color"},
+            "ItemsTitle": {"Data": "text data", "Color": "text color"},
+            "ItemsSubTitle": {"Data": "text data", "Color": "text color"},
+            "SelectedIcon": {"ImageIcon":"imagePath", "height":"", "width":""}
+          },
+          "StatusImage":{"Image_Url":"imagePath", "height":"", "width":""},
+          "StepperWidget": {"ActiveColor": "color"},
+          "CallUsWidget": {"visibility":"true","ImageIcon":"imagePath", "Size":"","Data": "text data", "Color": "text color"},
+          "EmailUsWidget": {"visibility":"true","ImageIcon":"imagePath", "Size":"","Data": "text data", "Color": "text color"}
+        }
+      },
+
+      "CartPage": {
+        "AppBar": {
+          "DrawerIcon": { "ImageIcon":"imagePath", "Size":""},
+          "Title": {"Data": "text data", "Color": "text color"}
+        },
+        "Body": {
+          "PageTile": {"Data": "text data", "Color": "text color"},
+          "ItemsList": {
+            "ItemTitle": {"Data": "text data", "Color": "text color"},
+            "OptionsTitle": {"Data": "text data", "Color": "text color"},
+            "Plus&Minus": {"BackGroundColor": "color in hex", "IconColor":"color in hex"},
+            "Quantity": {"Data": "text data", "Color": "text color", "BackGroundColor": "color in hex"},
+            "TotalPrice": {"Data": "text data", "Color": "text color"}
+          },
+          "SpecialInstructions": {"visibility":"true", "Title": {"Data": "text data", "Color": "text color"}, "TextfieldHint":{"Data": "text data", "Color": "text color"}},
+          "CutleryCheckBox":{"visibility":"true","Title": {"Data": "text data", "Color": "text color"}, "SelectedImage": "image Path"},
+          "ContactlessCheckBox":{"visibility":"true","Title": {"Data": "text data", "Color": "text color"}, "SelectedImage": "image Path"},
+          "PromoCode": {"visibility":"true", "TextfieldHint":{"Data": "text data", "Color": "text color"}, "AddButton":{"Data": "text data", "Color": "text color","BackGroundColor": "color in hex"}},
+          "Tip": {"visibility":"true", "Title": {"Data": "text data", "Color": "text color"}, "TextfieldHint":{"Data": "text data", "Color": "text color"}},
+          "SubTotal": {"Data": "text data", "Color": "text color"},
+          "TotalAfterPromoCode": {"Data": "text data", "Color": "text color"},
+          "DeliveryFee": {"Data": "text data", "Color": "text color"},
+          "Total": {"BackGroundColor": "color in hex", "TotalTitle": {"Data": "text data", "Color": "text color"}, "Price":{"Data": "text data", "Color": "text color"}},
+          "Credit": {"visibility":"true","Data": "text data", "Color": "text color"},
+          "SelectAddress": {
+            "visibility":"true",
+            "Title": {"Data": "text data", "Color": "text color"},
+            "BackGroundColor": "color in hex",
+            "HintText": {"Data": "text data", "Color": "text color"},
+            "Icon": {"ImageIcon":"imagePath", "Size":""}
+          },
+          "SelectPayment": {
+            "visibility":"true",
+            "Title": {"Data": "text data", "Color": "text color"},
+            "BackGroundColor": "color in hex",
+            "HintText": {"Data": "text data", "Color": "text color"},
+            "Icon": {"ImageIcon":"imagePath", "Size":""}
+          },
+          "BringItButton": {"Data": "text data", "Color": "text color","BackGroundColor": "color in hex"},
+          "EmptyCart": {"Data": "text data", "Color": "text color"},
+          "OrderNowButton": {"Data": "text data", "Color": "text color"}
+        }
+      },
+      "MenuPage": {
+        "AppBar": {
+          "DrawerIcon": { "ImageIcon":"imagePath", "Size":""},
+          "SearchAction": {"ImageIcon":"imagePath", "Size":""}
+        },
+        "Body": {
+          "MenusTitle": {"Data": "text data", "Color": "text color", "ActiveColo": "color", "InactiveColor": "color"},
+          "VegetarianCheckBox": {"Data": "text data", "Color": "text color",  "SelectedImage": "image Path"},
+          "VeganCheckBox": {"Data": "text data", "Color": "text color",  "SelectedImage": "image Path"},
+          "ItemsList": {
+            "ItemTitle": {"Data": "text data", "Color": "text color"},
+            "ItemSubTitle": {"Data": "text data", "Color": "text color"},
+            "Plus&Minus": {"BackGroundColor": "color in hex", "IconColor":"color in hex"},
+            "Quantity": {"Data": "text data", "Color": "text color" , "BackGroundColor": "color in hex"},
+            "TotalPrice": {"Data": "text data", "Color": "text color"},
+            "AddButton":{"Data": "text data", "Color": "text color","BackGroundColor": "color in hex"}
+          }
+        }
+      },
+      "ItemDetailsSheet": {
+        "ItemTitle": {"Data": "text data", "Color": "text color"},
+        "ItemSubTitle": {"Data": "text data", "Color": "text color"},
+        "TotalPrice": {"Data": "text data", "Color": "text color"},
+        "Options": {
+          "Title": {"Data": "text data", "Color": "text color"},
+          "CheckBox": {"Data": "text data", "Color": "text color", "SelectedImage": "image Path"}
+        },
+        "AddOn": {
+          "Title": {"Data": "text data", "Color": "text color"},
+          "Plus&Minus": {"BackGroundColor": "color in hex", "IconColor":"color in hex"},
+          "Quantity": {"Data": "text data", "Color": "text color", "BackGroundColor": "color in hex"},
+          "Title&Price": {"Data": "text data", "Color": "text color"}
+        },
+        "AddToCart": {"Data": "text data", "Color": "text color","BackGroundColor": "color in hex"}
+      },
+      "ProfilePage": {
+        "AppBar": {
+          "DrawerIcon": { "ImageIcon":"imagePath", "Size":""},
+          "Title": {"Data": "text data", "Color": "text color"}
+        },
+        "Body": {
+          "AvatarImage": {
+            "DefaultImage":"",
+            "EditButton": {"ImageIcon":"imagePath", "Size":"","BackGroundColor": "color in hex"} },
+          "Name": {"Data": "text data", "Color": "text color"},
+          "EditProfileButton": {"Data": "text data", "Color": "text color"},
+          "Form": {
+            "Name": {"Data": "text data", "Color": "text color"},
+            "PhoneNumber": {"Data": "text data", "Color": "text color", "VerifiedButton": {"ImageIcon":"imagePath", "Size":"","BackGroundColor": "color in hex"}},
+            "Email": {"Data": "text data", "Color": "text color"},
+            "DateOfBirth": {"Data": "text data", "Color": "text color"},
+            "Gender":{"Data": "text data", "Color": "text color", "DropDownWidget": {
+              "LabelText": {"Data": "text data", "Color": "text color"},
+              "ItemsTitle": {"Data": "text data", "Color": "text color"},
+              "SelectedIcon": {"ImageIcon":"imagePath", "height":"", "width":""}
+            }},
+            "Password": {"Data": "text data", "Color": "text color"},
+            "UploadID": {"Data": "text data", "Color": "text color" ,"ChooseButton": {"Data": "text data", "Color": "text color","BackGroundColor": "color in hex"}
+            }
+          },
+          "Buttons": {
+            "OrderHistory": {"Data": "text data", "Color": "text color","BackGroundColor": "color in hex"},
+            "SavedAddress": {"Data": "text data", "Color": "text color","BackGroundColor": "color in hex"},
+            "SavedCards": {"Data": "text data", "Color": "text color","BackGroundColor": "color in hex"},
+            "Loyalty": {"Data": "text data", "Color": "text color","BackGroundColor": "color in hex"},
+            "Help": {"Data": "text data", "Color": "text color","BackGroundColor": "color in hex"},
+            "SignOut": {"Data": "text data", "Color": "text color","BackGroundColor": "color in hex"}
+          }
+        }
+      },
+      "EnterOFWorldPage": {
+        "Title": {"Data": "text data", "Color": "text color"},
+        "AppleLoginButton":  {"Data": "text data", "Color": "text color", "AppleLogoColor": ""},
+        "RegisterButton":  {"Data": "text data", "Color": "text color", "AppleLogoColor": "","BackGroundColor": "color in hex"},
+        "ResiterLater": {"Data": "text data", "Color": "text color"},
+        "Login": {"Data": "text data", "Color": "text color"}
+      },
+      "RegisterPage": {
+        "PageTile": {"Data": "text data", "Color": "text color"},
+        "Form": {
+          "Name": {"Data": "text data", "Color": "text color"},
+          "PhoneNumber": {"Data": "text data", "Color": "text color", "VerifiedButton": {"ImageIcon":"imagePath", "Size":"","BackGroundColor": "color in hex"}},
+          "Email": {"Data": "text data", "Color": "text color"},
+          "DateOfBirth": {"Data": "text data", "Color": "text color"},
+          "Gender":{"Data": "text data", "Color": "text color", "DropDownWidget": {
+            "LabelText": {"Data": "text data", "Color": "text color"},
+            "ItemsTitle": {"Data": "text data", "Color": "text color"},
+            "ItemsSubTitle": {"Data": "text data", "Color": "text color"},
+            "SelectedIcon": {"ImageIcon":"imagePath", "height":"", "width":""}
+          }},
+          "Password": {"Data": "text data", "Color": "text color"},
+          "Nationality": {"Data": "text data", "Color": "text color"}
+        },
+        "TermsCheckBox":{"visibility":"true","Title": {"Data": "text data", "Color": "text color"}, "SelectedImage": "image Path"}
+      },
+      "LoginPage": {
+        "PageTile": {"Data": "text data", "Color": "text color"},
+        "Form": {
+          "Email": {"Data": "text data", "Color": "text color"},
+          "Password": {"Data": "text data", "Color": "text color"},
+          "ForgetPassword": {"Data": "text data", "Color": "text color"}
+        }
+      },
+      "ForgetPasswordPage": {
+        "PageTile": {"Data": "text data", "Color": "text color"},
+        "Form": {
+          "PhoneNumber": {"Data": "text data", "Color": "text color"}
+        }
+      },
+      "OrderHistoryPage": {
+        "AppBar": {
+          "BackIcon": { "ImageIcon":"imagePath", "Size":""},
+          "Title": {"Data": "text data", "Color": "text color"}
+        },
+        "Body": {
+          "PageTitle": {"Data": "text data", "Color": "text color"},
+          "OrderList": {
+            "OrderTitle": {"Data": "text data", "Color": "text color"},
+            "OrderSubTitle": {"Data": "text data", "Color": "text color"},
+            "ViewReceipt": {"Icon": { "ImageIcon":"imagePath", "Size":""},"Data": "text data", "Color": "text color", "BackGroundColor": "color in hex"},
+            "Reorder": {"Icon": { "ImageIcon":"imagePath", "Size":""},"Data": "text data", "Color": "text color", "BackGroundColor": "color in hex"},
+            "OrderIcon": { "ImageIcon":"imagePath", "Size":""}
+          }
+        }
+      },
+      "OrderDetailsPage": {
+        "AppBar": {
+          "BackIcon": { "ImageIcon":"imagePath", "Size":""},
+          "Title": {"Data": "text data", "Color": "text color"}
+        },
+        "Body":{
+          "PageTitle": {"Data": "text data", "Color": "text color"},
+          "OrderTile": {
+            "OrderTitle": {"Data": "text data", "Color": "text color"},
+            "OrderSubTitle": {"Data": "text data", "Color": "text color"},
+            "Reorder": {"Icon": { "ImageIcon":"imagePath", "Size":""},"Data": "text data", "Color": "text color", "BackGroundColor": "color in hex"}
+          },
+          "OrderID": {"Data": "text data", "Color": "text color"},
+          "AddressHeader": {"Data": "text data", "Color": "text color"},
+          "OrderSummaryHeader": {"Data": "text data", "Color": "text color"},
+          "OrderOptions": {
+            "OptionTitle": {"Data": "text data", "Color": "text color"},
+            "OptionPrice": {"Data": "text data", "Color": "text color"}
+          },
+          "PaymentMethodHeader": {"Data": "text data", "Color": "text color"},
+          "PaymentMethod": {"Data": "text data", "Color": "text color"},
+          "SubTotalHeader": {"Data": "text data", "Color": "text color"},
+          "O:FLoyaltyHeader": {"Data": "text data", "Color": "text color"},
+          "ServiceChargeHeader": {"Data": "text data", "Color": "text color"},
+          "TotalHeader": {"Data": "text data", "Color": "text color"}
+
+        }
+      },
+      "SavedAddressPage": {
+        "AppBar": {
+          "BackIcon": { "ImageIcon":"imagePath", "Size":""},
+          "Title": {"Data": "text data", "Color": "text color"}
+        },
+        "Body":{
+          "PageTitle": {"Data": "text data", "Color": "text color"},
+          "EmptyList": {"Data": "text data", "Color": "text color"},
+          "AddressList":{
+            "Title": {"Data": "text data", "Color": "text color"},
+            "SubTitle": {"Data": "text data", "Color": "text color"},
+            "EditButton": { "ImageIcon":"imagePath", "Size":"", "BackGroundColor": "color in hex"},
+            "DeleteButton": { "ImageIcon":"imagePath", "Size":"", "BackGroundColor": "color in hex"}
+
+          } ,
+          "AddNewAdressButton": {"Data": "text data", "Color": "text color","BackGroundColor": "color in hex"}
+        }
+      },
+      "EditAddressPage": {
+        "AppBar": {
+          "BackIcon": { "ImageIcon":"imagePath", "Size":""},
+          "Title": {"Data": "text data", "Color": "text color"}
+        },
+        "Body":{
+          "PageTitle": {"Data": "text data", "Color": "text color"},
+          "PageImage": "imagePath",
+          "Form": {
+            "AddressLine": {"Data": "text data", "Color": "text color"},
+            "BuildingName": {"Data": "text data", "Color": "text color"},
+            "Villa": {"Data": "text data", "Color": "text color"},
+            "Area": {"Data": "text data", "Color": "text color"},
+            "AddressTypeDropDown": {
+              "LabelText": {"Data": "text data", "Color": "text color"},
+              "ItemsTitle": {"Data": "text data", "Color": "text color"},
+              "SelectedIcon": {"ImageIcon":"imagePath", "height":"", "width":""}
+            },
+            "PrimaryAddress": {
+              "Icon": {"ActiveIcon":"imagePath","InactiveImage":"imagePath" },
+              "Title": {"Data": "text data", "Color": "text color"}
+            },
+            "UpdateAddressButton": {"Data": "text data", "Color": "text color","BackGroundColor": "color in hex"}
+          }
+
+
+        }
+      },
+      "AddNewAddressPage": {
+        "AppBar": {
+          "BackIcon": { "ImageIcon":"imagePath", "Size":""},
+          "Title": {"Data": "text data", "Color": "text color"}
+        },
+        "Body":{
+          "PageTitle": {"Data": "text data", "Color": "text color"},
+          "PageImage": "imagePath",
+          "Form": {
+            "AddressLine": {"Data": "text data", "Color": "text color"},
+            "BuildingName": {"Data": "text data", "Color": "text color"},
+            "Villa": {"Data": "text data", "Color": "text color"},
+            "Area": {"Data": "text data", "Color": "text color"},
+            "AddressTypeDropDown": {
+              "LabelText": {"Data": "text data", "Color": "text color"},
+              "ItemsTitle": {"Data": "text data", "Color": "text color"},
+              "SelectedIcon": {"ImageIcon":"imagePath", "height":"", "width":""}
+            },
+            "PrimaryAddress": {
+              "Icon": {"ActiveIcon":"imagePath","InactiveImage":"imagePath" },
+              "Title": {"Data": "text data", "Color": "text color"}
+            },
+            "AddNewAddressButton": {"Data": "text data", "Color": "text color","BackGroundColor": "color in hex"}
+          }
+
+
+        }
+      },
+      "SavedCardsPage": {
+        "AppBar": {
+          "BackIcon": { "ImageIcon":"imagePath", "Size":""},
+          "Title": {"Data": "text data", "Color": "text color"}
+        },
+        "Body":{
+          "PageTitle": {"Data": "text data", "Color": "text color"},
+          "CardsList":{
+            "Title": {"Data": "text data", "Color": "text color"},
+            "SubTitle": {"Data": "text data", "Color": "text color"},
+            "EditButton": { "ImageIcon":"imagePath", "Size":"", "BackGroundColor": "color in hex"},
+            "DeleteButton": { "ImageIcon":"imagePath", "Size":"", "BackGroundColor": "color in hex"}
+
+          } ,
+          "EmptyList": {"Data": "text data", "Color": "text color"},
+          "AddNewCardButton": {"Data": "text data", "Color": "text color","BackGroundColor": "color in hex"}
+        }
+      },
+      "HelpPage": {
+        "AppBar": {
+          "BackIcon": { "ImageIcon":"imagePath", "Size":""},
+          "Title": {"Data": "text data", "Color": "text color"}
+        },
+        "Body":{
+          "PageTitle": {"Data": "text data", "Color": "text color"},
+          "PageImage": "imagePath",
+          "CallUsWidget": {"visibility":"true","ImageIcon":"imagePath", "Size":"","Data": "text data", "Color": "text color"},
+          "EmailUsWidget": {"visibility":"true","ImageIcon":"imagePath", "Size":"","Data": "text data", "Color": "text color"}
+        }
+      },
+      "LoyaltyPage": {
+        "AppBar": {
+          "BackIcon": { "ImageIcon":"imagePath", "Size":""},
+          "Title": {"Data": "text data", "Color": "text color"}
+        },
+        "Body":{
+          "PageTitle": {"Data": "text data", "Color": "text color"},
+          "CreditBalance": {
+            "BackGroundColor": "color in hex",
+            "CreditTitle": {"Data": "text data", "Color": "text color"},
+            "Balance":  {"Data": "text data", "Color": "text color"}
+          },
+          "Buttons": {
+            "HowItWorks": {"Data": "text data", "Color": "text color","BackGroundColor": "color in hex"},
+            "MyRewards": {"Data": "text data", "Color": "text color","BackGroundColor": "color in hex"},
+            "ReferFriend": {"Data": "text data", "Color": "text color","BackGroundColor": "color in hex"},
+            "TransferCredits": {"Data": "text data", "Color": "text color","BackGroundColor": "color in hex"},
+            "CreditCalculator": {"Data": "text data", "Color": "text color","BackGroundColor": "color in hex"},
+            "History": {"Data": "text data", "Color": "text color","BackGroundColor": "color in hex"}
+          }
+        }
+      },
+      "Loyalty-HowItWorkPage": {
+        "AppBar": {
+          "BackIcon": { "ImageIcon":"imagePath", "Size":""},
+          "Title": {"Data": "text data", "Color": "text color"}
+        },
+        "Body": {
+          "PageTitle": {"Data": "text data", "Color": "text color"},
+          "Intro": {"Data": "text data", "Color": "text color"},
+          "HowItWorkItemList": [
+            {
+              "Title": {"Data": "text data", "Color": "text color"},
+              "SubTitle": {"Data": "text data", "Color": "text color"},
+              "Image": {
+                "imagePath": "Image Path",
+                "side": "left"
+              }
+            }
+          ]
+        }
+      },
+      "Loyalty-MyRewardsPage": {
+        "AppBar": {
+          "BackIcon": { "ImageIcon":"imagePath", "Size":""},
+          "Title": {"Data": "text data", "Color": "text color"}
+        },
+        "Body": {
+          "PageTitle": {"Data": "text data", "Color": "text color"},
+          "PageImage": "imagePath",
+          "MyGiftsButton": {"Data": "text data", "Color": "text color","BackGroundColor": "color in hex"},
+          "BuyGiftButton": {"Data": "text data", "Color": "text color","BackGroundColor": "color in hex"},
+          "BuyGiftButton": {"Data": "text data", "Color": "text color","BackGroundColor": "color in hex"},
+          "MyCode": {"visibility":"true","ImageIcon":"imagePath", "Size":"", "Data": "text data", "Color": "text color"}
+        }
+      },
+      "Loyalty-MyGiftsPage": {
+        "AppBar": {
+          "BackIcon": { "ImageIcon":"imagePath", "Size":""},
+          "Title": {"Data": "text data", "Color": "text color"}
+        },
+        "Body": {
+          "PageTitle": {"Data": "text data", "Color": "text color"},
+          "EmptyList": {"Data": "text data", "Color": "text color"},
+          "GiftsList":{
+            "Title": {"Data": "text data", "Color": "text color"},
+            "SubTitle": {"Data": "text data", "Color": "text color"},
+            "Image": "ImagePath"
+
+          }
+        }
+      },
+      "Loyalty-GiftDetailsPage": {
+        "AppBar": {
+          "BackIcon": { "ImageIcon":"imagePath", "Size":""},
+          "Title": {"Data": "text data", "Color": "text color"}
+        },
+        "Body": {
+          "PageImage": "imagePath",
+          "PageTitle": {"Data": "text data", "Color": "text color"},
+          "GiftTitle": {"Data": "text data", "Color": "text color"},
+          "Voucher":{
+            "Title": {"Data": "text data", "Color": "text color"},
+            "SubTitle": {"Data": "text data", "Color": "text color"}
+          },
+          "RedeemButton": {"Data": "text data", "Color": "text color","BackGroundColor": "color in hex"},
+          "SendAsGiftButton": {"Data": "text data", "Color": "text color"}
+
+        }
+      },
+      "Loyalty-SendAsGiftPage": {
+        "AppBar": {
+          "BackIcon": { "ImageIcon":"imagePath", "Size":""},
+          "Title": {"Data": "text data", "Color": "text color"}
+        },
+        "Body": {
+          "PageImage": "imagePath",
+          "PageTitle": {"Data": "text data", "Color": "text color"},
+          "GiftTitle": {"Data": "text data", "Color": "text color"},
+          "Form": {
+            "Name": {"Data": "text data", "Color": "text color"},
+            "PhoneNumber": {"Data": "text data", "Color": "text color"},
+            "Email": {"Data": "text data", "Color": "text color"},
+            "AddNotes": {"Data": "text data", "Color": "text color"}
+
+          }
+        }
+      },
+      "Loyalty-BuyGiftPage": {
+        "AppBar": {
+          "BackIcon": { "ImageIcon":"imagePath", "Size":""},
+          "Title": {"Data": "text data", "Color": "text color"}
+        },
+        "Body": {
+          "PageTitle": {"Data": "text data", "Color": "text color"}
+        }
+      },
+      "Loyalty-PaymentSheet": {
+        "SheetTile": {"Data": "text data", "Color": "text color"},
+        "SheetCloseIcon": {"ImageIcon":"imagePath", "Size":""},
+        "SelectPaymentTitle": {"Data": "text data", "Color": "text color"},
+        "CheckBox": {
+          "Title": {"Data": "text data", "Color": "text color"}
+        }
+      },
+      "Loyalty-TransferCreditPage": {
+        "AppBar": {
+          "BackIcon": { "ImageIcon":"imagePath", "Size":""},
+          "Title": {"Data": "text data", "Color": "text color"}
+        },
+        "Body": {
+          "PageImage": "imagePath",
+          "PageTitle": {"Data": "text data", "Color": "text color"},
+          "Form": {
+            "EnterAmount": {"Data": "text data", "Color": "text color"},
+            "CreditLeft": {"Color": "text color"},
+            "CreditLeftTitle": {"Data": "text data","Color": "text color"},
+            "Name": {"Data": "text data", "Color": "text color"},
+            "PhoneNumber": {"Data": "text data", "Color": "text color"},
+            "Email": {"Data": "text data", "Color": "text color"}
+
+          }
+        }
+      },
+      "Loyalty-CreditCalculationPage": {
+        "AppBar": {
+          "BackIcon": { "ImageIcon":"imagePath", "Size":""},
+          "Title": {"Data": "text data", "Color": "text color"}
+        },
+        "Body": {
+
+          "PageTitle": {"Data": "text data", "Color": "text color"},
+          "Form": {
+            "EnterAmount": {"Data": "text data", "Color": "text color"},
+            "EarnedCredit": {"Data": "text data", "Color": "text color"}
+          }
+        }
+      },
+      "Loyalty-HistoryPage": {
+        "AppBar": {
+          "BackIcon": { "ImageIcon":"imagePath", "Size":""},
+          "Title": {"Data": "text data", "Color": "text color"}
+        },
+        "Body": {
+          "PageTitle": {"Data": "text data", "Color": "text color"},
+          "HistoryList": {
+            "Title": {"Data": "text data", "Color": "text color" },
+            "SubTitle": {"Data": "text data", "Color": "text color"},
+            "DateTitle": {"Data": "text data", "Color": "text color"}
+          }
+        }
+      },
+      "Drawer": {
+        "DrawerIcon": { "ImageIcon":"imagePath", "Size":""},
+        "Name": {"Data": "text data", "Color": "text color"},
+        "Home": {"visibility":"true","Data": "text data", "Color": "text color"},
+        "Notification": {"visibility":"true","Data": "text data", "Color": "text color"},
+        "Partners": {"visibility":"true","Data": "text data", "Color": "text color"},
+        "Locations": {"visibility":"true","Data": "text data", "Color": "text color"},
+        "Feedback": {"visibility":"true","Data": "text data", "Color": "text color"},
+        "ContactUs": {"visibility":"true","Data": "text data", "Color": "text color"},
+
+        "FollowUs":{"visibility":"true","Data": "text data", "Color": "text color"}
+      },
+      "Drawer-NotificationPage": {
+        "AppBar": {
+          "BackIcon": { "ImageIcon":"imagePath", "Size":""},
+          "Title": {"Data": "text data", "Color": "text color"}
+        },
+        "Body": {
+          "PageTitle": {"Data": "text data", "Color": "text color"},
+          "NotificationList": {
+            "Title": {"Data": "text data", "Color": "text color"},
+            "SubTitle": {"Data": "text data", "Color": "text color"}
+          }
+        }
+      },
+      "Drawer-PartnersPage": {
+        "AppBar": {
+          "BackIcon": { "ImageIcon":"imagePath", "Size":""},
+          "Title": {"Data": "text data", "Color": "text color"}
+        },
+        "Body": {
+          "PageTitle": {"Data": "text data", "Color": "text color"},
+          "NotificationList": {
+            "Image": "ImagePath",
+            "Title": {"Data": "text data", "Color": "text color"},
+            "SubTitle": {"Data": "text data", "Color": "text color"}
+          }
+        }
+      },
+      "Drawer-FeedBackPage": {
+        "AppBar": {
+          "BackIcon": { "ImageIcon":"imagePath", "Size":""},
+          "Title": {"Data": "text data", "Color": "text color"}
+        },
+        "Body": {
+          "PageTitle": {"Data": "text data", "Color": "text color"},
+          "PromotTitle": {"Data": "text data", "Color": "text color"},
+          "Form": {
+            "YourComment": {"Data": "text data", "Color": "text color"}
+          },
+          "SubmitButton": {"Data": "text data", "Color": "text color","BackGroundColor": "color in hex"}
+        }
+      },
+      "Drawer-ContactUsPage": {
+        "AppBar": {
+          "BackIcon": { "ImageIcon":"imagePath", "Size":""},
+          "Title": {"Data": "text data", "Color": "text color"}
+        },
+        "Body": {
+          "PageTitle": {"Data": "text data", "Color": "text color"},
+          "PromotTitle": {"Data": "text data", "Color": "text color"},
+          "Form": {
+            "Name": {"Data": "text data", "Color": "text color"},
+            "Email": {"Data": "text data", "Color": "text color"},
+            "PhoneNumber": {"Data": "text data", "Color": "text color"},
+            "InquiryTypeDropDown": {
+              "LabelText": {"Data": "text data", "Color": "text color"},
+              "ItemsTitle": {"Data": "text data", "Color": "text color"},
+              "SelectedIcon": {"ImageIcon":"imagePath", "height":"", "width":""}
+            },
+            "Yourmessage": {"Data": "text data", "Color": "text color"}
+          },
+          "SubmitButton": {"Data": "text data", "Color": "text color","BackGroundColor": "color in hex"}
+        }
+      }
+
+    }
+  }
+}
+
+

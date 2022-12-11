@@ -127,8 +127,8 @@ class _MainMenuState extends State<MainMenu> {
                     ],
                     title:
 
-                    // Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold,fontSize: logoTitleFontSize  ),)
-                    Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),)
+                    Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold,fontSize: logoTitleFontSize  ),)
+                    // Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),)
                   //Image.asset("assets/images/of_logo_top.png", width: 220,),
                 ),
                 body:  Column(

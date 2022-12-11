@@ -3,7 +3,10 @@
 "AppTheme": {
         "FontSizes": {
           "AR": {
-            "LogoTitle":21.0,
+            "LogoTitle":{
+              "Size": 21.0,
+              "TextFamily": "textFamily"
+            },
             "TitleHeader1": 20.0,
             "TitleHeader2": 25.0,
             "Header1": 10.0,
@@ -26,22 +29,25 @@
         },
 
          "DesignPerPage": {
+
            "BottomNavigationBar": {
-             "Home": {"visibility":"true","ImageIcon":"imagePath", "Size":"", "ActiveColor": "color", "InactiveColor": "color"},
-             "Order": {"visibility":"true","ImageIcon":"imagePath", "Size":"", "ActiveColor": "color", "InactiveColor": "color"},
+             "Home": {"visibility":"true","ImageIcon":"imagePath", "Text": {"Data": "text data", "Color": "text color"},"Size":"30", "ActiveColor": "color", "InactiveColor": "color"},
+             "Order": {"visibility":"true","ImageIcon":"imagePath", "Text": {}, "MobileSize":"28","TabletSize":"28", "ActiveColor": "color", "InactiveColor": "color"},
              "Cart": {"visibility":"true","ImageIcon":"imagePath", "Size":"", "ActiveColor": "color", "InactiveColor": "color"},
              "TrackMyOrder": {"visibility":"true","ImageIcon":"imagePath", "Size":"", "ActiveColor": "color", "InactiveColor": "color"},
              "Profile": {"visibility":"true","ImageIcon":"imagePath", "Size":"", "ActiveColor": "color", "InactiveColor": "color"}
            },
+
            "HomePage": {
                  "AppBar": {
-                   "DrawerIcon": { "ImageIcon":"imagePath", "Size":""},
+                   "DrawerIcon": { "ImageIcon":"imagePath", "Size":"", "center": "true"},
+                   "TitleText": {"Data": "text data", "Color": "text color"},
                    "SearchAction": {"ImageIcon":"imagePath", "Size":""}
                  },
                  "Body": {
                    "LocationWidget":{
                      "LocationIcon": {"ImageIcon":"imagePath", "Size":""},
-                     "LocationTile": {"Data": "text data", "Color": "text color", "Textfamily": "textFamily"},
+                     "LocationTile": { "Color": "0xFFB74093"},
                      "LocationChangeButton": {"Data": "text data", "Color": "text color", "Textfamily": "textFamily"}
                    },
                    "OrderNowButtonWidget": {"Data": "Order Now", "Color": "text color", "TextFamily": "textFamily", "BackGroundColor": "color in hex"},
