@@ -234,9 +234,7 @@ class _ContactUsState extends State<ContactUs> {
                                 //Add label If you want but add hint outside the decoration to be aligned in the button perfectly.
                               ),
                               isExpanded: true,
-                              hint:  Text(
-                                'Select Order',
-                                style: TextStyle(fontSize: 16, color: Colors.white60 ,fontFamily: getTranslated(context, "fontFamilyBody")!),
+                              hint:  Text(getTranslated(context, "typeOfInquiry")!, style: TextStyle(fontSize: 16, color: Colors.white60 ,fontFamily: getTranslated(context, "fontFamilyBody")!),
                               ),
 
                               icon: const ImageIcon(AssetImage("assets/images/down.png"),),
