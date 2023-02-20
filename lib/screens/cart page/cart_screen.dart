@@ -1,15 +1,16 @@
-import 'package:badges/badges.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/demo_cart/demo_cart_provider.dart';
 import 'package:operation_falafel/widgets/address_list_sheet.dart';
 import 'package:operation_falafel/widgets/checkbox_option.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:operation_falafel/widgets/pluse_minus_widget.dart';
 import 'package:provider/provider.dart';
+import 'package:badges/badges.dart' as badges;
+
 
 class Cart_Screen extends StatefulWidget{
   final ValueChanged onChanged;
@@ -86,13 +87,20 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                visible:(widget.layOut=="Desktop")?true:false,
                child: Padding(
                  padding: const EdgeInsets.only(left: 18.0, right: 18, top: 8,bottom: 8),
-                 child: Badge(
-                   padding:
-                   (Localizations.localeOf(context).languageCode=='ar')? EdgeInsets.only(bottom: 9, left: 7, right: 7, top:7):EdgeInsets.only(bottom: 9, left: 7, right: 7, top:5),
+                 child: badges.Badge(
+                   // padding:
+                   // (Localizations.localeOf(context).languageCode=='ar')? EdgeInsets.only(bottom: 9, left: 7, right: 7, top:7):EdgeInsets.only(bottom: 9, left: 7, right: 7, top:5),
+
+                   showBadge: (value.cartItems.isNotEmpty)?true:false,
+                   badgeStyle: badges.BadgeStyle(
+                     badgeColor: (value.cartItems.isNotEmpty)?Colors.red:Colors.transparent,
+                     elevation: 0,
+
+                   ),
                    badgeContent: Text('${value.cartItems.length}', style: TextStyle(color: (value.cartItems.isNotEmpty)?Colors.white:Colors.transparent,
                        fontFamily: getTranslated(context, "fontFamilyBody")),),
-                   elevation: (value.cartItems.isNotEmpty)?3:0,
-                   badgeColor: (value.cartItems.isNotEmpty)?Colors.red:Colors.transparent,
+                   // elevation: (value.cartItems.isNotEmpty)?3:0,
+                   // badgeColor: (value.cartItems.isNotEmpty)?Colors.red:Colors.transparent,
                    child: ImageIcon(
                      size: 40,
                      AssetImage("assets/images/icon_cart.png"),
@@ -577,8 +585,9 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                      // padding: EdgeInsets.all(18),
                                      child: ListTile(
                                        onTap: (){
-                                         showMaterialModalBottomSheet(
-                                             expand: false,
+                                         showModalBottomSheet(
+                                             useSafeArea: true,
+                                             isScrollControlled: true,
                                              context: context,
 
                                              backgroundColor: Colors.transparent,

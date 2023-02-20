@@ -19,7 +19,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:badges/badges.dart';
+
+import 'package:badges/badges.dart' as badges;
 
 
 class MobileScaffold extends StatefulWidget{
@@ -106,12 +107,18 @@ class _MobileScaffoldState extends State<MobileScaffold> {
                 ),
                 PersistentBottomNavBarItem(
                   textStyle: TextStyle(fontSize: 9),
-                  icon: Badge(
-                    padding:
-                    (Localizations.localeOf(context).languageCode=='ar')? EdgeInsets.only(bottom: 9, left: 7, right: 7, top:7):EdgeInsets.only(bottom: 9, left: 7, right: 7, top:5),
+                  icon: badges.Badge(
+
+                    // padding: (Localizations.localeOf(context).languageCode=='ar')? EdgeInsets.only(bottom: 9, left: 7, right: 7, top:7):EdgeInsets.only(bottom: 9, left: 7, right: 7, top:5),
+                    showBadge: (value.cartItems.isNotEmpty)?true:false,
+                    badgeStyle: badges.BadgeStyle(
+                   badgeColor: (value.cartItems.isNotEmpty)?Colors.red:Colors.transparent,
+                   elevation: 0,
+
+                 ),
                     badgeContent: Text('${value.cartItems.length}', style: TextStyle(color: (value.cartItems.isNotEmpty)?Colors.white:Colors.transparent,
                         fontFamily: getTranslated(context, "fontFamilyBody")),),
-                    badgeColor: (value.cartItems.isNotEmpty)?Colors.red:Colors.transparent,
+                    // badgeColor: (value.cartItems.isNotEmpty)?Colors.red:Colors.transparent,
                     child: ImageIcon(
                       size: 40,
                       AssetImage("assets/images/icon_cart.png"),

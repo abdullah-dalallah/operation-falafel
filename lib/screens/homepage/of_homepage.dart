@@ -10,7 +10,7 @@ import 'package:operation_falafel/widgets/address_list_sheet.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'dart:math' as math;
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+// import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
@@ -209,8 +209,10 @@ class _MainMenuState extends State<MainMenu> {
                                 TextButton(
                                     onPressed: () {
 
-                                      showMaterialModalBottomSheet(
-                                          expand: false,
+                                      showModalBottomSheet(
+                                          // expand: false,
+                                          useSafeArea: true,
+                                          isScrollControlled: true,
                                           context: context,
 
                                           backgroundColor: Colors.transparent,

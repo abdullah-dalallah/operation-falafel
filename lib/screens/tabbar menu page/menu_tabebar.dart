@@ -6,7 +6,7 @@ import 'package:operation_falafel/screens/tabbar%20menu%20page/widgets/custom_li
 import 'package:operation_falafel/widgets/drawer.dart';
 import 'package:operation_falafel/widgets/radio_option.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+
 
 class TabeBarMenu extends StatefulWidget{
   final ValueChanged onChanged;
@@ -265,8 +265,11 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                                children: [
                                  GestureDetector(
                                    onTap: (){
-                                     showMaterialModalBottomSheet(
-                                         expand: false,
+                                     showModalBottomSheet(
+                                        // enableDrag: true,
+                                         useSafeArea: true,
+                                         isScrollControlled: true,
+                                         // expand: false,
                                          context: context,
                                          backgroundColor: Colors.transparent,
                                          builder: (context) =>
@@ -296,102 +299,9 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                                children: [
                                  GestureDetector(
                                    onTap: (){
-                                     showMaterialModalBottomSheet(
-                                         expand: false,
-                                         context: context,
-                                         backgroundColor: Colors.transparent,
-                                         builder: (context) =>
-                                             DraggableScrollableSheet(
-                                                 initialChildSize: 0.6,
-                                                 minChildSize: 0.6,
-                                                 maxChildSize: 1,
-                                                 expand: true,
-                                                 builder: (context, scrollController) {
-                                                   return ItemDetailsSheet(layOut: widget.layOut,scrollController);
-                                                 }
-
-                                             )
-
-                                     );
-
-                                   },
-                                   child: CustomListTile(layOut: widget.layOut,),
-                                 ),
-
-                               ],
-                             ),
-
-                             ListView(
-                               shrinkWrap:true,
-                               padding:const EdgeInsets.only(top: 10,bottom: 20),
-                               physics: const NeverScrollableScrollPhysics(),
-                               children: [
-                                 GestureDetector(
-                                   onTap: (){
-                                     showMaterialModalBottomSheet(
-                                         expand: false,
-                                         context: context,
-                                         backgroundColor: Colors.transparent,
-                                         builder: (context) =>
-                                             DraggableScrollableSheet(
-                                                 initialChildSize: 0.6,
-                                                 minChildSize: 0.6,
-                                                 maxChildSize: 1,
-                                                 expand: true,
-                                                 builder: (context, scrollController) {
-                                                   return ItemDetailsSheet(layOut: widget.layOut,scrollController);
-                                                 }
-
-                                             )
-
-                                     );
-
-                                   },
-                                   child: CustomListTile(layOut: widget.layOut,),
-                                 ),
-
-                               ],
-                             ),
-                             ListView(
-                               shrinkWrap:true,
-                               padding:const EdgeInsets.only(top: 10,bottom: 20),
-                               physics: const NeverScrollableScrollPhysics(),
-                               children: [
-                                 GestureDetector(
-                                   onTap: (){
-                                     showMaterialModalBottomSheet(
-                                         expand: false,
-                                         context: context,
-                                         backgroundColor: Colors.transparent,
-                                         builder: (context) =>
-                                             DraggableScrollableSheet(
-                                                 initialChildSize: 0.6,
-                                                 minChildSize: 0.6,
-                                                 maxChildSize: 1,
-                                                 expand: true,
-                                                 builder: (context, scrollController) {
-                                                   return ItemDetailsSheet(layOut: widget.layOut,scrollController);
-                                                 }
-
-                                             )
-
-                                     );
-
-                                   },
-                                   child: CustomListTile(layOut: widget.layOut,),
-                                 ),
-
-                               ],
-                             ),
-                             ListView(
-                               shrinkWrap:true,
-                               padding:const EdgeInsets.only(top: 10,bottom: 20),
-                               physics: const NeverScrollableScrollPhysics(),
-                               children: [
-                                 GestureDetector(
-                                   onTap: (){
-                                     showMaterialModalBottomSheet(
-                                         expand: false,
+                                     showModalBottomSheet(
+                                         useSafeArea: true,
+                                         isScrollControlled: true,
                                          context: context,
                                          backgroundColor: Colors.transparent,
                                          builder: (context) =>
@@ -422,8 +332,9 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                                children: [
                                  GestureDetector(
                                    onTap: (){
-                                     showMaterialModalBottomSheet(
-                                         expand: false,
+                                     showModalBottomSheet(
+                                         useSafeArea: true,
+                                         isScrollControlled: true,
                                          context: context,
                                          backgroundColor: Colors.transparent,
                                          builder: (context) =>
@@ -453,8 +364,9 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                                children: [
                                  GestureDetector(
                                    onTap: (){
-                                     showMaterialModalBottomSheet(
-                                         expand: false,
+                                     showModalBottomSheet(
+                                         useSafeArea: true,
+                                         isScrollControlled: true,
                                          context: context,
                                          backgroundColor: Colors.transparent,
                                          builder: (context) =>
@@ -484,8 +396,42 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                                children: [
                                  GestureDetector(
                                    onTap: (){
-                                     showMaterialModalBottomSheet(
-                                         expand: false,
+                                     showModalBottomSheet(
+                                         useSafeArea: true,
+                                         isScrollControlled: true,
+                                         context: context,
+                                         backgroundColor: Colors.transparent,
+                                         builder: (context) =>
+                                             DraggableScrollableSheet(
+                                                 initialChildSize: 0.6,
+                                                 minChildSize: 0.6,
+                                                 maxChildSize: 1,
+                                                 expand: true,
+                                                 builder: (context, scrollController) {
+                                                   return ItemDetailsSheet(layOut: widget.layOut,scrollController);
+                                                 }
+
+                                             )
+
+                                     );
+
+                                   },
+                                   child: CustomListTile(layOut: widget.layOut,),
+                                 ),
+
+                               ],
+                             ),
+
+                             ListView(
+                               shrinkWrap:true,
+                               padding:const EdgeInsets.only(top: 10,bottom: 20),
+                               physics: const NeverScrollableScrollPhysics(),
+                               children: [
+                                 GestureDetector(
+                                   onTap: (){
+                                     showModalBottomSheet(
+                                         useSafeArea: true,
+                                         isScrollControlled: true,
                                          context: context,
                                          backgroundColor: Colors.transparent,
                                          builder: (context) =>
@@ -515,8 +461,9 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                                children: [
                                  GestureDetector(
                                    onTap: (){
-                                     showMaterialModalBottomSheet(
-                                         expand: false,
+                                     showModalBottomSheet(
+                                         useSafeArea: true,
+                                         isScrollControlled: true,
                                          context: context,
                                          backgroundColor: Colors.transparent,
                                          builder: (context) =>
@@ -546,8 +493,9 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                                children: [
                                  GestureDetector(
                                    onTap: (){
-                                     showMaterialModalBottomSheet(
-                                         expand: false,
+                                     showModalBottomSheet(
+                                         useSafeArea: true,
+                                         isScrollControlled: true,
                                          context: context,
                                          backgroundColor: Colors.transparent,
                                          builder: (context) =>
@@ -577,8 +525,73 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                                children: [
                                  GestureDetector(
                                    onTap: (){
-                                     showMaterialModalBottomSheet(
-                                         expand: false,
+                                     showModalBottomSheet(
+                                         useSafeArea: true,
+                                         isScrollControlled: true,
+                                         context: context,
+                                         backgroundColor: Colors.transparent,
+                                         builder: (context) =>
+                                             DraggableScrollableSheet(
+                                                 initialChildSize: 0.6,
+                                                 minChildSize: 0.6,
+                                                 maxChildSize: 1,
+                                                 expand: true,
+                                                 builder: (context, scrollController) {
+                                                   return ItemDetailsSheet(layOut: widget.layOut,scrollController);
+                                                 }
+
+                                             )
+
+                                     );
+
+                                   },
+                                   child: CustomListTile(layOut: widget.layOut,),
+                                 ),
+
+                               ],
+                             ),
+                             ListView(
+                               shrinkWrap:true,
+                               padding:const EdgeInsets.only(top: 10,bottom: 20),
+                               physics: const NeverScrollableScrollPhysics(),
+                               children: [
+                                 GestureDetector(
+                                   onTap: (){
+                                     showModalBottomSheet(
+                                         useSafeArea: true,
+                                         isScrollControlled: true,
+                                         context: context,
+                                         backgroundColor: Colors.transparent,
+                                         builder: (context) =>
+                                             DraggableScrollableSheet(
+                                                 initialChildSize: 0.6,
+                                                 minChildSize: 0.6,
+                                                 maxChildSize: 1,
+                                                 expand: true,
+                                                 builder: (context, scrollController) {
+                                                   return ItemDetailsSheet(layOut: widget.layOut,scrollController);
+                                                 }
+
+                                             )
+
+                                     );
+
+                                   },
+                                   child: CustomListTile(layOut: widget.layOut,),
+                                 ),
+
+                               ],
+                             ),
+                             ListView(
+                               shrinkWrap:true,
+                               padding:const EdgeInsets.only(top: 10,bottom: 20),
+                               physics: const NeverScrollableScrollPhysics(),
+                               children: [
+                                 GestureDetector(
+                                   onTap: (){
+                                     showModalBottomSheet(
+                                         useSafeArea: true,
+                                         isScrollControlled: true,
                                          context: context,
                                          backgroundColor: Colors.transparent,
                                          builder: (context) =>

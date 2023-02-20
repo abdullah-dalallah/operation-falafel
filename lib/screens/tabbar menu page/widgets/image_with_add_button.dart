@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:operation_falafel/providers/demo_cart/demo_cart_provider.dart';
 import 'package:operation_falafel/screens/item%20details%20page/item_details_sheet.dart';
 import 'package:operation_falafel/screens/tabbar%20menu%20page/widgets/repeat_last_customization_sheet.dart';
@@ -102,8 +101,10 @@ class _ImageWithAddButtonState extends State<ImageWithAddButton> {
                                         setState(() {
                                           addFirstTime= false;
                                         });
-                                        showMaterialModalBottomSheet(
-                                            expand: false,
+                                        showModalBottomSheet(
+                                            useSafeArea: true,
+                                            isScrollControlled: true,
+                                            // expand: false,
                                             context: context,
                                             backgroundColor: Colors.transparent,
                                             builder: (context) =>
@@ -232,8 +233,10 @@ class _ImageWithAddButtonState extends State<ImageWithAddButton> {
 
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    showMaterialModalBottomSheet(
-                                        expand: false,
+                                    showModalBottomSheet(
+                                        useSafeArea: true,
+                                        isScrollControlled: true,
+                                        // expand: false,
                                         context: context,
                                         backgroundColor: Colors.transparent,
                                         builder: (context) => DraggableScrollableSheet(

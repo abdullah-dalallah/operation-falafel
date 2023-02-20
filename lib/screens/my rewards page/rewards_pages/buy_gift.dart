@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+// import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/screens/tabbar%20menu%20page/menu_tabebar.dart';
 import 'package:operation_falafel/widgets/buy_gift_payment_sheet.dart';
@@ -109,8 +109,8 @@ class _BuyGiftState extends State<BuyGift> {
                                   overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
 
                                   onTap: (){
-                                    showMaterialModalBottomSheet(
-                                        expand: false,
+                                    showModalBottomSheet(
+                                        // expand: false,
                                         context: context,
                                         backgroundColor: Colors.transparent,
                                         builder: (context) => DraggableScrollableSheet(

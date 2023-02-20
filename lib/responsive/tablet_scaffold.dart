@@ -14,6 +14,7 @@ import 'package:operation_falafel/screens/track%20orders/track_my_order.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
+import 'package:badges/badges.dart' as badges;
 
 import '../screens/profile/logged_in_user_profile.dart';
 
@@ -132,12 +133,19 @@ class _TabletScaffoldState extends State<TabletScaffold> {
                       ),
                       PersistentBottomNavBarItem(
                         textStyle: TextStyle(fontSize: 9),
-                        icon: Badge(
-                          padding:
-                          (Localizations.localeOf(context).languageCode=='ar')? EdgeInsets.only(bottom: 9, left: 7, right: 7, top:7):EdgeInsets.only(bottom: 9, left: 7, right: 7, top:5),
+                        icon: badges.Badge(
+                          // padding:
+                          // (Localizations.localeOf(context).languageCode=='ar')? EdgeInsets.only(bottom: 9, left: 7, right: 7, top:7):EdgeInsets.only(bottom: 9, left: 7, right: 7, top:5),
+                          //
+                          showBadge: (value.cartItems.isNotEmpty)?true:false,
+                          badgeStyle: badges.BadgeStyle(
+                            badgeColor: (value.cartItems.isNotEmpty)?Colors.red:Colors.transparent,
+                            elevation: 0,
+
+                          ),
                           badgeContent: Text('${value.cartItems.length}', style: TextStyle(color: (value.cartItems.isNotEmpty)?Colors.white:Colors.transparent,
                               fontFamily: getTranslated(context, "fontFamilyBody")),),
-                          badgeColor: (value.cartItems.isNotEmpty)?Colors.red:Colors.transparent,
+                          // badgeColor: (value.cartItems.isNotEmpty)?Colors.red:Colors.transparent,
                           child: ImageIcon(
                             size: 40,
                             AssetImage("assets/images/icon_cart.png"),

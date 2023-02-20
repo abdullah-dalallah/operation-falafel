@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/screens/item%20details%20page/item_details_sheet.dart';
 
@@ -84,8 +83,8 @@ class RepeatLastCustomizationSheet extends StatelessWidget{
                       onPressed: () {
                         Navigator.pop(context);
 
-                        showMaterialModalBottomSheet(
-                            expand: false,
+                        showModalBottomSheet(
+                            // expand: false,
                             context: context,
                             backgroundColor: Colors.transparent,
                             builder: (context) =>
