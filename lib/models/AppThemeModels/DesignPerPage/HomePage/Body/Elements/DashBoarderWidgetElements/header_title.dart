@@ -4,7 +4,8 @@
 
 import 'dart:convert';
 
-import 'text_style.dart';
+import '../../../../CommonElements/Elements/title_style.dart';
+
 
 HeaderTitle headerTitleFromJson(String str) => HeaderTitle.fromJson(json.decode(str));
 
@@ -16,12 +17,12 @@ class HeaderTitle {
     required this.text,
   });
 
-  TextStyle creditText;
-  TextStyle text;
+  TitleStyle creditText;
+  TitleStyle text;
 
   factory HeaderTitle.fromJson(Map<String, dynamic> json) => HeaderTitle(
-    creditText: TextStyle.fromJson(json["CreditText"]),
-    text: TextStyle.fromJson(json["Text"]),
+    creditText: TitleStyle.fromJson(json["CreditText"]),
+    text: TitleStyle.fromJson(json["Text"]),
   );
 
   Map<String, dynamic> toJson() => {
