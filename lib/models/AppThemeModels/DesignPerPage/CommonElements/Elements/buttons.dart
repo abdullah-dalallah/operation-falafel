@@ -4,12 +4,12 @@
 
 import 'dart:convert';
 
-ProfileButton profileButtonFromJson(String str) => ProfileButton.fromJson(json.decode(str));
+Button profileButtonFromJson(String str) => Button.fromJson(json.decode(str));
 
-String profileButtonToJson(ProfileButton data) => json.encode(data.toJson());
+String profileButtonToJson(Button data) => json.encode(data.toJson());
 
-class ProfileButton {
-  ProfileButton({
+class Button {
+  Button({
     required this.data,
     required this.color,
     required this.backGroundColor,
@@ -19,7 +19,7 @@ class ProfileButton {
   String color;
   String backGroundColor;
 
-  factory ProfileButton.fromJson(Map<String, dynamic> json) => ProfileButton(
+  factory Button.fromJson(Map<String, dynamic> json) => Button(
     data: json["Data"],
     color: json["Color"],
     backGroundColor: json["BackGroundColor"],

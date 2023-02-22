@@ -8,6 +8,10 @@ import 'package:operation_falafel/models/AppThemeModels/FontSizes/Language/param
 
 
 
+// import 'package:operation_falafel/models/AppThemeModels/FontSizes/Language/parameters/header_style.dart';
+
+
+
 
 
 Language arFromJson(String str) => Language.fromJson(json.decode(str));
@@ -39,7 +43,7 @@ class Language {
     logoTitle: HeaderStyle.fromJson(json["LogoTitle"]),
     titleHeader1: HeaderStyle.fromJson(json["TitleHeader1"]),
     titleHeader2: HeaderStyle.fromJson(json["TitleHeader2"]),
-    header1: HeaderStyle.fromJson(json["HeaderStyle"]),
+    header1: HeaderStyle.fromJson(json["Header1"]),
     header2: HeaderStyle.fromJson(json["Header2"]),
     header3: HeaderStyle.fromJson(json["Header3"]),
     header4: HeaderStyle.fromJson(json["Header4"]),
@@ -50,7 +54,7 @@ class Language {
     "LogoTitle": logoTitle.toJson(),
     "TitleHeader1": titleHeader1.toJson(),
     "TitleHeader2": titleHeader2.toJson(),
-    "HeaderStyle": header1.toJson(),
+    "Header1": header1.toJson(),
     "Header2": header2.toJson(),
     "Header3": header3.toJson(),
     "Header4": header4.toJson(),

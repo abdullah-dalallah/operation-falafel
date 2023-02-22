@@ -28,7 +28,7 @@ class BottomNavigationBar {
   factory BottomNavigationBar.fromJson(Map<String, dynamic> json) => BottomNavigationBar(
     home: BottomNavigationBarButtonStyle.fromJson(json["Home"]),
     order: BottomNavigationBarButtonStyle.fromJson(json["Order"]),
-    cart: BottomNavigationBarButtonStyle.fromJson(json["BottomNavigationBarButtonStyle"]),
+    cart: BottomNavigationBarButtonStyle.fromJson(json["Cart"]),
     trackMyOrder: BottomNavigationBarButtonStyle.fromJson(json["TrackMyOrder"]),
     profile: BottomNavigationBarButtonStyle.fromJson(json["Profile"]),
   );

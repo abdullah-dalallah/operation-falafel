@@ -1,0 +1,751 @@
+{
+  "_id": "6396cdba799cf1db2025506f",
+  "theme_id": 2,
+  "FontSizes": {
+    "AR": {
+      "LogoTitle": {
+        "Size": 21,
+        "TextFamily": "Old Press_0"
+      },
+      "TitleHeader1": {
+        "Size": 20,
+        "TextFamily": "Old Press_0"
+      },
+      "TitleHeader2": {
+        "Size": 25,
+        "TextFamily": "Old Press_0"
+      },
+      "Header1": {
+        "Size": 10,
+        "TextFamily": "Raleway-Regular"
+      },
+      "Header2": {
+        "Size": 13,
+        "TextFamily": "Raleway-Regular"
+      },
+      "Header3": {
+        "Size": 15,
+        "TextFamily": "Old Press_0"
+      },
+      "Header4": {
+        "Size": 17,
+        "TextFamily": "Old Press_0"
+      },
+      "Header5": {
+        "Size": 20,
+        "TextFamily": "Old Press_0"
+      }
+    },
+    "EN": {
+      "LogoTitle": {
+        "Size": 20,
+        "TextFamily": "Old Press_0"
+      },
+      "TitleHeader1": {
+        "Size": 35,
+        "TextFamily": "Old Press_0"
+      },
+      "TitleHeader2": {
+        "Size": 45,
+        "TextFamily": "Old Press_0"
+      },
+      "Header1": {
+        "Size": 10,
+        "TextFamily": "Raleway-Regular"
+      },
+      "Header2": {
+        "Size": 13,
+        "TextFamily": "Raleway-Regular"
+      },
+      "Header3": {
+        "Size": 15,
+        "TextFamily": "Old Press_0"
+      },
+      "Header4": {
+        "Size": 17,
+        "TextFamily": "Old Press_0"
+      },
+      "Header5": {
+        "Size": 20,
+        "TextFamily": "Old Press_0"
+      }
+    }
+  },
+  "DesignPerPage": {
+    "BottomNavigationBar": {
+      "Home": {
+        "visibility": "true",
+        "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Home - inaactive.png",
+        "MobileSize": "28",
+        "TabletSize": "28",
+        "ActiveColor": "0xffdfaa35",
+        "InactiveColor": "0xffffffff"
+      },
+      "Order": {
+        "visibility": "true",
+        "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Order - inactive.png",
+        "MobileSize": "28",
+        "TabletSize": "28",
+        "ActiveColor": "0xffdfaa35",
+        "InactiveColor": "0xffffffff"
+      },
+      "Cart": {
+        "visibility": "true",
+        "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Cart - inactive.png",
+        "MobileSize": "28",
+        "TabletSize": "28",
+        "ActiveColor": "0xffdfaa35",
+        "InactiveColor": "0xffffffff"
+      },
+      "TrackMyOrder": {
+        "visibility": "true",
+        "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Track my order - inactive.png",
+        "MobileSize": "28",
+        "TabletSize": "28",
+        "ActiveColor": "0xffdfaa35",
+        "InactiveColor": "0xffffffff"
+      },
+      "Profile": {
+        "visibility": "true",
+        "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Profile - inactive.png",
+        "MobileSize": "28",
+        "TabletSize": "28",
+        "ActiveColor": "0xffdfaa35",
+        "InactiveColor": "0xffffffff"
+      }
+    },
+    "HomePage": {
+      "AppBar": {
+        "DrawerIcon": {
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+          "MobileSize": "28",
+          "TabletSize": "28",
+          "center": "true"
+        },
+        "TitleText": {
+          "Data": "Operation:Falafel",
+          "Color": "0xffffffff"
+        },
+        "SearchAction": {
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - Search.png",
+          "MobileSize": "28",
+          "TabletSize": "28"
+        }
+      },
+      "Body": {
+        "LocationWidget": {
+          "LocationIcon": {
+            "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/MyProfile_SavedAddresses_locator.png",
+            "MobileSize": "28",
+            "TabletSize": "28"
+          },
+          "LocationTile": {
+            "Color": "0xffffffff"
+          },
+          "LocationChangeButton": {
+            "Data": "change",
+            "Color": "0xffdfaa35"
+          }
+        },
+        "OrderNowButtonWidget": {
+          "Data": "Order Now",
+          "Color": "0xffffffff",
+          "BackGroundColor": "0xffdfaa35"
+        },
+        "DashboardWidget": {
+          "HeaderTitle": {
+            "CreditText": {
+              "Data": "Credit",
+              "Color": "0xffdfaa35"
+            },
+            "Text": {
+              "Data": "you have * valid until",
+              "Color": "0xffffffff"
+            }
+          },
+          "Buttons": {
+            "MyCode": {
+              "visibility": "true",
+              "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/my_rewards_gencode.png",
+              "MobileSize": "28",
+              "TabletSize": "28",
+              "Data": "My Code",
+              "Color": "0xffffffff"
+            },
+            "MyRewards": {
+              "visibility": "true",
+              "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/gift.png",
+              "MobileSize": "28",
+              "TabletSize": "28",
+              "Data": "My Rewards",
+              "Color": "0xffffffff"
+            },
+            "ReferFriend": {
+              "visibility": "true",
+              "ImageIcon": "imagePath",
+              "MobileSize": "28",
+              "TabletSize": "28",
+              "Data": "Refer a Friend",
+              "Color": "0xffffffff"
+            },
+            "TransferCredit": {
+              "visibility": "true",
+              "ImageIcon": "imagePath",
+              "MobileSize": "28",
+              "TabletSize": "28",
+              "Data": "Transfer Credit",
+              "Color": "0xffffffff"
+            }
+          }
+        }
+      }
+    },
+    "TarckOrderPage": {
+      "AppBar": {
+        "DrawerIcon": {
+          "ImageIcon": "imagePath",
+          "Size": "20"
+        },
+        "Title": {
+          "Data": "text data",
+          "Color": "text color"
+        }
+      },
+      "Body": {
+        "PageTile": {
+          "Data": "No Order",
+          "Color": "0xffdfaa35"
+        },
+        "DropDownWidget": {
+          "LabelText": {
+            "Data": "Select Order",
+            "Color": "0xffffffff"
+          },
+          "ItemsTitle": {
+            "Data": "Order - ",
+            "Color": "0xffdfaa35"
+          },
+          "ItemsSubTitle": {
+            "Data": "api",
+            "Color": "0xffffffff"
+          },
+          "SelectedIcon": {
+            "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/down.png",
+            "height": "10",
+            "width": "10"
+          }
+        },
+        "StatusImage": {
+          "Image_Url": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/track_my_order_delivery_guy.png",
+          "height": "20",
+          "width": "20"
+        },
+        "StepperWidget": {
+          "ActiveColor": "0xffdfaa35"
+        },
+        "CallUsWidget": {
+          "visibility": "true",
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/phone.png",
+          "MobileSize": "28",
+          "TabletSize": "28",
+          "Data": "CALL US",
+          "Color": "0xffffffff"
+        },
+        "EmailUsWidget": {
+          "visibility": "true",
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/email1.png",
+          "MobileSize": "28",
+          "TabletSize": "28",
+          "Data": "EMAIL US",
+          "Color": "0xffffffff"
+        }
+      }
+    },
+    "CartPage": {
+      "AppBar": {
+        "DrawerIcon": {
+          "ImageIcon": "imagePath",
+          "Size": "20"
+        },
+        "Title": {
+          "Data": "text data",
+          "Color": "text color"
+        }
+      },
+      "Body": {
+        "PageTile": {
+          "Data": "MY O:F CART",
+          "Color": "0xffdfaa35"
+        },
+        "ItemsList": {
+          "ItemTitle": {
+            "Data": "api",
+            "Color": "0xffdfaa35"
+          },
+          "OptionsTitle": {
+            "Data": "api",
+            "Color": "0xffffffff"
+          },
+          "Plus&Minus": {
+            "BackGroundColor": "0xffdfaa35",
+            "IconColor": "0xffffffff"
+          },
+          "Quantity": {
+            "Data": "api",
+            "Color": "0xffffffff",
+            "BackGroundColor": "0xff000000"
+          },
+          "TotalPrice": {
+            "Data": "api",
+            "Color": "0xffffffff"
+          }
+        },
+        "SpecialInstructions": {
+          "visibility": "true",
+          "Title": {
+            "Data": "Special Instructions",
+            "Color": "0xffdfaa35"
+          },
+          "TextfieldHint": {
+            "Data": "pecial Instructions",
+            "Color": "0xff454545"
+          }
+        },
+        "CutleryCheckBox": {
+          "visibility": "true",
+          "Title": {
+            "Data": "api",
+            "Color": "0xffffffff"
+          },
+          "SelectedImage": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/falafel.png"
+        },
+        "ContactlessCheckBox": {
+          "visibility": "true",
+          "Title": {
+            "Data": "text data",
+            "Color": "text color"
+          },
+          "SelectedImage": "image Path"
+        },
+        "PromoCode": {
+          "visibility": "true",
+          "TextfieldHint": {
+            "Data": "Enter promo code",
+            "Color": "0xff454545"
+          },
+          "AddButton": {
+            "Data": "Add",
+            "Color": "0xffffffff",
+            "BackGroundColor": "0xffdfaa35"
+          }
+        },
+        "Tip": {
+          "visibility": "true",
+          "Title": {
+            "Data": "tip the driver (optional )",
+            "Color": "0xffdfaa35"
+          },
+          "TextfieldHint": {
+            "Data": "tip",
+            "Color": "0xff454545"
+          }
+        },
+        "SubTotal": {
+          "Data": "Sub Total",
+          "Color": "0xffffffff"
+        },
+        "TotalAfterPromoCode": {
+          "Data": "Total After Promo Code",
+          "Color": "0xffdfaa35"
+        },
+        "DeliveryFee": {
+          "Data": "Delivery Fee",
+          "Color": "0xffffffff"
+        },
+        "Total": {
+          "BackGroundColor": "0xff000000",
+          "TotalTitle": {
+            "Data": "Total",
+            "Color": "0xffdfaa3"
+          },
+          "Price": {
+            "Data": "api",
+            "Color": "0xffffffff"
+          }
+        },
+        "Credit": {
+          "visibility": "true",
+          "Data": "Earned Credits",
+          "Color": "0xffdfaa3"
+        },
+        "SelectAddress": {
+          "visibility": "true",
+          "Title": {
+            "Data": "Address",
+            "Color": "0xffdfaa3"
+          },
+          "BackGroundColor": "0xff000000",
+          "HintText": {
+            "Data": "please select address",
+            "Color": "0xff454545"
+          },
+          "Icon": {
+            "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/icon_location_address.png",
+            "MobileSize": "28",
+            "TabletSize": "28"
+          }
+        },
+        "SelectPayment": {
+          "visibility": "true",
+          "Title": {
+            "Data": "Payment",
+            "Color": "0xffdfaa35"
+          },
+          "BackGroundColor": "0xff000000",
+          "HintText": {
+            "Data": "please select peyment",
+            "Color": "0xff454545"
+          },
+          "Icon": {
+            "ImageIcon": "later",
+            "MobileSize": "28",
+            "TabletSize": "28"
+          }
+        },
+        "BringItButton": {
+          "Data": "bring it on",
+          "Color": "0xffffffff",
+          "BackGroundColor": "0xff000000"
+        },
+        "EmptyCart": {
+          "Data": "Your Cart IS Empty",
+          "Color": "0xffffffff"
+        },
+        "OrderNowButton": {
+          "Data": "Order Now",
+          "Color": "0xffffffff"
+        }
+      }
+    },
+    "MenuPage": {
+      "AppBar": {
+        "DrawerIcon": {
+          "ImageIcon": "imagePath",
+          "Size": "20"
+        },
+        "SearchAction": {
+          "ImageIcon": "imagePath",
+          "Size": "20"
+        }
+      },
+      "Body": {
+        "MenusTitle": {
+          "Data": "api",
+          "Color": "no need",
+          "ActiveColo": "0xff000000",
+          "InactiveColor": "0xffffffff"
+        },
+        "VegetarianCheckBox": {
+          "Data": "api",
+          "Color": "0xff648316",
+          "SelectedImage": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/falafel.png"
+        },
+        "VeganCheckBox": {
+          "Data": "api",
+          "Color": "text color",
+          "SelectedImage": "image Path"
+        },
+        "ItemsList": {
+          "ItemTitle": {
+            "Data": "api",
+            "Color": "0xffdfaa35"
+          },
+          "ItemSubTitle": {
+            "Data": "api",
+            "Color": "0xffffffff"
+          },
+          "Plus&Minus": {
+            "BackGroundColor": "0xff000000",
+            "IconColor": "0xffffffff"
+          },
+          "Quantity": {
+            "Data": "no Quantity",
+            "Color": "text color",
+            "BackGroundColor": "color in hex"
+          },
+          "TotalPrice": {
+            "Data": "api",
+            "Color": "0xffffffffr"
+          },
+          "AddButton": {
+            "Data": "Add",
+            "Color": "0xffffffff",
+            "BackGroundColor": "0xff648316"
+          }
+        }
+      }
+    },
+    "ItemDetailsSheet": {
+      "ItemTitle": {
+        "Data": "api",
+        "Color": "0xffdfaa35"
+      },
+      "ItemSubTitle": {
+        "Data": "api",
+        "Color": "0xffffffff"
+      },
+      "TotalPrice": {
+        "Data": "api",
+        "Color": "0xffffffff"
+      },
+      "Options": {
+        "Title": {
+          "Data": "api",
+          "Color": "0xffdfaa35"
+        },
+        "CheckBox": {
+          "Data": "api",
+          "Color": "0xffffffff",
+          "SelectedImage": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/falafel.png"
+        }
+      },
+      "AddOn": {
+        "Title": {
+          "Data": "api",
+          "Color": "0xffffffff"
+        },
+        "Plus&Minus": {
+          "BackGroundColor": "0xffdfaa35",
+          "IconColor": "0xff000000"
+        },
+        "Quantity": {
+          "Data": "no Quantity",
+          "Color": "0xffffffff",
+          "BackGroundColor": "0xff000000"
+        },
+        "Title&Price": {
+          "Data": "api",
+          "Color": "0xffffffff"
+        }
+      },
+      "AddToCart": {
+        "Data": "Add To Cart",
+        "Color": "0xffffffff",
+        "BackGroundColor": "0xff739619"
+      }
+    },
+    "ProfilePage": {
+      "AppBar": {
+        "DrawerIcon": {
+          "ImageIcon": "imagePath",
+          "Size": "20"
+        },
+        "Title": {
+          "Data": "text data",
+          "Color": "text color"
+        }
+      },
+      "Body": {
+        "AvatarImage": {
+          "DefaultImage": "20",
+          "EditButton": {
+            "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/MyProfile_edit.png",
+            "MobileSize": "28",
+            "TabletSize": "28",
+            "BackGroundColor": "0xff000000"
+          }
+        },
+        "Name": {
+          "Data": "api",
+          "Color": "0xffdfaa35"
+        },
+        "EditProfileButton": {
+          "Data": "Edit Profile",
+          "Color": "0xffdfaa35"
+        },
+        "Form": {
+          "Name": {
+            "Data": "Name",
+            "Color": "0xffdfaa35"
+          },
+          "PhoneNumber": {
+            "Data": "Mobile",
+            "Color": "0xffdfaa35",
+            "VerifiedButton": {
+              "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Registration_check.png",
+              "MobileSize": "28",
+              "TabletSize": "28",
+              "BackGroundColor": "0xff739619"
+            }
+          },
+          "Email": {
+            "Data": "Email",
+            "Color": "0xffdfaa35"
+          },
+          "DateOfBirth": {
+            "Data": "Date Of Birth",
+            "Color": "0xffdfaa35"
+          },
+          "Gender": {
+            "Data": "Gender",
+            "Color": "0xffdfaa35",
+            "DropDownWidget": {
+              "LabelText": {
+                "Data": "Select Gender",
+                "Color": "0xff454545"
+              },
+              "ItemsTitle": {
+                "Data": "no need",
+                "Color": "0xffffffff"
+              },
+              "SelectedIcon": {
+                "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/down.png",
+                "height": "10",
+                "width": "10"
+              }
+            }
+          },
+          "Password": {
+            "Data": "Password",
+            "Color": "0xffdfaa35"
+          },
+          "UploadID": {
+            "Data": "Upload ID",
+            "Color": "0xffdfaa35",
+            "ChooseButton": {
+              "Data": "Choose",
+              "Color": "0xffffffff",
+              "BackGroundColor": "0xff739619"
+            }
+          }
+        },
+        "Buttons": {
+          "OrderHistory": {
+            "Data": "Order History",
+            "Color": "0xffffffff",
+            "BackGroundColor": "0x00000000"
+          },
+          "SavedAddress": {
+            "Data": "Saved Address",
+            "Color": "0xffffffff",
+            "BackGroundColor": "0x00000000"
+          },
+          "SavedCards": {
+            "Data": "Saved Cards",
+            "Color": "0xffffffff",
+            "BackGroundColor": "0x00000000"
+          },
+          "Loyalty": {
+            "Data": "Loyalty",
+            "Color": "0xffffffff",
+            "BackGroundColor": "color in hex"
+          },
+          "Help": {
+            "Data": "Help",
+            "Color": "0xffffffff",
+            "BackGroundColor": "0x00000000"
+          },
+          "SignOut": {
+            "Data": "Sign Out",
+            "Color": "0xffffffff",
+            "BackGroundColor": "0x00000000"
+          }
+        }
+      }
+    },
+    "EnterOFWorldPage": {
+      "Title": {
+        "Data": "later",
+        "Color": "text color"
+      },
+      "AppleLoginButton": {
+        "Data": "later",
+        "Color": "text color",
+        "AppleLogoColor": "123"
+      },
+      "RegisterButton": {
+        "Data": "text data",
+        "Color": "later",
+        "AppleLogoColor": "123",
+        "BackGroundColor": "color in hex"
+      },
+      "ResiterLater": {
+        "Data": "later",
+        "Color": "text color"
+      },
+      "Login": {
+        "Data": "later",
+        "Color": "text color"
+      }
+    },
+    "RegisterPage": {
+      "PageTile": {
+        "Data": "text data",
+        "Color": "text color"
+      },
+      "Form": {
+        "Name": {
+          "Data": "Name",
+          "Color": "0xffdfaa35"
+        },
+        "PhoneNumber": {
+          "Data": "Mobile",
+          "Color": "0xffdfaa35",
+          "VerifiedButton": {
+            "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Registration_check.png",
+            "MobileSize": "28",
+            "TabletSize": "28",
+            "BackGroundColor": "0xff739619"
+          }
+        },
+        "Email": {
+          "Data": "Email",
+          "Color": "0xffdfaa35"
+        },
+        "DateOfBirth": {
+          "Data": "Date Of Birth",
+          "Color": "0xffdfaa35"
+        },
+        "Gender": {
+          "Data": "Gender",
+          "Color": "0xffdfaa35",
+          "DropDownWidget": {
+            "LabelText": {
+              "Data": "Select Gender",
+              "Color": "0xff454545"
+            },
+            "ItemsTitle": {
+              "Data": "api",
+              "Color": "0xffffffff"
+            },
+            "ItemsSubTitle": {
+              "Data": "text data",
+              "Color": "text color"
+            },
+            "SelectedIcon": {
+              "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/down.png",
+              "height": "10",
+              "width": "10"
+            }
+          }
+        },
+        "Password": {
+          "Data": "Password",
+          "Color": "0xffdfaa35"
+        },
+        "Nationality": {
+          "Data": "Nationality",
+          "Color": "0xffdfaa35"
+        }
+      },
+      "TermsCheckBox": {
+        "visibility": "true",
+        "Title": {
+          "Data": "T&C",
+          "Color": "0xffdfaa35"
+        },
+        "SelectedImage": "later"
+      }
+    }
+  }
+}

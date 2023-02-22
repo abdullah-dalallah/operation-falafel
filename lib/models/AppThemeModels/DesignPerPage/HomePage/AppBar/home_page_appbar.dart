@@ -7,6 +7,7 @@ import 'dart:convert';
 import '../../CommonElements/Elements/drawer_Icon.dart';
 import '../../CommonElements/Elements/icon.dart';
 import '../../CommonElements/Elements/title_style.dart';
+import 'drawer_icon_home_page.dart';
 
 
 
@@ -21,12 +22,12 @@ class HomePageAppBar {
     required this.searchAction,
   });
 
-  DrawerIcon drawerIcon;
+  DrawerIconHomepage drawerIcon;
   TitleStyle titleText;
   Icon searchAction;
 
   factory HomePageAppBar.fromJson(Map<String, dynamic> json) => HomePageAppBar(
-    drawerIcon: DrawerIcon.fromJson(json["DrawerIcon"]),
+    drawerIcon: DrawerIconHomepage.fromJson(json["DrawerIcon"]),
     titleText: TitleStyle.fromJson(json["TitleText"]),
     searchAction: Icon.fromJson(json["SearchAction"]),
   );

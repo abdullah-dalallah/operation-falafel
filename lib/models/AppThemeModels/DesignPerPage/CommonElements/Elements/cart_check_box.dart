@@ -10,6 +10,8 @@ import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/CommonElem
 
 
 
+
+
 CartCheckBox cutleryCheckBoxFromJson(String str) => CartCheckBox.fromJson(json.decode(str));
 
 String cutleryCheckBoxToJson(CartCheckBox data) => json.encode(data.toJson());
