@@ -2,7 +2,6 @@
 //
 //     final appTheme = appThemeFromJson(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 import 'DesignPerPage/design_per_page.dart';
@@ -18,18 +17,21 @@ class AppTheme {
     required this.themeId,
     required this.fontSizes,
     required this.designPerPage,
+    required this.language,
   });
 
   String id;
   int themeId;
   FontSizes fontSizes;
   DesignPerPage designPerPage;
+  String language;
 
   factory AppTheme.fromJson(Map<String, dynamic> json) => AppTheme(
     id: json["_id"],
     themeId: json["theme_id"],
     fontSizes: FontSizes.fromJson(json["FontSizes"]),
     designPerPage: DesignPerPage.fromJson(json["DesignPerPage"]),
+    language: json["language"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -37,6 +39,7 @@ class AppTheme {
     "theme_id": themeId,
     "FontSizes": fontSizes.toJson(),
     "DesignPerPage": designPerPage.toJson(),
+    "language": language,
   };
 }
 
