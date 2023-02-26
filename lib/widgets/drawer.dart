@@ -5,7 +5,9 @@ import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/main.dart';
 import 'package:operation_falafel/screens/drawer_pages/contact_us.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:provider/provider.dart';
 
+import '../providers/AppTheme/theme_provider.dart';
 import '../screens/drawer_pages/locations.dart';
 import '../screens/drawer_pages/notifications.dart';
 import '../screens/drawer_pages/feedback.dart';
@@ -29,7 +31,12 @@ class _DrawerState extends State<DrawerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
+    return
+
+      Consumer<ThemeProvider>(
+        builder: (context, appTheme, child) {
+
+          return Drawer(
       backgroundColor: Colors.black,
       child:SafeArea(
         child: Padding(
@@ -377,5 +384,6 @@ class _DrawerState extends State<DrawerWidget> {
         ),
       )
     );
+        });
   }
 }

@@ -3,29 +3,33 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 
-import 'app_theme.dart';
+import '../../localization/localization_constants.dart';
+import '../../main.dart';
+import '../../models/AppThemeModels/app_theme.dart';
+
+// import 'app_theme.dart';
 
 class ThemeProvider  with ChangeNotifier{
-  AppTheme _appTheme =AppTheme();
+  late AppTheme _appTheme = AppTheme();
 
   AppTheme get appTheme => _appTheme;
   set appTheme(AppTheme value) {
     _appTheme = value;
   }
 
-  Future<void> readJson() async {
+  Future<AppTheme> readJson() async {
+
     final String response = await rootBundle.loadString('assets/AppTheme.json');
     final data = await json.decode(response);
     if(data!=null){
-      Map tempFont = data["AppTheme"]["FontSizes"];
-      Map tempHomePage = data["AppTheme"]["DesignPerPage"]["HomePage"];
-      _appTheme.fontSizes=tempFont;
-      _appTheme.homePage=tempHomePage;
+      _appTheme =   AppTheme(id: AppTheme.fromJson(data).id,language: AppTheme.fromJson(data).language,fontSizes: AppTheme.fromJson(data).fontSizes,designPerPage: AppTheme.fromJson(data).designPerPage, themeId:  AppTheme.fromJson(data).themeId);
+       // print(_appTheme.fontSizes.ar.header1.size);
+
     notifyListeners();
     }
 
+   return _appTheme;
 
-    print(_appTheme.fontSizes["EN"]);
   }
 
 

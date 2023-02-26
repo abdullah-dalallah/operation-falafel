@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
+
 import 'DesignPerPage/design_per_page.dart';
 import 'FontSizes/font_sizes.dart';
 
@@ -11,20 +13,20 @@ AppTheme appThemeFromJson(String str) => AppTheme.fromJson(json.decode(str));
 
 String appThemeToJson(AppTheme data) => json.encode(data.toJson());
 
-class AppTheme {
+class AppTheme with ChangeNotifier {
   AppTheme({
-    required this.id,
-    required this.themeId,
-    required this.fontSizes,
-    required this.designPerPage,
-    required this.language,
+     this.id,
+     this.themeId,
+     this.fontSizes,
+     this.designPerPage,
+     this.language,
   });
 
-  String id;
-  int themeId;
-  FontSizes fontSizes;
-  DesignPerPage designPerPage;
-  String language;
+  String? id;
+  int? themeId;
+  FontSizes? fontSizes;
+  DesignPerPage? designPerPage;
+  String? language;
 
   factory AppTheme.fromJson(Map<String, dynamic> json) => AppTheme(
     id: json["_id"],
@@ -37,9 +39,10 @@ class AppTheme {
   Map<String, dynamic> toJson() => {
     "_id": id,
     "theme_id": themeId,
-    "FontSizes": fontSizes.toJson(),
-    "DesignPerPage": designPerPage.toJson(),
+    "FontSizes": fontSizes?.toJson(),
+    "DesignPerPage": designPerPage?.toJson(),
     "language": language,
   };
+
 }
 

@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +17,9 @@ import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../models/AppThemeModels/DesignPerPage/HomePage/home_page.dart';
+import '../../models/AppThemeModels/FontSizes/Language/lang.dart';
+import '../../models/AppThemeModels/FontSizes/font_sizes.dart';
 import '../../providers/AppTheme/theme_provider.dart';
 import '../../providers/demo_cart/demo_cart_provider.dart';
 import '../my rewards page/rewards_pages/transfer_credits.dart';
@@ -46,8 +51,19 @@ class _MainMenuState extends State<MainMenu> {
     String languageflag= Localizations.localeOf(context).languageCode;
     return Consumer<ThemeProvider>(
         builder: (context, appTheme, child) {
-          double logoTitleFontSize= (Localizations.localeOf(context).languageCode=='ar')?appTheme.appTheme.fontSizes["AR"]["LogoTitle"]:appTheme.appTheme.fontSizes["EN"]["LogoTitle"];
-          String OrderNowButton =appTheme.appTheme.homePage["Body"]["OrderNowButtonWidget"]["Data"];
+
+          // double? logoTitleFontSize= ((Localizations.localeOf(context).languageCode=='ar')?
+          // appTheme.appTheme.fontSizes?.ar.logoTitle.size
+          //     :appTheme.appTheme.fontSizes?.en.logoTitle.size)?.toDouble();
+          // String? logoTitleFontTypeName = ((Localizations.localeOf(context).languageCode=='ar')?
+          // appTheme.appTheme.fontSizes?.ar.logoTitle.textFamily
+          //     :appTheme.appTheme.fontSizes?.en.logoTitle.textFamily);
+
+          // FontSizes? fontSizes = appTheme.appTheme.fontSizes;
+          Language? lng= (Localizations.localeOf(context).languageCode=='ar')?
+          appTheme.appTheme.fontSizes?.ar
+              : appTheme.appTheme.fontSizes?.en;
+          HomePage? homePageDesign = appTheme.appTheme.designPerPage?.homePage;
 
          return Stack(
             children: [
@@ -100,7 +116,9 @@ class _MainMenuState extends State<MainMenu> {
                                 //   style: BorderStyle.solid,
                                 // ),
                               ),
-                              child: Image.asset("assets/images/icon_search.png",height: 30,width: 35,),
+                              child:
+                              Image.network("${homePageDesign?.appBar.searchAction.imageIcon}",height: 30,width: 35,),
+                              // Image.asset("assets/images/icon_search.png",height: 30,width: 35,),
 
                             ),
 
@@ -126,8 +144,7 @@ class _MainMenuState extends State<MainMenu> {
                       ),
                     ],
                     title:
-
-                    Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold,fontSize: logoTitleFontSize  ),)
+                    Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: lng?.logoTitle.textFamily, fontWeight: FontWeight.bold,fontSize: lng?.logoTitle.size.toDouble() ),)
                     // Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),)
                   //Image.asset("assets/images/of_logo_top.png", width: 220,),
                 ),
@@ -1768,8 +1785,6 @@ class _MainMenuState extends State<MainMenu> {
 
                   ],
                 ),
-
-
                 drawer: DrawerWidget(layOut: widget.layOut,onChanged: (value) {widget.onChanged(value);},),
 
                 // bottomSheet:Container(
@@ -1794,4 +1809,10 @@ class _MainMenuState extends State<MainMenu> {
 
 
   }
+
+
+
+
+
+
 }

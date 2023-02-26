@@ -11,13 +11,16 @@ import 'package:operation_falafel/responsive/responsive_layout.dart';
 import 'package:operation_falafel/responsive/tablet_scaffold.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 void main() {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
   static void setLocale(BuildContext context, Locale locale){
     _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
     state?.setLocale(locale);
@@ -117,6 +120,8 @@ class _MyAppState extends State<MyApp> {
     }
 
   }
+
+
 }
 
 
