@@ -22,6 +22,7 @@ import '../../models/AppThemeModels/FontSizes/Language/lang.dart';
 import '../../models/AppThemeModels/FontSizes/font_sizes.dart';
 import '../../providers/AppTheme/theme_provider.dart';
 import '../../providers/demo_cart/demo_cart_provider.dart';
+import '../../widgets/loading_page.dart';
 import '../my rewards page/rewards_pages/transfer_credits.dart';
 
 
@@ -54,8 +55,11 @@ class _MainMenuState extends State<MainMenu> {
 
           Language? lng= (Localizations.localeOf(context).languageCode=='ar')? appTheme.appTheme.fontSizes?.ar : appTheme.appTheme.fontSizes?.en;
           HomePage? homePageDesign = appTheme.appTheme.designPerPage?.homePage;
+          bool loadingDesign= homePageDesign!=null;
+         return
 
-         return Stack(
+           (loadingDesign)?
+           Stack(
             children: [
               Image.asset(
                 "assets/images/background.png",
@@ -74,9 +78,10 @@ class _MainMenuState extends State<MainMenu> {
                         onPressed: (){
                           _drawerKey.currentState?.openDrawer();
                         },
-                        icon: const ImageIcon(
-                          AssetImage("assets/images/icon_menu.png",),
-                          size: 30,
+                        icon:  ImageIcon(
+                          NetworkImage("${homePageDesign?.appBar.drawerIcon.imageIcon}",),
+                          size:
+                          (widget.layOut=="Mobile")? double.parse(homePageDesign?.appBar.drawerIcon.mobileSize as String):double.parse(homePageDesign?.appBar.drawerIcon.tabletSize as String),
                         ),
                       ),
                     ) ,
@@ -107,9 +112,14 @@ class _MainMenuState extends State<MainMenu> {
                                 // ),
                               ),
                               child:
-                              (homePageDesign!=null)?
-                              Image.network("${homePageDesign?.appBar.searchAction.imageIcon}",height: 30,width: 35,)
-                              : Image.asset("assets/images/icon_search.png",height: 30,width: 35,),
+                              ImageIcon(
+                                size:(widget.layOut=="Mobile")? double.parse(homePageDesign?.appBar.drawerIcon.mobileSize as String):double.parse(homePageDesign?.appBar.drawerIcon.tabletSize as String),
+
+                                ((homePageDesign!=null)?
+                                NetworkImage("${homePageDesign.appBar.searchAction.imageIcon}"):
+                                AssetImage("assets/images/icon_search.png")) as ImageProvider<Object>?,
+                              ),
+
                               // Image.asset("assets/images/icon_search.png",height: 30,width: 35,),
 
                             ),
@@ -135,10 +145,14 @@ class _MainMenuState extends State<MainMenu> {
                         ),
                       ),
                     ],
-                    title:
-                    Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: lng?.logoTitle.textFamily, fontWeight: FontWeight.bold,fontSize: lng?.logoTitle.size.toDouble() ),)
-                    // Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),)
-                  // Image.asset("assets/images/of_logo_top.png", width: 220,),
+                    title: Text(
+                     homePageDesign.appBar.titleText.data,
+                     // getTranslated(context, "operationFalafelLogo")!,
+                      style: TextStyle(
+                          fontFamily: lng?.logoTitle.textFamily,
+                          fontWeight: FontWeight.bold,
+                          fontSize: lng?.logoTitle.size.toDouble()
+                      ),)
                 ),
                 body:  Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -148,7 +162,7 @@ class _MainMenuState extends State<MainMenu> {
 
                         physics:const BouncingScrollPhysics(),
                         children: [
-                          // SizedBox(height: 50,),
+
                           /// - Slider - Done Design
                           ClipRRect(
                             borderRadius: const BorderRadius.only(),
@@ -210,10 +224,11 @@ class _MainMenuState extends State<MainMenu> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Image.asset("assets/images/home_pin.png", scale: 2.5,),
+                                Image.network(homePageDesign.body.locationWidget.locationIcon.imageIcon,height: (widget.layOut=="Mobile")? double.parse(homePageDesign?.body.locationWidget.locationIcon.mobileSize as String):double.parse(homePageDesign?.body.locationWidget.locationIcon.tabletSize as String),),
+                                // Image.asset("assets/images/home_pin.png", scale: 2.5,),
 
                                 const SizedBox(width: 10,),
-                                const Text("Al Souq Al Kabeer", style: TextStyle(fontFamily:"Raleway-Regular",color: Colors.white, fontWeight: FontWeight.w300,fontSize: 13),), Expanded(child: SizedBox(width: 10,)),
+                                Text("Al Souq Al Kabeer", style: TextStyle(fontFamily:"Raleway-Regular", color: Color(int.parse(homePageDesign.body.locationWidget.locationTile.color)), fontWeight: FontWeight.w300,fontSize: 13),), Expanded(child: SizedBox(width: 10,)),
 
                                 TextButton(
                                     onPressed: () {
@@ -245,14 +260,33 @@ class _MainMenuState extends State<MainMenu> {
 
                                     },
                                     style: TextButton.styleFrom(
-                                      foregroundColor: Colors.amber,
+                                      foregroundColor: Color(int.parse(homePageDesign.body.locationWidget.locationChangeButton.color))
+                                      // Colors.amber,
                                     ),
                                     child:
-                                    Text(getTranslated(context, "changeLocation")!, style: TextStyle(fontFamily:"${getTranslated(context, "fontFamilyBody")!}",fontWeight: FontWeight.w300,fontSize: 15 ),)
+                                    Text(
+                                      homePageDesign.body.locationWidget.locationChangeButton.data,
+                                      // getTranslated(context, "changeLocation")!,
+                                      style: TextStyle(
+                                           fontFamily: "${lng?.header1.textFamily}",
+                                          // fontFamily:"${getTranslated(context, "fontFamilyBody")!}",
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: lng?.header3.size.toDouble() ),)
                                 )
                               ],),
 
                           ),
+
+
+
+
+
+
+
+
+
+
+
                           // SizedBox(height: 50,),
 
 
@@ -1573,14 +1607,15 @@ class _MainMenuState extends State<MainMenu> {
                     Padding(
                       padding: const EdgeInsets.only(left: 25.0, right: 25),
                       child: Container(
-                        constraints: BoxConstraints(maxWidth: 450, ),
+                        constraints: const BoxConstraints(maxWidth: 450, ),
                         child:  ElevatedButton(
                             onPressed: (){widget.onChanged(1);},
                             style: ButtonStyle(
                               minimumSize: MaterialStateProperty.all<Size>(Size.fromHeight(45)),
                               // maximumSize: MaterialStateProperty.all<Size>(Size.fromWidth(400)),
-                              backgroundColor:  MaterialStateProperty.all<Color>(Colors.amber),
-                              foregroundColor: MaterialStateProperty.all<Color>(Colors.amber),
+                              // backgroundColor:  MaterialStateProperty.all<Color>(Colors.amber),
+                              backgroundColor:  MaterialStateProperty.all<Color>(Color(int.parse(homePageDesign.body.orderNowButtonWidget.backGroundColor))),
+                              // foregroundColor: MaterialStateProperty.all<Color>(Colors.amber),
                               shape: MaterialStateProperty.all(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20.0),
@@ -1591,7 +1626,16 @@ class _MainMenuState extends State<MainMenu> {
                             ),
                             child:
                             // Text(OrderNowButton,style: TextStyle(fontFamily: getTranslated(context, "fontFamilyButtons")!,color: Colors.white, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),)
-                            Text(getTranslated(context, "ORDER NOW")!,style: TextStyle(fontFamily: getTranslated(context, "fontFamilyButtons")!,color: Colors.white, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),)
+                            Text(
+                              homePageDesign.body.orderNowButtonWidget.data,
+                              // getTranslated(context, "ORDER NOW")!,
+                              style: TextStyle(
+                                fontFamily: lng?.titleHeader1.textFamily,
+                                  // fontFamily: getTranslated(context, "fontFamilyButtons")!,
+                                  color: Color(int.parse(homePageDesign.body.orderNowButtonWidget.color)),
+                                  fontSize: lng?.titleHeader1.size.toDouble(),
+                                  // double.parse(getTranslated(context, "fontFamilyButtonsSize")!)
+                              ),)
 
                         ),
 
@@ -1795,7 +1839,8 @@ class _MainMenuState extends State<MainMenu> {
               )
 
             ],
-          );
+          )
+          :LoadingPage();
 
         });
 

@@ -118,8 +118,8 @@
       "AppBar": {
         "DrawerIcon": {
           "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
-          "MobileSize": "28",
-          "TabletSize": "28",
+          "MobileSize": "30",
+          "TabletSize": "30",
           "center": "true"
         },
         "TitleText": {
