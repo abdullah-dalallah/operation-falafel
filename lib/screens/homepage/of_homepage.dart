@@ -109,8 +109,7 @@ class _MainMenuState extends State<MainMenu> {
                               child:
                               (homePageDesign!=null)?
                               Image.network("${homePageDesign?.appBar.searchAction.imageIcon}",height: 30,width: 35,)
-                              :
-                              Image.asset("assets/images/icon_search.png",height: 30,width: 35,),
+                              : Image.asset("assets/images/icon_search.png",height: 30,width: 35,),
                               // Image.asset("assets/images/icon_search.png",height: 30,width: 35,),
 
                             ),

@@ -26,6 +26,7 @@ import 'package:badges/badges.dart' as badges;
 
 import '../models/AppThemeModels/FontSizes/Language/lang.dart';
 import '../providers/AppTheme/theme_provider.dart';
+import '../widgets/warning_page.dart';
 
 
 class MobileScaffold extends StatefulWidget{
@@ -71,7 +72,7 @@ class _MobileScaffoldState extends State<MobileScaffold> {
         builder: (context, cartProvider, child)
     {
       return Consumer<ThemeProvider>(builder: (context, appTheme, child) {
-        Language? lng = (Localizations.localeOf(context).languageCode == 'ar') ? appTheme.appTheme.fontSizes?.ar : appTheme.appTheme.fontSizes?.en;
+        // Language? lng = (Localizations.localeOf(context).languageCode == 'ar') ? appTheme.appTheme.fontSizes?.ar : appTheme.appTheme.fontSizes?.en;
         BottomNavigationButtonBar ? bottomNavigationBar = appTheme.appTheme.designPerPage?.bottomNavigationBar;
 
 
@@ -79,36 +80,35 @@ class _MobileScaffoldState extends State<MobileScaffold> {
         List<Widget> screens =[];
         if (bottomNavigationBar != null) {
           /// - home
-          if (bottomNavigationBar?.home.visibility != 'true') {
+          if (bottomNavigationBar?.home.visibility == 'true') {
             tempTabs.add(PersistentBottomNavBarItem(
               textStyle: const TextStyle(fontSize: 9),
               icon: ImageIcon(
-                size: double.parse(
-                    bottomNavigationBar?.home.mobileSize as String),
+                size: double.parse(bottomNavigationBar?.home.mobileSize as String),
                 NetworkImage("${bottomNavigationBar?.home.imageIcon}"),
               ),
-              activeColorPrimary: Colors.amber,
-              inactiveColorPrimary: CupertinoColors.systemBackground,
+              activeColorPrimary: Color(int.parse(bottomNavigationBar.home.activeColor )),
+              inactiveColorPrimary: Color(int.parse(bottomNavigationBar.home.inactiveColor )),
             ),);
             screens.add(MainMenu((value) => changePage(value), layOut: "Mobile"),);
           }
           /// - Order
-          if (bottomNavigationBar?.order.visibility != 'true'){
+          if (bottomNavigationBar?.order.visibility == 'true'){
             tempTabs.add(PersistentBottomNavBarItem(
               textStyle: const TextStyle(fontSize: 9),
               icon: ImageIcon(
                 size: double.parse(bottomNavigationBar?.order.mobileSize as String),
                 NetworkImage("${bottomNavigationBar?.order.imageIcon}"),
               ),
-              activeColorPrimary: Colors.amber,
-              inactiveColorPrimary: CupertinoColors.systemBackground,
+              activeColorPrimary: Color(int.parse(bottomNavigationBar.order.activeColor )),
+              inactiveColorPrimary: Color(int.parse(bottomNavigationBar.order.inactiveColor )),
             ),);
             screens.add(TabeBarMenu(layOut: "Mobile", (value) => changePage(value),));
 
           }
 
           /// - Cart
-          if (bottomNavigationBar?.cart.visibility != 'true'){
+          if (bottomNavigationBar?.cart.visibility == 'true'){
             tempTabs.add(PersistentBottomNavBarItem(
               textStyle: const TextStyle(fontSize: 9),
               icon: badges.Badge(
@@ -129,8 +129,8 @@ class _MobileScaffoldState extends State<MobileScaffold> {
                 ),
               ),
 
-              activeColorPrimary: Colors.amber,
-              inactiveColorPrimary: CupertinoColors.systemBackground,
+              activeColorPrimary: Color(int.parse(bottomNavigationBar.cart.activeColor )),
+              inactiveColorPrimary: Color(int.parse(bottomNavigationBar.cart.inactiveColor )),
             ));
             screens.add(Cart_Screen(layOut: "Mobile", (value) => changePage(value),));
           }
@@ -145,14 +145,14 @@ class _MobileScaffoldState extends State<MobileScaffold> {
                     bottomNavigationBar?.trackMyOrder.mobileSize as String),
                 NetworkImage("${bottomNavigationBar?.trackMyOrder.imageIcon}"),
               ),
-              activeColorPrimary: Colors.amber,
-              inactiveColorPrimary: CupertinoColors.systemBackground,
+              activeColorPrimary: Color(int.parse(bottomNavigationBar.trackMyOrder.activeColor )),
+              inactiveColorPrimary: Color(int.parse(bottomNavigationBar.trackMyOrder.inactiveColor )),
             ),);
             screens.add(TrackMyOrder(layOut: "Mobile", (value) => changePage(value),));
           }
 
 
-          /// -Profie
+          /// -Profile
           if (bottomNavigationBar?.order.visibility == 'true'){
             tempTabs.add(PersistentBottomNavBarItem(
               textStyle: const TextStyle(fontSize: 9),
@@ -161,8 +161,8 @@ class _MobileScaffoldState extends State<MobileScaffold> {
                     bottomNavigationBar?.profile.mobileSize as String),
                 NetworkImage("${bottomNavigationBar?.profile.imageIcon}"),
               ),
-              activeColorPrimary: Colors.amber,
-              inactiveColorPrimary: CupertinoColors.systemBackground,
+              activeColorPrimary: Color(int.parse(bottomNavigationBar.profile.activeColor )),
+              inactiveColorPrimary: Color(int.parse(bottomNavigationBar.profile.inactiveColor )),
             ),);
             screens.add( EnterOFWorld(layOut: "Mobile", (value) => changePage(value),));
           }
@@ -250,7 +250,9 @@ class _MobileScaffoldState extends State<MobileScaffold> {
 
 
 
-        return Scaffold(
+        return
+          (tempTabs.length>2)?
+          Scaffold(
               extendBody: true,
               extendBodyBehindAppBar: true,
               body: PersistentTabView(
@@ -291,13 +293,8 @@ class _MobileScaffoldState extends State<MobileScaffold> {
                 navBarStyle: NavBarStyle
                     .style8, // Choose the nav bar style with this property.
 
-              ));
-
-
-
-
-
-
+              ))
+              : WarningPage();
 
       });
     });

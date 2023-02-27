@@ -15,6 +15,10 @@
   "enterOfTitleheight": 0.9,
   "welcomeBackTitle": 80,
 
+  "weWillBeBack": "We will be back in a bit",
+  "weWillBeBackBody": "This system is currently undergoing routine maintenance to ensure you get the best experience. The maintenance is expected to continue for a few hours at most.Please check back later.",
+  "thankYouForUnderstanding": "Thank you for your understanding!",
+  "closeApp": "Close Application",
 
   "Main_Text":"You have Selected This Language",
   "Title": "Select Country Language",

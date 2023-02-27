@@ -79,7 +79,7 @@
         "MobileSize": "28",
         "TabletSize": "28",
         "ActiveColor": "0xffdfaa35",
-        "InactiveColor": "0xffffffff"
+        "InactiveColor": "0xFFFFFFFF"
       },
       "Order": {
         "visibility": "true",
