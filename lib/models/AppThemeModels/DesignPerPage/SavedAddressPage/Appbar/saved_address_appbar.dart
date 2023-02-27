@@ -5,6 +5,7 @@
 import 'dart:convert';
 
 import '../../CommonElements/Elements/drawer_Icon.dart';
+import '../../CommonElements/Elements/icon.dart';
 import '../../CommonElements/Elements/title_style.dart';
 
 SavedAddressAppbar savedAddressAppbarFromJson(String str) => SavedAddressAppbar.fromJson(json.decode(str));
@@ -17,11 +18,11 @@ class SavedAddressAppbar {
     required this.title,
   });
 
-  DrawerIcon backIcon;
+  Icon backIcon;
   TitleStyle title;
 
   factory SavedAddressAppbar.fromJson(Map<String, dynamic> json) => SavedAddressAppbar(
-    backIcon: DrawerIcon.fromJson(json["BackIcon"]),
+    backIcon: Icon.fromJson(json["BackIcon"]),
     title: TitleStyle.fromJson(json["Title"]),
   );
 

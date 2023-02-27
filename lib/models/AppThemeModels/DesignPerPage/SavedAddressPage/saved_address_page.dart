@@ -14,20 +14,20 @@ String savedAddressPageToJson(SavedAddressPage data) => json.encode(data.toJson(
 class SavedAddressPage {
   SavedAddressPage({
     required this.appBar,
-    required this.body,
+    // required this.body,
   });
 
   SavedAddressAppbar appBar;
-  SavedAddressBody body;
+  // SavedAddressBody body;
 
   factory SavedAddressPage.fromJson(Map<String, dynamic> json) => SavedAddressPage(
     appBar: SavedAddressAppbar.fromJson(json["AppBar"]),
-    body: SavedAddressBody.fromJson(json["Body"]),
+    // body: SavedAddressBody.fromJson(json["Body"]),
   );
 
   Map<String, dynamic> toJson() => {
     "AppBar": appBar.toJson(),
-    "Body": body.toJson(),
+    // "Body": body.toJson(),
   };
 }
 

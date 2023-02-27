@@ -35,7 +35,6 @@ class AppTheme with ChangeNotifier {
     designPerPage: DesignPerPage.fromJson(json["DesignPerPage"]),
     language: json["language"],
   );
-
   Map<String, dynamic> toJson() => {
     "_id": id,
     "theme_id": themeId,

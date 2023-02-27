@@ -171,6 +171,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                         // title: ("Profile"),
                         activeColorPrimary: CupertinoColors.activeOrange,
                         inactiveColorPrimary: CupertinoColors.systemBackground,
+
                       ),
                     ],
                     hideNavigationBar: isKeyboardVisible,

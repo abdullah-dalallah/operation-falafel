@@ -6,12 +6,12 @@ import 'dart:convert';
 
 import 'bottom_navigation_bar_button_style.dart';
 
-BottomNavigationBar bottomNavigationBarFromJson(String str) => BottomNavigationBar.fromJson(json.decode(str));
+BottomNavigationButtonBar bottomNavigationBarFromJson(String str) => BottomNavigationButtonBar.fromJson(json.decode(str));
 
-String bottomNavigationBarToJson(BottomNavigationBar data) => json.encode(data.toJson());
+String bottomNavigationBarToJson(BottomNavigationButtonBar data) => json.encode(data.toJson());
 
-class BottomNavigationBar {
-  BottomNavigationBar({
+class BottomNavigationButtonBar {
+  BottomNavigationButtonBar({
     required this.home,
     required this.order,
     required this.cart,
@@ -25,7 +25,7 @@ class BottomNavigationBar {
   BottomNavigationBarButtonStyle trackMyOrder;
   BottomNavigationBarButtonStyle profile;
 
-  factory BottomNavigationBar.fromJson(Map<String, dynamic> json) => BottomNavigationBar(
+  factory BottomNavigationButtonBar.fromJson(Map<String, dynamic> json) => BottomNavigationButtonBar(
     home: BottomNavigationBarButtonStyle.fromJson(json["Home"]),
     order: BottomNavigationBarButtonStyle.fromJson(json["Order"]),
     cart: BottomNavigationBarButtonStyle.fromJson(json["Cart"]),

@@ -52,17 +52,7 @@ class _MainMenuState extends State<MainMenu> {
     return Consumer<ThemeProvider>(
         builder: (context, appTheme, child) {
 
-          // double? logoTitleFontSize= ((Localizations.localeOf(context).languageCode=='ar')?
-          // appTheme.appTheme.fontSizes?.ar.logoTitle.size
-          //     :appTheme.appTheme.fontSizes?.en.logoTitle.size)?.toDouble();
-          // String? logoTitleFontTypeName = ((Localizations.localeOf(context).languageCode=='ar')?
-          // appTheme.appTheme.fontSizes?.ar.logoTitle.textFamily
-          //     :appTheme.appTheme.fontSizes?.en.logoTitle.textFamily);
-
-          // FontSizes? fontSizes = appTheme.appTheme.fontSizes;
-          Language? lng= (Localizations.localeOf(context).languageCode=='ar')?
-          appTheme.appTheme.fontSizes?.ar
-              : appTheme.appTheme.fontSizes?.en;
+          Language? lng= (Localizations.localeOf(context).languageCode=='ar')? appTheme.appTheme.fontSizes?.ar : appTheme.appTheme.fontSizes?.en;
           HomePage? homePageDesign = appTheme.appTheme.designPerPage?.homePage;
 
          return Stack(
@@ -117,7 +107,10 @@ class _MainMenuState extends State<MainMenu> {
                                 // ),
                               ),
                               child:
-                              Image.network("${homePageDesign?.appBar.searchAction.imageIcon}",height: 30,width: 35,),
+                              (homePageDesign!=null)?
+                              Image.network("${homePageDesign?.appBar.searchAction.imageIcon}",height: 30,width: 35,)
+                              :
+                              Image.asset("assets/images/icon_search.png",height: 30,width: 35,),
                               // Image.asset("assets/images/icon_search.png",height: 30,width: 35,),
 
                             ),
@@ -146,7 +139,7 @@ class _MainMenuState extends State<MainMenu> {
                     title:
                     Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: lng?.logoTitle.textFamily, fontWeight: FontWeight.bold,fontSize: lng?.logoTitle.size.toDouble() ),)
                     // Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),)
-                  //Image.asset("assets/images/of_logo_top.png", width: 220,),
+                  // Image.asset("assets/images/of_logo_top.png", width: 220,),
                 ),
                 body:  Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
