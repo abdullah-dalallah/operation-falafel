@@ -50,15 +50,21 @@ class _MainMenuState extends State<MainMenu> {
   @override
   Widget build(BuildContext context) {
     String languageflag= Localizations.localeOf(context).languageCode;
-    return Consumer<ThemeProvider>(
+    return
+      Consumer<ThemeProvider>(
         builder: (context, appTheme, child) {
 
           Language? lng= (Localizations.localeOf(context).languageCode=='ar')? appTheme.appTheme.fontSizes?.ar : appTheme.appTheme.fontSizes?.en;
           HomePage? homePageDesign = appTheme.appTheme.designPerPage?.homePage;
           bool loadingDesign= homePageDesign!=null;
-         return
+          List<String> headerTitleParts = [];
+          if(homePageDesign!=null){
+            if(homePageDesign.body.dashboardWidget.headerTitle!=null){
+              headerTitleParts= homePageDesign.body.dashboardWidget.headerTitle.text.data.split('*');
+            }
+          }
 
-           (loadingDesign)?
+         return (loadingDesign)?
            Stack(
             children: [
               Image.asset(
@@ -112,15 +118,17 @@ class _MainMenuState extends State<MainMenu> {
                                 // ),
                               ),
                               child:
-                              ImageIcon(
-                                size:(widget.layOut=="Mobile")? double.parse(homePageDesign?.appBar.drawerIcon.mobileSize as String):double.parse(homePageDesign?.appBar.drawerIcon.tabletSize as String),
+                              // ImageIcon(
+                              //   size:(widget.layOut=="Mobile")? double.parse(homePageDesign?.appBar.drawerIcon.mobileSize as String):double.parse(homePageDesign?.appBar.drawerIcon.tabletSize as String),
+                              //
+                              //   ((homePageDesign!=null)?
+                              //   NetworkImage("${homePageDesign.appBar.searchAction.imageIcon}"):
+                              //   AssetImage("assets/images/icon_search.png")) as ImageProvider<Object>?,
+                              // ),
 
-                                ((homePageDesign!=null)?
-                                NetworkImage("${homePageDesign.appBar.searchAction.imageIcon}"):
-                                AssetImage("assets/images/icon_search.png")) as ImageProvider<Object>?,
-                              ),
+                               Image.network("${homePageDesign.appBar.searchAction.imageIcon}",height: double.parse(homePageDesign?.appBar.drawerIcon.mobileSize as String),),
 
-                              // Image.asset("assets/images/icon_search.png",height: 30,width: 35,),
+                              // Image.asset("assets/images/icon_search.png",height: 30,width: 30,),
 
                             ),
 
@@ -276,13 +284,6 @@ class _MainMenuState extends State<MainMenu> {
                               ],),
 
                           ),
-
-
-
-
-
-
-
 
 
 
@@ -1645,7 +1646,7 @@ class _MainMenuState extends State<MainMenu> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
-                        constraints: BoxConstraints( maxWidth: 450),
+                        constraints: const BoxConstraints( maxWidth: 450),
                         padding: const EdgeInsets.only(left: 20, right: 20,top: 10,bottom: 10),
                         decoration:const BoxDecoration(
                           color: Colors.black,
@@ -1663,15 +1664,30 @@ class _MainMenuState extends State<MainMenu> {
                               padding: const EdgeInsets.all(3.0),
                               child: RichText(
 
-                                text:  TextSpan(text: getTranslated(context, "dashBoardTitle-youHave")!,style: TextStyle(fontSize: 15, fontWeight: FontWeight.w300,fontFamily:getTranslated(context, "fontFamilyBody")!,), children: [
+                                text:  TextSpan(
+                                    text: headerTitleParts[0],
+                                    // text: getTranslated(context, "dashBoardTitle-youHave")!,
+                                    style: TextStyle(
+                                      color: Color(int.parse(homePageDesign.body.dashboardWidget.headerTitle.text.color)),
+                                      fontSize: lng?.header3.size.toDouble(),
+                                      // fontSize: 15,
+                                      fontWeight: FontWeight.w300,
+                                      fontFamily:lng?.header3.textFamily,
+                                      // fontFamily:getTranslated(context, "fontFamilyBody")!,
+                                    ),
+                                    children: [
                                   TextSpan(
                                     text: getTranslated(context, "dashBoardTitle-credit")!,
-                                    style: TextStyle(color: Colors.amber),
+                                    style: TextStyle(color: 
+                                    Color(int.parse(homePageDesign.body.dashboardWidget.headerTitle.creditText.color))
+                                    // Colors.amber
+                                    ),
                                     recognizer: new TapGestureRecognizer()..onTap = () => print('Tap Here onTap'),
                                   ),
                                   TextSpan(
-                                    text: '${getTranslated(context, "dashBoardTitle-valid")!} 00/00/0000',
-                                    style: TextStyle(color: Colors.white),
+                                    text: '${headerTitleParts[1]} 00/00/0000',
+                                    // text: '${getTranslated(context, "dashBoardTitle-valid")!} 00/00/0000',
+                                    style: TextStyle(color:  Color(int.parse(homePageDesign.body.dashboardWidget.headerTitle.text.color)),),
                                     recognizer: new TapGestureRecognizer()..onTap = () => print('Tap Here onTap'),
                                   )
                                 ]),
@@ -1683,130 +1699,211 @@ class _MainMenuState extends State<MainMenu> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Stack(
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          Image.asset("assets/images/my_rewards_gencode.png", height: 35,width: 35,),
-                                          Text(getTranslated(context, "dashBoardTitle-myCode")!, style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300,fontFamily:getTranslated(context, "fontFamilyBody")!,),textAlign:TextAlign.center,)
-                                        ],
-                                      ),
-                                      new Positioned.fill(
-                                          child: new Material(
-                                            color: Colors.transparent,
-                                            child:  new InkWell(
-                                              borderRadius: BorderRadius.all(Radius.circular(0)),
-                                              splashColor: Colors.black,
-                                              overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+                                  /// - My Code
+                                  Visibility(
+                                    visible: homePageDesign.body.dashboardWidget.buttons.myCode.visibility=='true',
+                                    child: Stack(
+                                      children: [
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            // ImageIcon(
+                                            //   NetworkImage("${homePageDesign?.body.dashboardWidget.buttons.myCode.imageIcon}",),
+                                            //   size: (widget.layOut=="Mobile")? double.parse(homePageDesign?.body.dashboardWidget.buttons.myCode.mobileSize as String):double.parse(homePageDesign?.body.dashboardWidget.buttons.myCode.tabletSize as String),
+                                            //
+                                            // ),
 
-                                              onTap: (){
 
-                                              },
-                                            ),
+                                            Image.network("${homePageDesign?.body.dashboardWidget.buttons.myCode.imageIcon}",height:double.parse(homePageDesign?.body.dashboardWidget.buttons.myCode.mobileSize as String) ),
+                                            const SizedBox(height: 5,),
+                                            Text(
+                                              homePageDesign.body.dashboardWidget.buttons.myCode.data,
+                                              // getTranslated(context, "dashBoardTitle-myCode")!,
+                                              style: TextStyle(
+                                                  color:  Color(int.parse(homePageDesign.body.dashboardWidget.buttons.myCode.color)),
+                                                  fontSize: lng?.header3.size.toDouble(),
+                                                  fontWeight: FontWeight.w300,
+                                                  fontFamily:lng?.header3.textFamily),
+                                              // fontFamily:getTranslated(context, "fontFamilyBody")!,),
+                                              textAlign:TextAlign.center,
+                                            )
+                                            // Image.asset("assets/images/my_rewards_gencode.png", height: 35,width: 35,),
 
-                                          )
-                                      ),
-                                    ],
+                                          ],
+                                        ),
+                                        Positioned.fill(
+                                            child:  Material(
+                                              color: Colors.transparent,
+                                              child:   InkWell(
+                                                borderRadius: BorderRadius.all(Radius.circular(0)),
+                                                splashColor: Colors.black,
+                                                overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                                onTap: (){
+
+                                                },
+                                              ),
+
+                                            )
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  Stack(
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          Image.asset("assets/images/gift.png", height: 35,width: 35,),
-                                          const SizedBox(height: 5,),
-                                          // Icon(Icons.qr_code_2, color: Colors.amber,size: 35,),
-                                          Text(getTranslated(context, "dashBoardTitle-myRewards")!, style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300,fontFamily:getTranslated(context, "fontFamilyBody")!,),textAlign:TextAlign.center,)
-                                        ],
-                                      ),
-                                      Positioned.fill(
-                                          child:  Material(
-                                            color: Colors.transparent,
-                                            child:   InkWell(
-                                              borderRadius: BorderRadius.all(Radius.circular(0)),
-                                              splashColor: Colors.black,
-                                              overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+                                  /// - My rewards
+                                  Visibility(
+                                    visible: homePageDesign.body.dashboardWidget.buttons.myRewards.visibility=='true',
+                                    child: Stack(
+                                      children: [
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
 
-                                              onTap: (){
-                                                PersistentNavBarNavigator.pushNewScreen(
-                                                  context,
-                                                  screen: MyRewards(layOut: widget.layOut),
-                                                  withNavBar: true, // OPTIONAL VALUE. True by default.
-                                                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                                );
-                                              },
-                                            ),
+                                            Image.network("${homePageDesign?.body.dashboardWidget.buttons.myRewards.imageIcon}",height:double.parse(homePageDesign?.body.dashboardWidget.buttons.myCode.mobileSize as String) ),
+                                            const SizedBox(height: 5,),
+                                            Text(
+                                              homePageDesign.body.dashboardWidget.buttons.myRewards.data,
+                                              // getTranslated(context, "dashBoardTitle-myCode")!,
+                                              style: TextStyle(
+                                                  color:  Color(int.parse(homePageDesign.body.dashboardWidget.buttons.myRewards.color)),
+                                                  fontSize: lng?.header3.size.toDouble(),
+                                                  fontWeight: FontWeight.w300,
+                                                  fontFamily:lng?.header3.textFamily),
+                                              // fontFamily:getTranslated(context, "fontFamilyBody")!,),
+                                              textAlign:TextAlign.center,
+                                            )
 
-                                          )
-                                      ),
-                                    ],
+                                            // Image.asset("assets/images/gift.png", height: 35,width: 35,),
+                                            // const SizedBox(height: 5,),
+                                            // // Icon(Icons.qr_code_2, color: Colors.amber,size: 35,),
+                                            // Text(getTranslated(context, "dashBoardTitle-myRewards")!, style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300,fontFamily:getTranslated(context, "fontFamilyBody")!,),textAlign:TextAlign.center,)
+                                          ],
+                                        ),
+                                        Positioned.fill(
+                                            child:  Material(
+                                              color: Colors.transparent,
+                                              child:   InkWell(
+                                                borderRadius: BorderRadius.all(Radius.circular(0)),
+                                                splashColor: Colors.black,
+                                                overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                                onTap: (){
+                                                  PersistentNavBarNavigator.pushNewScreen(
+                                                    context,
+                                                    screen: MyRewards(layOut: widget.layOut),
+                                                    withNavBar: true, // OPTIONAL VALUE. True by default.
+                                                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                                  );
+                                                },
+                                              ),
+
+                                            )
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  Stack(
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          Icon(Icons.supervised_user_circle_sharp, color: Colors.amber,size: 35,),
-                                          const SizedBox(height: 5,),
-                                          // Icon(Icons.qr_code_2, color: Colors.amber,size: 35,),
-                                          Text(getTranslated(context, "dashBoardTitle-referToFriend")!, style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300,fontFamily:getTranslated(context, "fontFamilyBody")!,),textAlign:TextAlign.center,)
-                                        ],
-                                      ),
-                                      Positioned.fill(
-                                          child: new Material(
-                                            color: Colors.transparent,
-                                            child:  new InkWell(
-                                              borderRadius: BorderRadius.all(Radius.circular(0)),
-                                              splashColor: Colors.black,
-                                              overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+                                  /// - refer to friend
+                                  Visibility(
+                                    visible: homePageDesign.body.dashboardWidget.buttons.referFriend.visibility=='true',
+                                    child: Stack(
+                                      children: [
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
 
-                                              onTap: (){
-                                                final RenderBox renderBox = context.findRenderObject() as RenderBox;
-                                                Share.share(
-                                                  "You have been invited by Abdullh to join the O:F Family! Click below to install our app. Onelink.to/dhdbm3. Once you join, you will receive a 25% discount on your first order & 5Dhs credit when you use code 248921 in your registration page"
-                                                  ,subject: "check out The website"
-                                                  ,sharePositionOrigin: renderBox.localToGlobal(Offset.zero)&renderBox.size,
-                                                );
+                                            Image.network("${homePageDesign?.body.dashboardWidget.buttons.referFriend.imageIcon}",height:double.parse(homePageDesign?.body.dashboardWidget.buttons.myCode.mobileSize as String) ),
+                                            const SizedBox(height: 5,),
+                                            Text(
+                                              homePageDesign.body.dashboardWidget.buttons.referFriend.data,
+                                              // getTranslated(context, "dashBoardTitle-myCode")!,
+                                              style: TextStyle(
+                                                  color:  Color(int.parse(homePageDesign.body.dashboardWidget.buttons.referFriend.color)),
+                                                  fontSize: lng?.header3.size.toDouble(),
+                                                  fontWeight: FontWeight.w300,
+                                                  fontFamily:lng?.header3.textFamily),
+                                              // fontFamily:getTranslated(context, "fontFamilyBody")!,),
+                                              textAlign:TextAlign.center,
+                                            )
 
-                                              },
-                                            ),
+                                            // Icon(Icons.supervised_user_circle_sharp, color: Colors.amber,size: 35,),
+                                            // const SizedBox(height: 5,),
+                                            // // Icon(Icons.qr_code_2, color: Colors.amber,size: 35,),
+                                            // Text(getTranslated(context, "dashBoardTitle-referToFriend")!, style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300,fontFamily:getTranslated(context, "fontFamilyBody")!,),textAlign:TextAlign.center,)
 
-                                          )
-                                      ),
-                                    ],
+                                          ],
+                                        ),
+                                        Positioned.fill(
+                                            child: new Material(
+                                              color: Colors.transparent,
+                                              child:  new InkWell(
+                                                borderRadius: BorderRadius.all(Radius.circular(0)),
+                                                splashColor: Colors.black,
+                                                overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                                onTap: (){
+                                                  final RenderBox renderBox = context.findRenderObject() as RenderBox;
+                                                  Share.share(
+                                                    "You have been invited by Abdullh to join the O:F Family! Click below to install our app. Onelink.to/dhdbm3. Once you join, you will receive a 25% discount on your first order & 5Dhs credit when you use code 248921 in your registration page"
+                                                    ,subject: "check out The website"
+                                                    ,sharePositionOrigin: renderBox.localToGlobal(Offset.zero)&renderBox.size,
+                                                  );
+
+                                                },
+                                              ),
+
+                                            )
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  Stack(
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          const Icon(Icons.monetization_on_outlined, color: Colors.amber,size: 35,),
-                                          const SizedBox(height: 5,),
-                                          Text(getTranslated(context, "dashBoardTitle-transferCredit")!, style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300,fontFamily:getTranslated(context, "fontFamilyBody")!,),textAlign:TextAlign.center,)
-                                        ],
-                                      ),
-                                      Positioned.fill(
-                                          child: new Material(
-                                            color: Colors.transparent,
-                                            child:  new InkWell(
-                                              borderRadius: BorderRadius.all(Radius.circular(0)),
-                                              splashColor: Colors.black,
-                                              overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+                                  /// - Transfer credit
+                                  Visibility(
+                                    visible: homePageDesign.body.dashboardWidget.buttons.transferCredit.visibility=='true',
+                                    child: Stack(
+                                      children: [
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            Image.network("${homePageDesign?.body.dashboardWidget.buttons.transferCredit.imageIcon}",height:double.parse(homePageDesign?.body.dashboardWidget.buttons.myCode.mobileSize as String) ),
+                                            const SizedBox(height: 5,),
+                                            Text(
+                                              homePageDesign.body.dashboardWidget.buttons.transferCredit.data,
+                                              // getTranslated(context, "dashBoardTitle-myCode")!,
+                                              style: TextStyle(
+                                                  color:  Color(int.parse(homePageDesign.body.dashboardWidget.buttons.transferCredit.color)),
+                                                  fontSize: lng?.header3.size.toDouble(),
+                                                  fontWeight: FontWeight.w300,
+                                                  fontFamily:lng?.header3.textFamily),
+                                              // fontFamily:getTranslated(context, "fontFamilyBody")!,),
+                                              textAlign:TextAlign.center,
+                                            )
 
-                                              onTap: (){
-                                                PersistentNavBarNavigator.pushNewScreen(
-                                                  context,
-                                                  screen: TransferCredit(),
-                                                  withNavBar: true, // OPTIONAL VALUE. True by default.
-                                                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                                );
-                                              },
-                                            ),
+                                            // const Icon(Icons.monetization_on_outlined, color: Colors.amber,size: 35,),
+                                            // const SizedBox(height: 5,),
+                                            // Text(getTranslated(context, "dashBoardTitle-transferCredit")!, style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300,fontFamily:getTranslated(context, "fontFamilyBody")!,),textAlign:TextAlign.center,)
+                                          ],
+                                        ),
+                                        Positioned.fill(
+                                            child: new Material(
+                                              color: Colors.transparent,
+                                              child:  new InkWell(
+                                                borderRadius: BorderRadius.all(Radius.circular(0)),
+                                                splashColor: Colors.black,
+                                                overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
 
-                                          )
-                                      ),
-                                    ],
+                                                onTap: (){
+                                                  PersistentNavBarNavigator.pushNewScreen(
+                                                    context,
+                                                    screen: TransferCredit(),
+                                                    withNavBar: true, // OPTIONAL VALUE. True by default.
+                                                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                                  );
+                                                },
+                                              ),
+
+                                            )
+                                        ),
+                                      ],
+                                    ),
                                   ),
 
 
@@ -1823,10 +1920,7 @@ class _MainMenuState extends State<MainMenu> {
                 ),
                 drawer: DrawerWidget(layOut: widget.layOut,onChanged: (value) {widget.onChanged(value);},),
 
-                // bottomSheet:Container(
-                //   color: Colors.transparent,
-                //   child: SizedBox( height: 399, child: Text("test"),),
-                // ),
+
               ),
               Visibility(
                 visible: false,

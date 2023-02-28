@@ -111,7 +111,7 @@ class DesignPerPage {
   LoyaltyTransferCreditPage loyaltyTransferCreditPage;
   LoyaltyCreditCalculationPage loyaltyCreditCalculationPage;
   LoyaltyHistoryPage loyaltyHistoryPage;
-  Drawer drawer;
+  DrawerPage drawer;
   DrawerNotificationPage drawerNotificationPage;
   DrawerPartnersPage drawerPartnersPage;
   DrawerFeedBackPage drawerFeedBackPage;
@@ -147,7 +147,7 @@ class DesignPerPage {
     loyaltyTransferCreditPage: LoyaltyTransferCreditPage.fromJson(json["Loyalty-TransferCreditPage"]),
     loyaltyCreditCalculationPage: LoyaltyCreditCalculationPage.fromJson(json["Loyalty-CreditCalculationPage"]),
     loyaltyHistoryPage: LoyaltyHistoryPage.fromJson(json["Loyalty-HistoryPage"]),
-    drawer: Drawer.fromJson(json["Drawer"]),
+    drawer: DrawerPage.fromJson(json["Drawer"]),
     drawerNotificationPage: DrawerNotificationPage.fromJson(json["Drawer-NotificationPage"]),
     drawerPartnersPage: DrawerPartnersPage.fromJson(json["Drawer-PartnersPage"]),
     drawerFeedBackPage: DrawerFeedBackPage.fromJson(json["Drawer-FeedBackPage"]),

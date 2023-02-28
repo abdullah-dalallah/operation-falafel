@@ -7,12 +7,12 @@ import 'dart:convert';
 import '../CommonElements/Elements/drawer_Icon.dart';
 import '../CommonElements/Elements/title_style.dart';
 
-Drawer drawerFromJson(String str) => Drawer.fromJson(json.decode(str));
+DrawerPage drawerFromJson(String str) => DrawerPage.fromJson(json.decode(str));
 
-String drawerToJson(Drawer data) => json.encode(data.toJson());
+String drawerToJson(DrawerPage data) => json.encode(data.toJson());
 
-class Drawer {
-  Drawer({
+class DrawerPage {
+  DrawerPage({
     required this.drawerIcon,
     required this.name,
     required this.home,
@@ -34,7 +34,7 @@ class Drawer {
   DrawerOptions contactUs;
   DrawerOptions followUs;
 
-  factory Drawer.fromJson(Map<String, dynamic> json) => Drawer(
+  factory DrawerPage.fromJson(Map<String, dynamic> json) => DrawerPage(
     drawerIcon: DrawerIcon.fromJson(json["DrawerIcon"]),
     name: TitleStyle.fromJson(json["Name"]),
     home: DrawerOptions.fromJson(json["Home"]),

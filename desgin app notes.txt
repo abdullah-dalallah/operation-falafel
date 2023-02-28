@@ -1,0 +1,15 @@
+Design Theme API Notes
+
+Home Page:
+- Appbar Search Icon should be image with heieht = 30 & width =30 or only magnifier icon png with filled color & size =28
+- location marker icon should be image ith hieght = 20 & width = 20.
+- Order Now Button Color is't amber = "0xffffbf00".
+- Order Now Button should be written in capital.
+- Dashboard buttons icons should be images with height = 30 & width = 30.
+- My code & My Reword & Refer a friend & transfer Credit Names should be in two lines.
+- ReferFriend & TransferCredit images is missing.
+
+Drawer Page:
+- Drawer icon is missing.
+- Drawer icon Sized is missing should be 35.
+  

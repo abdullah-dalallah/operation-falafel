@@ -25,7 +25,7 @@
       },
       "Header3": {
         "Size": 15,
-        "TextFamily": "oldpress"
+        "TextFamily": "Raleway-Regular"
       },
       "Header4": {
         "Size": 17,
@@ -59,7 +59,7 @@
       },
       "Header3": {
         "Size": 15,
-        "TextFamily": "oldpress"
+        "TextFamily": "Raleway-Regular"
       },
       "Header4": {
         "Size": 17,
@@ -136,7 +136,7 @@
         "LocationWidget": {
           "LocationIcon": {
             "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/MyProfile_SavedAddresses_locator.png",
-            "MobileSize": "28",
+            "MobileSize": "20",
             "TabletSize": "28"
           },
           "LocationTile": {
@@ -150,7 +150,7 @@
         "OrderNowButtonWidget": {
           "Data": "Order Now",
           "Color": "0xffffffff",
-          "BackGroundColor": "0xffdfaa35"
+          "BackGroundColor": "0xffffbf00"
         },
         "DashboardWidget": {
           "HeaderTitle": {
@@ -167,32 +167,32 @@
             "MyCode": {
               "visibility": "true",
               "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/my_rewards_gencode.png",
-              "MobileSize": "28",
-              "TabletSize": "28",
-              "Data": "My Code",
+              "MobileSize": "30",
+              "TabletSize": "35",
+              "Data": "My\nCode",
               "Color": "0xffffffff"
             },
             "MyRewards": {
               "visibility": "true",
               "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/gift.png",
-              "MobileSize": "28",
-              "TabletSize": "28",
+              "MobileSize": "35",
+              "TabletSize": "35",
               "Data": "My Rewards",
               "Color": "0xffffffff"
             },
             "ReferFriend": {
               "visibility": "true",
-              "ImageIcon": "imagePath",
-              "MobileSize": "28",
-              "TabletSize": "28",
+              "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/gift.png",
+              "MobileSize": "35",
+              "TabletSize": "35",
               "Data": "Refer a Friend",
               "Color": "0xffffffff"
             },
             "TransferCredit": {
               "visibility": "true",
-              "ImageIcon": "imagePath",
-              "MobileSize": "28",
-              "TabletSize": "28",
+              "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/gift.png",
+              "MobileSize": "35",
+              "TabletSize": "35",
               "Data": "Transfer Credit",
               "Color": "0xffffffff"
             }
@@ -1585,8 +1585,8 @@
     },
     "Drawer": {
       "DrawerIcon": {
-        "ImageIcon": "imagePath",
-        "Size": ""
+        "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+        "Size": "35"
       },
       "Name": {
         "Data": "api",
