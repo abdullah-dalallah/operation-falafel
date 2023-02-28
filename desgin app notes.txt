@@ -25,4 +25,22 @@ Tarck Order Page:
 - Status active color is not amber = "0xffffbf00".
 - Call us icon color should be amber = "0xffffbf00".
 - Email icon color should be amber = "0xffffbf00".
-  
+
+Cart Page
+- Appbar drawer icon & Size is missing.
+- Appbar Title is missing."Operation:Falafel"
+- Appbar Title color is missing
+- Empty Cart page Title should be written in capital.
+- Order Now Button title should be written in capital.
+-- Order Now Button more properties such as button color.
+- plus minus button icon color should be black.
+- specialInstructions Title should be written in capital.
+- specialInstructions hint text color should change to white with low opacity.
+- ContactlessCheckBox color is missing should be white. 
+- promoCode hint text color should change to white with low opacity.
+- promoCode hint text should be written in capital.
+- promoCode add button the background color should be amber = "0xffffbf00".
+- tip the driver title should be capital.
+- sub total title should be capital.
+
+ 

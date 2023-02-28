@@ -67,7 +67,7 @@
       },
       "Header5": {
         "Size": 20,
-        "TextFamily": "oldpress"
+        "TextFamily": "Raleway-Regular"
       }
     }
   },
@@ -264,12 +264,12 @@
     "CartPage": {
       "AppBar": {
         "DrawerIcon": {
-          "ImageIcon": "imagePath",
-          "Size": ""
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+          "Size": "30"
         },
         "Title": {
-          "Data": "text data",
-          "Color": "text color"
+          "Data": "Operation:Falafel",
+          "Color": "0xffffffff"
         }
       },
       "Body": {
@@ -323,7 +323,7 @@
           "visibility": "true",
           "Title": {
             "Data": "text data",
-            "Color": "text color"
+            "Color": "0xffffffff"
           },
           "SelectedImage": "image Path"
         },
@@ -366,7 +366,7 @@
           "BackGroundColor": "0xff000000",
           "TotalTitle": {
             "Data": "Total",
-            "Color": "0xffdfaa3"
+            "Color": "0xffdfaa35"
           },
           "Price": {
             "Data": "api",
@@ -376,13 +376,13 @@
         "Credit": {
           "visibility": "true",
           "Data": "Earned Credits",
-          "Color": "0xffdfaa3"
+          "Color": "0xffdfaa35"
         },
         "SelectAddress": {
           "visibility": "true",
           "Title": {
             "Data": "Address",
-            "Color": "0xffdfaa3"
+            "Color": "0xffdfaa35"
           },
           "BackGroundColor": "0xff000000",
           "HintText": {
@@ -407,7 +407,7 @@
             "Color": "0xff454545"
           },
           "Icon": {
-            "ImageIcon": "later",
+            "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/icon_location_address.png",
             "MobileSize": "28",
             "TabletSize": "28"
           }
@@ -415,7 +415,7 @@
         "BringItButton": {
           "Data": "bring it on",
           "Color": "0xffffffff",
-          "BackGroundColor": "0xff000000"
+          "BackGroundColor": "0xffdfaa35"
         },
         "EmptyCart": {
           "Data": "Your Cart IS Empty",
