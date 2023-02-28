@@ -84,7 +84,7 @@ class DesignPerPage {
 
   BottomNavigationButtonBar bottomNavigationBar;
   HomePage homePage;
-  TarckOrderPage tarckOrderPage;
+  TrackOrderPage tarckOrderPage;
   CartPage cartPage;
   MenuPage menuPage;
   ItemDetailsSheet itemDetailsSheet;
@@ -120,7 +120,7 @@ class DesignPerPage {
   factory DesignPerPage.fromJson(Map<String, dynamic> json) => DesignPerPage(
     bottomNavigationBar: BottomNavigationButtonBar.fromJson(json["BottomNavigationBar"]),
     homePage: HomePage.fromJson(json["HomePage"]),
-    tarckOrderPage: TarckOrderPage.fromJson(json["TarckOrderPage"]),
+    tarckOrderPage: TrackOrderPage.fromJson(json["TarckOrderPage"]),
     cartPage: CartPage.fromJson(json["CartPage"]),
     menuPage: MenuPage.fromJson(json["MenuPage"]),
     itemDetailsSheet: ItemDetailsSheet.fromJson(json["ItemDetailsSheet"]),

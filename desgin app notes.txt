@@ -12,4 +12,17 @@ Home Page:
 Drawer Page:
 - Drawer icon is missing.
 - Drawer icon Sized is missing should be 35.
+- Drawer options name should be written in capital
+
+Tarck Order Page:
+- Appbar Title is missing."Operation:Falafel"
+- Appbar Title color is missing
+- Appbar drawer icon & Size is missing.
+- Page Title "No Order" should be written in capital.
+- Page Title "No Order" color is't amber = "0xffffbf00".
+- Dropdown selectd icon is down should be falafel image.
+- Status Image heieht = 350 & width =300. 
+- Status active color is not amber = "0xffffbf00".
+- Call us icon color should be amber = "0xffffbf00".
+- Email icon color should be amber = "0xffffbf00".
   

@@ -62,27 +62,30 @@ class _DrawerState extends State<DrawerWidget> {
                         /// - Name
                         Row(children: [
 
-                          IconButton(onPressed: () {
-                            if (widget.layOut != "Desktop" &&
-                                widget.layOut != "Tablet") {
-                              Navigator.pop(context);
-                            }
-                          }, icon:  ImageIcon(
-                              NetworkImage("${drawerPage?.drawerIcon.imageIcon}"),
-                            // AssetImage("assets/images/icon_menu.png",),
-                            size: double.parse(drawerPage?.drawerIcon.size as String),
-                             // 35,
-                            color: Colors.white,
-                          ),),
-
-                         
+                          Expanded(
+                            child: IconButton(onPressed: () {
+                              if (widget.layOut != "Desktop" &&
+                                  widget.layOut != "Tablet") {
+                                Navigator.pop(context);
+                              }
+                            }, icon:  ImageIcon(
+                                NetworkImage("${drawerPage?.drawerIcon.imageIcon}"),
+                              // AssetImage("assets/images/icon_menu.png",),
+                              size: double.parse(drawerPage?.drawerIcon.size as String),
+                               // 35,
+                              color: Colors.white,
+                            ),),
+                          ),
                           const SizedBox(width: 15,),
-                          Text("HI ABDULLH", style: TextStyle(
-                              fontFamily: getTranslated(context, "fontFamilyBody")!,
-                                color: Color(int.parse(drawerPage.name.color)),
-                                // color: Colors.amber,
-                                fontWeight: FontWeight.w300,
-                                fontSize: 20),),
+                          Expanded(
+                            flex: 5,
+                            child: Text("HI ABDULLH", style: TextStyle(
+                                fontFamily: getTranslated(context, "fontFamilyBody")!,
+                                  color: Color(int.parse(drawerPage.name.color)),
+                                  // color: Colors.amber,
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 20),),
+                          ),
 
                         ],),
 
@@ -188,14 +191,25 @@ class _DrawerState extends State<DrawerWidget> {
                                                 .cupertino,
                                           );
                                         },
+
                                         title: Text(
-                                          getTranslated(context, "partners")!,
+                                          drawerPage.partners.data,
+                                          // getTranslated(context, "home")!,
                                           style: TextStyle(
-                                              fontFamily: "${getTranslated(
-                                                  context, "fontFamilyBody")!}",
-                                              color: Colors.white,
-                                              fontSize: 15,
+                                              fontFamily: "${lng?.header3.textFamily}",
+                                              // fontFamily: "${getTranslated(context, "fontFamilyBody")!}",
+                                              color: Color(int.parse(drawerPage.partners.color)),
+                                              fontSize: lng?.header3.size.toDouble(),
+                                              // fontSize: 15,
                                               fontWeight: FontWeight.w300),),
+                                        // title: Text(
+                                        //   getTranslated(context, "partners")!,
+                                        //   style: TextStyle(
+                                        //       fontFamily: "${getTranslated(
+                                        //           context, "fontFamilyBody")!}",
+                                        //       color: Colors.white,
+                                        //       fontSize: 15,
+                                        //       fontWeight: FontWeight.w300),),
                                       ),
                                       const Padding(
                                         padding: EdgeInsets.only(left: 8.0, right: 8),
@@ -227,13 +241,23 @@ class _DrawerState extends State<DrawerWidget> {
                                           );
                                         },
                                         title: Text(
-                                          getTranslated(context, "locations")!,
+                                          drawerPage.locations.data,
+                                          // getTranslated(context, "home")!,
                                           style: TextStyle(
-                                              fontFamily: "${getTranslated(
-                                                  context, "fontFamilyBody")!}",
-                                              color: Colors.white,
-                                              fontSize: 15,
+                                              fontFamily: "${lng?.header3.textFamily}",
+                                              // fontFamily: "${getTranslated(context, "fontFamilyBody")!}",
+                                              color: Color(int.parse(drawerPage.locations.color)),
+                                              fontSize: lng?.header3.size.toDouble(),
+                                              // fontSize: 15,
                                               fontWeight: FontWeight.w300),),
+                                        // title: Text(
+                                        //   getTranslated(context, "locations")!,
+                                        //   style: TextStyle(
+                                        //       fontFamily: "${getTranslated(
+                                        //           context, "fontFamilyBody")!}",
+                                        //       color: Colors.white,
+                                        //       fontSize: 15,
+                                        //       fontWeight: FontWeight.w300),),
                                       ),
                                       const Padding(
                                         padding: EdgeInsets.only(left: 8.0, right: 8),
@@ -264,13 +288,23 @@ class _DrawerState extends State<DrawerWidget> {
                                           );
                                         },
                                         title: Text(
-                                          getTranslated(context, "feedback")!,
+                                          drawerPage.feedback.data,
+                                          // getTranslated(context, "home")!,
                                           style: TextStyle(
-                                              fontFamily: "${getTranslated(
-                                                  context, "fontFamilyBody")!}",
-                                              color: Colors.white,
-                                              fontSize: 15,
+                                              fontFamily: "${lng?.header3.textFamily}",
+                                              // fontFamily: "${getTranslated(context, "fontFamilyBody")!}",
+                                              color: Color(int.parse(drawerPage.feedback.color)),
+                                              fontSize: lng?.header3.size.toDouble(),
+                                              // fontSize: 15,
                                               fontWeight: FontWeight.w300),),
+                                        // title: Text(
+                                        //   getTranslated(context, "feedback")!,
+                                        //   style: TextStyle(
+                                        //       fontFamily: "${getTranslated(
+                                        //           context, "fontFamilyBody")!}",
+                                        //       color: Colors.white,
+                                        //       fontSize: 15,
+                                        //       fontWeight: FontWeight.w300),),
                                       ),
                                       const Padding(
                                         padding: EdgeInsets.only(left: 8.0, right: 8),
@@ -298,13 +332,23 @@ class _DrawerState extends State<DrawerWidget> {
                                       );
                                     },
                                     title: Text(
-                                      getTranslated(context, "contact us")!,
+                                      drawerPage.contactUs.data,
+                                      // getTranslated(context, "home")!,
                                       style: TextStyle(
-                                          fontFamily: "${getTranslated(
-                                              context, "fontFamilyBody")!}",
-                                          color: Colors.white,
-                                          fontSize: 15,
+                                          fontFamily: "${lng?.header3.textFamily}",
+                                          // fontFamily: "${getTranslated(context, "fontFamilyBody")!}",
+                                          color: Color(int.parse(drawerPage.contactUs.color)),
+                                          fontSize: lng?.header3.size.toDouble(),
+                                          // fontSize: 15,
                                           fontWeight: FontWeight.w300),),
+                                    // title: Text(
+                                    //   getTranslated(context, "contact us")!,
+                                    //   style: TextStyle(
+                                    //       fontFamily: "${getTranslated(
+                                    //           context, "fontFamilyBody")!}",
+                                    //       color: Colors.white,
+                                    //       fontSize: 15,
+                                    //       fontWeight: FontWeight.w300),),
                                   ),
                                 ),
 
@@ -434,11 +478,19 @@ class _DrawerState extends State<DrawerWidget> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(getTranslated(context, "follow us")!,
-                              style: TextStyle(fontFamily: getTranslated(
-                                  context, "fontFamilyButtons"), color: Colors
-                                  .amber, fontSize: double.parse(getTranslated(
-                                  context, "fontFamilyButtonsSize")!)),),
+                            Text(
+                              drawerPage.followUs.data,
+                              style: TextStyle(
+                                  fontFamily: "${lng?.titleHeader1.textFamily}",
+                                  color: Colors.amber,
+                                  fontSize: lng?.titleHeader1.size.toDouble()
+                              )
+                              ,),
+                            // Text(getTranslated(context, "follow us")!,
+                            //   style: TextStyle(fontFamily: getTranslated(
+                            //       context, "fontFamilyButtons"), color: Colors
+                            //       .amber, fontSize: double.parse(getTranslated(
+                            //       context, "fontFamilyButtonsSize")!)),),
                             SizedBox(height: 10,),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,

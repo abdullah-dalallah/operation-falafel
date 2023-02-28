@@ -4,6 +4,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:operation_falafel/widgets/loading_page.dart';
+import 'package:provider/provider.dart';
+
+import '../../models/AppThemeModels/DesignPerPage/TarckOrderPage/track_order_page.dart';
+import '../../models/AppThemeModels/FontSizes/Language/lang.dart';
+import '../../providers/AppTheme/theme_provider.dart';
 
 
 class TrackMyOrder extends StatefulWidget{
@@ -35,31 +41,62 @@ class _TrackMyOrderState extends State<TrackMyOrder> {
         width: MediaQuery.of(context).size.width,
         fit: BoxFit.cover,
       ),
-      Scaffold(
-          key: _drawerKey,
-        backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          leading:
-          Visibility(
-            visible: (widget.layOut=="Mobile")?true:false,
-            child: IconButton(
-              onPressed: (){
-                _drawerKey.currentState?.openDrawer();
-              },
-              icon: const ImageIcon(
-                AssetImage("assets/images/icon_menu.png",),
-                size: 30,
-              ),
-            ),
-          ) ,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          centerTitle: true,
-          title:Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),),
 
-        ),
-        body: Center(
+    Consumer<ThemeProvider>(
+    builder: (context, appTheme, child) {
+      Language? lng= (Localizations.localeOf(context).languageCode=='ar')? appTheme.appTheme.fontSizes?.ar : appTheme.appTheme.fontSizes?.en;
+      TrackOrderPage? trackOrderPage = appTheme.appTheme.designPerPage?.tarckOrderPage;
+      bool loadingDesign= trackOrderPage!=null;
+      Color activeColor ;
+      if(trackOrderPage!=null){
+        activeColor = Color(int.parse(trackOrderPage.body.stepperWidget.activeColor));
+      }
+
+      return
+        (loadingDesign)?
+        Scaffold(
+          key: _drawerKey,
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            leading:
+            Visibility(
+              visible: (widget.layOut=="Mobile")?true:false,
+              child: IconButton(
+                onPressed: (){
+                  _drawerKey.currentState?.openDrawer();
+                },
+                icon:
+
+                IconButton(
+                  onPressed: (){
+                    _drawerKey.currentState?.openDrawer();
+                  },
+                  icon:  ImageIcon(
+                    NetworkImage("${trackOrderPage?.appBar.drawerIcon.imageIcon}",),
+                    size: double.parse(trackOrderPage?.appBar.drawerIcon.size as String),
+                  ),
+                ),
+                // const ImageIcon(
+                //   AssetImage("assets/images/icon_menu.png",),
+                //   size: 30,
+                // ),
+              ),
+            ) ,
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            centerTitle: true,
+            title: Text(
+              trackOrderPage.appBar.title.data,
+              style: TextStyle(
+                  fontFamily:"${lng?.logoTitle.textFamily}",
+                  fontWeight: FontWeight.bold,
+                color: Color(int.parse(trackOrderPage.appBar.title.color))
+              ),),
+            // Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),),
+
+          ),
+          body: Center(
           child: Container(
             constraints: BoxConstraints(maxWidth: 450, ),
             child: Column(
@@ -67,7 +104,14 @@ class _TrackMyOrderState extends State<TrackMyOrder> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
 
-                Text(getTranslated(context, "noOrder")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber.shade400, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
+                Text(
+                 trackOrderPage.body.pageTile.data,
+                  style: TextStyle(
+                      fontFamily: "${lng?.titleHeader1.textFamily}",
+                      color: Color(int.parse(trackOrderPage.body.pageTile.color)),
+                      fontSize:lng?.titleHeader1.size.toDouble())
+                  ),
+                // Text(getTranslated(context, "noOrder")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber.shade400, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
 
                 /// - DropDown
                 Padding(
@@ -95,6 +139,7 @@ class _TrackMyOrderState extends State<TrackMyOrder> {
                         ),
                         borderSide: BorderSide(color: Colors.amber, width: 2.0, ),
                       ),
+
                       enabledBorder: OutlineInputBorder(
                         borderRadius:  BorderRadius.all(
                           Radius.circular(10.0),
@@ -106,10 +151,15 @@ class _TrackMyOrderState extends State<TrackMyOrder> {
                       //Add label If you want but add hint outside the decoration to be aligned in the button perfectly.
                     ),
                     isExpanded: true,
-                    hint:  Text(
-                      'Select Order',
-                      style: TextStyle(fontSize: 15, color: Colors.white60 ,fontFamily: getTranslated(context, "fontFamilyBody")!),
-                    ),
+                    hint: Text(
+                    trackOrderPage.body.dropDownWidget.labelText.data,
+                      style: TextStyle(
+                        fontSize: lng?.header3.size.toDouble(),
+                        color: Color(int.parse(trackOrderPage.body.dropDownWidget.labelText.color)).withOpacity(0.6),
+                        fontFamily: "${lng?.header3.textFamily}"
+
+                    ),),
+                    // Text('Select Order', style: TextStyle(fontSize: 15, color: Colors.white60 ,fontFamily: getTranslated(context, "fontFamilyBody")!),),
                     icon: const ImageIcon(AssetImage("assets/images/down.png"),),
                     // const Icon(
                     //   Icons.arrow_drop_down,
@@ -134,45 +184,69 @@ class _TrackMyOrderState extends State<TrackMyOrder> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-
+                                    /// - Item Title
                                     Row(
                                       children: [
 
-                                        (selectedValue!=null)? (selectedValue.keys.elementAt(0)==order.keys.elementAt(0))?
-                                        Image.asset("assets/images/page2_icon.png", height: 15,width: 15,)
-                                            :SizedBox(width: 15,):SizedBox(width: 15,),
-                                        SizedBox(width: 5,),
-                                        Text(order.keys.elementAt(0),
-                                              style:  TextStyle(fontSize: 13,color: Colors.amber, fontFamily: getTranslated(context, "fontFamilyBody")!),
-                                            ),
+                                        (selectedValue!=null)?
+                                        (selectedValue.keys.elementAt(0)==order.keys.elementAt(0))?
+                                            Image.network(trackOrderPage.body.dropDownWidget.selectedIcon.imageIcon,height: double.parse(trackOrderPage.body.dropDownWidget.selectedIcon.height),width:  double.parse(trackOrderPage.body.dropDownWidget.selectedIcon.width),)
+                                        // Image.asset("assets/images/page2_icon.png", height: 15,width: 15,)
+                                            :const SizedBox(width: 15,):const SizedBox(width: 15,),
+                                        const SizedBox(width: 5,),
+                                        Text(order.keys.elementAt(0), style:  TextStyle(
+                                            fontSize: lng?.header2.size.toDouble(),
+                                            color: Color(int.parse(trackOrderPage.body.dropDownWidget.itemsTitle.color)),
+                                            fontFamily: lng?.header2.textFamily),
+                                        ),
+                                        // Text(order.keys.elementAt(0), style:  TextStyle(fontSize: 13,color: Colors.amber, fontFamily: getTranslated(context, "fontFamilyBody")!),),
                                       ],
                                     ),
+                                    /// - Item Sub Title
                                     Padding(
                                       padding: const EdgeInsets.only(left:20.0, right:20),
-                                      child: Text(
+                                      child:
+
+                                      Text(
                                        "${ order[order.keys.elementAt(0)]["meal"].toString()} ...",
-                                        style:  TextStyle(fontSize: 13,color: Colors.white, fontFamily: getTranslated(context, "fontFamilyBody")!),
+                                        style:  TextStyle(
+                                      fontSize: lng?.header2.size.toDouble(),
+                                        color: Color(int.parse(trackOrderPage.body.dropDownWidget.itemsSubTitle.color)),
+                                        fontFamily: lng?.header2.textFamily),
                                       ),
+                                      // Text(
+                                      //  "${ order[order.keys.elementAt(0)]["meal"].toString()} ...",
+                                      //   style:  TextStyle(fontSize: 13,color: Colors.white, fontFamily: getTranslated(context, "fontFamilyBody")!),
+                                      // ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left:20.0, right:20),
                                       child: Text(
                                         order[order.keys.elementAt(0)]["date"].toString(),
-                                        style:  TextStyle(fontSize: 13,color: Colors.white, fontFamily: getTranslated(context, "fontFamilyBody")!),
+                                        style:  TextStyle(
+                                            fontSize: lng?.header2.size.toDouble(),
+                                            color: Color(int.parse(trackOrderPage.body.dropDownWidget.itemsSubTitle.color)),
+                                            fontFamily: lng?.header2.textFamily),
                                       ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left:20.0, right:20),
                                       child: Text(
                                         "Order Id: ${order[order.keys.elementAt(0)]["orderId"].toString()}",
-                                        style:  TextStyle(fontSize: 13,color: Colors.white, fontFamily: getTranslated(context, "fontFamilyBody")!),
+                                        style: TextStyle(
+                                            fontSize: lng?.header2.size.toDouble(),
+                                            color: Color(int.parse(trackOrderPage.body.dropDownWidget.itemsSubTitle.color)),
+                                            fontFamily: lng?.header2.textFamily),
                                       ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left:20.0, right:20),
                                       child: Text(
                                         "Expected: ${order[order.keys.elementAt(0)]["expectedtime"].toString()}",
-                                        style:  TextStyle(fontSize: 13,color: Colors.white, fontFamily: getTranslated(context, "fontFamilyBody")!),
+                                        style: TextStyle(
+                                            fontSize: lng?.header2.size.toDouble(),
+                                            color: Color(int.parse(trackOrderPage.body.dropDownWidget.itemsSubTitle.color)),
+                                            fontFamily: lng?.header2.textFamily),
                                       ),
                                     ),
 
@@ -213,28 +287,29 @@ class _TrackMyOrderState extends State<TrackMyOrder> {
 
 
 
-                Expanded(
-                    flex: 5,
-                    child: Image.asset("assets/images/track_my_order_delivery_guy.png", height:350,width: 300,)),
+                Expanded(flex: 5,child: Image.network("${trackOrderPage.body.statusImage.imageUrl}", height:double.parse(trackOrderPage.body.statusImage.height),width: double.parse(trackOrderPage.body.statusImage.width),)),
+                // Expanded(flex: 5,child: Image.asset("assets/images/track_my_order_delivery_guy.png", height:350,width: 300,)),
 
-
+                /// -Stepper
                 const Expanded(child: SizedBox(height: 1,)),
                 Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const  SizedBox(width: 30,child:  Divider(color: Colors.white,thickness: 2,)),
+                        SizedBox(width: 30,child:  Divider(color: Color(int.parse(trackOrderPage.body.stepperWidget.activeColor)),thickness: 2,)),
                         Container(
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.only(
+                          decoration:  BoxDecoration(
+                            borderRadius: const BorderRadius.only(
                               topRight: Radius.circular(100),
                               bottomLeft: Radius.circular(100),
                               topLeft: Radius.circular(100),
                               bottomRight: Radius.circular(100),
 
                             ),
-                            color: Colors.white,
+                            color:
+                            Color(int.parse(trackOrderPage.body.stepperWidget.activeColor))
+                            // Colors.white,
                             // border: Border.all(
                             //   width: 0.8,
                             //   color: Colors.white,
@@ -316,15 +391,40 @@ class _TrackMyOrderState extends State<TrackMyOrder> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               // const  SizedBox(width: 65,),
-                             Expanded(child: Text(getTranslated(context, "orderAccepted")!,style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,fontSize:13, color: Colors.white, fontWeight: FontWeight.w300,),textAlign: TextAlign.center,)),
+                             Expanded(child: Text(
+                               getTranslated(context, "orderAccepted")!
+                               ,
+                               style:
+                               TextStyle(
+                                 fontFamily:lng?.header2.textFamily,
+                                 fontSize:lng?.header2.size.toDouble(),
+                                 color: Colors.white,
+                                 fontWeight: FontWeight.w300,),
+                               // TextStyle(
+                               //   fontFamily: getTranslated(context, "fontFamilyBody")!,
+                               //   fontSize:13, color: Colors.white, fontWeight: FontWeight.w300,),
+                               textAlign: TextAlign.center,
+                             )),
                               // const  SizedBox(width: 30,),
-                             Expanded(child: Text(getTranslated(context, "inTheKitchen")!,style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,fontSize:13,color: Colors.white, fontWeight: FontWeight.w300,),textAlign: TextAlign.center,)),
+                             Expanded(child: Text(getTranslated(context, "inTheKitchen")!,style:  TextStyle(
+                               fontFamily:lng?.header2.textFamily,
+                               fontSize:lng?.header2.size.toDouble(),
+                               color: Colors.white,
+                               fontWeight: FontWeight.w300,),textAlign: TextAlign.center,)),
 
                               // const  SizedBox(width: 40,),
-                             Expanded(child: Text(getTranslated(context, "onTheWay")!,style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,fontSize:13,color: Colors.white, fontWeight: FontWeight.w300,),textAlign: TextAlign.center,)),
+                             Expanded(child: Text(getTranslated(context, "onTheWay")!,style:  TextStyle(
+                               fontFamily:lng?.header2.textFamily,
+                               fontSize:lng?.header2.size.toDouble(),
+                               color: Colors.white,
+                               fontWeight: FontWeight.w300,),textAlign: TextAlign.center,)),
 
                               // const  SizedBox(width: 30,),
-                              Expanded(child: Text(getTranslated(context, "orderDelivered")!,style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,fontSize:13,color: Colors.white, fontWeight: FontWeight.w300,),textAlign: TextAlign.center,)),
+                              Expanded(child: Text(getTranslated(context, "orderDelivered")!,style:  TextStyle(
+                                fontFamily:lng?.header2.textFamily,
+                                fontSize:lng?.header2.size.toDouble(),
+                                color: Colors.white,
+                                fontWeight: FontWeight.w300,),textAlign: TextAlign.center,)),
                               // const  SizedBox(width: 65,),
                             ],
                           ),
@@ -344,13 +444,31 @@ class _TrackMyOrderState extends State<TrackMyOrder> {
                       children: [
                         Row(
                             children: [
-                              Image.asset("assets/images/page8_phone.png" ,height: 29,color: Colors.amber,),
+                              IconButton(
+                                onPressed: (){
+                                  _drawerKey.currentState?.openDrawer();
+                                },
+                                icon:  ImageIcon(
+                                  NetworkImage("${trackOrderPage?.body.callUsWidget.imageIcon}",),
+                                  size: (widget.layOut=="Mobile")? double.parse(trackOrderPage?.body.callUsWidget.mobileSize as String):double.parse(trackOrderPage?.body.callUsWidget.tabletSize as String),
+                                  color: Color(int.parse(trackOrderPage.body.callUsWidget.color)),
+                                ),
+                              ),
+                              // Image.asset("assets/images/page8_phone.png" ,height: 29,color: Colors.amber,),
                               const SizedBox(width: 8,),
                               Padding(
                                 padding: const EdgeInsets.only(top: 10.0),
                                 child: Column(
                                   children: [
-                                    Text(getTranslated(context, "callUs")!,style: TextStyle(fontSize:13,fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, ),),
+                                    Text(
+                                      trackOrderPage.body.callUsWidget.data,
+                                      // getTranslated(context, "callUs")!,
+                                      style: TextStyle(
+                                        fontSize:lng?.header2.size.toDouble(),
+                                        fontFamily: "${lng?.header2.textFamily}",
+                                        color: Colors.white,
+                                      ),),
+                                    // Text(getTranslated(context, "callUs")!,style: TextStyle(fontSize:13,fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, ),),
                                     SizedBox(width:60,child: Divider(color:Colors.white,thickness: 1,))
                                   ],
                                 ),
@@ -360,13 +478,32 @@ class _TrackMyOrderState extends State<TrackMyOrder> {
 
                         Row(
                           children: [
-                              Image.asset("assets/images/page8_mail.png", height: 25,color: Colors.amber,),
+                            IconButton(
+                              onPressed: (){
+                                _drawerKey.currentState?.openDrawer();
+                              },
+                              icon:  ImageIcon(
+                                NetworkImage("${trackOrderPage?.body.emailUsWidget.imageIcon}",),
+                                size: (widget.layOut=="Mobile")? double.parse(trackOrderPage?.body.emailUsWidget.mobileSize as String):double.parse(trackOrderPage?.body.emailUsWidget.tabletSize as String),
+                                color: Color(int.parse(trackOrderPage.body.callUsWidget.color)),
+                              ),
+                            ),
+                              // Image.asset("assets/images/page8_mail.png", height: 25,color: Colors.amber,),
                             const SizedBox(width: 8,),
                             Padding(
                               padding: const EdgeInsets.only(top: 10.0),
                               child: Column(
                                 children: [
-                                  Text(getTranslated(context, "emailUs")!,style: TextStyle(fontSize:13,fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, ),),
+                                  Text(
+                                    trackOrderPage.body.emailUsWidget.data,
+                                    // getTranslated(context, "callUs")!,
+                                    style: TextStyle(
+                                      fontSize:lng?.header2.size.toDouble(),
+                                      fontFamily: "${lng?.header2.textFamily}",
+                                      color: Colors.white,
+                                    ),),
+
+                                  // Text(getTranslated(context, "emailUs")!,style: TextStyle(fontSize:13,fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, ),),
                                     SizedBox(width:double.parse(getTranslated(context, "emailUsDividerLength")!),child: Divider(color:Colors.white,thickness: 1,))
                                 ],
                               ),
@@ -386,8 +523,26 @@ class _TrackMyOrderState extends State<TrackMyOrder> {
           ),
         ),
 
+
+
+
+
+
         drawer: DrawerWidget(layOut: widget.layOut,onChanged: (value) {widget.onChanged(value);},),
-      ),
+      )
+       :LoadingPage()
+      ;
+
+
+      })
+
+
+
+
+
+
+
+
     ],
   );
   }

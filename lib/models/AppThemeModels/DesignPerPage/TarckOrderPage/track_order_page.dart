@@ -8,12 +8,12 @@ import 'dart:convert';
 import 'Appbar/track_order_page_appbar.dart';
 import 'Body/track_order_apge_body.dart';
 
-TarckOrderPage tarckOrderPageFromJson(String str) => TarckOrderPage.fromJson(json.decode(str));
+TrackOrderPage tarckOrderPageFromJson(String str) => TrackOrderPage.fromJson(json.decode(str));
 
-String tarckOrderPageToJson(TarckOrderPage data) => json.encode(data.toJson());
+String tarckOrderPageToJson(TrackOrderPage data) => json.encode(data.toJson());
 
-class TarckOrderPage {
-  TarckOrderPage({
+class TrackOrderPage {
+  TrackOrderPage({
     required this.appBar,
     required this.body,
   });
@@ -21,7 +21,7 @@ class TarckOrderPage {
   TrackOrderPageAppBar appBar;
   TrackOrderPageBody body;
 
-  factory TarckOrderPage.fromJson(Map<String, dynamic> json) => TarckOrderPage(
+  factory TrackOrderPage.fromJson(Map<String, dynamic> json) => TrackOrderPage(
     appBar: TrackOrderPageAppBar.fromJson(json["AppBar"]),
     body: TrackOrderPageBody.fromJson(json["Body"]),
   );
