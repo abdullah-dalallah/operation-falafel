@@ -1758,12 +1758,12 @@
             },
             "ItemsTitle": {
               "Data": "api",
-              "Color": "0xff454545"
+              "Color": "0xffffffff"
             },
             "SelectedIcon": {
               "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/down.png",
-              "height": "5",
-              "width": "5"
+              "height": "15",
+              "width": "15"
             }
           },
           "Yourmessage": {

@@ -96,8 +96,7 @@ class _PartnersState extends State<Partners> {
                       drawerPartnersPage.body.pageTitle.data,
                       style: TextStyle(
                           fontFamily: "${lng?.titleHeader2.textFamily}",
-                          fontWeight: FontWeight.bold
-                        ,fontSize:lng?.titleHeader2.size.toDouble(),
+                          fontSize:lng?.titleHeader2.size.toDouble(),
                         color: Color(int.parse(drawerPartnersPage.body.pageTitle.color)),
                       ),
 

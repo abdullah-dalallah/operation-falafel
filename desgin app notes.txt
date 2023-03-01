@@ -38,12 +38,16 @@ Drawer Fedback Page:
 - PromotTitle should be written in capital.
 - Submit button background color should be amber = "0xffffbf00".
 
+
 Drawer Contact us page:
 - Back icon in appbar is missing.
 - Back icon size is missing.
 - appbar title data & color is missing.
 - Page title should be written in capital.
-
+- dropdown text color should be white.
+- dropdown selected icon should be falafel image.
+- dropdown selected icon should be heieht = 15 & width =15
+- Submit button background color should be amber = "0xffffbf00".
 
 
 Tarck Order Page:

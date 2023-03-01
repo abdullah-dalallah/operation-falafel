@@ -390,23 +390,34 @@ class _ContactUsState extends State<ContactUs> {
                                           Row(
                                             children: [
 
-                                              (selectedValue != null)
-                                                  ?
+                                              (selectedValue != null) ?
                                               (selectedValue == order) ?
-                                              Image.asset(
-                                                "assets/images/page2_icon.png",
-                                                height: 15, width: 15,)
+                                              Image.network(
+                                                drawerContactUsPage.body.form.inquiryTypeDropDown.selectedIcon.imageIcon,
+                                                height:  double.parse(drawerContactUsPage.body.form.inquiryTypeDropDown.selectedIcon.height), width:  double.parse(drawerContactUsPage.body.form.inquiryTypeDropDown.selectedIcon.width),)
+                                              // Image.asset(
+                                              //   "assets/images/page2_icon.png",
+                                              //   height: 15, width: 15,)
                                                   : SizedBox(width: 15,)
                                                   : SizedBox(width: 15,),
                                               SizedBox(width: 5,),
                                               Text(
-                                                getTranslated(context, order)!,
-                                                style: TextStyle(fontSize: 13,
-                                                    color: Colors.white,
-                                                    fontFamily: getTranslated(
-                                                        context,
-                                                        "fontFamilyBody")!),
+                                                  getTranslated(context, order)!,
+                                                style: TextStyle(
+                                                    fontSize:lng?.header3.size.toDouble(),
+                                                    color: Color(int.parse(drawerContactUsPage.body.form.inquiryTypeDropDown.itemsTitle.color)),
+                                                    fontFamily: lng?.header3.textFamily,
+                                                )
                                               ),
+
+                                              // Text(
+                                              //   getTranslated(context, order)!,
+                                              //   style: TextStyle(fontSize: 13,
+                                              //       color: Colors.white,
+                                              //       fontFamily: getTranslated(
+                                              //           context,
+                                              //           "fontFamilyBody")!),
+                                              // ),
                                             ],
                                           ),
 
@@ -468,11 +479,15 @@ class _ContactUsState extends State<ContactUs> {
                                     borderSide: BorderSide(
                                         color: Colors.transparent, width: 0.0),
                                   ),
-                                  hintText: getTranslated(context, "message")!,
+                                  hintText: drawerContactUsPage.body.form.yourmessage.data,
                                   hintStyle: TextStyle(
-                                      fontFamily: getTranslated(
-                                          context, "fontFamilyBody")!,
-                                      color: Colors.white38),
+                                      fontFamily: lng?.header3.textFamily,
+                                      color: Color(int.parse(drawerContactUsPage.body.form.yourmessage.color))),
+                                  // hintText: getTranslated(context, "message")!,
+                                  // hintStyle: TextStyle(
+                                  //     fontFamily: getTranslated(
+                                  //         context, "fontFamilyBody")!,
+                                  //     color: Colors.white38),
 
                                 ),
                                 minLines: 4,
@@ -487,11 +502,9 @@ class _ContactUsState extends State<ContactUs> {
                                   child: ElevatedButton(
                                       onPressed: null,
                                       style: ButtonStyle(
-                                        backgroundColor: MaterialStateProperty
-                                            .all<Color>(Colors.amber),
+                                        backgroundColor: MaterialStateProperty.all<Color>(Color(int.parse(drawerContactUsPage.body.submitButton.backGroundColor))),
                                         foregroundColor:
-                                        MaterialStateProperty.all<Color>(
-                                            Colors.black),
+                                        MaterialStateProperty.all<Color>(Colors.black),
                                         shape: MaterialStateProperty.all(
                                             RoundedRectangleBorder(
                                                 borderRadius: BorderRadius
@@ -504,13 +517,22 @@ class _ContactUsState extends State<ContactUs> {
 
 
                                       ),
-                                      child: Text(
-                                        getTranslated(context, "submit")!,
+                                      child:
+                                      Text(
+
+                                        drawerContactUsPage.body.submitButton.data,
                                         style: TextStyle(
-                                            fontFamily: getTranslated(
-                                                context, "fontFamilyBody")!,
-                                            color: Colors.white,
-                                            fontSize: 20),)
+                                            fontFamily: lng?.header5.textFamily,
+                                            color: Color(int.parse(drawerContactUsPage.body.submitButton.color)),
+                                            fontSize: lng?.header5.size.toDouble()
+                                        ),)
+    // Text(
+    //                                     getTranslated(context, "submit")!,
+    //                                     style: TextStyle(
+    //                                         fontFamily: getTranslated(
+    //                                             context, "fontFamilyBody")!,
+    //                                         color: Colors.white,
+    //                                         fontSize: 20),)
 
                                   )
                               ),
