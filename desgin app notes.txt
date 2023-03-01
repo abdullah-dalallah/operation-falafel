@@ -79,6 +79,17 @@ Cart Page
 - tip the driver title should be capital.
 - sub total title should be capital.
 
+My reward Page:
+- Appbar drawer icon & Size is missing.
+- Appbar Title is missing."Operation:Falafel"
+- Appbar Title color is missing.
+- button background color should be black ="0xFF000000".
+
+Loyalty-HowItWorkPage Skiped for later
+
+
+
+
 
 
  

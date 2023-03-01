@@ -1191,12 +1191,12 @@
     "LoyaltyPage": {
       "AppBar": {
         "BackIcon": {
-          "ImageIcon": "imagePath",
-          "Size": ""
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+          "Size": "35"
         },
         "Title": {
-          "Data": "text data",
-          "Color": "text color"
+          "Data": "Operation:Falafel",
+          "Color": "0xffffffff"
         }
       },
       "Body": {
@@ -1205,7 +1205,7 @@
           "Color": "0xffdfaa35"
         },
         "CreditBalance": {
-          "BackGroundColor": "you have * valid until",
+          "BackGroundColor": "0xFF000000",
           "CreditTitle": {
             "Data": "you have * valid until",
             "Color": "0xffffffff"
@@ -1219,32 +1219,32 @@
           "HowItWorks": {
             "Data": "How It Works",
             "Color": "0xffffffff",
-            "BackGroundColor": "0x00000000"
+            "BackGroundColor": "0xFF000000"
           },
           "MyRewards": {
             "Data": "My Rewards",
             "Color": "0xffffffff",
-            "BackGroundColor": "0x00000000"
+            "BackGroundColor": "0xFF000000"
           },
           "ReferFriend": {
             "Data": "Refer a Friend",
             "Color": "0xffffffff",
-            "BackGroundColor": "0x00000000"
+            "BackGroundColor": "0xFF000000"
           },
           "TransferCredits": {
             "Data": "Transfer Credits",
             "Color": "0xffffffff",
-            "BackGroundColor": "0x00000000"
+            "BackGroundColor": "0xFF000000"
           },
           "CreditCalculator": {
             "Data": "Credit Calculator",
             "Color": "0xffffffff",
-            "BackGroundColor": "0x00000000"
+            "BackGroundColor": "0xFF000000"
           },
           "History": {
             "Data": "History",
             "Color": "0xffffffff",
-            "BackGroundColor": "0x00000000"
+            "BackGroundColor": "0xFF000000"
           }
         }
       }
@@ -1252,12 +1252,12 @@
     "Loyalty-HowItWorkPage": {
       "AppBar": {
         "BackIcon": {
-          "ImageIcon": "imagePath",
-          "Size": ""
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+          "Size": "35"
         },
         "Title": {
-          "Data": "text data",
-          "Color": "text color"
+          "Data": "Operation:Falafel",
+          "Color": "0xffffffff"
         }
       },
       "Body": {
@@ -1290,12 +1290,12 @@
     "Loyalty-MyRewardsPage": {
       "AppBar": {
         "BackIcon": {
-          "ImageIcon": "imagePath",
-          "Size": ""
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+          "Size": "35"
         },
         "Title": {
-          "Data": "text data",
-          "Color": "text color"
+          "Data": "Operation:Falafel",
+          "Color": "0xffffffff"
         }
       },
       "Body": {
@@ -1317,8 +1317,8 @@
         "MyCode": {
           "visibility": "true",
           "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/my_rewards_gencode.png",
-          "MobileSize": "28",
-          "TabletSize": "28",
+          "MobileSize": "45",
+          "TabletSize": "45",
           "Data": "My Code",
           "Color": "0xffffffff"
         }
