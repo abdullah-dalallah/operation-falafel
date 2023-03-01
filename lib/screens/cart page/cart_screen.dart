@@ -591,7 +591,8 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                           padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
                                                           textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
                                                       child: Text(
-                                                        getTranslated(context, "add")!,
+                                                          cartPage.body.promoCode.addButton.data,
+                                                        // getTranslated(context, "add")!,
                                                         style:
                                                         TextStyle(
                                                             color: Color(int.parse(cartPage.body.promoCode.addButton.color)),
@@ -950,11 +951,22 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                             const SizedBox(height: 15,),
                                             Align(alignment: Alignment.centerLeft, child: Padding(
                                               padding: EdgeInsets.only(left: 18.0, right: 18),
-                                              child: Text(
-                                                getTranslated(context, "payment")!,
-                                                style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",
-                                                    color: Colors.amber,
-                                                    fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
+                                              child:
+
+                                              Text(
+                                                cartPage.body.selectPayment.title.data,
+                                                style:  TextStyle(
+                                                    color: Color(int.parse(cartPage.body.selectPayment.title.color)),
+                                                    fontWeight: FontWeight.w300,
+                                                    fontFamily: lng?.titleHeader1.textFamily,
+                                                    fontSize: lng?.titleHeader1.size.toDouble()
+                                                  // fontFamily: getTranslated(context, "cartpageHeader2")
+                                                ),),
+                                              // Text(
+                                              //   getTranslated(context, "payment")!,
+                                              //   style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",
+                                              //       color: Colors.amber,
+                                              //       fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
                                             )),
                                             Padding(
                                               padding: const EdgeInsets.only(

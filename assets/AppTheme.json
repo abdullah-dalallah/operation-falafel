@@ -33,7 +33,7 @@
       },
       "Header5": {
         "Size": 20,
-        "TextFamily": "oldpress"
+        "TextFamily": "Raleway-Regular"
       }
     },
     "EN": {
@@ -1631,12 +1631,12 @@
     "Drawer-NotificationPage": {
       "AppBar": {
         "BackIcon": {
-          "ImageIcon": "imagePath",
-          "Size": ""
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+          "Size": "35"
         },
         "Title": {
-          "Data": "text data",
-          "Color": "text color"
+          "Data": "Operation:Falafel",
+          "Color": "0xffffffff"
         }
       },
       "Body": {
@@ -1647,7 +1647,7 @@
         "NotificationList": {
           "Title": {
             "Data": "api",
-            "Color": "0xffffffff"
+            "Color": "0xffdfaa35"
           },
           "SubTitle": {
             "Data": "api",
@@ -1659,12 +1659,12 @@
     "Drawer-PartnersPage": {
       "AppBar": {
         "BackIcon": {
-          "ImageIcon": "imagePath",
-          "Size": ""
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+          "Size": "35"
         },
         "Title": {
-          "Data": "text data",
-          "Color": "text color"
+          "Data": "Operation:Falafel",
+          "Color": "0xffffffff"
         }
       },
       "Body": {
@@ -1688,12 +1688,12 @@
     "Drawer-FeedBackPage": {
       "AppBar": {
         "BackIcon": {
-          "ImageIcon": "imagePath",
-          "Size": ""
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+          "Size": "35"
         },
         "Title": {
-          "Data": "text data",
-          "Color": "text color"
+          "Data": "Operation:Falafel",
+          "Color": "0xffffffff"
         }
       },
       "Body": {
@@ -1714,19 +1714,19 @@
         "SubmitButton": {
           "Data": "Submit",
           "Color": "0xffffffff",
-          "BackGroundColor": "0xff648316"
+          "BackGroundColor": "0xffdfaa35"
         }
       }
     },
     "Drawer-ContactUsPage": {
       "AppBar": {
         "BackIcon": {
-          "ImageIcon": "imagePath",
-          "Size": ""
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+          "Size": "35"
         },
         "Title": {
-          "Data": "text data",
-          "Color": "text color"
+          "Data": "Operation:Falafel",
+          "Color": "0xffffffff"
         }
       },
       "Body": {

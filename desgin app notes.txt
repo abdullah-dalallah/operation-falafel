@@ -1,5 +1,8 @@
 Design Theme API Notes
 
+font Size:
+- header5 text family should be Raleway-Regular.
+
 Home Page:
 - Appbar Search Icon should be image with heieht = 30 & width =30 or only magnifier icon png with filled color & size =28
 - location marker icon should be image ith hieght = 20 & width = 20.
@@ -12,7 +15,36 @@ Home Page:
 Drawer Page:
 - Drawer icon is missing.
 - Drawer icon Sized is missing should be 35.
-- Drawer options name should be written in capital
+- Drawer options name should be written in capital.
+
+Drawer Notification Page:
+- Back icon in appbar is missing.
+- Back icon size is missing.
+- appbar title data & color is missing.
+- Page title should be written in capital.
+- list title text color is't amber = "0xffffbf00".
+- list title sub text color should be white with low opacity.
+
+Drawer partner Page:
+- Back icon in appbar is missing.
+- Back icon size is missing.
+- appbar title data & color is missing.
+- Page title should be written in capital.
+
+Drawer Fedback Page:
+- Back icon in appbar is missing.
+- Back icon size is missing.
+- appbar title data & color is missing.
+- PromotTitle should be written in capital.
+- Submit button background color should be amber = "0xffffbf00".
+
+Drawer Contact us page:
+- Back icon in appbar is missing.
+- Back icon size is missing.
+- appbar title data & color is missing.
+- Page title should be written in capital.
+
+
 
 Tarck Order Page:
 - Appbar Title is missing."Operation:Falafel"
@@ -42,5 +74,7 @@ Cart Page
 - promoCode add button the background color should be amber = "0xffffbf00".
 - tip the driver title should be capital.
 - sub total title should be capital.
+
+
 
  
