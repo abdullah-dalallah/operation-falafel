@@ -4,8 +4,8 @@ font Size:
 - header5 text family should be Raleway-Regular.
 
 Home Page:
-- Appbar Search Icon should be image with heieht = 30 & width =30 or only magnifier icon png with filled color & size =28
-- location marker icon should be image ith hieght = 20 & width = 20.
+- Appbar Search Icon should be image with height = 30 & width =30 or only magnifier icon png with filled color & size =28
+- location marker icon should be image with height = 20 & width = 20.
 - Order Now Button Color is't amber = "0xffffbf00".
 - Order Now Button should be written in capital.
 - Dashboard buttons icons should be images with height = 30 & width = 30.
@@ -146,5 +146,11 @@ OrderDetailsPage:
 - add title & title color for Reorder button.
 
 
-
+Edit Address:
+- Appbar Title is missing."Operation:Falafel"
+- Appbar Title color is missing.
+- Page title Color is missing.
+- villa & area hint is missing.
+- Select address type icon is missing.
+- image icon should be image with height = 15 & width =15.
  

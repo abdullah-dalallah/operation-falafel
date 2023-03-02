@@ -925,8 +925,8 @@
           "TabletSize": "28"
         },
         "Title": {
-          "Data": "",
-          "Color": ""
+          "Data": "Operation:Falafel",
+          "Color": "0xffffffff"
         }
       },
       "Body": {
@@ -951,13 +951,13 @@
             "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/MyProfile_edit.png",
             "MobileSize": "28",
             "TabletSize": "28",
-            "BackGroundColor": "0x00000000"
+            "BackGroundColor": "0xff000000"
           },
           "DeleteButton": {
             "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Payment_Delete.png",
-            "MobileSize": "28",
-            "TabletSize": "28",
-            "BackGroundColor": "0x00000000"
+            "MobileSize": "20",
+            "TabletSize": "20",
+            "BackGroundColor": "0xff000000"
           }
         },
         "AddNewAdressButton": {
@@ -975,14 +975,14 @@
           "TabletSize": "28"
         },
         "Title": {
-          "Data": "text data",
-          "Color": "text color"
+          "Data": "Operation:Falafel",
+          "Color": "0xffffffff"
         }
       },
       "Body": {
         "PageTitle": {
           "Data": "Edit Address",
-          "Color": "text color"
+          "Color": "0xffdfaa35"
         },
         "PageImage": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/of_logo.png",
         "Form": {
@@ -1012,9 +1012,9 @@
               "Color": "0xffffffff"
             },
             "SelectedIcon": {
-              "ImageIcon": "0xff454545",
-              "height": "5",
-              "width": "5"
+              "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/falafel.png",
+              "height": "15",
+              "width": "15"
             }
           },
           "PrimaryAddress": {
@@ -1043,8 +1043,8 @@
           "TabletSize": "28"
         },
         "Title": {
-          "Data": "text data",
-          "Color": "text color"
+          "Data": "Operation:Falafel",
+          "Color": "0xffffffff"
         }
       },
       "Body": {
@@ -1063,11 +1063,11 @@
             "Color": "0xff454545"
           },
           "Villa": {
-            "Data": "text data",
+            "Data": "Villa",
             "Color": "0xff454545"
           },
           "Area": {
-            "Data": "text data",
+            "Data": "Area",
             "Color": "0xff454545"
           },
           "AddressTypeDropDown": {
@@ -1111,8 +1111,8 @@
           "TabletSize": "28"
         },
         "Title": {
-          "Data": "text data",
-          "Color": "text color"
+          "Data": "Operation:Falafel",
+          "Color": "0xffffffff"
         }
       },
       "Body": {
@@ -1156,12 +1156,12 @@
     "HelpPage": {
       "AppBar": {
         "BackIcon": {
-          "ImageIcon": "imagePath",
-          "Size": ""
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/back_new.png",
+          "Size": "28"
         },
         "Title": {
-          "Data": "text data",
-          "Color": "text color"
+          "Data": "Operation:Falafel",
+          "Color": "0xffffffff"
         }
       },
       "Body": {

@@ -7,12 +7,12 @@ import 'dart:convert';
 import 'Appbar/help_appBar.dart';
 import 'Body/help_body.dart';
 
-HelpPage helpPageFromJson(String str) => HelpPage.fromJson(json.decode(str));
+DesignHelpPage helpPageFromJson(String str) => DesignHelpPage.fromJson(json.decode(str));
 
-String helpPageToJson(HelpPage data) => json.encode(data.toJson());
+String helpPageToJson(DesignHelpPage data) => json.encode(data.toJson());
 
-class HelpPage {
-  HelpPage({
+class DesignHelpPage {
+  DesignHelpPage({
     required this.appBar,
     required this.body,
   });
@@ -20,7 +20,7 @@ class HelpPage {
   HelpAppBar appBar;
   HelpBody body;
 
-  factory HelpPage.fromJson(Map<String, dynamic> json) => HelpPage(
+  factory DesignHelpPage.fromJson(Map<String, dynamic> json) => DesignHelpPage(
     appBar: HelpAppBar.fromJson(json["AppBar"]),
     body: HelpBody.fromJson(json["Body"]),
   );

@@ -342,6 +342,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                     ),
 
                     /// - Order totals
+
                     /// - sub total
                     Padding(
                       padding: const EdgeInsets.only(

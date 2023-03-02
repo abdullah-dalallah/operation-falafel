@@ -99,7 +99,7 @@ class DesignPerPage {
   EditAddressPage editAddressPage;
   AddNewAddressPage addNewAddressPage;
   SavedCardsPage savedCardsPage;
-  HelpPage helpPage;
+  DesignHelpPage helpPage;
   LoyaltyPage loyaltyPage;
   LoyaltyHowItWorkPage loyaltyHowItWorkPage;
   LoyaltyMyRewardsPage loyaltyMyRewardsPage;
@@ -135,7 +135,7 @@ class DesignPerPage {
     editAddressPage: EditAddressPage.fromJson(json["EditAddressPage"]),
     addNewAddressPage: AddNewAddressPage.fromJson(json["AddNewAddressPage"]),
     savedCardsPage: SavedCardsPage.fromJson(json["SavedCardsPage"]),
-    helpPage: HelpPage.fromJson(json["HelpPage"]),
+    helpPage: DesignHelpPage.fromJson(json["HelpPage"]),
     loyaltyPage: LoyaltyPage.fromJson(json["LoyaltyPage"]),
     loyaltyHowItWorkPage: LoyaltyHowItWorkPage.fromJson(json["Loyalty-HowItWorkPage"]),
     loyaltyMyRewardsPage: LoyaltyMyRewardsPage.fromJson(json["Loyalty-MyRewardsPage"]),
