@@ -54,7 +54,6 @@ class _ContactUsState extends State<ContactUs> {
             fit: BoxFit.cover,
           ),
           Scaffold(
-
             backgroundColor: Colors.transparent,
             appBar: AppBar(
               leading: IconButton(

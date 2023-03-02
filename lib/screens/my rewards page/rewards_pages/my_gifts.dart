@@ -23,10 +23,7 @@ class _MyGiftsState extends State<MyGifts> {
 
     return Consumer<ThemeProvider>(builder: (context, appTheme, child)
     {
-      Language? lng = (Localizations
-          .localeOf(context)
-          .languageCode == 'ar') ? appTheme.appTheme.fontSizes?.ar : appTheme
-          .appTheme.fontSizes?.en;
+      Language? lng = (Localizations.localeOf(context).languageCode == 'ar') ? appTheme.appTheme.fontSizes?.ar : appTheme.appTheme.fontSizes?.en;
       LoyaltyMyRewardsPage? loyaltyMyRewardsPage = appTheme.appTheme.designPerPage?.loyaltyMyRewardsPage;
       bool loadingDesign = loyaltyMyRewardsPage != null;
 
@@ -257,8 +254,6 @@ class _MyGiftsState extends State<MyGifts> {
                               ),
 
                               // Image.network("${loyaltyMyRewardsPage.body.myCode.imageIcon}", height: 60, width: 60,),
-
-
                               // Image.asset("assets/images/my_rewards_gencode.png", height: 60, width: 60,),
                               Text(
                                 loyaltyMyRewardsPage.body.myCode.data ,
@@ -268,6 +263,7 @@ class _MyGiftsState extends State<MyGifts> {
                                   fontWeight: FontWeight.w300,
                                   fontFamily: lng?.header5.textFamily,),
                                 textAlign: TextAlign.center,)
+
                               // Text(
                               //   getTranslated(context, "dashBoardTitle-myCode")!,
                               //   style: TextStyle(color: Colors.white,

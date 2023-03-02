@@ -88,6 +88,47 @@ My reward Page:
 Loyalty-HowItWorkPage Skiped for later
 
 
+LoyaltyMyGiftsPage:
+- Appbar drawer icon & Size is missing.
+- Appbar Title is missing."Operation:Falafel"
+- Appbar Title color is missing.
+- list subtitle should be white with lower opacity.
+
+LoyaltyGiftDetailsPage:
+- Appbar drawer icon & Size is missing.
+- Appbar Title is missing."Operation:Falafel"
+- Appbar Title color is missing.
+- PageImage is missing.
+- Page title is missing.
+- Voucher Title is missing.
+- RedeemButton title is missing.
+- RedeemButton button background color should be amber = "0xffffbf00".
+- SendAsGiftButton title is missing.
+- voucher subtitle should be white with lower opacity.
+
+Loyalty-SendAsGiftPage
+- Appbar drawer icon & Size is missing.
+- Appbar Title is missing."Operation:Falafel"
+- Appbar Title color is missing.
+- Page title color should be white.
+- form hint text color should be white with upper opacity.
+
+Loyalty-BuyGiftPage:
+- Appbar drawer icon & Size is missing.
+- Appbar Title is missing."Operation:Falafel"
+- Appbar Title color is missing.
+- Abdullah - add falafel icon to checkbox.
+
+Loyalty-TransferCreditPage:
+- Appbar drawer icon & Size is missing.
+- Appbar Title is missing."Operation:Falafel"
+- Appbar Title color is missing.
+
+Loyalty-HistoryPage:
+- Appbar drawer icon & Size is missing.
+- Appbar Title is missing."Operation:Falafel"
+- Appbar Title color is missing.
+- subtitle text color should be amber = "0xffffbf00".
 
 
 

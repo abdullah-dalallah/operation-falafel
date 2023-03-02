@@ -1327,12 +1327,12 @@
     "Loyalty-MyGiftsPage": {
       "AppBar": {
         "BackIcon": {
-          "ImageIcon": "imagePath",
-          "Size": ""
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+          "Size": "35"
         },
         "Title": {
-          "Data": "text data",
-          "Color": "text color"
+          "Data": "Operation:Falafel",
+          "Color": "0xffffffff"
         }
       },
       "Body": {
@@ -1360,19 +1360,19 @@
     "Loyalty-GiftDetailsPage": {
       "AppBar": {
         "BackIcon": {
-          "ImageIcon": "imagePath",
-          "Size": ""
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+          "Size": "35"
         },
         "Title": {
-          "Data": "text data",
-          "Color": "text color"
+          "Data": "Operation:Falafel",
+          "Color": "0xffffffff"
         }
       },
       "Body": {
-        "PageImage": "imagePath",
+        "PageImage": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/gift.png",
         "PageTitle": {
-          "Data": "text data",
-          "Color": "text color"
+          "Data": "Welcome to O:F Family",
+          "Color": "0xffdfaa35"
         },
         "GiftTitle": {
           "Data": "api",
@@ -1380,7 +1380,7 @@
         },
         "Voucher": {
           "Title": {
-            "Data": "api",
+            "Data": "Voucher",
             "Color": "0xffffffff"
           },
           "SubTitle": {
@@ -1389,12 +1389,12 @@
           }
         },
         "RedeemButton": {
-          "Data": "api",
+          "Data": "REDEEM",
           "Color": "0xffffffff",
-          "BackGroundColor": "0xff648316"
+          "BackGroundColor": "0xffdfaa35"
         },
         "SendAsGiftButton": {
-          "Data": "api",
+          "Data": "SEND AS A GIFT",
           "Color": "0xffffffff"
         }
       }
@@ -1402,12 +1402,12 @@
     "Loyalty-SendAsGiftPage": {
       "AppBar": {
         "BackIcon": {
-          "ImageIcon": "imagePath",
-          "Size": ""
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+          "Size": "35"
         },
         "Title": {
-          "Data": "text data",
-          "Color": "text color"
+          "Data": "Operation:Falafel",
+          "Color": "0xffffffff"
         }
       },
       "Body": {
@@ -1443,12 +1443,12 @@
     "Loyalty-BuyGiftPage": {
       "AppBar": {
         "BackIcon": {
-          "ImageIcon": "imagePath",
-          "Size": ""
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+          "Size": "35"
         },
         "Title": {
-          "Data": "text data",
-          "Color": "text color"
+          "Data": "Operation:Falafel",
+          "Color": "0xffffffff"
         }
       },
       "Body": {
@@ -1465,7 +1465,7 @@
       },
       "SheetCloseIcon": {
         "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/close-icon.png",
-        "Size": ""
+        "Size": "30"
       },
       "SelectPaymentTitle": {
         "Data": "Select Payment Method",
@@ -1474,7 +1474,7 @@
       "CheckBox": {
         "Title": {
           "Data": "what this",
-          "Color": "text color"
+          "Color": "0xffffffff"
         },
         "SelectedImage": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/falafel.png"
       }
@@ -1482,12 +1482,12 @@
     "Loyalty-TransferCreditPage": {
       "AppBar": {
         "BackIcon": {
-          "ImageIcon": "imagePath",
-          "Size": ""
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+          "Size": "35"
         },
         "Title": {
-          "Data": "text data",
-          "Color": "text color"
+          "Data": "Operation:Falafel",
+          "Color": "0xffffffff"
         }
       },
       "Body": {
@@ -1526,12 +1526,12 @@
     "Loyalty-CreditCalculationPage": {
       "AppBar": {
         "BackIcon": {
-          "ImageIcon": "imagePath",
-          "Size": ""
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+          "Size": "35"
         },
         "Title": {
-          "Data": "text data",
-          "Color": "text color"
+          "Data": "Operation:Falafel",
+          "Color": "0xffffffff"
         }
       },
       "Body": {
@@ -1554,12 +1554,12 @@
     "Loyalty-HistoryPage": {
       "AppBar": {
         "BackIcon": {
-          "ImageIcon": "imagePath",
-          "Size": ""
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+          "Size": "35"
         },
         "Title": {
-          "Data": "text data",
-          "Color": "text color"
+          "Data": "Operation:Falafel",
+          "Color": "0xffffffff"
         }
       },
       "Body": {
@@ -1570,11 +1570,11 @@
         "HistoryList": {
           "Title": {
             "Data": "api",
-            "Color": "api"
+            "Color": "0xff2e7d32"
           },
           "SubTitle": {
             "Data": "api",
-            "Color": "0xffffffff"
+            "Color": "0xffdfaa35"
           },
           "DateTitle": {
             "Data": "api",
