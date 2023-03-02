@@ -131,6 +131,20 @@ Loyalty-HistoryPage:
 - subtitle text color should be amber = "0xffffbf00".
 
 
+OrderHistoryPage:
+- change the icon of view receipt.
+- change the icon of reorder.
+- add title & title color for Reorder & view receipt button.
+- We should change Falafel Image icon to Image with height = 40 & width =40.
+
+
+OrderDetailsPage:
+- Appbar drawer icon & Size is missing.
+- Appbar Title is missing."Operation:Falafel"
+- Appbar Title color is missing.
+- Page Title color should be amber = "0xffffbf00".
+- add title & title color for Reorder button.
+
 
 
  

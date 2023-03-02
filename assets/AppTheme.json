@@ -787,8 +787,8 @@
           "TabletSize": "28"
         },
         "Title": {
-          "Data": "text data",
-          "Color": "text color"
+          "Data": "Operation:Falafel",
+          "Color": "0xffffffff"
         }
       },
       "Body": {
@@ -808,11 +808,11 @@
           "ViewReceipt": {
             "Icon": {
               "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/MyProfile_Orderhistory_ViewReceipt.png",
-              "MobileSize": "28",
-              "TabletSize": "28"
+              "MobileSize": "14",
+              "TabletSize": "14"
             },
-            "Data": "Order Details",
-            "Color": "0xffdfaa35",
+            "Data": "View Receipt",
+            "Color": "0xffffffff",
             "BackGroundColor": "0xff000000"
           },
           "Reorder": {
@@ -821,8 +821,8 @@
               "MobileSize": "28",
               "TabletSize": "28"
             },
-            "Data": "no need",
-            "Color": "no need",
+            "Data": "Reorder",
+            "Color": "0xffffffff",
             "BackGroundColor": "0xff000000"
           },
           "OrderIcon": {
@@ -836,18 +836,18 @@
     "OrderDetailsPage": {
       "AppBar": {
         "BackIcon": {
-          "ImageIcon": "imagePath",
-          "Size": ""
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/back_new.png",
+          "Size": "35"
         },
         "Title": {
-          "Data": "text data",
-          "Color": "text color"
+          "Data": "Operation:Falafel",
+          "Color": "0xffffffff"
         }
       },
       "Body": {
         "PageTitle": {
           "Data": "Order Detalis",
-          "Color": "0xff454545"
+          "Color": "0xffdfaa35"
         },
         "OrderTile": {
           "OrderTitle": {
@@ -864,9 +864,9 @@
               "MobileSize": "28",
               "TabletSize": "28"
             },
-            "Data": "no need",
-            "Color": "no need",
-            "BackGroundColor": "0x00000000"
+            "Data": "Reorder",
+            "Color": "0xffffffff",
+            "BackGroundColor": "0xff000000"
           }
         },
         "OrderID": {
