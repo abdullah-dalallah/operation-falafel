@@ -153,4 +153,15 @@ Edit Address:
 - villa & area hint is missing.
 - Select address type icon is missing.
 - image icon should be image with height = 15 & width =15.
- 
+
+Forget password:
+- page title data & color is missing .
+
+Login page:
+- page title data & color is missing .
+
+Profile Page: 
+- Appbar drawer icon & Size is missing.
+- Appbar Title is missing."Operation:Falafel"
+- Appbar Title color is missing.
+

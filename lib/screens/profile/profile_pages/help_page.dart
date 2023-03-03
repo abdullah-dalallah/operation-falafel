@@ -78,12 +78,20 @@ class _HelpPageState extends State<HelpPage> {
             body: Center(
               child: Column(
                 children: [
-                  Text(getTranslated(context, "gotAnyQuestions")!,
-                    style: TextStyle(fontFamily: "${getTranslated(
-                        context, "fontFamilyButtons")!}",
-                        color: Colors.amber,
-                        fontSize: double.parse(
-                            getTranslated(context, "fontFamilyTitleُSize")!)),),
+                  Text(
+                    helpPage.body.pageTitle.data,
+                    style: TextStyle(
+                        fontFamily: lng?.titleHeader2.textFamily,
+                        color: Color(int.parse(helpPage.body.pageTitle.color)),
+                        fontSize:lng?.titleHeader2.size.toDouble()
+                    ),),
+                  // Text(
+                  //   getTranslated(context, "gotAnyQuestions")!,
+                  //   style: TextStyle(
+                  //       fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",
+                  //       color: Colors.amber,
+                  //       fontSize: double.parse(getTranslated(context, "fontFamilyTitleُSize")!)
+                  //   ),),
                   const SizedBox(height: 100,),
                   Expanded(
                     child: ListView(
@@ -92,7 +100,8 @@ class _HelpPageState extends State<HelpPage> {
                         /// - Title
 
 
-                        Image.asset("assets/images/help_icon.png",),
+                        Image.network(helpPage.body.pageImage),
+                        // Image.asset("assets/images/help_icon.png",),
 
 
                       ],
@@ -112,19 +121,25 @@ class _HelpPageState extends State<HelpPage> {
                       children: [
                         Column(
                           children: [
-                            Image.asset(
-                              "assets/images/page8_phone.png", height: 29,
-                              color: Colors.amber,),
+                            Image.network(helpPage.body.callUsWidget.imageIcon, height: double.parse(helpPage.body.callUsWidget.mobileSize), color: Colors.amber,),
+                            // Image.asset("assets/images/page8_phone.png", height: 29, color: Colors.amber,),
+
                             const SizedBox(width: 8,),
                             Padding(
                               padding: const EdgeInsets.only(top: 10.0),
                               child: Column(
                                 children: [
-                                  Text(getTranslated(context, "callUs")!,
-                                    style: TextStyle(fontSize: 13,
-                                      fontFamily: "${getTranslated(
-                                          context, "fontFamilyBody")!}",
-                                      color: Colors.white,),),
+                                  Text(
+                                    helpPage.body.callUsWidget.data,
+                                    style: TextStyle(
+                                      fontSize: lng?.header2.size.toDouble(),
+                                      fontFamily: lng?.header2.textFamily,
+                                      color: Color(int.parse(helpPage.body.callUsWidget.color)),),),
+                                  // Text(getTranslated(context, "callUs")!,
+                                  //   style: TextStyle(fontSize: 13,
+                                  //     fontFamily: "${getTranslated(
+                                  //         context, "fontFamilyBody")!}",
+                                  //     color: Colors.white,),),
                                   SizedBox(width: 60,
                                       child: Divider(
                                         color: Colors.white, thickness: 1,))
@@ -135,21 +150,22 @@ class _HelpPageState extends State<HelpPage> {
                         ),
                         Column(
                           children: [
-                            Image.asset(
-                              "assets/images/page8_mail.png", height: 25,
-                              color: Colors.amber,),
+                            Image.network(helpPage.body.emailUsWidget.imageIcon, height: double.parse(helpPage.body.callUsWidget.mobileSize), color: Colors.amber,),
+
+                            // Image.asset("assets/images/page8_mail.png", height: 25, color: Colors.amber,),
                             const SizedBox(width: 8,),
                             Padding(
                               padding: const EdgeInsets.only(top: 10.0),
                               child: Column(
                                 children: [
-                                  Text(getTranslated(context, "emailUs")!,
-                                    style: TextStyle(fontSize: 13,
-                                      fontFamily: "${getTranslated(
-                                          context, "fontFamilyBody")!}",
-                                      color: Colors.white,),),
-                                  SizedBox(width: double.parse(getTranslated(
-                                      context, "emailUsDividerLength")!),
+                                  Text(
+                                    helpPage.body.emailUsWidget.data,
+                                    style: TextStyle(
+                                      fontSize: lng?.header2.size.toDouble(),
+                                      fontFamily: lng?.header2.textFamily,
+                                      color: Color(int.parse(helpPage.body.emailUsWidget.color)),),),
+
+                                  SizedBox(width: double.parse(getTranslated(context, "emailUsDividerLength")!),
                                       child: Divider(
                                         color: Colors.white, thickness: 1,))
                                 ],

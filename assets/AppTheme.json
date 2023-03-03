@@ -537,12 +537,12 @@
     "ProfilePage": {
       "AppBar": {
         "DrawerIcon": {
-          "ImageIcon": "imagePath",
-          "Size": ""
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+          "Size": "28"
         },
         "Title": {
-          "Data": "text data",
-          "Color": "text color"
+          "Data": "Operation:Falafel",
+          "Color": "0xffffffff"
         }
       },
       "Body": {
@@ -575,7 +575,7 @@
               "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Registration_check.png",
               "MobileSize": "28",
               "TabletSize": "28",
-              "BackGroundColor": "0xff739619"
+              "BackGroundColor": "0xffdfaa35"
             }
           },
           "Email": {
@@ -599,7 +599,7 @@
                 "Color": "0xffffffff"
               },
               "SelectedIcon": {
-                "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/down.png",
+                "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/falafel.png",
                 "height": "10",
                 "width": "10"
               }
@@ -623,17 +623,17 @@
           "OrderHistory": {
             "Data": "Order History",
             "Color": "0xffffffff",
-            "BackGroundColor": "0x00000000"
+            "BackGroundColor": "0xff000000"
           },
           "SavedAddress": {
             "Data": "Saved Address",
             "Color": "0xffffffff",
-            "BackGroundColor": "0x00000000"
+            "BackGroundColor": "0xff000000"
           },
           "SavedCards": {
             "Data": "Saved Cards",
             "Color": "0xffffffff",
-            "BackGroundColor": "0x00000000"
+            "BackGroundColor": "0xff000000"
           },
           "Loyalty": {
             "Data": "Loyalty",
@@ -643,12 +643,12 @@
           "Help": {
             "Data": "Help",
             "Color": "0xffffffff",
-            "BackGroundColor": "0x00000000"
+            "BackGroundColor": "0xff000000"
           },
           "SignOut": {
             "Data": "Sign Out",
             "Color": "0xffffffff",
-            "BackGroundColor": "0x00000000"
+            "BackGroundColor": "0xff000000"
           }
         }
       }
@@ -680,8 +680,8 @@
     },
     "RegisterPage": {
       "PageTile": {
-        "Data": "text data",
-        "Color": "text color"
+        "Data": "REGISTER",
+        "Color": "0xffffbf00"
       },
       "Form": {
         "Name": {
@@ -723,7 +723,7 @@
               "Color": "text color"
             },
             "SelectedIcon": {
-              "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/down.png",
+              "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/falafel.png",
               "height": "10",
               "width": "10"
             }
@@ -749,33 +749,33 @@
     },
     "LoginPage": {
       "PageTile": {
-        "Data": "later",
-        "Color": "text color"
+        "Data": "WELCOME BACK",
+        "Color": "0xffffbf00"
       },
       "Form": {
         "Email": {
-          "Data": "text data",
-          "Color": "text color"
+          "Data": "Email Address",
+          "Color": "0xffffbf00"
         },
         "Password": {
-          "Data": "text data",
-          "Color": "text color"
+          "Data": "Password",
+          "Color": "0xffffbf00"
         },
         "ForgetPassword": {
-          "Data": "text data",
-          "Color": "text color"
+          "Data": "Forget Password",
+          "Color": "0xffffbf00"
         }
       }
     },
     "ForgetPasswordPage": {
       "PageTile": {
-        "Data": "text data",
-        "Color": "text color"
+        "Data": "RESET YOUR\nPASSWORD",
+        "Color": "0xffffbf00"
       },
       "Form": {
         "PhoneNumber": {
-          "Data": "text data",
-          "Color": "text color"
+          "Data": "Mobile No",
+          "Color": "0xffffbf00"
         }
       }
     },
@@ -1191,7 +1191,7 @@
     "LoyaltyPage": {
       "AppBar": {
         "BackIcon": {
-          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/back_new.png",
           "Size": "35"
         },
         "Title": {
@@ -1252,7 +1252,7 @@
     "Loyalty-HowItWorkPage": {
       "AppBar": {
         "BackIcon": {
-          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/back_new.png",
           "Size": "35"
         },
         "Title": {
@@ -1290,7 +1290,7 @@
     "Loyalty-MyRewardsPage": {
       "AppBar": {
         "BackIcon": {
-          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/back_new.png",
           "Size": "35"
         },
         "Title": {
@@ -1327,7 +1327,7 @@
     "Loyalty-MyGiftsPage": {
       "AppBar": {
         "BackIcon": {
-          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/back_new.png",
           "Size": "35"
         },
         "Title": {
@@ -1360,7 +1360,7 @@
     "Loyalty-GiftDetailsPage": {
       "AppBar": {
         "BackIcon": {
-          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/back_new.png",
           "Size": "35"
         },
         "Title": {
@@ -1402,7 +1402,7 @@
     "Loyalty-SendAsGiftPage": {
       "AppBar": {
         "BackIcon": {
-          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/back_new.png",
           "Size": "35"
         },
         "Title": {
@@ -1443,7 +1443,7 @@
     "Loyalty-BuyGiftPage": {
       "AppBar": {
         "BackIcon": {
-          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/back_new.png",
           "Size": "35"
         },
         "Title": {
@@ -1482,7 +1482,7 @@
     "Loyalty-TransferCreditPage": {
       "AppBar": {
         "BackIcon": {
-          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/back_new.png",
           "Size": "35"
         },
         "Title": {
@@ -1526,7 +1526,7 @@
     "Loyalty-CreditCalculationPage": {
       "AppBar": {
         "BackIcon": {
-          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/back_new.png",
           "Size": "35"
         },
         "Title": {
@@ -1554,7 +1554,7 @@
     "Loyalty-HistoryPage": {
       "AppBar": {
         "BackIcon": {
-          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/back_new.png",
           "Size": "35"
         },
         "Title": {

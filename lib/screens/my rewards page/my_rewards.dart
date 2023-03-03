@@ -115,7 +115,7 @@ class _MyRewardsState extends State<MyRewards> {
               leading:
               IconButton(
                 onPressed: () {
-                  // Navigator.pop(context);
+                  Navigator.pop(context);
                 },
                 icon:
                 (Localizations.localeOf(context).languageCode == 'en') ?

@@ -4,11 +4,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/widgets/checkbox_option.dart';
+import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:operation_falafel/widgets/register_checkbox.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:intl/intl.dart';
 
+import '../../models/AppThemeModels/DesignPerPage/RegisterPage/register_page.dart';
+import '../../models/AppThemeModels/FontSizes/Language/lang.dart';
+import '../../providers/AppTheme/theme_provider.dart';
 import '../profile/logged_in_user_profile.dart';
 
 class Register extends StatefulWidget{
@@ -186,55 +191,84 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration:  BoxDecoration(
-          image: DecorationImage(image:AssetImage( "assets/images/background.png",),
-            fit: BoxFit.cover,
-          )
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar:AppBar(
-          leading: IconButton(
-            onPressed: (){
-              Navigator.pop(context);
-            },
-            icon:
-            (Localizations.localeOf(context).languageCode=='en')?
-            const ImageIcon(
-              AssetImage("assets/images/back_new.png",),
-              size: 35,
-            ):
-            const ImageIcon(
-              AssetImage("assets/images/back_arabic.png",),
-              size: 35,
-            ),
-          ),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          // centerTitle: true,
-          // title:Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),),
-          // actions: [],
+    return Consumer<ThemeProvider>(builder: (context, appTheme, child)
+    {
+      Language? lng = (Localizations
+          .localeOf(context)
+          .languageCode == 'ar') ? appTheme.appTheme.fontSizes?.ar : appTheme
+          .appTheme.fontSizes?.en;
+      RegisterPage? registerPage = appTheme.appTheme.designPerPage?.registerPage;
+      bool loadingDesign = registerPage != null;
+
+
+      return (loadingDesign)?
+      Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/background.png",),
+              fit: BoxFit.cover,
+            )
         ),
-        body: Center(
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+
+          appBar: AppBar(
+            leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon:
+              (Localizations
+                  .localeOf(context)
+                  .languageCode == 'en') ?
+              const ImageIcon(
+                AssetImage("assets/images/back_new.png",),
+                size: 35,
+              ) :
+              const ImageIcon(
+                AssetImage("assets/images/back_arabic.png",),
+                size: 35,
+              ),
+            ),
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            // centerTitle: true,
+            // title:Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),),
+            // actions: [],
+          ),
+          body: Center(
             child: Container(
-              constraints: BoxConstraints(maxWidth: 450, ),
+              constraints: BoxConstraints(maxWidth: 450,),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(getTranslated(context, "register")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyButtons"),color: Colors.amber,fontSize:double.parse( getTranslated(context, "enterOfTitleSize")!),height: 0.8),textAlign: TextAlign.center,),
+                  Text(registerPage.pageTile.data,
+                    style: TextStyle(
+                      fontFamily: lng?.titleHeader2.textFamily,
+                      color: Color(int.parse(registerPage.pageTile.color)),
+                      fontSize: double.parse(
+                          getTranslated(context, "enterOfTitleSize")!),
+                      height: 0.8), textAlign: TextAlign.center,),
+                  // Text(getTranslated(context, "register")!, style: TextStyle(
+                  //     fontFamily: getTranslated(context, "fontFamilyButtons"),
+                  //     color: Colors.amber,
+                  //     fontSize: double.parse(
+                  //         getTranslated(context, "enterOfTitleSize")!),
+                  //     height: 0.8), textAlign: TextAlign.center,),
                   const SizedBox(height: 25,),
+
                   /// - Form
                   Expanded(
                     child: ListView(
                       // physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       children: [
+
                         /// - Name
                         Padding(
-                          padding: const EdgeInsets.only(left:18.0, right: 18),
+                          padding: const EdgeInsets.only(left: 18.0, right: 18),
                           child: Container(
-                            padding: const EdgeInsets.only(left:0, right: 0),
+                            padding: const EdgeInsets.only(left: 0, right: 0),
                             decoration: const BoxDecoration(
                               color: Colors.transparent,
                               borderRadius: BorderRadius.only(
@@ -251,31 +285,50 @@ class _RegisterState extends State<Register> {
                             ),
                             child: Row(
                               children: [
-                                Expanded( flex:2, child: Text("${getTranslated(context, "name")!}*", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)),
+                                Expanded(flex: 2,
+                                    child:
+                                    Text(
+                                      "${registerPage.form.name.data}*",
+                                      style: TextStyle(
+                                          fontFamily: lng?.header2.textFamily,
+                                          color: Color(int.parse(registerPage.form.name.color))
+                                      ),)
+                                // Text(
+                                //       "${getTranslated(context, "name")!}*",
+                                //       style: TextStyle(
+                                //           fontFamily: getTranslated(
+                                //               context, "fontFamilyBody")!,
+                                //           color: Colors.amber),)
+                                ),
 
-                                const  Expanded(
+                                const Expanded(
                                   flex: 5,
                                   child: SizedBox(
 
-                                    child:   TextField(
+                                    child: TextField(
 
                                       autofocus: false,
-                                      style:  TextStyle(color: Colors.white),
-                                      decoration:  InputDecoration(
+                                      style: TextStyle(color: Colors.white),
+                                      decoration: InputDecoration(
                                         filled: true,
                                         fillColor: Colors.black45,
-                                        contentPadding: EdgeInsets.only(left:10, right: 10),
+                                        contentPadding: EdgeInsets.only(
+                                            left: 10, right: 10),
                                         focusedBorder: OutlineInputBorder(
-                                          borderRadius:  BorderRadius.all(
+                                          borderRadius: BorderRadius.all(
                                             Radius.circular(10.0),
                                           ),
-                                          borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1.0,),
                                         ),
                                         enabledBorder: OutlineInputBorder(
-                                          borderRadius:  BorderRadius.all(
+                                          borderRadius: BorderRadius.all(
                                             Radius.circular(10.0),
                                           ),
-                                          borderSide: BorderSide(color: Colors.transparent, width: 0.0),
+                                          borderSide: BorderSide(
+                                              color: Colors.transparent,
+                                              width: 0.0),
                                         ),
                                         hintText: '',
                                         // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
@@ -293,11 +346,11 @@ class _RegisterState extends State<Register> {
 
                         /// - Phone number
                         Padding(
-                          padding: const EdgeInsets.only(left:18.0, right: 18),
+                          padding: const EdgeInsets.only(left: 18.0, right: 18),
                           child: Container(
-                            padding: const EdgeInsets.only(left:0, right: 0),
+                            padding: const EdgeInsets.only(left: 0, right: 0),
 
-                            decoration:const BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: Colors.transparent,
 
                               borderRadius: BorderRadius.only(
@@ -314,13 +367,19 @@ class _RegisterState extends State<Register> {
                             ),
                             child: Row(
                               children: [
-                                Expanded(flex:5, child: Padding(
-                                  padding: const EdgeInsets.only(left:0, right: 0),
-                                  child: Text("${getTranslated(context, "mobileNo")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),),
+                                Expanded(flex: 5, child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 0, right: 0),
+                                  child: Text(
+                                    "${registerPage.form.phoneNumber.data}*",
+                                    style: TextStyle(
+                                        fontFamily: lng?.header2.textFamily,
+                                        color: Color(int.parse(registerPage.form.phoneNumber.color))
+                                    ),)
                                 )),
 
                                 Expanded(
-                                  flex:10,
+                                  flex: 10,
                                   child: Container(
                                     height: 50,
                                     decoration: BoxDecoration(
@@ -328,18 +387,22 @@ class _RegisterState extends State<Register> {
 
                                       borderRadius:
 
-                                      (Localizations.localeOf(context).languageCode=='en')?
+                                      (Localizations
+                                          .localeOf(context)
+                                          .languageCode == 'en') ?
                                       const BorderRadius.only(
-                                        bottomLeft:  Radius.circular(10.0),
+                                        bottomLeft: Radius.circular(10.0),
                                         topLeft: Radius.circular(10.0),
-                                      ):
-                                      (Localizations.localeOf(context).languageCode=='ar')?
+                                      ) :
+                                      (Localizations
+                                          .localeOf(context)
+                                          .languageCode == 'ar') ?
                                       const BorderRadius.only(
-                                        bottomRight:     Radius.circular(10),
+                                        bottomRight: Radius.circular(10),
                                         topRight: Radius.circular(10),
-                                      ):
+                                      ) :
                                       const BorderRadius.only(
-                                        bottomLeft:  Radius.circular(10.0),
+                                        bottomLeft: Radius.circular(10.0),
                                         topLeft: Radius.circular(10.0),
                                       ),
 
@@ -353,24 +416,29 @@ class _RegisterState extends State<Register> {
                                       children: [
                                         SizedBox(width: 10,),
                                         Expanded(
-                                            flex:2,
+                                            flex: 2,
                                             child: Padding(
-                                                padding: const EdgeInsets.only(left:0, right:0),
+                                                padding: const EdgeInsets.only(
+                                                    left: 0, right: 0),
                                                 child: IconButton(
                                                   icon:
-                                                  countryCode!=null?
-                                                  SizedBox(width: 30,height: 30, child: countryCode!.flagImage)
-                                                      :const Icon(Icons.flag_outlined),
+                                                  countryCode != null ?
+                                                  SizedBox(width: 30,
+                                                      height: 30,
+                                                      child: countryCode!
+                                                          .flagImage)
+                                                      : const Icon(
+                                                      Icons.flag_outlined),
                                                   padding: EdgeInsets.zero,
                                                   onPressed: () async {
-
-                                                    final code = await countryPicker.showPicker(context: context,initialSelectedLocale: "AE");
+                                                    final code = await countryPicker
+                                                        .showPicker(
+                                                        context: context,
+                                                        initialSelectedLocale: "AE");
                                                     if (code != null) {
-                                                      setState((){
-                                                        countryCode =code;
+                                                      setState(() {
+                                                        countryCode = code;
                                                       });
-
-
                                                     };
                                                   },)
                                             )),
@@ -378,25 +446,34 @@ class _RegisterState extends State<Register> {
                                           flex: 8,
                                           child: SizedBox(
 
-                                            child:   TextField(
-                                              keyboardType: TextInputType.number,
+                                            child: TextField(
+                                              keyboardType: TextInputType
+                                                  .number,
                                               autofocus: false,
-                                              style:  TextStyle(color: Colors.white),
-                                              decoration:  InputDecoration(
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                              decoration: InputDecoration(
                                                 filled: true,
                                                 fillColor: Colors.transparent,
-                                                contentPadding: EdgeInsets.only(left:10, right: 10),
+                                                contentPadding: EdgeInsets.only(
+                                                    left: 10, right: 10),
                                                 focusedBorder: OutlineInputBorder(
-                                                  borderRadius:  BorderRadius.all(
+                                                  borderRadius: BorderRadius
+                                                      .all(
                                                     Radius.circular(0.0),
                                                   ),
-                                                  borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
+                                                  borderSide: BorderSide(
+                                                    color: Colors.transparent,
+                                                    width: 1.0,),
                                                 ),
                                                 enabledBorder: OutlineInputBorder(
-                                                  borderRadius:  BorderRadius.all(
+                                                  borderRadius: BorderRadius
+                                                      .all(
                                                     Radius.circular(0.0),
                                                   ),
-                                                  borderSide: BorderSide(color: Colors.transparent, width: 0.0),
+                                                  borderSide: BorderSide(
+                                                      color: Colors.transparent,
+                                                      width: 0.0),
                                                 ),
                                                 hintText: '',
 
@@ -418,37 +495,39 @@ class _RegisterState extends State<Register> {
                                   child: SizedBox(
                                       height: 50,
                                       child: Container(
-                                        decoration:  BoxDecoration(
+                                        decoration: BoxDecoration(
                                           borderRadius:
 
-                                          (Localizations.localeOf(context).languageCode=='en')?
+                                          (Localizations
+                                              .localeOf(context)
+                                              .languageCode == 'en') ?
                                           const BorderRadius.only(
-                                            bottomRight:     Radius.circular(10),
+                                            bottomRight: Radius.circular(10),
                                             topRight: Radius.circular(10),
-                                          ):
-                                          (Localizations.localeOf(context).languageCode=='ar')?
+                                          ) :
+                                          (Localizations
+                                              .localeOf(context)
+                                              .languageCode == 'ar') ?
                                           const BorderRadius.only(
-                                            bottomLeft:  Radius.circular(10.0),
+                                            bottomLeft: Radius.circular(10.0),
                                             topLeft: Radius.circular(10.0),
-                                          ):
+                                          ) :
                                           const BorderRadius.only(
-                                            bottomRight:     Radius.circular(10),
+                                            bottomRight: Radius.circular(10),
                                             topRight: Radius.circular(10),
                                           ),
 
 
-
-
-
-
-                                          color: Colors.amber,
+                                          color: Color(int.parse(registerPage.form.phoneNumber.verifiedButton.backGroundColor)),
                                           // border: Border.all(
                                           //   width: 0.8,
                                           //   color: Colors.white,
                                           //   style: BorderStyle.solid,
                                           // ),
                                         ),
-                                        child: Icon(Icons.check, color: Colors.white,),
+                                        child:
+                                        //Image.network(registerPage.form.phoneNumber.verifiedButton.imageIcon,height: 2,width: 2,)
+                                        Icon(Icons.check, color: Colors.white,),
                                       )
                                   ),
                                 ),
@@ -459,12 +538,13 @@ class _RegisterState extends State<Register> {
                           ),
                         ),
                         const SizedBox(height: 10,),
+
                         /// - email address
                         Padding(
-                          padding: const EdgeInsets.only(left:18.0, right: 18),
+                          padding: const EdgeInsets.only(left: 18.0, right: 18),
                           child: Container(
-                            padding: const EdgeInsets.only(left:0, right: 0),
-                            decoration:const BoxDecoration(
+                            padding: const EdgeInsets.only(left: 0, right: 0),
+                            decoration: const BoxDecoration(
                               color: Colors.transparent,
                               borderRadius: BorderRadius.only(
                                 topRight: Radius.circular(10),
@@ -480,30 +560,42 @@ class _RegisterState extends State<Register> {
                             ),
                             child: Row(
                               children: [
-                                Expanded(flex:2, child: Text("${getTranslated(context, "emailAddress")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)),
-                                const   Expanded(
-                                  flex:5,
+                                Expanded(flex: 2,
+                                    child:  Text(
+                                      "${registerPage.form.email.data}*",
+                                      style: TextStyle(
+                                          fontFamily: lng?.header2.textFamily,
+                                          color: Color(int.parse(registerPage.form.email.color))
+                                      ),)
+                                ),
+                                const Expanded(
+                                  flex: 5,
                                   child: SizedBox(
 
-                                    child:   TextField(
+                                    child: TextField(
 
                                       autofocus: false,
-                                      style:  TextStyle(color: Colors.white),
-                                      decoration:  InputDecoration(
+                                      style: TextStyle(color: Colors.white),
+                                      decoration: InputDecoration(
                                         filled: true,
                                         fillColor: Colors.black45,
-                                        contentPadding: EdgeInsets.only(left:10, right: 10),
+                                        contentPadding: EdgeInsets.only(
+                                            left: 10, right: 10),
                                         focusedBorder: OutlineInputBorder(
-                                          borderRadius:  BorderRadius.all(
+                                          borderRadius: BorderRadius.all(
                                             Radius.circular(10.0),
                                           ),
-                                          borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1.0,),
                                         ),
                                         enabledBorder: OutlineInputBorder(
-                                          borderRadius:  BorderRadius.all(
+                                          borderRadius: BorderRadius.all(
                                             Radius.circular(10.0),
                                           ),
-                                          borderSide: BorderSide(color: Colors.transparent, width: 0.0),
+                                          borderSide: BorderSide(
+                                              color: Colors.transparent,
+                                              width: 0.0),
                                         ),
                                         hintText: '',
 
@@ -519,14 +611,15 @@ class _RegisterState extends State<Register> {
                           ),
                         ),
                         const SizedBox(height: 10,),
+
                         /// - Password
                         Padding(
-                          padding: const EdgeInsets.only(left:18.0, right: 18),
+                          padding: const EdgeInsets.only(left: 18.0, right: 18),
                           child: Container(
-                            padding: const EdgeInsets.only(left:0, right: 0),
-                            decoration:const BoxDecoration(
+                            padding: const EdgeInsets.only(left: 0, right: 0),
+                            decoration: const BoxDecoration(
                               color: Colors.transparent,
-                              borderRadius:const BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 topRight: Radius.circular(10),
                                 bottomLeft: Radius.circular(10),
                                 topLeft: Radius.circular(10),
@@ -540,31 +633,43 @@ class _RegisterState extends State<Register> {
                             ),
                             child: Row(
                               children: [
-                                Expanded(flex:2, child: Text("${getTranslated(context, "password")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)),
+                                Expanded(flex: 2,
+                                    child:  Text(
+                                      "${registerPage.form.password.data}*",
+                                      style: TextStyle(
+                                          fontFamily: lng?.header2.textFamily,
+                                          color: Color(int.parse(registerPage.form.password.color))
+                                      ),)
+                                ),
                                 const Expanded(
                                   flex: 5,
-                                  child:  SizedBox(
-                                    child:   TextField(
+                                  child: SizedBox(
+                                    child: TextField(
                                       obscureText: true,
                                       enableSuggestions: false,
                                       autocorrect: false,
                                       autofocus: false,
-                                      style:  TextStyle(color: Colors.white),
-                                      decoration:  InputDecoration(
+                                      style: TextStyle(color: Colors.white),
+                                      decoration: InputDecoration(
                                         filled: true,
                                         fillColor: Colors.black45,
-                                        contentPadding: EdgeInsets.only(left:10, right: 10),
+                                        contentPadding: EdgeInsets.only(
+                                            left: 10, right: 10),
                                         focusedBorder: OutlineInputBorder(
-                                          borderRadius:  BorderRadius.all(
+                                          borderRadius: BorderRadius.all(
                                             Radius.circular(10.0),
                                           ),
-                                          borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1.0,),
                                         ),
                                         enabledBorder: OutlineInputBorder(
-                                          borderRadius:  BorderRadius.all(
+                                          borderRadius: BorderRadius.all(
                                             Radius.circular(10.0),
                                           ),
-                                          borderSide: BorderSide(color: Colors.transparent, width: 0.0),
+                                          borderSide: BorderSide(
+                                              color: Colors.transparent,
+                                              width: 0.0),
                                         ),
 
                                         hintText: '',
@@ -580,12 +685,13 @@ class _RegisterState extends State<Register> {
                           ),
                         ),
                         const SizedBox(height: 10,),
+
                         /// - date of birth
                         Padding(
-                          padding: const EdgeInsets.only(left:18.0, right: 18),
+                          padding: const EdgeInsets.only(left: 18.0, right: 18),
                           child: Container(
-                            padding: const EdgeInsets.only(left:0, right: 0),
-                            decoration:const BoxDecoration(
+                            padding: const EdgeInsets.only(left: 0, right: 0),
+                            decoration: const BoxDecoration(
                               color: Colors.transparent,
                               borderRadius: BorderRadius.only(
                                 topRight: Radius.circular(10),
@@ -601,37 +707,45 @@ class _RegisterState extends State<Register> {
                             ),
                             child: Row(
                               children: [
-                                Expanded(flex:2, child: Text("${getTranslated(context, "dateOfBirth")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)),
+                                Expanded(flex: 2,
+                                    child:  Text(
+                                      "${registerPage.form.dateOfBirth.data}:",
+                                      style: TextStyle(
+                                          fontFamily: lng?.header2.textFamily,
+                                          color: Color(int.parse(registerPage.form.dateOfBirth.color))
+                                      ),)),
                                 Expanded(
                                   flex: 5,
                                   child: SizedBox(
 
-                                    child:   Stack(
+                                    child: Stack(
                                       children: [
                                         TextField(
                                           controller: birthDateController,
                                           enabled: false,
                                           autofocus: false,
-                                          style: const TextStyle(color: Colors.white),
+                                          style: const TextStyle(
+                                              color: Colors.white),
 
-                                          decoration:  const InputDecoration(
+                                          decoration: const InputDecoration(
                                             filled: true,
                                             fillColor: Colors.black45,
-                                            contentPadding: EdgeInsets.only(left:10, right: 10),
+                                            contentPadding: EdgeInsets.only(
+                                                left: 10, right: 10),
                                             focusedBorder: OutlineInputBorder(
-                                              borderRadius:  BorderRadius.all(
+                                              borderRadius: BorderRadius.all(
                                                 Radius.circular(10.0),
                                               ),
                                               // borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
                                             ),
                                             enabledBorder: OutlineInputBorder(
-                                              borderRadius:  BorderRadius.all(
+                                              borderRadius: BorderRadius.all(
                                                 Radius.circular(10.0),
                                               ),
                                               // borderSide: BorderSide(color: Colors.transparent, width: 0.0),
                                             ),
                                             border: OutlineInputBorder(
-                                              borderRadius:  BorderRadius.all(
+                                              borderRadius: BorderRadius.all(
                                                 Radius.circular(10.0),
                                               ),
                                               // borderSide: BorderSide(color: Colors.transparent, width: 0.0),
@@ -643,21 +757,21 @@ class _RegisterState extends State<Register> {
 
                                         ),
                                         Positioned.fill(
-                                            child:  Material(
+                                            child: Material(
                                               color: Colors.transparent,
-                                              child:  new InkWell(
-                                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                              child: new InkWell(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
                                                 splashColor: Colors.black,
-                                                overlayColor: MaterialStateProperty.all<Color>(Colors.white60),
+                                                overlayColor: MaterialStateProperty
+                                                    .all<Color>(Colors.white60),
 
-                                                onTap: (){
-
+                                                onTap: () {
                                                   showCustomDialog(context);
 
                                                   setState(() {
                                                     // showDatePicker =true;
                                                   });
-
                                                 },
                                               ),
 
@@ -672,12 +786,13 @@ class _RegisterState extends State<Register> {
                           ),
                         ),
                         const SizedBox(height: 10,),
+
                         /// - Nationality
                         Padding(
-                          padding: const EdgeInsets.only(left:18.0, right: 18),
+                          padding: const EdgeInsets.only(left: 18.0, right: 18),
                           child: Container(
-                            padding: const EdgeInsets.only(left:0, right: 0),
-                            decoration:const BoxDecoration(
+                            padding: const EdgeInsets.only(left: 0, right: 0),
+                            decoration: const BoxDecoration(
                               color: Colors.transparent,
                               borderRadius: BorderRadius.only(
                                 topRight: Radius.circular(10),
@@ -693,30 +808,41 @@ class _RegisterState extends State<Register> {
                             ),
                             child: Row(
                               children: [
-                                Expanded(flex:2, child: Text("${getTranslated(context, "nationality")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)),
-                                const   Expanded(
-                                  flex:5,
+                                Expanded(flex: 2,
+                                    child:  Text(
+                                      "${registerPage.form.nationality.data}:",
+                                      style: TextStyle(
+                                          fontFamily: lng?.header2.textFamily,
+                                          color: Color(int.parse(registerPage.form.nationality.color))
+                                      ),)),
+                                const Expanded(
+                                  flex: 5,
                                   child: SizedBox(
 
-                                    child:   TextField(
+                                    child: TextField(
 
                                       autofocus: false,
-                                      style:  TextStyle(color: Colors.white),
-                                      decoration:  InputDecoration(
+                                      style: TextStyle(color: Colors.white),
+                                      decoration: InputDecoration(
                                         filled: true,
                                         fillColor: Colors.black45,
-                                        contentPadding: EdgeInsets.only(left:10, right: 10),
+                                        contentPadding: EdgeInsets.only(
+                                            left: 10, right: 10),
                                         focusedBorder: OutlineInputBorder(
-                                          borderRadius:  BorderRadius.all(
+                                          borderRadius: BorderRadius.all(
                                             Radius.circular(10.0),
                                           ),
-                                          borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1.0,),
                                         ),
                                         enabledBorder: OutlineInputBorder(
-                                          borderRadius:  BorderRadius.all(
+                                          borderRadius: BorderRadius.all(
                                             Radius.circular(10.0),
                                           ),
-                                          borderSide: BorderSide(color: Colors.transparent, width: 0.0),
+                                          borderSide: BorderSide(
+                                              color: Colors.transparent,
+                                              width: 0.0),
                                         ),
                                         hintText: '',
 
@@ -732,14 +858,15 @@ class _RegisterState extends State<Register> {
                           ),
                         ),
                         const SizedBox(height: 10,),
+
                         /// - gender
                         Padding(
-                          padding: const EdgeInsets.only(left:18.0, right: 18),
+                          padding: const EdgeInsets.only(left: 18.0, right: 18),
                           child: Container(
-                            padding: const EdgeInsets.only(left:0, right: 0),
-                            decoration:const BoxDecoration(
+                            padding: const EdgeInsets.only(left: 0, right: 0),
+                            decoration: const BoxDecoration(
                               color: Colors.transparent,
-                              borderRadius:const BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 topRight: Radius.circular(10),
                                 bottomLeft: Radius.circular(10),
                                 topLeft: Radius.circular(10),
@@ -753,7 +880,14 @@ class _RegisterState extends State<Register> {
                             ),
                             child: Row(
                               children: [
-                                Expanded(flex:2, child: Text("${getTranslated(context, "gender")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)),
+                                Expanded(flex: 2,
+                                    child: Text(
+                                      "${registerPage.form.gender.data}:",
+                                      style: TextStyle(
+                                          fontFamily: lng?.header2.textFamily,
+                                          color: Color(int.parse(registerPage.form.gender.color))
+                                      ),)
+                                ),
                                 Expanded(
                                   flex: 5,
                                   child: SizedBox(
@@ -775,26 +909,42 @@ class _RegisterState extends State<Register> {
                                         // ),
                                         focusColor: Colors.transparent,
                                         focusedBorder: OutlineInputBorder(
-                                          borderRadius:  BorderRadius.all(
+                                          borderRadius: BorderRadius.all(
                                             Radius.circular(10.0),
                                           ),
-                                          borderSide: BorderSide(color: Colors.transparent, width: 2.0, ),
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 2.0,),
                                         ),
                                         enabledBorder: OutlineInputBorder(
-                                          borderRadius:  BorderRadius.all(
+                                          borderRadius: BorderRadius.all(
                                             Radius.circular(10.0),
                                           ),
-                                          borderSide: BorderSide(color: Colors.transparent, width: 2.0),
+                                          borderSide: BorderSide(
+                                              color: Colors.transparent,
+                                              width: 2.0),
                                         ),
 
                                         //Add more decoration as you want here
                                         //Add label If you want but add hint outside the decoration to be aligned in the button perfectly.
                                       ),
                                       isExpanded: true,
-                                      hint:  Text(
-                                        getTranslated(context, "selectGender")!,
-                                        style: TextStyle(fontSize: 16, color: Colors.white60 ,fontFamily: getTranslated(context, "fontFamilyBody")!),
+                                      hint:
+                                      Text(
+                                        registerPage.form.gender.dropDownWidget.labelText.data,
+                                        style: TextStyle(
+                                            fontSize: lng?.header3.size.toDouble(),
+                                            color: Color(int.parse(registerPage.form.gender.dropDownWidget.labelText.color)),
+                                            fontFamily: lng?.header3.textFamily,
+                                        ),
                                       ),
+                                      // Text(
+                                      //   getTranslated(context, "selectGender")!,
+                                      //   style: TextStyle(fontSize: 16,
+                                      //       color: Colors.white60,
+                                      //       fontFamily: getTranslated(
+                                      //           context, "fontFamilyBody")!),
+                                      // ),
 
                                       icon: const ImageIcon(AssetImage("assets/images/down.png"),),
                                       // const Icon(
@@ -802,8 +952,11 @@ class _RegisterState extends State<Register> {
                                       //   color: Colors.white60,
                                       // ),
                                       iconSize: 30,
-                                      buttonHeight: (selectedValue!=null)?50:50,
-                                      buttonPadding: const EdgeInsets.only(left: 20, right: 20),
+                                      buttonHeight: (selectedValue != null)
+                                          ? 50
+                                          : 50,
+                                      buttonPadding: const EdgeInsets.only(
+                                          left: 20, right: 20),
                                       dropdownDecoration: BoxDecoration(
                                         color: Colors.black,
                                         borderRadius: BorderRadius.circular(10),
@@ -816,30 +969,43 @@ class _RegisterState extends State<Register> {
                                             value: gender,
                                             child:
                                             Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisAlignment: MainAxisAlignment
+                                                  .center,
+                                              crossAxisAlignment: CrossAxisAlignment
+                                                  .start,
                                               children: [
 
                                                 Row(
                                                   children: [
 
-                                                    (selectedValue!=null)?
-                                                    (selectedValue==gender)?
-                                                    Image.asset("assets/images/page2_icon.png", height: 15,width: 15,) :SizedBox(width: 15,):SizedBox(width: 15,),
+                                                    (selectedValue != null)
+                                                        ?
+                                                    (selectedValue == gender)
+                                                        ?
+                                                    Image.network(
+                                                      registerPage.form.gender.dropDownWidget.selectedIcon.imageIcon,
+                                                      height: 15, width: 15,)
+                                                    // Image.asset(
+                                                    //   "assets/images/page2_icon.png",
+                                                    //   height: 15, width: 15,)
+
+                                                        : SizedBox(width: 15,)
+                                                        : SizedBox(width: 15,),
                                                     SizedBox(width: 5,),
-                                                    Text(getTranslated(context, gender)!, style:  TextStyle(fontSize: 13,color: Colors.white, fontFamily: getTranslated(context, "fontFamilyBody")!),
+                                                    Text(getTranslated(
+                                                        context, gender)!,
+                                                      style: TextStyle(
+                                                        fontSize: lng?.header2.size.toDouble(),
+                                                        color: Color(int.parse(registerPage.form.gender.dropDownWidget.itemsTitle.color)),
+                                                        fontFamily: lng?.header2.textFamily,
+                                                      ),
                                                     ),
                                                   ],
                                                 ),
 
 
-
-
                                               ],
                                             ),
-
-
-
 
 
                                           ))
@@ -851,19 +1017,16 @@ class _RegisterState extends State<Register> {
                                       },
                                       onChanged: (value) {
                                         //Do something when changing the item if you want.
-                                        setState((){
+                                        setState(() {
                                           selectedValue = value;
                                         });
-
                                       },
                                       onSaved: (value) {
-                                        setState((){
+                                        setState(() {
                                           selectedValue = value;
                                         });
                                       },
                                     ),
-
-
 
 
                                   ),
@@ -874,16 +1037,19 @@ class _RegisterState extends State<Register> {
                         ),
                         const SizedBox(height: 10,),
 
-                        Padding(
-                          padding: const EdgeInsets.all(18.0),
-                          child: RegisterCheckbox(
-                            value: checkboxBool,
-                            onChanged:_valueChangedHandler(),
-                            label: '1',
-                            text: "accpetterms",
-                            addOnFlag: false,
-                            colorOfBox: Colors.white,
-                            colorOfText: Colors.white,
+                        Visibility(
+                          visible: registerPage.termsCheckBox.visibility=='true',
+                          child: Padding(
+                            padding: const EdgeInsets.all(18.0),
+                            child: RegisterCheckbox(
+                              value: checkboxBool,
+                              onChanged: _valueChangedHandler(),
+                              label: '1',
+                              text: "accpetterms",
+                              addOnFlag: false,
+                              colorOfBox: Colors.white,
+                              colorOfText: Color(int.parse(registerPage.termsCheckBox.title.color)),
+                            ),
                           ),
                         ),
 
@@ -895,7 +1061,7 @@ class _RegisterState extends State<Register> {
                               Container(
                                 width: 50,
                                 height: 50,
-                                decoration:const BoxDecoration(
+                                decoration: const BoxDecoration(
                                   color: Colors.transparent,
                                   borderRadius: BorderRadius.only(
                                     topRight: Radius.circular(40),
@@ -909,12 +1075,13 @@ class _RegisterState extends State<Register> {
                                   //   style: BorderStyle.solid,
                                   // ),
                                 ),
-                                child:const Icon(Icons.check, color:Colors.white,),
+                                child: const Icon(
+                                  Icons.check, color: Colors.white,),
                               ),
                               Container(
                                 width: 40,
                                 height: 40,
-                                decoration:const BoxDecoration(
+                                decoration: const BoxDecoration(
                                   color: Colors.amber,
                                   borderRadius: BorderRadius.only(
                                     topRight: Radius.circular(40),
@@ -931,15 +1098,15 @@ class _RegisterState extends State<Register> {
                                 // child:Icon(Icons.check, color:Colors.white,),
                               ),
                               Positioned(
-                                bottom:8,
-                                right:9,
+                                bottom: 8,
+                                right: 9,
 
                                 child: Container(
                                   width: 40,
                                   height: 40,
                                   decoration: BoxDecoration(
                                     color: Colors.transparent,
-                                    borderRadius:const BorderRadius.only(
+                                    borderRadius: const BorderRadius.only(
                                       topRight: Radius.circular(40),
                                       bottomLeft: Radius.circular(40),
                                       topLeft: Radius.circular(40),
@@ -951,24 +1118,33 @@ class _RegisterState extends State<Register> {
                                       style: BorderStyle.solid,
                                     ),
                                   ),
-                                  child:const Icon(Icons.check, color:Colors.white,size: 30,),
+                                  child: const Icon(
+                                    Icons.check, color: Colors.white,
+                                    size: 30,),
                                 ),
                               ),
 
-                               Positioned.fill(
-                                  child:  Material(
+                              Positioned.fill(
+                                  child: Material(
                                     color: Colors.transparent,
-                                    child:   InkWell(
-                                      borderRadius: BorderRadius.all(Radius.circular(100)),
+                                    child: InkWell(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(100)),
                                       splashColor: Colors.black45,
-                                      overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+                                      overlayColor: MaterialStateProperty.all<
+                                          Color>(Colors.black54),
 
-                                      onTap: (){
+                                      onTap: () {
                                         PersistentNavBarNavigator.pushNewScreen(
                                           context,
-                                          screen: LoggedInUserProfile(layOut: widget.layOut,(value) {widget.onChanged(value);}),
-                                          withNavBar: true, // OPTIONAL VALUE. True by default.
-                                          pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                          screen: LoggedInUserProfile(
+                                              layOut: widget.layOut, (value) {
+                                            widget.onChanged(value);
+                                          }),
+                                          withNavBar: true,
+                                          // OPTIONAL VALUE. True by default.
+                                          pageTransitionAnimation: PageTransitionAnimation
+                                              .cupertino,
                                         );
                                       },
                                     ),
@@ -981,15 +1157,9 @@ class _RegisterState extends State<Register> {
                         ),
 
 
-
-
-
-
                       ],
                     ),
                   ),
-
-
 
 
                 ],
@@ -997,7 +1167,9 @@ class _RegisterState extends State<Register> {
             ),
           ),
 
-      ),
-    );
+        ),
+      )
+      :LoadingPage();
+    });
   }
 }
