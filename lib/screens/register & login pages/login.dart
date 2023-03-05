@@ -6,11 +6,15 @@ import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
 
+import '../../data/snackBarGenerator.dart';
 import '../../localization/localization_constants.dart';
 import '../../models/AppThemeModels/DesignPerPage/LoginPage/login_page.dart';
 import '../../models/AppThemeModels/FontSizes/Language/lang.dart';
 import '../../providers/AppTheme/theme_provider.dart';
+import '../../providers/AuthProvider/auth_provider.dart';
 import '../profile/logged_in_user_profile.dart';
+
+
 
 class Login extends StatefulWidget{
   final ValueChanged onChanged;
@@ -385,17 +389,28 @@ class _LoginState extends State<Login> {
                                           Color>(Colors.black54),
 
                                       onTap: () {
-                                        PersistentNavBarNavigator.pushNewScreen(
-                                          context,
-                                          screen: LoggedInUserProfile(
-                                              layOut: widget.layOut, (value) {
-                                            widget.onChanged(value);
-                                          }),
-                                          withNavBar: true,
-                                          // OPTIONAL VALUE. True by default.
-                                          pageTransitionAnimation: PageTransitionAnimation
-                                              .cupertino,
-                                        );
+                                        Provider.of<AuthProvider>(context, listen: false).userLogin("admin","customer@awj.ae","123").then((response) {
+                                          if(response.statusCode==200){
+
+                                            SnackbarGenerator(context).snackBarGeneratorToast("User Logged in successfully",);
+                                            Navigator.pop(context);
+
+
+                                          }
+                                        });
+
+
+                                        // PersistentNavBarNavigator.pushNewScreen(
+                                        //   context,
+                                        //   screen: LoggedInUserProfile(
+                                        //       layOut: widget.layOut, (value) {
+                                        //     widget.onChanged(value);
+                                        //   }),
+                                        //   withNavBar: true,
+                                        //   // OPTIONAL VALUE. True by default.
+                                        //   pageTransitionAnimation: PageTransitionAnimation
+                                        //       .cupertino,
+                                        // );
                                       },
                                     ),
 

@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:operation_falafel/localization/demo_localization.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/AppTheme/theme_provider.dart';
+import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
 import 'package:operation_falafel/providers/demo_cart/demo_cart_provider.dart';
 import 'package:operation_falafel/providers/parsistent_tabview_provider.dart';
 import 'package:operation_falafel/responsive/desktop_scaffold.dart';
@@ -73,6 +74,7 @@ class _MyAppState extends State<MyApp> {
           ChangeNotifierProvider(create: (context) => PersistentTabviewProvider()),
           ChangeNotifierProvider(create: (context) => DemoCartProvider()),
           ChangeNotifierProvider(create: (context) => ThemeProvider()),
+          ChangeNotifierProvider(create: (context) => AuthProvider()),
 
 
         ],
@@ -108,8 +110,7 @@ class _MyAppState extends State<MyApp> {
 
               primarySwatch: Colors.blue,
             ),
-            home: KeyboardVisibilityProvider(child:
-            ResponsiveLayout(DesktopScaffold: DesktopScaffold(),MobileScaffold: MobileScaffold(),TabletScaffold: TabletScaffold(), ),
+            home: KeyboardVisibilityProvider(child: ResponsiveLayout(DesktopScaffold: DesktopScaffold(),MobileScaffold: MobileScaffold(),TabletScaffold: TabletScaffold(), ),
 
             // const Tabs_Screen()
 

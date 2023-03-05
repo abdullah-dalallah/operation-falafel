@@ -26,6 +26,7 @@ import 'package:badges/badges.dart' as badges;
 
 import '../models/AppThemeModels/FontSizes/Language/lang.dart';
 import '../providers/AppTheme/theme_provider.dart';
+import '../providers/AuthProvider/auth_provider.dart';
 import '../widgets/warning_page.dart';
 
 
@@ -57,7 +58,7 @@ class _MobileScaffoldState extends State<MobileScaffold> {
     super.initState();
 
     _controller = PersistentTabController(initialIndex: 0);
-
+    Provider.of<AuthProvider>(context, listen: false).getSavedUserDetailsLocally();
   }
 
   @override
@@ -68,10 +69,11 @@ class _MobileScaffoldState extends State<MobileScaffold> {
       DeviceOrientation.portraitDown,
     ]);
 
-    return Consumer<DemoCartProvider>(
-        builder: (context, cartProvider, child)
+    return Consumer3<DemoCartProvider,ThemeProvider,AuthProvider>(
+        builder: (context, cartProvider,appTheme,authProvider, child)
     {
-      return Consumer<ThemeProvider>(builder: (context, appTheme, child) {
+
+
         // Language? lng = (Localizations.localeOf(context).languageCode == 'ar') ? appTheme.appTheme.fontSizes?.ar : appTheme.appTheme.fontSizes?.en;
         BottomNavigationButtonBar ? bottomNavigationBar = appTheme.appTheme.designPerPage?.bottomNavigationBar;
 
@@ -137,7 +139,7 @@ class _MobileScaffoldState extends State<MobileScaffold> {
 
 
           /// - track Order
-          if (bottomNavigationBar?.order.visibility == 'true'){
+          if (bottomNavigationBar?.trackMyOrder.visibility == 'true'){
             tempTabs.add(PersistentBottomNavBarItem(
               textStyle: const TextStyle(fontSize: 9),
               icon: ImageIcon(
@@ -153,7 +155,8 @@ class _MobileScaffoldState extends State<MobileScaffold> {
 
 
           /// -Profile
-          if (bottomNavigationBar?.order.visibility == 'true'){
+          if (bottomNavigationBar?.profile.visibility == 'true'){
+
             tempTabs.add(PersistentBottomNavBarItem(
               textStyle: const TextStyle(fontSize: 9),
               icon: ImageIcon(
@@ -164,7 +167,15 @@ class _MobileScaffoldState extends State<MobileScaffold> {
               activeColorPrimary: Color(int.parse(bottomNavigationBar.profile.activeColor )),
               inactiveColorPrimary: Color(int.parse(bottomNavigationBar.profile.inactiveColor )),
             ),);
-            screens.add( EnterOFWorld(layOut: "Mobile", (value) => changePage(value),));
+
+
+            if(authProvider.loggedInUser?.token != null ){
+              screens.add(LoggedInUserProfile(layOut: "Mobile", (value) => changePage(value),));
+            }
+            else {
+              screens.add(EnterOFWorld(layOut: "Mobile", (value) => changePage(value),));
+            }
+
           }
 
         }
@@ -244,10 +255,14 @@ class _MobileScaffoldState extends State<MobileScaffold> {
                             activeColorPrimary: CupertinoColors.activeOrange,
                             inactiveColorPrimary: CupertinoColors.systemBackground,
                           ));
-          screens.add( EnterOFWorld(layOut: "Mobile", (value) => changePage(value),));
+
+          if(authProvider.loggedInUser?.token != null ){
+            screens.add(LoggedInUserProfile(layOut: "Mobile", (value) => changePage(value),));
+          }
+          else {
+            screens.add(EnterOFWorld(layOut: "Mobile", (value) => changePage(value),));
+          }
         }
-
-
 
 
         return
@@ -296,7 +311,7 @@ class _MobileScaffoldState extends State<MobileScaffold> {
               ))
               : WarningPage();
 
-      });
+
     });
 
   }

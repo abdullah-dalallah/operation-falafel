@@ -430,12 +430,12 @@
     "MenuPage": {
       "AppBar": {
         "DrawerIcon": {
-          "ImageIcon": "imagePath",
-          "Size": ""
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+          "Size": "28"
         },
         "SearchAction": {
-          "ImageIcon": "imagePath",
-          "Size": ""
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Header - burger menu.png",
+          "Size": "28"
         }
       },
       "Body": {
@@ -453,7 +453,7 @@
         "VeganCheckBox": {
           "Data": "api",
           "Color": "text color",
-          "SelectedImage": "image Path"
+          "SelectedImage": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/falafel.png"
         },
         "ItemsList": {
           "ItemTitle": {
@@ -471,11 +471,11 @@
           "Quantity": {
             "Data": "no Quantity",
             "Color": "text color",
-            "BackGroundColor": "color in hex"
+            "BackGroundColor": "0xff000000"
           },
           "TotalPrice": {
             "Data": "api",
-            "Color": "0xffffffffr"
+            "Color": "0xffffffff"
           },
           "AddButton": {
             "Data": "Add",

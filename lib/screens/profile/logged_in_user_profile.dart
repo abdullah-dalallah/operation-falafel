@@ -20,9 +20,11 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
+import '../../data/snackBarGenerator.dart';
 import '../../models/AppThemeModels/DesignPerPage/ProfilePage/profile_page.dart';
 import '../../models/AppThemeModels/FontSizes/Language/lang.dart';
 import '../../providers/AppTheme/theme_provider.dart';
+import '../../providers/AuthProvider/auth_provider.dart';
 
 class LoggedInUserProfile extends StatefulWidget{
   final ValueChanged onChanged;
@@ -1484,7 +1486,10 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
 
                                       child: ElevatedButton(
                                         onPressed: () {
+                                          Provider.of<AuthProvider>(context, listen: false).logOutUserDetailsLocally().then((value) {
+                                            SnackbarGenerator(context).snackBarGeneratorToast("User Logged out successfully",);
 
+                                          });
                                         },
                                         style: ButtonStyle(
                                             shape: MaterialStateProperty.all<

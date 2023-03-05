@@ -165,3 +165,7 @@ Profile Page:
 - Appbar Title is missing."Operation:Falafel"
 - Appbar Title color is missing.
 
+Menu Page 
+- Appbar drawer icon & Size is missing.
+- Appbar Search icon & size is missing.
+
