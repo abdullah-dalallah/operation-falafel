@@ -50,11 +50,11 @@ class _OrderDetailsState extends State<OrderDetails> {
                 (Localizations.localeOf(context).languageCode == 'en') ?
                 ImageIcon(
                   NetworkImage(orderDetailsPage.appBar.backIcon.imageIcon),
-                  size: double.parse(orderDetailsPage?.appBar.backIcon.size as String),
+                  size: double.parse(orderDetailsPage?.appBar.backIcon.mobileSize as String),
                 ) :
                 ImageIcon(
                   NetworkImage(orderDetailsPage.appBar.backIcon.imageIcon),
-                  size: double.parse(orderDetailsPage?.appBar.backIcon.size as String),
+                  size: double.parse(orderDetailsPage?.appBar.backIcon.mobileSize as String),
                 ),
               ),
               backgroundColor: Colors.transparent,

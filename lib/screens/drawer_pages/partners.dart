@@ -50,11 +50,11 @@ class _PartnersState extends State<Partners> {
                 (Localizations.localeOf(context).languageCode == 'en') ?
                  ImageIcon(
                   NetworkImage(drawerPartnersPage.appBar.backIcon.imageIcon),
-                  size: double.parse(drawerPartnersPage?.appBar.backIcon.size as String),
+                  size: double.parse(drawerPartnersPage?.appBar.backIcon.mobileSize as String),
                 )
                     :  ImageIcon(
                   NetworkImage(drawerPartnersPage.appBar.backIcon.imageIcon),
-                  size: double.parse(drawerPartnersPage?.appBar.backIcon.size as String),
+                  size: double.parse(drawerPartnersPage?.appBar.backIcon.mobileSize as String),
                 ),
               ),
               // IconButton(

@@ -46,11 +46,11 @@ class _RewardsHistoryState extends State<RewardsHistory> {
                 (Localizations.localeOf(context).languageCode == 'en') ?
                 ImageIcon(
                   NetworkImage("${loyaltyHistoryPage?.appBar.backIcon.imageIcon}"),
-                  size: double.parse(loyaltyHistoryPage?.appBar.backIcon.size as String),
+                  size: double.parse(loyaltyHistoryPage?.appBar.backIcon.mobileSize as String),
                 ) :
                 ImageIcon(
                   NetworkImage("${loyaltyHistoryPage?.appBar.backIcon.imageIcon}"),
-                  size: double.parse(loyaltyHistoryPage?.appBar.backIcon.size as String),
+                  size: double.parse(loyaltyHistoryPage?.appBar.backIcon.mobileSize as String),
                 ),
               ),
               backgroundColor: Colors.transparent,

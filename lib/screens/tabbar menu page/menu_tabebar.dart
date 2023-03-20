@@ -129,7 +129,7 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                             icon:  ImageIcon(
                               NetworkImage("${menuPage?.appBar.drawerIcon.imageIcon}",),
                               size:
-                              double.parse(menuPage?.appBar.drawerIcon.size as String),
+                              double.parse(menuPage?.appBar.drawerIcon.mobileSize as String),
                             ),
                           ),
                         ),

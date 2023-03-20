@@ -5,6 +5,7 @@
 import 'dart:convert';
 
 import '../../CommonElements/Elements/drawer_Icon.dart';
+import '../../CommonElements/Elements/icon.dart';
 import '../../CommonElements/Elements/title_style.dart';
 
 LoyaltyBuyGiftAppbar loyaltyBuyGiftAppbarFromJson(String str) => LoyaltyBuyGiftAppbar.fromJson(json.decode(str));
@@ -17,11 +18,11 @@ class LoyaltyBuyGiftAppbar {
     required this.title,
   });
 
-  DrawerIcon backIcon;
+  Icon backIcon;
   TitleStyle title;
 
   factory LoyaltyBuyGiftAppbar.fromJson(Map<String, dynamic> json) => LoyaltyBuyGiftAppbar(
-    backIcon: DrawerIcon.fromJson(json["BackIcon"]),
+    backIcon: Icon.fromJson(json["BackIcon"]),
     title: TitleStyle.fromJson(json["Title"]),
   );
 

@@ -71,7 +71,7 @@ class _DrawerState extends State<DrawerWidget> {
                             }, icon:  ImageIcon(
                                 NetworkImage("${drawerPage?.drawerIcon.imageIcon}"),
                               // AssetImage("assets/images/icon_menu.png",),
-                              size: double.parse(drawerPage?.drawerIcon.size as String),
+                              size: double.parse(drawerPage?.drawerIcon.mobileSize as String),
                                // 35,
                               color: Colors.white,
                             ),),

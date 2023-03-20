@@ -65,11 +65,11 @@ class _BuyGiftState extends State<BuyGift> {
                               (Localizations.localeOf(context).languageCode == 'en') ?
                               ImageIcon(
                                 NetworkImage(loyaltyBuyGiftPage.appBar.backIcon.imageIcon),
-                                size: double.parse(loyaltyBuyGiftPage?.appBar.backIcon.size as String),
+                                size: double.parse(loyaltyBuyGiftPage?.appBar.backIcon.mobileSize as String),
                               ) :
                               ImageIcon(
                                 NetworkImage(loyaltyBuyGiftPage.appBar.backIcon.imageIcon),
-                                size: double.parse(loyaltyBuyGiftPage?.appBar.backIcon.size as String),
+                                size: double.parse(loyaltyBuyGiftPage?.appBar.backIcon.mobileSize as String),
                               ),
                             ),
                             backgroundColor: Colors.transparent,

@@ -86,7 +86,7 @@ class _BuyGiftPaymentSheetState extends State<BuyGiftPaymentSheet> {
                         },
                         icon: ImageIcon(
                           NetworkImage(loyaltyPaymentSheet.sheetCloseIcon.imageIcon),
-                          size: double.parse(loyaltyPaymentSheet?.sheetCloseIcon.size as String),
+                          size: double.parse(loyaltyPaymentSheet?.sheetCloseIcon.mobileSize as String),
                           color: Colors.white,
                         )
                       ),

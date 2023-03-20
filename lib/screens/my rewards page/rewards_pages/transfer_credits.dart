@@ -51,11 +51,11 @@ class _TransferCreditState extends State<TransferCredit> {
                 (Localizations.localeOf(context).languageCode == 'en') ?
                 ImageIcon(
                   NetworkImage(loyaltyTransferCreditPage.appBar.backIcon.imageIcon),
-                  size: double.parse(loyaltyTransferCreditPage?.appBar.backIcon.size as String),
+                  size: double.parse(loyaltyTransferCreditPage?.appBar.backIcon.mobileSize as String),
                 ) :
                 ImageIcon(
                   NetworkImage(loyaltyTransferCreditPage.appBar.backIcon.imageIcon),
-                  size: double.parse(loyaltyTransferCreditPage?.appBar.backIcon.size as String),
+                  size: double.parse(loyaltyTransferCreditPage?.appBar.backIcon.mobileSize as String),
                 ),
               ),
               backgroundColor: Colors.transparent,

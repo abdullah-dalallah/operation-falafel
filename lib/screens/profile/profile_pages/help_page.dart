@@ -58,11 +58,11 @@ class _HelpPageState extends State<HelpPage> {
                 (Localizations.localeOf(context).languageCode == 'en') ?
                 ImageIcon(
                   NetworkImage(helpPage.appBar.backIcon.imageIcon),
-                  size: double.parse(helpPage?.appBar.backIcon.size as String),
+                  size: double.parse(helpPage?.appBar.backIcon.mobileSize as String),
                 ) :
                 ImageIcon(
                   NetworkImage(helpPage.appBar.backIcon.imageIcon),
-                  size: double.parse(helpPage?.appBar.backIcon.size as String),
+                  size: double.parse(helpPage?.appBar.backIcon.mobileSize as String),
                 ),
               ),
               backgroundColor: Colors.transparent,

@@ -242,7 +242,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                     },
                     icon:  ImageIcon(
                       NetworkImage("${profilePage?.appBar.drawerIcon.imageIcon}",),
-                      size: double.parse(profilePage?.appBar.drawerIcon.size as String),
+                      size: double.parse(profilePage?.appBar.drawerIcon.mobileSize as String),
                     ),
                   ),
                 ) ,

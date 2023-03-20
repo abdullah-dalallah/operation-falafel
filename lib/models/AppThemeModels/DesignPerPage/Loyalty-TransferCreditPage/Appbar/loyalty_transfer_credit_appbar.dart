@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import '../../CommonElements/Elements/icon.dart';
+
 LoyaltyTransferCreditAppbar loyaltyTransferCreditAppbarFromJson(String str) => LoyaltyTransferCreditAppbar.fromJson(json.decode(str));
 
 String loyaltyTransferCreditAppbarToJson(LoyaltyTransferCreditAppbar data) => json.encode(data.toJson());
@@ -14,11 +16,11 @@ class LoyaltyTransferCreditAppbar {
     required this.title,
   });
 
-  BackIcon backIcon;
+  Icon backIcon;
   Title title;
 
   factory LoyaltyTransferCreditAppbar.fromJson(Map<String, dynamic> json) => LoyaltyTransferCreditAppbar(
-    backIcon: BackIcon.fromJson(json["BackIcon"]),
+    backIcon: Icon.fromJson(json["BackIcon"]),
     title: Title.fromJson(json["Title"]),
   );
 

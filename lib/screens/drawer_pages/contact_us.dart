@@ -64,11 +64,11 @@ class _ContactUsState extends State<ContactUs> {
                 (Localizations.localeOf(context).languageCode == 'en') ?
                  ImageIcon(
                   NetworkImage(drawerContactUsPage.appBar.backIcon.imageIcon),
-                  size: double.parse(drawerContactUsPage?.appBar.backIcon.size as String),
+                  size: double.parse(drawerContactUsPage?.appBar.backIcon.mobileSize as String),
                 ) :
                  ImageIcon(
                   NetworkImage(drawerContactUsPage.appBar.backIcon.imageIcon),
-                  size: double.parse(drawerContactUsPage?.appBar.backIcon.size as String),
+                  size: double.parse(drawerContactUsPage?.appBar.backIcon.mobileSize as String),
                 ),
               ),
               backgroundColor: Colors.transparent,

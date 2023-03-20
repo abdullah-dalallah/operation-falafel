@@ -5,6 +5,7 @@
 import 'dart:convert';
 
 import '../../CommonElements/Elements/drawer_Icon.dart';
+import '../../CommonElements/Elements/icon.dart';
 import '../../CommonElements/Elements/title_style.dart';
 
 
@@ -18,11 +19,11 @@ class DrawerPartnersAppbar {
     required this.title,
   });
 
-  DrawerIcon backIcon;
+  Icon backIcon;
   TitleStyle title;
 
   factory DrawerPartnersAppbar.fromJson(Map<String, dynamic> json) => DrawerPartnersAppbar(
-    backIcon: DrawerIcon.fromJson(json["BackIcon"]),
+    backIcon: Icon.fromJson(json["BackIcon"]),
     title: TitleStyle.fromJson(json["Title"]),
   );
 

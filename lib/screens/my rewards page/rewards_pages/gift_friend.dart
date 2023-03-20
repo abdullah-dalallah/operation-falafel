@@ -52,11 +52,11 @@ class _GiftFriendState extends State<GiftFriend> {
                 (Localizations.localeOf(context).languageCode == 'en') ?
                 ImageIcon(
                   NetworkImage(loyaltySendAsGiftPage.appBar.backIcon.imageIcon),
-                  size: double.parse(loyaltySendAsGiftPage?.appBar.backIcon.size as String),
+                  size: double.parse(loyaltySendAsGiftPage?.appBar.backIcon.mobileSize as String),
                 ) :
                 ImageIcon(
                   NetworkImage(loyaltySendAsGiftPage.appBar.backIcon.imageIcon),
-                  size: double.parse(loyaltySendAsGiftPage?.appBar.backIcon.size as String),
+                  size: double.parse(loyaltySendAsGiftPage?.appBar.backIcon.mobileSize as String),
                 ),
               ),
               backgroundColor: Colors.transparent,

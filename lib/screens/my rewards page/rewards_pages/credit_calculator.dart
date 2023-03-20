@@ -56,11 +56,11 @@ class _CreditCalculatorState extends State<CreditCalculator> {
                 (Localizations.localeOf(context).languageCode == 'en') ?
                 ImageIcon(
                   NetworkImage(loyaltyCreditCalculationPage.appBar.backIcon.imageIcon),
-                  size: double.parse(loyaltyCreditCalculationPage?.appBar.backIcon.size as String),
+                  size: double.parse(loyaltyCreditCalculationPage?.appBar.backIcon.mobileSize as String),
                 ) :
                 ImageIcon(
                   NetworkImage(loyaltyCreditCalculationPage.appBar.backIcon.imageIcon),
-                  size: double.parse(loyaltyCreditCalculationPage?.appBar.backIcon.size as String),
+                  size: double.parse(loyaltyCreditCalculationPage?.appBar.backIcon.mobileSize as String),
                 ),
               ),
               backgroundColor: Colors.transparent,

@@ -5,6 +5,7 @@
 import 'dart:convert';
 
 import '../CommonElements/Elements/drawer_Icon.dart';
+import '../CommonElements/Elements/icon.dart';
 import '../CommonElements/Elements/title_style.dart';
 
 LoyaltyPaymentSheet loyaltyPaymentSheetFromJson(String str) => LoyaltyPaymentSheet.fromJson(json.decode(str));
@@ -20,13 +21,13 @@ class LoyaltyPaymentSheet {
   });
 
   TitleStyle sheetTile;
-  DrawerIcon sheetCloseIcon;
+  Icon sheetCloseIcon;
   TitleStyle selectPaymentTitle;
   CheckBox checkBox;
 
   factory LoyaltyPaymentSheet.fromJson(Map<String, dynamic> json) => LoyaltyPaymentSheet(
     sheetTile: TitleStyle.fromJson(json["SheetTile"]),
-    sheetCloseIcon: DrawerIcon.fromJson(json["SheetCloseIcon"]),
+    sheetCloseIcon: Icon.fromJson(json["SheetCloseIcon"]),
     selectPaymentTitle: TitleStyle.fromJson(json["SelectPaymentTitle"]),
     checkBox: CheckBox.fromJson(json["CheckBox"]),
   );

@@ -52,7 +52,7 @@ class _NotificationsState extends State<Notifications> {
                 },
                 icon:  ImageIcon(
                   NetworkImage("${drawerNotificationPage?.appBar.backIcon.imageIcon}",),
-                  size: double.parse(drawerNotificationPage?.appBar.backIcon.size as String),
+                  size: double.parse(drawerNotificationPage?.appBar.backIcon.mobileSize as String),
                 ),
               ),
 

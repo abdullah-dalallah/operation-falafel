@@ -57,7 +57,7 @@ class DesignPerPage {
     required this.registerPage,
     required this.loginPage,
     required this.forgetPasswordPage,
-    required this.orderHistoryPage,
+    // required this.orderHistoryPage,
     required this.orderDetailsPage,
     required this.savedAddressPage,
     required this.editAddressPage,
@@ -93,7 +93,7 @@ class DesignPerPage {
   RegisterPage registerPage;
   LoginPage loginPage;
   ForgetPasswordPage forgetPasswordPage;
-  OrderHistoryPage orderHistoryPage;
+  // OrderHistoryPage orderHistoryPage;
   OrderDetailsPage orderDetailsPage;
   SavedAddressPage savedAddressPage;
   EditAddressPage editAddressPage;
@@ -126,10 +126,10 @@ class DesignPerPage {
     itemDetailsSheet: ItemDetailsSheet.fromJson(json["ItemDetailsSheet"]),
     profilePage: ProfilePage.fromJson(json["ProfilePage"]),
     enterOfWorldPage: EnterOfWorldPage.fromJson(json["EnterOFWorldPage"]),
-    registerPage: RegisterPage.fromJson(json["RegisterPage"]),
+    registerPage: RegisterPage.fromJson(json["REGISTER"]),
     loginPage: LoginPage.fromJson(json["LoginPage"]),
     forgetPasswordPage: ForgetPasswordPage.fromJson(json["ForgetPasswordPage"]),
-    orderHistoryPage: OrderHistoryPage.fromJson(json["OrderHistoryPage"]),
+    // orderHistoryPage: OrderHistoryPage.fromJson(json["OrderHistoryPage"]),
     orderDetailsPage: OrderDetailsPage.fromJson(json["OrderDetailsPage"]),
     savedAddressPage: SavedAddressPage.fromJson(json["SavedAddressPage"]),
     editAddressPage: EditAddressPage.fromJson(json["EditAddressPage"]),
@@ -163,10 +163,10 @@ class DesignPerPage {
     "ItemDetailsSheet": itemDetailsSheet.toJson(),
     "ProfilePage": profilePage.toJson(),
     "EnterOFWorldPage": enterOfWorldPage.toJson(),
-    "RegisterPage": registerPage.toJson(),
+    "REGISTER": registerPage.toJson(),
     "LoginPage": loginPage.toJson(),
     "ForgetPasswordPage": forgetPasswordPage.toJson(),
-    "OrderHistoryPage": orderHistoryPage.toJson(),
+    // "OrderHistoryPage": orderHistoryPage.toJson(),
     "OrderDetailsPage": orderDetailsPage.toJson(),
     "SavedAddressPage": savedAddressPage.toJson(),
     "EditAddressPage": editAddressPage.toJson(),

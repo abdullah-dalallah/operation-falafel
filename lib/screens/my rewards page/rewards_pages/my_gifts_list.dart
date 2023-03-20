@@ -55,11 +55,11 @@ class _MyGiftsListState extends State<MyGiftsList> {
                 (Localizations.localeOf(context).languageCode == 'en') ?
                 ImageIcon(
                   NetworkImage(loyaltyMyGiftsPage.appBar.backIcon.imageIcon),
-                  size: double.parse(loyaltyMyGiftsPage?.appBar.backIcon.size as String),
+                  size: double.parse(loyaltyMyGiftsPage?.appBar.backIcon.mobileSize as String),
                 ) :
                 ImageIcon(
                   NetworkImage(loyaltyMyGiftsPage.appBar.backIcon.imageIcon),
-                  size: double.parse(loyaltyMyGiftsPage?.appBar.backIcon.size as String),
+                  size: double.parse(loyaltyMyGiftsPage?.appBar.backIcon.mobileSize as String),
                 ),
               ),
               backgroundColor: Colors.transparent,

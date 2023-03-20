@@ -82,7 +82,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                               },
                               icon:  ImageIcon(
                                 NetworkImage("${cartPage?.appBar.drawerIcon.imageIcon}",),
-                                size: double.parse(cartPage?.appBar.drawerIcon.size as String),
+                                size: double.parse(cartPage?.appBar.drawerIcon.mobileSize as String),
                               ),
                             ),
 

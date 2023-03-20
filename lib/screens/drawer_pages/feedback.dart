@@ -52,11 +52,11 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 (Localizations.localeOf(context).languageCode == 'en') ?
                  ImageIcon(
                   NetworkImage(drawerFeedBackPage.appBar.backIcon.imageIcon),
-                  size: double.parse(drawerFeedBackPage?.appBar.backIcon.size as String),
+                  size: double.parse(drawerFeedBackPage?.appBar.backIcon.mobileSize as String),
                 ) :
                  ImageIcon(
                   NetworkImage(drawerFeedBackPage.appBar.backIcon.imageIcon),
-                  size: double.parse(drawerFeedBackPage?.appBar.backIcon.size as String),
+                  size: double.parse(drawerFeedBackPage?.appBar.backIcon.mobileSize as String),
                 ),
               ),
               backgroundColor: Colors.transparent,
