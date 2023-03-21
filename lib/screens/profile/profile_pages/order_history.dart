@@ -18,8 +18,7 @@ class OrderHistory extends StatelessWidget{
   return  Consumer<ThemeProvider>(builder: (context, appTheme, child)
     {
       Language? lng = (Localizations.localeOf(context).languageCode == 'ar') ? appTheme.appTheme.fontSizes?.ar : appTheme.appTheme.fontSizes?.en;
-      OrderHistoryPage? orderHistoryPage;
-      //= appTheme.appTheme.designPerPage?.orderHistoryPage;
+      OrderHistoryPage? orderHistoryPage= appTheme.appTheme.designPerPage?.orderHistoryPage;
       ///- Change after design
 
 

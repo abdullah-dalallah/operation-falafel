@@ -100,13 +100,13 @@ class _MainMenuState extends State<MainMenu> {
                     centerTitle: true,
                     actions: [
                       Padding(
-                        padding: const EdgeInsets.only(top: 13.0, right: 15, bottom: 15, left:15),
+                        padding: const EdgeInsets.only(top: 10.0, right: 15, bottom: 11, left:15),
                         child: Stack(
                           children: [
                             Container(
-
+                               padding: EdgeInsets.all(8),
                               width: 35,
-                              height: 27,
+                              height: 35,
                               decoration: BoxDecoration(
                                 color: Colors.black.withOpacity(0.4),
                                 borderRadius: const BorderRadius.only(
