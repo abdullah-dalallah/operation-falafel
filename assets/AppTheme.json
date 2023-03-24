@@ -380,7 +380,7 @@
         "Credit": {
           "visibility": "true",
           "Data": "Earned Credits",
-          "Color": "0xFFFFBF00"
+          "Color": "0xffdfaa3"
         },
         "SelectAddress": {
           "visibility": "true",
@@ -411,7 +411,7 @@
             "Color": "0xff454545"
           },
           "Icon": {
-            "ImageIcon": "later",
+            "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/card.png",
             "MobileSize": "30",
             "TabletSize": "30"
           }
@@ -419,7 +419,7 @@
         "BringItButton": {
           "Data": "bring it on",
           "Color": "0xffffffff",
-          "BackGroundColor": "0xff000000"
+          "BackGroundColor": "0xFFFFBF00"
         },
         "EmptyCart": {
           "Data": "Your Cart IS Empty",
@@ -440,8 +440,9 @@
           "center": "true"
         },
         "SearchAction": {
-          "ImageIcon": "imagePath",
-          "Size": ""
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/search-13-xxl.png",
+          "MobileSize": "30",
+          "TabletSize": "30"
         }
       },
       "Body": {
@@ -458,8 +459,8 @@
         },
         "VeganCheckBox": {
           "Data": "api",
-          "Color": "text color",
-          "SelectedImage": "image Path"
+          "Color": "0xff648316",
+          "SelectedImage": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/falafel.png"
         },
         "ItemsList": {
           "ItemTitle": {
@@ -599,7 +600,7 @@
             "Color": "0xFFFFBF00",
             "DropDownWidget": {
               "LabelText": {
-                "Data": "Select Gender",
+                "Data": "Gender",
                 "Color": "0xff454545"
               },
               "ItemsTitle": {
@@ -607,7 +608,7 @@
                 "Color": "0xffffffff"
               },
               "SelectedIcon": {
-                "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/down.png",
+                "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/falafel.png",
                 "height": "10",
                 "width": "10"
               }
@@ -631,59 +632,59 @@
           "OrderHistory": {
             "Data": "Order History",
             "Color": "0xffffffff",
-            "BackGroundColor": "0x00000000"
+            "BackGroundColor": "0xff000000"
           },
           "SavedAddress": {
             "Data": "Saved Address",
             "Color": "0xffffffff",
-            "BackGroundColor": "0x00000000"
+            "BackGroundColor": "0xff000000"
           },
           "SavedCards": {
             "Data": "Saved Cards",
             "Color": "0xffffffff",
-            "BackGroundColor": "0x00000000"
+            "BackGroundColor": "0xff000000"
           },
           "Loyalty": {
             "Data": "Loyalty",
             "Color": "0xffffffff",
-            "BackGroundColor": "color in hex"
+            "BackGroundColor": "0xff000000"
           },
           "Help": {
             "Data": "Help",
             "Color": "0xffffffff",
-            "BackGroundColor": "0x00000000"
+            "BackGroundColor": "0xff000000"
           },
           "SignOut": {
             "Data": "Sign Out",
             "Color": "0xffffffff",
-            "BackGroundColor": "0x00000000"
+            "BackGroundColor": "0xff000000"
           }
         }
       }
     },
     "EnterOFWorldPage": {
       "Title": {
-        "Data": "later",
-        "Color": "text color"
+        "Data": "O:F",
+        "Color": "0xffffffff"
       },
       "AppleLoginButton": {
-        "Data": "later",
-        "Color": "text color",
+        "Data": "Login",
+        "Color": "0xffffffff",
         "AppleLogoColor": ""
       },
       "RegisterButton": {
-        "Data": "text data",
-        "Color": "later",
-        "AppleLogoColor": "",
-        "BackGroundColor": "color in hex"
+        "Data": "Register",
+        "Color": "0xffffffff",
+        "AppleLogoColor": "0xff000000",
+        "BackGroundColor": "0xff000000"
       },
       "ResiterLater": {
-        "Data": "later",
-        "Color": "text color"
+        "Data": "Resiter Later",
+        "Color": "0xffffffff"
       },
       "Login": {
-        "Data": "later",
-        "Color": "text color"
+        "Data": "Login",
+        "Color": "0xffffffff"
       }
     },
     "REGISTER": {
@@ -727,8 +728,8 @@
               "Color": "0xffffffff"
             },
             "ItemsSubTitle": {
-              "Data": "text data",
-              "Color": "text color"
+              "Data": "api",
+              "Color": "0xffffffff"
             },
             "SelectedIcon": {
               "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/down.png",
@@ -875,7 +876,7 @@
             },
             "Data": "REORDER",
             "Color": "0xFFFFFFFF",
-            "BackGroundColor": "0x00000000"
+            "BackGroundColor": "0xff000000"
           }
         },
         "OrderID": {
@@ -1230,32 +1231,32 @@
           "HowItWorks": {
             "Data": "How It Works",
             "Color": "0xffffffff",
-            "BackGroundColor": "0x00000000"
+            "BackGroundColor": "0xff000000"
           },
           "MyRewards": {
             "Data": "My Rewards",
             "Color": "0xffffffff",
-            "BackGroundColor": "0x00000000"
+            "BackGroundColor": "0xff000000"
           },
           "ReferFriend": {
             "Data": "Refer a Friend",
             "Color": "0xffffffff",
-            "BackGroundColor": "0x00000000"
+            "BackGroundColor": "0xff000000"
           },
           "TransferCredits": {
             "Data": "Transfer Credits",
             "Color": "0xffffffff",
-            "BackGroundColor": "0x00000000"
+            "BackGroundColor": "0xff000000"
           },
           "CreditCalculator": {
             "Data": "Credit Calculator",
             "Color": "0xffffffff",
-            "BackGroundColor": "0x00000000"
+            "BackGroundColor": "0xff000000"
           },
           "History": {
             "Data": "History",
             "Color": "0xffffffff",
-            "BackGroundColor": "0x00000000"
+            "BackGroundColor": "0xff000000"
           }
         }
       }
@@ -1591,7 +1592,7 @@
         "HistoryList": {
           "Title": {
             "Data": "api",
-            "Color": "0xffffffff"
+            "Color": "0xFFFFBF00"
           },
           "SubTitle": {
             "Data": "api",

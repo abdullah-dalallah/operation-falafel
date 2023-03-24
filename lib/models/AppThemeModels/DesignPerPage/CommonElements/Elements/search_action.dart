@@ -11,19 +11,23 @@ String searchActionToJson(SearchAction data) => json.encode(data.toJson());
 class SearchAction {
   SearchAction({
     required this.imageIcon,
-    required this.size,
+    required this.mobileSize,
+    required this.tabletSize,
   });
 
   String imageIcon;
-  String size;
+  String mobileSize;
+  String tabletSize;
 
   factory SearchAction.fromJson(Map<String, dynamic> json) => SearchAction(
     imageIcon: json["ImageIcon"],
-    size: json["Size"],
+    mobileSize: json["MobileSize"],
+    tabletSize: json["TabletSize"],
   );
 
   Map<String, dynamic> toJson() => {
     "ImageIcon": imageIcon,
-    "Size": size,
+    "MobileSize": mobileSize,
+    "TabletSize": tabletSize,
   };
 }

@@ -42,7 +42,7 @@ class AddressTypeDropDown {
     "ItemsTitle": itemsTitle.toJson(),
     "SelectedIcon": selectedIcon.toJson(),
     "PrimaryAddress": primaryAddress.toJson(),
-    "UpdateAddressButton": addNewAddressButton.toJson(),
+    "AddNewAddressButton": addNewAddressButton.toJson(),
   };
 }
 

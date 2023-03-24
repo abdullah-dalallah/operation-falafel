@@ -130,7 +130,7 @@ class _MainMenuState extends State<MainMenu> {
                               //   AssetImage("assets/images/icon_search.png")) as ImageProvider<Object>?,
                               // ),
 
-                               Image.network("${homePageDesign.appBar.searchAction.imageIcon}",height: double.parse(homePageDesign?.appBar.drawerIcon.mobileSize as String),),
+                               Image.network("${homePageDesign.appBar.searchAction.imageIcon}",height: double.parse(homePageDesign?.appBar.searchAction.mobileSize as String),),
 
                               // Image.asset("assets/images/icon_search.png",height: 30,width: 30,),
 

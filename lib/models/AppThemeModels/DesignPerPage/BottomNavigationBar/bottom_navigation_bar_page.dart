@@ -36,7 +36,7 @@ class BottomNavigationButtonBar {
   Map<String, dynamic> toJson() => {
     "Home": home.toJson(),
     "Order": order.toJson(),
-    "BottomNavigationBarButtonStyle": cart.toJson(),
+    "Cart": cart.toJson(),
     "TrackMyOrder": trackMyOrder.toJson(),
     "Profile": profile.toJson(),
   };
