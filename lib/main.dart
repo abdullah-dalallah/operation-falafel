@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:operation_falafel/localization/demo_localization.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
@@ -13,10 +14,30 @@ import 'package:operation_falafel/responsive/tablet_scaffold.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-void main() {
+import 'dart:ui' as ui;
+import 'package:window_manager/window_manager.dart';
+
+Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  runApp(const MyApp());
+  // Must add this line.
+  await windowManager.ensureInitialized();
+
+  WindowOptions windowOptions = WindowOptions(
+    minimumSize: Size(400, 600),
+
+    center: true,
+    backgroundColor: Colors.transparent,
+    // skipTaskbar: false,
+    skipTaskbar: true,
+    titleBarStyle: TitleBarStyle.normal,
+  );
+  windowManager.waitUntilReadyToShow(windowOptions, () async {
+    await windowManager.show();
+    await windowManager.focus();
+  });
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {

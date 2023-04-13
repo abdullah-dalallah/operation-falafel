@@ -29,6 +29,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  window_manager: ^0.3.2
   email_validator: ^2.1.17
   shared_preferences: ^2.0.18
   dio: ^5.0.1
@@ -54,6 +55,7 @@ dependencies:
 
   flutter:
     sdk: flutter
+
   flutter_localizations:
     sdk: flutter
 
