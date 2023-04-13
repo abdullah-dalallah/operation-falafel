@@ -7,6 +7,7 @@ import 'package:operation_falafel/screens/drawer_pages/contact_us.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
 
+import '../data/keys.dart';
 import '../models/AppThemeModels/DesignPerPage/Drawer/drawer.dart';
 import '../models/AppThemeModels/FontSizes/Language/lang.dart';
 import '../providers/AppTheme/theme_provider.dart';
@@ -395,18 +396,53 @@ class _DrawerState extends State<DrawerWidget> {
                                         width: 35,),
                                     ),
 
-                                    new Positioned.fill(
-                                        child: new Material(
+                                     Positioned.fill(
+                                        child:  Material(
                                           color: Colors.transparent,
-                                          child: new InkWell(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(20)),
+                                          child:  InkWell(
+                                            borderRadius: BorderRadius.all(Radius.circular(20)),
                                             splashColor: Colors.black,
                                             overlayColor: MaterialStateProperty
                                                 .all<Color>(Colors.black54),
 
                                             onTap: () {
-                                              _changeLanguage("ar");
+                                              // _changeLanguage("ar");
+                                              Provider.of<ThemeProvider>(context,listen: false). getAppTheme("appTitle", "operation falafel", "12", "1", "uae", "ar").then((response) {
+                                                if(response.statusCode==200 && response.data[Keys.bodyKey]!=null){
+                                                  // print(response.data[Keys.bodyKey][0][Keys.languageKey]);
+
+                                                  if(response.data[Keys.bodyKey][Keys.languageKey]!=null ){
+                                                    _changeLanguage(Provider.of<ThemeProvider>(context,listen: false).appTheme.language!);
+
+                                                  }
+
+                                                }
+                                                else{
+                                                  print("Online Theme not found!");
+                                                  Provider.of<ThemeProvider>(context,listen: false).getSavedAppThemeLocally().then((appTheme) {
+                                                    // print(appTheme);
+
+                                                    if(appTheme.id!=null){
+                                                      if(appTheme.language!=null){
+                                                        _changeLanguage(Provider.of<ThemeProvider>(context,listen: false).appTheme.language!);
+
+                                                      }
+                                                    }
+                                                    else{
+                                                      print("Shared Preferences Theme not Found!");
+                                                      Provider.of<ThemeProvider>(context,listen: false).readJson().then((appTheme) {
+                                                        if(appTheme.language!=null){
+                                                          _changeLanguage(Provider.of<ThemeProvider>(context,listen: false).appTheme.language!);
+                                                        }
+                                                        // FlutterNativeSplash.remove();
+                                                      });
+                                                    }
+                                                  });
+
+                                                }
+                                                // FlutterNativeSplash.remove();
+                                              });
+
                                             },
                                           ),
 
@@ -460,7 +496,44 @@ class _DrawerState extends State<DrawerWidget> {
                                                 .all<Color>(Colors.black54),
 
                                             onTap: () {
-                                              _changeLanguage("en");
+                                              // _changeLanguage("en");
+
+                                              Provider.of<ThemeProvider>(context,listen: false). getAppTheme("appTitle", "operation falafel", "12", "1", "uae", "en").then((response) {
+                                                if(response.statusCode==200 && response.data[Keys.bodyKey]!=null){
+                                                  // print(response.data[Keys.bodyKey][0][Keys.languageKey]);
+
+                                                  if(response.data[Keys.bodyKey][Keys.languageKey]!=null ){
+                                                    _changeLanguage(Provider.of<ThemeProvider>(context,listen: false).appTheme.language!);
+
+                                                  }
+
+                                                }
+                                                else{
+                                                  print("Online Theme not found!");
+                                                  Provider.of<ThemeProvider>(context,listen: false).getSavedAppThemeLocally().then((appTheme) {
+                                                    // print(appTheme);
+
+                                                    if(appTheme.id!=null){
+                                                      if(appTheme.language!=null){
+                                                        _changeLanguage(Provider.of<ThemeProvider>(context,listen: false).appTheme.language!);
+
+                                                      }
+                                                    }
+                                                    else{
+                                                      print("Shared Preferences Theme not Found!");
+                                                      Provider.of<ThemeProvider>(context,listen: false).readJson().then((appTheme) {
+                                                        if(appTheme.language!=null){
+                                                          _changeLanguage(Provider.of<ThemeProvider>(context,listen: false).appTheme.language!);
+                                                        }
+                                                        // FlutterNativeSplash.remove();
+                                                      });
+                                                    }
+                                                  });
+
+                                                }
+                                                // FlutterNativeSplash.remove();
+                                              });
+
                                             },
                                           ),
 

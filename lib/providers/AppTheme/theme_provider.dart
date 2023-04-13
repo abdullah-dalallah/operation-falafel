@@ -27,8 +27,20 @@ class ThemeProvider  with ChangeNotifier{
     final String response = await rootBundle.loadString('assets/AppTheme.json');
     final data = await json.decode(response);
     if(data!=null){
-
-      _appTheme =   AppTheme(id: AppTheme.fromJson(data).id,language: AppTheme.fromJson(data).language,fontSizes: AppTheme.fromJson(data).fontSizes,designPerPage: AppTheme.fromJson(data).designPerPage, themeId:  AppTheme.fromJson(data).themeId);
+      _appTheme =   AppTheme(
+          id: AppTheme.fromJson(data).id,
+          language: AppTheme.fromJson(data).language,
+          fontSizes: AppTheme.fromJson(data).fontSizes,
+          designPerPage: AppTheme.fromJson(data).designPerPage,
+          themeId:  AppTheme.fromJson(data).themeId,
+          status: AppTheme.fromJson(data).status,
+          createdBy: AppTheme.fromJson(data).createdBy,
+          direction: AppTheme.fromJson(data).direction,
+          expiryDate: AppTheme.fromJson(data).expiryDate,
+          isDeleted: AppTheme.fromJson(data).isDeleted,
+          isExpired: AppTheme.fromJson(data).isExpired,
+          v: AppTheme.fromJson(data).v
+      );
       notifyListeners();
     }
 
@@ -36,9 +48,9 @@ class ThemeProvider  with ChangeNotifier{
 
   }
 
-  Future<Response<dynamic>> getAppTheme(String key, String value, String theme_id, String createdBy) async {
+  Future<Response<dynamic>> getAppTheme(String key, String value, String theme_id, String createdBy, String country, String lang) async {
     print("getting app theme from Online Server...");
-    var url = '${Strings.baseAppThemeUrl}/themes-details/getThemesDetails';
+    var url = '${Strings.baseAppThemeUrl}/themes/getTheme/${country}/${lang}';
     Map<String, String> header = <String, String>{};
     header.putIfAbsent(Keys.acceptKey, () => "application/json");
 
@@ -53,16 +65,34 @@ class ThemeProvider  with ChangeNotifier{
 
       var response = await dio.get(url, data: data,options: Options(headers: header));// options: Options(headers: header)
      if(response.statusCode ==200){
-       var tempTheme = response.data[Keys.bodyKey][0];
-       _appTheme =   AppTheme(id: AppTheme.fromJson(tempTheme).id,language: AppTheme.fromJson(tempTheme).language,fontSizes: AppTheme.fromJson(tempTheme).fontSizes,designPerPage: AppTheme.fromJson(tempTheme).designPerPage, themeId:  AppTheme.fromJson(tempTheme).themeId);
-       notifyListeners();
-       print("AppTheme Deployed From Online Server!");
-       saveAppThemeLocally(_appTheme);
+       var tempTheme = response.data[Keys.bodyKey];
+       // print(tempTheme);
+       if(response.data[Keys.bodyKey]!=null){
+         _appTheme =   AppTheme(
+             id: AppTheme.fromJson(tempTheme).id,
+             language: AppTheme.fromJson(tempTheme).language,
+             fontSizes: AppTheme.fromJson(tempTheme).fontSizes,
+             designPerPage: AppTheme.fromJson(tempTheme).designPerPage,
+             themeId:  AppTheme.fromJson(tempTheme).themeId,
+             status: AppTheme.fromJson(tempTheme).status,
+             createdBy: AppTheme.fromJson(tempTheme).createdBy,
+             direction: AppTheme.fromJson(tempTheme).direction,
+             expiryDate: AppTheme.fromJson(tempTheme).expiryDate,
+             isDeleted: AppTheme.fromJson(tempTheme).isDeleted,
+             isExpired: AppTheme.fromJson(tempTheme).isExpired,
+             v: AppTheme.fromJson(tempTheme).v
+         );
+         notifyListeners();
+         print("AppTheme Deployed From Online Server!");
+         saveAppThemeLocally(_appTheme);
+       }
+
      }
 
       return response;
     } on DioError catch (e) {
       print(e.response);
+      readJson();
       return e.response!;
 
     }
@@ -78,8 +108,8 @@ class ThemeProvider  with ChangeNotifier{
   Future<AppTheme> getSavedAppThemeLocally() async {
     print("getting app theme from Shared Preferences");
     SharedPreferences prefs = await GetSharedPref().getSharedPref();
-
-    if(prefs.getString(Keys.SavedthemeKey,)!="{}"){
+       // print(prefs.getString(Keys.SavedthemeKey,));
+    if(prefs.getString(Keys.SavedthemeKey,)!="{}" && prefs.getString(Keys.SavedthemeKey,)!= null){
 
         var tempSavedTheme = prefs.getString(Keys.SavedthemeKey,)??"{}";
        _appTheme=AppTheme.fromJson(json.decode(prefs.getString(Keys.SavedthemeKey,)??"{}"));
@@ -87,6 +117,8 @@ class ThemeProvider  with ChangeNotifier{
       notifyListeners();
       return _appTheme;
     }
+
+
     else{
       return _appTheme;
     }

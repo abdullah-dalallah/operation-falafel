@@ -11,12 +11,12 @@ import 'models/logged_in_user.dart';
 class AuthProvider with ChangeNotifier{
   late LoggedInUser? loggedInUser = LoggedInUser();
 
-  Future<Response<dynamic>> userLogin(String userName, String email, String password) async {
+  Future<Response<dynamic>> userLogin( String email, String password) async {
     var url = '${Strings.baseUrl}auth/login';
     Map<String, String> data = <String, String>{};
     Map<String, String> header = <String, String>{};
     header.putIfAbsent(Keys.acceptKey, () => "application/json");
-    data.putIfAbsent(Keys.userNameKey, () => userName);
+    // data.putIfAbsent(Keys.userNameKey, () => userName);
     data.putIfAbsent(Keys.emailKey, () => email);
     data.putIfAbsent(Keys.passwordKey, () => password);
 
@@ -24,8 +24,9 @@ class AuthProvider with ChangeNotifier{
     try {
       // FormData formData = FormData.fromMap(data);
       var response = await dio.post(url, data: data,options: Options(headers: header));// options: Options(headers: header)
-      // print(response.data);
+      print(response.data);
       loggedInUser = LoggedInUser.fromJson(response.data[Keys.bodyKey]);
+      // print(loggedInUser?.token);
       // print(loggedInUser?.toJson());
       // print(json.decode(json.encode(loggedInUser?.toJson()))??"{}");
       notifyListeners();
@@ -49,7 +50,7 @@ class AuthProvider with ChangeNotifier{
 
   }
   Future<void> getSavedUserDetailsLocally() async {
-
+    print("load logged in user data...");
     SharedPreferences prefs = await GetSharedPref().getSharedPref();
     // print(prefs.getString(Keys.savedLoggedInUserKey,));
     // print(json.decode(prefs.getString(Keys.savedLoggedInUserKey,)??"{}"));

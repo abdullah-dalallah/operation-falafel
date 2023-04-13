@@ -18,6 +18,7 @@ import 'package:badges/badges.dart' as badges;
 
 import '../models/AppThemeModels/DesignPerPage/BottomNavigationBar/bottom_navigation_bar_page.dart';
 import '../providers/AppTheme/theme_provider.dart';
+import '../providers/AuthProvider/auth_provider.dart';
 import '../screens/profile/logged_in_user_profile.dart';
 import '../widgets/warning_page.dart';
 
@@ -46,7 +47,7 @@ class _TabletScaffoldState extends State<TabletScaffold> {
     super.initState();
 
     _controller = PersistentTabController(initialIndex: 0);
-
+    Provider.of<AuthProvider>(context, listen: false).getSavedUserDetailsLocally();
   }
 
   @override
@@ -56,7 +57,8 @@ class _TabletScaffoldState extends State<TabletScaffold> {
     return Consumer<DemoCartProvider>(
         builder: (context, cartProvider, child)
     {
-     return Consumer<ThemeProvider>(builder: (context, appTheme, child)
+     return Consumer3<DemoCartProvider,ThemeProvider,AuthProvider>(
+         builder: (context, cartProvider,appTheme,authProvider, child)
      {
        // Language? lng = (Localizations.localeOf(context).languageCode == 'ar') ? appTheme.appTheme.fontSizes?.ar : appTheme.appTheme.fontSizes?.en;
        BottomNavigationButtonBar ? bottomNavigationBar = appTheme.appTheme
@@ -214,19 +216,51 @@ class _TabletScaffoldState extends State<TabletScaffold> {
              inactiveColorPrimary: Color(
                  int.parse(bottomNavigationBar.profile.inactiveColor)),
            ),);
-           screens.add(Row(
-             children: [
-               Expanded(
+           if(authProvider.loggedInUser?.token != null ){
+             screens.add(  Row(
+               children: [
+                 Expanded(
 
-                   child: DrawerWidget(
-                     layOut: "Tablet", onChanged: (value) {
-                     changePage(value);
-                   },)),
-               Expanded(flex: 2,
-                 child: EnterOFWorld(
-                   layOut: " Tablet", (value) => changePage(value),),),
-             ],
-           ));
+                     child: DrawerWidget(
+                       layOut: "Tablet", onChanged: (value) {
+                       changePage(value);
+                     },)),
+                 Expanded(flex: 2,
+                     child: LoggedInUserProfile(layOut: "Tablet", (value) => changePage(value),)),
+               ],
+             ));
+           }
+           else{
+             screens.add(  Row(
+               children: [
+                 Expanded(
+
+                     child: DrawerWidget(
+                       layOut: "Tablet", onChanged: (value) {
+                       changePage(value);
+                     },)),
+                 Expanded(flex: 2,
+                   child: EnterOFWorld(
+                     layOut: "Tablet", (value) => changePage(value),),),
+               ],
+             ));
+           }
+
+           //        screens.add(Row(
+           //             children: [
+           //               Expanded(
+           //
+           //                   child: DrawerWidget(
+           //                     layOut: "Tablet", onChanged: (value) {
+           //                     changePage(value);
+           //                   },)),
+           //               Expanded(flex: 2,
+           //                 child: EnterOFWorld(
+           //                   layOut: " Tablet", (value) => changePage(value),),),
+           //             ],
+           // ));
+
+
          }
        }
        else {

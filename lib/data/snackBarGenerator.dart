@@ -31,7 +31,7 @@ class SnackbarGenerator {
         msg,
         style: TextStyle(color: Colors.amber),
       ),
-      duration:  const Duration(microseconds: 5),
+      duration:  const Duration(milliseconds: 2000),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }

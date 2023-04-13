@@ -36,10 +36,11 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
   @override
   void initState() {
     super.initState();
-    Provider.of<ThemeProvider>(context,listen: false). getAppTheme("appTitle", "operation falafel", "12", "1").then((response) {
-        if(response.statusCode==200){
+    Provider.of<ThemeProvider>(context,listen: false). getAppTheme("appTitle", "operation falafel", "12", "1", "uae", "en").then((response) {
+        if(response.statusCode==200 && response.data[Keys.bodyKey]!=null){
             // print(response.data[Keys.bodyKey][0][Keys.languageKey]);
-          if(response.data[Keys.bodyKey][0][Keys.languageKey]!=null){
+
+          if(response.data[Keys.bodyKey][Keys.languageKey]!=null){
             _changeLanguage(Provider.of<ThemeProvider>(context,listen: false).appTheme.language!);
 
           }
