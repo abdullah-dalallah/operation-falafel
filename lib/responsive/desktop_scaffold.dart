@@ -51,6 +51,10 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
 
   @override
   Widget build(BuildContext context) {
+
+
+
+
     final bool isKeyboardVisible = KeyboardVisibilityProvider.isKeyboardVisible(context);
     return Consumer3<DemoCartProvider,ThemeProvider,AuthProvider>(
         builder: (context, cartProvider,appTheme,authProvider, child)

@@ -12,7 +12,7 @@ class AuthProvider with ChangeNotifier{
   late LoggedInUser? loggedInUser = LoggedInUser();
 
   Future<Response<dynamic>> userLogin( String email, String password) async {
-    var url = '${Strings.baseUrl}auth/login';
+    var url = '${Strings.baseAppAuthUrl}auth/login';
     Map<String, String> data = <String, String>{};
     Map<String, String> header = <String, String>{};
     header.putIfAbsent(Keys.acceptKey, () => "application/json");

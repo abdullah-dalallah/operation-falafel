@@ -21,6 +21,7 @@ import '../../models/AppThemeModels/DesignPerPage/HomePage/home_page.dart';
 import '../../models/AppThemeModels/FontSizes/Language/lang.dart';
 import '../../models/AppThemeModels/FontSizes/font_sizes.dart';
 import '../../providers/AppTheme/theme_provider.dart';
+import '../../providers/ProfileProviders/profile_provider.dart';
 import '../../providers/demo_cart/demo_cart_provider.dart';
 import '../../widgets/loading_page.dart';
 import '../my rewards page/rewards_pages/transfer_credits.dart';
@@ -1945,9 +1946,11 @@ class _MainMenuState extends State<MainMenu> {
 
   }
 
+  @override
+  void initState() {
+    super.initState();
 
+    Provider.of<ProfileProvider>(context,listen: false).getUserSavedAddress("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjgxNDY2NTQwLCJleHAiOjE2ODE2MzkzNDB9.pV9I0WLj7fzZCwjDKFNThUl7tQP4J4OZHaZ7Csc0ynQ");
 
-
-
-
+  }
 }

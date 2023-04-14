@@ -1,5 +1,8 @@
 class Keys {
+  static const successKey = "success";
+
   /// - Sign up & Sign in
+
   static const userNameKey = "username";
   static const emailKey = "email";
   static const passwordKey = "password";
@@ -16,6 +19,11 @@ class Keys {
   static const themeIdKey = "theme_id";
   static const createdByKey = "createdBy";
   static const languageKey = "language";
+
+
+  /// - Profile -> SavedAddress
+  static const x_of_awjKey = "x-of-awj";
+
 
 
 }

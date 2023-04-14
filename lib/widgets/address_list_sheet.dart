@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 
+import 'Saved_address/saved_address_list_sheet.dart';
+
 class AddressListSheet extends StatelessWidget{
   ScrollController scrollController;
 
@@ -23,6 +25,7 @@ class AddressListSheet extends StatelessWidget{
        crossAxisAlignment: CrossAxisAlignment.start,
        mainAxisAlignment: MainAxisAlignment.start,
        children: [
+         /// - Title
          Padding(
            padding: const EdgeInsets.only(top:8.0, left: 8, right: 8),
            child: Row(
@@ -36,7 +39,7 @@ class AddressListSheet extends StatelessWidget{
                      fontWeight: FontWeight.w400,
                      color: Colors.amber
                    )),
-              IconButton(
+               IconButton(
                    onPressed: () {
                      Navigator.of(context).pop();
                    },
@@ -44,7 +47,7 @@ class AddressListSheet extends StatelessWidget{
              ],
            ),
          ),
-
+         /// - Add address title
          SizedBox(
            width: double.maxFinite,
            child: DecoratedBox(
@@ -73,352 +76,356 @@ class AddressListSheet extends StatelessWidget{
            padding:  EdgeInsets.all(8.0),
            child: Text( getTranslated(context, "savedAddress")!, style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300,fontFamily:  getTranslated(context, "fontFamilyBody")!),),
          ),
-         Expanded(
-           child: ListView(
-            controller: scrollController,
-             padding: const EdgeInsets.only(top: 0),
-             children: [
-               ListTile(
-                 title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
-                 subtitle: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
-                    Divider(color: Colors.white,)
-                   ],
-                 ),
-                 leading: Padding(
-                   padding: const EdgeInsets.only(bottom: 8.0, left: 18),
-                   child: Image.asset("assets/images/icon_location_address.png",scale:3,),
-                 ),
 
-               ),
-               ListTile(
-                 title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
-                 subtitle: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
-                     Divider(color: Colors.white,)
-                   ],
-                 ),
-                 leading: Padding(
-                   padding: const EdgeInsets.only(bottom: 8.0, left: 18),
-                   child: Image.asset("assets/images/icon_location_address.png",scale:3,),
-                 ),
-
-               ),
-               ListTile(
-                 title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
-                 subtitle: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
-                     Divider(color: Colors.white,)
-                   ],
-                 ),
-                 leading: Padding(
-                   padding: const EdgeInsets.only(bottom: 8.0, left: 18),
-                   child: Image.asset("assets/images/icon_location_address.png",scale:3,),
-                 ),
-
-               ),
-               ListTile(
-                 title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
-                 subtitle: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
-                     Divider(color: Colors.white,)
-                   ],
-                 ),
-                 leading: Padding(
-                   padding: const EdgeInsets.only(bottom: 8.0, left: 18),
-                   child: Image.asset("assets/images/icon_location_address.png",scale:3,),
-                 ),
-
-               ),
-               ListTile(
-                 title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
-                 subtitle: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
-                     Divider(color: Colors.white,)
-                   ],
-                 ),
-                 leading: Padding(
-                   padding: const EdgeInsets.only(bottom: 8.0, left: 18),
-                   child: Image.asset("assets/images/icon_location_address.png",scale:3,),
-                 ),
-
-               ),
-               ListTile(
-                 title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
-                 subtitle: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
-                     Divider(color: Colors.white,)
-                   ],
-                 ),
-                 leading: Padding(
-                   padding: const EdgeInsets.only(bottom: 8.0, left: 18),
-                   child: Image.asset("assets/images/icon_location_address.png",scale:3,),
-                 ),
-
-               ),
-               ListTile(
-                 title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
-                 subtitle: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
-                     Divider(color: Colors.white,)
-                   ],
-                 ),
-                 leading: Padding(
-                   padding: const EdgeInsets.only(bottom: 8.0, left: 18),
-                   child: Image.asset("assets/images/icon_location_address.png",scale:3,),
-                 ),
-
-               ),
-
-               ListTile(
-                 title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
-                 subtitle: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
-                     Divider(color: Colors.white,)
-                   ],
-                 ),
-                 leading: Padding(
-                   padding: const EdgeInsets.only(bottom: 8.0, left: 18),
-                   child: Image.asset("assets/images/icon_location_address.png",scale:3,),
-                 ),
-
-               ),
-               ListTile(
-                 title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
-                 subtitle: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
-                     Divider(color: Colors.white,)
-                   ],
-                 ),
-                 leading: Padding(
-                   padding: const EdgeInsets.only(bottom: 8.0, left: 18),
-                   child: Image.asset("assets/images/icon_location_address.png",scale:3,),
-                 ),
-
-               ),
-               ListTile(
-                 title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
-                 subtitle: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
-                     Divider(color: Colors.white,)
-                   ],
-                 ),
-                 leading: Padding(
-                   padding: const EdgeInsets.only(bottom: 8.0, left: 18),
-                   child: Image.asset("assets/images/icon_location_address.png",scale:3,),
-                 ),
-
-               ),
-
-               ListTile(
-                 title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
-                 subtitle: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
-                     Divider(color: Colors.white,)
-                   ],
-                 ),
-                 leading: Padding(
-                   padding: const EdgeInsets.only(bottom: 8.0, left: 18),
-                   child: Image.asset("assets/images/icon_location_address.png",scale:3,),
-                 ),
-
-               ),
+          SavedAddressListSheet(scrollController: scrollController),
 
 
-
-               ListTile(
-                 title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
-                 subtitle: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
-                     Divider(color: Colors.white,)
-                   ],
-                 ),
-                 leading: Padding(
-                   padding: const EdgeInsets.only(bottom: 8.0, left: 18),
-                   child: Image.asset("assets/images/icon_location_address.png",scale:3,),
-                 ),
-
-               ),
-               ListTile(
-                 title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
-                 subtitle: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
-                     Divider(color: Colors.white,)
-                   ],
-                 ),
-                 leading: Padding(
-                   padding: const EdgeInsets.only(bottom: 8.0, left: 18),
-                   child: Image.asset("assets/images/icon_location_address.png",scale:3,),
-                 ),
-
-               ),
-               ListTile(
-                 title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
-                 subtitle: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
-                     Divider(color: Colors.white,)
-                   ],
-                 ),
-                 leading: Padding(
-                   padding: const EdgeInsets.only(bottom: 8.0, left: 18),
-                   child: Image.asset("assets/images/icon_location_address.png",scale:3,),
-                 ),
-
-               ),
-               ListTile(
-                 title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
-                 subtitle: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
-                     Divider(color: Colors.white,)
-                   ],
-                 ),
-                 leading: Padding(
-                   padding: const EdgeInsets.only(bottom: 8.0, left: 18),
-                   child: Image.asset("assets/images/icon_location_address.png",scale:3,),
-                 ),
-
-               ),
-               ListTile(
-                 title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
-                 subtitle: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
-                     Divider(color: Colors.white,)
-                   ],
-                 ),
-                 leading: Padding(
-                   padding: const EdgeInsets.only(bottom: 8.0, left: 18),
-                   child: Image.asset("assets/images/icon_location_address.png",scale:3,),
-                 ),
-
-               ),
-               ListTile(
-                 title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
-                 subtitle: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
-                     Divider(color: Colors.white,)
-                   ],
-                 ),
-                 leading: Padding(
-                   padding: const EdgeInsets.only(bottom: 8.0, left: 18),
-                   child: Image.asset("assets/images/icon_location_address.png",scale:3,),
-                 ),
-
-               ),
-               ListTile(
-                 title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
-                 subtitle: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
-                     Divider(color: Colors.white,)
-                   ],
-                 ),
-                 leading: Padding(
-                   padding: const EdgeInsets.only(bottom: 8.0, left: 18),
-                   child: Image.asset("assets/images/icon_location_address.png",scale:3,),
-                 ),
-
-               ),
-
-               ListTile(
-                 title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
-                 subtitle: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
-                     Divider(color: Colors.white,)
-                   ],
-                 ),
-                 leading: Padding(
-                   padding: const EdgeInsets.only(bottom: 8.0, left: 18),
-                   child: Image.asset("assets/images/icon_location_address.png",scale:3,),
-                 ),
-
-               ),
-               ListTile(
-                 title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
-                 subtitle: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
-                     Divider(color: Colors.white,)
-                   ],
-                 ),
-                 leading: Padding(
-                   padding: const EdgeInsets.only(bottom: 8.0, left: 18),
-                   child: Image.asset("assets/images/icon_location_address.png",scale:3,),
-                 ),
-
-               ),
-               ListTile(
-                 title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
-                 subtitle: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
-                     Divider(color: Colors.white,)
-                   ],
-                 ),
-                 leading: Padding(
-                   padding: const EdgeInsets.only(bottom: 8.0, left: 18),
-                   child: Image.asset("assets/images/icon_location_address.png",scale:3,),
-                 ),
-
-               ),
-
-               ListTile(
-                 title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
-                 subtitle: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
-                     Divider(color: Colors.white,)
-                   ],
-                 ),
-                 leading: Padding(
-                   padding: const EdgeInsets.only(bottom: 8.0, left: 18),
-                   child: Image.asset("assets/images/icon_location_address.png",scale:3,),
-                 ),
-
-               ),
-
-             ],
-           ),
-         )
+         //  Expanded(
+         //   child: ListView(
+         //    controller: scrollController,
+         //     padding: const EdgeInsets.only(top: 0),
+         //     children: [
+         //       ListTile(
+         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         subtitle: Column(
+         //           crossAxisAlignment: CrossAxisAlignment.start,
+         //           children: [
+         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //            Divider(color: Colors.white,)
+         //           ],
+         //         ),
+         //         leading: Padding(
+         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
+         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
+         //         ),
+         //
+         //       ),
+         //       ListTile(
+         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         subtitle: Column(
+         //           crossAxisAlignment: CrossAxisAlignment.start,
+         //           children: [
+         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             Divider(color: Colors.white,)
+         //           ],
+         //         ),
+         //         leading: Padding(
+         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
+         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
+         //         ),
+         //
+         //       ),
+         //       ListTile(
+         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         subtitle: Column(
+         //           crossAxisAlignment: CrossAxisAlignment.start,
+         //           children: [
+         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             Divider(color: Colors.white,)
+         //           ],
+         //         ),
+         //         leading: Padding(
+         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
+         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
+         //         ),
+         //
+         //       ),
+         //       ListTile(
+         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         subtitle: Column(
+         //           crossAxisAlignment: CrossAxisAlignment.start,
+         //           children: [
+         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             Divider(color: Colors.white,)
+         //           ],
+         //         ),
+         //         leading: Padding(
+         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
+         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
+         //         ),
+         //
+         //       ),
+         //       ListTile(
+         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         subtitle: Column(
+         //           crossAxisAlignment: CrossAxisAlignment.start,
+         //           children: [
+         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             Divider(color: Colors.white,)
+         //           ],
+         //         ),
+         //         leading: Padding(
+         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
+         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
+         //         ),
+         //
+         //       ),
+         //       ListTile(
+         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         subtitle: Column(
+         //           crossAxisAlignment: CrossAxisAlignment.start,
+         //           children: [
+         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             Divider(color: Colors.white,)
+         //           ],
+         //         ),
+         //         leading: Padding(
+         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
+         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
+         //         ),
+         //
+         //       ),
+         //       ListTile(
+         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         subtitle: Column(
+         //           crossAxisAlignment: CrossAxisAlignment.start,
+         //           children: [
+         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             Divider(color: Colors.white,)
+         //           ],
+         //         ),
+         //         leading: Padding(
+         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
+         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
+         //         ),
+         //
+         //       ),
+         //
+         //       ListTile(
+         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         subtitle: Column(
+         //           crossAxisAlignment: CrossAxisAlignment.start,
+         //           children: [
+         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             Divider(color: Colors.white,)
+         //           ],
+         //         ),
+         //         leading: Padding(
+         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
+         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
+         //         ),
+         //
+         //       ),
+         //       ListTile(
+         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         subtitle: Column(
+         //           crossAxisAlignment: CrossAxisAlignment.start,
+         //           children: [
+         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             Divider(color: Colors.white,)
+         //           ],
+         //         ),
+         //         leading: Padding(
+         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
+         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
+         //         ),
+         //
+         //       ),
+         //       ListTile(
+         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         subtitle: Column(
+         //           crossAxisAlignment: CrossAxisAlignment.start,
+         //           children: [
+         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             Divider(color: Colors.white,)
+         //           ],
+         //         ),
+         //         leading: Padding(
+         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
+         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
+         //         ),
+         //
+         //       ),
+         //
+         //       ListTile(
+         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         subtitle: Column(
+         //           crossAxisAlignment: CrossAxisAlignment.start,
+         //           children: [
+         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             Divider(color: Colors.white,)
+         //           ],
+         //         ),
+         //         leading: Padding(
+         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
+         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
+         //         ),
+         //
+         //       ),
+         //
+         //
+         //
+         //       ListTile(
+         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         subtitle: Column(
+         //           crossAxisAlignment: CrossAxisAlignment.start,
+         //           children: [
+         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             Divider(color: Colors.white,)
+         //           ],
+         //         ),
+         //         leading: Padding(
+         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
+         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
+         //         ),
+         //
+         //       ),
+         //       ListTile(
+         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         subtitle: Column(
+         //           crossAxisAlignment: CrossAxisAlignment.start,
+         //           children: [
+         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             Divider(color: Colors.white,)
+         //           ],
+         //         ),
+         //         leading: Padding(
+         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
+         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
+         //         ),
+         //
+         //       ),
+         //       ListTile(
+         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         subtitle: Column(
+         //           crossAxisAlignment: CrossAxisAlignment.start,
+         //           children: [
+         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             Divider(color: Colors.white,)
+         //           ],
+         //         ),
+         //         leading: Padding(
+         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
+         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
+         //         ),
+         //
+         //       ),
+         //       ListTile(
+         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         subtitle: Column(
+         //           crossAxisAlignment: CrossAxisAlignment.start,
+         //           children: [
+         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             Divider(color: Colors.white,)
+         //           ],
+         //         ),
+         //         leading: Padding(
+         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
+         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
+         //         ),
+         //
+         //       ),
+         //       ListTile(
+         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         subtitle: Column(
+         //           crossAxisAlignment: CrossAxisAlignment.start,
+         //           children: [
+         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             Divider(color: Colors.white,)
+         //           ],
+         //         ),
+         //         leading: Padding(
+         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
+         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
+         //         ),
+         //
+         //       ),
+         //       ListTile(
+         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         subtitle: Column(
+         //           crossAxisAlignment: CrossAxisAlignment.start,
+         //           children: [
+         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             Divider(color: Colors.white,)
+         //           ],
+         //         ),
+         //         leading: Padding(
+         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
+         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
+         //         ),
+         //
+         //       ),
+         //       ListTile(
+         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         subtitle: Column(
+         //           crossAxisAlignment: CrossAxisAlignment.start,
+         //           children: [
+         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             Divider(color: Colors.white,)
+         //           ],
+         //         ),
+         //         leading: Padding(
+         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
+         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
+         //         ),
+         //
+         //       ),
+         //
+         //       ListTile(
+         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         subtitle: Column(
+         //           crossAxisAlignment: CrossAxisAlignment.start,
+         //           children: [
+         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             Divider(color: Colors.white,)
+         //           ],
+         //         ),
+         //         leading: Padding(
+         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
+         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
+         //         ),
+         //
+         //       ),
+         //       ListTile(
+         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         subtitle: Column(
+         //           crossAxisAlignment: CrossAxisAlignment.start,
+         //           children: [
+         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             Divider(color: Colors.white,)
+         //           ],
+         //         ),
+         //         leading: Padding(
+         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
+         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
+         //         ),
+         //
+         //       ),
+         //       ListTile(
+         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         subtitle: Column(
+         //           crossAxisAlignment: CrossAxisAlignment.start,
+         //           children: [
+         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             Divider(color: Colors.white,)
+         //           ],
+         //         ),
+         //         leading: Padding(
+         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
+         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
+         //         ),
+         //
+         //       ),
+         //
+         //       ListTile(
+         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         subtitle: Column(
+         //           crossAxisAlignment: CrossAxisAlignment.start,
+         //           children: [
+         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             Divider(color: Colors.white,)
+         //           ],
+         //         ),
+         //         leading: Padding(
+         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
+         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
+         //         ),
+         //
+         //       ),
+         //
+         //     ],
+         //   ),
+         // )
        ],
      ),
    );

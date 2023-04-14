@@ -10,6 +10,8 @@ import 'package:provider/provider.dart';
 import '../../../models/AppThemeModels/DesignPerPage/SavedAddressPage/saved_address_page.dart';
 import '../../../models/AppThemeModels/FontSizes/Language/lang.dart';
 import '../../../providers/AppTheme/theme_provider.dart';
+import '../../../providers/ProfileProviders/profile_provider.dart';
+import '../../../widgets/Saved_address/saved_address_list_widget.dart';
 
 class SavedAddress extends StatefulWidget{
   @override
@@ -17,6 +19,10 @@ class SavedAddress extends StatefulWidget{
 }
 
 class _SavedAddressState extends State<SavedAddress> {
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Consumer<ThemeProvider>(builder: (context, appTheme, child)
@@ -90,132 +96,12 @@ class _SavedAddressState extends State<SavedAddress> {
                                       //   ),
                                       // ),
                                       const SizedBox(height: 15,),
-                                      Expanded(
-                                        child: ListView(
-                                          shrinkWrap: true,
-                                          children: [
-                                            Container(
-                                              decoration: const BoxDecoration(
-                                                color: Colors.transparent,
-                                                borderRadius: BorderRadius.only(
-                                                  topRight: Radius.circular(10),
-                                                  bottomLeft: Radius.circular(10),
-                                                  topLeft: Radius.circular(10),
-                                                  bottomRight: Radius.circular(10),
-                                                ),
-                                                // border: Border.all(
-                                                //   width: 0.5,
-                                                //   color: Colors.white,
-                                                //   style: BorderStyle.solid,
-                                                // ),
-                                              ),
-                                              child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                children: [
-                                                  Column(
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                                    children: [
-                                                      Text("Dubai - Jumeirah Lake Tower -ma...",
-                                                          style:TextStyle(
-                                                              fontFamily: lng?.header3.textFamily,
-                                                              color: Color(int.parse(savedAddressPage?.body.addressList.title.color as String)),
-                                                              fontSize: lng?.header3.size.toDouble()
-                                                          ),
-                                                      ),
-                                                      Text("Flat | Jumeirah Lakes Tower",
-                                                          style: TextStyle(
-                                                              fontFamily: lng?.header3.textFamily,
-                                                              color: Color(int.parse(savedAddressPage?.body.addressList.subTitle.color as String)),
-                                                              fontSize: lng?.header3.size.toDouble()
-                                                          ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  const SizedBox(width: 20,),
-                                                  SizedBox(
 
-                                                    child: Row(
-                                                      children: [
-                                                        SizedBox(
-                                                          width: 25,
-                                                          height: 25,
-
-                                                          child: ElevatedButton(
-                                                              onPressed: () {
-                                                                PersistentNavBarNavigator.pushNewScreen(
-                                                                  context,
-                                                                  screen: UpdateAddress(),
-                                                                  withNavBar: true,
-                                                                  // OPTIONAL VALUE. True by default.
-                                                                  pageTransitionAnimation: PageTransitionAnimation
-                                                                      .cupertino,
-                                                                );
-                                                              },
-                                                              style: ButtonStyle(
-                                                                  shape: MaterialStateProperty.all<
-                                                                      RoundedRectangleBorder>(
-                                                                      const RoundedRectangleBorder(
-                                                                          borderRadius: BorderRadius
-                                                                              .all(
-                                                                              Radius.circular(
-                                                                                  100)),
-                                                                          side: BorderSide(
-                                                                              color: Colors
-                                                                                  .transparent,
-                                                                              width: 1)
-                                                                      )
-                                                                  ),
-                                                                  overlayColor: MaterialStateProperty
-                                                                      .all(Colors.white30),
-                                                                  elevation: MaterialStateProperty
-                                                                      .all(0),
-                                                                  shadowColor: MaterialStateProperty
-                                                                      .all(Colors.transparent),
-                                                                  backgroundColor: MaterialStateProperty.all(Color(int.parse(savedAddressPage?.body.addressList.editButton.backGroundColor as String))),
-                                                                  foregroundColor: MaterialStateProperty
-                                                                      .all(Colors.white),
-                                                                  padding: MaterialStateProperty
-                                                                      .all(
-                                                                      const EdgeInsets.all(0)),
-                                                                  textStyle: MaterialStateProperty
-                                                                      .all(const TextStyle(
-                                                                      fontSize: 15))),
-                                                              child: const Icon(
-                                                                Icons.mode_edit_outline_outlined,
-                                                                color: Colors.white, size: 15,)
-                                                          ),
-                                                        ),
-
-                                                        IconButton(
-                                                          onPressed: () {
-
-                                                          },
-                                                          icon: ImageIcon(
-                                                            NetworkImage(savedAddressPage?.body.addressList.deleteButton.imageIcon as String),
-                                                            size: double.parse(savedAddressPage?.body.addressList.deleteButton.mobileSize as String),
-                                                            color: Colors.white54,
-
-                                                          )
-                                                        ),
-
-                                                        // IconButton(
-                                                        //     onPressed: () {},
-                                                        //     icon: Icon(
-                                                        //       Icons.delete,
-                                                        //       color: Colors.white54,
-                                                        //     ))
-                                                      ],
-                                                    ),
-                                                  ),
-
-                                                ],
-                                              ),
-                                            ),
+                                      SavedAddressListWidget(lng: lng, savedAddressPage: savedAddressPage),
 
 
-                                          ],
-                                        ),
-                                      ),
+                                      const SizedBox(height: 10,),
+
 
                                       SizedBox(
                                           width: 330,
@@ -267,5 +153,11 @@ class _SavedAddressState extends State<SavedAddress> {
                         )
             :LoadingPage();
     });
+  }
+
+  @override
+  void initState() {
+
+    Provider.of<ProfileProvider>(context,listen: false).getUserSavedAddress("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjgxNDY2NTQwLCJleHAiOjE2ODE2MzkzNDB9.pV9I0WLj7fzZCwjDKFNThUl7tQP4J4OZHaZ7Csc0ynQ");
   }
 }
