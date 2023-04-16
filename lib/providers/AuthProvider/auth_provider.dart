@@ -49,17 +49,19 @@ class AuthProvider with ChangeNotifier{
     prefs.setString(Keys.savedLoggedInUserKey, json.encode(user.toJson()));
 
   }
-  Future<void> getSavedUserDetailsLocally() async {
+
+  Future<LoggedInUser?> getSavedUserDetailsLocally() async {
     print("load logged in user data...");
     SharedPreferences prefs = await GetSharedPref().getSharedPref();
-    // print(prefs.getString(Keys.savedLoggedInUserKey,));
-    // print(json.decode(prefs.getString(Keys.savedLoggedInUserKey,)??"{}"));
-    if(prefs.getString(Keys.savedLoggedInUserKey,)!="{}"){
+    if(prefs.getString(Keys.savedLoggedInUserKey,)!="{}" && prefs.getString(Keys.savedLoggedInUserKey,)!=null){
       loggedInUser=   LoggedInUser.fromJson(json.decode(prefs.getString(Keys.savedLoggedInUserKey,)??"{}"));
       notifyListeners();
+      return loggedInUser;
     }
+    return null;
 
   }
+
   Future<void> logOutUserDetailsLocally() async {
 
     SharedPreferences prefs = await GetSharedPref().getSharedPref();

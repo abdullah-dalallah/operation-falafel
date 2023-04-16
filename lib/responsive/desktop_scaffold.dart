@@ -46,7 +46,6 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
     super.initState();
 
     _controller = PersistentTabController(initialIndex: 0);
-    Provider.of<AuthProvider>(context, listen: false).getSavedUserDetailsLocally();
   }
 
   @override

@@ -21,8 +21,18 @@ class Keys {
   static const languageKey = "language";
 
 
-  /// - Profile -> SavedAddress
+  /// - Profile -> Address
   static const x_of_awjKey = "x-of-awj";
+  static const nameKey = "name";
+  static const areaKey = "area";
+  static const buildingKey = "building";
+  static const flatKey = "flat";
+  static const latKey = "lat";
+  static const longKey = "long";
+  static const is_primaryKey = "is_primary";
+  static const address_type_idKey = "address_type_id";
+  static const city_idKey = "city_id";
+  static const idKey = "id";
 
 
 

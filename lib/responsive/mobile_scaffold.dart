@@ -58,7 +58,8 @@ class _MobileScaffoldState extends State<MobileScaffold> {
     super.initState();
 
     _controller = PersistentTabController(initialIndex: 0);
-    Provider.of<AuthProvider>(context, listen: false).getSavedUserDetailsLocally();
+
+
   }
 
   @override

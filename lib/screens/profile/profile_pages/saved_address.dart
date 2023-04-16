@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import '../../../models/AppThemeModels/DesignPerPage/SavedAddressPage/saved_address_page.dart';
 import '../../../models/AppThemeModels/FontSizes/Language/lang.dart';
 import '../../../providers/AppTheme/theme_provider.dart';
+import '../../../providers/AuthProvider/auth_provider.dart';
 import '../../../providers/ProfileProviders/profile_provider.dart';
 import '../../../widgets/Saved_address/saved_address_list_widget.dart';
 
@@ -157,7 +158,8 @@ class _SavedAddressState extends State<SavedAddress> {
 
   @override
   void initState() {
-
-    Provider.of<ProfileProvider>(context,listen: false).getUserSavedAddress("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjgxNDY2NTQwLCJleHAiOjE2ODE2MzkzNDB9.pV9I0WLj7fzZCwjDKFNThUl7tQP4J4OZHaZ7Csc0ynQ");
+    var authProvider = Provider.of<AuthProvider>(context,listen: false);
+    String token =authProvider.loggedInUser?.token??"";
+    Provider.of<ProfileProvider>(context,listen: false).getUserSavedAddress(token);
   }
 }
