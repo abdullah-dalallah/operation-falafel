@@ -2,7 +2,9 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/widgets/Map/map_page.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
 
 import '../../../data/keys.dart';
@@ -114,14 +116,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                             fontSize: lng?.titleHeader2.size.toDouble()
                         ),
                       ),
-                      // Text(
-                      //   getTranslated(context, "address")!,
-                      //   style: TextStyle(
-                      //       fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",
-                      //       color: Colors.amber,
-                      //       fontSize: double.parse(getTranslated(context, "fontFamilyTitleُSize")!)
-                      //   ),
-                      // ),
+
                       Expanded(
                         child: ListView(
                           children: [
@@ -563,7 +558,70 @@ class _AddNewAddressState extends State<AddNewAddress> {
                           ],
                         ),
                       ),
+                      // Divider(color: Colors.white,height: 1,),
+                      ListTile(
+                        tileColor: Colors.black,
+                        title: Text("Location on Map",
+                          style: TextStyle(
+                              fontFamily: lng?.header3.textFamily,
+                              color: Colors.amber,
+                              //Color(int.parse(addNewAddressPage.body.form.addressTypeDropDown.addNewAddressButton.color)),
+                              fontSize: lng?.header3.size.toDouble()
+                          ),
+                          // style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,fontSize: double.parse(getTranslated(context, "cartpageHeader2SubTotal")!)),
+                        ),
+                        subtitle: Text("Name ",
+                          style: TextStyle(
+                              fontFamily: lng?.header3.textFamily,
+                              color: Colors.white,
+                              //Color(int.parse(addNewAddressPage.body.form.addressTypeDropDown.addNewAddressButton.color)),
+                              fontSize: lng?.header3.size.toDouble()
+                          ),
+                          // style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontSize: double.parse(getTranslated(context, "cartpageHeader3")!)),
+                        ),
+                         trailing:
+                         /// - change location
+                         SizedBox(
+                             width: 150,
 
+                             child: ElevatedButton(
+                                 onPressed: () {
+                                   PersistentNavBarNavigator.pushNewScreen(
+                                     context,
+                                     screen: MapPage(),
+                                     withNavBar: true,
+                                     // OPTIONAL VALUE. True by default.
+                                     pageTransitionAnimation: PageTransitionAnimation
+                                         .cupertino,
+                                   );
+                                   // pushNewScreen(context, screen:  MapPage());
+
+                                 },
+                                 style: ButtonStyle(
+                                   backgroundColor: MaterialStateProperty.all<Color>(Colors.amber),
+                                   foregroundColor: MaterialStateProperty.all<Color>(Color(int.parse(addNewAddressPage.body.form.addressTypeDropDown.addNewAddressButton.backGroundColor))),
+                                   shape: MaterialStateProperty.all(
+                                       RoundedRectangleBorder(
+                                           borderRadius: BorderRadius
+                                               .circular(10.0),
+                                           side: const BorderSide(
+                                               color: Colors.transparent,
+                                               width: 1.5)
+                                       )
+                                   ),
+                                 ),
+                                 child:Text(
+                                   "change",
+                                   style: TextStyle(
+                                       fontFamily: lng?.header3.textFamily,
+                                       color: Color(int.parse(addNewAddressPage.body.form.addressTypeDropDown.addNewAddressButton.color)),
+                                       fontSize: lng?.header3.size.toDouble()
+                                   ),
+                                 )
+
+                             )
+                         ),
+                      )
                     ],
                   ),
                 ),

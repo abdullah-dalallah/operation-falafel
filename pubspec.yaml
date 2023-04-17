@@ -29,6 +29,10 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  shimmer: ^2.0.0
+  geocoding: ^2.1.0
+  google_maps_flutter: ^2.2.3
+  geolocator: ^9.0.2
   window_manager: ^0.3.2
   email_validator: ^2.1.17
   shared_preferences: ^2.0.18

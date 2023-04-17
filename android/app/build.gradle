@@ -1,3 +1,5 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
@@ -25,6 +27,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
+
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
 android {
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
@@ -39,12 +48,36 @@ android {
         applicationId "com.operationfalafel.operation_falafel"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
-        minSdkVersion flutter.minSdkVersion
+        minSdkVersion 20
+//        minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         compileSdkVersion 33
+        multiDexEnabled true
+
     }
+
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storePassword keystoreProperties['storePassword']
+
+            if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+                storeFile file(keystoreProperties['storeFileWindows'])
+            }
+//            else
+//            if (Os.isFamily(Os.FAMILY_UNIX)) {
+//                storeFile file(keystoreProperties['storeFileLinux'])
+//            }
+            else
+            if (Os.isFamily(Os.FAMILY_MAC)) {
+                storeFile file(keystoreProperties['storeFileMac'])
+            }
+        }
+    }
+
 
     buildTypes {
         release {
