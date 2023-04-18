@@ -127,7 +127,7 @@ class ProfileProvider with ChangeNotifier {
         if(response.data[Keys.successKey]==true){
 
           _addressTypeList  = response.data[Keys.bodyKey];
-          print(_addressTypeList);
+          // print(_addressTypeList);
           notifyListeners();
           print("addresses types list fetched From Online Server!");
 
@@ -148,8 +148,6 @@ class ProfileProvider with ChangeNotifier {
   /// - Get Cities List
   List<dynamic> _citiesList =[];
 
-  ProfileProvider(this._citiesList);
-
   List<dynamic> get citiesList => _citiesList;
 
   set citiesList(List<dynamic> value) {
@@ -159,12 +157,12 @@ class ProfileProvider with ChangeNotifier {
 
   Future<Response<dynamic>> getCitiesList(String userToken,) async {
     print("getting Cities list from Online Server...");
-    var url = '${Strings.baseAppAddressUrl}/address-type';
+    var url = '${Strings.baseAppThemeUrl}cities/country/1';
     print(url);
     Map<String, String> header = <String, String>{};
     header.putIfAbsent(Keys.acceptKey, () => "application/json");
     header.putIfAbsent(Keys.x_of_awjKey, () => "${userToken}");
-    header.putIfAbsent(Keys.authorizationKey, () => "Bearer " + userToken!);
+    // header.putIfAbsent(Keys.authorizationKey, () => "Bearer " + userToken!);
 
 
 
@@ -178,7 +176,7 @@ class ProfileProvider with ChangeNotifier {
         if(response.data[Keys.successKey]==true){
 
           _citiesList  = response.data[Keys.bodyKey];
-          print(_citiesList);
+          // print(_citiesList);
 
           print("Ctiies list fetched From Online Server!");
 

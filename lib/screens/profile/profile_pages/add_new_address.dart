@@ -47,7 +47,11 @@ class _AddNewAddressState extends State<AddNewAddress> {
     super.initState();
 
     String savedUserToken = Provider.of<AuthProvider>(context,listen: false).loggedInUser!.token??"";
-    Provider.of<ProfileProvider>(context,listen: false).getAddressTypesList(savedUserToken);
+    Provider.of<ProfileProvider>(context,listen: false).getAddressTypesList(savedUserToken).then((value) {
+      Provider.of<ProfileProvider>(context,listen: false).getCitiesList(savedUserToken);
+    });
+
+
   }
 
   @override
@@ -637,7 +641,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                               flatNumber: _controllerFlatNumber.text,
                                               addressTypeId: selectedAddressItemById!,
                                               isPrimary: primary?1:0,
-                                              cityId: 1,
+                                              cityId: selectCityId!,
                                               lat: "25.265486", long: "31.256986").then((response) {
                                                 if(response.data[Keys.successKey]==true){
                                                   Provider.of<ProfileProvider>(context,listen: false).getUserSavedAddress(savedUserToken).then((res) {
