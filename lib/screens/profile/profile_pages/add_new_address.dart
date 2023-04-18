@@ -31,6 +31,8 @@ class _AddNewAddressState extends State<AddNewAddress> {
   ];
 
   int? selectedAddressItemById;
+  int? selectCityId ;
+
   bool primary = false;
 
   final GlobalKey<FormState> _formKey = GlobalKey();
@@ -169,6 +171,131 @@ class _AddNewAddressState extends State<AddNewAddress> {
 
                               ),
                             ),
+
+                            /// - City --->  Design is missing
+                            Padding(
+                              padding: const EdgeInsets.only(left: 18.0, right: 18, top: 8, bottom: 8),
+                              child: DropdownButtonFormField2(
+                                  scrollbarAlwaysShow: true,
+                                  style: const TextStyle(color: Colors.white),
+                                  decoration: const InputDecoration(
+                                    //Add isDense true and zero Padding.
+                                    //Add Horizontal padding using buttonPadding and Vertical padding by increasing buttonHeight instead of add Padding here so that The whole TextField Button become clickable, and also the dropdown menu open under The whole TextField Button.
+                                    isDense: true,
+                                    fillColor: Colors.transparent,
+                                    filled: true,
+
+                                    contentPadding: EdgeInsets.only(),
+                                    // border: OutlineInputBorder(
+                                    //   borderSide: const BorderSide(color: Colors.green, width: 40.0, style: BorderStyle.solid ),
+                                    //   borderRadius: BorderRadius.circular(10),
+                                    //
+                                    // ),
+                                    focusColor: Colors.amber,
+
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10.0),
+                                      ),
+                                      borderSide: BorderSide(
+                                        color: Colors.amber, width: 2.0,),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10.0),
+                                      ),
+                                      borderSide: BorderSide(
+                                          color: Colors.white60, width: 2.0),
+                                    ),
+
+                                    //Add more decoration as you want here
+                                    //Add label If you want but add hint outside the decoration to be aligned in the button perfectly.
+                                  ),
+                                  isExpanded: true,
+                                  hint:  Text(
+                                    "City",
+                                    // addNewAddressPage.body.form.addressTypeDropDown.labelText.data,
+                                    style: TextStyle(
+                                        fontSize: lng?.header3.size.toDouble(),
+                                        color: Color(int.parse(addNewAddressPage.body.form.addressTypeDropDown.labelText.color)),
+                                        fontFamily: lng?.header3.textFamily
+                                    ),
+                                  ),
+                                  icon: const ImageIcon(AssetImage("assets/images/down.png"),),
+                                  iconSize: 30,
+                                  buttonHeight: (selectCityId != null) ? 50 : 50,
+                                  buttonPadding: const EdgeInsets.only(left: 20, right: 20),
+                                  dropdownDecoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(10),),
+                                  itemHeight: 30,
+                                  items: profileProvider.citiesList
+                                      .map((addressTypeItem) =>
+                                      DropdownMenuItem<dynamic>(
+                                        value: addressTypeItem[Keys.idKey],
+                                        child:
+                                        Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+
+                                            Row(
+                                              children: [
+
+                                                (selectCityId != null)
+                                                    ?
+                                                (selectCityId == addressTypeItem[Keys.idKey]) ?
+                                                Image.network(
+                                                  addNewAddressPage.body.form.addressTypeDropDown.selectedIcon.imageIcon,
+                                                  height: 15, width: 15,)
+                                                    : SizedBox(width: 15,)
+
+                                                    : SizedBox(width: 15,),
+
+
+                                                SizedBox(width: 5,),
+
+
+                                                Text(
+                                                  addressTypeItem[Keys.nameKey],
+                                                  // getTranslated(context, addressItem)!,
+                                                  style: TextStyle(
+                                                      fontSize: lng?.header2.size.toDouble(),
+                                                      color: Color(int.parse(addNewAddressPage.body.form.addressTypeDropDown.itemsTitle.color)),
+                                                      fontFamily: lng?.header2.textFamily
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+
+
+                                          ],
+                                        ),
+
+
+                                      ))
+                                      .toList(),
+                                  validator: (value) {
+                                    if (value == null) {
+                                      return 'Please select city.';
+                                    }
+                                  },
+                                  onChanged: (value) {
+                                    //Do something when changing the item if you want.
+                                    setState(() {
+                                      selectCityId = value;
+                                    });
+
+                                    print(value);
+                                    // print(selectedAddressItem.keys.elementAt(0));
+                                  },
+                                  onSaved: (value) {
+                                    setState(() {
+                                      selectCityId = value;
+                                    });
+                                  },
+                                ),
+                            ),
+
+
 
                             /// - Building name & villa No
                             Padding(

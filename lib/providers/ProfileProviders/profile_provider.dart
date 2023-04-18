@@ -145,4 +145,55 @@ class ProfileProvider with ChangeNotifier {
   }
 
 
+  /// - Get Cities List
+  List<dynamic> _citiesList =[];
+
+  ProfileProvider(this._citiesList);
+
+  List<dynamic> get citiesList => _citiesList;
+
+  set citiesList(List<dynamic> value) {
+    _citiesList = value;
+  }
+
+
+  Future<Response<dynamic>> getCitiesList(String userToken,) async {
+    print("getting Cities list from Online Server...");
+    var url = '${Strings.baseAppAddressUrl}/address-type';
+    print(url);
+    Map<String, String> header = <String, String>{};
+    header.putIfAbsent(Keys.acceptKey, () => "application/json");
+    header.putIfAbsent(Keys.x_of_awjKey, () => "${userToken}");
+    header.putIfAbsent(Keys.authorizationKey, () => "Bearer " + userToken!);
+
+
+
+    var dio = Dio();
+    try {
+
+      var response = await dio.get(url, options: Options(headers: header));// options: Options(headers: header)
+
+      if(response.statusCode ==200){
+
+        if(response.data[Keys.successKey]==true){
+
+          _citiesList  = response.data[Keys.bodyKey];
+          print(_citiesList);
+
+          print("Ctiies list fetched From Online Server!");
+
+        }
+
+      }
+      notifyListeners();
+      return response;
+    } on DioError catch (e) {
+      print(e.response);
+
+      return e.response!;
+
+    }
+  }
+
+
 }
