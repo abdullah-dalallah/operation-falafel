@@ -191,7 +191,7 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                         backgroundColor: Colors.amber,
                         pinned: true,
                         primary: false,
-                        backwardsCompatibility: false,
+                        // backwardsCompatibility: false,
                         automaticallyImplyLeading: false,
                         // expandedHeight: 230.0,
                         title: Align(
