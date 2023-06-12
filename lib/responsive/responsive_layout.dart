@@ -21,14 +21,16 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
   @override
   Widget build(BuildContext context) {
   return LayoutBuilder(builder: (context,constraints){
-    if(constraints.maxWidth<500){
-      return widget.MobileScaffold;
-    }else if(constraints.maxWidth <1100){
-      return widget.TabletScaffold;
-    }
-    else{
-      return widget.DesktopScaffold;
-    }
+    return widget.MobileScaffold;
+    // if(constraints.maxWidth<500){
+    //   return widget.MobileScaffold;
+    // }
+    // else if(constraints.maxWidth <1100){
+    //   return widget.TabletScaffold;
+    // }
+    // else{
+    //   return widget.DesktopScaffold;
+    // }
     }
     );
   }
@@ -36,7 +38,7 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
   @override
   void initState() {
     super.initState();
-    Provider.of<ThemeProvider>(context,listen: false). getAppTheme("appTitle", "operation falafel", "12", "1", "uae", "en").then((response) {
+    Provider.of<ThemeProvider>(context,listen: false).getAppTheme("appTitle", "operation falafel", "12", "1", "uae", "en").then((response) {
         if(response.statusCode==200 && response.data[Keys.bodyKey]!=null){
             // print(response.data[Keys.bodyKey][0][Keys.languageKey]);
 

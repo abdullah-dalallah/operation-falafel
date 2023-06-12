@@ -333,8 +333,8 @@ class _MobileScaffoldState extends State<MobileScaffold> {
 
       List<BottomNavigationBarItem> tabsIcon = [];
       List<Widget> screens =[];
-        //
-      if (bottomNavigationBar != null) {
+        //bottomNavigationBar != null
+      if (false) {
         screens.clear();
         /// - home
         if (bottomNavigationBar?.home.visibility == 'true') {
@@ -464,7 +464,7 @@ class _MobileScaffoldState extends State<MobileScaffold> {
             screens.add(_buildOffstageNavigator("LoggedInUserProfile"));
           }
           else {
-            screens.add(_buildOffstageNavigator("LoggedInUserProfile"));
+            screens.add(_buildOffstageNavigator("TrackMyOrder"));
           }
 
         }
@@ -472,7 +472,7 @@ class _MobileScaffoldState extends State<MobileScaffold> {
       }
       else{
 
-        screens.clear();
+
         tabsIcon.add(const BottomNavigationBarItem(
           activeIcon: ImageIcon(
             // size: 30,
@@ -573,12 +573,15 @@ class _MobileScaffoldState extends State<MobileScaffold> {
           label: 'Profile',
         ),);
 
-        if(authProvider.loggedInUser?.token != null ){
-          screens.add(_buildOffstageNavigator("LoggedInUserProfile"));
-        }
-        else {
-          screens.add(_buildOffstageNavigator("LoggedInUserProfile"));
-        }
+        // if(authProvider.loggedInUser?.token != null ){
+        //
+        //   screens.add(_buildOffstageNavigator("LoggedInUserProfile"));
+        // }
+        // else {
+        //   screens.add(_buildOffstageNavigator("EnterOFWorld"));
+        // }
+
+        screens.add(_buildOffstageNavigator("Profile"));
       }
 
 
@@ -609,10 +612,7 @@ class _MobileScaffoldState extends State<MobileScaffold> {
             type: BottomNavigationBarType.fixed,
             backgroundColor: Colors.black,
             currentIndex: _currentIndex,
-
-            onTap: (index) {
-              _selectTab(pageKeys[index], index);
-            },
+            onTap: (index) {_selectTab(pageKeys[index], index);},
             items: tabsIcon
           ),
 
@@ -624,14 +624,14 @@ class _MobileScaffoldState extends State<MobileScaffold> {
 
   int _currentIndex = 0;
   String _currentPage ='MainMenu';
-  List<String> pageKeys = ["MainMenu","TabeBarMenu","Cart_Screen","TrackMyOrder","LoggedInUserProfile","EnterOFWorld", ];
+  List<String> pageKeys = ["MainMenu","TabeBarMenu","Cart_Screen","TrackMyOrder","Profile", ];
   final Map<String, GlobalKey<NavigatorState>> _navigatorKeys ={
     "MainMenu":GlobalKey<NavigatorState>(),
     "TabeBarMenu":GlobalKey<NavigatorState>(),
     "Cart_Screen":GlobalKey<NavigatorState>(),
     "TrackMyOrder":GlobalKey<NavigatorState>(),
-    "LoggedInUserProfile":GlobalKey<NavigatorState>(),
-    "EnterOFWorld":GlobalKey<NavigatorState>(),
+    "Profile":GlobalKey<NavigatorState>(),
+
   };
 
   void _selectTab(String tabItem, int index){
@@ -640,6 +640,7 @@ class _MobileScaffoldState extends State<MobileScaffold> {
     }
     else{
       setState(() {
+        // _currentPage = tabItem;
         _currentPage = pageKeys[index];
         _currentIndex = index;
       });
@@ -648,11 +649,11 @@ class _MobileScaffoldState extends State<MobileScaffold> {
   }
 
   Widget _buildOffstageNavigator(String tabItem){
-
+   // print(tabItem);
     return Offstage(
       offstage: _currentPage != tabItem,
       child: TabNavigator(
-        navigatorKey: _navigatorKeys![tabItem]!,
+        navigatorKey: _navigatorKeys[tabItem]!,
         tabItem: tabItem,
         onChanged: (value) => changePage(value),
         layOut: "Mobile",
@@ -663,9 +664,9 @@ class _MobileScaffoldState extends State<MobileScaffold> {
 
   void changePage(index){
     print("changing to index ${index}");
-    setState(() {
-      _currentIndex=index;
-    });
+    // setState(() {
+    //   _currentIndex=index;
+    // });
     _selectTab(pageKeys[index],  index);
   }
 

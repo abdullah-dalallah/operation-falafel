@@ -13,6 +13,7 @@ class EnterOFWorld extends StatelessWidget{
   const EnterOFWorld(this.onChanged,{super.key,required this.layOut});
   @override
   Widget build(BuildContext context) {
+
    return Container(
      decoration:  BoxDecoration(
        image: DecorationImage(image:AssetImage( "assets/images/background.png",),

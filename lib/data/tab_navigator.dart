@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
 import 'package:operation_falafel/screens/cart%20page/cart_screen.dart';
 import 'package:operation_falafel/screens/homepage/of_homepage.dart';
 import 'package:operation_falafel/screens/profile/logged_in_user_profile.dart';
 import 'package:operation_falafel/screens/register%20&%20login%20pages/enter_of_world.dart';
 import 'package:operation_falafel/screens/tabbar%20menu%20page/menu_tabebar.dart';
 import 'package:operation_falafel/screens/track%20orders/track_my_order.dart';
+import 'package:provider/provider.dart';
 
 class TabNavigator extends StatelessWidget{
   final GlobalKey<NavigatorState> navigatorKey;
@@ -22,15 +24,32 @@ class TabNavigator extends StatelessWidget{
     if(tabItem == "MainMenu")
       child = MainMenu((value) => onChanged(value), layOut: layOut);
     else if(tabItem == "TabeBarMenu")
-      child = TabeBarMenu(layOut: "Mobile", (value) => onChanged(value),);
+      child = TabeBarMenu(layOut: layOut, (value) => onChanged(value),);
     else if (tabItem == "Cart_Screen")
-      child = Cart_Screen(layOut: "Mobile", (value) => onChanged(value),);
+      child = Cart_Screen(layOut: layOut, (value) => onChanged(value),);
     else if (tabItem == "TrackMyOrder")
-      child = TrackMyOrder(layOut: "Mobile", (value) => onChanged(value),);
-    else if (tabItem == "LoggedInUserProfile")
-      child = LoggedInUserProfile(layOut: "Mobile", (value) => onChanged(value),);
-    // else if (tabItem == "EnterOFWorld")
-    //   child = EnterOFWorld(layOut: "Mobile", (value) => onChanged(value),);
+      child = TrackMyOrder(layOut: layOut, (value) => onChanged(value),);
+    else if (tabItem == "Profile"){
+
+      child = Consumer<AuthProvider>(
+        builder: (context, authProvider, child)
+        {
+
+          if(authProvider.loggedInUser!.token!= null ){
+            return LoggedInUserProfile(layOut: layOut, (value) => onChanged(value),);
+          }else{
+            return EnterOFWorld(layOut: layOut, (value) => onChanged(value),);
+          }
+
+
+
+        });
+
+
+    }
+
+
+
 
 
 
