@@ -334,8 +334,8 @@ class _MobileScaffoldState extends State<MobileScaffold> {
       List<BottomNavigationBarItem> tabsIcon = [];
       List<Widget> screens =[];
         //bottomNavigationBar != null
-      if (false) {
-        screens.clear();
+      if (bottomNavigationBar != null) {
+
         /// - home
         if (bottomNavigationBar?.home.visibility == 'true') {
           tabsIcon.add(BottomNavigationBarItem(
@@ -458,14 +458,14 @@ class _MobileScaffoldState extends State<MobileScaffold> {
             ),
               label: "Profile"
           ),);
+          screens.add(_buildOffstageNavigator("Profile"));
 
-
-          if(authProvider.loggedInUser?.token != null ){
-            screens.add(_buildOffstageNavigator("LoggedInUserProfile"));
-          }
-          else {
-            screens.add(_buildOffstageNavigator("TrackMyOrder"));
-          }
+          // if(authProvider.loggedInUser?.token != null ){
+          //   screens.add(_buildOffstageNavigator("LoggedInUserProfile"));
+          // }
+          // else {
+          //   screens.add(_buildOffstageNavigator("TrackMyOrder"));
+          // }
 
         }
 

@@ -21,16 +21,16 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
   @override
   Widget build(BuildContext context) {
   return LayoutBuilder(builder: (context,constraints){
-    return widget.MobileScaffold;
-    // if(constraints.maxWidth<500){
-    //   return widget.MobileScaffold;
-    // }
-    // else if(constraints.maxWidth <1100){
-    //   return widget.TabletScaffold;
-    // }
-    // else{
-    //   return widget.DesktopScaffold;
-    // }
+
+    if(constraints.maxWidth<500){
+      return widget.MobileScaffold;
+    }
+    else if(constraints.maxWidth <1100){
+      return widget.TabletScaffold;
+    }
+    else{
+      return widget.DesktopScaffold;
+    }
     }
     );
   }

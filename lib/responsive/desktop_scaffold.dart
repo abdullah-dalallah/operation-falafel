@@ -488,34 +488,18 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                   label: "Profile"
               ),);
 
-              if(authProvider.loggedInUser?.token != null ){
-                screens.add(  Row(
-                  children: [
-                    Expanded(
+              screens.add(  Row(
+                children: [
+                  Expanded(
 
-                        child: DrawerWidget(
-                          layOut: "Desktop", onChanged: (value) {
-                          changePage(value);
-                        },)),
-                    Expanded(flex: 2,
-                        child: _buildOffstageNavigator("LoggedInUserProfile")),
-                  ],
-                ));
-              }
-              else{
-                screens.add(  Row(
-                  children: [
-                    Expanded(
-
-                        child: DrawerWidget(
-                          layOut: "Desktop", onChanged: (value) {
-                          changePage(value);
-                        },)),
-                    Expanded(flex: 2,
-                      child: _buildOffstageNavigator("TrackMyOrder"),),
-                  ],
-                ));
-              }
+                      child: DrawerWidget(
+                        layOut: "Desktop", onChanged: (value) {
+                        changePage(value);
+                      },)),
+                  Expanded(flex: 2,
+                      child: _buildOffstageNavigator("Profile")),
+                ],
+              ));
 
 
 
@@ -615,34 +599,19 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
               ),
               label: 'Profile',
             ));
-            if(authProvider.loggedInUser?.token != null ){
-              screens.add(  Row(
-                children: [
-                  Expanded(
+            screens.add(  Row(
+              children: [
+                Expanded(
 
-                      child: DrawerWidget(
-                        layOut: "Desktop", onChanged: (value) {
-                        changePage(value);
-                      },)),
-                  Expanded(flex: 2,
-                      child: _buildOffstageNavigator("LoggedInUserProfile")),
-                ],
-              ));
-            }
-            else{
-              screens.add(  Row(
-                children: [
-                  Expanded(
+                    child: DrawerWidget(
+                      layOut: "Desktop", onChanged: (value) {
+                      changePage(value);
+                    },)),
+                Expanded(flex: 2,
+                    child: _buildOffstageNavigator("Profile")),
+              ],
+            ));
 
-                      child: DrawerWidget(
-                        layOut: "Desktop", onChanged: (value) {
-                        changePage(value);
-                      },)),
-                  Expanded(flex: 2,
-                    child: _buildOffstageNavigator("EnterOFWorld"),),
-                ],
-              ));
-            }
           }
 
           return
@@ -684,13 +653,14 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
 
   int _currentIndex = 0;
   String _currentPage ='MainMenu';
-  List<String> pageKeys = ["MainMenu","TabeBarMenu","TrackMyOrder","LoggedInUserProfile","EnterOFWorld", ];
+  List<String> pageKeys = ["MainMenu","TabeBarMenu","Cart_Screen","TrackMyOrder","Profile", ];
   final Map<String, GlobalKey<NavigatorState>> _navigatorKeys ={
     "MainMenu":GlobalKey<NavigatorState>(),
     "TabeBarMenu":GlobalKey<NavigatorState>(),
+    "Cart_Screen":GlobalKey<NavigatorState>(),
     "TrackMyOrder":GlobalKey<NavigatorState>(),
-    "LoggedInUserProfile":GlobalKey<NavigatorState>(),
-    "EnterOFWorld":GlobalKey<NavigatorState>(),
+    "Profile":GlobalKey<NavigatorState>(),
+
   };
 
   void _selectTab(String tabItem, int index){
