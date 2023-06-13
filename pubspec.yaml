@@ -54,7 +54,8 @@ dependencies:
   line_awesome_flutter: ^2.0.0
   font_awesome_flutter: ^10.2.1
   persistent_bottom_nav_bar: ^5.0.2
-
+  build_runner: ^2.4.4
+  json_annotation: ^4.8.1
 
 
   flutter:
@@ -74,6 +75,7 @@ flutter_icons:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  json_serializable: ^6.7.0
   flutter_native_splash: ^2.2.11
 
 

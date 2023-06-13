@@ -2,10 +2,11 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:operation_falafel/providers/ProfileProviders/models/saved_address_list_res_model.dart';
 
 import '../../data/keys.dart';
 import '../../data/strings.dart';
-import 'Address/saved_address_list_res_model.dart';
+
 
 class ProfileProvider with ChangeNotifier {
 
@@ -39,6 +40,7 @@ class ProfileProvider with ChangeNotifier {
             success: SavedAddressList.fromJson(response.data).success,
             savedAddressItem: SavedAddressList.fromJson(response.data).savedAddressItem,
           );
+
           notifyListeners();
           print("Saved Addrees fetched From Online Server!");
 

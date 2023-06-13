@@ -26,9 +26,7 @@ class AuthProvider with ChangeNotifier{
       var response = await dio.post(url, data: data,options: Options(headers: header));// options: Options(headers: header)
       print(response.data);
       loggedInUser = LoggedInUser.fromJson(response.data[Keys.bodyKey]);
-      // print(loggedInUser?.token);
-      // print(loggedInUser?.toJson());
-      // print(json.decode(json.encode(loggedInUser?.toJson()))??"{}");
+
       notifyListeners();
 
       saveUserDetailsLocally(loggedInUser!);

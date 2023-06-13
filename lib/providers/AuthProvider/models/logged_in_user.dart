@@ -3,11 +3,14 @@
 //     final loggedInUser = loggedInUserFromJson(jsonString);
 
 import 'dart:convert';
+import 'package:json_annotation/json_annotation.dart';
+part 'logged_in_user.g.dart';
 
 LoggedInUser loggedInUserFromJson(String str) => LoggedInUser.fromJson(json.decode(str));
 
 String loggedInUserToJson(LoggedInUser data) => json.encode(data.toJson());
 
+@JsonSerializable()
 class LoggedInUser {
   LoggedInUser({
     this.token,

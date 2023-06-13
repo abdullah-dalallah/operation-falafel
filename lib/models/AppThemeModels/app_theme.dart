@@ -8,11 +8,16 @@ import 'package:flutter/cupertino.dart';
 
 import 'DesignPerPage/design_per_page.dart';
 import 'FontSizes/font_sizes.dart';
+import 'dart:convert';
+
+import 'package:json_annotation/json_annotation.dart';
+part 'app_theme.g.dart';
 
 AppTheme appThemeFromJson(String str) => AppTheme.fromJson(json.decode(str));
 
 String appThemeToJson(AppTheme data) => json.encode(data.toJson());
 
+@JsonSerializable()
 class AppTheme with ChangeNotifier {
   AppTheme({
      this.id,

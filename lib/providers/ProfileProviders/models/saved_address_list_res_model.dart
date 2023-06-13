@@ -4,10 +4,13 @@
 
 import 'dart:convert';
 
+import 'package:json_annotation/json_annotation.dart';
+part 'saved_address_list_res_model.g.dart';
 SavedAddressList savedAddressListFromJson(String str) => SavedAddressList.fromJson(json.decode(str));
 
 String savedAddressListToJson(SavedAddressList data) => json.encode(data.toJson());
 
+@JsonSerializable()
 class SavedAddressList {
   SavedAddressList({
     this.success,
