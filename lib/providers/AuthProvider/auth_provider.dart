@@ -68,6 +68,44 @@ class AuthProvider with ChangeNotifier{
     notifyListeners();
   }
 
+  Future<Response<dynamic>> userRegistration({required String name,required String email,required String password,required String mobile,required String nationalityId,required String dateOfBirth, required String gender}) async {
+    var url = '${Strings.baseAppAuthUrl}/auth/signup';
+    Map<String, String> data = <String, String>{};
+    Map<String, String> header = <String, String>{};
+    header.putIfAbsent(Keys.acceptKey, () => "application/json");
+    // data.putIfAbsent(Keys.userNameKey, () => userName);
+    data.putIfAbsent(Keys.nameKey, () => name);
+    data.putIfAbsent(Keys.emailKey, () => email);
+    data.putIfAbsent(Keys.passwordKey, () => password);
+    data.putIfAbsent(Keys.mobileKey, () => mobile);
+    data.putIfAbsent(Keys.nationalityIdKey, () => nationalityId);
+    data.putIfAbsent(Keys.dateOfBirthKey, () => dateOfBirth);
+    data.putIfAbsent(Keys.genderKey, () => gender);
+
+    var dio = Dio();
+    try {
+      // FormData formData = FormData.fromMap(data);
+      var response = await dio.post(url, data: data,options: Options(headers: header));// options: Options(headers: header)
+      print(response.data);
+      loggedInUser = LoggedInUser.fromJson(response.data[Keys.bodyKey]);
+
+      notifyListeners();
+
+      saveUserDetailsLocally(loggedInUser!);
+
+
+
+      return response;
+    } on DioError catch (e) {
+      print(e.response);
+      return e.response!;
+
+    }
+  }
+
+
+
+
 
 
 

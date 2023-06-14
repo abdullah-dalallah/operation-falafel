@@ -9,6 +9,10 @@ class Keys {
   static const acceptKey = "Accept";
   static const authorizationKey = "Authorization";
   static const bodyKey = "body";
+  static const mobileKey = "mobile";
+  static const nationalityIdKey = "nationality_id";
+  static const dateOfBirthKey = "dateOfBirth";
+  static const genderKey = "gender";
 
   static const savedLoggedInUserKey = "SavedLoggedInUser";
 

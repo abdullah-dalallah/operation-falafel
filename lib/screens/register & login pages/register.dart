@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:operation_falafel/data/snackBarGenerator.dart';
 import 'package:operation_falafel/data/strings.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
 import 'package:operation_falafel/widgets/checkbox_option.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:operation_falafel/widgets/register_checkbox.dart';
@@ -19,6 +20,7 @@ import '../../models/AppThemeModels/DesignPerPage/RegisterPage/register_page.dar
 import '../../models/AppThemeModels/FontSizes/Language/lang.dart';
 import '../../providers/AppTheme/theme_provider.dart';
 import '../profile/logged_in_user_profile.dart';
+import 'package:intl/intl.dart';
 
 class Register extends StatefulWidget{
   final ValueChanged onChanged;
@@ -29,6 +31,15 @@ class Register extends StatefulWidget{
 }
 
 class _RegisterState extends State<Register> {
+
+
+  TextEditingController nameController = new TextEditingController();
+  TextEditingController mobileController = new TextEditingController();
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
+
+
+
 
   final countryPicker = const FlCountryCodePicker();
   CountryCode? countryCode;
@@ -118,7 +129,7 @@ class _RegisterState extends State<Register> {
 
                   DateTime tempValue =value as DateTime;
                   if(tempValue!=null){
-                    _selectedDate = DateFormat('dd/MM/yyyy').format(tempValue).toString();
+                    _selectedDate = DateFormat('yyyy-MM-dd').format(tempValue).toString();
                     // showDatePicker = false;
                     print("DateTime");
                     birthDateController.text = _selectedDate;
@@ -200,6 +211,15 @@ class _RegisterState extends State<Register> {
   bool verifyUser= false;
   final _formKey = GlobalKey<FormState>();
 
+  bool _validatePaassword =false;
+
+  void _togglePasswordVisibility() {
+    print(_obscureText);
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -321,7 +341,7 @@ class _RegisterState extends State<Register> {
                                       child: SizedBox(
 
                                         child: TextFormField(
-
+                                         controller: nameController,
                                           autofocus: false,
                                           style: TextStyle(color: Colors.white),
                                           decoration: InputDecoration(
@@ -461,17 +481,17 @@ class _RegisterState extends State<Register> {
                                                         };
                                                       },)
                                                 )),
-                                             Expanded(
+                                            Expanded(
                                               flex: 8,
                                               child: SizedBox(
 
                                                 child: TextFormField(
                                                   maxLength: 9,
-
+                                                 controller: mobileController,
                                                   keyboardType: TextInputType.number,
                                                   autofocus: false,
                                                   style: TextStyle(color: Colors.white),
-                                                  decoration: InputDecoration(
+                                                  decoration:const InputDecoration(
                                                     filled: true,
                                                     fillColor: Colors.transparent,
                                                     contentPadding: EdgeInsets.only(left: 10, right: 10, ),
@@ -501,6 +521,8 @@ class _RegisterState extends State<Register> {
                                                   validator: (value) {
                                                     if (value!.isEmpty) {
                                                       return 'Please enter your phone number';
+                                                    } else if (value!.length != 9) {
+                                                      return 'must be 9 digits';
                                                     }
                                                     return null;
                                                   },
@@ -596,7 +618,7 @@ class _RegisterState extends State<Register> {
                                       child: SizedBox(
 
                                         child: TextFormField(
-
+                                            controller: emailController,
                                           autofocus: false,
                                           style: TextStyle(color: Colors.white),
                                           decoration: InputDecoration(
@@ -628,8 +650,10 @@ class _RegisterState extends State<Register> {
                                           validator: (value) {
                                             if (value!.isEmpty) {
                                               return 'Please enter your email address';
+                                            } else if (!RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$')
+                                                .hasMatch(value)) {
+                                              return 'Please enter a valid email address';
                                             }
-                                            // You can add more advanced email validation here if needed
                                             return null;
                                           },
                                         ),
@@ -674,17 +698,18 @@ class _RegisterState extends State<Register> {
                                       flex: 5,
                                       child: SizedBox(
                                         child: TextFormField(
-                                          obscureText: true,
+                                          controller: passwordController,
+                                          obscureText: _obscureText,
                                           enableSuggestions: false,
                                           autocorrect: false,
                                           autofocus: false,
-                                          style: TextStyle(color: Colors.white),
+                                          style: const TextStyle(color: Colors.white),
                                           decoration: InputDecoration(
                                             filled: true,
                                             fillColor: Colors.black45,
-                                            contentPadding: EdgeInsets.only(
-                                                left: 10, right: 10),
-                                            focusedBorder: OutlineInputBorder(
+                                            contentPadding:const EdgeInsets.only(
+                                                left: 10, right: 10, bottom: 0),
+                                            focusedBorder:const OutlineInputBorder(
                                               borderRadius: BorderRadius.all(
                                                 Radius.circular(10.0),
                                               ),
@@ -692,7 +717,7 @@ class _RegisterState extends State<Register> {
                                                 color: Colors.transparent,
                                                 width: 1.0,),
                                             ),
-                                            enabledBorder: OutlineInputBorder(
+                                            enabledBorder:const OutlineInputBorder(
                                               borderRadius: BorderRadius.all(
                                                 Radius.circular(10.0),
                                               ),
@@ -700,16 +725,28 @@ class _RegisterState extends State<Register> {
                                                   color: Colors.transparent,
                                                   width: 0.0),
                                             ),
+                                            suffixIcon:GestureDetector(
+                                              onTap: _togglePasswordVisibility,
+                                              child:
+                                              !_obscureText ? Icon(Icons.visibility_rounded , color: Colors.grey,): Icon(Icons.visibility_off_rounded, color:Colors.grey),
+                                            ),
+                                              hintText: '',
 
-                                            hintText: '',
                                             // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
 
                                           ),
                                           validator: (value) {
                                             if (value!.isEmpty) {
                                               return 'Please enter a password';
+                                            } else if (!RegExp(r'^[\w!@#$%^&*()]{6,30}$').hasMatch(value)) {
+                                              setState(() {
+                                                _validatePaassword = true;
+                                              });
+                                              return '';
                                             }
-                                            // You can add more password validation logic here if needed
+                                            setState(() {
+                                              _validatePaassword = false;
+                                            });
                                             return null;
                                           },
                                         ),
@@ -719,6 +756,59 @@ class _RegisterState extends State<Register> {
                                 ),
                               ),
                             ),
+                            Visibility(
+                              visible: _validatePaassword,
+                              child: Row(
+                                children: [
+                                  Expanded(child: SizedBox(width: 10,)),
+                                  Expanded(
+                                    flex: 2,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            Image.asset("assets/images/page2orders_icon.png", height: 10,),
+                                            SizedBox(width: 5,),
+                                            Text("Password must be 6-30 characters",style: TextStyle(color: Colors.red),)
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            Image.asset("assets/images/page2orders_icon.png", height: 10,),
+                                            SizedBox(width: 5,),
+                                            Text("Password must be contain only letters",style: TextStyle(color: Colors.red),)
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            Image.asset("assets/images/page2orders_icon.png", height: 10,),
+                                            SizedBox(width: 5,),
+                                            Text("Password must be contain numbers",style: TextStyle(color: Colors.red),)
+                                          ],
+                                        ),
+                                        Row(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            Image.asset("assets/images/page2orders_icon.png", height: 10,),
+                                            SizedBox(width: 5,),
+                                            Text("Password must be contain \nspecial characters (!@#\$%^&*())", style: TextStyle(color: Colors.red),)
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+
+                            
                             const SizedBox(height: 10,),
 
                             /// - date of birth
@@ -1314,19 +1404,11 @@ class _RegisterState extends State<Register> {
                                               Color>(Colors.black54),
 
                                           onTap: () {
-                                            if(checkboxBool ==false){
-                                             setState(() {
-                                               validatTermsCheckbox =true;
-                                             });
-                                             SnackbarGenerator(context).snackBarGeneratorToast("Please accept terms & conditions",);
-                                            }
-                                            else{
-                                              setState(() {
-                                                validatTermsCheckbox =false;
-                                                // verifyUser= true;
-                                                _submitForm();
-                                              });
-                                            }
+
+                                            _submitForm();
+
+
+
                                             // PersistentNavBarNavigator.pushNewScreen(
                                             //   context,
                                             //   screen: LoggedInUserProfile(
@@ -1406,11 +1488,63 @@ class _RegisterState extends State<Register> {
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-
       // Perform your registration logic here
       // You can use the collected form data to create a new user account or make an API call
 
-      print('Registration Successful!');
+         print(nameController.text);
+         print(mobileController.text);
+         print(countryCode!.dialCode);
+         String fullMobileNumber ="${countryCode!.dialCode.substring(1,countryCode!.dialCode.length)}${mobileController.text}";
+         print(fullMobileNumber);/// - Done
+
+         print(emailController.text);
+         print(passwordController.text);
+         print(birthDateController.text);
+         print(selectedNationalValue);
+         print(selectedNationalValue["id"]);
+
+
+         print(selectedGenderValue);
+
+      if(checkboxBool ==false){
+        setState(() {
+          validatTermsCheckbox =true;
+        });
+        SnackbarGenerator(context).snackBarGeneratorToast("Please accept terms & conditions",);
+      }
+      else{
+        setState(() {
+          validatTermsCheckbox =false;
+        });
+        Provider.of<AuthProvider>(context, listen: false).userRegistration(
+            name: nameController.text,
+            mobile: fullMobileNumber,
+            email: emailController.text,
+            dateOfBirth: birthDateController.text,
+            password: passwordController.text,
+            nationalityId: "${selectedNationalValue["id"]}",
+            gender: selectedGenderValue
+
+        ).then((res) {
+          if(res.statusCode==200){
+            SnackbarGenerator(context).snackBarGeneratorToast("Registration Successful!",);
+            // clearForm();
+            setState(() {
+              verifyUser= true;
+            });
+
+          }
+          else {
+            SnackbarGenerator(context).snackBarGeneratorToast("Registration Failed!",);
+          }
+        });
+      }
+
+
+
+
+
+      // print('Registration Successful!');
       // print('Name: $_name');
       // print('Phone Number: $_phoneNumber');
       // print('Email: $_email');
@@ -1421,5 +1555,17 @@ class _RegisterState extends State<Register> {
     }
   }
 
+  clearForm() {
+    setState(() {
+      nameController.clear();
+      mobileController.clear();
+      emailController.clear();
+      passwordController.clear();
+      birthDateController.clear();
+      selectedNationalValue.clear();
+      selectedGenderValue ='';
+
+    });
+  }
 
 }
