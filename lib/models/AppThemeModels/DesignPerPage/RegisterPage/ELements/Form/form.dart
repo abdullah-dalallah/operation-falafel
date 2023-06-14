@@ -4,8 +4,10 @@
 
 import 'dart:convert';
 
+import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/RegisterPage/ELements/Form/Elements/DropDownMenu/drop_down_menu.dart';
+
 import '../../../CommonElements/Elements/title_style.dart';
-import 'Elements/Gender/gender.dart';
+
 import 'Elements/PhoneNumber/phone_number.dart';
 
 Form formFromJson(String str) => Form.fromJson(json.decode(str));
@@ -27,18 +29,18 @@ class Form {
   PhoneNumber phoneNumber;
   TitleStyle email;
   TitleStyle dateOfBirth;
-  Gender gender;
+  DropDownMenu gender;
   TitleStyle password;
-  TitleStyle nationality;
+  DropDownMenu nationality;
 
   factory Form.fromJson(Map<String, dynamic> json) => Form(
     name: TitleStyle.fromJson(json["Name"]),
     phoneNumber: PhoneNumber.fromJson(json["PhoneNumber"]),
     email: TitleStyle.fromJson(json["Email"]),
     dateOfBirth: TitleStyle.fromJson(json["DateOfBirth"]),
-    gender: Gender.fromJson(json["Gender"]),
+    gender: DropDownMenu.fromJson(json["Gender"]),
     password: TitleStyle.fromJson(json["Password"]),
-    nationality: TitleStyle.fromJson(json["Nationality"]),
+    nationality: DropDownMenu.fromJson(json["Nationality"]),
   );
 
   Map<String, dynamic> toJson() => {

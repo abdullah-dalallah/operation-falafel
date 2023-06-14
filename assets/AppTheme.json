@@ -732,7 +732,7 @@
               "Color": "0xffffffff"
             },
             "SelectedIcon": {
-              "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/down.png",
+              "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/falafel.png",
               "height": "10",
               "width": "10"
             }
@@ -744,7 +744,26 @@
         },
         "Nationality": {
           "Data": "Nationality",
-          "Color": "0xFFFFBF00"
+          "Color": "0xFFFFBF00",
+          "DropDownWidget": {
+            "LabelText": {
+              "Data": "Select Nationality",
+              "Color": "0xff454545"
+            },
+            "ItemsTitle": {
+              "Data": "api",
+              "Color": "0xffffffff"
+            },
+            "ItemsSubTitle": {
+              "Data": "api",
+              "Color": "0xffffffff"
+            },
+            "SelectedIcon": {
+              "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/falafel.png",
+              "height": "10",
+              "width": "10"
+            }
+          }
         }
       },
       "TermsCheckBox": {

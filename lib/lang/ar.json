@@ -241,5 +241,8 @@
   "accpetterms": "أوفق على الشروط وألاحكام",
   "welcomeBack": "مرحبًا بعودتك",
   "forgetPassword": "نسيت كلمة السر",
-  "resetYourPassword": "إعادة ضبط\nكلمة السر"
+  "resetYourPassword": "إعادة ضبط\nكلمة السر",
+  "verifyYourIdentity": "تحقق من هويتك",
+  "verifyYourIdentityMsg": "الرجاء إدخال كلمة المرور لمرة واحدة (OTP) المرسلة إلى رقم هاتفك المحمول المسجل أو عنوان بريدك الإلكتروني للتحقق من هويتك ومتابعة العملية"
+
 }

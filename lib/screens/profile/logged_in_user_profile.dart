@@ -10,6 +10,7 @@ import 'package:operation_falafel/screens/profile/profile_pages/help_page.dart';
 import 'package:operation_falafel/screens/profile/profile_pages/order_history.dart';
 import 'package:operation_falafel/screens/profile/profile_pages/saved_address.dart';
 import 'package:operation_falafel/screens/profile/profile_pages/saved_cards.dart';
+import 'package:operation_falafel/screens/verify_user_screen.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
 import 'package:operation_falafel/widgets/warning_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -271,6 +272,53 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                       constraints: BoxConstraints(maxWidth: 450,),
                       child: Column(
                         children: [
+                          ///- verify user
+                          ListTile(
+
+                            tileColor: Colors.amber.withOpacity(0.2),
+                            title: Text("${getTranslated(context, "verifyYourIdentity")}", style: TextStyle(
+                                fontFamily: getTranslated(context, "fontFamilyBody"),
+                                color:  Colors.amber,
+                                fontSize: double.parse(getTranslated(context, "cartpageHeader2")!),
+                                fontWeight: FontWeight.bold),),
+                            subtitle:  Text("${getTranslated(context, "verifyYourIdentityMsg")}", style: TextStyle(
+                                fontFamily: getTranslated(context, "fontFamilyBody"),
+                                color:  Colors.white54,
+                                fontSize: double.parse(getTranslated(context, "cartpageHeader3")!),
+                                fontWeight: FontWeight.w300),maxLines: 1,
+                              textAlign: TextAlign.left,),
+                            trailing: TextButton(
+                              onPressed: () {
+                                PersistentNavBarNavigator.pushNewScreen(
+                                  context,
+                                  screen: VerifyUserScreen(
+                                      layOut: widget.layOut, (value) {
+                                    widget.onChanged(value);
+                                  }),
+                                  withNavBar: true,
+                                  // OPTIONAL VALUE. True by default.
+                                  pageTransitionAnimation: PageTransitionAnimation
+                                      .cupertino,
+                                );
+                              },
+                              style: TextButton.styleFrom(
+                                foregroundColor: Colors.amber,
+                                backgroundColor: Colors.transparent,
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 0.0,
+                                  horizontal: 0.0,
+                                ),),
+                              child: const Text(
+                                'Verify',
+                                style: TextStyle(
+                                  fontSize: 15.0,
+                                  color: Colors.amber,
+                                ),
+                              ),
+                            ),
+                          ),
+
+
 
                           /// - Image & Name & Edit
                           const SizedBox(height: 20,),
