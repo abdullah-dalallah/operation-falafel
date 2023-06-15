@@ -3,7 +3,9 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:operation_falafel/data/keys.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/providers/ProfileProviders/profile_provider.dart';
 import 'package:operation_falafel/providers/parsistent_tabview_provider.dart';
 import 'package:operation_falafel/screens/my%20rewards%20page/my_rewards.dart';
 import 'package:operation_falafel/screens/profile/profile_pages/help_page.dart';
@@ -192,10 +194,12 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
   dynamic? selectedValue;
 
 
+  bool loadingVerifyingButton =false;
+
   @override
   Widget build(BuildContext context) {
     final bool isKeyboardVisible = KeyboardVisibilityProvider.isKeyboardVisible(context);
-    return Consumer<ThemeProvider>(builder: (context, appTheme, child)
+    return Consumer2<ThemeProvider, AuthProvider>(builder: (context, appTheme,authProvider, child)
     {
       Language? lng = (Localizations
           .localeOf(context)
@@ -287,19 +291,39 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                 fontSize: double.parse(getTranslated(context, "cartpageHeader3")!),
                                 fontWeight: FontWeight.w300),maxLines: 1,
                               textAlign: TextAlign.left,),
-                            trailing: TextButton(
+                            trailing:
+                            (!loadingVerifyingButton)?
+                            TextButton(
                               onPressed: () {
-                                PersistentNavBarNavigator.pushNewScreen(
-                                  context,
-                                  screen: VerifyUserScreen(
-                                      layOut: widget.layOut, (value) {
-                                    widget.onChanged(value);
-                                  }),
-                                  withNavBar: true,
-                                  // OPTIONAL VALUE. True by default.
-                                  pageTransitionAnimation: PageTransitionAnimation
-                                      .cupertino,
-                                );
+                                setState(() {
+                                  loadingVerifyingButton =true;
+                                });
+                                authProvider.verifyingUserByRequestingOTP(userToken: authProvider.loggedInUser!.token!).then((res) {
+                                  if(res.statusCode == 200){
+                                    SnackbarGenerator(context).snackBarGeneratorToast("${res.data[Keys.bodyKey]}",);
+                                    PersistentNavBarNavigator.pushNewScreen(
+                                      context,
+                                      screen: VerifyUserScreen(
+                                          layOut: widget.layOut, (value) {
+                                        widget.onChanged(value);
+                                      }),
+                                      withNavBar: true,
+                                      // OPTIONAL VALUE. True by default.
+                                      pageTransitionAnimation: PageTransitionAnimation
+                                          .cupertino,
+                                    );
+                                  }
+                                  else{
+
+                                  }
+
+                                  setState(() {
+                                    loadingVerifyingButton =false;
+                                  });
+                                });
+
+
+
                               },
                               style: TextButton.styleFrom(
                                 foregroundColor: Colors.amber,
@@ -315,10 +339,19 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                   color: Colors.amber,
                                 ),
                               ),
-                            ),
+                            ):
+                            const  SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(
+                                color: Colors.amber,
+                                strokeWidth: 2,
+                              ),
+                            )
+                            ,
                           ),
 
-
+                          /// - Screen code do not remove
 
                           /// - Image & Name & Edit
                           const SizedBox(height: 20,),
@@ -1604,7 +1637,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                               ),
                             ),
                           ),
-
+                          /// - Screen code do not remove
                         ],
                       ),
                     ),

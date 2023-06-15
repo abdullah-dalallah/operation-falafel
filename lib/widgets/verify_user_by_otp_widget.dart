@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:operation_falafel/data/keys.dart';
+import 'package:operation_falafel/data/snackBarGenerator.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
 import 'package:operation_falafel/screens/profile/logged_in_user_profile.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:provider/provider.dart';
 
 class VerifyUserByOtpWidget extends StatefulWidget{
   final ValueChanged onChanged;
@@ -21,28 +25,46 @@ class _VerifyUserByOtpWidgetState extends State<VerifyUserByOtpWidget> {
 
    TextEditingController _otpControllers  = new TextEditingController();
 
+
+
   void _verifyOTP() {
 
     String otp = _otpControllers.text;
     // Perform your verification logic here
     // You can check if the entered OTP matches the expected OTP or make an API call to verify it
-    if (otp == '123456') {
-      // OTP is correct, perform desired action
-      print('OTP Verified!');
-      // Navigator.pop(context);
+    if (otp.isNotEmpty) {
+      var authProvider =  Provider.of<AuthProvider>(context, listen: false);
 
-      PersistentNavBarNavigator.pushNewScreen(
-        context,
+      authProvider. verifyingUserBySendingOTP(userToken:authProvider.loggedInUser!.token!,  OTP:otp).then((res) {
 
-        screen: LoggedInUserProfile(
-            layOut: widget.layOut, (value) {
-          widget.onChanged(value);
-        }),
-        withNavBar: true,
-        // OPTIONAL VALUE. True by default.
-        pageTransitionAnimation: PageTransitionAnimation
-            .cupertino,
-      );
+        if(res.statusCode == 200){
+          // OTP is correct, perform desired action
+
+          SnackbarGenerator(context).snackBarGeneratorToast("${res.data[Keys.bodyKey]}",);
+          print('OTP Verified!');
+          Navigator.pop(context);
+
+          // PersistentNavBarNavigator.pushNewScreen(
+          //   context,
+          //
+          //   screen: LoggedInUserProfile(
+          //       layOut: widget.layOut, (value) {
+          //     widget.onChanged(value);
+          //   }),
+          //   withNavBar: true,
+          //   // OPTIONAL VALUE. True by default.
+          //   pageTransitionAnimation: PageTransitionAnimation
+          //       .cupertino,
+          // );
+
+        }else{
+          SnackbarGenerator(context).snackBarGeneratorToast("Please Try Again!",);
+        }
+
+      });
+
+
+
       // TODO: Implement your logic here
     } else {
       // OTP is incorrect, show an error message or perform an action
@@ -82,6 +104,7 @@ class _VerifyUserByOtpWidgetState extends State<VerifyUserByOtpWidget> {
               obscureText: false,
               animationType: AnimationType.fade,
               backgroundColor:Colors.transparent,
+              keyboardType:TextInputType.number ,
 
               pinTheme: PinTheme(
                 shape: PinCodeFieldShape.box,

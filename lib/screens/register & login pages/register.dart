@@ -3,6 +3,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/keys.dart';
 import 'package:operation_falafel/data/snackBarGenerator.dart';
 import 'package:operation_falafel/data/strings.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
@@ -987,10 +988,9 @@ class _RegisterState extends State<Register> {
                                             //Add label If you want but add hint outside the decoration to be aligned in the button perfectly.
                                           ),
                                           isExpanded: true,
-                                          hint:
-                                          Text(
+                                          hint: Text(
 
-                                            registerPage.form.nationality.data,
+                                            registerPage.form.nationality.dropDownWidget.labelText.data,
                                             style: TextStyle(
                                               fontSize: lng?.header3.size.toDouble(),
                                               color:Colors.white38,
@@ -1003,7 +1003,7 @@ class _RegisterState extends State<Register> {
                                           icon: const ImageIcon(AssetImage("assets/images/down.png"),),
 
                                           iconSize: 30,
-                                          buttonHeight: (selectedGenderValue != null)
+                                          buttonHeight: (selectedNationalValue != null)
                                               ? 50
                                               : 50,
                                           buttonPadding: const EdgeInsets.only(
@@ -1033,8 +1033,8 @@ class _RegisterState extends State<Register> {
                                                         (selectedNationalValue == item)
                                                             ?
                                                          Image.network(
-                                                           "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/falafel.png",
-                                                           // registerPage.form.gender.dropDownWidget.selectedIcon.imageIcon,
+                                                           // "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/falafel.png",
+                                                           registerPage.form.nationality.dropDownWidget.selectedIcon.imageIcon,
                                                             height: 15, width: 15,)
 
                                                             : const SizedBox(width: 15,)
@@ -1045,7 +1045,7 @@ class _RegisterState extends State<Register> {
                                                           child: Text(item["name"]!,
                                                             style: TextStyle(
                                                               fontSize: lng?.header2.size.toDouble(),
-                                                              color: Color(int.parse(registerPage.form.gender.dropDownWidget.itemsTitle.color)),
+                                                              color: Color(int.parse(registerPage.form.nationality.dropDownWidget.itemsTitle.color)),
                                                               fontFamily: lng?.header2.textFamily,
                                                             ),
                                                           ),
@@ -1528,13 +1528,24 @@ class _RegisterState extends State<Register> {
         ).then((res) {
           if(res.statusCode==200){
             SnackbarGenerator(context).snackBarGeneratorToast("Registration Successful!",);
-            // clearForm();
-            setState(() {
-              verifyUser= true;
+            Provider.of<AuthProvider>(context, listen: false).verifyingUserByRequestingOTP(
+                userToken: Provider.of<AuthProvider>(context, listen: false).loggedInUser!.token!
+            ).then((res) {
+              if(res.statusCode ==200){
+                // clearForm();
+                setState(() {
+                  verifyUser= true;
+                });
+              }
             });
+
+
 
           }
           else {
+            if(res.data[Keys.messageKey]!=null){
+              SnackbarGenerator(context).snackBarGeneratorToast("${res.data[Keys.messageKey]}",);
+            }
             SnackbarGenerator(context).snackBarGeneratorToast("Registration Failed!",);
           }
         });
