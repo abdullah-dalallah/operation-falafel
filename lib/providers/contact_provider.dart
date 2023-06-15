@@ -9,15 +9,15 @@ class ContactProvider with ChangeNotifier {
 
   Future<Response<dynamic>> contactUS({
     required String userToken, required String name, required String email,
-    required String phone, required String contact_reason_id, required String message
+    required String phone, required int contact_reason_id, required String message
   }) async {
-    var url = '${Strings.baseAppAuthUrl}contact-forms';
+    var url = '${Strings.baseAppContactUsAddressUrl}contact-forms';
 
     Map<String, String> header = <String, String>{};
-    Map<String, String> data = <String, String>{};
+    Map<String, dynamic> data = <String, dynamic>{};
     header.putIfAbsent(Keys.acceptKey, () => "application/json");
     header.putIfAbsent(Keys.x_of_awjKey, () => userToken);
-    header.putIfAbsent(Keys.authorizationKey, () => "Bearer " + userToken!);
+    // header.putIfAbsent(Keys.authorizationKey, () => "Bearer " + userToken!);
 
     data.putIfAbsent(Keys.nameKey, () => name);
     data.putIfAbsent(Keys.emailKey, () => email);
@@ -61,15 +61,15 @@ class ContactProvider with ChangeNotifier {
     }
   }
 
-  Future<Response<dynamic>> feedBack({required String userToken,required double rate, required String message}) async {
-    var url = '${Strings.baseAppAuthUrl}feedbacks';
+  Future<Response<dynamic>> feedBack({required String userToken,required int rate, required String message}) async {
+    var url = '${Strings.baseAppContactUsAddressUrl}feedbacks';
 
     Map<String, String> header = <String, String>{};
     Map<String, dynamic> data = <String, dynamic>{};
 
     header.putIfAbsent(Keys.acceptKey, () => "application/json");
     header.putIfAbsent(Keys.x_of_awjKey, () => userToken);
-    header.putIfAbsent(Keys.authorizationKey, () => "Bearer " + userToken!);
+    // header.putIfAbsent(Keys.authorizationKey, () => "Bearer " + userToken!);
 
     data.putIfAbsent(Keys.messageKey, () => message);
     data.putIfAbsent(Keys.rateKey, () => rate);
@@ -78,7 +78,7 @@ class ContactProvider with ChangeNotifier {
     var dio = Dio();
     try {
       // FormData formData = FormData.fromMap(data);
-      var response = await dio.get(url,data:data,options: Options(headers: header));// options: Options(headers: header)
+      var response = await dio.post(url,data:data,options: Options(headers: header));// options: Options(headers: header)
       print(response.data);
 
       return response;

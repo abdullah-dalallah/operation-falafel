@@ -282,7 +282,7 @@ class _DrawerState extends State<DrawerWidget> {
                                         onTap: () {
                                           PersistentNavBarNavigator.pushNewScreen(
                                             context,
-                                            screen: FeedbackPage(),
+                                            screen: FeedbackPage(layOut: widget.layOut,(value) {widget.onChanged(value);}),
                                             withNavBar: true,
                                             pageTransitionAnimation: PageTransitionAnimation
                                                 .cupertino,
@@ -326,7 +326,7 @@ class _DrawerState extends State<DrawerWidget> {
                                     onTap: () {
                                       PersistentNavBarNavigator.pushNewScreen(
                                         context,
-                                        screen: ContactUs(),
+                                        screen: ContactUs(layOut: widget.layOut,(value) {widget.onChanged(value);}),
                                         withNavBar: true,
                                         pageTransitionAnimation: PageTransitionAnimation
                                             .cupertino,

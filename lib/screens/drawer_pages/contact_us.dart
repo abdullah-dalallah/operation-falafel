@@ -1,6 +1,7 @@
 
 
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/data/keys.dart';
@@ -8,6 +9,8 @@ import 'package:operation_falafel/data/snackBarGenerator.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
 import 'package:operation_falafel/providers/contact_provider.dart';
+import 'package:operation_falafel/screens/register%20&%20login%20pages/login.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/AppThemeModels/DesignPerPage/Drawer-ContactUsPage/drawer_content_us_page.dart';
@@ -16,6 +19,9 @@ import '../../providers/AppTheme/theme_provider.dart';
 import '../../widgets/loading_page.dart';
 
 class ContactUs extends StatefulWidget{
+  final ValueChanged onChanged;
+  final String layOut ;
+  const ContactUs(this.onChanged,{super.key,required this.layOut});
   @override
   State<ContactUs> createState() => _ContactUsState();
 }
@@ -27,10 +33,19 @@ class _ContactUsState extends State<ContactUs> {
   dynamic? selectedrecentOrdersValue;
 
 
+  final countryPicker = const FlCountryCodePicker();
+  CountryCode? countryCode;
+
+  TextEditingController nameController = new TextEditingController();
+  TextEditingController mobileController = new TextEditingController();
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController messageController = new TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
 
-    return Consumer<ThemeProvider>(builder: (context, appTheme, child)
+    return Consumer2<ThemeProvider, AuthProvider>(builder: (context, appTheme,authProvider, child)
     {
       Language? lng = (Localizations.localeOf(context).languageCode == 'ar') ? appTheme.appTheme.fontSizes?.ar : appTheme.appTheme.fontSizes?.en;
       DrawerContactUsPage? drawerContactUsPage = appTheme.appTheme.designPerPage?.drawerContactUsPage;
@@ -136,6 +151,7 @@ class _ContactUsState extends State<ContactUs> {
                     Expanded(
                         child:
                         Form(
+                          key:_formKey,
                           child: Padding(
                             padding: const EdgeInsets.all(18.0),
                             child: ListView(
@@ -146,6 +162,7 @@ class _ContactUsState extends State<ContactUs> {
                                   // width: 400,
                                   // height: 40,
                                   child: TextFormField(
+                                    controller: nameController,
                                     autofocus: false,
                                     style: const TextStyle(color: Colors.white70),
                                     keyboardType: TextInputType.multiline,
@@ -206,7 +223,8 @@ class _ContactUsState extends State<ContactUs> {
                                 SizedBox(
                                   // width: 400,
                                   // height: 40,
-                                  child: TextField(
+                                  child: TextFormField(
+                                    controller: emailController,
                                     autofocus: false,
                                     style: TextStyle(color: Colors.white70),
                                     keyboardType: TextInputType.multiline,
@@ -248,62 +266,107 @@ class _ContactUsState extends State<ContactUs> {
                                       ),
 
                                     ),
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return 'Please enter your email address';
+                                      } else if (!RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$')
+                                          .hasMatch(value)) {
+                                        return 'Please enter a valid email address';
+                                      }
+                                      return null;
+                                    },
 
                                   ),
                                 ),
                                 const SizedBox(height: 10,),
 
                                 /// - Phone Number
-                                SizedBox(
-                                  // width: 400,
-                                  // height: 40,
-                                  child: TextField(
-                                    autofocus: false,
-                                    style: const TextStyle(color: Colors.white70),
-                                    keyboardType: TextInputType.multiline,
-                                    minLines: 1,
-                                    //Normal textInputField will be displayed
-                                    maxLines: 4,
-                                    // scrollPadding: EdgeInsets.only(bottom:40),
-                                    decoration: InputDecoration(
-                                      filled: true,
-                                      fillColor: Colors.black45,
-                                      //amber.withOpacity(0.1),
-                                      contentPadding: const EdgeInsets.only(
-                                          left: 10,
-                                          top: 10,
-                                          bottom: 10,
-                                          right: 10),
-                                      focusedBorder: const OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(10.0),
+                               Row(
+                                    children: [
+                                      Padding(
+                                              padding: const EdgeInsets.only(left: 0, right: 0, bottom: 20),
+                                              child: IconButton(
+                                                icon:
+                                                countryCode != null ?
+                                                SizedBox(width: 30,
+                                                    height: 30,
+                                                    child: countryCode!
+                                                        .flagImage)
+                                                    : const Icon(
+                                                    Icons.flag_outlined),
+                                                padding: EdgeInsets.zero,
+                                                onPressed: () async {
+                                                  final code = await countryPicker
+                                                      .showPicker(
+                                                      context: context,
+                                                      initialSelectedLocale: "AE");
+                                                  if (code != null) {
+                                                    setState(() {
+                                                      countryCode = code;
+                                                    });
+                                                  };
+                                                },)
+                                          ),
+                                      Expanded(
+                                        child: TextFormField(
+                                          controller: mobileController,
+                                          autofocus: false,
+                                          style: const TextStyle(color: Colors.white70),
+                                          keyboardType: TextInputType.number,
+                                          maxLength: 9,
+                                          minLines: 1,
+                                          //Normal textInputField will be displayed
+                                          maxLines: 4,
+                                          // scrollPadding: EdgeInsets.only(bottom:40),
+                                          decoration: InputDecoration(
+                                            filled: true,
+                                            fillColor: Colors.black45,
+                                            //amber.withOpacity(0.1),
+                                            contentPadding: const EdgeInsets.only(
+                                                left: 10,
+                                                top: 10,
+                                                bottom: 10,
+                                                right: 10),
+                                            focusedBorder: const OutlineInputBorder(
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(10.0),
+                                              ),
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent, width: 1.0,),
+                                            ),
+                                            enabledBorder: const OutlineInputBorder(
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(10.0),
+                                              ),
+                                              borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 0.0),
+                                            ),
+                                            // hintText: getTranslated(
+                                            //     context, "mobileNo")!,
+                                            hintText: drawerContactUsPage.body.form.phoneNumber.data,
+                                            hintStyle: TextStyle(
+                                                fontFamily: lng?.header3.textFamily,
+                                                // getTranslated(context, "fontFamilyBody")!,
+                                                color: Color(int.parse(drawerContactUsPage.body.form.name.color))
+                                              // color: Colors.white38
+
+                                            ),
+
+                                          ),
+                                          validator: (value) {
+                                            if (value!.isEmpty) {
+                                              return 'Please enter your phone number';
+                                            } else if (value!.length != 9) {
+                                              return 'must be 9 digits';
+                                            }
+                                            return null;
+                                          },
                                         ),
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent, width: 1.0,),
                                       ),
-                                      enabledBorder: const OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(10.0),
-                                        ),
-                                        borderSide: BorderSide(
-                                            color: Colors.transparent,
-                                            width: 0.0),
-                                      ),
-                                      // hintText: getTranslated(
-                                      //     context, "mobileNo")!,
-                                      hintText: drawerContactUsPage.body.form.phoneNumber.data,
-                                      hintStyle: TextStyle(
-                                          fontFamily: lng?.header3.textFamily,
-                                          // getTranslated(context, "fontFamilyBody")!,
-                                          color: Color(int.parse(drawerContactUsPage.body.form.name.color))
-                                        // color: Colors.white38
-
-                                      ),
-
-                                    ),
-
+                                    ],
                                   ),
-                                ),
+
                                 const SizedBox(height: 10,),
 
                                 /// - Type of inquiry
@@ -372,6 +435,7 @@ class _ContactUsState extends State<ContactUs> {
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   itemHeight: 30,
+
                                   items: listOfReasons
                                       .map((reason) =>
                                       DropdownMenuItem<dynamic>(
@@ -436,12 +500,11 @@ class _ContactUsState extends State<ContactUs> {
 
                                 /// - Message
                                 TextFormField(
-
+                                 controller: messageController,
                                   autofocus: false,
                                   style: TextStyle(fontSize: 14.0,
                                     color: Colors.white,
-                                    fontFamily: getTranslated(
-                                        context, "fontFamilyBody")!,),
+                                    fontFamily: getTranslated(context, "fontFamilyBody")!,),
                                   maxLength: 1000,
                                   decoration: InputDecoration(
                                     filled: true,
@@ -478,13 +541,32 @@ class _ContactUsState extends State<ContactUs> {
                                   maxLines: 50,
                                   keyboardType: TextInputType.multiline,
                                   textInputAction: TextInputAction.next,
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Please enter your message';
+                                    }
+                                    return null;
+                                  },
 
                                 ),
                                 SizedBox(
                                     width: 330,
                                     height: 38,
                                     child: ElevatedButton(
-                                        onPressed: null,
+                                        onPressed:
+                                        (){
+                                          (authProvider.loggedInUser?.token !=null)?
+                                          (submitionLoading!=true)? _submitForm() :null:
+                                          PersistentNavBarNavigator.pushNewScreen(
+                                            context,
+                                            screen: Login(layOut: widget.layOut,(value) {widget.onChanged(value);}),
+                                            withNavBar: true, // OPTIONAL VALUE. True by default.
+                                            pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                          );
+                                        }
+
+
+                                        ,
                                         style: ButtonStyle(
                                           backgroundColor: MaterialStateProperty.all<Color>(Color(int.parse(drawerContactUsPage.body.submitButton.backGroundColor))),
                                           foregroundColor:
@@ -501,22 +583,39 @@ class _ContactUsState extends State<ContactUs> {
 
 
                                         ),
-                                        child:
-                                        Text(
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            if(submitionLoading) const  SizedBox(
+                                              height: 15,
+                                              width: 15,
+                                              child: CircularProgressIndicator(
+                                                color: Colors.white,
+                                                strokeWidth: 2,
+                                              ),
+                                            ),
+                                            SizedBox(width: 10,),
+                                            (authProvider.loggedInUser?.token !=null)?
+                                                Text(
 
-                                          drawerContactUsPage.body.submitButton.data,
-                                          style: TextStyle(
-                                              fontFamily: lng?.header5.textFamily,
-                                              color: Color(int.parse(drawerContactUsPage.body.submitButton.color)),
-                                              fontSize: lng?.header5.size.toDouble()
-                                          ),)
-    // Text(
-    //                                     getTranslated(context, "submit")!,
-    //                                     style: TextStyle(
-    //                                         fontFamily: getTranslated(
-    //                                             context, "fontFamilyBody")!,
-    //                                         color: Colors.white,
-    //                                         fontSize: 20),)
+                                              drawerContactUsPage.body.submitButton.data,
+                                              style: TextStyle(
+                                                  fontFamily: lng?.header5.textFamily,
+                                                  color: Color(int.parse(drawerContactUsPage.body.submitButton.color)),
+                                                  fontSize: lng?.header5.size.toDouble()
+                                              ),)
+
+                                                :Text(
+                                                  "Login",
+                                                  style: TextStyle(
+                                                      fontFamily: lng?.header5.textFamily,
+                                                      color: Color(int.parse(drawerContactUsPage.body.submitButton.color)),
+                                                      fontSize: lng?.header5.size.toDouble()
+                                                  ),
+                                            ),
+                                          ],
+                                        )
+
 
                                     )
                                 ),
@@ -541,13 +640,14 @@ class _ContactUsState extends State<ContactUs> {
       :LoadingPage();
     });
   }
-
+  final _formKey = GlobalKey<FormState>();
   @override
   void initState() {
     super.initState();
-
+    countryCode= CountryCode(code: "AE",name: "United Arab Emirates",dialCode: "+971" );
     var authProvider = Provider.of<AuthProvider>(context, listen: false);
-    if(authProvider.loggedInUser!=null) {
+
+    if(authProvider.loggedInUser?.token!=null) {
       print (authProvider.loggedInUser!.token!);
       Provider.of<ContactProvider>(context, listen: false).getReasonContactUSForm(userToken: authProvider.loggedInUser!.token!).then((res) {
       if(res.statusCode==200){
@@ -560,5 +660,56 @@ class _ContactUsState extends State<ContactUs> {
     });
     }
 
+  }
+
+
+  bool submitionLoading= false;
+
+  void _submitForm() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      // Perform your registration logic here
+      // You can use the collected form data to create a new user account or make an API call
+      setState(() {
+        submitionLoading=true;
+      });
+      String fullMobileNumber ="${countryCode!.dialCode.substring(1,countryCode!.dialCode.length)}${mobileController.text}";
+
+      // print(nameController.text);
+      // print(mobileController.text);
+      // print(countryCode!.dialCode);
+      // print(fullMobileNumber);
+      // print(emailController.text);
+      // print(messageController.text);
+      // print(selectedrecentOrdersValue);
+      String token=  Provider.of<AuthProvider>(context, listen: false).loggedInUser!.token!;
+      Provider.of<ContactProvider>(context, listen: false).contactUS(userToken: token,email: emailController.text,name:nameController.text ,contact_reason_id:selectedrecentOrdersValue["id"] ,message: messageController.text,phone: fullMobileNumber).then((res) {
+
+        if(res.statusCode ==200){
+          SnackbarGenerator(context).snackBarGeneratorToast("${res.data[Keys.bodyKey][Keys.messageKey]} has been sent Successfully!",);
+          clearForm();
+        }
+        else{
+          SnackbarGenerator(context).snackBarGeneratorToast("Failed try again!",);
+        }
+
+        setState(() {
+          submitionLoading=false;
+        });
+      });
+
+
+
+    }
+  }
+  clearForm() {
+    setState(() {
+      nameController.clear();
+      mobileController.clear();
+      emailController.clear();
+      messageController.clear();
+      selectedrecentOrdersValue = null;
+
+    });
   }
 }
