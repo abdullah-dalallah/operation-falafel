@@ -13,6 +13,7 @@ class Keys {
 
   static const bodyKey = "body";
   static const mobileKey = "mobile";
+  static const phoneKey = "phone";
   static const nationalityIdKey = "nationality_id";
   static const dateOfBirthKey = "dateOfBirth";
   static const genderKey = "gender";
@@ -42,6 +43,10 @@ class Keys {
   static const city_idKey = "city_id";
   static const idKey = "id";
 
+  /// - Contact form Online
+  static const contact_reason_idKey = "contact_reason_id";
+  /// - Feedback
+  static const rateKey = "rate";
 
 
 }

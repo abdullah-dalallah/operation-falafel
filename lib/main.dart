@@ -6,6 +6,7 @@ import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/AppTheme/theme_provider.dart';
 import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
 import 'package:operation_falafel/providers/ProfileProviders/profile_provider.dart';
+import 'package:operation_falafel/providers/contact_provider.dart';
 import 'package:operation_falafel/providers/demo_cart/demo_cart_provider.dart';
 import 'package:operation_falafel/providers/parsistent_tabview_provider.dart';
 import 'package:operation_falafel/responsive/desktop_scaffold.dart';
@@ -99,6 +100,7 @@ class _MyAppState extends State<MyApp> {
           ChangeNotifierProvider(create: (context) => ThemeProvider()),
           ChangeNotifierProvider(create: (context) => AuthProvider()),
           ChangeNotifierProvider(create: (context) => ProfileProvider()),
+          ChangeNotifierProvider(create: (context) => ContactProvider()),
 
 
         ],

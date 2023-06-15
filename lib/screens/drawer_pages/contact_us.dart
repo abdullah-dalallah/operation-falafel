@@ -2,6 +2,8 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
+import 'package:operation_falafel/providers/contact_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/AppThemeModels/DesignPerPage/Drawer-ContactUsPage/drawer_content_us_page.dart';
@@ -554,5 +556,14 @@ class _ContactUsState extends State<ContactUs> {
 
       :LoadingPage();
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    var authProvider = Provider.of<AuthProvider>(context, listen: false);
+    Provider.of<ContactProvider>(context, listen: false).getReasonContactUSForm(userToken: authProvider.loggedInUser!.token!);
+
   }
 }
