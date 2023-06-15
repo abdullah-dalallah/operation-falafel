@@ -9,7 +9,7 @@ import '../../data/strings.dart';
 import 'models/logged_in_user.dart';
 
 class AuthProvider with ChangeNotifier{
-  late LoggedInUser? loggedInUser = LoggedInUser();
+   LoggedInUser? loggedInUser ;
 
   Future<Response<dynamic>> userLogin( String email, String password) async {
     var url = '${Strings.baseAppAuthUrl}auth/login';

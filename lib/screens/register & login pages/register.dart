@@ -344,8 +344,8 @@ class _RegisterState extends State<Register> {
                                         child: TextFormField(
                                          controller: nameController,
                                           autofocus: false,
-                                          style: TextStyle(color: Colors.white),
-                                          decoration: InputDecoration(
+                                          style:const TextStyle(color: Colors.white),
+                                          decoration: const InputDecoration(
                                             filled: true,
                                             fillColor: Colors.black45,
                                             contentPadding: EdgeInsets.only(

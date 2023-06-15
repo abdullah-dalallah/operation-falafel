@@ -35,7 +35,7 @@ class TabNavigator extends StatelessWidget{
         builder: (context, authProvider, child)
         {
 
-          if(authProvider.loggedInUser!.token!= null ){
+          if(authProvider.loggedInUser != null ){
             return LoggedInUserProfile(layOut: layOut, (value) => onChanged(value),);
           }else{
             return EnterOFWorld(layOut: layOut, (value) => onChanged(value),);

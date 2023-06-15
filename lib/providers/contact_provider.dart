@@ -40,19 +40,18 @@ class ContactProvider with ChangeNotifier {
   }
 
   Future<Response<dynamic>> getReasonContactUSForm({required String userToken,}) async {
-    var url = '${Strings.baseAppAuthUrl}contact-reasons';
+    var url = '${Strings.baseAppContactUsAddressUrl}contact-reasons';
 
     Map<String, String> header = <String, String>{};
     header.putIfAbsent(Keys.acceptKey, () => "application/json");
     header.putIfAbsent(Keys.x_of_awjKey, () => userToken);
-    header.putIfAbsent(Keys.authorizationKey, () => "Bearer " + userToken!);
+    // header.putIfAbsent(Keys.authorizationKey, () => "Bearer " + userToken!);
 
 
     var dio = Dio();
     try {
       // FormData formData = FormData.fromMap(data);
       var response = await dio.get(url,options: Options(headers: header));// options: Options(headers: header)
-      print(response.data);
 
       return response;
     } on DioError catch (e) {
