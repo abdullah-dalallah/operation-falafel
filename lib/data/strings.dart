@@ -5,4 +5,6 @@ class Strings {
   static const baseAppContactUsAddressUrl = "https://itscontactus.azurewebsites.net/";
 
   static const invalidInput = "Invalid Input";
+  static const registrationPurpose = "registration";
+  static const resetPasswordPurpose = "resetPassword";
 }

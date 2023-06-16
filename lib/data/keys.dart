@@ -3,7 +3,7 @@ class Keys {
   static const x_of_awjKey = "x-of-awj";
   static const authorizationKey = "Authorization";
 
-  /// - Sign up & Sign in
+  /// - Sign up & Sign in & resetpassword
 
   static const userNameKey = "username";
   static const emailKey = "email";
@@ -18,8 +18,12 @@ class Keys {
   static const dateOfBirthKey = "dateOfBirth";
   static const genderKey = "gender";
   static const messageKey = "message";
+  static const newPasswordKey = "newPassword";
+  static const currentPasswordKey = "currentPassword";
+  static const confirmPasswordKey = "confirmPassword";
 
   static const savedLoggedInUserKey = "SavedLoggedInUser";
+
 
   /// - App Theme
   static const SavedthemeKey = "SavedAppTheme";

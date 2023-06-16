@@ -13,7 +13,8 @@ import 'package:provider/provider.dart';
 class VerifyUserByOtpWidget extends StatefulWidget{
   final ValueChanged onChanged;
   final String layOut ;
-  VerifyUserByOtpWidget(this.onChanged,{super.key,required this.layOut});
+  final String verifyPurpose;
+  VerifyUserByOtpWidget(this.onChanged,{super.key,required this.layOut, required this.verifyPurpose});
 
   @override
   State<VerifyUserByOtpWidget> createState() => _VerifyUserByOtpWidgetState();

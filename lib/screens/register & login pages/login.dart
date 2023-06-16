@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:operation_falafel/screens/register%20&%20login%20pages/reset_your_password.dart';
+import 'package:operation_falafel/screens/rest%20password/forget_your_password.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';

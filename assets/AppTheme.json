@@ -807,6 +807,27 @@
         }
       }
     },
+    "ResetPasswordPage": {
+      "PageTile": {
+        "Data": "CHANGE YOUR \nPA$$WORD",
+        "Color": "0xffffbf00"
+      },
+      "Form": {
+        "CurrentPassword": {
+          "Data": "Current Password",
+          "Color": "0xFFFFBF00"
+        },
+        "NewPassword": {
+          "Data": "New Password",
+          "Color": "0xFFFFBF00"
+        },
+        "ConfirmPassword": {
+          "Data": "Confirm Password",
+          "Color": "0xFFFFBF00"
+        }
+      }
+
+    },
     "OrderHistoryPage": {
       "AppBar": {
         "BackIcon": {

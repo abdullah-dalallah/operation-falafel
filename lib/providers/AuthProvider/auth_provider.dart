@@ -153,8 +153,55 @@ class AuthProvider with ChangeNotifier{
   }
 
 
+   Future<Response<dynamic>> forgetPasswordRequestOTP({ required String mobileNumber}) async {
 
+     var url = '${Strings.baseAppAuthUrl}/auth/forgetPassword';
 
+     Map<String, String> header = <String, String>{};
+     Map<String, String> data = <String, String>{};
+     header.putIfAbsent(Keys.acceptKey, () => "application/json");
+     data.putIfAbsent(Keys.mobileKey, () => mobileNumber);
+
+     var dio = Dio();
+     try {
+       // FormData formData = FormData.fromMap(data);
+       var response = await dio.post(url,data: data,options: Options(headers: header));// options: Options(headers: header)
+       print(response.data);
+
+       return response;
+     } on DioError catch (e) {
+       print(e.response);
+       return e.response!;
+
+     }
+   }
+
+   /// - Pending
+   Future<Response<dynamic>> resetPasswordRequestOTP({ required String mobileNumber, required String OTP, required String currentPssword, required String newPassword}) async {
+
+     var url = '${Strings.baseAppAuthUrl}/auth/forgetPassword';
+
+     Map<String, String> header = <String, String>{};
+     Map<String, String> data = <String, String>{};
+     header.putIfAbsent(Keys.acceptKey, () => "application/json");
+     data.putIfAbsent(Keys.mobileKey, () => mobileNumber);
+     data.putIfAbsent(Keys.otpKey, () => OTP);
+     data.putIfAbsent(Keys.passwordKey, () => currentPssword);
+     data.putIfAbsent(Keys.confirmPasswordKey, () => newPassword);
+
+     var dio = Dio();
+     try {
+       // FormData formData = FormData.fromMap(data);
+       var response = await dio.post(url,data: data,options: Options(headers: header));// options: Options(headers: header)
+       print(response.data);
+
+       return response;
+     } on DioError catch (e) {
+       print(e.response);
+       return e.response!;
+
+     }
+   }
 
 
 

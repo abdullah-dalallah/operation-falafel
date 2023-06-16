@@ -40,6 +40,8 @@ import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/SavedAddre
 import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/SavedCardsPage/saved_cards_page.dart';
 import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/TarckOrderPage/track_order_page.dart';
 
+import 'ResetPasswordPage/reset_password_page.dart';
+
 DesignPerPage designPerPageFromJson(String str) => DesignPerPage.fromJson(json.decode(str));
 
 String designPerPageToJson(DesignPerPage data) => json.encode(data.toJson());
@@ -57,6 +59,7 @@ class DesignPerPage {
     required this.registerPage,
     required this.loginPage,
     required this.forgetPasswordPage,
+    required this.resetPasswordPage,
     required this.orderHistoryPage,
     required this.orderDetailsPage,
     required this.savedAddressPage,
@@ -93,6 +96,7 @@ class DesignPerPage {
   RegisterPage registerPage;
   LoginPage loginPage;
   ForgetPasswordPage forgetPasswordPage;
+  ResetPasswordPage resetPasswordPage;
   OrderHistoryPage orderHistoryPage;
   OrderDetailsPage orderDetailsPage;
   SavedAddressPage savedAddressPage;
@@ -129,6 +133,7 @@ class DesignPerPage {
     registerPage: RegisterPage.fromJson(json["REGISTER"]),
     loginPage: LoginPage.fromJson(json["LoginPage"]),
     forgetPasswordPage: ForgetPasswordPage.fromJson(json["ForgetPasswordPage"]),
+    resetPasswordPage: ResetPasswordPage.fromJson(json["ResetPasswordPage"]),
     orderHistoryPage: OrderHistoryPage.fromJson(json["OrderHistoryPage"]),
     orderDetailsPage: OrderDetailsPage.fromJson(json["OrderDetailsPage"]),
     savedAddressPage: SavedAddressPage.fromJson(json["SavedAddressPage"]),

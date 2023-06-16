@@ -42,6 +42,7 @@ class _RegisterState extends State<Register> {
 
 
 
+
   final countryPicker = const FlCountryCodePicker();
   CountryCode? countryCode;
   @override
@@ -494,7 +495,7 @@ class _RegisterState extends State<Register> {
                                                   style: TextStyle(color: Colors.white),
                                                   decoration:const InputDecoration(
                                                     filled: true,
-                                                    fillColor: Colors.transparent,
+                                                    fillColor: Colors.green,
                                                     contentPadding: EdgeInsets.only(left: 10, right: 10, ),
                                                     focusedBorder: OutlineInputBorder(
                                                       borderRadius: BorderRadius
@@ -1438,7 +1439,7 @@ class _RegisterState extends State<Register> {
                   ),
                   Visibility(
                       visible: verifyUser,
-                      child: Expanded(child: VerifyUserByOtpWidget(  layOut: widget.layOut, (value) {
+                      child: Expanded(child: VerifyUserByOtpWidget(  verifyPurpose: Strings.registrationPurpose,layOut: widget.layOut, (value) {
                         widget.onChanged(value);
                       })))
 

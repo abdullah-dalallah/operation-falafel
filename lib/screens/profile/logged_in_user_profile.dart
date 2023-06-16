@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:operation_falafel/data/keys.dart';
+import 'package:operation_falafel/data/strings.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/ProfileProviders/profile_provider.dart';
 import 'package:operation_falafel/providers/parsistent_tabview_provider.dart';
@@ -306,7 +307,10 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                       screen: VerifyUserScreen(
                                           layOut: widget.layOut, (value) {
                                         widget.onChanged(value);
-                                      }),
+                                      },
+                                        verifyPurpose: Strings.registrationPurpose,
+
+                                      ),
                                       withNavBar: true,
                                       // OPTIONAL VALUE. True by default.
                                       pageTransitionAnimation: PageTransitionAnimation
