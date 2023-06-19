@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:operation_falafel/data/keys.dart';
 import 'package:operation_falafel/data/snackBarGenerator.dart';
+import 'package:operation_falafel/data/strings.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
 import 'package:operation_falafel/screens/profile/logged_in_user_profile.dart';
+import 'package:operation_falafel/screens/rest%20password/reset_your_password.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +16,8 @@ class VerifyUserByOtpWidget extends StatefulWidget{
   final ValueChanged onChanged;
   final String layOut ;
   final String verifyPurpose;
-  VerifyUserByOtpWidget(this.onChanged,{super.key,required this.layOut, required this.verifyPurpose});
+  String? phoneNumber;
+  VerifyUserByOtpWidget(this.onChanged,{super.key,required this.layOut, required this.verifyPurpose , this.phoneNumber});
 
   @override
   State<VerifyUserByOtpWidget> createState() => _VerifyUserByOtpWidgetState();
@@ -128,8 +131,23 @@ class _VerifyUserByOtpWidgetState extends State<VerifyUserByOtpWidget> {
               textStyle: TextStyle(color: Colors.white60),
               controller: _otpControllers,
               onCompleted: (value) {
+
                 print("Completed");
-                _verifyOTP();
+                if(widget.verifyPurpose==Strings.resetPasswordPurpose){
+                  String otp = _otpControllers.text;
+                  PersistentNavBarNavigator.pushNewScreen(
+                    context,
+                    screen: ForgetPassword(otp: "${otp}", forgetOrupdateFlag: Strings.forgetPassword, phoneNumber: widget.phoneNumber!),
+                    withNavBar: true,
+                    // OPTIONAL VALUE. True by default.
+                    pageTransitionAnimation: PageTransitionAnimation
+                        .cupertino,
+                  );
+                }
+                else if(widget.verifyPurpose == Strings.registrationPurpose){
+                  _verifyOTP();
+                }
+
               },
               onChanged: (value) {
                 print(value);
@@ -227,8 +245,21 @@ class _VerifyUserByOtpWidgetState extends State<VerifyUserByOtpWidget> {
                           overlayColor: MaterialStateProperty.all<
                               Color>(Colors.black54),
 
-                          onTap: () {
-                            _verifyOTP;
+                          onTap: () { print("Completed");
+                          if(widget.verifyPurpose==Strings.resetPasswordPurpose){
+                            String otp = _otpControllers.text;
+                            PersistentNavBarNavigator.pushNewScreen(
+                              context,
+                              screen: ForgetPassword(otp: "${otp}", forgetOrupdateFlag: Strings.forgetPassword , phoneNumber: widget.phoneNumber!,),
+                              withNavBar: true,
+                              // OPTIONAL VALUE. True by default.
+                              pageTransitionAnimation: PageTransitionAnimation
+                                  .cupertino,
+                            );
+                          }else if(widget.verifyPurpose == Strings.registrationPurpose){
+                            _verifyOTP();
+                          }
+
                           },
                         ),
 

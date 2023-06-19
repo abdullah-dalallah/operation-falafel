@@ -6,7 +6,8 @@ class VerifyUserScreen extends StatefulWidget{
   final ValueChanged onChanged;
   final String layOut ;
   final String verifyPurpose;
-  VerifyUserScreen(this.onChanged,{super.key,required this.layOut,required this.verifyPurpose});
+  String? phoneNumber;
+  VerifyUserScreen(this.onChanged,{super.key,required this.layOut,required this.verifyPurpose, this.phoneNumber});
   @override
   State<VerifyUserScreen> createState() => _VerifyUserScreenState();
 }
@@ -60,9 +61,13 @@ class _VerifyUserScreenState extends State<VerifyUserScreen> {
                 children: [
                   Visibility(
                       visible: true,
-                      child: Expanded(child: VerifyUserByOtpWidget(verifyPurpose: widget.verifyPurpose,  layOut: widget.layOut, (value) {
-                        widget.onChanged(value);
-                      }))),
+                      child: Expanded(child: VerifyUserByOtpWidget(verifyPurpose: widget.verifyPurpose,  layOut: widget.layOut, (value) {widget.onChanged(value);
+                      },
+                        phoneNumber: widget.phoneNumber,
+
+                      )
+
+                      )),
                 ],
               ),
             ),

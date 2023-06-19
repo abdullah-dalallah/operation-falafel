@@ -67,7 +67,11 @@ class _FeedbackPageState extends State<FeedbackPage> {
             appBar: AppBar(
               leading: IconButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.of(context)
+                    ..pop()
+                    ..pop();
+
+                  // Navigator.pop(context);
                 },
                 icon:
                 (Localizations.localeOf(context).languageCode == 'en') ?
@@ -304,5 +308,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
 
     }
   }
+
 
 }

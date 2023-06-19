@@ -22,7 +22,9 @@ class Keys {
   static const currentPasswordKey = "currentPassword";
   static const confirmPasswordKey = "confirmPassword";
 
+
   static const savedLoggedInUserKey = "SavedLoggedInUser";
+  static const oldPasswordKey = "oldPassword";
 
 
   /// - App Theme

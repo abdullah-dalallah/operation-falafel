@@ -88,6 +88,7 @@ class _MainMenuState extends State<MainMenu> {
                       visible: (widget.layOut=="Mobile")?true:false,
                       child: IconButton(
                         onPressed: (){
+
                           _drawerKey.currentState?.openDrawer();
                         },
                         icon:  ImageIcon(

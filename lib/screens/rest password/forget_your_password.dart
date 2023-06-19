@@ -19,9 +19,10 @@ import '../../models/AppThemeModels/FontSizes/Language/lang.dart';
 import '../../providers/AppTheme/theme_provider.dart';
 
 class ResetYourPassword extends StatefulWidget{
-  final ValueChanged onChanged;
-  final String layOut ;
-  const ResetYourPassword(this.onChanged,{super.key,required this.layOut});
+  static const routeName = '/ResetYourPassword';
+   ValueChanged? onChanged;
+   String? layOut ;
+   ResetYourPassword({super.key, this.layOut,this.onChanged,});
   @override
   State<ResetYourPassword> createState() => _ResetYourPasswordState();
 }
@@ -433,7 +434,7 @@ class _ResetYourPasswordState extends State<ResetYourPassword> {
                                                           Color>(Colors.black54),
 
                                                       onTap: () {
-                                                            // _submitForm();
+                                                            _submitForm();
 
 
                                                         // PersistentNavBarNavigator.pushNewScreen(
@@ -489,14 +490,18 @@ class _ResetYourPasswordState extends State<ResetYourPassword> {
       String fullMobileNumber ="${countryCode!.dialCode.substring(1,countryCode!.dialCode.length)}${mobileController.text}";
       print(fullMobileNumber);/// - Done
 
+
+
+      print("sending request!");
       Provider.of<AuthProvider>(context, listen: false).forgetPasswordRequestOTP(mobileNumber: fullMobileNumber).then((res) {
         if(res.statusCode ==200){
           SnackbarGenerator(context).snackBarGeneratorToast("OTP Sent Successfully!",);
           PersistentNavBarNavigator.pushNewScreen(
             context,
             screen: VerifyUserScreen(
-              layOut: widget.layOut, (value) {
-              widget.onChanged(value);
+         phoneNumber: fullMobileNumber,
+              layOut: widget.layOut!, (value) {
+              widget.onChanged!(value);
             },
               verifyPurpose: Strings.resetPasswordPurpose,
 

@@ -7,4 +7,7 @@ class Strings {
   static const invalidInput = "Invalid Input";
   static const registrationPurpose = "registration";
   static const resetPasswordPurpose = "resetPassword";
+
+  static const forgetPassword = "forgetPassword";
+  static const updatePassword = "updatePassword";
 }

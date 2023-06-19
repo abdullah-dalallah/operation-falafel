@@ -13,6 +13,7 @@ import 'package:operation_falafel/responsive/desktop_scaffold.dart';
 import 'package:operation_falafel/responsive/mobile_scaffold.dart';
 import 'package:operation_falafel/responsive/responsive_layout.dart';
 import 'package:operation_falafel/responsive/tablet_scaffold.dart';
+import 'package:operation_falafel/screens/rest%20password/forget_your_password.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -105,7 +106,9 @@ class _MyAppState extends State<MyApp> {
 
         ],
         child: MaterialApp(
-          
+         routes: {
+           ResetYourPassword.routeName: (ctx) =>  ResetYourPassword(),
+         },
           debugShowCheckedModeBanner: false,
           locale:  _locale,
           supportedLocales: const [

@@ -13,6 +13,7 @@ import 'package:operation_falafel/screens/profile/profile_pages/help_page.dart';
 import 'package:operation_falafel/screens/profile/profile_pages/order_history.dart';
 import 'package:operation_falafel/screens/profile/profile_pages/saved_address.dart';
 import 'package:operation_falafel/screens/profile/profile_pages/saved_cards.dart';
+import 'package:operation_falafel/screens/rest%20password/reset_your_password.dart';
 import 'package:operation_falafel/screens/verify_user_screen.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
 import 'package:operation_falafel/widgets/warning_page.dart';
@@ -1100,44 +1101,73 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                   fontSize: lng?.header2.size.toDouble(),
                                                   fontFamily: lng?.header2.textFamily,
                                                   color: Color(int.parse(profilePage?.body.form.password.color as String))),)),
-                                        const Expanded(
+                                         Expanded(
                                           flex: 5,
                                           child: SizedBox(
 
-                                            child: TextField(
-                                              obscureText: true,
-                                              enableSuggestions: false,
-                                              autocorrect: false,
-                                              autofocus: false,
-                                              style: const TextStyle(
-                                                  color: Colors.white),
-                                              decoration: InputDecoration(
+                                            child: Stack(
+                                              children: [
+                                                const TextField(
+                                                  obscureText: true,
+                                                  enableSuggestions: false,
+                                                  autocorrect: false,
+                                                  autofocus: false,
+                                                  style: const TextStyle(
+                                                      color: Colors.white),
+                                                  decoration: InputDecoration(
 
-                                                filled: true,
-                                                fillColor: Colors.transparent,
-                                                contentPadding: EdgeInsets.only(
-                                                    left: 10, right: 10),
-                                                focusedBorder: OutlineInputBorder(
-                                                  borderRadius: BorderRadius.all(
-                                                    Radius.circular(0.0),
+                                                    filled: true,
+                                                    fillColor: Colors.transparent,
+                                                    contentPadding: EdgeInsets.only(
+                                                        left: 10, right: 10),
+                                                    focusedBorder: OutlineInputBorder(
+                                                      borderRadius: BorderRadius.all(
+                                                        Radius.circular(0.0),
+                                                      ),
+                                                      borderSide: BorderSide(
+                                                        color: Colors.transparent,
+                                                        width: 1.0,),
+                                                    ),
+                                                    enabledBorder: OutlineInputBorder(
+                                                      borderRadius: BorderRadius.all(
+                                                        Radius.circular(0.0),
+                                                      ),
+                                                      borderSide: BorderSide(
+                                                          color: Colors.transparent,
+                                                          width: 0.0),
+                                                    ),
+                                                    hintText: '',
+                                                    // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+
                                                   ),
-                                                  borderSide: BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 1.0,),
+
                                                 ),
-                                                enabledBorder: OutlineInputBorder(
-                                                  borderRadius: BorderRadius.all(
-                                                    Radius.circular(0.0),
-                                                  ),
-                                                  borderSide: BorderSide(
+                                                Positioned.fill(
+                                                    child:  Material(
                                                       color: Colors.transparent,
-                                                      width: 0.0),
+                                                      child:  InkWell(
+                                                        borderRadius:const  BorderRadius.all(Radius.circular(0)),
+                                                        splashColor: Colors.black,
+                                                        overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                                        onTap: () {
+                                                          PersistentNavBarNavigator.pushNewScreen(
+                                                            context,
+                                                            screen: ForgetPassword(
+                                                             forgetOrupdateFlag: Strings.updatePassword,
+
+                                                            ),
+                                                            withNavBar: true,
+                                                            // OPTIONAL VALUE. True by default.
+                                                            pageTransitionAnimation: PageTransitionAnimation
+                                                                .cupertino,
+                                                          );
+                                                        },
+                                                      ),
+
+                                                    )
                                                 ),
-                                                hintText: '',
-                                                // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
-
-                                              ),
-
+                                              ],
                                             ),
                                           ),
                                         ),
