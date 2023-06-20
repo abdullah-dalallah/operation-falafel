@@ -20,6 +20,7 @@ import 'package:intl/intl.dart';
 import '../../models/AppThemeModels/DesignPerPage/RegisterPage/register_page.dart';
 import '../../models/AppThemeModels/FontSizes/Language/lang.dart';
 import '../../providers/AppTheme/theme_provider.dart';
+import '../../widgets/background.dart';
 import '../profile/logged_in_user_profile.dart';
 import 'package:intl/intl.dart';
 
@@ -183,8 +184,8 @@ class _RegisterState extends State<Register> {
 
 
   final List<String> gender = [
-    "male",
-    "female",
+    "Male",
+    "Female",
 
   ];
   dynamic? selectedGenderValue;
@@ -236,623 +237,112 @@ class _RegisterState extends State<Register> {
 
 
       return (loadingDesign)?
-      Container(
-        decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/images/background.png",),
-              fit: BoxFit.cover,
-            )
-        ),
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
+      Stack(
+        children: [
+          Background(),
+          Scaffold(
+              backgroundColor: Colors.transparent,
 
-          appBar: AppBar(
-            leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon:
-              (Localizations
-                  .localeOf(context)
-                  .languageCode == 'en') ?
-              const ImageIcon(
-                AssetImage("assets/images/back_new.png",),
-                size: 35,
-              ) :
-              const ImageIcon(
-                AssetImage("assets/images/back_arabic.png",),
-                size: 35,
+              appBar: AppBar(
+                leading: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon:
+                  (Localizations
+                      .localeOf(context)
+                      .languageCode == 'en') ?
+                  const ImageIcon(
+                    AssetImage("assets/images/back_new.png",),
+                    size: 35,
+                  ) :
+                  const ImageIcon(
+                    AssetImage("assets/images/back_arabic.png",),
+                    size: 35,
+                  ),
+                ),
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                // centerTitle: true,
+                // title:Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),),
+                // actions: [],
               ),
-            ),
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            // centerTitle: true,
-            // title:Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),),
-            // actions: [],
-          ),
-          body: Center(
-            child: Container(
-              constraints: const BoxConstraints(maxWidth: 450,),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(registerPage.pageTile.data,
-                    style: TextStyle(
-                      fontFamily: lng?.titleHeader2.textFamily,
-                      color: Color(int.parse(registerPage.pageTile.color)),
-                      fontSize: double.parse(getTranslated(context, "enterOfTitleSize")!),
-                      height: 0.8), textAlign: TextAlign.center,),
-                  // Text(getTranslated(context, "register")!, style: TextStyle(
-                  //     fontFamily: getTranslated(context, "fontFamilyButtons"),
-                  //     color: Colors.amber,
-                  //     fontSize: double.parse(
-                  //         getTranslated(context, "enterOfTitleSize")!),
-                  //     height: 0.8), textAlign: TextAlign.center,),
-                  const SizedBox(height: 25,),
+              body: Center(
+                child: Container(
+                  constraints: const BoxConstraints(maxWidth: 450,),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(registerPage.pageTile.data,
+                        style: TextStyle(
+                          fontFamily: lng?.titleHeader2.textFamily,
+                          color: Color(int.parse(registerPage.pageTile.color)),
+                          fontSize: double.parse(getTranslated(context, "enterOfTitleSize")!),
+                          height: 0.8), textAlign: TextAlign.center,),
+                      // Text(getTranslated(context, "register")!, style: TextStyle(
+                      //     fontFamily: getTranslated(context, "fontFamilyButtons"),
+                      //     color: Colors.amber,
+                      //     fontSize: double.parse(
+                      //         getTranslated(context, "enterOfTitleSize")!),
+                      //     height: 0.8), textAlign: TextAlign.center,),
+                      const SizedBox(height: 25,),
 
-                  /// - Form
-                  Visibility(
-                    visible: !verifyUser,
-                    child: Expanded(
-                      child: Form(
-                        key: _formKey,
-                        child: ListView(
-                          // physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          children: [
+                      /// - Form
+                      Visibility(
+                        visible: !verifyUser,
+                        child: Expanded(
+                          child: Form(
+                            key: _formKey,
+                            child: ListView(
+                              // physics: NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              children: [
 
-                            /// - Name
-                            Padding(
-                              padding: const EdgeInsets.only(left: 18.0, right: 18),
-                              child: Container(
-                                padding: const EdgeInsets.only(left: 0, right: 0),
-                                decoration: const BoxDecoration(
-                                  color: Colors.transparent,
-                                  borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(10),
-                                    bottomLeft: Radius.circular(10),
-                                    topLeft: Radius.circular(10),
-                                    bottomRight: Radius.circular(10),
-                                  ),
-                                  // border: Border.all(
-                                  //   width: 0,
-                                  //   color: Colors.transparent,
-                                  //   style: BorderStyle.solid,
-                                  // ),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Expanded(flex: 2,
-                                        child:
-                                        Text(
-                                          "${registerPage.form.name.data}*",
-                                          style: TextStyle(
-                                              fontFamily: lng?.header2.textFamily,
-                                              color: Color(int.parse(registerPage.form.name.color))
-                                          ),)
-                                    // Text(
-                                    //       "${getTranslated(context, "name")!}*",
-                                    //       style: TextStyle(
-                                    //           fontFamily: getTranslated(
-                                    //               context, "fontFamilyBody")!,
-                                    //           color: Colors.amber),)
-                                    ),
-
-                                     Expanded(
-                                      flex: 5,
-                                      child: SizedBox(
-
-                                        child: TextFormField(
-                                         controller: nameController,
-                                          autofocus: false,
-                                          style:const TextStyle(color: Colors.white),
-                                          decoration: const InputDecoration(
-                                            filled: true,
-                                            fillColor: Colors.black45,
-                                            contentPadding: EdgeInsets.only(
-                                                left: 10, right: 10),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(10.0),
-                                              ),
-                                              borderSide: BorderSide(
-                                                color: Colors.transparent,
-                                                width: 1.0,),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(10.0),
-                                              ),
-                                              borderSide: BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 0.0),
-                                            ),
-                                            hintText: '',
-                                            // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
-
-                                          ),
-                                          validator: (value) {
-                                            if (value!.isEmpty) {
-                                              return 'Please enter your name';
-                                            }
-                                            return null;
-                                          },
-                                        ),
+                                /// - Name
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 18.0, right: 18),
+                                  child: Container(
+                                    padding: const EdgeInsets.only(left: 0, right: 0),
+                                    decoration: const BoxDecoration(
+                                      color: Colors.transparent,
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(10),
+                                        bottomLeft: Radius.circular(10),
+                                        topLeft: Radius.circular(10),
+                                        bottomRight: Radius.circular(10),
                                       ),
+                                      // border: Border.all(
+                                      //   width: 0,
+                                      //   color: Colors.transparent,
+                                      //   style: BorderStyle.solid,
+                                      // ),
                                     ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 10,),
-
-                            /// - Phone number
-                            Padding(
-                              padding: const EdgeInsets.only(left: 18.0, right: 18),
-                              child: Container(
-                                padding: const EdgeInsets.only(left: 0, right: 0),
-
-                                decoration: const BoxDecoration(
-                                  color: Colors.transparent,
-
-                                  borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(10),
-                                    bottomLeft: Radius.circular(10),
-                                    topLeft: Radius.circular(10),
-                                    bottomRight: Radius.circular(10),
-                                  ),
-                                  // border: Border.all(
-                                  //   width: 0,
-                                  //   color: Colors.transparent,
-                                  //   style: BorderStyle.solid,
-                                  // ),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Expanded(flex: 5, child: Padding(
-                                      padding: const EdgeInsets.only(left: 0, right: 0),
-                                      child: Text(
-                                        "${registerPage.form.phoneNumber.data}*",
-                                        style: TextStyle(
-                                            fontFamily: lng?.header2.textFamily,
-                                            color: Color(int.parse(registerPage.form.phoneNumber.color))
-                                        ),)
-                                    )),
-
-                                    Expanded(
-                                      flex: 12,
-                                      child: Container(
-                                        height: 50,
-                                        decoration: BoxDecoration(
-                                          color: Colors.black45,
-
-                                          borderRadius:
-
-                                          (Localizations
-                                              .localeOf(context)
-                                              .languageCode == 'en') ?
-                                          const BorderRadius.only(
-                                            bottomLeft: Radius.circular(10.0),
-                                            topLeft: Radius.circular(10.0),
-                                          ) :
-                                          (Localizations
-                                              .localeOf(context)
-                                              .languageCode == 'ar') ?
-                                          const BorderRadius.only(
-                                            bottomRight: Radius.circular(10),
-                                            topRight: Radius.circular(10),
-                                          ) :
-                                          const BorderRadius.only(
-                                            bottomLeft: Radius.circular(10.0),
-                                            topLeft: Radius.circular(10.0),
-                                          ),
-
-                                          // border: Border.all(
-                                          //   width: 0,
-                                          //   color: Colors.transparent,
-                                          //   style: BorderStyle.solid,
-                                          // ),
-                                        ),
-                                        child: Row(
-                                          children: [
-                                            SizedBox(width: 10,),
-                                            Expanded(
-                                                flex: 2,
-                                                child: Padding(
-                                                    padding: const EdgeInsets.only(
-                                                        left: 0, right: 0),
-                                                    child: IconButton(
-                                                      icon:
-                                                      countryCode != null ?
-                                                      SizedBox(width: 30,
-                                                          height: 30,
-                                                          child: countryCode!
-                                                              .flagImage)
-                                                          : const Icon(
-                                                          Icons.flag_outlined),
-                                                      padding: EdgeInsets.zero,
-                                                      onPressed: () async {
-                                                        final code = await countryPicker
-                                                            .showPicker(
-                                                            context: context,
-                                                            initialSelectedLocale: "AE");
-                                                        if (code != null) {
-                                                          setState(() {
-                                                            countryCode = code;
-                                                          });
-                                                        };
-                                                      },)
-                                                )),
-                                            Expanded(
-                                              flex: 8,
-                                              child: SizedBox(
-
-                                                child: TextFormField(
-                                                  maxLength: 9,
-                                                 controller: mobileController,
-                                                  keyboardType: TextInputType.number,
-                                                  autofocus: false,
-                                                  style: TextStyle(color: Colors.white),
-                                                  decoration:const InputDecoration(
-                                                    filled: true,
-                                                    fillColor: Colors.green,
-                                                    contentPadding: EdgeInsets.only(left: 10, right: 10, ),
-                                                    focusedBorder: OutlineInputBorder(
-                                                      borderRadius: BorderRadius
-                                                          .all(
-                                                        Radius.circular(0.0),
-                                                      ),
-                                                      borderSide: BorderSide(
-                                                        color: Colors.transparent,
-                                                        width: 1.0,),
-                                                    ),
-                                                    enabledBorder: OutlineInputBorder(
-                                                      borderRadius: BorderRadius
-                                                          .all(
-                                                        Radius.circular(0.0),
-                                                      ),
-                                                      borderSide: BorderSide(
-                                                          color: Colors.transparent,
-                                                          width: 0.0),
-                                                    ),
-                                                    hintText: '',
-                                                    counterText: '',
-                                                    // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
-
-                                                  ),
-                                                  validator: (value) {
-                                                    if (value!.isEmpty) {
-                                                      return 'Please enter your phone number';
-                                                    } else if (value!.length != 9) {
-                                                      return 'must be 9 digits';
-                                                    }
-                                                    return null;
-                                                  },
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-
-                                    // Expanded(
-                                    //
-                                    //   flex: 3,
-                                    //   child: SizedBox(
-                                    //       height: 50,
-                                    //       child: Container(
-                                    //         decoration: BoxDecoration(
-                                    //           borderRadius:
-                                    //
-                                    //           (Localizations
-                                    //               .localeOf(context)
-                                    //               .languageCode == 'en') ?
-                                    //           const BorderRadius.only(
-                                    //             bottomRight: Radius.circular(10),
-                                    //             topRight: Radius.circular(10),
-                                    //           ) :
-                                    //           (Localizations
-                                    //               .localeOf(context)
-                                    //               .languageCode == 'ar') ?
-                                    //           const BorderRadius.only(
-                                    //             bottomLeft: Radius.circular(10.0),
-                                    //             topLeft: Radius.circular(10.0),
-                                    //           ) :
-                                    //           const BorderRadius.only(
-                                    //             bottomRight: Radius.circular(10),
-                                    //             topRight: Radius.circular(10),
-                                    //           ),
-                                    //
-                                    //
-                                    //           color: Color(int.parse(registerPage.form.phoneNumber.verifiedButton.backGroundColor)),
-                                    //           // border: Border.all(
-                                    //           //   width: 0.8,
-                                    //           //   color: Colors.white,
-                                    //           //   style: BorderStyle.solid,
-                                    //           // ),
-                                    //         ),
-                                    //         child:
-                                    //         //Image.network(registerPage.form.phoneNumber.verifiedButton.imageIcon,height: 2,width: 2,)
-                                    //         Icon(Icons.check, color: Colors.white,),
-                                    //       )
-                                    //   ),
-                                    // ),
-
-
-                                  ],
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 10,),
-
-                            /// - email address
-                            Padding(
-                              padding: const EdgeInsets.only(left: 18.0, right: 18),
-                              child: Container(
-                                padding: const EdgeInsets.only(left: 0, right: 0),
-                                decoration: const BoxDecoration(
-                                  color: Colors.transparent,
-                                  borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(10),
-                                    bottomLeft: Radius.circular(10),
-                                    topLeft: Radius.circular(10),
-                                    bottomRight: Radius.circular(10),
-                                  ),
-                                  // border: Border.all(
-                                  //   width: 0,
-                                  //   color: Colors.transparent,
-                                  //   style: BorderStyle.solid,
-                                  // ),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Expanded(flex: 2,
-                                        child:  Text(
-                                          "${registerPage.form.email.data}*",
-                                          style: TextStyle(
-                                              fontFamily: lng?.header2.textFamily,
-                                              color: Color(int.parse(registerPage.form.email.color))
-                                          ),)
-                                    ),
-                                     Expanded(
-                                      flex: 5,
-                                      child: SizedBox(
-
-                                        child: TextFormField(
-                                            controller: emailController,
-                                          autofocus: false,
-                                          style: TextStyle(color: Colors.white),
-                                          decoration: InputDecoration(
-                                            filled: true,
-                                            fillColor: Colors.black45,
-                                            contentPadding: EdgeInsets.only(
-                                                left: 10, right: 10),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(10.0),
-                                              ),
-                                              borderSide: BorderSide(
-                                                color: Colors.transparent,
-                                                width: 1.0,),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(10.0),
-                                              ),
-                                              borderSide: BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 0.0),
-                                            ),
-                                            hintText: '',
-
-                                            // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
-
-                                          ),
-                                          validator: (value) {
-                                            if (value!.isEmpty) {
-                                              return 'Please enter your email address';
-                                            } else if (!RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$')
-                                                .hasMatch(value)) {
-                                              return 'Please enter a valid email address';
-                                            }
-                                            return null;
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 10,),
-
-                            /// - Password
-                            Padding(
-                              padding: const EdgeInsets.only(left: 18.0, right: 18),
-                              child: Container(
-                                padding: const EdgeInsets.only(left: 0, right: 0),
-                                decoration: const BoxDecoration(
-                                  color: Colors.transparent,
-                                  borderRadius: const BorderRadius.only(
-                                    topRight: Radius.circular(10),
-                                    bottomLeft: Radius.circular(10),
-                                    topLeft: Radius.circular(10),
-                                    bottomRight: Radius.circular(10),
-                                  ),
-                                  // border: Border.all(
-                                  //   width: 0,
-                                  //   color: Colors.transparent,
-                                  //   style: BorderStyle.solid,
-                                  // ),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Expanded(flex: 2,
-                                        child:  Text(
-                                          "${registerPage.form.password.data}*",
-                                          style: TextStyle(
-                                              fontFamily: lng?.header2.textFamily,
-                                              color: Color(int.parse(registerPage.form.password.color))
-                                          ),)
-                                    ),
-                                     Expanded(
-                                      flex: 5,
-                                      child: SizedBox(
-                                        child: TextFormField(
-                                          controller: passwordController,
-                                          obscureText: _obscureText,
-                                          enableSuggestions: false,
-                                          autocorrect: false,
-                                          autofocus: false,
-                                          style: const TextStyle(color: Colors.white),
-                                          decoration: InputDecoration(
-                                            filled: true,
-                                            fillColor: Colors.black45,
-                                            contentPadding:const EdgeInsets.only(
-                                                left: 10, right: 10, bottom: 0),
-                                            focusedBorder:const OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(10.0),
-                                              ),
-                                              borderSide: BorderSide(
-                                                color: Colors.transparent,
-                                                width: 1.0,),
-                                            ),
-                                            enabledBorder:const OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(10.0),
-                                              ),
-                                              borderSide: BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 0.0),
-                                            ),
-                                            suffixIcon:GestureDetector(
-                                              onTap: _togglePasswordVisibility,
-                                              child:
-                                              !_obscureText ? Icon(Icons.visibility_rounded , color: Colors.grey,): Icon(Icons.visibility_off_rounded, color:Colors.grey),
-                                            ),
-                                              hintText: '',
-
-                                            // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
-
-                                          ),
-                                          validator: (value) {
-                                            if (value!.isEmpty) {
-                                              return 'Please enter a password';
-                                            } else if (!RegExp(r'^[\w!@#$%^&*()]{6,30}$').hasMatch(value)) {
-                                              setState(() {
-                                                _validatePaassword = true;
-                                              });
-                                              return '';
-                                            }
-                                            setState(() {
-                                              _validatePaassword = false;
-                                            });
-                                            return null;
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Visibility(
-                              visible: _validatePaassword,
-                              child: Row(
-                                children: [
-                                  Expanded(child: SizedBox(width: 10,)),
-                                  Expanded(
-                                    flex: 2,
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                    child: Row(
                                       children: [
-
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                            Image.asset("assets/images/page2orders_icon.png", height: 10,),
-                                            SizedBox(width: 5,),
-                                            Text("Password must be 6-30 characters",style: TextStyle(color: Colors.red),)
-                                          ],
+                                        Expanded(flex: 2,
+                                            child:
+                                            Text(
+                                              "${registerPage.form.name.data}*",
+                                              style: TextStyle(
+                                                  fontFamily: lng?.header2.textFamily,
+                                                  color: Color(int.parse(registerPage.form.name.color))
+                                              ),)
+                                        // Text(
+                                        //       "${getTranslated(context, "name")!}*",
+                                        //       style: TextStyle(
+                                        //           fontFamily: getTranslated(
+                                        //               context, "fontFamilyBody")!,
+                                        //           color: Colors.amber),)
                                         ),
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                            Image.asset("assets/images/page2orders_icon.png", height: 10,),
-                                            SizedBox(width: 5,),
-                                            Text("Password must be contain only letters",style: TextStyle(color: Colors.red),)
-                                          ],
-                                        ),
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                            Image.asset("assets/images/page2orders_icon.png", height: 10,),
-                                            SizedBox(width: 5,),
-                                            Text("Password must be contain numbers",style: TextStyle(color: Colors.red),)
-                                          ],
-                                        ),
-                                        Row(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                            Image.asset("assets/images/page2orders_icon.png", height: 10,),
-                                            SizedBox(width: 5,),
-                                            Text("Password must be contain \nspecial characters (!@#\$%^&*())", style: TextStyle(color: Colors.red),)
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
 
+                                         Expanded(
+                                          flex: 5,
+                                          child: SizedBox(
 
-                            
-                            const SizedBox(height: 10,),
-
-                            /// - date of birth
-                            Padding(
-                              padding: const EdgeInsets.only(left: 18.0, right: 18),
-                              child: Container(
-                                padding: const EdgeInsets.only(left: 0, right: 0),
-                                decoration: const BoxDecoration(
-                                  color: Colors.transparent,
-                                  borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(10),
-                                    bottomLeft: Radius.circular(10),
-                                    topLeft: Radius.circular(10),
-                                    bottomRight: Radius.circular(10),
-                                  ),
-                                  // border: Border.all(
-                                  //   width: 0,
-                                  //   color: Colors.transparent,
-                                  //   style: BorderStyle.solid,
-                                  // ),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Expanded(flex: 2,
-                                        child:  Text(
-                                          "${registerPage.form.dateOfBirth.data}:",
-                                          style: TextStyle(
-                                              fontFamily: lng?.header2.textFamily,
-                                              color: Color(int.parse(registerPage.form.dateOfBirth.color))
-                                          ),)),
-                                    Expanded(
-                                      flex: 5,
-                                      child: SizedBox(
-
-                                        child: Stack(
-                                          children: [
-                                            TextFormField(
-                                              controller: birthDateController,
-                                              enabled: true,
+                                            child: TextFormField(
+                                             controller: nameController,
                                               autofocus: false,
-                                              style: const TextStyle(
-                                                  color: Colors.white),
+                                              style:const TextStyle(color: Colors.white),
                                               decoration: const InputDecoration(
                                                 filled: true,
                                                 fillColor: Colors.black45,
@@ -862,19 +352,17 @@ class _RegisterState extends State<Register> {
                                                   borderRadius: BorderRadius.all(
                                                     Radius.circular(10.0),
                                                   ),
-                                                  // borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
+                                                  borderSide: BorderSide(
+                                                    color: Colors.transparent,
+                                                    width: 1.0,),
                                                 ),
                                                 enabledBorder: OutlineInputBorder(
                                                   borderRadius: BorderRadius.all(
                                                     Radius.circular(10.0),
                                                   ),
-                                                  // borderSide: BorderSide(color: Colors.transparent, width: 0.0),
-                                                ),
-                                                border: OutlineInputBorder(
-                                                  borderRadius: BorderRadius.all(
-                                                    Radius.circular(10.0),
-                                                  ),
-                                                  // borderSide: BorderSide(color: Colors.transparent, width: 0.0),
+                                                  borderSide: BorderSide(
+                                                      color: Colors.transparent,
+                                                      width: 0.0),
                                                 ),
                                                 hintText: '',
                                                 // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
@@ -882,574 +370,1063 @@ class _RegisterState extends State<Register> {
                                               ),
                                               validator: (value) {
                                                 if (value!.isEmpty) {
-                                                  return 'Please enter your date of birth';
+                                                  return 'Please enter your name';
                                                 }
-                                                // You can add more advanced date validation here if needed
                                                 return null;
                                               },
-
                                             ),
-                                            Positioned.fill(
-                                                child: Material(
-                                                  color: Colors.transparent,
-                                                  child: new InkWell(
-                                                    borderRadius: BorderRadius.all(
-                                                        Radius.circular(10)),
-                                                    splashColor: Colors.black,
-                                                    overlayColor: MaterialStateProperty
-                                                        .all<Color>(Colors.white60),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 10,),
 
-                                                    onTap: () {
-                                                      showCustomDialog(context);
+                                /// - Phone number
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 18.0, right: 18),
+                                  child: Container(
+                                    padding: const EdgeInsets.only(left: 0, right: 0),
 
-                                                      setState(() {
-                                                        // showDatePicker =true;
-                                                      });
-                                                    },
+                                    decoration: const BoxDecoration(
+                                      color: Colors.transparent,
+
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(10),
+                                        bottomLeft: Radius.circular(10),
+                                        topLeft: Radius.circular(10),
+                                        bottomRight: Radius.circular(10),
+                                      ),
+                                      // border: Border.all(
+                                      //   width: 0,
+                                      //   color: Colors.transparent,
+                                      //   style: BorderStyle.solid,
+                                      // ),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Expanded(flex: 5, child: Padding(
+                                          padding: const EdgeInsets.only(left: 0, right: 0),
+                                          child: Text(
+                                            "${registerPage.form.phoneNumber.data}*",
+                                            style: TextStyle(
+                                                fontFamily: lng?.header2.textFamily,
+                                                color: Color(int.parse(registerPage.form.phoneNumber.color))
+                                            ),)
+                                        )),
+
+                                        Expanded(
+                                          flex: 12,
+                                          child: Container(
+                                            height: 50,
+                                            decoration:const BoxDecoration(
+                                              color: Colors.black45,
+
+                                              borderRadius:
+
+
+                                               BorderRadius.only(
+                                                bottomLeft: Radius.circular(10.0),
+                                                topLeft: Radius.circular(10.0),
+                                                 topRight: Radius.circular(10.0),
+                                                 bottomRight: Radius.circular(10.0),
+                                              ),
+
+                                              // border: Border.all(
+                                              //   width: 0,
+                                              //   color: Colors.transparent,
+                                              //   style: BorderStyle.solid,
+                                              // ),
+                                            ),
+                                            child: Row(
+                                              children: [
+                                                SizedBox(width: 10,),
+                                                Expanded(
+                                                    flex: 2,
+                                                    child: Padding(
+                                                        padding: const EdgeInsets.only(
+                                                            left: 0, right: 0),
+                                                        child: IconButton(
+                                                          icon:
+                                                          countryCode != null ?
+                                                          SizedBox(width: 30,
+                                                              height: 30,
+                                                              child: countryCode!
+                                                                  .flagImage)
+                                                              : const Icon(
+                                                              Icons.flag_outlined),
+                                                          padding: EdgeInsets.zero,
+                                                          onPressed: () async {
+                                                            final code = await countryPicker
+                                                                .showPicker(
+                                                                context: context,
+                                                                initialSelectedLocale: "AE");
+                                                            if (code != null) {
+                                                              setState(() {
+                                                                countryCode = code;
+                                                              });
+                                                            };
+                                                          },)
+                                                    )),
+                                                Expanded(
+                                                  flex: 8,
+                                                  child: SizedBox(
+
+                                                    child: TextFormField(
+                                                      maxLength: 9,
+                                                     controller: mobileController,
+                                                      keyboardType: TextInputType.number,
+                                                      autofocus: false,
+                                                      style: TextStyle(color: Colors.white),
+                                                      decoration:const InputDecoration(
+                                                        filled: true,
+                                                        fillColor: Colors.transparent,
+                                                        contentPadding: EdgeInsets.only(left: 10, right: 10, ),
+                                                        focusedBorder: OutlineInputBorder(
+                                                          borderRadius: BorderRadius.only(bottomRight: Radius.circular(10.0),topLeft: Radius.circular(0.0),topRight:Radius.circular(10.0), bottomLeft: Radius.circular(0.0), ),
+                                                          borderSide: BorderSide(color: Colors.transparent, width: 1.0,),
+                                                        ),
+                                                        enabledBorder: OutlineInputBorder(
+                                                          borderRadius: BorderRadius.all(Radius.circular(0.0),),
+                                                          borderSide: BorderSide(color: Colors.transparent, width: 0.0),
+                                                        ),
+                                                        hintText: '',
+                                                        counterText: '',
+                                                        // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+
+                                                      ),
+                                                      validator: (value) {
+                                                        if (value!.isEmpty) {
+                                                          return 'Please enter your phone number';
+                                                        } else if (value!.length != 9) {
+                                                          return 'must be 9 digits';
+                                                        }
+                                                        return null;
+                                                      },
+                                                    ),
                                                   ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
 
-                                                )
+                                        // Expanded(
+                                        //
+                                        //   flex: 3,
+                                        //   child: SizedBox(
+                                        //       height: 50,
+                                        //       child: Container(
+                                        //         decoration: BoxDecoration(
+                                        //           borderRadius:
+                                        //
+                                        //           (Localizations
+                                        //               .localeOf(context)
+                                        //               .languageCode == 'en') ?
+                                        //           const BorderRadius.only(
+                                        //             bottomRight: Radius.circular(10),
+                                        //             topRight: Radius.circular(10),
+                                        //           ) :
+                                        //           (Localizations
+                                        //               .localeOf(context)
+                                        //               .languageCode == 'ar') ?
+                                        //           const BorderRadius.only(
+                                        //             bottomLeft: Radius.circular(10.0),
+                                        //             topLeft: Radius.circular(10.0),
+                                        //           ) :
+                                        //           const BorderRadius.only(
+                                        //             bottomRight: Radius.circular(10),
+                                        //             topRight: Radius.circular(10),
+                                        //           ),
+                                        //
+                                        //
+                                        //           color: Color(int.parse(registerPage.form.phoneNumber.verifiedButton.backGroundColor)),
+                                        //           // border: Border.all(
+                                        //           //   width: 0.8,
+                                        //           //   color: Colors.white,
+                                        //           //   style: BorderStyle.solid,
+                                        //           // ),
+                                        //         ),
+                                        //         child:
+                                        //         //Image.network(registerPage.form.phoneNumber.verifiedButton.imageIcon,height: 2,width: 2,)
+                                        //         Icon(Icons.check, color: Colors.white,),
+                                        //       )
+                                        //   ),
+                                        // ),
+
+
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 10,),
+
+                                /// - email address
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 18.0, right: 18),
+                                  child: Container(
+                                    padding: const EdgeInsets.only(left: 0, right: 0),
+                                    decoration: const BoxDecoration(
+                                      color: Colors.transparent,
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(10),
+                                        bottomLeft: Radius.circular(10),
+                                        topLeft: Radius.circular(10),
+                                        bottomRight: Radius.circular(10),
+                                      ),
+                                      // border: Border.all(
+                                      //   width: 0,
+                                      //   color: Colors.transparent,
+                                      //   style: BorderStyle.solid,
+                                      // ),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Expanded(flex: 2,
+                                            child:  Text(
+                                              "${registerPage.form.email.data}*",
+                                              style: TextStyle(
+                                                  fontFamily: lng?.header2.textFamily,
+                                                  color: Color(int.parse(registerPage.form.email.color))
+                                              ),)
+                                        ),
+                                        Expanded(
+                                          flex: 5,
+                                          child: SizedBox(
+
+                                            child: TextFormField(
+                                                controller: emailController,
+                                              autofocus: false,
+                                              style:const  TextStyle(color: Colors.white),
+                                              decoration:const  InputDecoration(
+                                                filled: true,
+                                                fillColor: Colors.black45,
+                                                contentPadding: EdgeInsets.only(left: 10, right: 10),
+                                                focusedBorder: OutlineInputBorder(
+                                                  borderRadius: BorderRadius.all(
+                                                    Radius.circular(10.0),
+                                                  ),
+                                                  borderSide: BorderSide(
+                                                    color: Colors.transparent,
+                                                    width: 1.0,),
+                                                ),
+                                                enabledBorder: OutlineInputBorder(
+                                                  borderRadius: BorderRadius.all(
+                                                    Radius.circular(10.0),
+                                                  ),
+                                                  borderSide: BorderSide(
+                                                      color: Colors.transparent,
+                                                      width: 0.0),
+                                                ),
+                                                hintText: '',
+
+                                                // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+
+                                              ),
+                                              validator: (value) {
+                                                if (value!.isEmpty) {
+                                                  return 'Please enter your email address';
+                                                } else if (!RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$')
+                                                    .hasMatch(value)) {
+                                                  return 'Please enter a valid email address';
+                                                }
+                                                return null;
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 10,),
+
+                                /// - Password
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 18.0, right: 18),
+                                  child: Container(
+                                    padding: const EdgeInsets.only(left: 0, right: 0),
+                                    decoration: const BoxDecoration(
+                                      color: Colors.transparent,
+                                      borderRadius: const BorderRadius.only(
+                                        topRight: Radius.circular(10),
+                                        bottomLeft: Radius.circular(10),
+                                        topLeft: Radius.circular(10),
+                                        bottomRight: Radius.circular(10),
+                                      ),
+                                      // border: Border.all(
+                                      //   width: 0,
+                                      //   color: Colors.transparent,
+                                      //   style: BorderStyle.solid,
+                                      // ),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Expanded(flex: 2,
+                                            child:  Text(
+                                              "${registerPage.form.password.data}*",
+                                              style: TextStyle(
+                                                  fontFamily: lng?.header2.textFamily,
+                                                  color: Color(int.parse(registerPage.form.password.color))
+                                              ),)
+                                        ),
+                                         Expanded(
+                                          flex: 5,
+                                          child: SizedBox(
+                                            child: TextFormField(
+                                              controller: passwordController,
+                                              obscureText: _obscureText,
+                                              enableSuggestions: false,
+                                              autocorrect: false,
+                                              autofocus: false,
+                                              style: const TextStyle(color: Colors.white),
+                                              decoration: InputDecoration(
+                                                filled: true,
+                                                fillColor: Colors.black45,
+                                                contentPadding:const EdgeInsets.only(
+                                                    left: 10, right: 10, bottom: 0),
+                                                focusedBorder:const OutlineInputBorder(
+                                                  borderRadius: BorderRadius.all(
+                                                    Radius.circular(10.0),
+                                                  ),
+                                                  borderSide: BorderSide(
+                                                    color: Colors.transparent,
+                                                    width: 1.0,),
+                                                ),
+                                                enabledBorder:const OutlineInputBorder(
+                                                  borderRadius: BorderRadius.all(
+                                                    Radius.circular(10.0),
+                                                  ),
+                                                  borderSide: BorderSide(
+                                                      color: Colors.transparent,
+                                                      width: 0.0),
+                                                ),
+                                                suffixIcon:GestureDetector(
+                                                  onTap: _togglePasswordVisibility,
+                                                  child:
+                                                  !_obscureText ? Icon(Icons.visibility_rounded , color: Colors.grey,): Icon(Icons.visibility_off_rounded, color:Colors.grey),
+                                                ),
+                                                  hintText: '',
+
+                                                // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+
+                                              ),
+                                              validator: (value) {
+                                                if (value!.isEmpty) {
+                                                  return 'Please enter a password';
+                                                } else if (!RegExp(r'^[\w!@#$%^&*()]{6,30}$').hasMatch(value)) {
+                                                  setState(() {
+                                                    _validatePaassword = true;
+                                                  });
+                                                  return '';
+                                                }
+                                                setState(() {
+                                                  _validatePaassword = false;
+                                                });
+                                                return null;
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Visibility(
+                                  visible: _validatePaassword,
+                                  child: Row(
+                                    children: [
+                                      Expanded(child: SizedBox(width: 10,)),
+                                      Expanded(
+                                        flex: 2,
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                Image.asset("assets/images/page2orders_icon.png", height: 10,),
+                                                SizedBox(width: 5,),
+                                                Text("Password must be 6-30 characters",style: TextStyle(color: Colors.red),)
+                                              ],
+                                            ),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                Image.asset("assets/images/page2orders_icon.png", height: 10,),
+                                                SizedBox(width: 5,),
+                                                Text("Password must be contain only letters",style: TextStyle(color: Colors.red),)
+                                              ],
+                                            ),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                Image.asset("assets/images/page2orders_icon.png", height: 10,),
+                                                SizedBox(width: 5,),
+                                                Text("Password must be contain numbers",style: TextStyle(color: Colors.red),)
+                                              ],
+                                            ),
+                                            Row(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                Image.asset("assets/images/page2orders_icon.png", height: 10,),
+                                                SizedBox(width: 5,),
+                                                Text("Password must be contain \nspecial characters (!@#\$%^&*())", style: TextStyle(color: Colors.red),)
+                                              ],
                                             ),
                                           ],
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 10,),
-
-                            /// - Nationality
-                            Padding(
-                              padding: const EdgeInsets.only(left: 18.0, right: 18),
-                              child: Container(
-                                padding: const EdgeInsets.only(left: 0, right: 0),
-                                decoration: const BoxDecoration(
-                                  color: Colors.transparent,
-                                  borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(10),
-                                    bottomLeft: Radius.circular(10),
-                                    topLeft: Radius.circular(10),
-                                    bottomRight: Radius.circular(10),
+                                    ],
                                   ),
-                                  // border: Border.all(
-                                  //   width: 0,
-                                  //   color: Colors.transparent,
-                                  //   style: BorderStyle.solid,
-                                  // ),
                                 ),
-                                child: Row(
-                                  children: [
-                                    Expanded(flex: 2,
-                                        child:  Text(
-                                          "${registerPage.form.nationality.data}:",
-                                          style: TextStyle(
-                                              fontFamily: lng?.header2.textFamily,
-                                              color: Color(int.parse(registerPage.form.nationality.color))
-                                          ),)),
-                                    Expanded(
-                                      flex: 5,
-                                      child: SizedBox(
-                                        child: DropdownButtonFormField2(
-
-                                          scrollbarAlwaysShow: true,
-                                          style: const TextStyle(color: Colors.white),
-                                          decoration: const InputDecoration(
-                                            //Add isDense true and zero Padding.
-                                            //Add Horizontal padding using buttonPadding and Vertical padding by increasing buttonHeight instead of add Padding here so that The whole TextField Button become clickable, and also the dropdown menu open under The whole TextField Button.
-                                            isDense: true,
-                                            fillColor: Colors.black45,
-                                            filled: true,
-                                            contentPadding: EdgeInsets.only(),
-                                            // border: OutlineInputBorder(
-                                            //   borderSide: const BorderSide(color: Colors.green, width: 40.0, style: BorderStyle.solid ),
-                                            //   borderRadius: BorderRadius.circular(10),
-                                            //
-                                            // ),
-                                            focusColor: Colors.transparent,
-                                            focusedBorder: OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(10.0),
-                                              ),
-                                              borderSide: BorderSide(
-                                                color: Colors.transparent,
-                                                width: 2.0,),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(10.0),
-                                              ),
-                                              borderSide: BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 2.0),
-                                            ),
-
-                                            //Add more decoration as you want here
-                                            //Add label If you want but add hint outside the decoration to be aligned in the button perfectly.
-                                          ),
-                                          isExpanded: true,
-                                          hint: Text(
-
-                                            registerPage.form.nationality.dropDownWidget.labelText.data,
-                                            style: TextStyle(
-                                              fontSize: lng?.header3.size.toDouble(),
-                                              color:Colors.white38,
-                                              // Color(int.parse(registerPage.form.nationality.color)),
-                                              fontFamily: lng?.header3.textFamily,
-                                            ),
-                                          ),
-
-
-                                          icon: const ImageIcon(AssetImage("assets/images/down.png"),),
-
-                                          iconSize: 30,
-                                          buttonHeight: (selectedNationalValue != null)
-                                              ? 50
-                                              : 50,
-                                          buttonPadding: const EdgeInsets.only(
-                                              left: 20, right: 20),
-                                          dropdownDecoration: BoxDecoration(
-                                            color: Colors.black,
-                                            borderRadius: BorderRadius.circular(10),
-                                          ),
-                                          itemHeight: 30,
-
-                                          items: nationalities
-                                              .map((item) =>
-
-                                              DropdownMenuItem<dynamic>(
-                                                value: item,
-                                                child:
-                                                Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                  children: [
-
-                                                    Row(
-                                                      children: [
-
-                                                        (selectedNationalValue != null)
-                                                            ?
-                                                        (selectedNationalValue == item)
-                                                            ?
-                                                         Image.network(
-                                                           // "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/falafel.png",
-                                                           registerPage.form.nationality.dropDownWidget.selectedIcon.imageIcon,
-                                                            height: 15, width: 15,)
-
-                                                            : const SizedBox(width: 15,)
-                                                            : const SizedBox(width: 15,),
-                                                       // const  SizedBox(width: 5,),
-                                                        Expanded(
-
-                                                          child: Text(item["name"]!,
-                                                            style: TextStyle(
-                                                              fontSize: lng?.header2.size.toDouble(),
-                                                              color: Color(int.parse(registerPage.form.nationality.dropDownWidget.itemsTitle.color)),
-                                                              fontFamily: lng?.header2.textFamily,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-
-
-                                                  ],
-                                                ),
-
-
-                                              )
-
-                                          )
-                                              .toList(),
-                                          validator: (value) {
-                                            if (value == null) {
-                                              return 'Please select gender.';
-                                            }
-                                          },
-                                          onChanged: (value) {
-                                            //Do something when changing the item if you want.
-                                            setState(() {
-                                              selectedNationalValue = value;
-                                            });
-                                          },
-                                          onSaved: (value) {
-                                            setState(() {
-                                              selectedNationalValue = value;
-                                            });
-                                          },
-                                        ),
-
-
-                                      ),
-                                    ),
 
 
 
-                                    // const Expanded(
-                                    //   flex: 5,
-                                    //   child: SizedBox(
-                                    //
-                                    //     child: TextField(
-                                    //
-                                    //       autofocus: false,
-                                    //       style: TextStyle(color: Colors.white),
-                                    //       decoration: InputDecoration(
-                                    //         filled: true,
-                                    //         fillColor: Colors.black45,
-                                    //         contentPadding: EdgeInsets.only(left: 10, right: 10),
-                                    //         focusedBorder: OutlineInputBorder(
-                                    //           borderRadius: BorderRadius.all(
-                                    //             Radius.circular(10.0),
-                                    //           ),
-                                    //           borderSide: BorderSide(
-                                    //             color: Colors.transparent,
-                                    //             width: 1.0,),
-                                    //         ),
-                                    //         enabledBorder: OutlineInputBorder(
-                                    //           borderRadius: BorderRadius.all(
-                                    //             Radius.circular(10.0),
-                                    //           ),
-                                    //           borderSide: BorderSide(
-                                    //               color: Colors.transparent,
-                                    //               width: 0.0),
-                                    //         ),
-                                    //         hintText: '',
-                                    //         // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
-                                    //
-                                    //       ),
-                                    //
-                                    //     ),
-                                    //   ),
-                                    // ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 10,),
+                                const SizedBox(height: 10,),
 
-                            /// - gender
-                            Padding(
-                              padding: const EdgeInsets.only(left: 18.0, right: 18),
-                              child: Container(
-                                padding: const EdgeInsets.only(left: 0, right: 0),
-                                decoration: const BoxDecoration(
-                                  color: Colors.transparent,
-                                  borderRadius: const BorderRadius.only(
-                                    topRight: Radius.circular(10),
-                                    bottomLeft: Radius.circular(10),
-                                    topLeft: Radius.circular(10),
-                                    bottomRight: Radius.circular(10),
-                                  ),
-                                  // border: Border.all(
-                                  //   width: 0,
-                                  //   color: Colors.transparent,
-                                  //   style: BorderStyle.solid,
-                                  // ),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Expanded(flex: 2,
-                                        child: Text(
-                                          "${registerPage.form.gender.data}:",
-                                          style: TextStyle(
-                                              fontFamily: lng?.header2.textFamily,
-                                              color: Color(int.parse(registerPage.form.gender.color))
-                                          ),)
-                                    ),
-                                    Expanded(
-                                      flex: 5,
-                                      child: SizedBox(
-                                        child: DropdownButtonFormField2(
-
-                                          scrollbarAlwaysShow: true,
-                                          style: const TextStyle(color: Colors.white),
-                                          decoration: const InputDecoration(
-                                            //Add isDense true and zero Padding.
-                                            //Add Horizontal padding using buttonPadding and Vertical padding by increasing buttonHeight instead of add Padding here so that The whole TextField Button become clickable, and also the dropdown menu open under The whole TextField Button.
-                                            isDense: true,
-                                            fillColor: Colors.black45,
-                                            filled: true,
-                                            contentPadding: EdgeInsets.only(),
-                                            // border: OutlineInputBorder(
-                                            //   borderSide: const BorderSide(color: Colors.green, width: 40.0, style: BorderStyle.solid ),
-                                            //   borderRadius: BorderRadius.circular(10),
-                                            //
-                                            // ),
-                                            focusColor: Colors.transparent,
-                                            focusedBorder: OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(10.0),
-                                              ),
-                                              borderSide: BorderSide(
-                                                color: Colors.transparent,
-                                                width: 2.0,),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(10.0),
-                                              ),
-                                              borderSide: BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 2.0),
-                                            ),
-
-                                            //Add more decoration as you want here
-                                            //Add label If you want but add hint outside the decoration to be aligned in the button perfectly.
-                                          ),
-                                          isExpanded: true,
-                                          hint:
-                                          Text(
-                                            registerPage.form.gender.dropDownWidget.labelText.data,
-                                            style: TextStyle(
-                                                fontSize: lng?.header3.size.toDouble(),
-                                                color: Color(int.parse(registerPage.form.gender.dropDownWidget.labelText.color)),
-                                                fontFamily: lng?.header3.textFamily,
-                                            ),
-                                          ),
-                                          // Text(
-                                          //   getTranslated(context, "selectGender")!,
-                                          //   style: TextStyle(fontSize: 16,
-                                          //       color: Colors.white60,
-                                          //       fontFamily: getTranslated(
-                                          //           context, "fontFamilyBody")!),
-                                          // ),
-
-                                          icon: const ImageIcon(AssetImage("assets/images/down.png"),),
-                                          // const Icon(
-                                          //   Icons.arrow_drop_down,
-                                          //   color: Colors.white60,
-                                          // ),
-                                          iconSize: 30,
-                                          buttonHeight: (selectedGenderValue != null)
-                                              ? 50
-                                              : 50,
-                                          buttonPadding: const EdgeInsets.only(
-                                              left: 20, right: 20),
-                                          dropdownDecoration: BoxDecoration(
-                                            color: Colors.black,
-                                            borderRadius: BorderRadius.circular(10),
-                                          ),
-                                          itemHeight: 30,
-
-                                          items: gender
-                                              .map((gender) =>
-                                              DropdownMenuItem<dynamic>(
-                                                value: gender,
-                                                child:
-                                                Column(
-                                                  mainAxisAlignment: MainAxisAlignment
-                                                      .center,
-                                                  crossAxisAlignment: CrossAxisAlignment
-                                                      .start,
-                                                  children: [
-
-                                                    Row(
-                                                      children: [
-
-                                                        (selectedGenderValue != null)
-                                                            ?
-                                                        (selectedGenderValue == gender)
-                                                            ?
-                                                        Image.network(
-                                                          registerPage.form.gender.dropDownWidget.selectedIcon.imageIcon,
-                                                          height: 15, width: 15,)
-                                                        // Image.asset(
-                                                        //   "assets/images/page2_icon.png",
-                                                        //   height: 15, width: 15,)
-
-                                                            : SizedBox(width: 15,)
-                                                            : SizedBox(width: 15,),
-                                                        SizedBox(width: 5,),
-                                                        Text(getTranslated(
-                                                            context, gender)!,
-                                                          style: TextStyle(
-                                                            fontSize: lng?.header2.size.toDouble(),
-                                                            color: Color(int.parse(registerPage.form.gender.dropDownWidget.itemsTitle.color)),
-                                                            fontFamily: lng?.header2.textFamily,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-
-
-                                                  ],
-                                                ),
-
-
-                                              ))
-                                              .toList(),
-                                          validator: (value) {
-                                            if (value == null) {
-                                              return 'Please select gender.';
-                                            }
-                                          },
-                                          onChanged: (value) {
-                                            //Do something when changing the item if you want.
-                                            setState(() {
-                                              selectedGenderValue = value;
-                                            });
-                                          },
-                                          onSaved: (value) {
-                                            setState(() {
-                                              selectedGenderValue = value;
-                                            });
-                                          },
-                                        ),
-
-
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 10,),
-
-                            Visibility(
-                              visible: registerPage.termsCheckBox.visibility=='true',
-                              child: Padding(
-                                padding: const EdgeInsets.all(18.0),
-                                child: RegisterCheckbox(
-                                  value: checkboxBool,
-                                  onChanged: _valueChangedHandler(),
-                                  label: '1',
-                                  text: "accpetterms",
-                                  addOnFlag: false,
-                                  colorOfBox: (validatTermsCheckbox==false)?Colors.white:Colors.red,
-                                  colorOfText: Color(int.parse(registerPage.termsCheckBox.title.color)),
-                                ),
-                              ),
-                            ),
-
-                            /// - Submit button
-                            Center(
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    width: 50,
-                                    height: 50,
+                                /// - date of birth
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 18.0, right: 18),
+                                  child: Container(
+                                    padding: const EdgeInsets.only(left: 0, right: 0),
                                     decoration: const BoxDecoration(
                                       color: Colors.transparent,
                                       borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(40),
-                                        bottomLeft: Radius.circular(40),
-                                        topLeft: Radius.circular(40),
-                                        bottomRight: Radius.circular(40),
+                                        topRight: Radius.circular(10),
+                                        bottomLeft: Radius.circular(10),
+                                        topLeft: Radius.circular(10),
+                                        bottomRight: Radius.circular(10),
                                       ),
                                       // border: Border.all(
-                                      //   width: 0.5,
-                                      //   color: Colors.white,
+                                      //   width: 0,
+                                      //   color: Colors.transparent,
                                       //   style: BorderStyle.solid,
                                       // ),
                                     ),
-                                    child: const Icon(
-                                      Icons.check, color: Colors.white,),
+                                    child: Row(
+                                      children: [
+                                        Expanded(flex: 2,
+                                            child:  Text(
+                                              "${registerPage.form.dateOfBirth.data}:",
+                                              style: TextStyle(
+                                                  fontFamily: lng?.header2.textFamily,
+                                                  color: Color(int.parse(registerPage.form.dateOfBirth.color))
+                                              ),)),
+                                        Expanded(
+                                          flex: 5,
+                                          child: SizedBox(
+
+                                            child: Stack(
+                                              children: [
+                                                TextFormField(
+                                                  controller: birthDateController,
+                                                  enabled: true,
+                                                  autofocus: false,
+                                                  style: const TextStyle(
+                                                      color: Colors.white),
+                                                  decoration: const InputDecoration(
+                                                    filled: true,
+                                                    fillColor: Colors.black45,
+                                                    contentPadding: EdgeInsets.only(
+                                                        left: 10, right: 10),
+                                                    focusedBorder: OutlineInputBorder(
+                                                      borderRadius: BorderRadius.all(
+                                                        Radius.circular(10.0),
+                                                      ),
+                                                      // borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
+                                                    ),
+                                                    enabledBorder: OutlineInputBorder(
+                                                      borderRadius: BorderRadius.all(
+                                                        Radius.circular(10.0),
+                                                      ),
+                                                      // borderSide: BorderSide(color: Colors.transparent, width: 0.0),
+                                                    ),
+                                                    border: OutlineInputBorder(
+                                                      borderRadius: BorderRadius.all(
+                                                        Radius.circular(10.0),
+                                                      ),
+                                                      // borderSide: BorderSide(color: Colors.transparent, width: 0.0),
+                                                    ),
+                                                    hintText: '',
+                                                    // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+
+                                                  ),
+                                                  validator: (value) {
+                                                    if (value!.isEmpty) {
+                                                      return 'Please enter your date of birth';
+                                                    }
+                                                    // You can add more advanced date validation here if needed
+                                                    return null;
+                                                  },
+
+                                                ),
+                                                Positioned.fill(
+                                                    child: Material(
+                                                      color: Colors.transparent,
+                                                      child: new InkWell(
+                                                        borderRadius: BorderRadius.all(
+                                                            Radius.circular(10)),
+                                                        splashColor: Colors.black,
+                                                        overlayColor: MaterialStateProperty
+                                                            .all<Color>(Colors.white60),
+
+                                                        onTap: () {
+                                                          showCustomDialog(context);
+
+                                                          setState(() {
+                                                            // showDatePicker =true;
+                                                          });
+                                                        },
+                                                      ),
+
+                                                    )
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  Container(
-                                    width: 40,
-                                    height: 40,
+                                ),
+                                const SizedBox(height: 10,),
+
+                                /// - Nationality
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 18.0, right: 18),
+                                  child: Container(
+                                    padding: const EdgeInsets.only(left: 0, right: 0),
                                     decoration: const BoxDecoration(
-                                      color: Colors.amber,
+                                      color: Colors.transparent,
                                       borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(40),
-                                        bottomLeft: Radius.circular(40),
-                                        topLeft: Radius.circular(40),
-                                        bottomRight: Radius.circular(40),
+                                        topRight: Radius.circular(10),
+                                        bottomLeft: Radius.circular(10),
+                                        topLeft: Radius.circular(10),
+                                        bottomRight: Radius.circular(10),
                                       ),
                                       // border: Border.all(
-                                      //   width: 0.5,
-                                      //   color: Colors.white,
+                                      //   width: 0,
+                                      //   color: Colors.transparent,
                                       //   style: BorderStyle.solid,
                                       // ),
                                     ),
-                                    // child:Icon(Icons.check, color:Colors.white,),
-                                  ),
-                                  Positioned(
-                                    bottom: 8,
-                                    right: 9,
+                                    child: Row(
+                                      children: [
+                                        Expanded(flex: 2,
+                                            child:  Text(
+                                              "${registerPage.form.nationality.data}:",
+                                              style: TextStyle(
+                                                  fontFamily: lng?.header2.textFamily,
+                                                  color: Color(int.parse(registerPage.form.nationality.color))
+                                              ),)),
+                                        Expanded(
+                                          flex: 5,
+                                          child: SizedBox(
+                                            child: DropdownButtonFormField2(
 
-                                    child: Container(
-                                      width: 40,
-                                      height: 40,
-                                      decoration: BoxDecoration(
-                                        color: Colors.transparent,
-                                        borderRadius: const BorderRadius.only(
-                                          topRight: Radius.circular(40),
-                                          bottomLeft: Radius.circular(40),
-                                          topLeft: Radius.circular(40),
-                                          bottomRight: Radius.circular(40),
+                                              scrollbarAlwaysShow: true,
+                                              style: const TextStyle(color: Colors.white),
+                                              decoration: const InputDecoration(
+                                                //Add isDense true and zero Padding.
+                                                //Add Horizontal padding using buttonPadding and Vertical padding by increasing buttonHeight instead of add Padding here so that The whole TextField Button become clickable, and also the dropdown menu open under The whole TextField Button.
+                                                isDense: true,
+                                                fillColor: Colors.black45,
+                                                filled: true,
+                                                contentPadding: EdgeInsets.only(),
+                                                // border: OutlineInputBorder(
+                                                //   borderSide: const BorderSide(color: Colors.green, width: 40.0, style: BorderStyle.solid ),
+                                                //   borderRadius: BorderRadius.circular(10),
+                                                //
+                                                // ),
+                                                focusColor: Colors.transparent,
+                                                focusedBorder: OutlineInputBorder(
+                                                  borderRadius: BorderRadius.all(
+                                                    Radius.circular(10.0),
+                                                  ),
+                                                  borderSide: BorderSide(
+                                                    color: Colors.transparent,
+                                                    width: 2.0,),
+                                                ),
+                                                enabledBorder: OutlineInputBorder(
+                                                  borderRadius: BorderRadius.all(
+                                                    Radius.circular(10.0),
+                                                  ),
+                                                  borderSide: BorderSide(
+                                                      color: Colors.transparent,
+                                                      width: 2.0),
+                                                ),
+
+                                                //Add more decoration as you want here
+                                                //Add label If you want but add hint outside the decoration to be aligned in the button perfectly.
+                                              ),
+                                              isExpanded: true,
+                                              hint: Text(
+
+                                                registerPage.form.nationality.dropDownWidget.labelText.data,
+                                                style: TextStyle(
+                                                  fontSize: lng?.header3.size.toDouble(),
+                                                  color:Colors.white38,
+                                                  // Color(int.parse(registerPage.form.nationality.color)),
+                                                  fontFamily: lng?.header3.textFamily,
+                                                ),
+                                              ),
+
+
+                                              icon: const ImageIcon(AssetImage("assets/images/down.png"),),
+
+                                              iconSize: 30,
+                                              buttonHeight: (selectedNationalValue != null)
+                                                  ? 50
+                                                  : 50,
+                                              buttonPadding: const EdgeInsets.only(
+                                                  left: 20, right: 20),
+                                              dropdownDecoration: BoxDecoration(
+                                                color: Colors.black,
+                                                borderRadius: BorderRadius.circular(10),
+                                              ),
+                                              itemHeight: 30,
+
+                                              items: nationalities
+                                                  .map((item) =>
+
+                                                  DropdownMenuItem<dynamic>(
+                                                    value: item,
+                                                    child:
+                                                    Column(
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: [
+
+                                                        Row(
+                                                          children: [
+
+                                                            (selectedNationalValue != null)
+                                                                ?
+                                                            (selectedNationalValue == item)
+                                                                ?
+                                                             Image.network(
+                                                               // "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/falafel.png",
+                                                               registerPage.form.nationality.dropDownWidget.selectedIcon.imageIcon,
+                                                                height: 15, width: 15,)
+
+                                                                : const SizedBox(width: 15,)
+                                                                : const SizedBox(width: 15,),
+                                                           // const  SizedBox(width: 5,),
+                                                            Expanded(
+
+                                                              child: Text(item["name"]!,
+                                                                style: TextStyle(
+                                                                  fontSize: lng?.header2.size.toDouble(),
+                                                                  color: Color(int.parse(registerPage.form.nationality.dropDownWidget.itemsTitle.color)),
+                                                                  fontFamily: lng?.header2.textFamily,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+
+
+                                                      ],
+                                                    ),
+
+
+                                                  )
+
+                                              )
+                                                  .toList(),
+                                              validator: (value) {
+                                                if (value == null) {
+                                                  return 'Please select gender.';
+                                                }
+                                              },
+                                              onChanged: (value) {
+                                                //Do something when changing the item if you want.
+                                                setState(() {
+                                                  selectedNationalValue = value;
+                                                });
+                                              },
+                                              onSaved: (value) {
+                                                setState(() {
+                                                  selectedNationalValue = value;
+                                                });
+                                              },
+                                            ),
+
+
+                                          ),
                                         ),
-                                        border: Border.all(
-                                          width: 3,
-                                          color: Colors.white,
-                                          style: BorderStyle.solid,
-                                        ),
-                                      ),
-                                      child: const Icon(
-                                        Icons.check, color: Colors.white,
-                                        size: 30,),
+
+
+
+                                        // const Expanded(
+                                        //   flex: 5,
+                                        //   child: SizedBox(
+                                        //
+                                        //     child: TextField(
+                                        //
+                                        //       autofocus: false,
+                                        //       style: TextStyle(color: Colors.white),
+                                        //       decoration: InputDecoration(
+                                        //         filled: true,
+                                        //         fillColor: Colors.black45,
+                                        //         contentPadding: EdgeInsets.only(left: 10, right: 10),
+                                        //         focusedBorder: OutlineInputBorder(
+                                        //           borderRadius: BorderRadius.all(
+                                        //             Radius.circular(10.0),
+                                        //           ),
+                                        //           borderSide: BorderSide(
+                                        //             color: Colors.transparent,
+                                        //             width: 1.0,),
+                                        //         ),
+                                        //         enabledBorder: OutlineInputBorder(
+                                        //           borderRadius: BorderRadius.all(
+                                        //             Radius.circular(10.0),
+                                        //           ),
+                                        //           borderSide: BorderSide(
+                                        //               color: Colors.transparent,
+                                        //               width: 0.0),
+                                        //         ),
+                                        //         hintText: '',
+                                        //         // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+                                        //
+                                        //       ),
+                                        //
+                                        //     ),
+                                        //   ),
+                                        // ),
+                                      ],
                                     ),
                                   ),
+                                ),
+                                const SizedBox(height: 10,),
 
-                                  Positioned.fill(
-                                      child: Material(
-                                        color: Colors.transparent,
-                                        child: InkWell(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(100)),
-                                          splashColor: Colors.black45,
-                                          overlayColor: MaterialStateProperty.all<
-                                              Color>(Colors.black54),
-
-                                          onTap: () {
-
-                                            _submitForm();
-
-
-
-                                            // PersistentNavBarNavigator.pushNewScreen(
-                                            //   context,
-                                            //   screen: LoggedInUserProfile(
-                                            //       layOut: widget.layOut, (value) {
-                                            //     widget.onChanged(value);
-                                            //   }),
-                                            //   withNavBar: true,
-                                            //   // OPTIONAL VALUE. True by default.
-                                            //   pageTransitionAnimation: PageTransitionAnimation
-                                            //       .cupertino,
-                                            // );
-                                          },
+                                /// - gender
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 18.0, right: 18),
+                                  child: Container(
+                                    padding: const EdgeInsets.only(left: 0, right: 0),
+                                    decoration: const BoxDecoration(
+                                      color: Colors.transparent,
+                                      borderRadius: const BorderRadius.only(
+                                        topRight: Radius.circular(10),
+                                        bottomLeft: Radius.circular(10),
+                                        topLeft: Radius.circular(10),
+                                        bottomRight: Radius.circular(10),
+                                      ),
+                                      // border: Border.all(
+                                      //   width: 0,
+                                      //   color: Colors.transparent,
+                                      //   style: BorderStyle.solid,
+                                      // ),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Expanded(flex: 2,
+                                            child: Text(
+                                              "${registerPage.form.gender.data}:",
+                                              style: TextStyle(
+                                                  fontFamily: lng?.header2.textFamily,
+                                                  color: Color(int.parse(registerPage.form.gender.color))
+                                              ),)
                                         ),
+                                        Expanded(
+                                          flex: 5,
+                                          child: SizedBox(
+                                            child: DropdownButtonFormField2(
 
-                                      )
+                                              scrollbarAlwaysShow: true,
+                                              style: const TextStyle(color: Colors.white),
+                                              decoration: const InputDecoration(
+                                                //Add isDense true and zero Padding.
+                                                //Add Horizontal padding using buttonPadding and Vertical padding by increasing buttonHeight instead of add Padding here so that The whole TextField Button become clickable, and also the dropdown menu open under The whole TextField Button.
+                                                isDense: true,
+                                                fillColor: Colors.black45,
+                                                filled: true,
+                                                contentPadding: EdgeInsets.only(),
+                                                // border: OutlineInputBorder(
+                                                //   borderSide: const BorderSide(color: Colors.green, width: 40.0, style: BorderStyle.solid ),
+                                                //   borderRadius: BorderRadius.circular(10),
+                                                //
+                                                // ),
+                                                focusColor: Colors.transparent,
+                                                focusedBorder: OutlineInputBorder(
+                                                  borderRadius: BorderRadius.all(
+                                                    Radius.circular(10.0),
+                                                  ),
+                                                  borderSide: BorderSide(
+                                                    color: Colors.transparent,
+                                                    width: 2.0,),
+                                                ),
+                                                enabledBorder: OutlineInputBorder(
+                                                  borderRadius: BorderRadius.all(
+                                                    Radius.circular(10.0),
+                                                  ),
+                                                  borderSide: BorderSide(
+                                                      color: Colors.transparent,
+                                                      width: 2.0),
+                                                ),
+
+                                                //Add more decoration as you want here
+                                                //Add label If you want but add hint outside the decoration to be aligned in the button perfectly.
+                                              ),
+                                              isExpanded: true,
+                                              hint:
+                                              Text(
+                                                registerPage.form.gender.dropDownWidget.labelText.data,
+                                                style: TextStyle(
+                                                    fontSize: lng?.header3.size.toDouble(),
+                                                    color: Color(int.parse(registerPage.form.gender.dropDownWidget.labelText.color)),
+                                                    fontFamily: lng?.header3.textFamily,
+                                                ),
+                                              ),
+                                              // Text(
+                                              //   getTranslated(context, "selectGender")!,
+                                              //   style: TextStyle(fontSize: 16,
+                                              //       color: Colors.white60,
+                                              //       fontFamily: getTranslated(
+                                              //           context, "fontFamilyBody")!),
+                                              // ),
+
+                                              icon: const ImageIcon(AssetImage("assets/images/down.png"),),
+                                              // const Icon(
+                                              //   Icons.arrow_drop_down,
+                                              //   color: Colors.white60,
+                                              // ),
+                                              iconSize: 30,
+                                              buttonHeight: (selectedGenderValue != null)
+                                                  ? 50
+                                                  : 50,
+                                              buttonPadding: const EdgeInsets.only(
+                                                  left: 20, right: 20),
+                                              dropdownDecoration: BoxDecoration(
+                                                color: Colors.black,
+                                                borderRadius: BorderRadius.circular(10),
+                                              ),
+                                              itemHeight: 30,
+
+                                              items: gender
+                                                  .map((gender) =>
+                                                  DropdownMenuItem<dynamic>(
+                                                    value: gender,
+                                                    child:
+                                                    Column(
+                                                      mainAxisAlignment: MainAxisAlignment
+                                                          .center,
+                                                      crossAxisAlignment: CrossAxisAlignment
+                                                          .start,
+                                                      children: [
+
+                                                        Row(
+                                                          children: [
+
+                                                            (selectedGenderValue != null)
+                                                                ?
+                                                            (selectedGenderValue == gender)
+                                                                ?
+                                                            Image.network(
+                                                              registerPage.form.gender.dropDownWidget.selectedIcon.imageIcon,
+                                                              height: 15, width: 15,)
+                                                            // Image.asset(
+                                                            //   "assets/images/page2_icon.png",
+                                                            //   height: 15, width: 15,)
+
+                                                                : SizedBox(width: 15,)
+                                                                : SizedBox(width: 15,),
+                                                            SizedBox(width: 5,),
+                                                            Text(getTranslated(
+                                                                context, gender)!,
+                                                              style: TextStyle(
+                                                                fontSize: lng?.header2.size.toDouble(),
+                                                                color: Color(int.parse(registerPage.form.gender.dropDownWidget.itemsTitle.color)),
+                                                                fontFamily: lng?.header2.textFamily,
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+
+
+                                                      ],
+                                                    ),
+
+
+                                                  ))
+                                                  .toList(),
+                                              validator: (value) {
+                                                if (value == null) {
+                                                  return 'Please select gender.';
+                                                }
+                                              },
+                                              onChanged: (value) {
+                                                //Do something when changing the item if you want.
+                                                setState(() {
+                                                  selectedGenderValue = value;
+                                                });
+                                              },
+                                              onSaved: (value) {
+                                                setState(() {
+                                                  selectedGenderValue = value;
+                                                });
+                                              },
+                                            ),
+
+
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
+                                ),
+                                const SizedBox(height: 10,),
 
-                                ],
-                              ),
+                                Visibility(
+                                  visible: registerPage.termsCheckBox.visibility=='true',
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(18.0),
+                                    child: RegisterCheckbox(
+                                      value: checkboxBool,
+                                      onChanged: _valueChangedHandler(),
+                                      label: '1',
+                                      text: "accpetterms",
+                                      addOnFlag: false,
+                                      colorOfBox: (validatTermsCheckbox==false)?Colors.white:Colors.red,
+                                      colorOfText: Color(int.parse(registerPage.termsCheckBox.title.color)),
+                                    ),
+                                  ),
+                                ),
+
+                                /// - Submit button
+                                Center(
+                                  child: Stack(
+                                    alignment: Alignment.center,
+                                    children: [
+                                      Container(
+                                        width: 50,
+                                        height: 50,
+                                        decoration: const BoxDecoration(
+                                          color: Colors.transparent,
+                                          borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(40),
+                                            bottomLeft: Radius.circular(40),
+                                            topLeft: Radius.circular(40),
+                                            bottomRight: Radius.circular(40),
+                                          ),
+                                          // border: Border.all(
+                                          //   width: 0.5,
+                                          //   color: Colors.white,
+                                          //   style: BorderStyle.solid,
+                                          // ),
+                                        ),
+                                        child: const Icon(
+                                          Icons.check, color: Colors.white,),
+                                      ),
+                                      Container(
+                                        width: 40,
+                                        height: 40,
+                                        decoration: const BoxDecoration(
+                                          color: Colors.amber,
+                                          borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(40),
+                                            bottomLeft: Radius.circular(40),
+                                            topLeft: Radius.circular(40),
+                                            bottomRight: Radius.circular(40),
+                                          ),
+                                          // border: Border.all(
+                                          //   width: 0.5,
+                                          //   color: Colors.white,
+                                          //   style: BorderStyle.solid,
+                                          // ),
+                                        ),
+                                        // child:Icon(Icons.check, color:Colors.white,),
+                                      ),
+                                      Positioned(
+                                        bottom: 8,
+                                        right: 9,
+
+                                        child: Container(
+                                          width: 40,
+                                          height: 40,
+                                          decoration: BoxDecoration(
+                                            color: Colors.transparent,
+                                            borderRadius: const BorderRadius.only(
+                                              topRight: Radius.circular(40),
+                                              bottomLeft: Radius.circular(40),
+                                              topLeft: Radius.circular(40),
+                                              bottomRight: Radius.circular(40),
+                                            ),
+                                            border: Border.all(
+                                              width: 3,
+                                              color: Colors.white,
+                                              style: BorderStyle.solid,
+                                            ),
+                                          ),
+                                          child: const Icon(
+                                            Icons.check, color: Colors.white,
+                                            size: 30,),
+                                        ),
+                                      ),
+
+                                      Positioned.fill(
+                                          child: Material(
+                                            color: Colors.transparent,
+                                            child: InkWell(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(100)),
+                                              splashColor: Colors.black45,
+                                              overlayColor: MaterialStateProperty.all<
+                                                  Color>(Colors.black54),
+
+                                              onTap: () {
+
+                                                _submitForm();
+
+
+
+                                                // PersistentNavBarNavigator.pushNewScreen(
+                                                //   context,
+                                                //   screen: LoggedInUserProfile(
+                                                //       layOut: widget.layOut, (value) {
+                                                //     widget.onChanged(value);
+                                                //   }),
+                                                //   withNavBar: true,
+                                                //   // OPTIONAL VALUE. True by default.
+                                                //   pageTransitionAnimation: PageTransitionAnimation
+                                                //       .cupertino,
+                                                // );
+                                              },
+                                            ),
+
+                                          )
+                                      ),
+
+                                    ],
+                                  ),
+                                ),
+
+
+                              ],
                             ),
-
-
-                          ],
+                          ),
                         ),
                       ),
-                    ),
+                      Visibility(
+                          visible: verifyUser,
+                          child: Expanded(child: VerifyUserByOtpWidget(  verifyPurpose: Strings.registrationPurpose,layOut: widget.layOut, (value) {
+                            widget.onChanged(value);
+                          })))
+
+                    ],
                   ),
-                  Visibility(
-                      visible: verifyUser,
-                      child: Expanded(child: VerifyUserByOtpWidget(  verifyPurpose: Strings.registrationPurpose,layOut: widget.layOut, (value) {
-                        widget.onChanged(value);
-                      })))
-
-                ],
+                ),
               ),
-            ),
-          ),
 
-        ),
+            ),
+        ],
       )
+
       :LoadingPage();
     });
   }

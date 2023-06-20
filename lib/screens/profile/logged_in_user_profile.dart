@@ -15,6 +15,7 @@ import 'package:operation_falafel/screens/profile/profile_pages/saved_address.da
 import 'package:operation_falafel/screens/profile/profile_pages/saved_cards.dart';
 import 'package:operation_falafel/screens/rest%20password/reset_your_password.dart';
 import 'package:operation_falafel/screens/verify_user_screen.dart';
+import 'package:operation_falafel/widgets/background.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
 import 'package:operation_falafel/widgets/warning_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -189,15 +190,14 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
 
 
   final List<String> gender = [
-    "male",
-    "female",
-
+    "Male",
+    "Female",
   ];
   dynamic? selectedValue;
 
 
   bool loadingVerifyingButton =false;
-
+  final GlobalKey<FormState> _formKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     final bool isKeyboardVisible = KeyboardVisibilityProvider.isKeyboardVisible(context);
@@ -211,22 +211,9 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
       bool loadingDesign = profilePage != null;
 
           return
-
-
             Stack(
-        children: [
-                Image.asset(
-                  "assets/images/background.png",
-                  height: MediaQuery
-                      .of(context)
-                      .size
-                      .height,
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width,
-                  fit: BoxFit.cover,
-                ),
+              children: [
+                Background(),
                 SafeArea(
                   child: Image.asset(
                     "assets/images/profile_back.png",
@@ -240,7 +227,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                 ),
                 (loadingDesign)?
                 Scaffold(
-                  resizeToAvoidBottomInset: true,
+                  resizeToAvoidBottomInset: false,
 
                   key: _drawerKey,
                   backgroundColor: Colors.transparent,
@@ -276,1452 +263,2702 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                   body: Center(
                     child: Container(
                       constraints: BoxConstraints(maxWidth: 450,),
-                      child: Column(
-                        children: [
-                          ///- verify user
-                          ListTile(
-
-                            tileColor: Colors.amber.withOpacity(0.2),
-                            title: Text("${getTranslated(context, "verifyYourIdentity")}", style: TextStyle(
-                                fontFamily: getTranslated(context, "fontFamilyBody"),
-                                color:  Colors.amber,
-                                fontSize: double.parse(getTranslated(context, "cartpageHeader2")!),
-                                fontWeight: FontWeight.bold),),
-                            subtitle:  Text("${getTranslated(context, "verifyYourIdentityMsg")}", style: TextStyle(
-                                fontFamily: getTranslated(context, "fontFamilyBody"),
-                                color:  Colors.white54,
-                                fontSize: double.parse(getTranslated(context, "cartpageHeader3")!),
-                                fontWeight: FontWeight.w300),maxLines: 1,
-                              textAlign: TextAlign.left,),
-                            trailing:
-                            (!loadingVerifyingButton)?
-                            TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  loadingVerifyingButton =true;
-                                });
-                                authProvider.verifyingUserByRequestingOTP(userToken: authProvider.loggedInUser!.token!).then((res) {
-                                  if(res.statusCode == 200){
-                                    SnackbarGenerator(context).snackBarGeneratorToast("${res.data[Keys.bodyKey]}",);
-                                    PersistentNavBarNavigator.pushNewScreen(
-                                      context,
-                                      screen: VerifyUserScreen(
-                                          layOut: widget.layOut, (value) {
-                                        widget.onChanged(value);
-                                      },
-                                        verifyPurpose: Strings.registrationPurpose,
-
-                                      ),
-                                      withNavBar: true,
-                                      // OPTIONAL VALUE. True by default.
-                                      pageTransitionAnimation: PageTransitionAnimation
-                                          .cupertino,
-                                    );
-                                  }
-                                  else{
-
-                                  }
-
-                                  setState(() {
-                                    loadingVerifyingButton =false;
-                                  });
-                                });
-
-
-
-                              },
-                              style: TextButton.styleFrom(
-                                foregroundColor: Colors.amber,
-                                backgroundColor: Colors.transparent,
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 0.0,
-                                  horizontal: 0.0,
-                                ),),
-                              child: const Text(
-                                'Verify',
-                                style: TextStyle(
-                                  fontSize: 15.0,
-                                  color: Colors.amber,
-                                ),
-                              ),
-                            ):
-                            const  SizedBox(
-                              height: 20,
-                              width: 20,
-                              child: CircularProgressIndicator(
-                                color: Colors.amber,
-                                strokeWidth: 2,
-                              ),
-                            )
-                            ,
+                      child:  SingleChildScrollView(
+                          physics: const NeverScrollableScrollPhysics(),
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints(
+                            minWidth: MediaQuery.of(context).size.width,
+                            minHeight: MediaQuery.of(context).size.height,
                           ),
-
-                          /// - Screen code do not remove
-
-                          /// - Image & Name & Edit
-                          const SizedBox(height: 20,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Stack(
-                                alignment: Alignment.topRight,
-                                children: [
-                                  Container(
-                                    padding: EdgeInsets.all(0),
-                                    width: 110,
-                                    height: 110,
-                                    decoration: BoxDecoration(
-                                      color: Colors.black.withOpacity(0.4),
-                                      borderRadius: const BorderRadius.only(
-                                        topRight: Radius.circular(100),
-                                        bottomLeft: Radius.circular(100),
-                                        topLeft: Radius.circular(100),
-                                        bottomRight: Radius.circular(100),
-                                      ),
-                                      border: Border.all(
-                                        width: 2,
-                                        color: Colors.amber,
-                                        style: BorderStyle.solid,
-                                      ),
-                                    ),
-                                    child: ClipRRect(
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(100),
-                                          topRight: Radius.circular(100),
-                                          bottomLeft: Radius.circular(100),
-                                          bottomRight: Radius.circular(100),
-
-                                        ),
-                                        child: Image.asset(
-                                          "assets/images/tempuser.gif", height: 100,
-                                          width: 100,
-                                          fit: BoxFit.cover,)),
-                                  ),
-                                  Positioned(
-                                    child: SizedBox(
-                                      width: 40,
-                                      height: 40,
-
-                                      child: ElevatedButton(
-                                          onPressed: () {
-
-                                          },
-                                          style: ButtonStyle(
-                                              shape: MaterialStateProperty.all<
-                                                  RoundedRectangleBorder>(
-                                                  const RoundedRectangleBorder(
-                                                      borderRadius: BorderRadius.all(
-                                                          Radius.circular(100)),
-                                                      side: BorderSide(
-                                                          color: Colors.transparent,
-                                                          width: 1)
-                                                  )
-                                              ),
-                                              overlayColor: MaterialStateProperty.all(
-                                                  Colors.white30),
-                                              elevation: MaterialStateProperty.all(0),
-                                              shadowColor: MaterialStateProperty.all(
-                                                  Colors.transparent),
-                                              backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.avatarImage.editButton.backGroundColor as String))),
-                                              // backgroundColor: MaterialStateProperty.all(Colors.black),
-                                              foregroundColor: MaterialStateProperty
-                                                  .all(Colors.white),
-                                              padding: MaterialStateProperty.all(
-                                                  const EdgeInsets.all(0)),
-                                              textStyle: MaterialStateProperty.all(
-                                                  const TextStyle(fontSize: 30))),
-                                          child:
-                                          Image.network(profilePage?.body.avatarImage.editButton.imageIcon as String)
-                                          // ImageIcon(NetworkImage(profilePage?.body.avatarImage.editButton.imageIcon as String)  )
-                                          // const Icon(
-                                          //   Icons.mode_edit_outline_outlined,
-                                          //   color: Colors.white,)
-                                      ),
-                                    ),
-                                  ),
-
-
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  Text("ABDULLH", style: TextStyle(
-                                      fontFamily:lng?.titleHeader1.textFamily,
-                                      color: Color(int.parse(profilePage?.body.name.color as String)),
-                                      fontSize: lng?.titleHeader1.size.toDouble()
-                                  ),
-                                  ),
-                                  SizedBox(
-
-                                    child: DecoratedBox(
-                                      decoration: const BoxDecoration(
-                                        border: Border(
-                                          bottom: BorderSide(color: Colors.white),
-                                        ),
-                                      ),
-                                      child: TextButton(
-                                        style: TextButton.styleFrom(
-                                          foregroundColor: Colors.white,
-                                        ),
-                                        onPressed: () {},
-                                        child: Text(
-                                          profilePage?.body.editProfileButton.data as String,
-                                          style: TextStyle(
-                                              fontFamily:lng?.header2.textFamily,
-                                              color: Color(int.parse(profilePage?.body.editProfileButton.color as String)),
-                                              fontSize: lng?.header2.size.toDouble()
-                                          ),
-                                        ),
-
-
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-
-                          const SizedBox(height: 50,),
-
-                          /// - Form
-                          Expanded(
-                            child: ListView(
-                              // physics: NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
+                          child:  Column(
+                              mainAxisSize: MainAxisSize.max,
                               children: [
+                                ///- verify user
+                                ListTile(
 
-                                /// - Name
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 18.0,
-                                      right: 18),
-                                  child: Container(
+                                  tileColor: Colors.amber.withOpacity(0.2),
+                                  title: Text("${getTranslated(context, "verifyYourIdentity")}", style: TextStyle(
+                                      fontFamily: getTranslated(context, "fontFamilyBody"),
+                                      color:  Colors.amber,
+                                      fontSize: double.parse(getTranslated(context, "cartpageHeader2")!),
+                                      fontWeight: FontWeight.bold),),
+                                  subtitle:  Text("${getTranslated(context, "verifyYourIdentityMsg")}", style: TextStyle(
+                                      fontFamily: getTranslated(context, "fontFamilyBody"),
+                                      color:  Colors.white54,
+                                      fontSize: double.parse(getTranslated(context, "cartpageHeader3")!),
+                                      fontWeight: FontWeight.w300),maxLines: 1,
+                                    textAlign: TextAlign.left,),
+                                  trailing:
+                                  (!loadingVerifyingButton)?
+                                  TextButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        loadingVerifyingButton =true;
+                                      });
+                                      authProvider.verifyingUserByRequestingOTP(userToken: authProvider.loggedInUser!.token!).then((res) {
+                                        if(res.statusCode == 200){
+                                          SnackbarGenerator(context).snackBarGeneratorToast("${res.data[Keys.bodyKey]}",);
+                                          PersistentNavBarNavigator.pushNewScreen(
+                                            context,
+                                            screen: VerifyUserScreen(
+                                              layOut: widget.layOut, (value) {
+                                              widget.onChanged(value);
+                                            },
+                                              verifyPurpose: Strings.registrationPurpose,
 
-                                    padding: EdgeInsets.only(left: 10, right: 10),
-                                    decoration: BoxDecoration(
-                                      color: Colors.black45,
-                                      borderRadius: const BorderRadius.only(
-                                        topRight: Radius.circular(10),
-                                        bottomLeft: Radius.circular(10),
-                                        topLeft: Radius.circular(10),
-                                        bottomRight: Radius.circular(10),
-                                      ),
-                                      border: Border.all(
-                                        width: 1.5,
-                                        color: Colors.transparent,
-                                        style: BorderStyle.solid,
+                                            ),
+                                            withNavBar: true,
+                                            // OPTIONAL VALUE. True by default.
+                                            pageTransitionAnimation: PageTransitionAnimation
+                                                .cupertino,
+                                          );
+                                        }
+                                        else{
+
+                                        }
+
+                                        setState(() {
+                                          loadingVerifyingButton =false;
+                                        });
+                                      });
+
+
+
+                                    },
+                                    style: TextButton.styleFrom(
+                                      foregroundColor: Colors.amber,
+                                      backgroundColor: Colors.transparent,
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 0.0,
+                                        horizontal: 0.0,
+                                      ),),
+                                    child: const Text(
+                                      'Verify',
+                                      style: TextStyle(
+                                        fontSize: 15.0,
+                                        color: Colors.amber,
                                       ),
                                     ),
-                                    child: Row(
+                                  ):
+                                  const  SizedBox(
+                                    height: 20,
+                                    width: 20,
+                                    child: CircularProgressIndicator(
+                                      color: Colors.amber,
+                                      strokeWidth: 2,
+                                    ),
+                                  )
+                                  ,
+                                ),
+
+
+
+                                /// - Image & Name & Edit
+                                const SizedBox(height: 20,),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    /// - Picture
+                                    Stack(
+                                      alignment: Alignment.topRight,
                                       children: [
-                                        Expanded(flex: 1,
-                                            child:
-                                            Text(
-                                              profilePage?.body.form.name.data as String,
-                                              style: TextStyle(
-                                                  fontSize: lng?.header2.size.toDouble(),
-                                                  fontFamily: lng?.header2.textFamily,
-                                                  color: Color(int.parse(profilePage?.body.form.name.color as String))),)
-                                        // Text(
-                                        //       "${getTranslated(context, "name")!} :",
-                                        //       style: TextStyle(fontSize: 13,
-                                        //           fontFamily: getTranslated(
-                                        //               context, "fontFamilyBody")!,
-                                        //           color: Colors.amber),)
-                                        ),
-                                        const Expanded(
-                                          flex: 5,
-                                          child: SizedBox(
-
-                                            child: TextField(
-
-                                              autofocus: false,
-                                              style: TextStyle(color: Colors.white),
-                                              decoration: InputDecoration(
-                                                filled: true,
-                                                fillColor: Colors.transparent,
-                                                contentPadding: EdgeInsets.only(
-                                                    left: 10, right: 10),
-                                                focusedBorder: OutlineInputBorder(
-                                                  borderRadius: BorderRadius.all(
-                                                    Radius.circular(0.0),
-                                                  ),
-                                                  borderSide: BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 1.0,),
-                                                ),
-                                                enabledBorder: OutlineInputBorder(
-                                                  borderRadius: BorderRadius.all(
-                                                    Radius.circular(0.0),
-                                                  ),
-                                                  borderSide: BorderSide(
-                                                      color: Colors.transparent,
-                                                      width: 0.0),
-                                                ),
-                                                hintText: '',
-                                                // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+                                        Container(
+                                          padding: EdgeInsets.all(0),
+                                          width: 110,
+                                          height: 110,
+                                          decoration: BoxDecoration(
+                                            color: Colors.black.withOpacity(0.4),
+                                            borderRadius: const BorderRadius.only(
+                                              topRight: Radius.circular(100),
+                                              bottomLeft: Radius.circular(100),
+                                              topLeft: Radius.circular(100),
+                                              bottomRight: Radius.circular(100),
+                                            ),
+                                            border: Border.all(
+                                              width: 2,
+                                              color: Colors.amber,
+                                              style: BorderStyle.solid,
+                                            ),
+                                          ),
+                                          child: ClipRRect(
+                                              borderRadius: const BorderRadius.only(
+                                                topLeft: Radius.circular(100),
+                                                topRight: Radius.circular(100),
+                                                bottomLeft: Radius.circular(100),
+                                                bottomRight: Radius.circular(100),
 
                                               ),
+                                              child: Image.asset(
+                                                "assets/images/tempuser.gif", height: 100,
+                                                width: 100,
+                                                fit: BoxFit.cover,)),
+                                        ),
+                                        Positioned(
+                                          child: SizedBox(
+                                            width: 40,
+                                            height: 40,
 
+                                            child: ElevatedButton(
+                                                onPressed: () {
+
+                                                },
+                                                style: ButtonStyle(
+                                                    shape: MaterialStateProperty.all<
+                                                        RoundedRectangleBorder>(
+                                                        const RoundedRectangleBorder(
+                                                            borderRadius: BorderRadius.all(
+                                                                Radius.circular(100)),
+                                                            side: BorderSide(
+                                                                color: Colors.transparent,
+                                                                width: 1)
+                                                        )
+                                                    ),
+                                                    overlayColor: MaterialStateProperty.all(
+                                                        Colors.white30),
+                                                    elevation: MaterialStateProperty.all(0),
+                                                    shadowColor: MaterialStateProperty.all(
+                                                        Colors.transparent),
+                                                    backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.avatarImage.editButton.backGroundColor as String))),
+                                                    // backgroundColor: MaterialStateProperty.all(Colors.black),
+                                                    foregroundColor: MaterialStateProperty
+                                                        .all(Colors.white),
+                                                    padding: MaterialStateProperty.all(
+                                                        const EdgeInsets.all(0)),
+                                                    textStyle: MaterialStateProperty.all(
+                                                        const TextStyle(fontSize: 30))),
+                                                child:
+                                                Image.network(profilePage?.body.avatarImage.editButton.imageIcon as String)
+                                              // ImageIcon(NetworkImage(profilePage?.body.avatarImage.editButton.imageIcon as String)  )
+                                              // const Icon(
+                                              //   Icons.mode_edit_outline_outlined,
+                                              //   color: Colors.white,)
                                             ),
                                           ),
                                         ),
+
+
                                       ],
                                     ),
-                                  ),
-                                ),
-                                const SizedBox(height: 10,),
-
-                                /// - Phone number
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 18.0,
-                                      right: 18),
-                                  child: Container(
-                                    padding: EdgeInsets.only(top: 0),
-                                    margin: EdgeInsets.zero,
-                                    decoration: BoxDecoration(
-                                      color: Colors.black45,
-
-                                      borderRadius: const BorderRadius.only(
-                                        topRight: Radius.circular(10),
-                                        bottomLeft: Radius.circular(10),
-                                        topLeft: Radius.circular(10),
-                                        bottomRight: Radius.circular(10),
-                                      ),
-                                      border: Border.all(
-                                        width: 0,
-                                        color: Colors.transparent,
-                                        style: BorderStyle.solid,
-                                      ),
-                                    ),
-                                    child: Row(
+                                    Column  (
                                       children: [
-                                        Expanded(flex: 5, child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 10, right: 10),
-                                          child:
-                                          Text(
-                                            profilePage?.body.form.phoneNumber.data as String,
-                                            style: TextStyle(
-                                                fontSize: lng?.header2.size.toDouble(),
-                                                fontFamily: lng?.header2.textFamily,
-                                                color: Color(int.parse(profilePage?.body.form.phoneNumber.color as String))),)
-                                          // Text("${getTranslated(
-                                          //     context, "mobileNo")!} :",
-                                          //   style: TextStyle(
-                                          //       fontFamily: getTranslated(
-                                          //           context, "fontFamilyBody")!,
-                                          //       color: Colors.amber),),
-                                        )),
-                                        Expanded(
-                                            flex: 2,
-                                            child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 0, right: 0),
-                                                child: IconButton(
-                                                  icon:
-                                                  countryCode != null ?
-                                                  SizedBox(width: 30,
-                                                      height: 30,
-                                                      child: countryCode!.flagImage)
-                                                      : const Icon(
-                                                      Icons.flag_outlined),
-                                                  padding: EdgeInsets.zero,
-                                                  onPressed: () async {
-                                                    final code = await countryPicker
-                                                        .showPicker(context: context,
-                                                        initialSelectedLocale: "AE");
-                                                    if (code != null) {
-                                                      setState(() {
-                                                        countryCode = code;
-                                                      });
-                                                    };
-                                                  },)
-                                            )),
-                                        const Expanded(
-                                          flex: 7,
-                                          child: SizedBox(
-
-                                            child: TextField(
-                                              autofocus: false,
-                                              style: TextStyle(color: Colors.white),
-                                              decoration: InputDecoration(
-                                                filled: true,
-                                                fillColor: Colors.transparent,
-                                                contentPadding: EdgeInsets.only(
-                                                    left: 10, right: 10),
-                                                focusedBorder: OutlineInputBorder(
-                                                  borderRadius: BorderRadius.all(
-                                                    Radius.circular(0.0),
-                                                  ),
-                                                  borderSide: BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 1.0,),
-                                                ),
-                                                enabledBorder: OutlineInputBorder(
-                                                  borderRadius: BorderRadius.all(
-                                                    Radius.circular(0.0),
-                                                  ),
-                                                  borderSide: BorderSide(
-                                                      color: Colors.transparent,
-                                                      width: 0.0),
-                                                ),
-                                                hintText: '',
-
-                                                // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
-
+                                        Text("ABDULLH", style: TextStyle(
+                                            fontFamily:lng?.titleHeader1.textFamily,
+                                            color: Color(int.parse(profilePage?.body.name.color as String)),
+                                            fontSize: lng?.titleHeader1.size.toDouble()
+                                        ),),
+                                        SizedBox(
+                                          child: DecoratedBox(
+                                            decoration: const BoxDecoration(
+                                              border: Border(
+                                                bottom: BorderSide(color: Colors.white),
                                               ),
-
                                             ),
-                                          ),
-                                        ),
-                                        Expanded(
+                                            child: TextButton(
+                                              style: TextButton.styleFrom(
+                                                foregroundColor: Colors.white,
+                                              ),
+                                              onPressed: () {
+                                                if(startEdit== true){
+                                                  _submitForm();
+                                                }
+                                                setState(() {
+                                                  startEdit = !startEdit;
+                                                });
 
-                                          flex: 3,
-                                          child: SizedBox(
-                                              height: 50,
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-
-                                                  (Localizations
-                                                      .localeOf(context)
-                                                      .languageCode == 'en') ?
-                                                  const BorderRadius.only(
-                                                    bottomRight: Radius.circular(10),
-                                                    topRight: Radius.circular(10),
-                                                  ) :
-                                                  (Localizations
-                                                      .localeOf(context)
-                                                      .languageCode == 'ar') ?
-                                                  const BorderRadius.only(
-                                                    bottomLeft: Radius.circular(10.0),
-                                                    topLeft: Radius.circular(10.0),
-                                                  ) :
-                                                  const BorderRadius.only(
-                                                    bottomRight: Radius.circular(10),
-                                                    topRight: Radius.circular(10),
-                                                  ),
-
-                                                  color: Color(
-                                                      int.parse(profilePage?.body.form.phoneNumber.verifiedButton.backGroundColor as String)
-                                                  ),
-
-                                                  // border: Border.all(
-                                                  //   width: 0.8,
-                                                  //   color: Colors.white,
-                                                  //   style: BorderStyle.solid,
-                                                  // ),
+                                              },
+                                              child: (startEdit)?
+                                              Text("SAVE PROFILE",
+                                                style: TextStyle(
+                                                    fontFamily:lng?.header2.textFamily,
+                                                    color: Color(int.parse(profilePage?.body.editProfileButton.color as String)),
+                                                    fontSize: lng?.header2.size.toDouble()
                                                 ),
-                                                child: Icon(Icons.check, color: Colors.white,),
+                                              ):
+                                              Text(
+                                                profilePage?.body.editProfileButton.data as String,
+                                                style: TextStyle(
+                                                    fontFamily:lng?.header2.textFamily,
+                                                    color: Color(int.parse(profilePage?.body.editProfileButton.color as String)),
+                                                    fontSize: lng?.header2.size.toDouble()
+                                                ),
                                               )
-                                          ),
-                                        ),
+                                              ,
 
-
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 10,),
-
-                                /// - email address
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 18.0,
-                                      right: 18),
-                                  child: Container(
-                                    padding: const EdgeInsets.only(
-                                        left: 10, right: 10),
-                                    decoration: BoxDecoration(
-                                      color: Colors.black45,
-                                      borderRadius: const BorderRadius.only(
-                                        topRight: Radius.circular(10),
-                                        bottomLeft: Radius.circular(10),
-                                        topLeft: Radius.circular(10),
-                                        bottomRight: Radius.circular(10),
-                                      ),
-                                      border: Border.all(
-                                        width: 0,
-                                        color: Colors.transparent,
-                                        style: BorderStyle.solid,
-                                      ),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Expanded(flex: 3,
-                                            child:      Text(
-                                              profilePage?.body.form.email.data as String,
-                                              style: TextStyle(
-                                                  fontSize: lng?.header2.size.toDouble(),
-                                                  fontFamily: lng?.header2.textFamily,
-                                                  color: Color(int.parse(profilePage?.body.form.email.color as String))),)),
-                                        Expanded(
-                                          flex: 5,
-                                          child: SizedBox(
-
-                                            child: TextField(
-
-                                              autofocus: false,
-                                              style: const TextStyle(
-                                                  color: Colors.white),
-                                              decoration: InputDecoration(
-                                                filled: true,
-                                                fillColor: Colors.transparent,
-                                                contentPadding: const EdgeInsets.only(
-                                                    left: 10, right: 10),
-                                                focusedBorder: const OutlineInputBorder(
-                                                  borderRadius: BorderRadius.all(
-                                                    Radius.circular(0.0),
-                                                  ),
-                                                  borderSide: BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 1.0,),
-                                                ),
-                                                enabledBorder: const OutlineInputBorder(
-                                                  borderRadius: BorderRadius.all(
-                                                    Radius.circular(0.0),
-                                                  ),
-                                                  borderSide: BorderSide(
-                                                      color: Colors.transparent,
-                                                      width: 0.0),
-                                                ),
-                                                hintText: '',
-
-                                                // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
-
-                                              ),
 
                                             ),
                                           ),
                                         ),
                                       ],
                                     ),
-                                  ),
+                                  ],
                                 ),
+
                                 const SizedBox(height: 10,),
 
-                                /// - date of birth
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 18.0,
-                                      right: 18),
-                                  child: Container(
-                                    padding: const EdgeInsets.only(
-                                        left: 10, right: 10),
-                                    decoration: BoxDecoration(
-                                      color: Colors.black45,
-                                      borderRadius: const BorderRadius.only(
-                                        topRight: Radius.circular(10),
-                                        bottomLeft: Radius.circular(10),
-                                        topLeft: Radius.circular(10),
-                                        bottomRight: Radius.circular(10),
-                                      ),
-                                      border: Border.all(
-                                        width: 0,
-                                        color: Colors.transparent,
-                                        style: BorderStyle.solid,
-                                      ),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Expanded(flex: 2,
-                                            child:      Text(
-                                              profilePage?.body.form.dateOfBirth.data as String,
-                                              style: TextStyle(
-                                                  fontSize: lng?.header2.size.toDouble(),
-                                                  fontFamily: lng?.header2.textFamily,
-                                                  color: Color(int.parse(profilePage?.body.form.dateOfBirth.color as String))),)),
-                                        Expanded(
-                                          flex: 5,
-                                          child: SizedBox(
+                                /// - Form
+                                SizedBox(
+                                  height: 260,
+                                  child: Form(
+                                    key: _formKey,
+                                    child: ListView(
 
-                                            child: Stack(
-                                              children: [
-                                                TextField(
-                                                  controller: birthDateController,
-                                                  enabled: false,
-                                                  autofocus: false,
-                                                  style: TextStyle(
-                                                      color: Colors.white),
+                                        physics: ScrollPhysics(),
+                                        shrinkWrap: true,
+                                        children: [
 
-                                                  decoration: const InputDecoration(
-                                                    filled: true,
-                                                    fillColor: Colors.transparent,
-                                                    contentPadding: EdgeInsets.only(
-                                                        left: 10, right: 10),
-                                                    focusedBorder: OutlineInputBorder(
-                                                      borderRadius: BorderRadius.all(
-                                                        Radius.circular(0.0),
+                                          /// - Name
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 18.0,
+                                                right: 18),
+                                            child:  Row(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+
+                                                children: [
+                                                  Expanded(flex: 1,
+                                                      child:
+                                                      Container(
+                                                          height: 48,
+                                                        decoration: BoxDecoration(
+                                                          color: Colors.black45,
+
+                                                          borderRadius:
+
+                                                          (Localizations.localeOf(context).languageCode == 'en') ?
+                                                          const BorderRadius.only(
+                                                            bottomLeft: Radius.circular(10.0),
+                                                            topLeft: Radius.circular(10.0),
+
+                                                          ) :
+                                                          (Localizations.localeOf(context).languageCode == 'ar') ?
+                                                          const BorderRadius.only(
+                                                            bottomRight: Radius.circular(10),
+                                                            topRight: Radius.circular(10),
+                                                          ) :
+                                                          const BorderRadius.only(
+                                                            bottomLeft: Radius.circular(10.0),
+                                                            topLeft: Radius.circular(10.0),
+                                                          ),
+
+                                                          // border: Border.all(
+                                                          //   width: 0,
+                                                          //   color: Colors.transparent,
+                                                          //   style: BorderStyle.solid,
+                                                          // ),
+                                                        ),
+                                                        child: Center(
+                                                          child: Text(
+                                                            profilePage?.body.form.name.data as String,
+                                                            style: TextStyle(
+                                                                fontSize: lng?.header2.size.toDouble(),
+                                                                fontFamily: lng?.header2.textFamily,
+                                                                color: Color(int.parse(profilePage?.body.form.name.color as String))),),
+                                                        ),
+                                                      )
+                                                    // Text(
+                                                    //       "${getTranslated(context, "name")!} :",
+                                                    //       style: TextStyle(fontSize: 13,
+                                                    //           fontFamily: getTranslated(
+                                                    //               context, "fontFamilyBody")!,
+                                                    //           color: Colors.amber),)
+                                                  ),
+                                                  Expanded(
+                                                    flex: 5,
+                                                    child: SizedBox(
+
+                                                      child: TextFormField(
+                                                        enabled: startEdit,
+                                                        autofocus: false,
+                                                        style:const TextStyle(color: Colors.white),
+                                                        decoration: InputDecoration(
+                                                          filled: true,
+                                                          fillColor: Colors.black45,
+                                                          contentPadding:const EdgeInsets.only(left: 10, right: 10),
+                                                          focusedBorder: OutlineInputBorder(
+                                                            borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+
+                                                            ) :
+                                                            (Localizations.localeOf(context).languageCode == 'en') ?
+                                                            const BorderRadius.only(
+                                                              bottomRight: Radius.circular(10),
+                                                              topRight: Radius.circular(10),
+                                                            ) :
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+                                                            ),
+                                                            borderSide: BorderSide(
+                                                              color: Colors.transparent,
+                                                              width: 1.0,),
+                                                          ),
+                                                          errorBorder: OutlineInputBorder(
+                                                            borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0,),
+                                                              topLeft: Radius.circular(10.0),
+
+                                                            ) :
+                                                            (Localizations.localeOf(context).languageCode == 'en') ?
+                                                            const BorderRadius.only(
+                                                              bottomRight: Radius.circular(10),
+                                                              topRight: Radius.circular(10),
+                                                            ) :
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+                                                            ),
+
+                                                            borderSide:const BorderSide(
+                                                              color: Colors.red,
+                                                              width: 1.0,),
+                                                          ),
+                                                          enabledBorder: OutlineInputBorder(
+                                                            borderRadius:
+                                                            (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+
+                                                            ) :
+                                                            (Localizations.localeOf(context).languageCode == 'en') ?
+                                                            const BorderRadius.only(
+                                                              bottomRight: Radius.circular(10),
+                                                              topRight: Radius.circular(10),
+                                                            ) :
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+                                                            ),
+
+                                                            borderSide: BorderSide(
+                                                                color: Colors.transparent,
+                                                                width: 10.0),
+                                                          ),
+                                                          disabledBorder:OutlineInputBorder(
+                                                            borderRadius:
+                                                            (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+
+                                                            ) :
+                                                            (Localizations.localeOf(context).languageCode == 'en') ?
+                                                            const BorderRadius.only(
+                                                              bottomRight: Radius.circular(10),
+                                                              topRight: Radius.circular(10),
+                                                            ) :
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+                                                            ),
+
+                                                            borderSide: BorderSide(
+                                                                color: Colors.transparent,
+                                                                width: 10.0),
+                                                          ),
+                                                          hintText: '',
+                                                          // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+
+                                                        ),
+
+                                                        validator: (value) {
+                                                          if (value!.isEmpty) {
+                                                            return 'Please enter your name';
+                                                          }
+                                                          return null;
+                                                        },
                                                       ),
-                                                      borderSide: BorderSide(
-                                                        color: Colors.transparent,
-                                                        width: 1.0,),
                                                     ),
-                                                    enabledBorder: OutlineInputBorder(
-                                                      borderRadius: BorderRadius.all(
-                                                        Radius.circular(0.0),
+                                                  ),
+                                                ],
+                                              ),
+
+                                          ),
+                                          const SizedBox(height: 10,),
+
+                                          /// - Phone number
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 18.0, right: 18),
+                                            child:  Row(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Expanded(flex: 2, child: Container(
+                                                      height: 48,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.black45,
+
+                                                      borderRadius:
+
+                                                      (Localizations.localeOf(context).languageCode == 'en') ?
+                                                      const BorderRadius.only(
+                                                        bottomLeft: Radius.circular(10.0),
+                                                        topLeft: Radius.circular(10.0),
+
+                                                      ) :
+                                                      (Localizations.localeOf(context).languageCode == 'ar') ?
+                                                      const BorderRadius.only(
+                                                        bottomRight: Radius.circular(10),
+                                                        topRight: Radius.circular(10),
+                                                      ) :
+                                                      const BorderRadius.only(
+                                                        bottomLeft: Radius.circular(10.0),
+                                                        topLeft: Radius.circular(10.0),
                                                       ),
-                                                      borderSide: BorderSide(
-                                                          color: Colors.transparent,
-                                                          width: 0.0),
+
+                                                      // border: Border.all(
+                                                      //   width: 0,
+                                                      //   color: Colors.transparent,
+                                                      //   style: BorderStyle.solid,
+                                                      // ),
                                                     ),
-                                                    hintText: '',
+                                                    child: Padding(
+                                                        padding: const EdgeInsets.only(left: 10, right: 10),
+                                                        child:
+                                                        Center(
+                                                          child: Text(
+                                                            profilePage?.body.form.phoneNumber.data as String,
+                                                            style: TextStyle(
+                                                                fontSize: lng?.header2.size.toDouble(),
+                                                                fontFamily: lng?.header2.textFamily,
+                                                                color: Color(int.parse(profilePage?.body.form.phoneNumber.color as String))),),
+                                                        )
+                                                      // Text("${getTranslated(
+                                                      //     context, "mobileNo")!} :",
+                                                      //   style: TextStyle(
+                                                      //       fontFamily: getTranslated(
+                                                      //           context, "fontFamilyBody")!,
+                                                      //       color: Colors.amber),),
+                                                    ),
+                                                  )),
+                                                  Expanded(
+                                                      flex: 2,
+                                                      child: Container(
+                                                          height: 48,
+                                                        decoration:const  BoxDecoration(
+                                                          color: Colors.black45,
 
-                                                    // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+                                                          borderRadius: const BorderRadius.only(
+                                                            bottomLeft: Radius.circular(0.0),
+                                                            topLeft: Radius.circular(0.0),
+                                                            bottomRight: Radius.circular(0.0),
+                                                            topRight: Radius.circular(0.0),
 
+                                                          )
+
+
+
+                                                        ),
+                                                        child: Padding(
+                                                            padding: const EdgeInsets.only(left: 0, right: 0),
+                                                            child: IconButton(
+                                                              icon:
+                                                              countryCode != null ?
+                                                              SizedBox(width: 30,
+                                                                  height: 30,
+                                                                  child: countryCode!.flagImage)
+                                                                  : const Icon(
+                                                                  Icons.flag_outlined),
+                                                              padding: EdgeInsets.zero,
+                                                              onPressed: () async {
+                                                                final code = await countryPicker
+                                                                    .showPicker(context: context,
+                                                                    initialSelectedLocale: "AE");
+                                                                if (code != null) {
+                                                                  setState(() {
+                                                                    countryCode = code;
+                                                                  });
+                                                                };
+                                                              },)
+                                                        ),
+                                                      )),
+                                                  Expanded(
+                                                    flex: 7,
+                                                    child: SizedBox(
+
+                                                      child: TextFormField(
+                                                        maxLength: 9,
+                                                        enabled: startEdit,
+                                                        keyboardType: TextInputType.number,
+                                                        autofocus: false,
+                                                        style:const TextStyle(color: Colors.white),
+                                                        decoration: InputDecoration(
+                                                          filled: true,
+                                                          fillColor: Colors.black45,
+                                                          contentPadding:const EdgeInsets.only(left: 10, right: 10),
+                                                          focusedBorder: OutlineInputBorder(
+                                                            borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+
+                                                            ) :
+                                                            (Localizations.localeOf(context).languageCode == 'en') ?
+                                                            const BorderRadius.only(
+                                                              bottomRight: Radius.circular(10),
+                                                              topRight: Radius.circular(10),
+                                                            ) :
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+                                                            ),
+                                                            borderSide: BorderSide(
+                                                              color: Colors.transparent,
+                                                              width: 1.0,),
+                                                          ),
+                                                          errorBorder: OutlineInputBorder(
+                                                            borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0,),
+                                                              topLeft: Radius.circular(10.0),
+
+                                                            ) :
+                                                            (Localizations.localeOf(context).languageCode == 'en') ?
+                                                            const BorderRadius.only(
+                                                              bottomRight: Radius.circular(10),
+                                                              topRight: Radius.circular(10),
+                                                            ) :
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+                                                            ),
+
+                                                            borderSide:const BorderSide(
+                                                              color: Colors.red,
+                                                              width: 1.0,),
+                                                          ),
+                                                          enabledBorder: OutlineInputBorder(
+                                                            borderRadius:
+                                                            (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+
+                                                            ) :
+                                                            (Localizations.localeOf(context).languageCode == 'en') ?
+                                                            const BorderRadius.only(
+                                                              bottomRight: Radius.circular(10),
+                                                              topRight: Radius.circular(10),
+                                                            ) :
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+                                                            ),
+
+                                                            borderSide: BorderSide(
+                                                                color: Colors.transparent,
+                                                                width: 10.0),
+                                                          ),
+                                                          disabledBorder:OutlineInputBorder(
+                                                            borderRadius:
+                                                            (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+
+                                                            ) :
+                                                            (Localizations.localeOf(context).languageCode == 'en') ?
+                                                            const BorderRadius.only(
+                                                              bottomRight: Radius.circular(10),
+                                                              topRight: Radius.circular(10),
+                                                            ) :
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+                                                            ),
+
+                                                            borderSide: BorderSide(
+                                                                color: Colors.transparent,
+                                                                width: 10.0),
+                                                          ),
+                                                          hintText: '',
+                                                           counterText: ''
+                                                          // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+
+                                                        ),
+                                                        validator: (value) {
+                                                          if (value!.isEmpty) {
+                                                            return 'Please enter your phone number';
+                                                          } else if (value!.length != 9) {
+                                                            return 'must be 9 digits';
+                                                          }
+                                                          return null;
+                                                        },
+                                                      ),
+                                                    ),
                                                   ),
 
-                                                ),
-                                                Positioned.fill(
-                                                    child: new Material(
-                                                      color: Colors.transparent,
-                                                      child: new InkWell(
-                                                        borderRadius: BorderRadius
-                                                            .all(Radius.circular(0)),
-                                                        splashColor: Colors.black,
-                                                        overlayColor: MaterialStateProperty
-                                                            .all<Color>(
-                                                            Colors.black54),
 
-                                                        onTap: () {
-                                                          showCustomDialog(context);
 
+                                                ],
+                                              ),
+
+                                          ),
+                                          const SizedBox(height: 10,),
+
+                                          /// - email address
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 18.0, right: 18),
+                                            child: Row(
+                                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Expanded(flex: 1,
+                                                      child:Container(
+                                                        height: 48,
+                                                        decoration: BoxDecoration(
+                                                          color: Colors.black45,
+
+                                                          borderRadius:
+
+                                                          (Localizations.localeOf(context).languageCode == 'en') ?
+                                                          const BorderRadius.only(
+                                                            bottomLeft: Radius.circular(10.0),
+                                                            topLeft: Radius.circular(10.0),
+
+                                                          ) :
+                                                          (Localizations.localeOf(context).languageCode == 'ar') ?
+                                                          const BorderRadius.only(
+                                                            bottomRight: Radius.circular(10),
+                                                            topRight: Radius.circular(10),
+                                                          ) :
+                                                          const BorderRadius.only(
+                                                            bottomLeft: Radius.circular(10.0),
+                                                            topLeft: Radius.circular(10.0),
+                                                          ),
+
+                                                          // border: Border.all(
+                                                          //   width: 0,
+                                                          //   color: Colors.transparent,
+                                                          //   style: BorderStyle.solid,
+                                                          // ),
+                                                        ),
+                                                        child: Center(
+                                                          child: Text(
+                                                              profilePage?.body.form.email.data as String,
+                                                              style: TextStyle(
+                                                                  fontSize: lng?.header2.size.toDouble(),
+                                                                  fontFamily: lng?.header2.textFamily,
+                                                                  color: Color(int.parse(profilePage?.body.form.email.color as String))),),
+                                                        ),
+                                                      ),
+                                                  ),
+                                                  Expanded(
+                                                    flex: 5,
+                                                    child: SizedBox(
+
+                                                      child: TextFormField(
+                                                        enabled: startEdit,
+                                                        autofocus: false,
+                                                        style: const TextStyle(
+                                                            color: Colors.white),
+                                                        decoration:  InputDecoration(
+                                                          filled: true,
+                                                          fillColor: Colors.black45,
+                                                          contentPadding: const EdgeInsets.only(
+                                                              left: 10, right: 10),
+                                                          focusedBorder: OutlineInputBorder(
+                                                            borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+
+                                                            ) :
+                                                            (Localizations.localeOf(context).languageCode == 'en') ?
+                                                            const BorderRadius.only(
+                                                              bottomRight: Radius.circular(10),
+                                                              topRight: Radius.circular(10),
+                                                            ) :
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+                                                            ),
+                                                            borderSide: BorderSide(
+                                                              color: Colors.transparent,
+                                                              width: 1.0,),
+                                                          ),
+                                                          errorBorder: OutlineInputBorder(
+                                                            borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0,),
+                                                              topLeft: Radius.circular(10.0),
+
+                                                            ) :
+                                                            (Localizations.localeOf(context).languageCode == 'en') ?
+                                                            const BorderRadius.only(
+                                                              bottomRight: Radius.circular(10),
+                                                              topRight: Radius.circular(10),
+                                                            ) :
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+                                                            ),
+
+                                                            borderSide:const BorderSide(
+                                                              color: Colors.red,
+                                                              width: 1.0,),
+                                                          ),
+                                                          enabledBorder: OutlineInputBorder(
+                                                            borderRadius:
+                                                            (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+
+                                                            ) :
+                                                            (Localizations.localeOf(context).languageCode == 'en') ?
+                                                            const BorderRadius.only(
+                                                              bottomRight: Radius.circular(10),
+                                                              topRight: Radius.circular(10),
+                                                            ) :
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+                                                            ),
+
+                                                            borderSide: BorderSide(
+                                                                color: Colors.transparent,
+                                                                width: 10.0),
+                                                          ),
+                                                          disabledBorder:OutlineInputBorder(
+                                                            borderRadius:
+                                                            (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+
+                                                            ) :
+                                                            (Localizations.localeOf(context).languageCode == 'en') ?
+                                                            const BorderRadius.only(
+                                                              bottomRight: Radius.circular(10),
+                                                              topRight: Radius.circular(10),
+                                                            ) :
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+                                                            ),
+
+                                                            borderSide: BorderSide(
+                                                                color: Colors.transparent,
+                                                                width: 10.0),
+                                                          ),
+                                                          hintText: '',
+
+                                                          // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+
+                                                        ),
+                                                        validator: (value) {
+                                                          if (value!.isEmpty) {
+                                                            return 'Please enter your email address';
+                                                          } else if (!RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$')
+                                                              .hasMatch(value)) {
+                                                            return 'Please enter a valid email address';
+                                                          }
+                                                          return null;
+                                                        },
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+
+                                          ),
+                                          const SizedBox(height: 10,),
+
+                                          /// - date of birth
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 18.0, right: 18),
+                                            child:  Row(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Expanded(flex: 2,
+                                                      child:      Container(
+                                                        height: 48,
+                                                        decoration: BoxDecoration(
+                                                          color: Colors.black45,
+
+                                                          borderRadius:
+
+                                                          (Localizations.localeOf(context).languageCode == 'en') ?
+                                                          const BorderRadius.only(
+                                                            bottomLeft: Radius.circular(10.0),
+                                                            topLeft: Radius.circular(10.0),
+
+                                                          ) :
+                                                          (Localizations.localeOf(context).languageCode == 'ar') ?
+                                                          const BorderRadius.only(
+                                                            bottomRight: Radius.circular(10),
+                                                            topRight: Radius.circular(10),
+                                                          ) :
+                                                          const BorderRadius.only(
+                                                            bottomLeft: Radius.circular(10.0),
+                                                            topLeft: Radius.circular(10.0),
+                                                          ),
+
+                                                          // border: Border.all(
+                                                          //   width: 0,
+                                                          //   color: Colors.transparent,
+                                                          //   style: BorderStyle.solid,
+                                                          // ),
+                                                        ),
+                                                        child: Center(
+                                                          child: Text(
+                                                            profilePage?.body.form.dateOfBirth.data as String,
+                                                            style: TextStyle(
+                                                                fontSize: lng?.header2.size.toDouble(),
+                                                                fontFamily: lng?.header2.textFamily,
+                                                                color: Color(int.parse(profilePage?.body.form.dateOfBirth.color as String))),),
+                                                        ),
+                                                      )),
+                                                  Expanded(
+                                                    flex: 5,
+                                                    child: SizedBox(
+
+                                                      child: Stack(
+                                                        children: [
+                                                          TextFormField(
+                                                            controller: birthDateController,
+                                                            enabled: startEdit,
+                                                            autofocus: false,
+                                                            style: const TextStyle(color: Colors.white),
+                                                            decoration:  InputDecoration(
+                                                              filled: true,
+                                                              fillColor: Colors.black45,
+                                                              contentPadding:const EdgeInsets.only(
+                                                                  left: 10, right: 10),
+                                                              focusedBorder: OutlineInputBorder(
+                                                                borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                                const BorderRadius.only(
+                                                                  bottomLeft: Radius.circular(10.0),
+                                                                  topLeft: Radius.circular(10.0),
+
+                                                                ) :
+                                                                (Localizations.localeOf(context).languageCode == 'en') ?
+                                                                const BorderRadius.only(
+                                                                  bottomRight: Radius.circular(10),
+                                                                  topRight: Radius.circular(10),
+                                                                ) :
+                                                                const BorderRadius.only(
+                                                                  bottomLeft: Radius.circular(10.0),
+                                                                  topLeft: Radius.circular(10.0),
+                                                                ),
+                                                                borderSide: BorderSide(
+                                                                  color: Colors.transparent,
+                                                                  width: 1.0,),
+                                                              ),
+                                                              errorBorder: OutlineInputBorder(
+                                                                borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                                const BorderRadius.only(
+                                                                  bottomLeft: Radius.circular(10.0,),
+                                                                  topLeft: Radius.circular(10.0),
+
+                                                                ) :
+                                                                (Localizations.localeOf(context).languageCode == 'en') ?
+                                                                const BorderRadius.only(
+                                                                  bottomRight: Radius.circular(10),
+                                                                  topRight: Radius.circular(10),
+                                                                ) :
+                                                                const BorderRadius.only(
+                                                                  bottomLeft: Radius.circular(10.0),
+                                                                  topLeft: Radius.circular(10.0),
+                                                                ),
+
+                                                                borderSide:const BorderSide(
+                                                                  color: Colors.red,
+                                                                  width: 1.0,),
+                                                              ),
+                                                              enabledBorder: OutlineInputBorder(
+                                                                borderRadius:
+                                                                (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                                const BorderRadius.only(
+                                                                  bottomLeft: Radius.circular(10.0),
+                                                                  topLeft: Radius.circular(10.0),
+
+                                                                ) :
+                                                                (Localizations.localeOf(context).languageCode == 'en') ?
+                                                                const BorderRadius.only(
+                                                                  bottomRight: Radius.circular(10),
+                                                                  topRight: Radius.circular(10),
+                                                                ) :
+                                                                const BorderRadius.only(
+                                                                  bottomLeft: Radius.circular(10.0),
+                                                                  topLeft: Radius.circular(10.0),
+                                                                ),
+
+                                                                borderSide: BorderSide(
+                                                                    color: Colors.transparent,
+                                                                    width: 10.0),
+                                                              ),
+                                                              disabledBorder:OutlineInputBorder(
+                                                                borderRadius:
+                                                                (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                                const BorderRadius.only(
+                                                                  bottomLeft: Radius.circular(10.0),
+                                                                  topLeft: Radius.circular(10.0),
+
+                                                                ) :
+                                                                (Localizations.localeOf(context).languageCode == 'en') ?
+                                                                const BorderRadius.only(
+                                                                  bottomRight: Radius.circular(10),
+                                                                  topRight: Radius.circular(10),
+                                                                ) :
+                                                                const BorderRadius.only(
+                                                                  bottomLeft: Radius.circular(10.0),
+                                                                  topLeft: Radius.circular(10.0),
+                                                                ),
+
+                                                                borderSide: BorderSide(
+                                                                    color: Colors.transparent,
+                                                                    width: 10.0),
+                                                              ),
+                                                              hintText: '',
+
+                                                              // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+
+                                                            ),
+
+
+                                                            validator: (value) {
+                                                              if (value!.isEmpty) {
+                                                                return 'Please enter your date of birth';
+                                                              }
+                                                              // You can add more advanced date validation here if needed
+                                                              return null;
+                                                            },
+                                                          ),
+                                                          Positioned.fill(
+                                                              child:  Material(
+                                                                color: Colors.transparent,
+                                                                child:  InkWell(
+                                                                  borderRadius: BorderRadius.all(Radius.circular(0)),
+                                                                  splashColor: Colors.black,
+                                                                  overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                                                  onTap: () {
+                                                                    if(startEdit)
+                                                                    showCustomDialog(context);
+                                                                    setState(() {
+                                                                      // showDatePicker =true;
+                                                                    });
+                                                                  },
+                                                                ),
+
+                                                              )
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+
+                                          ),
+                                          const SizedBox(height: 10,),
+                                          /// - gender
+                                          Padding(
+                                            padding: const EdgeInsets.only(left:18.0, right: 18),
+                                            child: Row(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Expanded(
+                                                      flex:2, child: Container(
+                                                      height: 50,
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.black45,
+
+                                                        borderRadius:
+
+                                                        (Localizations.localeOf(context).languageCode == 'en') ?
+                                                        const BorderRadius.only(
+                                                          bottomLeft: Radius.circular(10.0),
+                                                          topLeft: Radius.circular(10.0),
+
+                                                        ) :
+                                                        (Localizations.localeOf(context).languageCode == 'ar') ?
+                                                        const BorderRadius.only(
+                                                          bottomRight: Radius.circular(10),
+                                                          topRight: Radius.circular(10),
+                                                        ) :
+                                                        const BorderRadius.only(
+                                                          bottomLeft: Radius.circular(10.0),
+                                                          topLeft: Radius.circular(10.0),
+                                                        ),
+
+                                                        // border: Border.all(
+                                                        //   width: 0,
+                                                        //   color: Colors.transparent,
+                                                        //   style: BorderStyle.solid,
+                                                        // ),
+                                                      ),
+                                                      child: Center(child: Text("${getTranslated(context, "gender")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)))),
+                                                  Expanded(
+                                                    flex: 7,
+                                                    child: SizedBox(
+                                                      child: DropdownButtonFormField2(
+
+                                                        scrollbarAlwaysShow: true,
+                                                        style: const TextStyle(color: Colors.white),
+                                                        decoration:  InputDecoration(
+                                                          //Add isDense true and zero Padding.
+                                                          //Add Horizontal padding using buttonPadding and Vertical padding by increasing buttonHeight instead of add Padding here so that The whole TextField Button become clickable, and also the dropdown menu open under The whole TextField Button.
+                                                          isDense: true,
+                                                          fillColor: Colors.black45,
+                                                          filled: true,
+                                                          contentPadding:const EdgeInsets.only(),
+
+                                                          focusColor: Colors.transparent,
+                                                          focusedBorder: OutlineInputBorder(
+                                                            borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+
+                                                            ) :
+                                                            (Localizations.localeOf(context).languageCode == 'en') ?
+                                                            const BorderRadius.only(
+                                                              bottomRight: Radius.circular(10),
+                                                              topRight: Radius.circular(10),
+                                                            ) :
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+                                                            ),
+                                                            borderSide: BorderSide(
+                                                              color: Colors.transparent,
+                                                              width: 1.0,),
+                                                          ),
+                                                          errorBorder: OutlineInputBorder(
+                                                            borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0,),
+                                                              topLeft: Radius.circular(10.0),
+
+                                                            ) :
+                                                            (Localizations.localeOf(context).languageCode == 'en') ?
+                                                            const BorderRadius.only(
+                                                              bottomRight: Radius.circular(10),
+                                                              topRight: Radius.circular(10),
+                                                            ) :
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+                                                            ),
+
+                                                            borderSide:const BorderSide(
+                                                              color: Colors.red,
+                                                              width: 1.0,),
+                                                          ),
+                                                          enabledBorder: OutlineInputBorder(
+                                                            borderRadius:
+                                                            (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+
+                                                            ) :
+                                                            (Localizations.localeOf(context).languageCode == 'en') ?
+                                                            const BorderRadius.only(
+                                                              bottomRight: Radius.circular(10),
+                                                              topRight: Radius.circular(10),
+                                                            ) :
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+                                                            ),
+
+                                                            borderSide: BorderSide(
+                                                                color: Colors.transparent,
+                                                                width: 10.0),
+                                                          ),
+                                                          disabledBorder:OutlineInputBorder(
+                                                            borderRadius:
+                                                            (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+
+                                                            ) :
+                                                            (Localizations.localeOf(context).languageCode == 'en') ?
+                                                            const BorderRadius.only(
+                                                              bottomRight: Radius.circular(10),
+                                                              topRight: Radius.circular(10),
+                                                            ) :
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+                                                            ),
+
+                                                            borderSide: BorderSide(
+                                                                color: Colors.transparent,
+                                                                width: 10.0),
+                                                          ),
+
+                                                          //Add more decoration as you want here
+                                                          //Add label If you want but add hint outside the decoration to be aligned in the button perfectly.
+                                                        ),
+                                                        isExpanded: true,
+                                                        hint: Text(
+                                                          profilePage?.body.form.gender.dropDownWidget.labelText.data as String,
+                                                          style: TextStyle(
+                                                              fontSize: lng?.header3.size.toDouble(),
+                                                              fontFamily: lng?.header3.textFamily,
+                                                              color: Color(int.parse(profilePage?.body.form.gender.dropDownWidget.labelText.color as String))),),
+                                                        icon: const ImageIcon(AssetImage("assets/images/down.png"),),
+                                                        iconDisabledColor: Colors.grey,
+                                                        iconEnabledColor: Colors.white70,
+                                                        disabledHint: (selectedValue != null) ?Row(
+                                                          children: [
+                                                            Image.network(profilePage?.body.form.gender.dropDownWidget.selectedIcon.imageIcon as String,
+                                                              height:double.parse(profilePage?.body.form.gender.dropDownWidget.selectedIcon.height as String) ,
+                                                              width: double.parse(profilePage?.body.form.gender.dropDownWidget.selectedIcon.width as String),),
+                                                            SizedBox(width: 5,),
+                                                            Text(selectedValue,style: TextStyle(
+                                                                fontSize: lng?.header3.size.toDouble(),
+                                                                fontFamily: lng?.header3.textFamily,
+                                                                color: Color(int.parse(profilePage?.body.form.gender.dropDownWidget.labelText.color as String))),),
+                                                          ],
+                                                        ):Text("Disabled", style: TextStyle(color: Colors.grey),),
+                                                        iconSize: 30,
+                                                        buttonHeight: (selectedValue != null) ? 50 : 50,
+                                                        buttonPadding: const EdgeInsets.only(left: 20, right: 20),
+                                                        dropdownDecoration: BoxDecoration(
+                                                          color: Colors.black,
+                                                          borderRadius: BorderRadius.circular(
+                                                              10),
+                                                        ),
+                                                        itemHeight: 30,
+                                                        items:
+                                                        (startEdit)?
+                                                        gender.map((gender) => DropdownMenuItem<dynamic>(
+                                                              value: gender,
+                                                              child:
+                                                              Column(
+                                                                mainAxisAlignment: MainAxisAlignment
+                                                                    .center,
+                                                                crossAxisAlignment: CrossAxisAlignment
+                                                                    .start,
+                                                                children: [
+
+                                                                  Row(
+                                                                    children: [
+
+                                                                      (selectedValue != null)
+                                                                          ?
+                                                                      (selectedValue == gender)
+                                                                          ?
+                                                                      Image.network(profilePage?.body.form.gender.dropDownWidget.selectedIcon.imageIcon as String,
+                                                                        height:double.parse(profilePage?.body.form.gender.dropDownWidget.selectedIcon.height as String) ,
+                                                                        width: double.parse(profilePage?.body.form.gender.dropDownWidget.selectedIcon.width as String),)
+                                                                      // Image.asset("assets/images/page2_icon.png", height: 15, width: 15,)
+                                                                          : SizedBox(width: 15,)
+                                                                          : SizedBox(
+                                                                        width: 15,),
+                                                                      SizedBox(width: 5,),
+
+
+                                                                      Text(
+                                                                        getTranslated(context, gender)!,
+                                                                        style: TextStyle(
+                                                                            fontSize: lng?.header3.size.toDouble(),
+                                                                            fontFamily: lng?.header3.textFamily,
+                                                                            color: Color(int.parse(profilePage?.body.form.gender.dropDownWidget.labelText.color as String))),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+
+
+                                                                ],
+                                                              ),
+
+
+                                                            )).toList():null,
+                                                        validator: (value) {
+                                                          if (value == null) {
+                                                            return 'Please select gender.';
+                                                          }
+                                                        },
+                                                        onChanged: (value) {
+                                                          //Do something when changing the item if you want.
                                                           setState(() {
-                                                            // showDatePicker =true;
+                                                            selectedValue = value;
+                                                          });
+                                                        },
+                                                        onSaved: (value) {
+                                                          setState(() {
+                                                            selectedValue = value;
                                                           });
                                                         },
                                                       ),
 
-                                                  )
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 10,),
-                              /// - gender
-                              Padding(
-                                padding: const EdgeInsets.only(left:18.0, right: 18),
-                                child: Container(
-                                  padding: const EdgeInsets.only(left:10, right: 10),
-                                  decoration: BoxDecoration(
-                                    color: Colors.black45,
-                                    borderRadius:const BorderRadius.only(
-                                      topRight: Radius.circular(10),
-                                      bottomLeft: Radius.circular(10),
-                                      topLeft: Radius.circular(10),
-                                      bottomRight: Radius.circular(10),
-                                    ),
-                                    border: Border.all(
-                                      width: 0,
-                                      color: Colors.transparent,
-                                      style: BorderStyle.solid,
-                                    ),
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      Expanded(flex:2, child: Text("${getTranslated(context, "gender")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)),
-                                      Expanded(
-                                        flex: 5,
-                                        child: SizedBox(
-                                          child: DropdownButtonFormField2(
 
-                                              scrollbarAlwaysShow: true,
-                                              style: const TextStyle(color: Colors.white),
-                                              decoration: const InputDecoration(
-                                                //Add isDense true and zero Padding.
-                                                //Add Horizontal padding using buttonPadding and Vertical padding by increasing buttonHeight instead of add Padding here so that The whole TextField Button become clickable, and also the dropdown menu open under The whole TextField Button.
-                                                isDense: true,
-                                                fillColor: Colors.transparent,
-                                                filled: true,
-                                                contentPadding: EdgeInsets.only(),
-                                                // border: OutlineInputBorder(
-                                                //   borderSide: const BorderSide(color: Colors.green, width: 40.0, style: BorderStyle.solid ),
-                                                //   borderRadius: BorderRadius.circular(10),
-                                                //
-                                                // ),
-                                                focusColor: Colors.transparent,
-                                                focusedBorder: OutlineInputBorder(
-                                                  borderRadius: BorderRadius.all(
-                                                    Radius.circular(10.0),
-                                                  ),
-                                                  borderSide: BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 2.0,),
-                                                ),
-                                                enabledBorder: OutlineInputBorder(
-                                                  borderRadius: BorderRadius.all(
-                                                    Radius.circular(10.0),
-                                                  ),
-                                                  borderSide: BorderSide(
-                                                      color: Colors.transparent,
-                                                      width: 2.0),
-                                                ),
-
-                                                //Add more decoration as you want here
-                                                //Add label If you want but add hint outside the decoration to be aligned in the button perfectly.
-                                              ),
-                                              isExpanded: true,
-                                              hint:
-                                              Text(
-                                                profilePage?.body.form.gender.dropDownWidget.labelText.data as String,
-                                                style: TextStyle(
-                                                    fontSize: lng?.header3.size.toDouble(),
-                                                    fontFamily: lng?.header3.textFamily,
-                                                    color: Color(int.parse(profilePage?.body.form.gender.dropDownWidget.labelText.color as String))),),
-                                              // Text(
-                                              //   'Select Gender',
-                                              //   style: TextStyle(fontSize: 16,
-                                              //       color: Colors.white60,
-                                              //       fontFamily: getTranslated(
-                                              //           context, "fontFamilyBody")!),
-                                              // ),
-
-                                              icon: const ImageIcon(AssetImage(
-                                                  "assets/images/down.png"),),
-                                              // const Icon(
-                                              //   Icons.arrow_drop_down,
-                                              //   color: Colors.white60,
-                                              // ),
-                                              iconSize: 30,
-                                              buttonHeight: (selectedValue != null)
-                                                  ? 50
-                                                  : 50,
-                                              buttonPadding: const EdgeInsets.only(
-                                                  left: 20, right: 20),
-                                              dropdownDecoration: BoxDecoration(
-                                                color: Colors.black,
-                                                borderRadius: BorderRadius.circular(
-                                                    10),
-                                              ),
-                                              itemHeight: 30,
-
-                                              items: gender
-                                                  .map((gender) =>
-                                                  DropdownMenuItem<dynamic>(
-                                                    value: gender,
-                                                    child:
-                                                    Column(
-                                                      mainAxisAlignment: MainAxisAlignment
-                                                          .center,
-                                                      crossAxisAlignment: CrossAxisAlignment
-                                                          .start,
-                                                      children: [
-
-                                                        Row(
-                                                          children: [
-
-                                                            (selectedValue != null)
-                                                                ?
-                                                            (selectedValue == gender)
-                                                                ?
-                                                            Image.network(profilePage?.body.form.gender.dropDownWidget.selectedIcon.imageIcon as String,
-                                                              height:double.parse(profilePage?.body.form.gender.dropDownWidget.selectedIcon.height as String) ,
-                                                              width: double.parse(profilePage?.body.form.gender.dropDownWidget.selectedIcon.width as String),)
-                                                            // Image.asset("assets/images/page2_icon.png", height: 15, width: 15,)
-                                                                : SizedBox(width: 15,)
-                                                                : SizedBox(
-                                                              width: 15,),
-                                                            SizedBox(width: 5,),
-
-
-                                                            Text(getTranslated(context, gender)!,
-                                                              style: TextStyle(
-                                                                  fontSize: lng?.header3.size.toDouble(),
-                                                                  fontFamily: lng?.header3.textFamily,
-                                                                  color: Color(int.parse(profilePage?.body.form.gender.dropDownWidget.labelText.color as String))),
-                                                            ),
-                                                          ],
-                                                        ),
-
-
-                                                      ],
                                                     ),
-
-
-                                                  ))
-                                                  .toList(),
-                                              validator: (value) {
-                                                if (value == null) {
-                                                  return 'Please select gender.';
-                                                }
-                                              },
-                                              onChanged: (value) {
-                                                //Do something when changing the item if you want.
-                                                setState(() {
-                                                  selectedValue = value;
-                                                });
-                                              },
-                                              onSaved: (value) {
-                                                setState(() {
-                                                  selectedValue = value;
-                                                });
-                                              },
-                                            ),
-
+                                                  ),
+                                                ],
+                                              ),
 
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 10,),
+                                          const SizedBox(height: 10,),
 
-                                /// - Password
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 18.0,
-                                      right: 18),
-                                  child: Container(
-                                    padding: const EdgeInsets.only(
-                                        left: 10, right: 10),
-                                    decoration: BoxDecoration(
-                                      color: Colors.black45,
-                                      borderRadius: const BorderRadius.only(
-                                        topRight: Radius.circular(10),
-                                        bottomLeft: Radius.circular(10),
-                                        topLeft: Radius.circular(10),
-                                        bottomRight: Radius.circular(10),
-                                      ),
-                                      border: Border.all(
-                                        width: 0,
-                                        color: Colors.transparent,
-                                        style: BorderStyle.solid,
-                                      ),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Expanded(flex: 2,
-                                            child:      Text(
-                                              profilePage?.body.form.password.data as String,
-                                              style: TextStyle(
-                                                  fontSize: lng?.header2.size.toDouble(),
-                                                  fontFamily: lng?.header2.textFamily,
-                                                  color: Color(int.parse(profilePage?.body.form.password.color as String))),)),
-                                         Expanded(
-                                          flex: 5,
-                                          child: SizedBox(
+                                          /// - Password
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 18.0,
+                                                right: 18),
+                                            child: Container(
+                                              padding: const EdgeInsets.only(
+                                                  left: 10, right: 10),
+                                              decoration: BoxDecoration(
+                                                color: Colors.black45,
+                                                borderRadius: const BorderRadius.only(
+                                                  topRight: Radius.circular(10),
+                                                  bottomLeft: Radius.circular(10),
+                                                  topLeft: Radius.circular(10),
+                                                  bottomRight: Radius.circular(10),
+                                                ),
+                                                border: Border.all(
+                                                  width: 0,
+                                                  color: Colors.transparent,
+                                                  style: BorderStyle.solid,
+                                                ),
+                                              ),
+                                              child: Row(
+                                                children: [
+                                                  Expanded(flex: 2,
+                                                      child:      Text(
+                                                        profilePage?.body.form.password.data as String,
+                                                        style: TextStyle(
+                                                            fontSize: lng?.header2.size.toDouble(),
+                                                            fontFamily: lng?.header2.textFamily,
+                                                            color: Color(int.parse(profilePage?.body.form.password.color as String))),)),
+                                                  Expanded(
+                                                    flex: 5,
+                                                    child: SizedBox(
 
-                                            child: Stack(
+                                                      child: Stack(
+                                                        children: [
+                                                          const TextField(
+                                                            obscureText: true,
+                                                            enableSuggestions: false,
+                                                            autocorrect: false,
+                                                            autofocus: false,
+                                                            style: const TextStyle(
+                                                                color: Colors.white),
+                                                            decoration: InputDecoration(
+
+                                                              filled: true,
+                                                              fillColor: Colors.transparent,
+                                                              contentPadding: EdgeInsets.only(
+                                                                  left: 10, right: 10),
+                                                              focusedBorder: OutlineInputBorder(
+                                                                borderRadius: BorderRadius.all(
+                                                                  Radius.circular(0.0),
+                                                                ),
+                                                                borderSide: BorderSide(
+                                                                  color: Colors.transparent,
+                                                                  width: 1.0,),
+                                                              ),
+                                                              enabledBorder: OutlineInputBorder(
+                                                                borderRadius: BorderRadius.all(
+                                                                  Radius.circular(0.0),
+                                                                ),
+                                                                borderSide: BorderSide(
+                                                                    color: Colors.transparent,
+                                                                    width: 0.0),
+                                                              ),
+                                                              hintText: 'Tap to Edit',
+                                                              hintStyle: TextStyle(color: Colors.white60)
+                                                              // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+
+                                                            ),
+
+                                                          ),
+                                                          Positioned.fill(
+                                                              child:  Material(
+                                                                color: Colors.transparent,
+                                                                child:  InkWell(
+                                                                  borderRadius:const  BorderRadius.all(Radius.circular(0)),
+                                                                  splashColor: Colors.black,
+                                                                  overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                                                  onTap: () {
+                                                                    PersistentNavBarNavigator.pushNewScreen(
+                                                                      context,
+                                                                      screen: ForgetPassword(
+                                                                        forgetOrupdateFlag: Strings.updatePassword,
+
+                                                                      ),
+                                                                      withNavBar: true,
+                                                                      // OPTIONAL VALUE. True by default.
+                                                                      pageTransitionAnimation: PageTransitionAnimation
+                                                                          .cupertino,
+                                                                    );
+                                                                  },
+                                                                ),
+
+                                                              )
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(height: 10,),
+
+                                          /// - refferal code
+                                          // Padding(
+                                          //   padding: const EdgeInsets.only(left:18.0, right: 18),
+                                          //   child: Container(
+                                          //     padding: const EdgeInsets.only(left:10, right: 10),
+                                          //     decoration: BoxDecoration(
+                                          //       color: Colors.black45,
+                                          //       borderRadius:const BorderRadius.only(
+                                          //         topRight: Radius.circular(10),
+                                          //         bottomLeft: Radius.circular(10),
+                                          //         topLeft: Radius.circular(10),
+                                          //         bottomRight: Radius.circular(10),
+                                          //       ),
+                                          //       border: Border.all(
+                                          //         width: 0,
+                                          //         color: Colors.transparent,
+                                          //         style: BorderStyle.solid,
+                                          //       ),
+                                          //     ),
+                                          //     child: Row(
+                                          //       children: [
+                                          //         Expanded(flex:3, child:
+                                          //         Text("${getTranslated(context, "referralCode")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)
+                                          //         ),
+                                          //         const Expanded(
+                                          //           flex: 5,
+                                          //           child: SizedBox(
+                                          //
+                                          //             child:   TextField(
+                                          //
+                                          //               autofocus: false,
+                                          //               style:  TextStyle(color: Colors.white),
+                                          //               decoration:  InputDecoration(
+                                          //                 filled: true,
+                                          //                 fillColor: Colors.transparent,
+                                          //                 contentPadding: EdgeInsets.only(left:10, right: 10),
+                                          //                 focusedBorder: OutlineInputBorder(
+                                          //                   borderRadius:  BorderRadius.all(
+                                          //                     Radius.circular(0.0),
+                                          //                   ),
+                                          //                   borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
+                                          //                 ),
+                                          //                 enabledBorder: OutlineInputBorder(
+                                          //                   borderRadius:  BorderRadius.all(
+                                          //                     Radius.circular(0.0),
+                                          //                   ),
+                                          //                   borderSide: BorderSide(color: Colors.transparent, width: 0.0),
+                                          //                 ),
+                                          //                 // hintText: '',
+                                          //                 // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+                                          //
+                                          //               ),
+                                          //
+                                          //             ),
+                                          //           ),
+                                          //         ),
+                                          //       ],
+                                          //     ),
+                                          //   ),
+                                          // ),
+                                          const SizedBox(height: 10,),
+                                          Padding(
+                                            padding: const EdgeInsets.all(18.0),
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
-                                                const TextField(
-                                                  obscureText: true,
-                                                  enableSuggestions: false,
-                                                  autocorrect: false,
-                                                  autofocus: false,
-                                                  style: const TextStyle(
-                                                      color: Colors.white),
-                                                  decoration: InputDecoration(
+                                                Text(
+                                                  profilePage?.body.form.uploadId.data as String,
+                                                  style: TextStyle(
+                                                      fontSize: lng?.header3.size.toDouble(),
+                                                      fontFamily: lng?.header3.textFamily,
+                                                      color: Color(int.parse(profilePage?.body.form.uploadId.color as String))),),
+                                                ElevatedButton(
+                                                    onPressed: () {
 
-                                                    filled: true,
-                                                    fillColor: Colors.transparent,
-                                                    contentPadding: EdgeInsets.only(
-                                                        left: 10, right: 10),
-                                                    focusedBorder: OutlineInputBorder(
-                                                      borderRadius: BorderRadius.all(
-                                                        Radius.circular(0.0),
-                                                      ),
-                                                      borderSide: BorderSide(
-                                                        color: Colors.transparent,
-                                                        width: 1.0,),
-                                                    ),
-                                                    enabledBorder: OutlineInputBorder(
-                                                      borderRadius: BorderRadius.all(
-                                                        Radius.circular(0.0),
-                                                      ),
-                                                      borderSide: BorderSide(
-                                                          color: Colors.transparent,
-                                                          width: 0.0),
-                                                    ),
-                                                    hintText: '',
-                                                    // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
-
-                                                  ),
-
+                                                    },
+                                                    style: ButtonStyle(
+                                                        shape: MaterialStateProperty.all<
+                                                            RoundedRectangleBorder>(
+                                                            const RoundedRectangleBorder(
+                                                                borderRadius: BorderRadius.all(
+                                                                    Radius.circular(5)),
+                                                                side: BorderSide(
+                                                                    color: Colors.transparent,
+                                                                    width: 1)
+                                                            )
+                                                        ),
+                                                        overlayColor: MaterialStateProperty.all(
+                                                            Colors.white30),
+                                                        elevation: MaterialStateProperty.all(0),
+                                                        shadowColor: MaterialStateProperty.all(
+                                                            Colors.transparent),
+                                                        backgroundColor: MaterialStateProperty
+                                                            .all(Colors.amber),
+                                                        foregroundColor: MaterialStateProperty
+                                                            .all(Colors.white),
+                                                        padding: MaterialStateProperty.all(
+                                                            const EdgeInsets.only(top: 10,
+                                                                bottom: 10,
+                                                                right: 30,
+                                                                left: 30)),
+                                                        textStyle: MaterialStateProperty.all(
+                                                            const TextStyle(fontSize: 15))),
+                                                    child:      Text(
+                                                      profilePage?.body.form.uploadId.chooseButton.data as String,
+                                                      style: TextStyle(
+                                                          fontSize: lng?.header3.size.toDouble(),
+                                                          fontFamily: lng?.header3.textFamily,
+                                                          color: Color(int.parse(profilePage?.body.form.uploadId.chooseButton.color as String))),)
                                                 ),
-                                                Positioned.fill(
-                                                    child:  Material(
-                                                      color: Colors.transparent,
-                                                      child:  InkWell(
-                                                        borderRadius:const  BorderRadius.all(Radius.circular(0)),
-                                                        splashColor: Colors.black,
-                                                        overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
-
-                                                        onTap: () {
-                                                          PersistentNavBarNavigator.pushNewScreen(
-                                                            context,
-                                                            screen: ForgetPassword(
-                                                             forgetOrupdateFlag: Strings.updatePassword,
-
-                                                            ),
-                                                            withNavBar: true,
-                                                            // OPTIONAL VALUE. True by default.
-                                                            pageTransitionAnimation: PageTransitionAnimation
-                                                                .cupertino,
-                                                          );
-                                                        },
-                                                      ),
-
-                                                    )
-                                                ),
-                                              ],
-                                            ),
+                                              ],),
                                           ),
-                                        ),
-                                      ],
-                                    ),
+
+
+                                        ],
+                                      ),
                                   ),
                                 ),
+
+
+
+
                                 const SizedBox(height: 10,),
 
-                                /// - refferal code
-                                // Padding(
-                                //   padding: const EdgeInsets.only(left:18.0, right: 18),
+                                /// - Buttons
+
+
+                                // Visibility(
+                                //   visible:true,
+                                //   // !isKeyboardVisible,
                                 //   child: Container(
-                                //     padding: const EdgeInsets.only(left:10, right: 10),
-                                //     decoration: BoxDecoration(
-                                //       color: Colors.black45,
-                                //       borderRadius:const BorderRadius.only(
-                                //         topRight: Radius.circular(10),
-                                //         bottomLeft: Radius.circular(10),
-                                //         topLeft: Radius.circular(10),
-                                //         bottomRight: Radius.circular(10),
-                                //       ),
-                                //       border: Border.all(
-                                //         width: 0,
-                                //         color: Colors.transparent,
-                                //         style: BorderStyle.solid,
-                                //       ),
-                                //     ),
-                                //     child: Row(
-                                //       children: [
-                                //         Expanded(flex:3, child:
-                                //         Text("${getTranslated(context, "referralCode")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)
-                                //         ),
-                                //         const Expanded(
-                                //           flex: 5,
-                                //           child: SizedBox(
-                                //
-                                //             child:   TextField(
-                                //
-                                //               autofocus: false,
-                                //               style:  TextStyle(color: Colors.white),
-                                //               decoration:  InputDecoration(
-                                //                 filled: true,
-                                //                 fillColor: Colors.transparent,
-                                //                 contentPadding: EdgeInsets.only(left:10, right: 10),
-                                //                 focusedBorder: OutlineInputBorder(
-                                //                   borderRadius:  BorderRadius.all(
-                                //                     Radius.circular(0.0),
+                                //       color:Colors.green,
+                                //     child: Padding(
+                                //       padding: const EdgeInsets.all(8.0),
+                                //       child: Column(
+                                //         mainAxisAlignment: MainAxisAlignment.end,
+                                //         children: [
+                                //           Row(
+                                //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                //             children: [
+                                //               Expanded(
+                                //                 child: Padding(
+                                //                   padding: const EdgeInsets.all(3.0),
+                                //                   child: SizedBox(
+                                //                     height: 60,
+                                //                     // width: 130,
+                                //                     child: ElevatedButton(
+                                //                       onPressed: () {
+                                //                         PersistentNavBarNavigator.pushNewScreen(
+                                //                           context,
+                                //                           screen: OrderHistory(),
+                                //                           withNavBar: true,
+                                //                           // OPTIONAL VALUE. True by default.
+                                //                           pageTransitionAnimation: PageTransitionAnimation
+                                //                               .cupertino,
+                                //                         );
+                                //                       },
+                                //                       style: ButtonStyle(
+                                //                           shape: MaterialStateProperty.all<
+                                //                               RoundedRectangleBorder>(
+                                //                               const RoundedRectangleBorder(
+                                //                                   borderRadius: BorderRadius
+                                //                                       .all(
+                                //                                       Radius.circular(10)),
+                                //                                   side: BorderSide(
+                                //                                       color: Colors
+                                //                                           .transparent,
+                                //                                       width: 1)
+                                //                               )
+                                //                           ),
+                                //                           overlayColor: MaterialStateProperty.all(Colors.white12),
+                                //                           elevation: MaterialStateProperty.all(0),
+                                //                           shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                //                           backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
+                                //                           // backgroundColor: MaterialStateProperty.all(Colors.black),
+                                //                           foregroundColor: MaterialStateProperty.all(Colors.black),
+                                //                           padding: MaterialStateProperty.all(
+                                //                               const EdgeInsets.only(
+                                //                                 top: 10, bottom: 10,)),
+                                //                           textStyle: MaterialStateProperty.all(
+                                //                               const TextStyle(fontSize: 30))),
+                                //                       child: Text(
+                                //                         profilePage?.body.buttons.orderHistory.data as String ,
+                                //                         style: TextStyle(
+                                //                           fontFamily: getTranslated(context, "fontFamilyBody")!,
+                                //                           color: Color(int.parse(profilePage?.body.buttons.orderHistory.color as String)),
+                                //                           fontSize: lng?.header3.size.toDouble(),
+                                //                           fontWeight: FontWeight.w300,),
+                                //                         textAlign: TextAlign.center,),
+                                //                     ),
                                 //                   ),
-                                //                   borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
                                 //                 ),
-                                //                 enabledBorder: OutlineInputBorder(
-                                //                   borderRadius:  BorderRadius.all(
-                                //                     Radius.circular(0.0),
-                                //                   ),
-                                //                   borderSide: BorderSide(color: Colors.transparent, width: 0.0),
-                                //                 ),
-                                //                 // hintText: '',
-                                //                 // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+                                //               ),
+                                //               Expanded(
+                                //                 child: Padding(
+                                //                   padding: const EdgeInsets.all(3.0),
+                                //                   child: SizedBox(
+                                //                     height: 60,
+                                //                     // width: 130,
+                                //                     child: ElevatedButton(
+                                //                       onPressed: () {
+                                //                         PersistentNavBarNavigator
+                                //                             .pushNewScreen(
+                                //                           context,
+                                //                           screen: SavedAddress(),
+                                //                           withNavBar: true,
+                                //                           // OPTIONAL VALUE. True by default.
+                                //                           pageTransitionAnimation: PageTransitionAnimation
+                                //                               .cupertino,
+                                //                         );
+                                //                       },
+                                //                       style: ButtonStyle(
+                                //                           shape: MaterialStateProperty.all<
+                                //                               RoundedRectangleBorder>(
+                                //                               const RoundedRectangleBorder(
+                                //                                   borderRadius: BorderRadius
+                                //                                       .all(
+                                //                                       Radius.circular(10)),
+                                //                                   side: BorderSide(
+                                //                                       color: Colors
+                                //                                           .transparent,
+                                //                                       width: 1)
+                                //                               )
+                                //                           ),
+                                //                           overlayColor: MaterialStateProperty
+                                //                               .all(Colors.white12),
+                                //                           elevation: MaterialStateProperty
+                                //                               .all(0),
+                                //                           shadowColor: MaterialStateProperty
+                                //                               .all(Colors.transparent),
+                                //                           backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
                                 //
+                                //                           foregroundColor: MaterialStateProperty
+                                //                               .all(Colors.black),
+                                //                           padding: MaterialStateProperty.all(
+                                //                               const EdgeInsets.only(
+                                //                                 top: 10, bottom: 10,)),
+                                //                           textStyle: MaterialStateProperty
+                                //                               .all(
+                                //                               const TextStyle(fontSize: 30))),
+                                //                       child: Text(
+                                //                         profilePage?.body.buttons.savedAddress.data as String ,
+                                //                         style: TextStyle(
+                                //                           fontFamily: getTranslated(context, "fontFamilyBody")!,
+                                //                           color: Color(int.parse(profilePage?.body.buttons.savedAddress.color as String)),
+                                //                           fontSize: lng?.header3.size.toDouble(),
+                                //                           fontWeight: FontWeight.w300,),
+                                //                         textAlign: TextAlign.center,),
+                                //                     ),
+                                //                   ),
+                                //                 ),
+                                //               ),
+                                //               Expanded(
+                                //                 child: Padding(
+                                //                   padding: const EdgeInsets.all(3.0),
+                                //                   child: SizedBox(
+                                //                     height: 60,
+                                //                     // width: 130,
+                                //                     child: ElevatedButton(
+                                //                       onPressed: () {
+                                //                         PersistentNavBarNavigator
+                                //                             .pushNewScreen(
+                                //                           context,
+                                //                           screen: SavedCards(),
+                                //                           withNavBar: true,
+                                //                           // OPTIONAL VALUE. True by default.
+                                //                           pageTransitionAnimation: PageTransitionAnimation
+                                //                               .cupertino,
+                                //                         );
+                                //                       },
+                                //                       style: ButtonStyle(
+                                //                           shape: MaterialStateProperty.all<
+                                //                               RoundedRectangleBorder>(
+                                //                               const RoundedRectangleBorder(
+                                //                                   borderRadius: BorderRadius
+                                //                                       .all(
+                                //                                       Radius.circular(10)),
+                                //                                   side: BorderSide(
+                                //                                       color: Colors
+                                //                                           .transparent,
+                                //                                       width: 1)
+                                //                               )
+                                //                           ),
+                                //                           overlayColor: MaterialStateProperty
+                                //                               .all(Colors.white12),
+                                //                           elevation: MaterialStateProperty
+                                //                               .all(0),
+                                //                           shadowColor: MaterialStateProperty
+                                //                               .all(Colors.transparent),
+                                //                           backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
+                                //
+                                //                           foregroundColor: MaterialStateProperty
+                                //                               .all(Colors.black),
+                                //                           // padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
+                                //                           textStyle: MaterialStateProperty
+                                //                               .all(
+                                //                               const TextStyle(fontSize: 30))),
+                                //                       child: Text(
+                                //                         profilePage?.body.buttons.savedCards.data as String ,
+                                //                         style: TextStyle(
+                                //                           fontFamily: getTranslated(context, "fontFamilyBody")!,
+                                //                           color: Color(int.parse(profilePage?.body.buttons.savedCards.color as String)),
+                                //                           fontSize: lng?.header3.size.toDouble(),
+                                //                           fontWeight: FontWeight.w300,),
+                                //                         textAlign: TextAlign.center,),
+                                //                     ),
+                                //                   ),
+                                //                 ),
+                                //               ),
+                                //             ],
+                                //           ),
+                                //           Row(
+                                //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                //             children: [
+                                //               Expanded(
+                                //                 child: Padding(
+                                //                   padding: const EdgeInsets.all(3.0),
+                                //                   child: SizedBox(
+                                //                     height: 60,
+                                //                     child: ElevatedButton(
+                                //                       onPressed: () {
+                                //                         PersistentNavBarNavigator
+                                //                             .pushNewScreen(
+                                //                           context,
+                                //                           screen: MyRewards(
+                                //                               layOut: widget.layOut),
+                                //                           withNavBar: true,
+                                //                           // OPTIONAL VALUE. True by default.
+                                //                           pageTransitionAnimation: PageTransitionAnimation
+                                //                               .cupertino,
+                                //                         );
+                                //                       },
+                                //                       style: ButtonStyle(
+                                //                           shape: MaterialStateProperty.all<
+                                //                               RoundedRectangleBorder>(
+                                //                               const RoundedRectangleBorder(
+                                //                                   borderRadius: BorderRadius
+                                //                                       .all(
+                                //                                       Radius.circular(10)),
+                                //                                   side: BorderSide(
+                                //                                       color: Colors
+                                //                                           .transparent,
+                                //                                       width: 1)
+                                //                               )
+                                //                           ),
+                                //                           overlayColor: MaterialStateProperty
+                                //                               .all(Colors.white12),
+                                //                           elevation: MaterialStateProperty
+                                //                               .all(0),
+                                //                           shadowColor: MaterialStateProperty
+                                //                               .all(Colors.transparent),
+                                //                           backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
+                                //
+                                //                           foregroundColor: MaterialStateProperty
+                                //                               .all(Colors.black),
+                                //                           padding: MaterialStateProperty.all(
+                                //                               const EdgeInsets.only(
+                                //                                   top: 10, bottom: 10)),
+                                //                           textStyle: MaterialStateProperty
+                                //                               .all(
+                                //                               const TextStyle(fontSize: 30))),
+                                //                       child: Text(
+                                //                         profilePage?.body.buttons.loyalty.data as String ,
+                                //                         style: TextStyle(
+                                //                           fontFamily: getTranslated(context, "fontFamilyBody")!,
+                                //                           color: Color(int.parse(profilePage?.body.buttons.signOut.color as String)),
+                                //                           fontSize: lng?.header3.size.toDouble(),
+                                //                           fontWeight: FontWeight.w300,),
+                                //                         textAlign: TextAlign.center,),
+                                //                     ),
+                                //                   ),
+                                //                 ),
+                                //               ),
+                                //               Expanded(
+                                //                 child: Padding(
+                                //                   padding: const EdgeInsets.all(3.0),
+                                //                   child: SizedBox(
+                                //                     height: 60,
+                                //
+                                //                     child: ElevatedButton(
+                                //                       onPressed: () {
+                                //                         PersistentNavBarNavigator
+                                //                             .pushNewScreen(
+                                //                           context,
+                                //                           screen: HelpPage(),
+                                //                           withNavBar: true,
+                                //                           // OPTIONAL VALUE. True by default.
+                                //                           pageTransitionAnimation: PageTransitionAnimation
+                                //                               .cupertino,
+                                //                         );
+                                //                       },
+                                //                       style: ButtonStyle(
+                                //                           shape: MaterialStateProperty.all<
+                                //                               RoundedRectangleBorder>(
+                                //                               const RoundedRectangleBorder(
+                                //                                   borderRadius: BorderRadius
+                                //                                       .all(
+                                //                                       Radius.circular(10)),
+                                //                                   side: BorderSide(
+                                //                                       color: Colors
+                                //                                           .transparent,
+                                //                                       width: 1)
+                                //                               )
+                                //                           ),
+                                //                           overlayColor: MaterialStateProperty
+                                //                               .all(Colors.white12),
+                                //                           elevation: MaterialStateProperty
+                                //                               .all(0),
+                                //                           shadowColor: MaterialStateProperty
+                                //                               .all(Colors.transparent),
+                                //                           backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
+                                //
+                                //                           foregroundColor: MaterialStateProperty
+                                //                               .all(Colors.black),
+                                //                           padding: MaterialStateProperty.all(
+                                //                               const EdgeInsets.only(
+                                //                                 top: 10, bottom: 10,)),
+                                //                           textStyle: MaterialStateProperty
+                                //                               .all(
+                                //                               const TextStyle(fontSize: 30))),
+                                //                       child: Text(
+                                //                         profilePage?.body.buttons.help.data as String ,
+                                //                         style: TextStyle(
+                                //                           fontFamily: getTranslated(context, "fontFamilyBody")!,
+                                //                           color: Color(int.parse(profilePage?.body.buttons.help.color as String)),
+                                //                           fontSize: lng?.header3.size.toDouble(),
+                                //                           fontWeight: FontWeight.w300,),
+                                //                         textAlign: TextAlign.center,),
+                                //                     ),
+                                //                   ),
+                                //                 ),
+                                //               ),
+                                //               Expanded(
+                                //                 child: Padding(
+                                //                   padding: const EdgeInsets.all(3.0),
+                                //                   child: SizedBox(
+                                //                     height: 60,
+                                //
+                                //                     child: ElevatedButton(
+                                //                       onPressed: () {
+                                //                         Provider.of<AuthProvider>(context, listen: false).logOutUserDetailsLocally().then((value) {
+                                //                           SnackbarGenerator(context).snackBarGeneratorToast("User Logged out successfully",);
+                                //
+                                //                         });
+                                //                       },
+                                //                       style: ButtonStyle(
+                                //                           shape: MaterialStateProperty.all<
+                                //                               RoundedRectangleBorder>(
+                                //                               const RoundedRectangleBorder(
+                                //                                   borderRadius: BorderRadius
+                                //                                       .all(
+                                //                                       Radius.circular(10)),
+                                //                                   side: BorderSide(
+                                //                                       color: Colors
+                                //                                           .transparent,
+                                //                                       width: 1)
+                                //                               )
+                                //                           ),
+                                //                           overlayColor: MaterialStateProperty
+                                //                               .all(Colors.black12),
+                                //                           elevation: MaterialStateProperty
+                                //                               .all(0),
+                                //                           shadowColor: MaterialStateProperty
+                                //                               .all(Colors.transparent),
+                                //                           backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
+                                //
+                                //                           foregroundColor: MaterialStateProperty
+                                //                               .all(Colors.black),
+                                //                           padding: MaterialStateProperty.all(
+                                //                               const EdgeInsets.only(
+                                //                                 top: 10, bottom: 10,)),
+                                //                           textStyle: MaterialStateProperty
+                                //                               .all(
+                                //                               const TextStyle(fontSize: 30))),
+                                //                       child: Text(
+                                //                         profilePage?.body.buttons.signOut.data as String ,
+                                //                         style: TextStyle(
+                                //                           fontFamily: getTranslated(context, "fontFamilyBody")!,
+                                //                           color: Color(int.parse(profilePage?.body.buttons.signOut.color as String)),
+                                //                           fontSize: lng?.header3.size.toDouble(),
+                                //                           fontWeight: FontWeight.w300,),
+                                //                         textAlign: TextAlign.center,),
+                                //
+                                //                       // Text(
+                                //                       //   getTranslated(context, "sighOut")!,
+                                //                       //   style: TextStyle(
+                                //                       //     fontFamily: getTranslated(
+                                //                       //         context, "fontFamilyBody")!,
+                                //                       //     color: Colors.white,
+                                //                       //     fontSize: 17,
+                                //                       //     fontWeight: FontWeight.w300,),
+                                //                       //   textAlign: TextAlign.center,),
+                                //                     ),
+                                //                   ),
+                                //                 ),
                                 //               ),
                                 //
-                                //             ),
+                                //
+                                //             ],
                                 //           ),
-                                //         ),
-                                //       ],
+                                //
+                                //         ],
+                                //       ),
                                 //     ),
                                 //   ),
                                 // ),
-                                const SizedBox(height: 10,),
-                                Padding(
-                                  padding: const EdgeInsets.all(18.0),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        profilePage?.body.form.uploadId.data as String,
-                                        style: TextStyle(
-                                            fontSize: lng?.header3.size.toDouble(),
-                                            fontFamily: lng?.header3.textFamily,
-                                            color: Color(int.parse(profilePage?.body.form.uploadId.color as String))),),
-                                      ElevatedButton(
-                                        onPressed: () {
 
+                              ],
+                            ),
+
+                        ),
+                      ),
+
+
+                    ),
+                  ),
+                  // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+                  //  floatingActionButton:Visibility(
+                  //    visible: !isKeyboardVisible,
+                  //    child: Padding(
+                  //      padding: const EdgeInsets.all(8.0),
+                  //      child: Column(
+                  //        mainAxisAlignment: MainAxisAlignment.end,
+                  //        children: [
+                  //          Row(
+                  //            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //            children: [
+                  //              Expanded(
+                  //                child: Padding(
+                  //                  padding: const EdgeInsets.all(3.0),
+                  //                  child: SizedBox(
+                  //                    height: 60,
+                  //                    // width: 130,
+                  //                    child: ElevatedButton(
+                  //                      onPressed: () {
+                  //                        PersistentNavBarNavigator.pushNewScreen(
+                  //                          context,
+                  //                          screen: OrderHistory(),
+                  //                          withNavBar: true,
+                  //                          // OPTIONAL VALUE. True by default.
+                  //                          pageTransitionAnimation: PageTransitionAnimation
+                  //                              .cupertino,
+                  //                        );
+                  //                      },
+                  //                      style: ButtonStyle(
+                  //                          shape: MaterialStateProperty.all<
+                  //                              RoundedRectangleBorder>(
+                  //                              const RoundedRectangleBorder(
+                  //                                  borderRadius: BorderRadius
+                  //                                      .all(
+                  //                                      Radius.circular(10)),
+                  //                                  side: BorderSide(
+                  //                                      color: Colors
+                  //                                          .transparent,
+                  //                                      width: 1)
+                  //                              )
+                  //                          ),
+                  //                          overlayColor: MaterialStateProperty.all(Colors.white12),
+                  //                          elevation: MaterialStateProperty.all(0),
+                  //                          shadowColor: MaterialStateProperty.all(Colors.transparent),
+                  //                          backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
+                  //                          // backgroundColor: MaterialStateProperty.all(Colors.black),
+                  //                          foregroundColor: MaterialStateProperty.all(Colors.black),
+                  //                          padding: MaterialStateProperty.all(
+                  //                              const EdgeInsets.only(
+                  //                                top: 10, bottom: 10,)),
+                  //                          textStyle: MaterialStateProperty.all(
+                  //                              const TextStyle(fontSize: 30))),
+                  //                      child: Text(
+                  //                        profilePage?.body.buttons.orderHistory.data as String ,
+                  //                        style: TextStyle(
+                  //                          fontFamily: getTranslated(context, "fontFamilyBody")!,
+                  //                          color: Color(int.parse(profilePage?.body.buttons.orderHistory.color as String)),
+                  //                          fontSize: lng?.header3.size.toDouble(),
+                  //                          fontWeight: FontWeight.w300,),
+                  //                        textAlign: TextAlign.center,),
+                  //                    ),
+                  //                  ),
+                  //                ),
+                  //              ),
+                  //              Expanded(
+                  //                child: Padding(
+                  //                  padding: const EdgeInsets.all(3.0),
+                  //                  child: SizedBox(
+                  //                    height: 60,
+                  //                    // width: 130,
+                  //                    child: ElevatedButton(
+                  //                      onPressed: () {
+                  //                        PersistentNavBarNavigator
+                  //                            .pushNewScreen(
+                  //                          context,
+                  //                          screen: SavedAddress(),
+                  //                          withNavBar: true,
+                  //                          // OPTIONAL VALUE. True by default.
+                  //                          pageTransitionAnimation: PageTransitionAnimation
+                  //                              .cupertino,
+                  //                        );
+                  //                      },
+                  //                      style: ButtonStyle(
+                  //                          shape: MaterialStateProperty.all<
+                  //                              RoundedRectangleBorder>(
+                  //                              const RoundedRectangleBorder(
+                  //                                  borderRadius: BorderRadius
+                  //                                      .all(
+                  //                                      Radius.circular(10)),
+                  //                                  side: BorderSide(
+                  //                                      color: Colors
+                  //                                          .transparent,
+                  //                                      width: 1)
+                  //                              )
+                  //                          ),
+                  //                          overlayColor: MaterialStateProperty
+                  //                              .all(Colors.white12),
+                  //                          elevation: MaterialStateProperty
+                  //                              .all(0),
+                  //                          shadowColor: MaterialStateProperty
+                  //                              .all(Colors.transparent),
+                  //                          backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
+                  //
+                  //                          foregroundColor: MaterialStateProperty
+                  //                              .all(Colors.black),
+                  //                          padding: MaterialStateProperty.all(
+                  //                              const EdgeInsets.only(
+                  //                                top: 10, bottom: 10,)),
+                  //                          textStyle: MaterialStateProperty
+                  //                              .all(
+                  //                              const TextStyle(fontSize: 30))),
+                  //                      child: Text(
+                  //                        profilePage?.body.buttons.savedAddress.data as String ,
+                  //                        style: TextStyle(
+                  //                          fontFamily: getTranslated(context, "fontFamilyBody")!,
+                  //                          color: Color(int.parse(profilePage?.body.buttons.savedAddress.color as String)),
+                  //                          fontSize: lng?.header3.size.toDouble(),
+                  //                          fontWeight: FontWeight.w300,),
+                  //                        textAlign: TextAlign.center,),
+                  //                    ),
+                  //                  ),
+                  //                ),
+                  //              ),
+                  //              Expanded(
+                  //                child: Padding(
+                  //                  padding: const EdgeInsets.all(3.0),
+                  //                  child: SizedBox(
+                  //                    height: 60,
+                  //                    // width: 130,
+                  //                    child: ElevatedButton(
+                  //                      onPressed: () {
+                  //                        PersistentNavBarNavigator
+                  //                            .pushNewScreen(
+                  //                          context,
+                  //                          screen: SavedCards(),
+                  //                          withNavBar: true,
+                  //                          // OPTIONAL VALUE. True by default.
+                  //                          pageTransitionAnimation: PageTransitionAnimation
+                  //                              .cupertino,
+                  //                        );
+                  //                      },
+                  //                      style: ButtonStyle(
+                  //                          shape: MaterialStateProperty.all<
+                  //                              RoundedRectangleBorder>(
+                  //                              const RoundedRectangleBorder(
+                  //                                  borderRadius: BorderRadius
+                  //                                      .all(
+                  //                                      Radius.circular(10)),
+                  //                                  side: BorderSide(
+                  //                                      color: Colors
+                  //                                          .transparent,
+                  //                                      width: 1)
+                  //                              )
+                  //                          ),
+                  //                          overlayColor: MaterialStateProperty
+                  //                              .all(Colors.white12),
+                  //                          elevation: MaterialStateProperty
+                  //                              .all(0),
+                  //                          shadowColor: MaterialStateProperty
+                  //                              .all(Colors.transparent),
+                  //                          backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
+                  //
+                  //                          foregroundColor: MaterialStateProperty
+                  //                              .all(Colors.black),
+                  //                          // padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
+                  //                          textStyle: MaterialStateProperty
+                  //                              .all(
+                  //                              const TextStyle(fontSize: 30))),
+                  //                      child: Text(
+                  //                        profilePage?.body.buttons.savedCards.data as String ,
+                  //                        style: TextStyle(
+                  //                          fontFamily: getTranslated(context, "fontFamilyBody")!,
+                  //                          color: Color(int.parse(profilePage?.body.buttons.savedCards.color as String)),
+                  //                          fontSize: lng?.header3.size.toDouble(),
+                  //                          fontWeight: FontWeight.w300,),
+                  //                        textAlign: TextAlign.center,),
+                  //                    ),
+                  //                  ),
+                  //                ),
+                  //              ),
+                  //            ],
+                  //          ),
+                  //          Row(
+                  //            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //            children: [
+                  //              Expanded(
+                  //                child: Padding(
+                  //                  padding: const EdgeInsets.all(3.0),
+                  //                  child: SizedBox(
+                  //                    height: 60,
+                  //                    child: ElevatedButton(
+                  //                      onPressed: () {
+                  //                        PersistentNavBarNavigator
+                  //                            .pushNewScreen(
+                  //                          context,
+                  //                          screen: MyRewards(
+                  //                              layOut: widget.layOut),
+                  //                          withNavBar: true,
+                  //                          // OPTIONAL VALUE. True by default.
+                  //                          pageTransitionAnimation: PageTransitionAnimation
+                  //                              .cupertino,
+                  //                        );
+                  //                      },
+                  //                      style: ButtonStyle(
+                  //                          shape: MaterialStateProperty.all<
+                  //                              RoundedRectangleBorder>(
+                  //                              const RoundedRectangleBorder(
+                  //                                  borderRadius: BorderRadius
+                  //                                      .all(
+                  //                                      Radius.circular(10)),
+                  //                                  side: BorderSide(
+                  //                                      color: Colors
+                  //                                          .transparent,
+                  //                                      width: 1)
+                  //                              )
+                  //                          ),
+                  //                          overlayColor: MaterialStateProperty
+                  //                              .all(Colors.white12),
+                  //                          elevation: MaterialStateProperty
+                  //                              .all(0),
+                  //                          shadowColor: MaterialStateProperty
+                  //                              .all(Colors.transparent),
+                  //                          backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
+                  //
+                  //                          foregroundColor: MaterialStateProperty
+                  //                              .all(Colors.black),
+                  //                          padding: MaterialStateProperty.all(
+                  //                              const EdgeInsets.only(
+                  //                                  top: 10, bottom: 10)),
+                  //                          textStyle: MaterialStateProperty
+                  //                              .all(
+                  //                              const TextStyle(fontSize: 30))),
+                  //                      child: Text(
+                  //                        profilePage?.body.buttons.loyalty.data as String ,
+                  //                        style: TextStyle(
+                  //                          fontFamily: getTranslated(context, "fontFamilyBody")!,
+                  //                          color: Color(int.parse(profilePage?.body.buttons.signOut.color as String)),
+                  //                          fontSize: lng?.header3.size.toDouble(),
+                  //                          fontWeight: FontWeight.w300,),
+                  //                        textAlign: TextAlign.center,),
+                  //                    ),
+                  //                  ),
+                  //                ),
+                  //              ),
+                  //              Expanded(
+                  //                child: Padding(
+                  //                  padding: const EdgeInsets.all(3.0),
+                  //                  child: SizedBox(
+                  //                    height: 60,
+                  //
+                  //                    child: ElevatedButton(
+                  //                      onPressed: () {
+                  //                        PersistentNavBarNavigator
+                  //                            .pushNewScreen(
+                  //                          context,
+                  //                          screen: HelpPage(),
+                  //                          withNavBar: true,
+                  //                          // OPTIONAL VALUE. True by default.
+                  //                          pageTransitionAnimation: PageTransitionAnimation
+                  //                              .cupertino,
+                  //                        );
+                  //                      },
+                  //                      style: ButtonStyle(
+                  //                          shape: MaterialStateProperty.all<
+                  //                              RoundedRectangleBorder>(
+                  //                              const RoundedRectangleBorder(
+                  //                                  borderRadius: BorderRadius
+                  //                                      .all(
+                  //                                      Radius.circular(10)),
+                  //                                  side: BorderSide(
+                  //                                      color: Colors
+                  //                                          .transparent,
+                  //                                      width: 1)
+                  //                              )
+                  //                          ),
+                  //                          overlayColor: MaterialStateProperty
+                  //                              .all(Colors.white12),
+                  //                          elevation: MaterialStateProperty
+                  //                              .all(0),
+                  //                          shadowColor: MaterialStateProperty
+                  //                              .all(Colors.transparent),
+                  //                          backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
+                  //
+                  //                          foregroundColor: MaterialStateProperty
+                  //                              .all(Colors.black),
+                  //                          padding: MaterialStateProperty.all(
+                  //                              const EdgeInsets.only(
+                  //                                top: 10, bottom: 10,)),
+                  //                          textStyle: MaterialStateProperty
+                  //                              .all(
+                  //                              const TextStyle(fontSize: 30))),
+                  //                      child: Text(
+                  //                        profilePage?.body.buttons.help.data as String ,
+                  //                        style: TextStyle(
+                  //                          fontFamily: getTranslated(context, "fontFamilyBody")!,
+                  //                          color: Color(int.parse(profilePage?.body.buttons.help.color as String)),
+                  //                          fontSize: lng?.header3.size.toDouble(),
+                  //                          fontWeight: FontWeight.w300,),
+                  //                        textAlign: TextAlign.center,),
+                  //                    ),
+                  //                  ),
+                  //                ),
+                  //              ),
+                  //              Expanded(
+                  //                child: Padding(
+                  //                  padding: const EdgeInsets.all(3.0),
+                  //                  child: SizedBox(
+                  //                    height: 60,
+                  //
+                  //                    child: ElevatedButton(
+                  //                      onPressed: () {
+                  //                        Provider.of<AuthProvider>(context, listen: false).logOutUserDetailsLocally().then((value) {
+                  //                          SnackbarGenerator(context).snackBarGeneratorToast("User Logged out successfully",);
+                  //
+                  //                        });
+                  //                      },
+                  //                      style: ButtonStyle(
+                  //                          shape: MaterialStateProperty.all<
+                  //                              RoundedRectangleBorder>(
+                  //                              const RoundedRectangleBorder(
+                  //                                  borderRadius: BorderRadius
+                  //                                      .all(
+                  //                                      Radius.circular(10)),
+                  //                                  side: BorderSide(
+                  //                                      color: Colors
+                  //                                          .transparent,
+                  //                                      width: 1)
+                  //                              )
+                  //                          ),
+                  //                          overlayColor: MaterialStateProperty
+                  //                              .all(Colors.black12),
+                  //                          elevation: MaterialStateProperty
+                  //                              .all(0),
+                  //                          shadowColor: MaterialStateProperty
+                  //                              .all(Colors.transparent),
+                  //                          backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
+                  //
+                  //                          foregroundColor: MaterialStateProperty
+                  //                              .all(Colors.black),
+                  //                          padding: MaterialStateProperty.all(
+                  //                              const EdgeInsets.only(
+                  //                                top: 10, bottom: 10,)),
+                  //                          textStyle: MaterialStateProperty
+                  //                              .all(
+                  //                              const TextStyle(fontSize: 30))),
+                  //                      child: Text(
+                  //                        profilePage?.body.buttons.signOut.data as String ,
+                  //                        style: TextStyle(
+                  //                          fontFamily: getTranslated(context, "fontFamilyBody")!,
+                  //                          color: Color(int.parse(profilePage?.body.buttons.signOut.color as String)),
+                  //                          fontSize: lng?.header3.size.toDouble(),
+                  //                          fontWeight: FontWeight.w300,),
+                  //                        textAlign: TextAlign.center,),
+                  //
+                  //                      // Text(
+                  //                      //   getTranslated(context, "sighOut")!,
+                  //                      //   style: TextStyle(
+                  //                      //     fontFamily: getTranslated(
+                  //                      //         context, "fontFamilyBody")!,
+                  //                      //     color: Colors.white,
+                  //                      //     fontSize: 17,
+                  //                      //     fontWeight: FontWeight.w300,),
+                  //                      //   textAlign: TextAlign.center,),
+                  //                    ),
+                  //                  ),
+                  //                ),
+                  //              ),
+                  //
+                  //
+                  //            ],
+                  //          ),
+                  //
+                  //        ],
+                  //      ),
+                  //    ),
+                  //  ),
+
+                  extendBody: true,
+
+                  drawer: DrawerWidget(layOut: widget.layOut, onChanged: (value) {
+                    widget.onChanged(value);
+                  },),
+                  bottomSheet:Visibility(
+                    visible:!isKeyboardVisible,
+                    child: Container(
+                      height: 150,
+                      color:Colors.transparent,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(3.0),
+                                    child: SizedBox(
+                                      height: 60,
+                                      // width: 130,
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          PersistentNavBarNavigator.pushNewScreen(
+                                            context,
+                                            screen: OrderHistory(),
+                                            withNavBar: true,
+                                            // OPTIONAL VALUE. True by default.
+                                            pageTransitionAnimation: PageTransitionAnimation
+                                                .cupertino,
+                                          );
                                         },
                                         style: ButtonStyle(
                                             shape: MaterialStateProperty.all<
                                                 RoundedRectangleBorder>(
                                                 const RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.all(
-                                                        Radius.circular(5)),
+                                                    borderRadius: BorderRadius
+                                                        .all(
+                                                        Radius.circular(10)),
                                                     side: BorderSide(
-                                                        color: Colors.transparent,
+                                                        color: Colors
+                                                            .transparent,
                                                         width: 1)
                                                 )
                                             ),
-                                            overlayColor: MaterialStateProperty.all(
-                                                Colors.white30),
+                                            overlayColor: MaterialStateProperty.all(Colors.white12),
                                             elevation: MaterialStateProperty.all(0),
-                                            shadowColor: MaterialStateProperty.all(
-                                                Colors.transparent),
-                                            backgroundColor: MaterialStateProperty
-                                                .all(Colors.amber),
-                                            foregroundColor: MaterialStateProperty
-                                                .all(Colors.white),
+                                            shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                            backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
+                                            // backgroundColor: MaterialStateProperty.all(Colors.black),
+                                            foregroundColor: MaterialStateProperty.all(Colors.black),
                                             padding: MaterialStateProperty.all(
-                                                const EdgeInsets.only(top: 10,
-                                                    bottom: 10,
-                                                    right: 30,
-                                                    left: 30)),
+                                                const EdgeInsets.only(
+                                                  top: 10, bottom: 10,)),
                                             textStyle: MaterialStateProperty.all(
-                                                const TextStyle(fontSize: 15))),
-                                        child:      Text(
-                                          profilePage?.body.form.uploadId.chooseButton.data as String,
+                                                const TextStyle(fontSize: 30))),
+                                        child: Text(
+                                          profilePage?.body.buttons.orderHistory.data as String ,
                                           style: TextStyle(
-                                              fontSize: lng?.header3.size.toDouble(),
-                                              fontFamily: lng?.header3.textFamily,
-                                              color: Color(int.parse(profilePage?.body.form.uploadId.chooseButton.color as String))),)
+                                            fontFamily: getTranslated(context, "fontFamilyBody")!,
+                                            color: Color(int.parse(profilePage?.body.buttons.orderHistory.color as String)),
+                                            fontSize: lng?.header3.size.toDouble(),
+                                            fontWeight: FontWeight.w300,),
+                                          textAlign: TextAlign.center,),
                                       ),
-                                    ],),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(3.0),
+                                    child: SizedBox(
+                                      height: 60,
+                                      // width: 130,
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          PersistentNavBarNavigator
+                                              .pushNewScreen(
+                                            context,
+                                            screen: SavedAddress(),
+                                            withNavBar: true,
+                                            // OPTIONAL VALUE. True by default.
+                                            pageTransitionAnimation: PageTransitionAnimation
+                                                .cupertino,
+                                          );
+                                        },
+                                        style: ButtonStyle(
+                                            shape: MaterialStateProperty.all<
+                                                RoundedRectangleBorder>(
+                                                const RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius
+                                                        .all(
+                                                        Radius.circular(10)),
+                                                    side: BorderSide(
+                                                        color: Colors
+                                                            .transparent,
+                                                        width: 1)
+                                                )
+                                            ),
+                                            overlayColor: MaterialStateProperty
+                                                .all(Colors.white12),
+                                            elevation: MaterialStateProperty
+                                                .all(0),
+                                            shadowColor: MaterialStateProperty
+                                                .all(Colors.transparent),
+                                            backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
+
+                                            foregroundColor: MaterialStateProperty
+                                                .all(Colors.black),
+                                            padding: MaterialStateProperty.all(
+                                                const EdgeInsets.only(
+                                                  top: 10, bottom: 10,)),
+                                            textStyle: MaterialStateProperty
+                                                .all(
+                                                const TextStyle(fontSize: 30))),
+                                        child: Text(
+                                          profilePage?.body.buttons.savedAddress.data as String ,
+                                          style: TextStyle(
+                                            fontFamily: getTranslated(context, "fontFamilyBody")!,
+                                            color: Color(int.parse(profilePage?.body.buttons.savedAddress.color as String)),
+                                            fontSize: lng?.header3.size.toDouble(),
+                                            fontWeight: FontWeight.w300,),
+                                          textAlign: TextAlign.center,),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(3.0),
+                                    child: SizedBox(
+                                      height: 60,
+                                      // width: 130,
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          PersistentNavBarNavigator
+                                              .pushNewScreen(
+                                            context,
+                                            screen: SavedCards(),
+                                            withNavBar: true,
+                                            // OPTIONAL VALUE. True by default.
+                                            pageTransitionAnimation: PageTransitionAnimation
+                                                .cupertino,
+                                          );
+                                        },
+                                        style: ButtonStyle(
+                                            shape: MaterialStateProperty.all<
+                                                RoundedRectangleBorder>(
+                                                const RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius
+                                                        .all(
+                                                        Radius.circular(10)),
+                                                    side: BorderSide(
+                                                        color: Colors
+                                                            .transparent,
+                                                        width: 1)
+                                                )
+                                            ),
+                                            overlayColor: MaterialStateProperty
+                                                .all(Colors.white12),
+                                            elevation: MaterialStateProperty
+                                                .all(0),
+                                            shadowColor: MaterialStateProperty
+                                                .all(Colors.transparent),
+                                            backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
+
+                                            foregroundColor: MaterialStateProperty
+                                                .all(Colors.black),
+                                            // padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
+                                            textStyle: MaterialStateProperty
+                                                .all(
+                                                const TextStyle(fontSize: 30))),
+                                        child: Text(
+                                          profilePage?.body.buttons.savedCards.data as String ,
+                                          style: TextStyle(
+                                            fontFamily: getTranslated(context, "fontFamilyBody")!,
+                                            color: Color(int.parse(profilePage?.body.buttons.savedCards.color as String)),
+                                            fontSize: lng?.header3.size.toDouble(),
+                                            fontWeight: FontWeight.w300,),
+                                          textAlign: TextAlign.center,),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(3.0),
+                                    child: SizedBox(
+                                      height: 60,
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          PersistentNavBarNavigator
+                                              .pushNewScreen(
+                                            context,
+                                            screen: MyRewards(
+                                                layOut: widget.layOut),
+                                            withNavBar: true,
+                                            // OPTIONAL VALUE. True by default.
+                                            pageTransitionAnimation: PageTransitionAnimation
+                                                .cupertino,
+                                          );
+                                        },
+                                        style: ButtonStyle(
+                                            shape: MaterialStateProperty.all<
+                                                RoundedRectangleBorder>(
+                                                const RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius
+                                                        .all(
+                                                        Radius.circular(10)),
+                                                    side: BorderSide(
+                                                        color: Colors
+                                                            .transparent,
+                                                        width: 1)
+                                                )
+                                            ),
+                                            overlayColor: MaterialStateProperty
+                                                .all(Colors.white12),
+                                            elevation: MaterialStateProperty
+                                                .all(0),
+                                            shadowColor: MaterialStateProperty
+                                                .all(Colors.transparent),
+                                            backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
+
+                                            foregroundColor: MaterialStateProperty
+                                                .all(Colors.black),
+                                            padding: MaterialStateProperty.all(
+                                                const EdgeInsets.only(
+                                                    top: 10, bottom: 10)),
+                                            textStyle: MaterialStateProperty
+                                                .all(
+                                                const TextStyle(fontSize: 30))),
+                                        child: Text(
+                                          profilePage?.body.buttons.loyalty.data as String ,
+                                          style: TextStyle(
+                                            fontFamily: getTranslated(context, "fontFamilyBody")!,
+                                            color: Color(int.parse(profilePage?.body.buttons.signOut.color as String)),
+                                            fontSize: lng?.header3.size.toDouble(),
+                                            fontWeight: FontWeight.w300,),
+                                          textAlign: TextAlign.center,),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(3.0),
+                                    child: SizedBox(
+                                      height: 60,
+
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          PersistentNavBarNavigator
+                                              .pushNewScreen(
+                                            context,
+                                            screen: HelpPage(),
+                                            withNavBar: true,
+                                            // OPTIONAL VALUE. True by default.
+                                            pageTransitionAnimation: PageTransitionAnimation
+                                                .cupertino,
+                                          );
+                                        },
+                                        style: ButtonStyle(
+                                            shape: MaterialStateProperty.all<
+                                                RoundedRectangleBorder>(
+                                                const RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius
+                                                        .all(
+                                                        Radius.circular(10)),
+                                                    side: BorderSide(
+                                                        color: Colors
+                                                            .transparent,
+                                                        width: 1)
+                                                )
+                                            ),
+                                            overlayColor: MaterialStateProperty
+                                                .all(Colors.white12),
+                                            elevation: MaterialStateProperty
+                                                .all(0),
+                                            shadowColor: MaterialStateProperty
+                                                .all(Colors.transparent),
+                                            backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
+
+                                            foregroundColor: MaterialStateProperty
+                                                .all(Colors.black),
+                                            padding: MaterialStateProperty.all(
+                                                const EdgeInsets.only(
+                                                  top: 10, bottom: 10,)),
+                                            textStyle: MaterialStateProperty
+                                                .all(
+                                                const TextStyle(fontSize: 30))),
+                                        child: Text(
+                                          profilePage?.body.buttons.help.data as String ,
+                                          style: TextStyle(
+                                            fontFamily: getTranslated(context, "fontFamilyBody")!,
+                                            color: Color(int.parse(profilePage?.body.buttons.help.color as String)),
+                                            fontSize: lng?.header3.size.toDouble(),
+                                            fontWeight: FontWeight.w300,),
+                                          textAlign: TextAlign.center,),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(3.0),
+                                    child: SizedBox(
+                                      height: 60,
+
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          Provider.of<AuthProvider>(context, listen: false).logOutUserDetailsLocally().then((value) {
+                                            SnackbarGenerator(context).snackBarGeneratorToast("User Logged out successfully",);
+
+                                          });
+                                        },
+                                        style: ButtonStyle(
+                                            shape: MaterialStateProperty.all<
+                                                RoundedRectangleBorder>(
+                                                const RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius
+                                                        .all(
+                                                        Radius.circular(10)),
+                                                    side: BorderSide(
+                                                        color: Colors
+                                                            .transparent,
+                                                        width: 1)
+                                                )
+                                            ),
+                                            overlayColor: MaterialStateProperty
+                                                .all(Colors.black12),
+                                            elevation: MaterialStateProperty
+                                                .all(0),
+                                            shadowColor: MaterialStateProperty
+                                                .all(Colors.transparent),
+                                            backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
+
+                                            foregroundColor: MaterialStateProperty
+                                                .all(Colors.black),
+                                            padding: MaterialStateProperty.all(
+                                                const EdgeInsets.only(
+                                                  top: 10, bottom: 10,)),
+                                            textStyle: MaterialStateProperty
+                                                .all(
+                                                const TextStyle(fontSize: 30))),
+                                        child: Text(
+                                          profilePage?.body.buttons.signOut.data as String ,
+                                          style: TextStyle(
+                                            fontFamily: getTranslated(context, "fontFamilyBody")!,
+                                            color: Color(int.parse(profilePage?.body.buttons.signOut.color as String)),
+                                            fontSize: lng?.header3.size.toDouble(),
+                                            fontWeight: FontWeight.w300,),
+                                          textAlign: TextAlign.center,),
+
+                                        // Text(
+                                        //   getTranslated(context, "sighOut")!,
+                                        //   style: TextStyle(
+                                        //     fontFamily: getTranslated(
+                                        //         context, "fontFamilyBody")!,
+                                        //     color: Colors.white,
+                                        //     fontSize: 17,
+                                        //     fontWeight: FontWeight.w300,),
+                                        //   textAlign: TextAlign.center,),
+                                      ),
+                                    ),
+                                  ),
                                 ),
 
 
                               ],
                             ),
-                          ),
 
-                          /// - Buttons
-                          Visibility(
-                            visible: !isKeyboardVisible,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Expanded(
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(3.0),
-                                          child: SizedBox(
-                                            height: 60,
-                                            // width: 130,
-                                            child: ElevatedButton(
-                                              onPressed: () {
-                                                PersistentNavBarNavigator.pushNewScreen(
-                                                  context,
-                                                  screen: OrderHistory(),
-                                                  withNavBar: true,
-                                                  // OPTIONAL VALUE. True by default.
-                                                  pageTransitionAnimation: PageTransitionAnimation
-                                                      .cupertino,
-                                                );
-                                              },
-                                              style: ButtonStyle(
-                                                  shape: MaterialStateProperty.all<
-                                                      RoundedRectangleBorder>(
-                                                      const RoundedRectangleBorder(
-                                                          borderRadius: BorderRadius
-                                                              .all(
-                                                              Radius.circular(10)),
-                                                          side: BorderSide(
-                                                              color: Colors
-                                                                  .transparent,
-                                                              width: 1)
-                                                      )
-                                                  ),
-                                                  overlayColor: MaterialStateProperty.all(Colors.white12),
-                                                  elevation: MaterialStateProperty.all(0),
-                                                  shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                                  backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
-                                                  // backgroundColor: MaterialStateProperty.all(Colors.black),
-                                                  foregroundColor: MaterialStateProperty.all(Colors.black),
-                                                  padding: MaterialStateProperty.all(
-                                                      const EdgeInsets.only(
-                                                        top: 10, bottom: 10,)),
-                                                  textStyle: MaterialStateProperty.all(
-                                                      const TextStyle(fontSize: 30))),
-                                              child: Text(
-                                                profilePage?.body.buttons.orderHistory.data as String ,
-                                                style: TextStyle(
-                                                  fontFamily: getTranslated(context, "fontFamilyBody")!,
-                                                  color: Color(int.parse(profilePage?.body.buttons.orderHistory.color as String)),
-                                                  fontSize: lng?.header3.size.toDouble(),
-                                                  fontWeight: FontWeight.w300,),
-                                                textAlign: TextAlign.center,),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(3.0),
-                                          child: SizedBox(
-                                            height: 60,
-                                            // width: 130,
-                                            child: ElevatedButton(
-                                              onPressed: () {
-                                                PersistentNavBarNavigator
-                                                    .pushNewScreen(
-                                                  context,
-                                                  screen: SavedAddress(),
-                                                  withNavBar: true,
-                                                  // OPTIONAL VALUE. True by default.
-                                                  pageTransitionAnimation: PageTransitionAnimation
-                                                      .cupertino,
-                                                );
-                                              },
-                                              style: ButtonStyle(
-                                                  shape: MaterialStateProperty.all<
-                                                      RoundedRectangleBorder>(
-                                                      const RoundedRectangleBorder(
-                                                          borderRadius: BorderRadius
-                                                              .all(
-                                                              Radius.circular(10)),
-                                                          side: BorderSide(
-                                                              color: Colors
-                                                                  .transparent,
-                                                              width: 1)
-                                                      )
-                                                  ),
-                                                  overlayColor: MaterialStateProperty
-                                                      .all(Colors.white12),
-                                                  elevation: MaterialStateProperty
-                                                      .all(0),
-                                                  shadowColor: MaterialStateProperty
-                                                      .all(Colors.transparent),
-                                                  backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
-
-                                                  foregroundColor: MaterialStateProperty
-                                                      .all(Colors.black),
-                                                  padding: MaterialStateProperty.all(
-                                                      const EdgeInsets.only(
-                                                        top: 10, bottom: 10,)),
-                                                  textStyle: MaterialStateProperty
-                                                      .all(
-                                                      const TextStyle(fontSize: 30))),
-                                              child: Text(
-                                                profilePage?.body.buttons.savedAddress.data as String ,
-                                                style: TextStyle(
-                                                  fontFamily: getTranslated(context, "fontFamilyBody")!,
-                                                  color: Color(int.parse(profilePage?.body.buttons.savedAddress.color as String)),
-                                                  fontSize: lng?.header3.size.toDouble(),
-                                                  fontWeight: FontWeight.w300,),
-                                                textAlign: TextAlign.center,),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(3.0),
-                                          child: SizedBox(
-                                            height: 60,
-                                            // width: 130,
-                                            child: ElevatedButton(
-                                              onPressed: () {
-                                                PersistentNavBarNavigator
-                                                    .pushNewScreen(
-                                                  context,
-                                                  screen: SavedCards(),
-                                                  withNavBar: true,
-                                                  // OPTIONAL VALUE. True by default.
-                                                  pageTransitionAnimation: PageTransitionAnimation
-                                                      .cupertino,
-                                                );
-                                              },
-                                              style: ButtonStyle(
-                                                  shape: MaterialStateProperty.all<
-                                                      RoundedRectangleBorder>(
-                                                      const RoundedRectangleBorder(
-                                                          borderRadius: BorderRadius
-                                                              .all(
-                                                              Radius.circular(10)),
-                                                          side: BorderSide(
-                                                              color: Colors
-                                                                  .transparent,
-                                                              width: 1)
-                                                      )
-                                                  ),
-                                                  overlayColor: MaterialStateProperty
-                                                      .all(Colors.white12),
-                                                  elevation: MaterialStateProperty
-                                                      .all(0),
-                                                  shadowColor: MaterialStateProperty
-                                                      .all(Colors.transparent),
-                                                  backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
-
-                                                  foregroundColor: MaterialStateProperty
-                                                      .all(Colors.black),
-                                                  // padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
-                                                  textStyle: MaterialStateProperty
-                                                      .all(
-                                                      const TextStyle(fontSize: 30))),
-                                              child: Text(
-                                                profilePage?.body.buttons.savedCards.data as String ,
-                                                style: TextStyle(
-                                                  fontFamily: getTranslated(context, "fontFamilyBody")!,
-                                                  color: Color(int.parse(profilePage?.body.buttons.savedCards.color as String)),
-                                                  fontSize: lng?.header3.size.toDouble(),
-                                                  fontWeight: FontWeight.w300,),
-                                                textAlign: TextAlign.center,),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Expanded(
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(3.0),
-                                          child: SizedBox(
-                                            height: 60,
-                                            child: ElevatedButton(
-                                              onPressed: () {
-                                                PersistentNavBarNavigator
-                                                    .pushNewScreen(
-                                                  context,
-                                                  screen: MyRewards(
-                                                      layOut: widget.layOut),
-                                                  withNavBar: true,
-                                                  // OPTIONAL VALUE. True by default.
-                                                  pageTransitionAnimation: PageTransitionAnimation
-                                                      .cupertino,
-                                                );
-                                              },
-                                              style: ButtonStyle(
-                                                  shape: MaterialStateProperty.all<
-                                                      RoundedRectangleBorder>(
-                                                      const RoundedRectangleBorder(
-                                                          borderRadius: BorderRadius
-                                                              .all(
-                                                              Radius.circular(10)),
-                                                          side: BorderSide(
-                                                              color: Colors
-                                                                  .transparent,
-                                                              width: 1)
-                                                      )
-                                                  ),
-                                                  overlayColor: MaterialStateProperty
-                                                      .all(Colors.white12),
-                                                  elevation: MaterialStateProperty
-                                                      .all(0),
-                                                  shadowColor: MaterialStateProperty
-                                                      .all(Colors.transparent),
-                                                  backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
-
-                                                  foregroundColor: MaterialStateProperty
-                                                      .all(Colors.black),
-                                                  padding: MaterialStateProperty.all(
-                                                      const EdgeInsets.only(
-                                                          top: 10, bottom: 10)),
-                                                  textStyle: MaterialStateProperty
-                                                      .all(
-                                                      const TextStyle(fontSize: 30))),
-                                              child: Text(
-                                                profilePage?.body.buttons.loyalty.data as String ,
-                                                style: TextStyle(
-                                                  fontFamily: getTranslated(context, "fontFamilyBody")!,
-                                                  color: Color(int.parse(profilePage?.body.buttons.signOut.color as String)),
-                                                  fontSize: lng?.header3.size.toDouble(),
-                                                  fontWeight: FontWeight.w300,),
-                                                textAlign: TextAlign.center,),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(3.0),
-                                          child: SizedBox(
-                                            height: 60,
-
-                                            child: ElevatedButton(
-                                              onPressed: () {
-                                                PersistentNavBarNavigator
-                                                    .pushNewScreen(
-                                                  context,
-                                                  screen: HelpPage(),
-                                                  withNavBar: true,
-                                                  // OPTIONAL VALUE. True by default.
-                                                  pageTransitionAnimation: PageTransitionAnimation
-                                                      .cupertino,
-                                                );
-                                              },
-                                              style: ButtonStyle(
-                                                  shape: MaterialStateProperty.all<
-                                                      RoundedRectangleBorder>(
-                                                      const RoundedRectangleBorder(
-                                                          borderRadius: BorderRadius
-                                                              .all(
-                                                              Radius.circular(10)),
-                                                          side: BorderSide(
-                                                              color: Colors
-                                                                  .transparent,
-                                                              width: 1)
-                                                      )
-                                                  ),
-                                                  overlayColor: MaterialStateProperty
-                                                      .all(Colors.white12),
-                                                  elevation: MaterialStateProperty
-                                                      .all(0),
-                                                  shadowColor: MaterialStateProperty
-                                                      .all(Colors.transparent),
-                                                  backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
-
-                                                  foregroundColor: MaterialStateProperty
-                                                      .all(Colors.black),
-                                                  padding: MaterialStateProperty.all(
-                                                      const EdgeInsets.only(
-                                                        top: 10, bottom: 10,)),
-                                                  textStyle: MaterialStateProperty
-                                                      .all(
-                                                      const TextStyle(fontSize: 30))),
-                                              child: Text(
-                                                profilePage?.body.buttons.help.data as String ,
-                                                style: TextStyle(
-                                                  fontFamily: getTranslated(context, "fontFamilyBody")!,
-                                                  color: Color(int.parse(profilePage?.body.buttons.help.color as String)),
-                                                  fontSize: lng?.header3.size.toDouble(),
-                                                  fontWeight: FontWeight.w300,),
-                                                textAlign: TextAlign.center,),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(3.0),
-                                          child: SizedBox(
-                                            height: 60,
-
-                                            child: ElevatedButton(
-                                              onPressed: () {
-                                                Provider.of<AuthProvider>(context, listen: false).logOutUserDetailsLocally().then((value) {
-                                                  SnackbarGenerator(context).snackBarGeneratorToast("User Logged out successfully",);
-
-                                                });
-                                              },
-                                              style: ButtonStyle(
-                                                  shape: MaterialStateProperty.all<
-                                                      RoundedRectangleBorder>(
-                                                      const RoundedRectangleBorder(
-                                                          borderRadius: BorderRadius
-                                                              .all(
-                                                              Radius.circular(10)),
-                                                          side: BorderSide(
-                                                              color: Colors
-                                                                  .transparent,
-                                                              width: 1)
-                                                      )
-                                                  ),
-                                                  overlayColor: MaterialStateProperty
-                                                      .all(Colors.black12),
-                                                  elevation: MaterialStateProperty
-                                                      .all(0),
-                                                  shadowColor: MaterialStateProperty
-                                                      .all(Colors.transparent),
-                                                  backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
-
-                                                  foregroundColor: MaterialStateProperty
-                                                      .all(Colors.black),
-                                                  padding: MaterialStateProperty.all(
-                                                      const EdgeInsets.only(
-                                                        top: 10, bottom: 10,)),
-                                                  textStyle: MaterialStateProperty
-                                                      .all(
-                                                      const TextStyle(fontSize: 30))),
-                                              child: Text(
-                                                profilePage?.body.buttons.signOut.data as String ,
-                                                style: TextStyle(
-                                                  fontFamily: getTranslated(context, "fontFamilyBody")!,
-                                                  color: Color(int.parse(profilePage?.body.buttons.signOut.color as String)),
-                                                  fontSize: lng?.header3.size.toDouble(),
-                                                  fontWeight: FontWeight.w300,),
-                                                textAlign: TextAlign.center,),
-
-                                              // Text(
-                                              //   getTranslated(context, "sighOut")!,
-                                              //   style: TextStyle(
-                                              //     fontFamily: getTranslated(
-                                              //         context, "fontFamilyBody")!,
-                                              //     color: Colors.white,
-                                              //     fontSize: 17,
-                                              //     fontWeight: FontWeight.w300,),
-                                              //   textAlign: TextAlign.center,),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-
-
-                                    ],
-                                  ),
-
-                                ],
-                              ),
-                            ),
-                          ),
-                          /// - Screen code do not remove
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
-
-                  drawer: DrawerWidget(layOut: widget.layOut, onChanged: (value) {
-                    widget.onChanged(value);
-                  },),
-
                 )
 
-              : WarningPage(),
+                    : WarningPage(),
 
 
 
 
-          Visibility(
-            visible: showDatePicker,
-            child: Positioned(
-              left: 50,
-              top: 180,
-              right: 50,
-              bottom: 180,
-              child: SfDateRangePicker(
-                confirmText: "Okay",
-                cancelText: "Canecl",
+                Visibility(
+                  visible: showDatePicker,
+                  child: Positioned(
+                    left: 50,
+                    top: 180,
+                    right: 50,
+                    bottom: 180,
+                    child: SfDateRangePicker(
+                      confirmText: "Okay",
+                      cancelText: "Canecl",
 
-                onSubmit: (value) {
-                  if (value != null) {
-                    showDatePicker = false;
-                  }
-                },
+                      onSubmit: (value) {
+                        if (value != null) {
+                          showDatePicker = false;
+                        }
+                      },
 
-                backgroundColor: Colors.white,
-                onSelectionChanged: _onSelectionChanged,
-                selectionMode: DateRangePickerSelectionMode.single,
-                initialSelectedDate: DateTime.now().subtract(const Duration(
-                    days: 4)), //(_selectedDate!='')?DateFormat('dd/MM/yyyy').parse(_selectedDate):
-                // initialSelectedRange: PickerDateRange(DateTime.now().subtract(const Duration(days: 4)), DateTime.now().add(const Duration(days: 3))),
-              ),
-            ),
-          )
-        ],
+                      backgroundColor: Colors.white,
+                      onSelectionChanged: _onSelectionChanged,
+                      selectionMode: DateRangePickerSelectionMode.single,
+                      initialSelectedDate: DateTime.now().subtract(const Duration(
+                          days: 4)), //(_selectedDate!='')?DateFormat('dd/MM/yyyy').parse(_selectedDate):
+                      // initialSelectedRange: PickerDateRange(DateTime.now().subtract(const Duration(days: 4)), DateTime.now().add(const Duration(days: 3))),
+                    ),
+                  ),
+                )
+              ],
 
-      )
-             ;
+            );
+
+
 
 
     });
 
 
   }
+
+  bool startEdit = false;
+
+
+  void _submitForm() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      // Perform your registration logic here
+      // You can use the collected form data to create a new user account or make an API call
+
+
+    }
+  }
+
 }

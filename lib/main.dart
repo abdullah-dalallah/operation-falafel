@@ -137,7 +137,9 @@ class _MyAppState extends State<MyApp> {
 
             title: 'Flutter Demo',
             theme: ThemeData(
-
+              bottomSheetTheme: BottomSheetThemeData(
+                backgroundColor: Colors.transparent, // Set the background color to transparent
+              ),
               primarySwatch: Colors.blue,
             ),
             home: KeyboardVisibilityProvider(child: ResponsiveLayout(DesktopScaffold: DesktopScaffold(),MobileScaffold: MobileScaffold(),TabletScaffold: TabletScaffold(), ),

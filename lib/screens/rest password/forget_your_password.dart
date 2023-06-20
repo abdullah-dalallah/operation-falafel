@@ -214,8 +214,7 @@ class _ResetYourPasswordState extends State<ResetYourPassword> {
                                                               // ),
                                                             ),
                                                             child: Padding(
-                                                                        padding: const EdgeInsets.only(
-                                                                            left: 0, right: 0),
+                                                                        padding: const EdgeInsets.only(left: 0, right: 0),
                                                                         child: IconButton(
                                                                           icon:
                                                                           countryCode != null ?
