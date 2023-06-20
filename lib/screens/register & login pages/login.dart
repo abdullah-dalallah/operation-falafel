@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/providers/ProfileProviders/profile_provider.dart';
 import 'package:operation_falafel/screens/rest%20password/forget_your_password.dart';
 import 'package:operation_falafel/widgets/background.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
@@ -442,9 +443,14 @@ class _LoginState extends State<Login> {
                                               if(_controllerPassword.text.isNotEmpty && _controllerEmail.text.isNotEmpty){
                                                 Provider.of<AuthProvider>(context, listen: false).userLogin(_controllerEmail.text,_controllerPassword.text).then((response) {
                                                   if(response.statusCode==200){
+                                                    String userToken =  Provider.of<AuthProvider>(context, listen: false).loggedInUser!.token!;
+                                                    Provider.of<ProfileProvider>(context, listen: false).getUserInfo(userToken, _controllerEmail.text, _controllerPassword.text).then((res){
+                                                    if(response.statusCode==200) {
+                                                      SnackbarGenerator(context).snackBarGeneratorToast("User Logged in successfully",);
+                                                      Navigator.pop(context);
+                                                    }
+                                                    });
 
-                                                    SnackbarGenerator(context).snackBarGeneratorToast("User Logged in successfully",);
-                                                    Navigator.pop(context);
 
 
                                                   }else{

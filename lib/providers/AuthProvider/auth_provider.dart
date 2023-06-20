@@ -10,6 +10,8 @@ import 'models/logged_in_user.dart';
 
 class AuthProvider with ChangeNotifier{
    LoggedInUser? loggedInUser ;
+   String? email ;
+   String? password;
 
   Future<Response<dynamic>> userLogin( String email, String password) async {
     var url = '${Strings.baseAppAuthUrl}auth/login';
@@ -29,7 +31,7 @@ class AuthProvider with ChangeNotifier{
 
       notifyListeners();
 
-      saveUserDetailsLocally(loggedInUser!);
+      saveUserDetailsLocally(loggedInUser!, email, password);
 
 
 
@@ -41,10 +43,12 @@ class AuthProvider with ChangeNotifier{
     }
   }
 
-  Future<void> saveUserDetailsLocally(LoggedInUser user) async {
+  Future<void> saveUserDetailsLocally(LoggedInUser user,String email, String password) async {
 
     SharedPreferences prefs = await GetSharedPref().getSharedPref();
     prefs.setString(Keys.savedLoggedInUserKey, json.encode(user.toJson()));
+    prefs.setString(Keys.emailKey, email);
+    prefs.setString(Keys.passwordKey, password);
 
   }
 
@@ -53,6 +57,8 @@ class AuthProvider with ChangeNotifier{
     SharedPreferences prefs = await GetSharedPref().getSharedPref();
     if(prefs.getString(Keys.savedLoggedInUserKey,)!="{}" && prefs.getString(Keys.savedLoggedInUserKey,)!=null){
       loggedInUser=   LoggedInUser.fromJson(json.decode(prefs.getString(Keys.savedLoggedInUserKey,)??"{}"));
+      email =prefs.getString(Keys.emailKey);
+      password =prefs.getString(Keys.passwordKey);
       notifyListeners();
       return loggedInUser;
     }
@@ -91,7 +97,7 @@ class AuthProvider with ChangeNotifier{
 
       notifyListeners();
 
-      saveUserDetailsLocally(loggedInUser!);
+      saveUserDetailsLocally(loggedInUser!, email, password);
 
 
 

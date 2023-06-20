@@ -1954,6 +1954,11 @@ class _MainMenuState extends State<MainMenu> {
 
     Provider.of<AuthProvider>(context, listen: false).getSavedUserDetailsLocally().then((loggedInUser) {
       if(loggedInUser !=null){
+
+        String email =  Provider.of<AuthProvider>(context, listen: false).email!;
+        String password =  Provider.of<AuthProvider>(context, listen: false).password!;
+        Provider.of<ProfileProvider>(context,listen: false).getUserInfo(loggedInUser.token!, email, password);
+
         Provider.of<ProfileProvider>(context,listen: false).getUserSavedAddress(loggedInUser.token!);
       }
       else{

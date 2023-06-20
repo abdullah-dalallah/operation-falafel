@@ -7,14 +7,15 @@ import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/ResetPassw
 import 'package:operation_falafel/models/AppThemeModels/FontSizes/Language/lang.dart';
 import 'package:operation_falafel/providers/AppTheme/theme_provider.dart';
 import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
+import 'package:operation_falafel/widgets/background.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:provider/provider.dart';
 
 class ForgetPassword extends StatefulWidget{
   String? otp ;
-  final String forgetOrupdateFlag ;
+  final String forgetOrUpdateFlag ;
   String? phoneNumber ;
-  ForgetPassword({super.key, this.otp, required this.forgetOrupdateFlag,  this.phoneNumber});
+  ForgetPassword({super.key, this.otp, required this.forgetOrUpdateFlag,  this.phoneNumber});
 
   @override
   State<ForgetPassword> createState() => _ForgetPasswordState();
@@ -68,15 +69,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
         (loadingDesign)?
         Stack(
         children: [
-          Positioned.fill(
-            child: Image.asset(
-              'assets/images/background.png',
-              fit: BoxFit.cover,
-            ),
-          ),
-
+          Background(),
           Scaffold(
-            resizeToAvoidBottomInset: false,
+            // resizeToAvoidBottomInset: false,
             // Prevents resizing when the keyboard appears
             backgroundColor: Colors.transparent,
             extendBodyBehindAppBar: true,
@@ -100,7 +95,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               ),
               backgroundColor: Colors.transparent,
               elevation: 0,
-              title: Text("${widget.otp}/  ${widget.phoneNumber}")
+              // title: Text("${widget.otp}/  ${widget.phoneNumber}")
               // centerTitle: true,
               // title:Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),),
               // actions: [],
@@ -165,7 +160,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
 
                             /// - current Password
                             Visibility(
-                              visible: (widget.forgetOrupdateFlag==Strings.forgetPassword)?false:true,
+                              visible: (widget.forgetOrUpdateFlag==Strings.forgetPassword)?false:true,
                               child: Column(
                                 children: [
                                   Padding(
@@ -849,7 +844,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
       print(confirmNewPasswordController.text);
 
 
-      if(widget.forgetOrupdateFlag==Strings.forgetPassword){
+      if(widget.forgetOrUpdateFlag==Strings.forgetPassword){
         Provider.of<AuthProvider>(context, listen: false).resetPasswordByOTP(mobileNumber:widget.phoneNumber!, OTP: widget.otp!,newPassword: newPasswordController.text, confirmPassword: confirmNewPasswordController.text )
             .then((res) {
           if(res.statusCode ==200){
@@ -881,7 +876,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
 
         });
       }
-      else if(widget.forgetOrupdateFlag ==Strings.updatePassword)
+      else if(widget.forgetOrUpdateFlag ==Strings.updatePassword)
       {
         var authInfo = Provider.of<AuthProvider>(context, listen: false);
         Provider.of<AuthProvider>(context, listen: false).resetPasswordByOldPassword(userToken: authInfo.loggedInUser!.token!,newPassword: newPasswordController.text, confirmPassword: confirmNewPasswordController.text,oldPassword:currentPasswordController.text )

@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:operation_falafel/providers/ProfileProviders/models/saved_address_list_res_model.dart';
-
+import 'package:operation_falafel/providers/ProfileProviders/models/user_info_model.dart';
+import 'package:intl/intl.dart';
 import '../../data/keys.dart';
 import '../../data/strings.dart';
 
@@ -195,5 +196,73 @@ class ProfileProvider with ChangeNotifier {
     }
   }
 
+
+
+  /// - User info
+  UserInfoModel? _userInfoModel ;
+
+
+  UserInfoModel? get userInfoModel => _userInfoModel;
+
+  Future<Response<dynamic>> getUserInfo(String userToken,String email, String password) async {
+    print("getting user info Saved from Online Server...");
+    var url = '${Strings.baseAppAuthUrl}user';
+    print(url);
+    Map<String, String> header = <String, String>{};
+    header.putIfAbsent(Keys.acceptKey, () => "application/json");
+    header.putIfAbsent(Keys.x_of_awjKey, () => "${userToken}");
+    header.putIfAbsent(Keys.authorizationKey, () => "Bearer " + userToken!);
+    Map<String, String> body = <String, String>{};
+    body.putIfAbsent(Keys.emailKey, () => email);
+    body.putIfAbsent(Keys.passwordKey, () => password);
+
+
+
+    var dio = Dio();
+    try {
+
+      var response = await dio.get(url,data: body, options: Options(headers: header));// options: Options(headers: header)
+
+      if(response.statusCode ==200){
+
+        if(response.data[Keys.successKey]!=null){
+           _userInfoModel=  UserInfoModel.fromJson(response.data);
+           updateForm("${_userInfoModel!.body!.name!}", "${_userInfoModel!.body!.email}", "${_userInfoModel!.body!.mobile}" , _userInfoModel!.body!.dateOfBirth!, _userInfoModel!.body!.gender!);
+          notifyListeners();
+          print("Saved User fetched From Online Server!");
+
+        }
+
+      }
+      notifyListeners();
+      return response;
+    } on DioError catch (e) {
+      print(e.response);
+
+      return e.response!;
+
+    }
+  }
+
+  TextEditingController nameController =  TextEditingController();
+  TextEditingController mobileController =  TextEditingController();
+  TextEditingController emailController =  TextEditingController();
+  TextEditingController birthDateController =  TextEditingController();
+  String? selectedGenderValue  ;
+
+  void updateForm(String name, String email, String mobile , DateTime birthDate, String gender) {
+    nameController.text = name;
+    String tempMobile = mobile.substring(3,mobile.length);
+    mobileController.text = tempMobile;
+    emailController.text = email;
+    updateGender(gender);
+    birthDateController.text = DateFormat('yyyy-MM-dd').format(birthDate ).toString();
+    notifyListeners();
+  }
+
+  void updateGender(String gender){
+    selectedGenderValue =gender ;
+    notifyListeners();
+  }
 
 }

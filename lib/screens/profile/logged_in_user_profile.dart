@@ -55,6 +55,8 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
     countryCode= CountryCode(code: "AE",name: "United Arab Emirates",dialCode: "+971" );
 
 
+
+
   }
 
 
@@ -190,18 +192,21 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
 
 
   final List<String> gender = [
-    "Male",
-    "Female",
+    "male",
+    "female",
   ];
-  dynamic? selectedValue;
+  dynamic? selectedValue = "Male";
 
 
   bool loadingVerifyingButton =false;
   final GlobalKey<FormState> _formKey = GlobalKey();
+
+
+
   @override
   Widget build(BuildContext context) {
     final bool isKeyboardVisible = KeyboardVisibilityProvider.isKeyboardVisible(context);
-    return Consumer2<ThemeProvider, AuthProvider>(builder: (context, appTheme,authProvider, child)
+    return Consumer3<ThemeProvider, AuthProvider,ProfileProvider>(builder: (context, appTheme,authProvider,profileProvider, child)
     {
       Language? lng = (Localizations
           .localeOf(context)
@@ -209,6 +214,8 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
           .appTheme.fontSizes?.en;
       ProfilePage? profilePage = appTheme.appTheme.designPerPage?.profilePage;
       bool loadingDesign = profilePage != null;
+       
+       
 
           return
             Stack(
@@ -262,7 +269,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                   ),
                   body: Center(
                     child: Container(
-                      constraints: BoxConstraints(maxWidth: 450,),
+                      constraints: const BoxConstraints(maxWidth: 450,),
                       child:  SingleChildScrollView(
                           physics: const NeverScrollableScrollPhysics(),
                         child: ConstrainedBox(
@@ -274,226 +281,247 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 ///- verify user
-                                ListTile(
+                                Visibility(
+                                visible:
+                                (profileProvider.userInfoModel!=null)?
+                                (profileProvider.userInfoModel!.body!.verified==0)?true:false:false,
+                                  child: ListTile(
 
-                                  tileColor: Colors.amber.withOpacity(0.2),
-                                  title: Text("${getTranslated(context, "verifyYourIdentity")}", style: TextStyle(
-                                      fontFamily: getTranslated(context, "fontFamilyBody"),
-                                      color:  Colors.amber,
-                                      fontSize: double.parse(getTranslated(context, "cartpageHeader2")!),
-                                      fontWeight: FontWeight.bold),),
-                                  subtitle:  Text("${getTranslated(context, "verifyYourIdentityMsg")}", style: TextStyle(
-                                      fontFamily: getTranslated(context, "fontFamilyBody"),
-                                      color:  Colors.white54,
-                                      fontSize: double.parse(getTranslated(context, "cartpageHeader3")!),
-                                      fontWeight: FontWeight.w300),maxLines: 1,
-                                    textAlign: TextAlign.left,),
-                                  trailing:
-                                  (!loadingVerifyingButton)?
-                                  TextButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        loadingVerifyingButton =true;
-                                      });
-                                      authProvider.verifyingUserByRequestingOTP(userToken: authProvider.loggedInUser!.token!).then((res) {
-                                        if(res.statusCode == 200){
-                                          SnackbarGenerator(context).snackBarGeneratorToast("${res.data[Keys.bodyKey]}",);
-                                          PersistentNavBarNavigator.pushNewScreen(
-                                            context,
-                                            screen: VerifyUserScreen(
-                                              layOut: widget.layOut, (value) {
-                                              widget.onChanged(value);
-                                            },
-                                              verifyPurpose: Strings.registrationPurpose,
-
-                                            ),
-                                            withNavBar: true,
-                                            // OPTIONAL VALUE. True by default.
-                                            pageTransitionAnimation: PageTransitionAnimation
-                                                .cupertino,
-                                          );
-                                        }
-                                        else{
-
-                                        }
-
+                                    tileColor: Colors.amber.withOpacity(0.2),
+                                    title: Text("${getTranslated(context, "verifyYourIdentity")}", style: TextStyle(
+                                        fontFamily: getTranslated(context, "fontFamilyBody"),
+                                        color:  Colors.amber,
+                                        fontSize: double.parse(getTranslated(context, "cartpageHeader2")!),
+                                        fontWeight: FontWeight.bold),),
+                                    subtitle:  Text("${getTranslated(context, "verifyYourIdentityMsg")}", style: TextStyle(
+                                        fontFamily: getTranslated(context, "fontFamilyBody"),
+                                        color:  Colors.white54,
+                                        fontSize: double.parse(getTranslated(context, "cartpageHeader3")!),
+                                        fontWeight: FontWeight.w300),maxLines: 1,
+                                      textAlign: TextAlign.left,),
+                                    trailing:
+                                    (!loadingVerifyingButton)?
+                                    TextButton(
+                                      onPressed: () {
                                         setState(() {
-                                          loadingVerifyingButton =false;
+                                          loadingVerifyingButton =true;
                                         });
-                                      });
+                                        authProvider.verifyingUserByRequestingOTP(userToken: authProvider.loggedInUser!.token!).then((res) {
+                                          if(res.statusCode == 200){
+                                            SnackbarGenerator(context).snackBarGeneratorToast("${res.data[Keys.bodyKey]}",);
+                                            PersistentNavBarNavigator.pushNewScreen(
+                                              context,
+                                              screen: VerifyUserScreen(
+                                                layOut: widget.layOut, (value) {
+                                                widget.onChanged(value);
+                                              },
+                                                verifyPurpose: Strings.registrationPurpose,
+
+                                              ),
+                                              withNavBar: true,
+                                              // OPTIONAL VALUE. True by default.
+                                              pageTransitionAnimation: PageTransitionAnimation
+                                                  .cupertino,
+                                            );
+                                          }
+                                          else{
+
+                                          }
+
+                                          setState(() {
+                                            loadingVerifyingButton =false;
+                                          });
+                                        });
 
 
 
-                                    },
-                                    style: TextButton.styleFrom(
-                                      foregroundColor: Colors.amber,
-                                      backgroundColor: Colors.transparent,
-                                      padding: const EdgeInsets.symmetric(
-                                        vertical: 0.0,
-                                        horizontal: 0.0,
-                                      ),),
-                                    child: const Text(
-                                      'Verify',
-                                      style: TextStyle(
-                                        fontSize: 15.0,
-                                        color: Colors.amber,
+                                      },
+                                      style: TextButton.styleFrom(
+                                        foregroundColor: Colors.amber,
+                                        backgroundColor: Colors.transparent,
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 0.0,
+                                          horizontal: 0.0,
+                                        ),),
+                                      child: const Text(
+                                        'Verify',
+                                        style: TextStyle(
+                                          fontSize: 15.0,
+                                          color: Colors.amber,
+                                        ),
                                       ),
-                                    ),
-                                  ):
-                                  const  SizedBox(
-                                    height: 20,
-                                    width: 20,
-                                    child: CircularProgressIndicator(
-                                      color: Colors.amber,
-                                      strokeWidth: 2,
-                                    ),
-                                  )
-                                  ,
+                                    ):
+                                    const  SizedBox(
+                                      height: 20,
+                                      width: 20,
+                                      child: CircularProgressIndicator(
+                                        color: Colors.amber,
+                                        strokeWidth: 2,
+                                      ),
+                                    )
+                                    ,
+                                  ),
                                 ),
 
 
 
                                 /// - Image & Name & Edit
                                 const SizedBox(height: 20,),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    /// - Picture
-                                    Stack(
-                                      alignment: Alignment.topRight,
-                                      children: [
-                                        Container(
-                                          padding: EdgeInsets.all(0),
-                                          width: 110,
-                                          height: 110,
-                                          decoration: BoxDecoration(
-                                            color: Colors.black.withOpacity(0.4),
-                                            borderRadius: const BorderRadius.only(
-                                              topRight: Radius.circular(100),
-                                              bottomLeft: Radius.circular(100),
-                                              topLeft: Radius.circular(100),
-                                              bottomRight: Radius.circular(100),
-                                            ),
-                                            border: Border.all(
-                                              width: 2,
-                                              color: Colors.amber,
-                                              style: BorderStyle.solid,
-                                            ),
-                                          ),
-                                          child: ClipRRect(
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 18.0, right:18),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      /// - Picture
+                                      Stack(
+                                        alignment: Alignment.topRight,
+                                        children: [
+                                          Container(
+                                            padding: EdgeInsets.all(0),
+                                            width: 110,
+                                            height: 110,
+                                            decoration: BoxDecoration(
+                                              color: Colors.black.withOpacity(0.4),
                                               borderRadius: const BorderRadius.only(
-                                                topLeft: Radius.circular(100),
                                                 topRight: Radius.circular(100),
                                                 bottomLeft: Radius.circular(100),
+                                                topLeft: Radius.circular(100),
                                                 bottomRight: Radius.circular(100),
-
                                               ),
-                                              child: Image.asset(
-                                                "assets/images/tempuser.gif", height: 100,
-                                                width: 100,
-                                                fit: BoxFit.cover,)),
-                                        ),
-                                        Positioned(
-                                          child: SizedBox(
-                                            width: 40,
-                                            height: 40,
+                                              border: Border.all(
+                                                width: 2,
+                                                color: Colors.amber,
+                                                style: BorderStyle.solid,
+                                              ),
+                                            ),
+                                            child: ClipRRect(
+                                                borderRadius: const BorderRadius.only(
+                                                  topLeft: Radius.circular(100),
+                                                  topRight: Radius.circular(100),
+                                                  bottomLeft: Radius.circular(100),
+                                                  bottomRight: Radius.circular(100),
 
-                                            child: ElevatedButton(
-                                                onPressed: () {
+                                                ),
+                                                child: Image.asset(
+                                                  "assets/images/tempuser.gif", height: 100,
+                                                  width: 100,
+                                                  fit: BoxFit.cover,)),
+                                          ),
+                                          Positioned(
+                                            child: SizedBox(
+                                              width: 40,
+                                              height: 40,
 
-                                                },
-                                                style: ButtonStyle(
-                                                    shape: MaterialStateProperty.all<
-                                                        RoundedRectangleBorder>(
-                                                        const RoundedRectangleBorder(
-                                                            borderRadius: BorderRadius.all(
-                                                                Radius.circular(100)),
-                                                            side: BorderSide(
-                                                                color: Colors.transparent,
-                                                                width: 1)
-                                                        )
+                                              child: ElevatedButton(
+                                                  onPressed: () {
+
+                                                  },
+                                                  style: ButtonStyle(
+                                                      shape: MaterialStateProperty.all<
+                                                          RoundedRectangleBorder>(
+                                                          const RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius.all(
+                                                                  Radius.circular(100)),
+                                                              side: BorderSide(
+                                                                  color: Colors.transparent,
+                                                                  width: 1)
+                                                          )
+                                                      ),
+                                                      overlayColor: MaterialStateProperty.all(
+                                                          Colors.white30),
+                                                      elevation: MaterialStateProperty.all(0),
+                                                      shadowColor: MaterialStateProperty.all(
+                                                          Colors.transparent),
+                                                      backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.avatarImage.editButton.backGroundColor as String))),
+                                                      // backgroundColor: MaterialStateProperty.all(Colors.black),
+                                                      foregroundColor: MaterialStateProperty
+                                                          .all(Colors.white),
+                                                      padding: MaterialStateProperty.all(
+                                                          const EdgeInsets.all(0)),
+                                                      textStyle: MaterialStateProperty.all(
+                                                          const TextStyle(fontSize: 30))),
+                                                  child:
+                                                  Image.network(profilePage?.body.avatarImage.editButton.imageIcon as String)
+                                                // ImageIcon(NetworkImage(profilePage?.body.avatarImage.editButton.imageIcon as String)  )
+                                                // const Icon(
+                                                //   Icons.mode_edit_outline_outlined,
+                                                //   color: Colors.white,)
+                                              ),
+                                            ),
+                                          ),
+
+
+                                        ],
+                                      ),
+                                      Expanded(
+                                        child: Column  (
+                                          children: [
+                                            (profileProvider.userInfoModel!=null)?
+                                            Text("${profileProvider.userInfoModel!.body!.name}", style: TextStyle(
+                                                fontFamily:lng?.titleHeader1.textFamily,
+
+                                                color: Color(int.parse(profilePage?.body.name.color as String)),
+                                                fontSize: lng?.titleHeader1.size.toDouble()
+                                            ),maxLines: 1)
+                                            : const  SizedBox(
+                                              height: 20,
+                                              width: 20,
+                                              child: CircularProgressIndicator(
+                                                color: Colors.amber,
+                                                strokeWidth: 2,
+                                              ),
+                                            ),
+                                            
+                                            SizedBox(
+                                              child: DecoratedBox(
+                                                decoration: const BoxDecoration(
+                                                  border: Border(
+                                                    bottom: BorderSide(color: Colors.white),
+                                                  ),
+                                                ),
+                                                child: TextButton(
+                                                  style: TextButton.styleFrom(
+                                                    foregroundColor: Colors.white,
+                                                  ),
+                                                  onPressed: () {
+                                                    if(startEdit== true){
+                                                      _submitForm();
+                                                    }
+                                                    setState(() {
+                                                      startEdit = !startEdit;
+                                                    });
+
+                                                  },
+                                                  child: (startEdit)?
+                                                  Text("SAVE PROFILE",
+                                                    style: TextStyle(
+                                                        fontFamily:lng?.header2.textFamily,
+                                                        color: Color(int.parse(profilePage?.body.editProfileButton.color as String)),
+                                                        fontSize: lng?.header2.size.toDouble()
                                                     ),
-                                                    overlayColor: MaterialStateProperty.all(
-                                                        Colors.white30),
-                                                    elevation: MaterialStateProperty.all(0),
-                                                    shadowColor: MaterialStateProperty.all(
-                                                        Colors.transparent),
-                                                    backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.avatarImage.editButton.backGroundColor as String))),
-                                                    // backgroundColor: MaterialStateProperty.all(Colors.black),
-                                                    foregroundColor: MaterialStateProperty
-                                                        .all(Colors.white),
-                                                    padding: MaterialStateProperty.all(
-                                                        const EdgeInsets.all(0)),
-                                                    textStyle: MaterialStateProperty.all(
-                                                        const TextStyle(fontSize: 30))),
-                                                child:
-                                                Image.network(profilePage?.body.avatarImage.editButton.imageIcon as String)
-                                              // ImageIcon(NetworkImage(profilePage?.body.avatarImage.editButton.imageIcon as String)  )
-                                              // const Icon(
-                                              //   Icons.mode_edit_outline_outlined,
-                                              //   color: Colors.white,)
-                                            ),
-                                          ),
-                                        ),
+                                                  ):
+                                                  Text(
+                                                    profilePage?.body.editProfileButton.data as String,
+                                                    style: TextStyle(
+                                                        fontFamily:lng?.header2.textFamily,
+                                                        color: Color(int.parse(profilePage?.body.editProfileButton.color as String)),
+                                                        fontSize: lng?.header2.size.toDouble()
+                                                    ),
+                                                  )
+                                                  ,
 
 
-                                      ],
-                                    ),
-                                    Column  (
-                                      children: [
-                                        Text("ABDULLH", style: TextStyle(
-                                            fontFamily:lng?.titleHeader1.textFamily,
-                                            color: Color(int.parse(profilePage?.body.name.color as String)),
-                                            fontSize: lng?.titleHeader1.size.toDouble()
-                                        ),),
-                                        SizedBox(
-                                          child: DecoratedBox(
-                                            decoration: const BoxDecoration(
-                                              border: Border(
-                                                bottom: BorderSide(color: Colors.white),
+                                                ),
                                               ),
                                             ),
-                                            child: TextButton(
-                                              style: TextButton.styleFrom(
-                                                foregroundColor: Colors.white,
-                                              ),
-                                              onPressed: () {
-                                                if(startEdit== true){
-                                                  _submitForm();
-                                                }
-                                                setState(() {
-                                                  startEdit = !startEdit;
-                                                });
-
-                                              },
-                                              child: (startEdit)?
-                                              Text("SAVE PROFILE",
-                                                style: TextStyle(
-                                                    fontFamily:lng?.header2.textFamily,
-                                                    color: Color(int.parse(profilePage?.body.editProfileButton.color as String)),
-                                                    fontSize: lng?.header2.size.toDouble()
-                                                ),
-                                              ):
-                                              Text(
-                                                profilePage?.body.editProfileButton.data as String,
-                                                style: TextStyle(
-                                                    fontFamily:lng?.header2.textFamily,
-                                                    color: Color(int.parse(profilePage?.body.editProfileButton.color as String)),
-                                                    fontSize: lng?.header2.size.toDouble()
-                                                ),
-                                              )
-                                              ,
-
-
-                                            ),
-                                          ),
+                                          ],
                                         ),
-                                      ],
-                                    ),
-                                  ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
 
-                                const SizedBox(height: 10,),
+                                const SizedBox(height: 50,),
 
                                 /// - Form
                                 SizedBox(
@@ -505,7 +533,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                         physics: ScrollPhysics(),
                                         shrinkWrap: true,
                                         children: [
-
+                                          
                                           /// - Name
                                           Padding(
                                             padding: const EdgeInsets.only(left: 18.0,
@@ -566,6 +594,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                     child: SizedBox(
 
                                                       child: TextFormField(
+                                                        controller: profileProvider.nameController,
                                                         enabled: startEdit,
                                                         autofocus: false,
                                                         style:const TextStyle(color: Colors.white),
@@ -782,6 +811,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                     child: SizedBox(
 
                                                       child: TextFormField(
+                                                        controller: profileProvider.mobileController,
                                                         maxLength: 9,
                                                         enabled: startEdit,
                                                         keyboardType: TextInputType.number,
@@ -956,6 +986,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                     child: SizedBox(
 
                                                       child: TextFormField(
+                                                        controller: profileProvider.emailController,
                                                         enabled: startEdit,
                                                         autofocus: false,
                                                         style: const TextStyle(
@@ -1129,7 +1160,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                       child: Stack(
                                                         children: [
                                                           TextFormField(
-                                                            controller: birthDateController,
+                                                            controller: profileProvider.birthDateController,
                                                             enabled: startEdit,
                                                             autofocus: false,
                                                             style: const TextStyle(color: Colors.white),
@@ -1426,20 +1457,20 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                         icon: const ImageIcon(AssetImage("assets/images/down.png"),),
                                                         iconDisabledColor: Colors.grey,
                                                         iconEnabledColor: Colors.white70,
-                                                        disabledHint: (selectedValue != null) ?Row(
+                                                        disabledHint: (profileProvider.selectedGenderValue != null) ?Row(
                                                           children: [
                                                             Image.network(profilePage?.body.form.gender.dropDownWidget.selectedIcon.imageIcon as String,
                                                               height:double.parse(profilePage?.body.form.gender.dropDownWidget.selectedIcon.height as String) ,
                                                               width: double.parse(profilePage?.body.form.gender.dropDownWidget.selectedIcon.width as String),),
                                                             SizedBox(width: 5,),
-                                                            Text(selectedValue,style: TextStyle(
+                                                            Text("${profileProvider.selectedGenderValue}",style: TextStyle(
                                                                 fontSize: lng?.header3.size.toDouble(),
                                                                 fontFamily: lng?.header3.textFamily,
                                                                 color: Color(int.parse(profilePage?.body.form.gender.dropDownWidget.labelText.color as String))),),
                                                           ],
                                                         ):Text("Disabled", style: TextStyle(color: Colors.grey),),
                                                         iconSize: 30,
-                                                        buttonHeight: (selectedValue != null) ? 50 : 50,
+                                                        buttonHeight: (profileProvider.selectedGenderValue != null) ? 50 : 50,
                                                         buttonPadding: const EdgeInsets.only(left: 20, right: 20),
                                                         dropdownDecoration: BoxDecoration(
                                                           color: Colors.black,
@@ -1447,24 +1478,23 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                               10),
                                                         ),
                                                         itemHeight: 30,
+                                                        value: profileProvider.selectedGenderValue,
                                                         items:
                                                         (startEdit)?
                                                         gender.map((gender) => DropdownMenuItem<dynamic>(
                                                               value: gender,
                                                               child:
                                                               Column(
-                                                                mainAxisAlignment: MainAxisAlignment
-                                                                    .center,
-                                                                crossAxisAlignment: CrossAxisAlignment
-                                                                    .start,
+                                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                                crossAxisAlignment: CrossAxisAlignment.start,
                                                                 children: [
 
                                                                   Row(
                                                                     children: [
 
-                                                                      (selectedValue != null)
+                                                                      (profileProvider.selectedGenderValue != null)
                                                                           ?
-                                                                      (selectedValue == gender)
+                                                                      (profileProvider.selectedGenderValue == gender)
                                                                           ?
                                                                       Image.network(profilePage?.body.form.gender.dropDownWidget.selectedIcon.imageIcon as String,
                                                                         height:double.parse(profilePage?.body.form.gender.dropDownWidget.selectedIcon.height as String) ,
@@ -1499,14 +1529,13 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                         },
                                                         onChanged: (value) {
                                                           //Do something when changing the item if you want.
-                                                          setState(() {
-                                                            selectedValue = value;
-                                                          });
+
+                                                            profileProvider.updateGender(value);
+
                                                         },
                                                         onSaved: (value) {
-                                                          setState(() {
-                                                            selectedValue = value;
-                                                          });
+                                                          profileProvider.updateGender(value);
+
                                                         },
                                                       ),
 
@@ -1603,7 +1632,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                                     PersistentNavBarNavigator.pushNewScreen(
                                                                       context,
                                                                       screen: ForgetPassword(
-                                                                        forgetOrupdateFlag: Strings.updatePassword,
+                                                                        forgetOrUpdateFlag: Strings.updatePassword,
 
                                                                       ),
                                                                       withNavBar: true,

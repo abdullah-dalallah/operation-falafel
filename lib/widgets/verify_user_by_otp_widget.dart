@@ -137,7 +137,7 @@ class _VerifyUserByOtpWidgetState extends State<VerifyUserByOtpWidget> {
                   String otp = _otpControllers.text;
                   PersistentNavBarNavigator.pushNewScreen(
                     context,
-                    screen: ForgetPassword(otp: "${otp}", forgetOrupdateFlag: Strings.forgetPassword, phoneNumber: widget.phoneNumber!),
+                    screen: ForgetPassword(otp: "${otp}", forgetOrUpdateFlag: Strings.forgetPassword, phoneNumber: widget.phoneNumber!),
                     withNavBar: true,
                     // OPTIONAL VALUE. True by default.
                     pageTransitionAnimation: PageTransitionAnimation
@@ -250,7 +250,7 @@ class _VerifyUserByOtpWidgetState extends State<VerifyUserByOtpWidget> {
                             String otp = _otpControllers.text;
                             PersistentNavBarNavigator.pushNewScreen(
                               context,
-                              screen: ForgetPassword(otp: "${otp}", forgetOrupdateFlag: Strings.forgetPassword , phoneNumber: widget.phoneNumber!,),
+                              screen: ForgetPassword(otp: "${otp}", forgetOrUpdateFlag: Strings.forgetPassword , phoneNumber: widget.phoneNumber!,),
                               withNavBar: true,
                               // OPTIONAL VALUE. True by default.
                               pageTransitionAnimation: PageTransitionAnimation
