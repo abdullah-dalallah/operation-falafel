@@ -6,7 +6,7 @@ import 'package:operation_falafel/widgets/Map/map_page.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
-
+import 'package:permission_handler/permission_handler.dart';
 import '../../../data/keys.dart';
 import '../../../data/snackBarGenerator.dart';
 import '../../../models/AppThemeModels/DesignPerPage/AddNewAddressPage/Add_new_address_page.dart';
@@ -42,17 +42,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
   TextEditingController _controllerArea = TextEditingController();
 
 
-  @override
-  void initState() {
-    super.initState();
 
-    String savedUserToken = Provider.of<AuthProvider>(context,listen: false).loggedInUser!.token??"";
-    Provider.of<ProfileProvider>(context,listen: false).getAddressTypesList(savedUserToken).then((value) {
-      Provider.of<ProfileProvider>(context,listen: false).getCitiesList(savedUserToken);
-    });
-
-
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -765,4 +755,38 @@ class _AddNewAddressState extends State<AddNewAddress> {
       ;
     });
   }
+
+  PermissionStatus _permissionStatus = PermissionStatus.denied;
+
+  @override
+  void initState() {
+    super.initState();
+    checkLocationPermission();
+    String savedUserToken = Provider.of<AuthProvider>(context,listen: false).loggedInUser!.token??"";
+    Provider.of<ProfileProvider>(context,listen: false).getAddressTypesList(savedUserToken).then((value) {
+      Provider.of<ProfileProvider>(context,listen: false).getCitiesList(savedUserToken);
+    });
+
+
+  }
+
+  Future<void> checkLocationPermission() async {
+    final status = await Permission.location.status;
+    if (status.isGranted) {
+      setState(() {
+        _permissionStatus = status;
+      });
+    } else {
+      requestLocationPermission();
+    }
+
+  }
+
+  Future<void> requestLocationPermission() async {
+    final status = await Permission.location.request();
+    setState(() {
+      _permissionStatus = status;
+    });
+  }
+
 }

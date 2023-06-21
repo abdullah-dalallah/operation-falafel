@@ -1153,6 +1153,49 @@
         }
       }
     },
+    "AddNewCardPage": {
+      "AppBar": {
+        "BackIcon": {
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/back_new.png",
+          "MobileSize": "30",
+          "TabletSize": "30"
+        },
+        "Title": {
+          "Data": "OPERATION:FALAFEL",
+          "Color": "0xffffffff"
+        }
+      },
+      "Body": {
+        "PageTitle": {
+          "Data": "Add Card",
+          "Color": "0xFFFFBF00"
+        },
+        "PageImage": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/of_logo.png",
+        "Form": {
+          "CardNumber": {
+            "Data": "Card Number",
+            "Color": "0xff454545"
+          },
+          "CardHolderName": {
+            "Data": "Card Holder Name",
+            "Color": "0xff454545"
+          },
+          "CVV": {
+            "Data": "CVV",
+            "Color": "0xff454545"
+          },
+          "ExpiryDate": {
+            "Data": "Expiry Date",
+            "Color": "0xff454545"
+          }
+        },
+        "AddNewCardButton": {
+          "Data": "Save Card",
+          "Color": "0xffffffff",
+          "BackGroundColor": "0xff648316"
+        }
+      }
+    },
     "SavedCardsPage": {
       "AppBar": {
         "BackIcon": {

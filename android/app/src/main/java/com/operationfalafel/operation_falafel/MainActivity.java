@@ -1,4 +1,4 @@
-package com.operationfalafel.operation_falafel;
+package com.Awj.operationfalafel;
 
 import io.flutter.embedding.android.FlutterActivity;
 

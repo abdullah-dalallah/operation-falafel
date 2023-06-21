@@ -151,7 +151,7 @@ class _SavedAddressListWidgetState extends State<SavedAddressListWidget> {
             ),
           ),
         ):
-        Expanded(child: LoadingWidget())
+          Expanded(child: LoadingWidget())
         ;
       });
 

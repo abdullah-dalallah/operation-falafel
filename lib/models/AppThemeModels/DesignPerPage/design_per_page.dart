@@ -40,6 +40,7 @@ import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/SavedAddre
 import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/SavedCardsPage/saved_cards_page.dart';
 import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/TarckOrderPage/track_order_page.dart';
 
+import 'AddNewCardPage/add_new_card_page.dart';
 import 'ResetPasswordPage/reset_password_page.dart';
 
 DesignPerPage designPerPageFromJson(String str) => DesignPerPage.fromJson(json.decode(str));
@@ -83,8 +84,9 @@ class DesignPerPage {
     required this.drawerPartnersPage,
     required this.drawerFeedBackPage,
     required this.drawerContactUsPage,
+    required this.addNewCardPage
   });
-
+  AddNewCardPage addNewCardPage ;
   BottomNavigationButtonBar bottomNavigationBar;
   HomePage homePage;
   TrackOrderPage tarckOrderPage;
@@ -122,6 +124,7 @@ class DesignPerPage {
   DrawerContactUsPage drawerContactUsPage;
 
   factory DesignPerPage.fromJson(Map<String, dynamic> json) => DesignPerPage(
+    addNewCardPage: AddNewCardPage.fromJson(json["AddNewCardPage"]),
     bottomNavigationBar: BottomNavigationButtonBar.fromJson(json["BottomNavigationBar"]),
     homePage: HomePage.fromJson(json["HomePage"]),
     tarckOrderPage: TrackOrderPage.fromJson(json["TarckOrderPage"]),
@@ -160,6 +163,7 @@ class DesignPerPage {
   );
 
   Map<String, dynamic> toJson() => {
+    "AddNewCardPage":addNewCardPage.toJson(),
     "BottomNavigationBar": bottomNavigationBar.toJson(),
     "HomePage": homePage.toJson(),
     "TarckOrderPage": tarckOrderPage.toJson(),

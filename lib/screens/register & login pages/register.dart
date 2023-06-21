@@ -184,8 +184,8 @@ class _RegisterState extends State<Register> {
 
 
   final List<String> gender = [
-    "Male",
-    "Female",
+    "male",
+    "female",
 
   ];
   dynamic? selectedGenderValue;

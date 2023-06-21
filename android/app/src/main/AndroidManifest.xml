@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.operationfalafel.operation_falafel">
+    package="com.Awj.operationfalafel">
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
    <application
         android:label="Operation Falafel"
         android:name="${applicationName}"
@@ -40,7 +42,8 @@
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
 
        <meta-data android:name="com.google.android.geo.API_KEY"
-           android:value="AIzaSyAWlPYlT9YiUk0xHljpksMTju3obmXmteM"/>
+           android:value="AIzaSyC0R8vcU8othuUrB0UP1gyaXWUMTvmFTd8"/>
+<!--           android:value="AIzaSyAWlPYlT9YiUk0xHljpksMTju3obmXmteM"/>-->
        <uses-library
            android:name="com.google.android.maps"
            android:required="true" />

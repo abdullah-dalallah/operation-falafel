@@ -1,7 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/screens/profile/profile_pages/add_new_card.dart';
+import 'package:operation_falafel/widgets/Saved%20cards/saved_cards_list_widget.dart';
+import 'package:operation_falafel/widgets/background.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
 
 import '../../../models/AppThemeModels/DesignPerPage/SavedCardsPage/saved_cards_page.dart';
@@ -27,18 +31,7 @@ class _SavedCardsState extends State<SavedCards> {
         (loadingDesign)?
         Stack(
         children: [
-          Image.asset(
-            "assets/images/background.png",
-            height: MediaQuery
-                .of(context)
-                .size
-                .height,
-            width: MediaQuery
-                .of(context)
-                .size
-                .width,
-            fit: BoxFit.cover,
-          ),
+         Background(),
           (Localizations.localeOf(context).languageCode == 'en') ?
           Visibility(
             visible: true,
@@ -89,6 +82,7 @@ class _SavedCardsState extends State<SavedCards> {
                 constraints: BoxConstraints(maxWidth: 450,),
                 child: Column(
                   children: [
+                    /// - Page title
                     Text(
                      savedCardsPage.body.pageTitle.data,
                       style: TextStyle(
@@ -102,9 +96,6 @@ class _SavedCardsState extends State<SavedCards> {
                     //       color: Colors.amber,
                     //       fontSize: double.parse(getTranslated(
                     //           context, "fontFamilyTitleُSize")!)),),
-
-
-
                     const SizedBox(height: 15,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -125,6 +116,56 @@ class _SavedCardsState extends State<SavedCards> {
 
                       ],
                     ),
+                    /// - Page title
+
+
+                    SavedCardsListWidget(lng: lng, savedCardsPage: savedCardsPage),
+
+
+
+                    const SizedBox(height: 10,),
+                    SizedBox(
+                        width: 330,
+                        height: 38,
+                        child: ElevatedButton(
+                            onPressed: () {
+                              PersistentNavBarNavigator.pushNewScreen(
+                                context,
+                                screen: AddNewCard(),
+                                withNavBar: true,
+                                // OPTIONAL VALUE. True by default.
+                                pageTransitionAnimation: PageTransitionAnimation
+                                    .cupertino,
+                              );
+                            },
+                            style: ButtonStyle(
+                              // backgroundColor: MaterialStateProperty.all<Color>(Color(int.parse(savedAddressPage?.body.addNewAdressButton.backGroundColor as String))),
+                              backgroundColor: MaterialStateProperty.all<Color>(Colors.amber),
+                              foregroundColor:
+                              MaterialStateProperty.all<Color>(Colors.black),
+                              shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(0.0),
+                                      side: const BorderSide(
+                                          color: Colors.transparent, width: 1.5)
+                                  )
+                              ),
+
+
+                            ),
+                            child: Text(
+                              "Add New Card",
+                              // getTranslated(context, "addNewAddress")!,
+                              style: TextStyle(
+                                  fontFamily: lng?.header3.textFamily,
+                                  color:Colors.white,
+                                  // color: Color(int.parse(savedAddressPage?.body.addNewAdressButton.color as String)),
+                                  fontSize: lng?.header3.size.toDouble()),
+                            )
+
+                        )
+                    ),
+                    const SizedBox(height: 20,),
                   ],
                 ),
               ),
