@@ -6,6 +6,7 @@ import 'package:operation_falafel/data/snackBarGenerator.dart';
 import 'package:operation_falafel/data/strings.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
+import 'package:operation_falafel/providers/ProfileProviders/profile_provider.dart';
 import 'package:operation_falafel/screens/profile/logged_in_user_profile.dart';
 import 'package:operation_falafel/screens/rest%20password/reset_your_password.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -39,14 +40,27 @@ class _VerifyUserByOtpWidgetState extends State<VerifyUserByOtpWidget> {
     if (otp.isNotEmpty) {
       var authProvider =  Provider.of<AuthProvider>(context, listen: false);
 
-      authProvider. verifyingUserBySendingOTP(userToken:authProvider.loggedInUser!.token!,  OTP:otp).then((res) {
+      authProvider.verifyingUserBySendingOTP(userToken:authProvider.loggedInUser!.token!,  OTP:otp).then((res) {
 
         if(res.statusCode == 200){
           // OTP is correct, perform desired action
 
           SnackbarGenerator(context).snackBarGeneratorToast("${res.data[Keys.bodyKey]}",);
           print('OTP Verified!');
-          Navigator.pop(context);
+
+          if(widget.verifyPurpose == Strings.registrationPurpose) {
+            Provider.of<ProfileProvider>(context, listen: false).getUserInfo(authProvider.loggedInUser!.token!, authProvider!.email!, authProvider!.password!).then((res){
+            if(res.statusCode==200) {
+              SnackbarGenerator(context).snackBarGeneratorToast("User Verified successfully",);
+              Navigator.pop(context);
+            }
+          });
+          }
+          else{
+            Navigator.pop(context);
+          }
+
+
 
           // PersistentNavBarNavigator.pushNewScreen(
           //   context,

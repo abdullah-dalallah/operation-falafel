@@ -265,4 +265,51 @@ class ProfileProvider with ChangeNotifier {
     notifyListeners();
   }
 
+
+  Future<Response<dynamic>> updateUserInfo({required String userToken, required String name ,required String mobile , required String email , required String dateOfBirth, required String gender  }) async {
+    print("update user info in Online Server...");
+    var url = '${Strings.baseAppAuthUrl}user';
+    print(url);
+    print(mobile);
+    Map<String, String> header = <String, String>{};
+    header.putIfAbsent(Keys.acceptKey, () => "application/json");
+    header.putIfAbsent(Keys.x_of_awjKey, () => "${userToken}");
+    header.putIfAbsent(Keys.authorizationKey, () => "Bearer " + userToken!);
+    Map<String, String> body = <String, String>{};
+    body.putIfAbsent(Keys.emailKey, () => email);
+    body.putIfAbsent(Keys.nameKey, () => name);
+    body.putIfAbsent(Keys.mobileKey, () => mobile);
+    body.putIfAbsent(Keys.dateOfBirthKey, () => dateOfBirth);
+    body.putIfAbsent(Keys.genderKey, () => gender);
+
+
+
+    var dio = Dio();
+    try {
+
+      var response = await dio.put(url,data: body, options: Options(headers: header));// options: Options(headers: header)
+
+      if(response.statusCode ==200){
+
+        if(response.data[Keys.successKey]!=null){
+          print(response.data);
+          // _userInfoModel=  UserInfoModel.fromJson(response.data);
+
+          // updateForm("${_userInfoModel!.body!.name!}", "${_userInfoModel!.body!.email}", "${_userInfoModel!.body!.mobile}" , _userInfoModel!.body!.dateOfBirth!, _userInfoModel!.body!.gender!);
+          // notifyListeners();
+          // print("Saved User fetched From Online Server!");
+
+        }
+
+      }
+      notifyListeners();
+      return response;
+    } on DioError catch (e) {
+      print(e.response);
+
+      return e.response!;
+
+    }
+  }
+
 }

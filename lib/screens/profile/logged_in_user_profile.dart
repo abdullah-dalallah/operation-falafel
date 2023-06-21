@@ -214,8 +214,8 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
           .appTheme.fontSizes?.en;
       ProfilePage? profilePage = appTheme.appTheme.designPerPage?.profilePage;
       bool loadingDesign = profilePage != null;
-       
-       
+
+
 
           return
             Stack(
@@ -366,7 +366,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
 
 
                                 /// - Image & Name & Edit
-                                const SizedBox(height: 20,),
+                                const SizedBox(height: 10,),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 18.0, right:18),
                                   child: Row(
@@ -471,7 +471,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                 strokeWidth: 2,
                                               ),
                                             ),
-                                            
+
                                             SizedBox(
                                               child: DecoratedBox(
                                                 decoration: const BoxDecoration(
@@ -492,7 +492,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                     });
 
                                                   },
-                                                  child: (startEdit)?
+                                                  child: (!updateLoading)?(startEdit)?
                                                   Text("SAVE PROFILE",
                                                     style: TextStyle(
                                                         fontFamily:lng?.header2.textFamily,
@@ -506,6 +506,13 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                         fontFamily:lng?.header2.textFamily,
                                                         color: Color(int.parse(profilePage?.body.editProfileButton.color as String)),
                                                         fontSize: lng?.header2.size.toDouble()
+                                                    ),
+                                                  ):const  SizedBox(
+                                                    height: 20,
+                                                    width: 20,
+                                                    child: CircularProgressIndicator(
+                                                      color: Colors.amber,
+                                                      strokeWidth: 2,
                                                     ),
                                                   )
                                                   ,
@@ -521,7 +528,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                   ),
                                 ),
 
-                                const SizedBox(height: 50,),
+                                const SizedBox(height: 10,),
 
                                 /// - Form
                                 SizedBox(
@@ -533,7 +540,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                         physics: ScrollPhysics(),
                                         shrinkWrap: true,
                                         children: [
-                                          
+
                                           /// - Name
                                           Padding(
                                             padding: const EdgeInsets.only(left: 18.0,
@@ -2171,382 +2178,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
 
                     ),
                   ),
-                  // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-                  //  floatingActionButton:Visibility(
-                  //    visible: !isKeyboardVisible,
-                  //    child: Padding(
-                  //      padding: const EdgeInsets.all(8.0),
-                  //      child: Column(
-                  //        mainAxisAlignment: MainAxisAlignment.end,
-                  //        children: [
-                  //          Row(
-                  //            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //            children: [
-                  //              Expanded(
-                  //                child: Padding(
-                  //                  padding: const EdgeInsets.all(3.0),
-                  //                  child: SizedBox(
-                  //                    height: 60,
-                  //                    // width: 130,
-                  //                    child: ElevatedButton(
-                  //                      onPressed: () {
-                  //                        PersistentNavBarNavigator.pushNewScreen(
-                  //                          context,
-                  //                          screen: OrderHistory(),
-                  //                          withNavBar: true,
-                  //                          // OPTIONAL VALUE. True by default.
-                  //                          pageTransitionAnimation: PageTransitionAnimation
-                  //                              .cupertino,
-                  //                        );
-                  //                      },
-                  //                      style: ButtonStyle(
-                  //                          shape: MaterialStateProperty.all<
-                  //                              RoundedRectangleBorder>(
-                  //                              const RoundedRectangleBorder(
-                  //                                  borderRadius: BorderRadius
-                  //                                      .all(
-                  //                                      Radius.circular(10)),
-                  //                                  side: BorderSide(
-                  //                                      color: Colors
-                  //                                          .transparent,
-                  //                                      width: 1)
-                  //                              )
-                  //                          ),
-                  //                          overlayColor: MaterialStateProperty.all(Colors.white12),
-                  //                          elevation: MaterialStateProperty.all(0),
-                  //                          shadowColor: MaterialStateProperty.all(Colors.transparent),
-                  //                          backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
-                  //                          // backgroundColor: MaterialStateProperty.all(Colors.black),
-                  //                          foregroundColor: MaterialStateProperty.all(Colors.black),
-                  //                          padding: MaterialStateProperty.all(
-                  //                              const EdgeInsets.only(
-                  //                                top: 10, bottom: 10,)),
-                  //                          textStyle: MaterialStateProperty.all(
-                  //                              const TextStyle(fontSize: 30))),
-                  //                      child: Text(
-                  //                        profilePage?.body.buttons.orderHistory.data as String ,
-                  //                        style: TextStyle(
-                  //                          fontFamily: getTranslated(context, "fontFamilyBody")!,
-                  //                          color: Color(int.parse(profilePage?.body.buttons.orderHistory.color as String)),
-                  //                          fontSize: lng?.header3.size.toDouble(),
-                  //                          fontWeight: FontWeight.w300,),
-                  //                        textAlign: TextAlign.center,),
-                  //                    ),
-                  //                  ),
-                  //                ),
-                  //              ),
-                  //              Expanded(
-                  //                child: Padding(
-                  //                  padding: const EdgeInsets.all(3.0),
-                  //                  child: SizedBox(
-                  //                    height: 60,
-                  //                    // width: 130,
-                  //                    child: ElevatedButton(
-                  //                      onPressed: () {
-                  //                        PersistentNavBarNavigator
-                  //                            .pushNewScreen(
-                  //                          context,
-                  //                          screen: SavedAddress(),
-                  //                          withNavBar: true,
-                  //                          // OPTIONAL VALUE. True by default.
-                  //                          pageTransitionAnimation: PageTransitionAnimation
-                  //                              .cupertino,
-                  //                        );
-                  //                      },
-                  //                      style: ButtonStyle(
-                  //                          shape: MaterialStateProperty.all<
-                  //                              RoundedRectangleBorder>(
-                  //                              const RoundedRectangleBorder(
-                  //                                  borderRadius: BorderRadius
-                  //                                      .all(
-                  //                                      Radius.circular(10)),
-                  //                                  side: BorderSide(
-                  //                                      color: Colors
-                  //                                          .transparent,
-                  //                                      width: 1)
-                  //                              )
-                  //                          ),
-                  //                          overlayColor: MaterialStateProperty
-                  //                              .all(Colors.white12),
-                  //                          elevation: MaterialStateProperty
-                  //                              .all(0),
-                  //                          shadowColor: MaterialStateProperty
-                  //                              .all(Colors.transparent),
-                  //                          backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
-                  //
-                  //                          foregroundColor: MaterialStateProperty
-                  //                              .all(Colors.black),
-                  //                          padding: MaterialStateProperty.all(
-                  //                              const EdgeInsets.only(
-                  //                                top: 10, bottom: 10,)),
-                  //                          textStyle: MaterialStateProperty
-                  //                              .all(
-                  //                              const TextStyle(fontSize: 30))),
-                  //                      child: Text(
-                  //                        profilePage?.body.buttons.savedAddress.data as String ,
-                  //                        style: TextStyle(
-                  //                          fontFamily: getTranslated(context, "fontFamilyBody")!,
-                  //                          color: Color(int.parse(profilePage?.body.buttons.savedAddress.color as String)),
-                  //                          fontSize: lng?.header3.size.toDouble(),
-                  //                          fontWeight: FontWeight.w300,),
-                  //                        textAlign: TextAlign.center,),
-                  //                    ),
-                  //                  ),
-                  //                ),
-                  //              ),
-                  //              Expanded(
-                  //                child: Padding(
-                  //                  padding: const EdgeInsets.all(3.0),
-                  //                  child: SizedBox(
-                  //                    height: 60,
-                  //                    // width: 130,
-                  //                    child: ElevatedButton(
-                  //                      onPressed: () {
-                  //                        PersistentNavBarNavigator
-                  //                            .pushNewScreen(
-                  //                          context,
-                  //                          screen: SavedCards(),
-                  //                          withNavBar: true,
-                  //                          // OPTIONAL VALUE. True by default.
-                  //                          pageTransitionAnimation: PageTransitionAnimation
-                  //                              .cupertino,
-                  //                        );
-                  //                      },
-                  //                      style: ButtonStyle(
-                  //                          shape: MaterialStateProperty.all<
-                  //                              RoundedRectangleBorder>(
-                  //                              const RoundedRectangleBorder(
-                  //                                  borderRadius: BorderRadius
-                  //                                      .all(
-                  //                                      Radius.circular(10)),
-                  //                                  side: BorderSide(
-                  //                                      color: Colors
-                  //                                          .transparent,
-                  //                                      width: 1)
-                  //                              )
-                  //                          ),
-                  //                          overlayColor: MaterialStateProperty
-                  //                              .all(Colors.white12),
-                  //                          elevation: MaterialStateProperty
-                  //                              .all(0),
-                  //                          shadowColor: MaterialStateProperty
-                  //                              .all(Colors.transparent),
-                  //                          backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
-                  //
-                  //                          foregroundColor: MaterialStateProperty
-                  //                              .all(Colors.black),
-                  //                          // padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
-                  //                          textStyle: MaterialStateProperty
-                  //                              .all(
-                  //                              const TextStyle(fontSize: 30))),
-                  //                      child: Text(
-                  //                        profilePage?.body.buttons.savedCards.data as String ,
-                  //                        style: TextStyle(
-                  //                          fontFamily: getTranslated(context, "fontFamilyBody")!,
-                  //                          color: Color(int.parse(profilePage?.body.buttons.savedCards.color as String)),
-                  //                          fontSize: lng?.header3.size.toDouble(),
-                  //                          fontWeight: FontWeight.w300,),
-                  //                        textAlign: TextAlign.center,),
-                  //                    ),
-                  //                  ),
-                  //                ),
-                  //              ),
-                  //            ],
-                  //          ),
-                  //          Row(
-                  //            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //            children: [
-                  //              Expanded(
-                  //                child: Padding(
-                  //                  padding: const EdgeInsets.all(3.0),
-                  //                  child: SizedBox(
-                  //                    height: 60,
-                  //                    child: ElevatedButton(
-                  //                      onPressed: () {
-                  //                        PersistentNavBarNavigator
-                  //                            .pushNewScreen(
-                  //                          context,
-                  //                          screen: MyRewards(
-                  //                              layOut: widget.layOut),
-                  //                          withNavBar: true,
-                  //                          // OPTIONAL VALUE. True by default.
-                  //                          pageTransitionAnimation: PageTransitionAnimation
-                  //                              .cupertino,
-                  //                        );
-                  //                      },
-                  //                      style: ButtonStyle(
-                  //                          shape: MaterialStateProperty.all<
-                  //                              RoundedRectangleBorder>(
-                  //                              const RoundedRectangleBorder(
-                  //                                  borderRadius: BorderRadius
-                  //                                      .all(
-                  //                                      Radius.circular(10)),
-                  //                                  side: BorderSide(
-                  //                                      color: Colors
-                  //                                          .transparent,
-                  //                                      width: 1)
-                  //                              )
-                  //                          ),
-                  //                          overlayColor: MaterialStateProperty
-                  //                              .all(Colors.white12),
-                  //                          elevation: MaterialStateProperty
-                  //                              .all(0),
-                  //                          shadowColor: MaterialStateProperty
-                  //                              .all(Colors.transparent),
-                  //                          backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
-                  //
-                  //                          foregroundColor: MaterialStateProperty
-                  //                              .all(Colors.black),
-                  //                          padding: MaterialStateProperty.all(
-                  //                              const EdgeInsets.only(
-                  //                                  top: 10, bottom: 10)),
-                  //                          textStyle: MaterialStateProperty
-                  //                              .all(
-                  //                              const TextStyle(fontSize: 30))),
-                  //                      child: Text(
-                  //                        profilePage?.body.buttons.loyalty.data as String ,
-                  //                        style: TextStyle(
-                  //                          fontFamily: getTranslated(context, "fontFamilyBody")!,
-                  //                          color: Color(int.parse(profilePage?.body.buttons.signOut.color as String)),
-                  //                          fontSize: lng?.header3.size.toDouble(),
-                  //                          fontWeight: FontWeight.w300,),
-                  //                        textAlign: TextAlign.center,),
-                  //                    ),
-                  //                  ),
-                  //                ),
-                  //              ),
-                  //              Expanded(
-                  //                child: Padding(
-                  //                  padding: const EdgeInsets.all(3.0),
-                  //                  child: SizedBox(
-                  //                    height: 60,
-                  //
-                  //                    child: ElevatedButton(
-                  //                      onPressed: () {
-                  //                        PersistentNavBarNavigator
-                  //                            .pushNewScreen(
-                  //                          context,
-                  //                          screen: HelpPage(),
-                  //                          withNavBar: true,
-                  //                          // OPTIONAL VALUE. True by default.
-                  //                          pageTransitionAnimation: PageTransitionAnimation
-                  //                              .cupertino,
-                  //                        );
-                  //                      },
-                  //                      style: ButtonStyle(
-                  //                          shape: MaterialStateProperty.all<
-                  //                              RoundedRectangleBorder>(
-                  //                              const RoundedRectangleBorder(
-                  //                                  borderRadius: BorderRadius
-                  //                                      .all(
-                  //                                      Radius.circular(10)),
-                  //                                  side: BorderSide(
-                  //                                      color: Colors
-                  //                                          .transparent,
-                  //                                      width: 1)
-                  //                              )
-                  //                          ),
-                  //                          overlayColor: MaterialStateProperty
-                  //                              .all(Colors.white12),
-                  //                          elevation: MaterialStateProperty
-                  //                              .all(0),
-                  //                          shadowColor: MaterialStateProperty
-                  //                              .all(Colors.transparent),
-                  //                          backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
-                  //
-                  //                          foregroundColor: MaterialStateProperty
-                  //                              .all(Colors.black),
-                  //                          padding: MaterialStateProperty.all(
-                  //                              const EdgeInsets.only(
-                  //                                top: 10, bottom: 10,)),
-                  //                          textStyle: MaterialStateProperty
-                  //                              .all(
-                  //                              const TextStyle(fontSize: 30))),
-                  //                      child: Text(
-                  //                        profilePage?.body.buttons.help.data as String ,
-                  //                        style: TextStyle(
-                  //                          fontFamily: getTranslated(context, "fontFamilyBody")!,
-                  //                          color: Color(int.parse(profilePage?.body.buttons.help.color as String)),
-                  //                          fontSize: lng?.header3.size.toDouble(),
-                  //                          fontWeight: FontWeight.w300,),
-                  //                        textAlign: TextAlign.center,),
-                  //                    ),
-                  //                  ),
-                  //                ),
-                  //              ),
-                  //              Expanded(
-                  //                child: Padding(
-                  //                  padding: const EdgeInsets.all(3.0),
-                  //                  child: SizedBox(
-                  //                    height: 60,
-                  //
-                  //                    child: ElevatedButton(
-                  //                      onPressed: () {
-                  //                        Provider.of<AuthProvider>(context, listen: false).logOutUserDetailsLocally().then((value) {
-                  //                          SnackbarGenerator(context).snackBarGeneratorToast("User Logged out successfully",);
-                  //
-                  //                        });
-                  //                      },
-                  //                      style: ButtonStyle(
-                  //                          shape: MaterialStateProperty.all<
-                  //                              RoundedRectangleBorder>(
-                  //                              const RoundedRectangleBorder(
-                  //                                  borderRadius: BorderRadius
-                  //                                      .all(
-                  //                                      Radius.circular(10)),
-                  //                                  side: BorderSide(
-                  //                                      color: Colors
-                  //                                          .transparent,
-                  //                                      width: 1)
-                  //                              )
-                  //                          ),
-                  //                          overlayColor: MaterialStateProperty
-                  //                              .all(Colors.black12),
-                  //                          elevation: MaterialStateProperty
-                  //                              .all(0),
-                  //                          shadowColor: MaterialStateProperty
-                  //                              .all(Colors.transparent),
-                  //                          backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.buttons.orderHistory.backGroundColor as String))),
-                  //
-                  //                          foregroundColor: MaterialStateProperty
-                  //                              .all(Colors.black),
-                  //                          padding: MaterialStateProperty.all(
-                  //                              const EdgeInsets.only(
-                  //                                top: 10, bottom: 10,)),
-                  //                          textStyle: MaterialStateProperty
-                  //                              .all(
-                  //                              const TextStyle(fontSize: 30))),
-                  //                      child: Text(
-                  //                        profilePage?.body.buttons.signOut.data as String ,
-                  //                        style: TextStyle(
-                  //                          fontFamily: getTranslated(context, "fontFamilyBody")!,
-                  //                          color: Color(int.parse(profilePage?.body.buttons.signOut.color as String)),
-                  //                          fontSize: lng?.header3.size.toDouble(),
-                  //                          fontWeight: FontWeight.w300,),
-                  //                        textAlign: TextAlign.center,),
-                  //
-                  //                      // Text(
-                  //                      //   getTranslated(context, "sighOut")!,
-                  //                      //   style: TextStyle(
-                  //                      //     fontFamily: getTranslated(
-                  //                      //         context, "fontFamilyBody")!,
-                  //                      //     color: Colors.white,
-                  //                      //     fontSize: 17,
-                  //                      //     fontWeight: FontWeight.w300,),
-                  //                      //   textAlign: TextAlign.center,),
-                  //                    ),
-                  //                  ),
-                  //                ),
-                  //              ),
-                  //
-                  //
-                  //            ],
-                  //          ),
-                  //
-                  //        ],
-                  //      ),
-                  //    ),
-                  //  ),
+
 
                   extendBody: true,
 
@@ -2979,12 +2611,54 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
 
   bool startEdit = false;
 
+  bool updateLoading =false;
+
 
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       // Perform your registration logic here
       // You can use the collected form data to create a new user account or make an API call
+      String name = Provider.of<ProfileProvider>(context, listen: false).nameController.text;
+      String email = Provider.of<ProfileProvider>(context, listen: false).emailController.text;
+      String mobile = Provider.of<ProfileProvider>(context, listen: false).mobileController.text;
+      String fullMobileNumber ="${countryCode!.dialCode.substring(1,countryCode!.dialCode.length)}${mobile}";
+      String dateOfBirth = Provider.of<ProfileProvider>(context, listen: false).birthDateController.text;
+      String? selectedGender = Provider.of<ProfileProvider>(context, listen: false).selectedGenderValue;
+
+      print(name);
+      print(email);
+      print(fullMobileNumber);
+      print(dateOfBirth);
+      print(selectedGender!);
+      String userToken  =  Provider.of<AuthProvider>(context, listen: false).loggedInUser!.token!;
+      setState(() {
+        updateLoading = true;
+      });
+
+      Provider.of<ProfileProvider>(context, listen: false).updateUserInfo(userToken: userToken, name: name , email: email, gender: selectedGender, dateOfBirth: dateOfBirth,mobile: fullMobileNumber ).then((res) {
+        if(res.statusCode==200)
+        {
+          SnackbarGenerator(context).snackBarGeneratorToast("User info updated Successful!",);
+        }
+        else {
+
+          if (res.data is List) {
+            SnackbarGenerator(context).snackBarGeneratorToast("${res.data[0][Keys.messageKey]}",);
+          }
+          else if (res.data is Map<String, dynamic>) {
+            if(res.data[Keys.messageKey]!=null){
+              SnackbarGenerator(context).snackBarGeneratorToast("${res.data[Keys.messageKey]}",);
+            }
+          }
+          SnackbarGenerator(context).snackBarGeneratorToast("User info updated Failed!",);
+        }
+        setState(() {
+          updateLoading =false;
+        });
+      });
+
+
 
 
     }

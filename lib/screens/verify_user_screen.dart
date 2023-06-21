@@ -54,7 +54,7 @@ class _VerifyUserScreenState extends State<VerifyUserScreen> {
             elevation: 0,
 
           ),
-          body:   Center(
+          body: Center(
             child: Container(
               constraints: const BoxConstraints(maxWidth: 450,),
               child: Column(

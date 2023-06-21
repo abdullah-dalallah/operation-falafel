@@ -858,7 +858,8 @@ class _ForgetPasswordState extends State<ForgetPassword> {
 
             if (res.data is List) {
               SnackbarGenerator(context).snackBarGeneratorToast("Failed Try again!",);
-            } else if (res.data is Map<String, dynamic>) {
+            }
+            else if (res.data is Map<String, dynamic>) {
               if(res.data[Keys.messageKey]!=null){
                 SnackbarGenerator(context).snackBarGeneratorToast("${res.data[Keys.messageKey]}",);
                 if( res.data[Keys.messageKey]== "OTP Not Correct. Kindly check and try again"){
