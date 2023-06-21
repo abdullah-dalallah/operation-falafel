@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
+import 'package:operation_falafel/providers/ProfileProviders/profile_provider.dart';
 import 'package:operation_falafel/screens/profile/profile_pages/add_new_card.dart';
 import 'package:operation_falafel/widgets/Saved%20cards/saved_cards_list_widget.dart';
 import 'package:operation_falafel/widgets/background.dart';
@@ -18,14 +20,19 @@ class SavedCards extends StatefulWidget{
 }
 
 class _SavedCardsState extends State<SavedCards> {
+
+
+
   @override
   Widget build(BuildContext context) {
 
-    return Consumer<ThemeProvider>(builder: (context, appTheme, child)
+    return Consumer2<ThemeProvider, ProfileProvider>(builder: (context, appTheme,profileProvider, child)
     {
       Language? lng = (Localizations.localeOf(context).languageCode == 'ar') ? appTheme.appTheme.fontSizes?.ar : appTheme.appTheme.fontSizes?.en;
       SavedCardsPage? savedCardsPage = appTheme.appTheme.designPerPage?.savedCardsPage;
       bool loadingDesign = savedCardsPage != null;
+
+
 
       return
         (loadingDesign)?
@@ -175,5 +182,13 @@ class _SavedCardsState extends State<SavedCards> {
       )
       :LoadingPage();
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+   String userToken = Provider.of<AuthProvider>(context, listen: false).loggedInUser!.token!;
+    Provider.of<ProfileProvider>(context, listen: false).getUserCards( userToken,);
+
   }
 }

@@ -7,6 +7,7 @@ import 'package:operation_falafel/providers/ProfileProviders/models/user_info_mo
 import 'package:intl/intl.dart';
 import '../../data/keys.dart';
 import '../../data/strings.dart';
+import 'models/Saved cards/saved_cards.dart';
 
 
 class ProfileProvider with ChangeNotifier {
@@ -310,7 +311,11 @@ class ProfileProvider with ChangeNotifier {
   }
 
 
-  /// - User Credit Cards --- > missing models
+  /// - User Credit Cards
+  SavedCards? _savedCards ;
+
+  SavedCards? get savedCards => _savedCards;
+
   Future<Response<dynamic>> getUserCards(String userToken,) async {
     print("getting user info Saved from Online Server...");
     var url = '${Strings.baseAppCardsUrl}cards';
@@ -328,8 +333,8 @@ class ProfileProvider with ChangeNotifier {
 
       if(response.statusCode ==200){
 
-        if(response.data[Keys.successKey]!=null){
-
+        if(response.data[Keys.successKey]!=false){
+          _savedCards = SavedCards.fromJson(response.data);
           notifyListeners();
           print("Saved User Cards fetched From Online Server!");
 
@@ -347,6 +352,46 @@ class ProfileProvider with ChangeNotifier {
   }
 
 
+  Future<Response<dynamic>> postUserCreditCard({required String userToken, required String cardHolderName ,required String cardNumber , required String expirationMonth , required String expirationYear, required String isMain  }) async {
+    print("update user info in Online Server...");
+    var url = '${Strings.baseAppCardsUrl}cards';
+    print(url);
 
+    Map<String, String> header = <String, String>{};
+    header.putIfAbsent(Keys.acceptKey, () => "application/json");
+    header.putIfAbsent(Keys.x_of_awjKey, () => "${userToken}");
+    header.putIfAbsent(Keys.authorizationKey, () => "Bearer " + userToken!);
+    Map<String, String> body = <String, String>{};
+    body.putIfAbsent(Keys.cardHolderNameKey, () => cardHolderName);
+    body.putIfAbsent(Keys.cardNumberKey, () => cardNumber);
+    body.putIfAbsent(Keys.expirationMonthKey, () => expirationMonth);
+    body.putIfAbsent(Keys.expirationYearKey, () => expirationYear);
+    body.putIfAbsent(Keys.isMainKey, () => isMain);
+
+
+
+    var dio = Dio();
+    try {
+
+      var response = await dio.post(url,data: body, options: Options(headers: header));// options: Options(headers: header)
+
+      if(response.statusCode ==200){
+
+        if(response.data[Keys.successKey]!=null){
+          print(response.data);
+
+
+        }
+
+      }
+      notifyListeners();
+      return response;
+    } on DioError catch (e) {
+      print(e.response);
+
+      return e.response!;
+
+    }
+  }
 
 }

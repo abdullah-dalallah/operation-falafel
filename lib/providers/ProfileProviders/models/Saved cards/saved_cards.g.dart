@@ -1,20 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user_info_model.dart';
+part of 'saved_cards.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-UserInfoModel _$UserInfoModelFromJson(Map<String, dynamic> json) =>
-    UserInfoModel(
+SavedCards _$SavedCardsFromJson(Map<String, dynamic> json) => SavedCards(
       success: json['success'] as bool?,
-      body: json['body'] == null
-          ? null
-          : Body.fromJson(json['body'] as Map<String, dynamic>),
+      body: (json['body'] as List<dynamic>?)
+          ?.map((e) => Card.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
-Map<String, dynamic> _$UserInfoModelToJson(UserInfoModel instance) =>
+Map<String, dynamic> _$SavedCardsToJson(SavedCards instance) =>
     <String, dynamic>{
       'success': instance.success,
       'body': instance.body,

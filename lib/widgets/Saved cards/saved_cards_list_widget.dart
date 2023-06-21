@@ -22,15 +22,15 @@ class _SavedCardsListWidgetState extends State<SavedCardsListWidget> {
   Widget build(BuildContext context) {
     return
       Consumer<ProfileProvider>(builder: (context, profileProvider, child){
-        bool _savedAddressListloading = profileProvider.savedAddressList.success!= null;
+        bool cardListLoading = profileProvider.savedCards !=null;
 
         return
-          true?
+          cardListLoading?
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(left: 50.0, right: 50),
               child: ListView.builder(
-                itemCount:50,
+                itemCount:profileProvider.savedCards!.body!.length!,
                 // profileProvider.savedAddressList.savedAddressItem?.length,
                 physics: const ScrollPhysics(),
                 itemBuilder: (context, index) {

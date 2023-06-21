@@ -7,6 +7,7 @@ import 'package:operation_falafel/providers/AppTheme/theme_provider.dart';
 import 'package:operation_falafel/providers/ProfileProviders/profile_provider.dart';
 import 'package:operation_falafel/widgets/background.dart';
 import 'package:provider/provider.dart';
+import 'package:credit_card_type_detector/credit_card_type_detector.dart';
 
 class AddNewCard extends StatefulWidget{
   @override
@@ -14,6 +15,8 @@ class AddNewCard extends StatefulWidget{
 }
 
 class _AddNewCardState extends State<AddNewCard> {
+
+  var types ="";
   @override
   Widget build(BuildContext context) {
 
@@ -84,6 +87,7 @@ class _AddNewCardState extends State<AddNewCard> {
                             Padding(
                               padding: const EdgeInsets.only(left: 18.0, right: 18, top: 8, bottom: 8),
                               child: TextFormField(
+                                controller: cardNumberController,
                                 keyboardType: TextInputType.number,
                                 inputFormatters: [
                                   FilteringTextInputFormatter.digitsOnly,
@@ -116,10 +120,28 @@ class _AddNewCardState extends State<AddNewCard> {
                                       color: Color(int.parse(addNewCardPage.body!.form!.cardNumber!.color)),
                                       fontSize:lng?.header3.size.toDouble()
                                   ),
-
+                                  suffix:  buildCardType(types),
 
                                 ),
+                                onChanged: (value){
+                                  if(value.isNotEmpty) {
+                                    setState(() {
+                                      if (detectCCType(value).isNotEmpty) {
+                                        print(detectCCType(value)[0].type);
+                                        types = detectCCType(value).first.type;
+                                      }
+                                    });
+                                  }else{
+                                    setState(() {
+                                      types ='';
+                                    });
+                                  }
 
+                                },
+                                validator: (value) {
+                                 return _validateCardNumber( value);
+
+                                },
                               ),
                             ),
 
@@ -156,7 +178,12 @@ class _AddNewCardState extends State<AddNewCard> {
 
 
                                 ),
-
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Please enter card holder name';
+                                  }
+                                  return null;
+                                },
                               ),
                             ),
 
@@ -164,6 +191,7 @@ class _AddNewCardState extends State<AddNewCard> {
                             Padding(
                               padding: const EdgeInsets.only(left: 18.0, right: 18, top: 8, bottom: 8),
                               child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Expanded(
                                     flex: 2,
@@ -202,7 +230,14 @@ class _AddNewCardState extends State<AddNewCard> {
 
 
                                       ),
+                                       validator:(value) {
+                                        if(!_isValidCVV(value!)){
+                                          return 'Invalid CVV number';
+                                        }
+                                        else{
 
+                                        }
+                                       },
                                     ),
                                   ),
                                   SizedBox(width: 16.0),
@@ -244,7 +279,15 @@ class _AddNewCardState extends State<AddNewCard> {
 
 
                                       ),
+                                      validator:(value) {
+                                       if(_isValidExpiryDate(value!)){
 
+                                       }
+                                       else{
+                                         return 'Invalid expiry date';
+
+                                       }
+                                      },
                                     ),
                                   ),
                                 ],
@@ -265,7 +308,7 @@ class _AddNewCardState extends State<AddNewCard> {
                               child: ElevatedButton(
                                       onPressed: () {
 
-
+                                        _submitForm();
 
                                       },
                                       style: ButtonStyle(
@@ -311,11 +354,134 @@ class _AddNewCardState extends State<AddNewCard> {
 
 
 
-
+  var separator = '-';
   final GlobalKey<FormState> _formKey = GlobalKey();
-  TextEditingController _controllerAddressLine = TextEditingController();
+  final TextEditingController cardNumberController = TextEditingController();
   TextEditingController _controllerBuildingName = TextEditingController();
   TextEditingController _controllerFlatNumber = TextEditingController();
+
+
+
+  Widget buildCardType(String cardType){
+    switch(cardType){
+      case "visa":{  return Image.asset("assets/images/visa_logo_card.png", height: 20,color: Colors.white,);}break;
+      case "mastercard":{  return Image.asset("assets/images/masterCard_logo.png", height: 20,color: Colors.white,);}break;
+      case "discover":{  return Image.asset("assets/images/discover_logo1.png", height: 20,);}break;
+      case "american_express":{return Image.asset("assets/images/american_express_logo.png", height: 20,color: Colors.white,);}break;
+      case "jcb":{return Image.asset("assets/images/jcb_card.png", height: 20,color: Colors.white,);}break;
+      case "unionpay":{return Image.asset("assets/images/unionPay_logo.png", height: 20,color: Colors.white,);}break;
+
+      default:{
+        return SizedBox();
+      }
+    }
+  }
+
+  bool validateCardNumber(String cardNumber) {
+    print(cardNumber);
+    String cleanedNumber = cardNumber.replaceAll(RegExp(r'\s+\b|\b\s'), '');
+    int sum = 0;
+    bool isAlternate = false;
+
+    for (int i = cleanedNumber.length - 1; i >= 0; i--) {
+      int? digit = int.tryParse(cleanedNumber[i]);
+      if (digit == null) {
+        return false;
+      }
+      if (isAlternate) {
+        digit *= 2;
+        if (digit > 9) {
+          digit -= 9;
+        }
+      }
+      sum += digit;
+      isAlternate = !isAlternate;
+    }
+    print(sum % 10 == 0);
+    return sum % 10 == 0;
+  }
+  String? _validateCardNumber(String? value) {
+    print(value);
+
+    if (value == null || value.isEmpty || value =='') {
+      return 'Please enter a card number';
+    }
+
+    // String cleanedNumber = value.replaceAll(RegExp(r'\s+\b|\b\s'), '');
+    var cleanCardNumber = value.replaceAll(separator, '');
+    bool isValid = _validateLuhn(cleanCardNumber);
+
+
+
+    return isValid ? null : 'Invalid card number';
+  }
+
+  bool _validateLuhn(String cardNumber) {
+    List<int> digits = cardNumber
+        .split('')
+        .map(int.parse)
+        .toList()
+        .reversed
+        .toList();
+
+    int sum = 0;
+    for (int i = 0; i < digits.length; i++) {
+      if (i % 2 == 1) {
+        int doubled = digits[i] * 2;
+        digits[i] = doubled > 9 ? doubled - 9 : doubled;
+      }
+      sum += digits[i];
+    }
+
+    return sum % 10 == 0;
+  }
+  bool _isValidCVV(String cvv) {
+    // Implement your CVV validation logic here
+    // Return true if the CVV is valid, false otherwise
+    // You can modify this logic according to your requirements
+    return cvv.length == 3;
+  }
+
+  bool _isValidExpiryDate(String expiryDate) {
+    // Implement your expiry date validation logic here
+    // Return true if the expiry date is valid, false otherwise
+    // You can modify this logic according to your requirements
+    RegExp regExp = RegExp(r'^\d{2}/\d{2}$');
+    if (!regExp.hasMatch(expiryDate)) {
+      return false;
+    }
+    List<String> parts = expiryDate.split('/');
+    int? month = int.tryParse(parts[0]);
+    int? year = int.tryParse(parts[1]);
+    if (month == null || year == null) {
+      return false;
+    }
+    if (month < 1 || month > 12) {
+      return false;
+    }
+
+    // Get the current date
+    DateTime currentDate = DateTime.now();
+    int currentYear = currentDate.year % 100; // Get the last two digits of the year
+
+    // Assuming the current year is 2023, modify this logic accordingly
+    if (year < currentYear || (year == currentYear && month < currentDate.month)) {
+      return false;
+    }
+
+    return true;
+  }
+
+  void _submitForm() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      // Perform your registration logic here
+      // You can use the collected form data to create a new user account or make an API call
+
+
+    }
+  }
+
 }
 
 

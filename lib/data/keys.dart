@@ -54,5 +54,12 @@ class Keys {
   /// - Feedback
   static const rateKey = "rate";
 
+  /// -Cards
+  static const cardHolderNameKey = "cardholder_name";
+  static const cardNumberKey = "card_number";
+  static const expirationMonthKey = "expiration_month";
+  static const expirationYearKey = "expiration_year";
+  static const isMainKey = "is_main";
+
 
 }
