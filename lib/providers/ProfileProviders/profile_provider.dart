@@ -200,8 +200,6 @@ class ProfileProvider with ChangeNotifier {
 
   /// - User info
   UserInfoModel? _userInfoModel ;
-
-
   UserInfoModel? get userInfoModel => _userInfoModel;
 
   Future<Response<dynamic>> getUserInfo(String userToken,String email, String password) async {
@@ -265,7 +263,6 @@ class ProfileProvider with ChangeNotifier {
     notifyListeners();
   }
 
-
   Future<Response<dynamic>> updateUserInfo({required String userToken, required String name ,required String mobile , required String email , required String dateOfBirth, required String gender  }) async {
     print("update user info in Online Server...");
     var url = '${Strings.baseAppAuthUrl}user';
@@ -311,5 +308,45 @@ class ProfileProvider with ChangeNotifier {
 
     }
   }
+
+
+  /// - User Credit Cards --- > missing models
+  Future<Response<dynamic>> getUserCards(String userToken,) async {
+    print("getting user info Saved from Online Server...");
+    var url = '${Strings.baseAppCardsUrl}cards';
+    print(url);
+    Map<String, String> header = <String, String>{};
+    header.putIfAbsent(Keys.acceptKey, () => "application/json");
+    header.putIfAbsent(Keys.x_of_awjKey, () => "${userToken}");
+    header.putIfAbsent(Keys.authorizationKey, () => "Bearer " + userToken!);
+    Map<String, String> body = <String, String>{};
+
+    var dio = Dio();
+    try {
+
+      var response = await dio.get(url,data: body, options: Options(headers: header));// options: Options(headers: header)
+
+      if(response.statusCode ==200){
+
+        if(response.data[Keys.successKey]!=null){
+
+          notifyListeners();
+          print("Saved User Cards fetched From Online Server!");
+
+        }
+
+      }
+      notifyListeners();
+      return response;
+    } on DioError catch (e) {
+      print(e.response);
+
+      return e.response!;
+
+    }
+  }
+
+
+
 
 }
