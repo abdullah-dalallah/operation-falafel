@@ -9,7 +9,7 @@ part of 'saved_cards.dart';
 SavedCards _$SavedCardsFromJson(Map<String, dynamic> json) => SavedCards(
       success: json['success'] as bool?,
       body: (json['body'] as List<dynamic>?)
-          ?.map((e) => Card.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => CardItem.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

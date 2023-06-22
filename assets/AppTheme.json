@@ -999,14 +999,14 @@
           },
           "EditButton": {
             "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/MyProfile_edit.png",
-            "MobileSize": "30",
-            "TabletSize": "30",
+            "MobileSize": "20",
+            "TabletSize": "20",
             "BackGroundColor": "0x00000000"
           },
           "DeleteButton": {
             "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Payment_Delete.png",
-            "MobileSize": "30",
-            "TabletSize": "30",
+            "MobileSize": "20",
+            "TabletSize": "20",
             "BackGroundColor": "0x00000000"
           }
         },
@@ -1189,6 +1189,18 @@
             "Color": "0xff454545"
           }
         },
+        "CardMainCheckBox": {
+          "visibility": "true",
+          "ActiveTitle": {
+            "Data": "T&C",
+            "Color": "0xFFFFBF00"
+          },
+          "InactiveTitle": {
+            "Data": "T&C",
+            "Color": "0xffffffff"
+          },
+          "SelectedImage": "later"
+        },
         "AddNewCardButton": {
           "Data": "Save Card",
           "Color": "0xffffffff",
@@ -1220,18 +1232,18 @@
           },
           "SubTitle": {
             "Data": "api",
-            "Color": "0xffffffff"
+            "Color": "0xFFFFBF00"
           },
           "EditButton": {
             "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/MyProfile_edit.png",
-            "MobileSize": "30",
-            "TabletSize": "30",
+            "MobileSize": "20",
+            "TabletSize": "20",
             "BackGroundColor": "0x00000000"
           },
           "DeleteButton": {
             "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/Payment_Delete.png",
-            "MobileSize": "30",
-            "TabletSize": "30",
+            "MobileSize": "20",
+            "TabletSize": "20",
             "BackGroundColor": "0x00000000"
           }
         },

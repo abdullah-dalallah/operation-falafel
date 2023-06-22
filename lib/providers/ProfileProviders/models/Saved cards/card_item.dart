@@ -4,11 +4,11 @@
 
 import 'dart:convert';
 
-Card cardFromJson(String str) => Card.fromJson(json.decode(str));
+CardItem cardFromJson(String str) => CardItem.fromJson(json.decode(str));
 
-String cardToJson(Card data) => json.encode(data.toJson());
+String cardToJson(CardItem data) => json.encode(data.toJson());
 
-class Card {
+class CardItem {
   int? id;
   String? cardholderName;
   String? cardNumber;
@@ -21,7 +21,7 @@ class Card {
   DateTime? createdAt;
   DateTime? updatedAt;
 
-  Card({
+  CardItem({
     this.id,
     this.cardholderName,
     this.cardNumber,
@@ -35,7 +35,7 @@ class Card {
     this.updatedAt,
   });
 
-  factory Card.fromJson(Map<String, dynamic> json) => Card(
+  factory CardItem.fromJson(Map<String, dynamic> json) => CardItem(
     id: json["id"],
     cardholderName: json["cardholder_name"],
     cardNumber: json["card_number"],

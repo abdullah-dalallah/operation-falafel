@@ -1,11 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:operation_falafel/data/keys.dart';
+import 'package:operation_falafel/data/snackBarGenerator.dart';
 import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/AddNewCardPage/add_new_card_page.dart';
 import 'package:operation_falafel/models/AppThemeModels/FontSizes/Language/lang.dart';
 import 'package:operation_falafel/providers/AppTheme/theme_provider.dart';
+import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
+import 'package:operation_falafel/providers/ProfileProviders/models/Saved%20cards/card_item.dart';
 import 'package:operation_falafel/providers/ProfileProviders/profile_provider.dart';
 import 'package:operation_falafel/widgets/background.dart';
+import 'package:operation_falafel/widgets/card_main_checkbox.dart';
 import 'package:provider/provider.dart';
 import 'package:credit_card_type_detector/credit_card_type_detector.dart';
 
@@ -76,13 +81,40 @@ class _AddNewCardState extends State<AddNewCard> {
                         ),
                       ),
 
+
                       Expanded(
                         child: ListView(
                           children: [
                             const SizedBox(height: 15,),
                             Image.network(addNewCardPage.body!.pageImage!, height: 200,),
                             // Image.asset("assets/images/of_logo.png", height: 200,),
+
                             const SizedBox(height: 15,),
+                            /// - Make it Main
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 18.0,right: 18),
+                                  child: CardMainCheckbox(
+                                      value: mainCheckboxBool,
+                                      onChanged: _valueChangedHandler(),
+                                      label: '1',
+                                      text: "mainCardCheck",
+
+                                      addOnFlag: false,
+                                      colorOfBox: (validateMainCheckbox==false)?
+                                      (mainCheckboxBool==true)?
+                                      Color(int.parse(addNewCardPage.body!.cardMainCheckBox!.activeTitle!.color)):
+                                          Colors.white
+                                          :Colors.red,
+                                      colorOfText:(mainCheckboxBool==true)?
+                                      Color(int.parse(addNewCardPage.body!.cardMainCheckBox!.inactiveTitle!.color)):
+                                      Color(int.parse(addNewCardPage.body!.cardMainCheckBox!.activeTitle!.color)),
+                                    ),
+                                ),
+                              ],
+                            ),
+
                             /// -  Card Number
                             Padding(
                               padding: const EdgeInsets.only(left: 18.0, right: 18, top: 8, bottom: 8),
@@ -149,6 +181,7 @@ class _AddNewCardState extends State<AddNewCard> {
                             Padding(
                               padding: const EdgeInsets.only(left: 18.0, right: 18, top: 8, bottom: 8),
                               child: TextFormField(
+                                controller: cardHolderNameController,
                                 autofocus: false,
                                 style: const TextStyle(color: Colors.white),
                                 decoration: InputDecoration(
@@ -196,6 +229,7 @@ class _AddNewCardState extends State<AddNewCard> {
                                   Expanded(
                                     flex: 2,
                                     child: TextFormField(
+                                      controller: cvv,
                                       keyboardType: TextInputType.number,
                                       inputFormatters: [
                                         FilteringTextInputFormatter.digitsOnly,
@@ -244,6 +278,7 @@ class _AddNewCardState extends State<AddNewCard> {
                                   Expanded(
                                     flex: 3,
                                     child:TextFormField(
+                                      controller: expiryDate,
                                       keyboardType: TextInputType.datetime,
                                       inputFormatters: [
                                         FilteringTextInputFormatter.digitsOnly,
@@ -352,13 +387,26 @@ class _AddNewCardState extends State<AddNewCard> {
     });
   }
 
+  bool mainCheckboxBool = false;
+  bool validateMainCheckbox =false;
+  ValueChanged _valueChangedHandler() {
+    return (value) => setState(() {
+      print(value);
+      if(value==true)
+        mainCheckboxBool = false;
+      else
+        mainCheckboxBool =true;
 
+
+    });
+  }
 
   var separator = '-';
   final GlobalKey<FormState> _formKey = GlobalKey();
   final TextEditingController cardNumberController = TextEditingController();
-  TextEditingController _controllerBuildingName = TextEditingController();
-  TextEditingController _controllerFlatNumber = TextEditingController();
+  TextEditingController cardHolderNameController = TextEditingController();
+  TextEditingController cvv = TextEditingController();
+  TextEditingController expiryDate = TextEditingController();
 
 
 
@@ -472,11 +520,43 @@ class _AddNewCardState extends State<AddNewCard> {
     return true;
   }
 
+
+
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      // Perform your registration logic here
+      // Perform your Add new Card logic here
       // You can use the collected form data to create a new user account or make an API call
+
+
+      List<String> parts = expiryDate.text.split('/');
+
+      String? month = parts[0];
+      String? year = parts[1];
+      print(month);
+      print(year);
+
+      String userToken = Provider.of<AuthProvider>(context, listen: false).loggedInUser!.token!;
+      Provider.of<ProfileProvider>(context, listen: false).postUserCreditCard(userToken: userToken, cardHolderName:cardHolderNameController.text , cardNumber: cardNumberController.text, expirationMonth: "${month}", expirationYear: "${year}", isMain:mainCheckboxBool ).then((res) {
+        if(res.statusCode==200){
+          SnackbarGenerator(context).snackBarGeneratorToast("Card Added Successfully.",);
+
+          Provider.of<ProfileProvider>(context, listen: false).getUserCards(userToken).then((value) => Navigator.pop(context));
+          
+          
+        }else{
+          if (res.data is List) {
+            SnackbarGenerator(context).snackBarGeneratorToast(res.data[0][Keys.messageKey],);
+          }
+          else if (res.data is Map<String, dynamic>) {
+            if(res.data[Keys.messageKey]!=null){
+              SnackbarGenerator(context).snackBarGeneratorToast("${res.data[Keys.messageKey]}",);
+            }
+          }
+        }
+
+
+      });
 
 
     }

@@ -4,7 +4,7 @@
 
 import 'dart:convert';
 
-import 'package:operation_falafel/providers/ProfileProviders/models/Saved%20cards/card.dart';
+import 'package:operation_falafel/providers/ProfileProviders/models/Saved%20cards/card_item.dart';
 
 import 'package:json_annotation/json_annotation.dart';
 part 'saved_cards.g.dart';
@@ -16,7 +16,7 @@ String savedCardsToJson(SavedCards data) => json.encode(data.toJson());
 @JsonSerializable()
 class SavedCards {
   bool? success;
-  List<Card>? body;
+  List<CardItem>? body;
 
   SavedCards({
     this.success,
@@ -25,7 +25,7 @@ class SavedCards {
 
   factory SavedCards.fromJson(Map<String, dynamic> json) => SavedCards(
     success: json["success"],
-    body: json["body"] == null ? [] : List<Card>.from(json["body"]!.map((x) => Card.fromJson(x))),
+    body: json["body"] == null ? [] : List<CardItem>.from(json["body"]!.map((x) => CardItem.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {

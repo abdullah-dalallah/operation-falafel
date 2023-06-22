@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:operation_falafel/providers/ProfileProviders/models/Saved%20cards/card_item.dart';
 import 'package:operation_falafel/providers/ProfileProviders/models/saved_address_list_res_model.dart';
 import 'package:operation_falafel/providers/ProfileProviders/models/user_info_model.dart';
 import 'package:intl/intl.dart';
@@ -352,7 +353,7 @@ class ProfileProvider with ChangeNotifier {
   }
 
 
-  Future<Response<dynamic>> postUserCreditCard({required String userToken, required String cardHolderName ,required String cardNumber , required String expirationMonth , required String expirationYear, required String isMain  }) async {
+  Future<Response<dynamic>> postUserCreditCard({required String userToken, required String cardHolderName ,required String cardNumber , required String expirationMonth , required String expirationYear, required bool isMain  }) async {
     print("update user info in Online Server...");
     var url = '${Strings.baseAppCardsUrl}cards';
     print(url);
@@ -361,7 +362,7 @@ class ProfileProvider with ChangeNotifier {
     header.putIfAbsent(Keys.acceptKey, () => "application/json");
     header.putIfAbsent(Keys.x_of_awjKey, () => "${userToken}");
     header.putIfAbsent(Keys.authorizationKey, () => "Bearer " + userToken!);
-    Map<String, String> body = <String, String>{};
+    Map<String, dynamic> body = <String, dynamic>{};
     body.putIfAbsent(Keys.cardHolderNameKey, () => cardHolderName);
     body.putIfAbsent(Keys.cardNumberKey, () => cardNumber);
     body.putIfAbsent(Keys.expirationMonthKey, () => expirationMonth);
@@ -391,6 +392,13 @@ class ProfileProvider with ChangeNotifier {
 
       return e.response!;
 
+    }
+  }
+
+  void addNewCard(CardItem card){
+    if(card !=null){
+      _savedCards!.body!.add(card);
+      notifyListeners();
     }
   }
 

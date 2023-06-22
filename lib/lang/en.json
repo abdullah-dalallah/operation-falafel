@@ -242,6 +242,9 @@
   "forgetPassword": "Forget Password",
   "resetYourPassword": "RESET YOUR PASSWORD",
   "verifyYourIdentity": "Verify Your Identity",
-  "verifyYourIdentityMsg": "Please enter the One-Time Password (OTP) sent to your registered mobile number to verify your identity and continue the process"
+  "verifyYourIdentityMsg": "Please enter the One-Time Password (OTP) sent to your registered mobile number to verify your identity and continue the process",
+
+  "mainCardCheck" : "Make it main card"
+
 
 }
