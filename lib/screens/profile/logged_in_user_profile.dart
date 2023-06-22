@@ -270,9 +270,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                   body: Center(
                     child: Container(
                       constraints: const BoxConstraints(maxWidth: 450,),
-                      child:  SingleChildScrollView(
-                          physics: const NeverScrollableScrollPhysics(),
-                        child: ConstrainedBox(
+                      child:  ConstrainedBox(
                           constraints: BoxConstraints(
                             minWidth: MediaQuery.of(context).size.width,
                             minHeight: MediaQuery.of(context).size.height,
@@ -531,356 +529,39 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                 const SizedBox(height: 10,),
 
                                 /// - Form
-                                SizedBox(
-                                  height: 260,
-                                  child: Form(
+                                Form(
                                     key: _formKey,
-                                    child: ListView(
+                                    child: Expanded(
+                                      child: ListView(
 
-                                        physics: ScrollPhysics(),
-                                        shrinkWrap: true,
-                                        children: [
+                                          physics: ScrollPhysics(),
+                                          shrinkWrap: true,
+                                          children: [
 
-                                          /// - Name
-                                          Padding(
-                                            padding: const EdgeInsets.only(left: 18.0,
-                                                right: 18),
-                                            child:  Row(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                            /// - Name
+                                            Padding(
+                                              padding: const EdgeInsets.only(left: 18.0,
+                                                  right: 18),
+                                              child:  Row(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
 
-                                                children: [
-                                                  Expanded(flex: 1,
-                                                      child:
-                                                      Container(
-                                                          height: 48,
-                                                        decoration: BoxDecoration(
-                                                          color: Colors.black45,
-
-                                                          borderRadius:
-
-                                                          (Localizations.localeOf(context).languageCode == 'en') ?
-                                                          const BorderRadius.only(
-                                                            bottomLeft: Radius.circular(10.0),
-                                                            topLeft: Radius.circular(10.0),
-
-                                                          ) :
-                                                          (Localizations.localeOf(context).languageCode == 'ar') ?
-                                                          const BorderRadius.only(
-                                                            bottomRight: Radius.circular(10),
-                                                            topRight: Radius.circular(10),
-                                                          ) :
-                                                          const BorderRadius.only(
-                                                            bottomLeft: Radius.circular(10.0),
-                                                            topLeft: Radius.circular(10.0),
-                                                          ),
-
-                                                          // border: Border.all(
-                                                          //   width: 0,
-                                                          //   color: Colors.transparent,
-                                                          //   style: BorderStyle.solid,
-                                                          // ),
-                                                        ),
-                                                        child: Center(
-                                                          child: Text(
-                                                            profilePage?.body.form.name.data as String,
-                                                            style: TextStyle(
-                                                                fontSize: lng?.header2.size.toDouble(),
-                                                                fontFamily: lng?.header2.textFamily,
-                                                                color: Color(int.parse(profilePage?.body.form.name.color as String))),),
-                                                        ),
-                                                      )
-                                                    // Text(
-                                                    //       "${getTranslated(context, "name")!} :",
-                                                    //       style: TextStyle(fontSize: 13,
-                                                    //           fontFamily: getTranslated(
-                                                    //               context, "fontFamilyBody")!,
-                                                    //           color: Colors.amber),)
-                                                  ),
-                                                  Expanded(
-                                                    flex: 5,
-                                                    child: SizedBox(
-
-                                                      child: TextFormField(
-                                                        controller: profileProvider.nameController,
-                                                        enabled: startEdit,
-                                                        autofocus: false,
-                                                        style:const TextStyle(color: Colors.white),
-                                                        decoration: InputDecoration(
-                                                          filled: true,
-                                                          fillColor: Colors.black45,
-                                                          contentPadding:const EdgeInsets.only(left: 10, right: 10),
-                                                          focusedBorder: OutlineInputBorder(
-                                                            borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
-
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0),
-                                                              topLeft: Radius.circular(10.0),
-
-                                                            ) :
-                                                            (Localizations.localeOf(context).languageCode == 'en') ?
-                                                            const BorderRadius.only(
-                                                              bottomRight: Radius.circular(10),
-                                                              topRight: Radius.circular(10),
-                                                            ) :
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0),
-                                                              topLeft: Radius.circular(10.0),
-                                                            ),
-                                                            borderSide: BorderSide(
-                                                              color: Colors.transparent,
-                                                              width: 1.0,),
-                                                          ),
-                                                          errorBorder: OutlineInputBorder(
-                                                            borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
-
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0,),
-                                                              topLeft: Radius.circular(10.0),
-
-                                                            ) :
-                                                            (Localizations.localeOf(context).languageCode == 'en') ?
-                                                            const BorderRadius.only(
-                                                              bottomRight: Radius.circular(10),
-                                                              topRight: Radius.circular(10),
-                                                            ) :
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0),
-                                                              topLeft: Radius.circular(10.0),
-                                                            ),
-
-                                                            borderSide:const BorderSide(
-                                                              color: Colors.red,
-                                                              width: 1.0,),
-                                                          ),
-                                                          enabledBorder: OutlineInputBorder(
-                                                            borderRadius:
-                                                            (Localizations.localeOf(context).languageCode == 'ar') ?
-
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0),
-                                                              topLeft: Radius.circular(10.0),
-
-                                                            ) :
-                                                            (Localizations.localeOf(context).languageCode == 'en') ?
-                                                            const BorderRadius.only(
-                                                              bottomRight: Radius.circular(10),
-                                                              topRight: Radius.circular(10),
-                                                            ) :
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0),
-                                                              topLeft: Radius.circular(10.0),
-                                                            ),
-
-                                                            borderSide: BorderSide(
-                                                                color: Colors.transparent,
-                                                                width: 10.0),
-                                                          ),
-                                                          disabledBorder:OutlineInputBorder(
-                                                            borderRadius:
-                                                            (Localizations.localeOf(context).languageCode == 'ar') ?
-
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0),
-                                                              topLeft: Radius.circular(10.0),
-
-                                                            ) :
-                                                            (Localizations.localeOf(context).languageCode == 'en') ?
-                                                            const BorderRadius.only(
-                                                              bottomRight: Radius.circular(10),
-                                                              topRight: Radius.circular(10),
-                                                            ) :
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0),
-                                                              topLeft: Radius.circular(10.0),
-                                                            ),
-
-                                                            borderSide: BorderSide(
-                                                                color: Colors.transparent,
-                                                                width: 10.0),
-                                                          ),
-                                                          hintText: '',
-                                                          // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
-
-                                                        ),
-
-                                                        validator: (value) {
-                                                          if (value!.isEmpty) {
-                                                            return 'Please enter your name';
-                                                          }
-                                                          return null;
-                                                        },
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-
-                                          ),
-                                          const SizedBox(height: 10,),
-
-                                          /// - Phone number
-                                          Padding(
-                                            padding: const EdgeInsets.only(left: 18.0, right: 18),
-                                            child:  Row(
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Expanded(flex: 2, child: Container(
-                                                      height: 48,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.black45,
-
-                                                      borderRadius:
-
-                                                      (Localizations.localeOf(context).languageCode == 'en') ?
-                                                      const BorderRadius.only(
-                                                        bottomLeft: Radius.circular(10.0),
-                                                        topLeft: Radius.circular(10.0),
-
-                                                      ) :
-                                                      (Localizations.localeOf(context).languageCode == 'ar') ?
-                                                      const BorderRadius.only(
-                                                        bottomRight: Radius.circular(10),
-                                                        topRight: Radius.circular(10),
-                                                      ) :
-                                                      const BorderRadius.only(
-                                                        bottomLeft: Radius.circular(10.0),
-                                                        topLeft: Radius.circular(10.0),
-                                                      ),
-
-                                                      // border: Border.all(
-                                                      //   width: 0,
-                                                      //   color: Colors.transparent,
-                                                      //   style: BorderStyle.solid,
-                                                      // ),
-                                                    ),
-                                                    child: Padding(
-                                                        padding: const EdgeInsets.only(left: 10, right: 10),
+                                                  children: [
+                                                    Expanded(flex: 1,
                                                         child:
-                                                        Center(
-                                                          child: Text(
-                                                            profilePage?.body.form.phoneNumber.data as String,
-                                                            style: TextStyle(
-                                                                fontSize: lng?.header2.size.toDouble(),
-                                                                fontFamily: lng?.header2.textFamily,
-                                                                color: Color(int.parse(profilePage?.body.form.phoneNumber.color as String))),),
-                                                        )
-                                                      // Text("${getTranslated(
-                                                      //     context, "mobileNo")!} :",
-                                                      //   style: TextStyle(
-                                                      //       fontFamily: getTranslated(
-                                                      //           context, "fontFamilyBody")!,
-                                                      //       color: Colors.amber),),
-                                                    ),
-                                                  )),
-                                                  Expanded(
-                                                      flex: 2,
-                                                      child: Container(
-                                                          height: 48,
-                                                        decoration:const  BoxDecoration(
-                                                          color: Colors.black45,
+                                                        Container(
+                                                            height: 48,
+                                                          decoration: BoxDecoration(
+                                                            color: Colors.black45,
 
-                                                          borderRadius: const BorderRadius.only(
-                                                            bottomLeft: Radius.circular(0.0),
-                                                            topLeft: Radius.circular(0.0),
-                                                            bottomRight: Radius.circular(0.0),
-                                                            topRight: Radius.circular(0.0),
-
-                                                          )
-
-
-
-                                                        ),
-                                                        child: Padding(
-                                                            padding: const EdgeInsets.only(left: 0, right: 0),
-                                                            child: IconButton(
-                                                              icon:
-                                                              countryCode != null ?
-                                                              SizedBox(width: 30,
-                                                                  height: 30,
-                                                                  child: countryCode!.flagImage)
-                                                                  : const Icon(
-                                                                  Icons.flag_outlined),
-                                                              padding: EdgeInsets.zero,
-                                                              onPressed: () async {
-                                                                final code = await countryPicker
-                                                                    .showPicker(context: context,
-                                                                    initialSelectedLocale: "AE");
-                                                                if (code != null) {
-                                                                  setState(() {
-                                                                    countryCode = code;
-                                                                  });
-                                                                };
-                                                              },)
-                                                        ),
-                                                      )),
-                                                  Expanded(
-                                                    flex: 7,
-                                                    child: SizedBox(
-
-                                                      child: TextFormField(
-                                                        controller: profileProvider.mobileController,
-                                                        maxLength: 9,
-                                                        enabled: startEdit,
-                                                        keyboardType: TextInputType.number,
-                                                        autofocus: false,
-                                                        style:const TextStyle(color: Colors.white),
-                                                        decoration: InputDecoration(
-                                                          filled: true,
-                                                          fillColor: Colors.black45,
-                                                          contentPadding:const EdgeInsets.only(left: 10, right: 10),
-                                                          focusedBorder: OutlineInputBorder(
-                                                            borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
-
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0),
-                                                              topLeft: Radius.circular(10.0),
-
-                                                            ) :
-                                                            (Localizations.localeOf(context).languageCode == 'en') ?
-                                                            const BorderRadius.only(
-                                                              bottomRight: Radius.circular(10),
-                                                              topRight: Radius.circular(10),
-                                                            ) :
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0),
-                                                              topLeft: Radius.circular(10.0),
-                                                            ),
-                                                            borderSide: BorderSide(
-                                                              color: Colors.transparent,
-                                                              width: 1.0,),
-                                                          ),
-                                                          errorBorder: OutlineInputBorder(
-                                                            borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
-
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0,),
-                                                              topLeft: Radius.circular(10.0),
-
-                                                            ) :
-                                                            (Localizations.localeOf(context).languageCode == 'en') ?
-                                                            const BorderRadius.only(
-                                                              bottomRight: Radius.circular(10),
-                                                              topRight: Radius.circular(10),
-                                                            ) :
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0),
-                                                              topLeft: Radius.circular(10.0),
-                                                            ),
-
-                                                            borderSide:const BorderSide(
-                                                              color: Colors.red,
-                                                              width: 1.0,),
-                                                          ),
-                                                          enabledBorder: OutlineInputBorder(
                                                             borderRadius:
-                                                            (Localizations.localeOf(context).languageCode == 'ar') ?
 
+                                                            (Localizations.localeOf(context).languageCode == 'en') ?
                                                             const BorderRadius.only(
                                                               bottomLeft: Radius.circular(10.0),
                                                               topLeft: Radius.circular(10.0),
 
                                                             ) :
-                                                            (Localizations.localeOf(context).languageCode == 'en') ?
+                                                            (Localizations.localeOf(context).languageCode == 'ar') ?
                                                             const BorderRadius.only(
                                                               bottomRight: Radius.circular(10),
                                                               topRight: Radius.circular(10),
@@ -890,433 +571,158 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                               topLeft: Radius.circular(10.0),
                                                             ),
 
-                                                            borderSide: BorderSide(
-                                                                color: Colors.transparent,
-                                                                width: 10.0),
+                                                            // border: Border.all(
+                                                            //   width: 0,
+                                                            //   color: Colors.transparent,
+                                                            //   style: BorderStyle.solid,
+                                                            // ),
                                                           ),
-                                                          disabledBorder:OutlineInputBorder(
-                                                            borderRadius:
-                                                            (Localizations.localeOf(context).languageCode == 'ar') ?
-
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0),
-                                                              topLeft: Radius.circular(10.0),
-
-                                                            ) :
-                                                            (Localizations.localeOf(context).languageCode == 'en') ?
-                                                            const BorderRadius.only(
-                                                              bottomRight: Radius.circular(10),
-                                                              topRight: Radius.circular(10),
-                                                            ) :
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0),
-                                                              topLeft: Radius.circular(10.0),
-                                                            ),
-
-                                                            borderSide: BorderSide(
-                                                                color: Colors.transparent,
-                                                                width: 10.0),
-                                                          ),
-                                                          hintText: '',
-                                                           counterText: ''
-                                                          // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
-
-                                                        ),
-                                                        validator: (value) {
-                                                          if (value!.isEmpty) {
-                                                            return 'Please enter your phone number';
-                                                          } else if (value!.length != 9) {
-                                                            return 'must be 9 digits';
-                                                          }
-                                                          return null;
-                                                        },
-                                                      ),
-                                                    ),
-                                                  ),
-
-
-
-                                                ],
-                                              ),
-
-                                          ),
-                                          const SizedBox(height: 10,),
-
-                                          /// - email address
-                                          Padding(
-                                            padding: const EdgeInsets.only(left: 18.0, right: 18),
-                                            child: Row(
-                                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Expanded(flex: 1,
-                                                      child:Container(
-                                                        height: 48,
-                                                        decoration: BoxDecoration(
-                                                          color: Colors.black45,
-
-                                                          borderRadius:
-
-                                                          (Localizations.localeOf(context).languageCode == 'en') ?
-                                                          const BorderRadius.only(
-                                                            bottomLeft: Radius.circular(10.0),
-                                                            topLeft: Radius.circular(10.0),
-
-                                                          ) :
-                                                          (Localizations.localeOf(context).languageCode == 'ar') ?
-                                                          const BorderRadius.only(
-                                                            bottomRight: Radius.circular(10),
-                                                            topRight: Radius.circular(10),
-                                                          ) :
-                                                          const BorderRadius.only(
-                                                            bottomLeft: Radius.circular(10.0),
-                                                            topLeft: Radius.circular(10.0),
-                                                          ),
-
-                                                          // border: Border.all(
-                                                          //   width: 0,
-                                                          //   color: Colors.transparent,
-                                                          //   style: BorderStyle.solid,
-                                                          // ),
-                                                        ),
-                                                        child: Center(
-                                                          child: Text(
-                                                              profilePage?.body.form.email.data as String,
+                                                          child: Center(
+                                                            child: Text(
+                                                              profilePage?.body.form.name.data as String,
                                                               style: TextStyle(
                                                                   fontSize: lng?.header2.size.toDouble(),
                                                                   fontFamily: lng?.header2.textFamily,
-                                                                  color: Color(int.parse(profilePage?.body.form.email.color as String))),),
-                                                        ),
-                                                      ),
-                                                  ),
-                                                  Expanded(
-                                                    flex: 5,
-                                                    child: SizedBox(
-
-                                                      child: TextFormField(
-                                                        controller: profileProvider.emailController,
-                                                        enabled: startEdit,
-                                                        autofocus: false,
-                                                        style: const TextStyle(
-                                                            color: Colors.white),
-                                                        decoration:  InputDecoration(
-                                                          filled: true,
-                                                          fillColor: Colors.black45,
-                                                          contentPadding: const EdgeInsets.only(
-                                                              left: 10, right: 10),
-                                                          focusedBorder: OutlineInputBorder(
-                                                            borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
-
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0),
-                                                              topLeft: Radius.circular(10.0),
-
-                                                            ) :
-                                                            (Localizations.localeOf(context).languageCode == 'en') ?
-                                                            const BorderRadius.only(
-                                                              bottomRight: Radius.circular(10),
-                                                              topRight: Radius.circular(10),
-                                                            ) :
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0),
-                                                              topLeft: Radius.circular(10.0),
-                                                            ),
-                                                            borderSide: BorderSide(
-                                                              color: Colors.transparent,
-                                                              width: 1.0,),
+                                                                  color: Color(int.parse(profilePage?.body.form.name.color as String))),),
                                                           ),
-                                                          errorBorder: OutlineInputBorder(
-                                                            borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
-
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0,),
-                                                              topLeft: Radius.circular(10.0),
-
-                                                            ) :
-                                                            (Localizations.localeOf(context).languageCode == 'en') ?
-                                                            const BorderRadius.only(
-                                                              bottomRight: Radius.circular(10),
-                                                              topRight: Radius.circular(10),
-                                                            ) :
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0),
-                                                              topLeft: Radius.circular(10.0),
-                                                            ),
-
-                                                            borderSide:const BorderSide(
-                                                              color: Colors.red,
-                                                              width: 1.0,),
-                                                          ),
-                                                          enabledBorder: OutlineInputBorder(
-                                                            borderRadius:
-                                                            (Localizations.localeOf(context).languageCode == 'ar') ?
-
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0),
-                                                              topLeft: Radius.circular(10.0),
-
-                                                            ) :
-                                                            (Localizations.localeOf(context).languageCode == 'en') ?
-                                                            const BorderRadius.only(
-                                                              bottomRight: Radius.circular(10),
-                                                              topRight: Radius.circular(10),
-                                                            ) :
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0),
-                                                              topLeft: Radius.circular(10.0),
-                                                            ),
-
-                                                            borderSide: BorderSide(
-                                                                color: Colors.transparent,
-                                                                width: 10.0),
-                                                          ),
-                                                          disabledBorder:OutlineInputBorder(
-                                                            borderRadius:
-                                                            (Localizations.localeOf(context).languageCode == 'ar') ?
-
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0),
-                                                              topLeft: Radius.circular(10.0),
-
-                                                            ) :
-                                                            (Localizations.localeOf(context).languageCode == 'en') ?
-                                                            const BorderRadius.only(
-                                                              bottomRight: Radius.circular(10),
-                                                              topRight: Radius.circular(10),
-                                                            ) :
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0),
-                                                              topLeft: Radius.circular(10.0),
-                                                            ),
-
-                                                            borderSide: BorderSide(
-                                                                color: Colors.transparent,
-                                                                width: 10.0),
-                                                          ),
-                                                          hintText: '',
-
-                                                          // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
-
-                                                        ),
-                                                        validator: (value) {
-                                                          if (value!.isEmpty) {
-                                                            return 'Please enter your email address';
-                                                          } else if (!RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$')
-                                                              .hasMatch(value)) {
-                                                            return 'Please enter a valid email address';
-                                                          }
-                                                          return null;
-                                                        },
-                                                      ),
+                                                        )
+                                                      // Text(
+                                                      //       "${getTranslated(context, "name")!} :",
+                                                      //       style: TextStyle(fontSize: 13,
+                                                      //           fontFamily: getTranslated(
+                                                      //               context, "fontFamilyBody")!,
+                                                      //           color: Colors.amber),)
                                                     ),
-                                                  ),
-                                                ],
-                                              ),
+                                                    Expanded(
+                                                      flex: 5,
+                                                      child: SizedBox(
 
-                                          ),
-                                          const SizedBox(height: 10,),
+                                                        child: TextFormField(
+                                                          controller: profileProvider.nameController,
+                                                          enabled: startEdit,
+                                                          autofocus: false,
+                                                          style:const TextStyle(color: Colors.white),
+                                                          decoration: InputDecoration(
+                                                            filled: true,
+                                                            fillColor: Colors.black45,
+                                                            contentPadding:const EdgeInsets.only(left: 10, right: 10),
+                                                            focusedBorder: OutlineInputBorder(
+                                                              borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
 
-                                          /// - date of birth
-                                          Padding(
-                                            padding: const EdgeInsets.only(left: 18.0, right: 18),
-                                            child:  Row(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Expanded(flex: 2,
-                                                      child:      Container(
-                                                        height: 48,
-                                                        decoration: BoxDecoration(
-                                                          color: Colors.black45,
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
 
-                                                          borderRadius:
+                                                              ) :
+                                                              (Localizations.localeOf(context).languageCode == 'en') ?
+                                                              const BorderRadius.only(
+                                                                bottomRight: Radius.circular(10),
+                                                                topRight: Radius.circular(10),
+                                                              ) :
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
+                                                              ),
+                                                              borderSide: BorderSide(
+                                                                color: Colors.transparent,
+                                                                width: 1.0,),
+                                                            ),
+                                                            errorBorder: OutlineInputBorder(
+                                                              borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
 
-                                                          (Localizations.localeOf(context).languageCode == 'en') ?
-                                                          const BorderRadius.only(
-                                                            bottomLeft: Radius.circular(10.0),
-                                                            topLeft: Radius.circular(10.0),
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0,),
+                                                                topLeft: Radius.circular(10.0),
 
-                                                          ) :
-                                                          (Localizations.localeOf(context).languageCode == 'ar') ?
-                                                          const BorderRadius.only(
-                                                            bottomRight: Radius.circular(10),
-                                                            topRight: Radius.circular(10),
-                                                          ) :
-                                                          const BorderRadius.only(
-                                                            bottomLeft: Radius.circular(10.0),
-                                                            topLeft: Radius.circular(10.0),
-                                                          ),
+                                                              ) :
+                                                              (Localizations.localeOf(context).languageCode == 'en') ?
+                                                              const BorderRadius.only(
+                                                                bottomRight: Radius.circular(10),
+                                                                topRight: Radius.circular(10),
+                                                              ) :
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
+                                                              ),
 
-                                                          // border: Border.all(
-                                                          //   width: 0,
-                                                          //   color: Colors.transparent,
-                                                          //   style: BorderStyle.solid,
-                                                          // ),
-                                                        ),
-                                                        child: Center(
-                                                          child: Text(
-                                                            profilePage?.body.form.dateOfBirth.data as String,
-                                                            style: TextStyle(
-                                                                fontSize: lng?.header2.size.toDouble(),
-                                                                fontFamily: lng?.header2.textFamily,
-                                                                color: Color(int.parse(profilePage?.body.form.dateOfBirth.color as String))),),
-                                                        ),
-                                                      )),
-                                                  Expanded(
-                                                    flex: 5,
-                                                    child: SizedBox(
+                                                              borderSide:const BorderSide(
+                                                                color: Colors.red,
+                                                                width: 1.0,),
+                                                            ),
+                                                            enabledBorder: OutlineInputBorder(
+                                                              borderRadius:
+                                                              (Localizations.localeOf(context).languageCode == 'ar') ?
 
-                                                      child: Stack(
-                                                        children: [
-                                                          TextFormField(
-                                                            controller: profileProvider.birthDateController,
-                                                            enabled: startEdit,
-                                                            autofocus: false,
-                                                            style: const TextStyle(color: Colors.white),
-                                                            decoration:  InputDecoration(
-                                                              filled: true,
-                                                              fillColor: Colors.black45,
-                                                              contentPadding:const EdgeInsets.only(
-                                                                  left: 10, right: 10),
-                                                              focusedBorder: OutlineInputBorder(
-                                                                borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
 
-                                                                const BorderRadius.only(
-                                                                  bottomLeft: Radius.circular(10.0),
-                                                                  topLeft: Radius.circular(10.0),
+                                                              ) :
+                                                              (Localizations.localeOf(context).languageCode == 'en') ?
+                                                              const BorderRadius.only(
+                                                                bottomRight: Radius.circular(10),
+                                                                topRight: Radius.circular(10),
+                                                              ) :
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
+                                                              ),
 
-                                                                ) :
-                                                                (Localizations.localeOf(context).languageCode == 'en') ?
-                                                                const BorderRadius.only(
-                                                                  bottomRight: Radius.circular(10),
-                                                                  topRight: Radius.circular(10),
-                                                                ) :
-                                                                const BorderRadius.only(
-                                                                  bottomLeft: Radius.circular(10.0),
-                                                                  topLeft: Radius.circular(10.0),
-                                                                ),
-                                                                borderSide: BorderSide(
+                                                              borderSide: BorderSide(
                                                                   color: Colors.transparent,
-                                                                  width: 1.0,),
-                                                              ),
-                                                              errorBorder: OutlineInputBorder(
-                                                                borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
-
-                                                                const BorderRadius.only(
-                                                                  bottomLeft: Radius.circular(10.0,),
-                                                                  topLeft: Radius.circular(10.0),
-
-                                                                ) :
-                                                                (Localizations.localeOf(context).languageCode == 'en') ?
-                                                                const BorderRadius.only(
-                                                                  bottomRight: Radius.circular(10),
-                                                                  topRight: Radius.circular(10),
-                                                                ) :
-                                                                const BorderRadius.only(
-                                                                  bottomLeft: Radius.circular(10.0),
-                                                                  topLeft: Radius.circular(10.0),
-                                                                ),
-
-                                                                borderSide:const BorderSide(
-                                                                  color: Colors.red,
-                                                                  width: 1.0,),
-                                                              ),
-                                                              enabledBorder: OutlineInputBorder(
-                                                                borderRadius:
-                                                                (Localizations.localeOf(context).languageCode == 'ar') ?
-
-                                                                const BorderRadius.only(
-                                                                  bottomLeft: Radius.circular(10.0),
-                                                                  topLeft: Radius.circular(10.0),
-
-                                                                ) :
-                                                                (Localizations.localeOf(context).languageCode == 'en') ?
-                                                                const BorderRadius.only(
-                                                                  bottomRight: Radius.circular(10),
-                                                                  topRight: Radius.circular(10),
-                                                                ) :
-                                                                const BorderRadius.only(
-                                                                  bottomLeft: Radius.circular(10.0),
-                                                                  topLeft: Radius.circular(10.0),
-                                                                ),
-
-                                                                borderSide: BorderSide(
-                                                                    color: Colors.transparent,
-                                                                    width: 10.0),
-                                                              ),
-                                                              disabledBorder:OutlineInputBorder(
-                                                                borderRadius:
-                                                                (Localizations.localeOf(context).languageCode == 'ar') ?
-
-                                                                const BorderRadius.only(
-                                                                  bottomLeft: Radius.circular(10.0),
-                                                                  topLeft: Radius.circular(10.0),
-
-                                                                ) :
-                                                                (Localizations.localeOf(context).languageCode == 'en') ?
-                                                                const BorderRadius.only(
-                                                                  bottomRight: Radius.circular(10),
-                                                                  topRight: Radius.circular(10),
-                                                                ) :
-                                                                const BorderRadius.only(
-                                                                  bottomLeft: Radius.circular(10.0),
-                                                                  topLeft: Radius.circular(10.0),
-                                                                ),
-
-                                                                borderSide: BorderSide(
-                                                                    color: Colors.transparent,
-                                                                    width: 10.0),
-                                                              ),
-                                                              hintText: '',
-
-                                                              // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
-
+                                                                  width: 10.0),
                                                             ),
+                                                            disabledBorder:OutlineInputBorder(
+                                                              borderRadius:
+                                                              (Localizations.localeOf(context).languageCode == 'ar') ?
 
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
 
-                                                            validator: (value) {
-                                                              if (value!.isEmpty) {
-                                                                return 'Please enter your date of birth';
-                                                              }
-                                                              // You can add more advanced date validation here if needed
-                                                              return null;
-                                                            },
+                                                              ) :
+                                                              (Localizations.localeOf(context).languageCode == 'en') ?
+                                                              const BorderRadius.only(
+                                                                bottomRight: Radius.circular(10),
+                                                                topRight: Radius.circular(10),
+                                                              ) :
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
+                                                              ),
+
+                                                              borderSide: BorderSide(
+                                                                  color: Colors.transparent,
+                                                                  width: 10.0),
+                                                            ),
+                                                            hintText: '',
+                                                            // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+
                                                           ),
-                                                          Positioned.fill(
-                                                              child:  Material(
-                                                                color: Colors.transparent,
-                                                                child:  InkWell(
-                                                                  borderRadius: BorderRadius.all(Radius.circular(0)),
-                                                                  splashColor: Colors.black,
-                                                                  overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
 
-                                                                  onTap: () {
-                                                                    if(startEdit)
-                                                                    showCustomDialog(context);
-                                                                    setState(() {
-                                                                      // showDatePicker =true;
-                                                                    });
-                                                                  },
-                                                                ),
-
-                                                              )
-                                                          ),
-                                                        ],
+                                                          validator: (value) {
+                                                            if (value!.isEmpty) {
+                                                              return 'Please enter your name';
+                                                            }
+                                                            return null;
+                                                          },
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
-                                                ],
-                                              ),
+                                                  ],
+                                                ),
 
-                                          ),
-                                          const SizedBox(height: 10,),
-                                          /// - gender
-                                          Padding(
-                                            padding: const EdgeInsets.only(left:18.0, right: 18),
-                                            child: Row(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Expanded(
-                                                      flex:2, child: Container(
-                                                      height: 50,
+                                            ),
+                                            const SizedBox(height: 10,),
+
+                                            /// - Phone number
+                                            Padding(
+                                              padding: const EdgeInsets.only(left: 18.0, right: 18),
+                                              child:  Row(
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    Expanded(flex: 2, child: Container(
+                                                        height: 48,
                                                       decoration: BoxDecoration(
                                                         color: Colors.black45,
 
@@ -1344,447 +750,1039 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                         //   style: BorderStyle.solid,
                                                         // ),
                                                       ),
-                                                      child: Center(child: Text("${getTranslated(context, "gender")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)))),
-                                                  Expanded(
-                                                    flex: 7,
-                                                    child: SizedBox(
-                                                      child: DropdownButtonFormField2(
+                                                      child: Padding(
+                                                          padding: const EdgeInsets.only(left: 10, right: 10),
+                                                          child:
+                                                          Center(
+                                                            child: Text(
+                                                              profilePage?.body.form.phoneNumber.data as String,
+                                                              style: TextStyle(
+                                                                  fontSize: lng?.header2.size.toDouble(),
+                                                                  fontFamily: lng?.header2.textFamily,
+                                                                  color: Color(int.parse(profilePage?.body.form.phoneNumber.color as String))),),
+                                                          )
+                                                        // Text("${getTranslated(
+                                                        //     context, "mobileNo")!} :",
+                                                        //   style: TextStyle(
+                                                        //       fontFamily: getTranslated(
+                                                        //           context, "fontFamilyBody")!,
+                                                        //       color: Colors.amber),),
+                                                      ),
+                                                    )),
+                                                    Expanded(
+                                                        flex: 2,
+                                                        child: Container(
+                                                            height: 48,
+                                                          decoration:const  BoxDecoration(
+                                                            color: Colors.black45,
 
-                                                        scrollbarAlwaysShow: true,
-                                                        style: const TextStyle(color: Colors.white),
-                                                        decoration:  InputDecoration(
-                                                          //Add isDense true and zero Padding.
-                                                          //Add Horizontal padding using buttonPadding and Vertical padding by increasing buttonHeight instead of add Padding here so that The whole TextField Button become clickable, and also the dropdown menu open under The whole TextField Button.
-                                                          isDense: true,
-                                                          fillColor: Colors.black45,
-                                                          filled: true,
-                                                          contentPadding:const EdgeInsets.only(),
+                                                            borderRadius: const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(0.0),
+                                                              topLeft: Radius.circular(0.0),
+                                                              bottomRight: Radius.circular(0.0),
+                                                              topRight: Radius.circular(0.0),
 
-                                                          focusColor: Colors.transparent,
-                                                          focusedBorder: OutlineInputBorder(
-                                                            borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
+                                                            )
 
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0),
-                                                              topLeft: Radius.circular(10.0),
 
-                                                            ) :
-                                                            (Localizations.localeOf(context).languageCode == 'en') ?
-                                                            const BorderRadius.only(
-                                                              bottomRight: Radius.circular(10),
-                                                              topRight: Radius.circular(10),
-                                                            ) :
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0),
-                                                              topLeft: Radius.circular(10.0),
-                                                            ),
-                                                            borderSide: BorderSide(
-                                                              color: Colors.transparent,
-                                                              width: 1.0,),
+
                                                           ),
-                                                          errorBorder: OutlineInputBorder(
-                                                            borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
-
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0,),
-                                                              topLeft: Radius.circular(10.0),
-
-                                                            ) :
-                                                            (Localizations.localeOf(context).languageCode == 'en') ?
-                                                            const BorderRadius.only(
-                                                              bottomRight: Radius.circular(10),
-                                                              topRight: Radius.circular(10),
-                                                            ) :
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0),
-                                                              topLeft: Radius.circular(10.0),
-                                                            ),
-
-                                                            borderSide:const BorderSide(
-                                                              color: Colors.red,
-                                                              width: 1.0,),
+                                                          child: Padding(
+                                                              padding: const EdgeInsets.only(left: 0, right: 0),
+                                                              child: IconButton(
+                                                                icon:
+                                                                countryCode != null ?
+                                                                SizedBox(width: 30,
+                                                                    height: 30,
+                                                                    child: countryCode!.flagImage)
+                                                                    : const Icon(
+                                                                    Icons.flag_outlined),
+                                                                padding: EdgeInsets.zero,
+                                                                onPressed: () async {
+                                                                  final code = await countryPicker
+                                                                      .showPicker(context: context,
+                                                                      initialSelectedLocale: "AE");
+                                                                  if (code != null) {
+                                                                    setState(() {
+                                                                      countryCode = code;
+                                                                    });
+                                                                  };
+                                                                },)
                                                           ),
-                                                          enabledBorder: OutlineInputBorder(
-                                                            borderRadius:
-                                                            (Localizations.localeOf(context).languageCode == 'ar') ?
+                                                        )),
+                                                    Expanded(
+                                                      flex: 7,
+                                                      child: SizedBox(
 
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0),
-                                                              topLeft: Radius.circular(10.0),
+                                                        child: TextFormField(
+                                                          controller: profileProvider.mobileController,
+                                                          maxLength: 9,
+                                                          enabled: startEdit,
+                                                          keyboardType: TextInputType.number,
+                                                          autofocus: false,
+                                                          style:const TextStyle(color: Colors.white),
+                                                          decoration: InputDecoration(
+                                                            filled: true,
+                                                            fillColor: Colors.black45,
+                                                            contentPadding:const EdgeInsets.only(left: 10, right: 10),
+                                                            focusedBorder: OutlineInputBorder(
+                                                              borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
 
-                                                            ) :
-                                                            (Localizations.localeOf(context).languageCode == 'en') ?
-                                                            const BorderRadius.only(
-                                                              bottomRight: Radius.circular(10),
-                                                              topRight: Radius.circular(10),
-                                                            ) :
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0),
-                                                              topLeft: Radius.circular(10.0),
-                                                            ),
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
 
-                                                            borderSide: BorderSide(
+                                                              ) :
+                                                              (Localizations.localeOf(context).languageCode == 'en') ?
+                                                              const BorderRadius.only(
+                                                                bottomRight: Radius.circular(10),
+                                                                topRight: Radius.circular(10),
+                                                              ) :
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
+                                                              ),
+                                                              borderSide: BorderSide(
                                                                 color: Colors.transparent,
-                                                                width: 10.0),
-                                                          ),
-                                                          disabledBorder:OutlineInputBorder(
-                                                            borderRadius:
-                                                            (Localizations.localeOf(context).languageCode == 'ar') ?
-
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0),
-                                                              topLeft: Radius.circular(10.0),
-
-                                                            ) :
-                                                            (Localizations.localeOf(context).languageCode == 'en') ?
-                                                            const BorderRadius.only(
-                                                              bottomRight: Radius.circular(10),
-                                                              topRight: Radius.circular(10),
-                                                            ) :
-                                                            const BorderRadius.only(
-                                                              bottomLeft: Radius.circular(10.0),
-                                                              topLeft: Radius.circular(10.0),
+                                                                width: 1.0,),
                                                             ),
+                                                            errorBorder: OutlineInputBorder(
+                                                              borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
 
-                                                            borderSide: BorderSide(
-                                                                color: Colors.transparent,
-                                                                width: 10.0),
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0,),
+                                                                topLeft: Radius.circular(10.0),
+
+                                                              ) :
+                                                              (Localizations.localeOf(context).languageCode == 'en') ?
+                                                              const BorderRadius.only(
+                                                                bottomRight: Radius.circular(10),
+                                                                topRight: Radius.circular(10),
+                                                              ) :
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
+                                                              ),
+
+                                                              borderSide:const BorderSide(
+                                                                color: Colors.red,
+                                                                width: 1.0,),
+                                                            ),
+                                                            enabledBorder: OutlineInputBorder(
+                                                              borderRadius:
+                                                              (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
+
+                                                              ) :
+                                                              (Localizations.localeOf(context).languageCode == 'en') ?
+                                                              const BorderRadius.only(
+                                                                bottomRight: Radius.circular(10),
+                                                                topRight: Radius.circular(10),
+                                                              ) :
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
+                                                              ),
+
+                                                              borderSide: BorderSide(
+                                                                  color: Colors.transparent,
+                                                                  width: 10.0),
+                                                            ),
+                                                            disabledBorder:OutlineInputBorder(
+                                                              borderRadius:
+                                                              (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
+
+                                                              ) :
+                                                              (Localizations.localeOf(context).languageCode == 'en') ?
+                                                              const BorderRadius.only(
+                                                                bottomRight: Radius.circular(10),
+                                                                topRight: Radius.circular(10),
+                                                              ) :
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
+                                                              ),
+
+                                                              borderSide: BorderSide(
+                                                                  color: Colors.transparent,
+                                                                  width: 10.0),
+                                                            ),
+                                                            hintText: '',
+                                                             counterText: ''
+                                                            // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+
                                                           ),
-
-                                                          //Add more decoration as you want here
-                                                          //Add label If you want but add hint outside the decoration to be aligned in the button perfectly.
+                                                          validator: (value) {
+                                                            if (value!.isEmpty) {
+                                                              return 'Please enter your phone number';
+                                                            } else if (value!.length != 9) {
+                                                              return 'must be 9 digits';
+                                                            }
+                                                            return null;
+                                                          },
                                                         ),
-                                                        isExpanded: true,
-                                                        hint: Text(
-                                                          profilePage?.body.form.gender.dropDownWidget.labelText.data as String,
-                                                          style: TextStyle(
-                                                              fontSize: lng?.header3.size.toDouble(),
-                                                              fontFamily: lng?.header3.textFamily,
-                                                              color: Color(int.parse(profilePage?.body.form.gender.dropDownWidget.labelText.color as String))),),
-                                                        icon: const ImageIcon(AssetImage("assets/images/down.png"),),
-                                                        iconDisabledColor: Colors.grey,
-                                                        iconEnabledColor: Colors.white70,
-                                                        disabledHint: (profileProvider.selectedGenderValue != null) ?Row(
+                                                      ),
+                                                    ),
+
+
+
+                                                  ],
+                                                ),
+
+                                            ),
+                                            const SizedBox(height: 10,),
+
+                                            /// - email address
+                                            Padding(
+                                              padding: const EdgeInsets.only(left: 18.0, right: 18),
+                                              child: Row(
+                                                     crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    Expanded(flex: 1,
+                                                        child:Container(
+                                                          height: 48,
+                                                          decoration: BoxDecoration(
+                                                            color: Colors.black45,
+
+                                                            borderRadius:
+
+                                                            (Localizations.localeOf(context).languageCode == 'en') ?
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+
+                                                            ) :
+                                                            (Localizations.localeOf(context).languageCode == 'ar') ?
+                                                            const BorderRadius.only(
+                                                              bottomRight: Radius.circular(10),
+                                                              topRight: Radius.circular(10),
+                                                            ) :
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+                                                            ),
+
+                                                            // border: Border.all(
+                                                            //   width: 0,
+                                                            //   color: Colors.transparent,
+                                                            //   style: BorderStyle.solid,
+                                                            // ),
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                                profilePage?.body.form.email.data as String,
+                                                                style: TextStyle(
+                                                                    fontSize: lng?.header2.size.toDouble(),
+                                                                    fontFamily: lng?.header2.textFamily,
+                                                                    color: Color(int.parse(profilePage?.body.form.email.color as String))),),
+                                                          ),
+                                                        ),
+                                                    ),
+                                                    Expanded(
+                                                      flex: 5,
+                                                      child: SizedBox(
+
+                                                        child: TextFormField(
+                                                          controller: profileProvider.emailController,
+                                                          enabled: startEdit,
+                                                          autofocus: false,
+                                                          style: const TextStyle(
+                                                              color: Colors.white),
+                                                          decoration:  InputDecoration(
+                                                            filled: true,
+                                                            fillColor: Colors.black45,
+                                                            contentPadding: const EdgeInsets.only(
+                                                                left: 10, right: 10),
+                                                            focusedBorder: OutlineInputBorder(
+                                                              borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
+
+                                                              ) :
+                                                              (Localizations.localeOf(context).languageCode == 'en') ?
+                                                              const BorderRadius.only(
+                                                                bottomRight: Radius.circular(10),
+                                                                topRight: Radius.circular(10),
+                                                              ) :
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
+                                                              ),
+                                                              borderSide: BorderSide(
+                                                                color: Colors.transparent,
+                                                                width: 1.0,),
+                                                            ),
+                                                            errorBorder: OutlineInputBorder(
+                                                              borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0,),
+                                                                topLeft: Radius.circular(10.0),
+
+                                                              ) :
+                                                              (Localizations.localeOf(context).languageCode == 'en') ?
+                                                              const BorderRadius.only(
+                                                                bottomRight: Radius.circular(10),
+                                                                topRight: Radius.circular(10),
+                                                              ) :
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
+                                                              ),
+
+                                                              borderSide:const BorderSide(
+                                                                color: Colors.red,
+                                                                width: 1.0,),
+                                                            ),
+                                                            enabledBorder: OutlineInputBorder(
+                                                              borderRadius:
+                                                              (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
+
+                                                              ) :
+                                                              (Localizations.localeOf(context).languageCode == 'en') ?
+                                                              const BorderRadius.only(
+                                                                bottomRight: Radius.circular(10),
+                                                                topRight: Radius.circular(10),
+                                                              ) :
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
+                                                              ),
+
+                                                              borderSide: BorderSide(
+                                                                  color: Colors.transparent,
+                                                                  width: 10.0),
+                                                            ),
+                                                            disabledBorder:OutlineInputBorder(
+                                                              borderRadius:
+                                                              (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
+
+                                                              ) :
+                                                              (Localizations.localeOf(context).languageCode == 'en') ?
+                                                              const BorderRadius.only(
+                                                                bottomRight: Radius.circular(10),
+                                                                topRight: Radius.circular(10),
+                                                              ) :
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
+                                                              ),
+
+                                                              borderSide: BorderSide(
+                                                                  color: Colors.transparent,
+                                                                  width: 10.0),
+                                                            ),
+                                                            hintText: '',
+
+                                                            // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+
+                                                          ),
+                                                          validator: (value) {
+                                                            if (value!.isEmpty) {
+                                                              return 'Please enter your email address';
+                                                            } else if (!RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$')
+                                                                .hasMatch(value)) {
+                                                              return 'Please enter a valid email address';
+                                                            }
+                                                            return null;
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+
+                                            ),
+                                            const SizedBox(height: 10,),
+
+                                            /// - date of birth
+                                            Padding(
+                                              padding: const EdgeInsets.only(left: 18.0, right: 18),
+                                              child:  Row(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    Expanded(flex: 2,
+                                                        child:      Container(
+                                                          height: 48,
+                                                          decoration: BoxDecoration(
+                                                            color: Colors.black45,
+
+                                                            borderRadius:
+
+                                                            (Localizations.localeOf(context).languageCode == 'en') ?
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+
+                                                            ) :
+                                                            (Localizations.localeOf(context).languageCode == 'ar') ?
+                                                            const BorderRadius.only(
+                                                              bottomRight: Radius.circular(10),
+                                                              topRight: Radius.circular(10),
+                                                            ) :
+                                                            const BorderRadius.only(
+                                                              bottomLeft: Radius.circular(10.0),
+                                                              topLeft: Radius.circular(10.0),
+                                                            ),
+
+                                                            // border: Border.all(
+                                                            //   width: 0,
+                                                            //   color: Colors.transparent,
+                                                            //   style: BorderStyle.solid,
+                                                            // ),
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                              profilePage?.body.form.dateOfBirth.data as String,
+                                                              style: TextStyle(
+                                                                  fontSize: lng?.header2.size.toDouble(),
+                                                                  fontFamily: lng?.header2.textFamily,
+                                                                  color: Color(int.parse(profilePage?.body.form.dateOfBirth.color as String))),),
+                                                          ),
+                                                        )),
+                                                    Expanded(
+                                                      flex: 5,
+                                                      child: SizedBox(
+
+                                                        child: Stack(
                                                           children: [
-                                                            Image.network(profilePage?.body.form.gender.dropDownWidget.selectedIcon.imageIcon as String,
-                                                              height:double.parse(profilePage?.body.form.gender.dropDownWidget.selectedIcon.height as String) ,
-                                                              width: double.parse(profilePage?.body.form.gender.dropDownWidget.selectedIcon.width as String),),
-                                                            SizedBox(width: 5,),
-                                                            Text("${profileProvider.selectedGenderValue}",style: TextStyle(
+                                                            TextFormField(
+                                                              controller: profileProvider.birthDateController,
+                                                              enabled: startEdit,
+                                                              autofocus: false,
+                                                              style: const TextStyle(color: Colors.white),
+                                                              decoration:  InputDecoration(
+                                                                filled: true,
+                                                                fillColor: Colors.black45,
+                                                                contentPadding:const EdgeInsets.only(
+                                                                    left: 10, right: 10),
+                                                                focusedBorder: OutlineInputBorder(
+                                                                  borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                                  const BorderRadius.only(
+                                                                    bottomLeft: Radius.circular(10.0),
+                                                                    topLeft: Radius.circular(10.0),
+
+                                                                  ) :
+                                                                  (Localizations.localeOf(context).languageCode == 'en') ?
+                                                                  const BorderRadius.only(
+                                                                    bottomRight: Radius.circular(10),
+                                                                    topRight: Radius.circular(10),
+                                                                  ) :
+                                                                  const BorderRadius.only(
+                                                                    bottomLeft: Radius.circular(10.0),
+                                                                    topLeft: Radius.circular(10.0),
+                                                                  ),
+                                                                  borderSide: BorderSide(
+                                                                    color: Colors.transparent,
+                                                                    width: 1.0,),
+                                                                ),
+                                                                errorBorder: OutlineInputBorder(
+                                                                  borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                                  const BorderRadius.only(
+                                                                    bottomLeft: Radius.circular(10.0,),
+                                                                    topLeft: Radius.circular(10.0),
+
+                                                                  ) :
+                                                                  (Localizations.localeOf(context).languageCode == 'en') ?
+                                                                  const BorderRadius.only(
+                                                                    bottomRight: Radius.circular(10),
+                                                                    topRight: Radius.circular(10),
+                                                                  ) :
+                                                                  const BorderRadius.only(
+                                                                    bottomLeft: Radius.circular(10.0),
+                                                                    topLeft: Radius.circular(10.0),
+                                                                  ),
+
+                                                                  borderSide:const BorderSide(
+                                                                    color: Colors.red,
+                                                                    width: 1.0,),
+                                                                ),
+                                                                enabledBorder: OutlineInputBorder(
+                                                                  borderRadius:
+                                                                  (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                                  const BorderRadius.only(
+                                                                    bottomLeft: Radius.circular(10.0),
+                                                                    topLeft: Radius.circular(10.0),
+
+                                                                  ) :
+                                                                  (Localizations.localeOf(context).languageCode == 'en') ?
+                                                                  const BorderRadius.only(
+                                                                    bottomRight: Radius.circular(10),
+                                                                    topRight: Radius.circular(10),
+                                                                  ) :
+                                                                  const BorderRadius.only(
+                                                                    bottomLeft: Radius.circular(10.0),
+                                                                    topLeft: Radius.circular(10.0),
+                                                                  ),
+
+                                                                  borderSide: BorderSide(
+                                                                      color: Colors.transparent,
+                                                                      width: 10.0),
+                                                                ),
+                                                                disabledBorder:OutlineInputBorder(
+                                                                  borderRadius:
+                                                                  (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                                  const BorderRadius.only(
+                                                                    bottomLeft: Radius.circular(10.0),
+                                                                    topLeft: Radius.circular(10.0),
+
+                                                                  ) :
+                                                                  (Localizations.localeOf(context).languageCode == 'en') ?
+                                                                  const BorderRadius.only(
+                                                                    bottomRight: Radius.circular(10),
+                                                                    topRight: Radius.circular(10),
+                                                                  ) :
+                                                                  const BorderRadius.only(
+                                                                    bottomLeft: Radius.circular(10.0),
+                                                                    topLeft: Radius.circular(10.0),
+                                                                  ),
+
+                                                                  borderSide: BorderSide(
+                                                                      color: Colors.transparent,
+                                                                      width: 10.0),
+                                                                ),
+                                                                hintText: '',
+
+                                                                // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+
+                                                              ),
+
+
+                                                              validator: (value) {
+                                                                if (value!.isEmpty) {
+                                                                  return 'Please enter your date of birth';
+                                                                }
+                                                                // You can add more advanced date validation here if needed
+                                                                return null;
+                                                              },
+                                                            ),
+                                                            Positioned.fill(
+                                                                child:  Material(
+                                                                  color: Colors.transparent,
+                                                                  child:  InkWell(
+                                                                    borderRadius: BorderRadius.all(Radius.circular(0)),
+                                                                    splashColor: Colors.black,
+                                                                    overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                                                    onTap: () {
+                                                                      if(startEdit)
+                                                                      showCustomDialog(context);
+                                                                      setState(() {
+                                                                        // showDatePicker =true;
+                                                                      });
+                                                                    },
+                                                                  ),
+
+                                                                )
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+
+                                            ),
+                                            const SizedBox(height: 10,),
+                                            /// - gender
+                                            Padding(
+                                              padding: const EdgeInsets.only(left:18.0, right: 18),
+                                              child: Row(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    Expanded(
+                                                        flex:2, child: Container(
+                                                        height: 50,
+                                                        decoration: BoxDecoration(
+                                                          color: Colors.black45,
+
+                                                          borderRadius:
+
+                                                          (Localizations.localeOf(context).languageCode == 'en') ?
+                                                          const BorderRadius.only(
+                                                            bottomLeft: Radius.circular(10.0),
+                                                            topLeft: Radius.circular(10.0),
+
+                                                          ) :
+                                                          (Localizations.localeOf(context).languageCode == 'ar') ?
+                                                          const BorderRadius.only(
+                                                            bottomRight: Radius.circular(10),
+                                                            topRight: Radius.circular(10),
+                                                          ) :
+                                                          const BorderRadius.only(
+                                                            bottomLeft: Radius.circular(10.0),
+                                                            topLeft: Radius.circular(10.0),
+                                                          ),
+
+                                                          // border: Border.all(
+                                                          //   width: 0,
+                                                          //   color: Colors.transparent,
+                                                          //   style: BorderStyle.solid,
+                                                          // ),
+                                                        ),
+                                                        child: Center(child: Text("${getTranslated(context, "gender")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)))),
+                                                    Expanded(
+                                                      flex: 7,
+                                                      child: SizedBox(
+                                                        child: DropdownButtonFormField2(
+
+                                                          scrollbarAlwaysShow: true,
+                                                          style: const TextStyle(color: Colors.white),
+                                                          decoration:  InputDecoration(
+                                                            //Add isDense true and zero Padding.
+                                                            //Add Horizontal padding using buttonPadding and Vertical padding by increasing buttonHeight instead of add Padding here so that The whole TextField Button become clickable, and also the dropdown menu open under The whole TextField Button.
+                                                            isDense: true,
+                                                            fillColor: Colors.black45,
+                                                            filled: true,
+                                                            contentPadding:const EdgeInsets.only(),
+
+                                                            focusColor: Colors.transparent,
+                                                            focusedBorder: OutlineInputBorder(
+                                                              borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
+
+                                                              ) :
+                                                              (Localizations.localeOf(context).languageCode == 'en') ?
+                                                              const BorderRadius.only(
+                                                                bottomRight: Radius.circular(10),
+                                                                topRight: Radius.circular(10),
+                                                              ) :
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
+                                                              ),
+                                                              borderSide: BorderSide(
+                                                                color: Colors.transparent,
+                                                                width: 1.0,),
+                                                            ),
+                                                            errorBorder: OutlineInputBorder(
+                                                              borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0,),
+                                                                topLeft: Radius.circular(10.0),
+
+                                                              ) :
+                                                              (Localizations.localeOf(context).languageCode == 'en') ?
+                                                              const BorderRadius.only(
+                                                                bottomRight: Radius.circular(10),
+                                                                topRight: Radius.circular(10),
+                                                              ) :
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
+                                                              ),
+
+                                                              borderSide:const BorderSide(
+                                                                color: Colors.red,
+                                                                width: 1.0,),
+                                                            ),
+                                                            enabledBorder: OutlineInputBorder(
+                                                              borderRadius:
+                                                              (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
+
+                                                              ) :
+                                                              (Localizations.localeOf(context).languageCode == 'en') ?
+                                                              const BorderRadius.only(
+                                                                bottomRight: Radius.circular(10),
+                                                                topRight: Radius.circular(10),
+                                                              ) :
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
+                                                              ),
+
+                                                              borderSide: BorderSide(
+                                                                  color: Colors.transparent,
+                                                                  width: 10.0),
+                                                            ),
+                                                            disabledBorder:OutlineInputBorder(
+                                                              borderRadius:
+                                                              (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
+
+                                                              ) :
+                                                              (Localizations.localeOf(context).languageCode == 'en') ?
+                                                              const BorderRadius.only(
+                                                                bottomRight: Radius.circular(10),
+                                                                topRight: Radius.circular(10),
+                                                              ) :
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
+                                                              ),
+
+                                                              borderSide: BorderSide(
+                                                                  color: Colors.transparent,
+                                                                  width: 10.0),
+                                                            ),
+
+                                                            //Add more decoration as you want here
+                                                            //Add label If you want but add hint outside the decoration to be aligned in the button perfectly.
+                                                          ),
+                                                          isExpanded: true,
+                                                          hint: Text(
+                                                            profilePage?.body.form.gender.dropDownWidget.labelText.data as String,
+                                                            style: TextStyle(
                                                                 fontSize: lng?.header3.size.toDouble(),
                                                                 fontFamily: lng?.header3.textFamily,
                                                                 color: Color(int.parse(profilePage?.body.form.gender.dropDownWidget.labelText.color as String))),),
-                                                          ],
-                                                        ):Text("Disabled", style: TextStyle(color: Colors.grey),),
-                                                        iconSize: 30,
-                                                        buttonHeight: (profileProvider.selectedGenderValue != null) ? 50 : 50,
-                                                        buttonPadding: const EdgeInsets.only(left: 20, right: 20),
-                                                        dropdownDecoration: BoxDecoration(
-                                                          color: Colors.black,
-                                                          borderRadius: BorderRadius.circular(
-                                                              10),
-                                                        ),
-                                                        itemHeight: 30,
-                                                        value: profileProvider.selectedGenderValue,
-                                                        items:
-                                                        (startEdit)?
-                                                        gender.map((gender) => DropdownMenuItem<dynamic>(
-                                                              value: gender,
-                                                              child:
-                                                              Column(
-                                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                                children: [
+                                                          icon: const ImageIcon(AssetImage("assets/images/down.png"),),
+                                                          iconDisabledColor: Colors.grey,
+                                                          iconEnabledColor: Colors.white70,
+                                                          disabledHint: (profileProvider.selectedGenderValue != null) ?Row(
+                                                            children: [
+                                                              Image.network(profilePage?.body.form.gender.dropDownWidget.selectedIcon.imageIcon as String,
+                                                                height:double.parse(profilePage?.body.form.gender.dropDownWidget.selectedIcon.height as String) ,
+                                                                width: double.parse(profilePage?.body.form.gender.dropDownWidget.selectedIcon.width as String),),
+                                                              SizedBox(width: 5,),
+                                                              Text("${profileProvider.selectedGenderValue}",style: TextStyle(
+                                                                  fontSize: lng?.header3.size.toDouble(),
+                                                                  fontFamily: lng?.header3.textFamily,
+                                                                  color: Color(int.parse(profilePage?.body.form.gender.dropDownWidget.labelText.color as String))),),
+                                                            ],
+                                                          ):Text("Disabled", style: TextStyle(color: Colors.grey),),
+                                                          iconSize: 30,
+                                                          buttonHeight: (profileProvider.selectedGenderValue != null) ? 50 : 50,
+                                                          buttonPadding: const EdgeInsets.only(left: 20, right: 20),
+                                                          dropdownDecoration: BoxDecoration(
+                                                            color: Colors.black,
+                                                            borderRadius: BorderRadius.circular(
+                                                                10),
+                                                          ),
+                                                          itemHeight: 30,
+                                                          value: profileProvider.selectedGenderValue,
+                                                          items:
+                                                          (startEdit)?
+                                                          gender.map((gender) => DropdownMenuItem<dynamic>(
+                                                                value: gender,
+                                                                child:
+                                                                Column(
+                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                                  children: [
 
-                                                                  Row(
-                                                                    children: [
+                                                                    Row(
+                                                                      children: [
 
-                                                                      (profileProvider.selectedGenderValue != null)
-                                                                          ?
-                                                                      (profileProvider.selectedGenderValue == gender)
-                                                                          ?
-                                                                      Image.network(profilePage?.body.form.gender.dropDownWidget.selectedIcon.imageIcon as String,
-                                                                        height:double.parse(profilePage?.body.form.gender.dropDownWidget.selectedIcon.height as String) ,
-                                                                        width: double.parse(profilePage?.body.form.gender.dropDownWidget.selectedIcon.width as String),)
-                                                                      // Image.asset("assets/images/page2_icon.png", height: 15, width: 15,)
-                                                                          : SizedBox(width: 15,)
-                                                                          : SizedBox(
-                                                                        width: 15,),
-                                                                      SizedBox(width: 5,),
-
-
-                                                                      Text(
-                                                                        getTranslated(context, gender)!,
-                                                                        style: TextStyle(
-                                                                            fontSize: lng?.header3.size.toDouble(),
-                                                                            fontFamily: lng?.header3.textFamily,
-                                                                            color: Color(int.parse(profilePage?.body.form.gender.dropDownWidget.labelText.color as String))),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-
-
-                                                                ],
-                                                              ),
+                                                                        (profileProvider.selectedGenderValue != null)
+                                                                            ?
+                                                                        (profileProvider.selectedGenderValue == gender)
+                                                                            ?
+                                                                        Image.network(profilePage?.body.form.gender.dropDownWidget.selectedIcon.imageIcon as String,
+                                                                          height:double.parse(profilePage?.body.form.gender.dropDownWidget.selectedIcon.height as String) ,
+                                                                          width: double.parse(profilePage?.body.form.gender.dropDownWidget.selectedIcon.width as String),)
+                                                                        // Image.asset("assets/images/page2_icon.png", height: 15, width: 15,)
+                                                                            : SizedBox(width: 15,)
+                                                                            : SizedBox(
+                                                                          width: 15,),
+                                                                        SizedBox(width: 5,),
 
 
-                                                            )).toList():null,
-                                                        validator: (value) {
-                                                          if (value == null) {
-                                                            return 'Please select gender.';
-                                                          }
-                                                        },
-                                                        onChanged: (value) {
-                                                          //Do something when changing the item if you want.
+                                                                        Text(
+                                                                          getTranslated(context, gender)!,
+                                                                          style: TextStyle(
+                                                                              fontSize: lng?.header3.size.toDouble(),
+                                                                              fontFamily: lng?.header3.textFamily,
+                                                                              color: Color(int.parse(profilePage?.body.form.gender.dropDownWidget.labelText.color as String))),
+                                                                        ),
+                                                                      ],
+                                                                    ),
 
+
+                                                                  ],
+                                                                ),
+
+
+                                                              )).toList():null,
+                                                          validator: (value) {
+                                                            if (value == null) {
+                                                              return 'Please select gender.';
+                                                            }
+                                                          },
+                                                          onChanged: (value) {
+                                                            //Do something when changing the item if you want.
+
+                                                              profileProvider.updateGender(value);
+
+                                                          },
+                                                          onSaved: (value) {
                                                             profileProvider.updateGender(value);
 
-                                                        },
-                                                        onSaved: (value) {
-                                                          profileProvider.updateGender(value);
+                                                          },
+                                                        ),
 
-                                                        },
+
                                                       ),
-
-
                                                     ),
+                                                  ],
+                                                ),
+
+                                            ),
+                                            const SizedBox(height: 10,),
+
+                                            /// - Password
+                                            Padding(
+                                              padding: const EdgeInsets.only(left: 18.0,
+                                                  right: 18),
+                                              child: Container(
+                                                padding: const EdgeInsets.only(
+                                                    left: 10, right: 10),
+                                                decoration: BoxDecoration(
+                                                  color: Colors.black45,
+                                                  borderRadius: const BorderRadius.only(
+                                                    topRight: Radius.circular(10),
+                                                    bottomLeft: Radius.circular(10),
+                                                    topLeft: Radius.circular(10),
+                                                    bottomRight: Radius.circular(10),
                                                   ),
-                                                ],
-                                              ),
-
-                                          ),
-                                          const SizedBox(height: 10,),
-
-                                          /// - Password
-                                          Padding(
-                                            padding: const EdgeInsets.only(left: 18.0,
-                                                right: 18),
-                                            child: Container(
-                                              padding: const EdgeInsets.only(
-                                                  left: 10, right: 10),
-                                              decoration: BoxDecoration(
-                                                color: Colors.black45,
-                                                borderRadius: const BorderRadius.only(
-                                                  topRight: Radius.circular(10),
-                                                  bottomLeft: Radius.circular(10),
-                                                  topLeft: Radius.circular(10),
-                                                  bottomRight: Radius.circular(10),
+                                                  border: Border.all(
+                                                    width: 0,
+                                                    color: Colors.transparent,
+                                                    style: BorderStyle.solid,
+                                                  ),
                                                 ),
-                                                border: Border.all(
-                                                  width: 0,
-                                                  color: Colors.transparent,
-                                                  style: BorderStyle.solid,
-                                                ),
-                                              ),
-                                              child: Row(
-                                                children: [
-                                                  Expanded(flex: 2,
-                                                      child:      Text(
-                                                        profilePage?.body.form.password.data as String,
-                                                        style: TextStyle(
-                                                            fontSize: lng?.header2.size.toDouble(),
-                                                            fontFamily: lng?.header2.textFamily,
-                                                            color: Color(int.parse(profilePage?.body.form.password.color as String))),)),
-                                                  Expanded(
-                                                    flex: 5,
-                                                    child: SizedBox(
+                                                child: Row(
+                                                  children: [
+                                                    Expanded(flex: 2,
+                                                        child:      Text(
+                                                          profilePage?.body.form.password.data as String,
+                                                          style: TextStyle(
+                                                              fontSize: lng?.header2.size.toDouble(),
+                                                              fontFamily: lng?.header2.textFamily,
+                                                              color: Color(int.parse(profilePage?.body.form.password.color as String))),)),
+                                                    Expanded(
+                                                      flex: 5,
+                                                      child: SizedBox(
 
-                                                      child: Stack(
-                                                        children: [
-                                                          const TextField(
-                                                            obscureText: true,
-                                                            enableSuggestions: false,
-                                                            autocorrect: false,
-                                                            autofocus: false,
-                                                            style: const TextStyle(
-                                                                color: Colors.white),
-                                                            decoration: InputDecoration(
+                                                        child: Stack(
+                                                          children: [
+                                                            const TextField(
+                                                              obscureText: true,
+                                                              enableSuggestions: false,
+                                                              autocorrect: false,
+                                                              autofocus: false,
+                                                              style: const TextStyle(
+                                                                  color: Colors.white),
+                                                              decoration: InputDecoration(
 
-                                                              filled: true,
-                                                              fillColor: Colors.transparent,
-                                                              contentPadding: EdgeInsets.only(
-                                                                  left: 10, right: 10),
-                                                              focusedBorder: OutlineInputBorder(
-                                                                borderRadius: BorderRadius.all(
-                                                                  Radius.circular(0.0),
-                                                                ),
-                                                                borderSide: BorderSide(
-                                                                  color: Colors.transparent,
-                                                                  width: 1.0,),
-                                                              ),
-                                                              enabledBorder: OutlineInputBorder(
-                                                                borderRadius: BorderRadius.all(
-                                                                  Radius.circular(0.0),
-                                                                ),
-                                                                borderSide: BorderSide(
+                                                                filled: true,
+                                                                fillColor: Colors.transparent,
+                                                                contentPadding: EdgeInsets.only(
+                                                                    left: 10, right: 10),
+                                                                focusedBorder: OutlineInputBorder(
+                                                                  borderRadius: BorderRadius.all(
+                                                                    Radius.circular(0.0),
+                                                                  ),
+                                                                  borderSide: BorderSide(
                                                                     color: Colors.transparent,
-                                                                    width: 0.0),
+                                                                    width: 1.0,),
+                                                                ),
+                                                                enabledBorder: OutlineInputBorder(
+                                                                  borderRadius: BorderRadius.all(
+                                                                    Radius.circular(0.0),
+                                                                  ),
+                                                                  borderSide: BorderSide(
+                                                                      color: Colors.transparent,
+                                                                      width: 0.0),
+                                                                ),
+                                                                hintText: 'Tap to Edit',
+                                                                hintStyle: TextStyle(color: Colors.white60)
+                                                                // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+
                                                               ),
-                                                              hintText: 'Tap to Edit',
-                                                              hintStyle: TextStyle(color: Colors.white60)
-                                                              // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
 
                                                             ),
+                                                            Positioned.fill(
+                                                                child:  Material(
+                                                                  color: Colors.transparent,
+                                                                  child:  InkWell(
+                                                                    borderRadius:const  BorderRadius.all(Radius.circular(0)),
+                                                                    splashColor: Colors.black,
+                                                                    overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
 
-                                                          ),
-                                                          Positioned.fill(
-                                                              child:  Material(
-                                                                color: Colors.transparent,
-                                                                child:  InkWell(
-                                                                  borderRadius:const  BorderRadius.all(Radius.circular(0)),
-                                                                  splashColor: Colors.black,
-                                                                  overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+                                                                    onTap: () {
+                                                                      PersistentNavBarNavigator.pushNewScreen(
+                                                                        context,
+                                                                        screen: ForgetPassword(
+                                                                          forgetOrUpdateFlag: Strings.updatePassword,
 
-                                                                  onTap: () {
-                                                                    PersistentNavBarNavigator.pushNewScreen(
-                                                                      context,
-                                                                      screen: ForgetPassword(
-                                                                        forgetOrUpdateFlag: Strings.updatePassword,
+                                                                        ),
+                                                                        withNavBar: true,
+                                                                        // OPTIONAL VALUE. True by default.
+                                                                        pageTransitionAnimation: PageTransitionAnimation
+                                                                            .cupertino,
+                                                                      );
+                                                                    },
+                                                                  ),
 
-                                                                      ),
-                                                                      withNavBar: true,
-                                                                      // OPTIONAL VALUE. True by default.
-                                                                      pageTransitionAnimation: PageTransitionAnimation
-                                                                          .cupertino,
-                                                                    );
-                                                                  },
-                                                                ),
-
-                                                              )
-                                                          ),
-                                                        ],
+                                                                )
+                                                            ),
+                                                          ],
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
-                                                ],
+                                                  ],
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          const SizedBox(height: 10,),
+                                            const SizedBox(height: 10,),
 
-                                          /// - refferal code
-                                          // Padding(
-                                          //   padding: const EdgeInsets.only(left:18.0, right: 18),
-                                          //   child: Container(
-                                          //     padding: const EdgeInsets.only(left:10, right: 10),
-                                          //     decoration: BoxDecoration(
-                                          //       color: Colors.black45,
-                                          //       borderRadius:const BorderRadius.only(
-                                          //         topRight: Radius.circular(10),
-                                          //         bottomLeft: Radius.circular(10),
-                                          //         topLeft: Radius.circular(10),
-                                          //         bottomRight: Radius.circular(10),
-                                          //       ),
-                                          //       border: Border.all(
-                                          //         width: 0,
-                                          //         color: Colors.transparent,
-                                          //         style: BorderStyle.solid,
-                                          //       ),
-                                          //     ),
-                                          //     child: Row(
-                                          //       children: [
-                                          //         Expanded(flex:3, child:
-                                          //         Text("${getTranslated(context, "referralCode")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)
-                                          //         ),
-                                          //         const Expanded(
-                                          //           flex: 5,
-                                          //           child: SizedBox(
-                                          //
-                                          //             child:   TextField(
-                                          //
-                                          //               autofocus: false,
-                                          //               style:  TextStyle(color: Colors.white),
-                                          //               decoration:  InputDecoration(
-                                          //                 filled: true,
-                                          //                 fillColor: Colors.transparent,
-                                          //                 contentPadding: EdgeInsets.only(left:10, right: 10),
-                                          //                 focusedBorder: OutlineInputBorder(
-                                          //                   borderRadius:  BorderRadius.all(
-                                          //                     Radius.circular(0.0),
-                                          //                   ),
-                                          //                   borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
-                                          //                 ),
-                                          //                 enabledBorder: OutlineInputBorder(
-                                          //                   borderRadius:  BorderRadius.all(
-                                          //                     Radius.circular(0.0),
-                                          //                   ),
-                                          //                   borderSide: BorderSide(color: Colors.transparent, width: 0.0),
-                                          //                 ),
-                                          //                 // hintText: '',
-                                          //                 // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
-                                          //
-                                          //               ),
-                                          //
-                                          //             ),
-                                          //           ),
-                                          //         ),
-                                          //       ],
-                                          //     ),
-                                          //   ),
-                                          // ),
-                                          const SizedBox(height: 10,),
-                                          Padding(
-                                            padding: const EdgeInsets.all(18.0),
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                Text(
-                                                  profilePage?.body.form.uploadId.data as String,
-                                                  style: TextStyle(
-                                                      fontSize: lng?.header3.size.toDouble(),
-                                                      fontFamily: lng?.header3.textFamily,
-                                                      color: Color(int.parse(profilePage?.body.form.uploadId.color as String))),),
-                                                ElevatedButton(
-                                                    onPressed: () {
+                                            /// - refferal code
+                                            // Padding(
+                                            //   padding: const EdgeInsets.only(left:18.0, right: 18),
+                                            //   child: Container(
+                                            //     padding: const EdgeInsets.only(left:10, right: 10),
+                                            //     decoration: BoxDecoration(
+                                            //       color: Colors.black45,
+                                            //       borderRadius:const BorderRadius.only(
+                                            //         topRight: Radius.circular(10),
+                                            //         bottomLeft: Radius.circular(10),
+                                            //         topLeft: Radius.circular(10),
+                                            //         bottomRight: Radius.circular(10),
+                                            //       ),
+                                            //       border: Border.all(
+                                            //         width: 0,
+                                            //         color: Colors.transparent,
+                                            //         style: BorderStyle.solid,
+                                            //       ),
+                                            //     ),
+                                            //     child: Row(
+                                            //       children: [
+                                            //         Expanded(flex:3, child:
+                                            //         Text("${getTranslated(context, "referralCode")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)
+                                            //         ),
+                                            //         const Expanded(
+                                            //           flex: 5,
+                                            //           child: SizedBox(
+                                            //
+                                            //             child:   TextField(
+                                            //
+                                            //               autofocus: false,
+                                            //               style:  TextStyle(color: Colors.white),
+                                            //               decoration:  InputDecoration(
+                                            //                 filled: true,
+                                            //                 fillColor: Colors.transparent,
+                                            //                 contentPadding: EdgeInsets.only(left:10, right: 10),
+                                            //                 focusedBorder: OutlineInputBorder(
+                                            //                   borderRadius:  BorderRadius.all(
+                                            //                     Radius.circular(0.0),
+                                            //                   ),
+                                            //                   borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
+                                            //                 ),
+                                            //                 enabledBorder: OutlineInputBorder(
+                                            //                   borderRadius:  BorderRadius.all(
+                                            //                     Radius.circular(0.0),
+                                            //                   ),
+                                            //                   borderSide: BorderSide(color: Colors.transparent, width: 0.0),
+                                            //                 ),
+                                            //                 // hintText: '',
+                                            //                 // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+                                            //
+                                            //               ),
+                                            //
+                                            //             ),
+                                            //           ),
+                                            //         ),
+                                            //       ],
+                                            //     ),
+                                            //   ),
+                                            // ),
+                                            const SizedBox(height: 10,),
+                                            Padding(
+                                              padding: const EdgeInsets.all(18.0),
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    profilePage?.body.form.uploadId.data as String,
+                                                    style: TextStyle(
+                                                        fontSize: lng?.header3.size.toDouble(),
+                                                        fontFamily: lng?.header3.textFamily,
+                                                        color: Color(int.parse(profilePage?.body.form.uploadId.color as String))),),
+                                                  ElevatedButton(
+                                                      onPressed: () {
 
-                                                    },
-                                                    style: ButtonStyle(
-                                                        shape: MaterialStateProperty.all<
-                                                            RoundedRectangleBorder>(
-                                                            const RoundedRectangleBorder(
-                                                                borderRadius: BorderRadius.all(
-                                                                    Radius.circular(5)),
-                                                                side: BorderSide(
-                                                                    color: Colors.transparent,
-                                                                    width: 1)
-                                                            )
-                                                        ),
-                                                        overlayColor: MaterialStateProperty.all(
-                                                            Colors.white30),
-                                                        elevation: MaterialStateProperty.all(0),
-                                                        shadowColor: MaterialStateProperty.all(
-                                                            Colors.transparent),
-                                                        backgroundColor: MaterialStateProperty
-                                                            .all(Colors.amber),
-                                                        foregroundColor: MaterialStateProperty
-                                                            .all(Colors.white),
-                                                        padding: MaterialStateProperty.all(
-                                                            const EdgeInsets.only(top: 10,
-                                                                bottom: 10,
-                                                                right: 30,
-                                                                left: 30)),
-                                                        textStyle: MaterialStateProperty.all(
-                                                            const TextStyle(fontSize: 15))),
-                                                    child:      Text(
-                                                      profilePage?.body.form.uploadId.chooseButton.data as String,
-                                                      style: TextStyle(
-                                                          fontSize: lng?.header3.size.toDouble(),
-                                                          fontFamily: lng?.header3.textFamily,
-                                                          color: Color(int.parse(profilePage?.body.form.uploadId.chooseButton.color as String))),)
-                                                ),
-                                              ],),
-                                          ),
+                                                      },
+                                                      style: ButtonStyle(
+                                                          shape: MaterialStateProperty.all<
+                                                              RoundedRectangleBorder>(
+                                                              const RoundedRectangleBorder(
+                                                                  borderRadius: BorderRadius.all(
+                                                                      Radius.circular(5)),
+                                                                  side: BorderSide(
+                                                                      color: Colors.transparent,
+                                                                      width: 1)
+                                                              )
+                                                          ),
+                                                          overlayColor: MaterialStateProperty.all(
+                                                              Colors.white30),
+                                                          elevation: MaterialStateProperty.all(0),
+                                                          shadowColor: MaterialStateProperty.all(
+                                                              Colors.transparent),
+                                                          backgroundColor: MaterialStateProperty
+                                                              .all(Colors.amber),
+                                                          foregroundColor: MaterialStateProperty
+                                                              .all(Colors.white),
+                                                          padding: MaterialStateProperty.all(
+                                                              const EdgeInsets.only(top: 10,
+                                                                  bottom: 10,
+                                                                  right: 30,
+                                                                  left: 30)),
+                                                          textStyle: MaterialStateProperty.all(
+                                                              const TextStyle(fontSize: 15))),
+                                                      child:      Text(
+                                                        profilePage?.body.form.uploadId.chooseButton.data as String,
+                                                        style: TextStyle(
+                                                            fontSize: lng?.header3.size.toDouble(),
+                                                            fontFamily: lng?.header3.textFamily,
+                                                            color: Color(int.parse(profilePage?.body.form.uploadId.chooseButton.color as String))),)
+                                                  ),
+                                                ],),
+                                            ),
 
 
-                                        ],
-                                      ),
+                                          ],
+                                        ),
+                                    ),
                                   ),
-                                ),
 
 
 
 
-                                const SizedBox(height: 10,),
+
+                                if(!isKeyboardVisible)const SizedBox(height: 140,),
 
                                 /// - Buttons
 
@@ -2173,7 +2171,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                             ),
 
                         ),
-                      ),
+
 
 
                     ),
