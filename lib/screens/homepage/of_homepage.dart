@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/home_page_provider/home_page_provider.dart';
 import 'package:operation_falafel/providers/home_page_provider/models/slider_model.dart';
+import 'package:operation_falafel/providers/settings_provider/setting_provider.dart';
 import 'package:operation_falafel/screens/menus/full_menu.dart';
 import 'package:operation_falafel/screens/menus/vegan_menu.dart';
 import 'package:operation_falafel/screens/my%20rewards%20page/my_rewards.dart';
@@ -229,7 +230,9 @@ class _MainMenuState extends State<MainMenu> {
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: sliderWidets!.map((url) {
+                            children:
+                            (sliderWidets!=null)?
+                            sliderWidets!.map((url) {
                               int index = sliderWidets!.indexOf(url);
                               return Padding(
                                 padding: const EdgeInsets.only(left: 25.0,right: 25 ,top: 5,bottom: 5),
@@ -245,7 +248,7 @@ class _MainMenuState extends State<MainMenu> {
                                   ),
                                 ),
                               );
-                            }).toList(),
+                            }).toList():[SizedBox()],
                           ),
                           /// - Location
                           Container(
@@ -1976,6 +1979,9 @@ class _MainMenuState extends State<MainMenu> {
           SliderItem.fromJson(i)).toList());}
 
     });
+
+    Provider.of<HomePageProvider>(context, listen: false).getSocialMediaItems();
+    Provider.of<SettingProvider>(context, listen: false).getLanguages();
 
 
     Provider.of<AuthProvider>(context, listen: false).getSavedUserDetailsLocally().then((loggedInUser) {

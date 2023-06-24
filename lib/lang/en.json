@@ -244,7 +244,11 @@
   "verifyYourIdentity": "Verify Your Identity",
   "verifyYourIdentityMsg": "Please enter the One-Time Password (OTP) sent to your registered mobile number to verify your identity and continue the process",
 
-  "mainCardCheck" : "Make it main card"
+  "mainCardCheck" : "Make it main card",
+  "SettingSheetTitle": "Settings",
+  "languageName": "العربيه",
+  "selectLanguage": "SELECT LANGUAGE"
+
 
 
 }

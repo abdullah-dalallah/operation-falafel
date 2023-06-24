@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:operation_falafel/data/keys.dart';
 import 'package:operation_falafel/data/strings.dart';
+import 'package:operation_falafel/providers/home_page_provider/models/social_media_item.dart';
 
 import 'models/slider_model.dart';
 
@@ -39,4 +40,39 @@ class HomePageProvider with ChangeNotifier{
 
     }
   }
+
+  List<SocialMediaItem>? _socialMediaItems ;
+
+  List<SocialMediaItem>? get socialMediaItems => _socialMediaItems;
+
+  Future<Response<dynamic>> getSocialMediaItems() async {
+    print("getting social-media from Online Server...");
+    var url = '${Strings.baseAppContactUsAddressUrl}/social-media';
+    print(url);
+    Map<String, String> header = <String, String>{};
+    header.putIfAbsent(Keys.acceptKey, () => "application/json");
+
+
+
+    var dio = Dio();
+    try {
+
+      var response = await dio.get(url, options: Options(headers: header));// options: Options(headers: header)
+
+      if(response.statusCode ==200){
+        _socialMediaItems= (response.data as List).map((i) =>
+            SocialMediaItem.fromJson(i)).toList();
+
+        print("social-media fetched From Online Server!");
+      }
+      notifyListeners();
+      return response;
+    } on DioError catch (e) {
+      print(e.response);
+
+      return e.response!;
+
+    }
+  }
+
 }

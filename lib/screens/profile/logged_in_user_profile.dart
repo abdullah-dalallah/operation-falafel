@@ -415,8 +415,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
 
                                                   },
                                                   style: ButtonStyle(
-                                                      shape: MaterialStateProperty.all<
-                                                          RoundedRectangleBorder>(
+                                                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                                           const RoundedRectangleBorder(
                                                               borderRadius: BorderRadius.all(
                                                                   Radius.circular(100)),
@@ -425,19 +424,14 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                                   width: 1)
                                                           )
                                                       ),
-                                                      overlayColor: MaterialStateProperty.all(
-                                                          Colors.white30),
+                                                      overlayColor: MaterialStateProperty.all(Colors.white30),
                                                       elevation: MaterialStateProperty.all(0),
-                                                      shadowColor: MaterialStateProperty.all(
-                                                          Colors.transparent),
+                                                      shadowColor: MaterialStateProperty.all(Colors.transparent),
                                                       backgroundColor: MaterialStateProperty.all(Color(int.parse(profilePage?.body.avatarImage.editButton.backGroundColor as String))),
                                                       // backgroundColor: MaterialStateProperty.all(Colors.black),
-                                                      foregroundColor: MaterialStateProperty
-                                                          .all(Colors.white),
-                                                      padding: MaterialStateProperty.all(
-                                                          const EdgeInsets.all(0)),
-                                                      textStyle: MaterialStateProperty.all(
-                                                          const TextStyle(fontSize: 30))),
+                                                      foregroundColor: MaterialStateProperty.all(Colors.white),
+                                                      padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
+                                                      textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
                                                   child:
                                                   Image.network(profilePage?.body.avatarImage.editButton.imageIcon as String)
                                                 // ImageIcon(NetworkImage(profilePage?.body.avatarImage.editButton.imageIcon as String)  )

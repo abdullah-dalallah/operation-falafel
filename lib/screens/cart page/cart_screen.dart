@@ -912,8 +912,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                                   minChildSize: 0.5,
                                                                   maxChildSize: 1,
                                                                   expand: true,
-                                                                  builder: (context,
-                                                                      scrollController) {
+                                                                  builder: (context, scrollController) {
                                                                     return AddressListSheet(
                                                                         scrollController);
                                                                   }

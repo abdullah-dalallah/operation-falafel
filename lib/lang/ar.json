@@ -245,7 +245,13 @@
   "verifyYourIdentity": "تحقق من هويتك",
   "verifyYourIdentityMsg": "الرجاء إدخال كلمة المرور لمرة واحدة (OTP) المرسلة إلى رقم هاتفك المحمول المسجل أو عنوان بريدك الإلكتروني للتحقق من هويتك ومتابعة العملية",
 
-  "mainCardCheck" : "اجعلها البطاقة الرئيسية"
+  "mainCardCheck" : "اجعلها البطاقة الرئيسية",
+  "SettingSheetTitle": "الإعدادات",
+  "languageName": "English",
+  "selectLanguage": "إختر اللغة"
+
+
+
 
 
 }
