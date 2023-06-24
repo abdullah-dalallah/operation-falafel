@@ -5,10 +5,13 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/providers/home_page_provider/home_page_provider.dart';
+import 'package:operation_falafel/providers/home_page_provider/models/slider_model.dart';
 import 'package:operation_falafel/screens/menus/full_menu.dart';
 import 'package:operation_falafel/screens/menus/vegan_menu.dart';
 import 'package:operation_falafel/screens/my%20rewards%20page/my_rewards.dart';
 import 'package:operation_falafel/widgets/address_list_sheet.dart';
+import 'package:operation_falafel/widgets/cached_image_with_placeholder.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'dart:math' as math;
@@ -53,8 +56,8 @@ class _MainMenuState extends State<MainMenu> {
   Widget build(BuildContext context) {
     String languageflag= Localizations.localeOf(context).languageCode;
     return
-      Consumer<ThemeProvider>(
-        builder: (context, appTheme, child) {
+      Consumer2<ThemeProvider,HomePageProvider>(
+        builder: (context, appTheme,homePageProvider, child) {
 
           Language? lng= (Localizations.localeOf(context).languageCode=='ar')? appTheme.appTheme.fontSizes?.ar : appTheme.appTheme.fontSizes?.en;
           HomePage? homePageDesign = appTheme.appTheme.designPerPage?.homePage;
@@ -66,6 +69,7 @@ class _MainMenuState extends State<MainMenu> {
             }
           }
 
+          // if(homePageProvider.sliderItem!=null)
 
 
 
@@ -203,15 +207,30 @@ class _MainMenuState extends State<MainMenu> {
                                     }
 
                                 ),
-                                items: imgList.map((item) => Image.asset(item, fit: BoxFit.cover,
-                                ),
-                                )
-                                    .toList()),
+                                items:
+                                (sliderWidets!=null)?sliderWidets:
+
+                                    [
+                                      const Center(
+                                          child:   SizedBox(
+                                            height: 20,
+                                            width: 20,
+                                            child: CircularProgressIndicator(
+                                              color: Colors.amber,
+                                              strokeWidth: 2,
+                                            ),
+                                          )
+                                        // child: CircularProgressIndicator(strokeWidth: 2.1,)
+                                      ),
+                                    ],
+                                // imgList.map((item) => Image.asset(item, fit: BoxFit.cover,),)
+                                //     .toList()
+                             ),
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: imgList.map((url) {
-                              int index = imgList.indexOf(url);
+                            children: sliderWidets!.map((url) {
+                              int index = sliderWidets!.indexOf(url);
                               return Padding(
                                 padding: const EdgeInsets.only(left: 25.0,right: 25 ,top: 5,bottom: 5),
                                 child: Container(
@@ -291,10 +310,6 @@ class _MainMenuState extends State<MainMenu> {
                               ],),
 
                           ),
-
-
-
-
                           // SizedBox(height: 50,),
 
 
@@ -1948,9 +1963,20 @@ class _MainMenuState extends State<MainMenu> {
 
   }
 
+
+
+  List<Widget>? sliderWidets ;
   @override
   void initState() {
     super.initState();
+
+    Provider.of<HomePageProvider>(context, listen: false).getHomeSliders().then((res) {
+    if(res.statusCode ==200){
+      sliderWidets = buildSliders((res.data as List).map((i) =>
+          SliderItem.fromJson(i)).toList());}
+
+    });
+
 
     Provider.of<AuthProvider>(context, listen: false).getSavedUserDetailsLocally().then((loggedInUser) {
       if(loggedInUser !=null){
@@ -1967,4 +1993,17 @@ class _MainMenuState extends State<MainMenu> {
     });
 
   }
+
+
+
+ List<Widget>  buildSliders(List<SliderItem>? sliders){
+    List<Widget> slidersWidgets =[
+      CachedImageWithPlaceholder("", BoxFit.cover),
+      CachedImageWithPlaceholder("", BoxFit.cover)
+    ];
+    if(sliders !=null)
+    slidersWidgets = sliders!.map((e) => CachedImageWithPlaceholder(e.imageUrl!, BoxFit.cover)).toList();
+    return slidersWidgets;
+  }
+
 }

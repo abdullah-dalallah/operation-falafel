@@ -4,6 +4,8 @@ class Strings {
   static const baseAppAddressUrl = "https://itsaddress.azurewebsites.net/";
   static const baseAppContactUsAddressUrl = "https://itscontactus.azurewebsites.net/";
   static const baseAppCardsUrl = "https://itsmobilecard.azurewebsites.net/";
+  static const baseSlidersUrl = "https://itsslider.azurewebsites.net";
+
 
   static const invalidInput = "Invalid Input";
   static const registrationPurpose = "registration";

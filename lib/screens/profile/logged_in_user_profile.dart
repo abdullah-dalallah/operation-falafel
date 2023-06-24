@@ -2496,10 +2496,9 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
 
                                       child: ElevatedButton(
                                         onPressed: () {
-                                          Provider.of<AuthProvider>(context, listen: false).logOutUserDetailsLocally().then((value) {
-                                            SnackbarGenerator(context).snackBarGeneratorToast("User Logged out successfully",);
+                                          showLogOutDialog(context, profilePage,lng!);
 
-                                          });
+
                                         },
                                         style: ButtonStyle(
                                             shape: MaterialStateProperty.all<
@@ -2660,6 +2659,225 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
 
 
     }
+  }
+
+
+
+  void showLogOutDialog(BuildContext context,ProfilePage profilePage , Language lng) {
+    showGeneralDialog(
+      context: context,
+      barrierLabel: "Barrier",
+      barrierDismissible: true,
+      barrierColor: Colors.black.withOpacity(0.5),
+      transitionDuration: Duration(milliseconds: 500),
+      pageBuilder: (context, __, ___) {
+        return Center(
+          child: Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                    height: 190,
+                    constraints:const BoxConstraints(maxWidth: 450, ),
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    padding:const EdgeInsets.all(8),
+                    decoration: BoxDecoration(color: Colors.black54, borderRadius: BorderRadius.circular(40)),
+                    child: Scaffold(
+                      backgroundColor: Colors.transparent,
+
+                      body:Center(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children:  [
+                            Align(child:Text("${profilePage.body.logoutDialog.dialogTitle!.data}",
+                              style: TextStyle(
+                                fontFamily: "${lng.titleHeader1.textFamily}",
+                                  color: Color(int.parse(profilePage?.body.logoutDialog.dialogTitle!.color as String)),
+                                  fontSize: lng?.titleHeader1.size.toDouble(),
+
+                              ),),),
+
+
+                            const SizedBox(height: 10,),
+                            Text(profilePage.body.logoutDialog.dialogBodyTitle!.data,
+                              style: TextStyle(
+                              fontFamily: "${lng.header3.textFamily}",
+                              color: Color(int.parse(profilePage?.body.logoutDialog.dialogBodyTitle!.color as String)),
+                              fontSize: lng?.header3.size.toDouble(),
+
+                            ),
+
+                            ),
+                            const SizedBox(height: 10,),
+
+                            ElevatedButton(
+
+                              onPressed: () {
+                                String userToken = Provider.of<AuthProvider>(context, listen: false).loggedInUser!.token!;
+                                String email = Provider.of<AuthProvider>(context, listen: false).email!;
+                                String password = Provider.of<AuthProvider>(context, listen: false).password!;
+                                Provider.of<AuthProvider>(context, listen: false).logoutFromAllDevices(userToken:userToken,  email:email,   password:password).then((res) {
+                                  if(res.statusCode==200){
+                                    Provider.of<AuthProvider>(context, listen: false).logOutUserDetailsLocally().then((value) {
+                                      Navigator.pop(context);
+                                      SnackbarGenerator(context).snackBarGeneratorToast("User Logged out successfully",);
+                                    });
+
+                                  }
+                                  else{
+                                    SnackbarGenerator(context).snackBarGeneratorToast("Try Again!",);
+                                  }
+                                });
+                              },
+                              style: ButtonStyle(
+                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                      const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius
+                                              .all(
+                                              Radius.circular(10)),
+                                          side: BorderSide(
+                                              color: Colors
+                                                  .transparent,
+                                              width: 1)
+                                      )
+                                  ),
+                                  overlayColor: MaterialStateProperty.all(Colors.black12),
+                                  elevation: MaterialStateProperty.all(0),
+                                  shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                  backgroundColor: MaterialStateProperty.all(Colors.amber),
+
+                                  foregroundColor: MaterialStateProperty.all(Colors.black),
+                                  padding: MaterialStateProperty.all(const EdgeInsets.only(top: 10, bottom: 10,right: 10, left: 10)),
+                                  textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 12))),
+                              child: Text(
+                                profilePage.body.logoutDialog.logoutAllDevices!.data,
+                                style:
+
+                                TextStyle(
+                                  fontFamily: "${lng.header2.textFamily}",
+                                  color: Color(int.parse(profilePage?.body.logoutDialog.logoutAllDevices!.color as String)),
+                                  fontSize: lng?.header2.size.toDouble(),
+
+                                ),
+                                // TextStyle(
+                                //   fontFamily: getTranslated(context, "fontFamilyBody")!,
+                                //   color: Colors.white,
+                                //   fontWeight: FontWeight.w300,),
+
+
+                                textAlign: TextAlign.center,),
+
+
+                            ),
+
+                            ElevatedButton(
+
+                              onPressed: () {
+                                Provider.of<AuthProvider>(context, listen: false).logOutUserDetailsLocally().then((value) {
+                                  Navigator.pop(context);
+                                  SnackbarGenerator(context).snackBarGeneratorToast("User Logged out successfully",);
+                                });
+                              },
+                              style: ButtonStyle(
+                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                      const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius
+                                              .all(
+                                              Radius.circular(10)),
+                                          side: BorderSide(
+                                              color: Colors
+                                                  .transparent,
+                                              width: 1)
+                                      )
+                                  ),
+                                  overlayColor: MaterialStateProperty.all(Colors.black12),
+                                  elevation: MaterialStateProperty.all(0),
+                                  shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                  backgroundColor: MaterialStateProperty.all(Colors.amber),
+
+                                  foregroundColor: MaterialStateProperty.all(Colors.black),
+                                  padding: MaterialStateProperty.all(const EdgeInsets.only(top: 10, bottom: 10,right: 10, left: 10)),
+                                  textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 12))),
+                              child: Text(
+                                profilePage.body.logoutDialog.logoutOnDevice!.data,
+                                style:  TextStyle(
+                                  fontFamily: "${lng.header2.textFamily}",
+                                  color: Color(int.parse(profilePage?.body.logoutDialog.logoutOnDevice!.color as String)),
+                                  fontSize: lng?.header2.size.toDouble(),
+
+                                ),
+                                textAlign: TextAlign.center,),
+
+                              // Text(
+                              //   getTranslated(context, "sighOut")!,
+                              //   style: TextStyle(
+                              //     fontFamily: getTranslated(
+                              //         context, "fontFamilyBody")!,
+                              //     color: Colors.white,
+                              //     fontSize: 17,
+                              //     fontWeight: FontWeight.w300,),
+                              //   textAlign: TextAlign.center,),
+                            ),
+
+                          ],
+
+                        ),
+                      ),
+                    )
+                ),
+              ),
+              Positioned(
+                top: 1,
+                right: 20,
+                child:  SizedBox(
+                  width:40,
+                  height:40,
+
+                  child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+
+                      },
+                      style: ButtonStyle(
+                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(100)),
+                                  side: BorderSide(color: Colors.transparent,width: 1)
+                              )
+                          ),
+                          overlayColor: MaterialStateProperty.all(Colors.white30),
+                          elevation:MaterialStateProperty.all(0),
+                          shadowColor: MaterialStateProperty.all(Colors.transparent),
+                          backgroundColor: MaterialStateProperty.all(Colors.black),
+                          foregroundColor: MaterialStateProperty.all(Colors.white),
+                          padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
+                          textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
+                      child: const Icon(Icons.close, color: Colors.white,)
+                  ),
+                ),),
+            ],
+          ),
+
+        );
+      },
+      transitionBuilder: (_, anim, __, child) {
+        Tween<Offset> tween;
+        if (anim.status == AnimationStatus.reverse) {
+          tween = Tween(begin: Offset(-1, 0), end: Offset.zero);
+        }
+        else {
+          tween = Tween(begin: Offset(1, 0), end: Offset.zero);
+        }
+
+        return SlideTransition(
+          position: tween.animate(anim),
+          child: FadeTransition(
+            opacity: anim,
+            child: child,
+          ),
+        );
+      },
+    );
   }
 
 }

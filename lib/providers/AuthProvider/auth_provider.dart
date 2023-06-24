@@ -241,6 +241,34 @@ class AuthProvider with ChangeNotifier{
    }
 
 
+   Future<Response<dynamic>> logoutFromAllDevices({ required String userToken, required String email,  required String password}) async {
+
+     var url = '${Strings.baseAppAuthUrl}auth/logoutFromAllDevices';
+
+     Map<String, String> header = <String, String>{};
+     Map<String, String> data = <String, String>{};
+     header.putIfAbsent(Keys.acceptKey, () => "application/json");
+     header.putIfAbsent(Keys.x_of_awjKey, () => userToken);
+     header.putIfAbsent(Keys.authorizationKey, () => "Bearer " + userToken!);
+     data.putIfAbsent(Keys.emailKey, () => email);
+     data.putIfAbsent(Keys.passwordKey, () => password);
+
+
+     var dio = Dio();
+     try {
+       // FormData formData = FormData.fromMap(data);
+       var response = await dio.post(url,data: data,options: Options(headers: header));// options: Options(headers: header)
+       print(response.data);
+
+       return response;
+     } on DioError catch (e) {
+       print(e.response);
+       return e.response!;
+
+     }
+   }
+
+
 
 
 }

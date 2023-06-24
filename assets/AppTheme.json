@@ -659,6 +659,27 @@
             "Color": "0xffffffff",
             "BackGroundColor": "0xff000000"
           }
+        },
+        "LogoutDialog": {
+
+          "DialogTitle": {
+            "Data": "Logout",
+            "Color": "0xFFFFBF00"
+          },
+          "DialogBodyTitle": {
+            "Data": "Are you sure, do you want to logout?",
+            "Color": "0xffffffff"
+          },
+          "LogoutOnDevice": {
+            "Data": "Log Out Only in This Device",
+            "Color": "0xffffffff",
+            "BackGroundColor": "0xFFFFBF00"
+          },
+          "LogoutAllDevices": {
+            "Data": "Log Out from All Devices",
+            "Color": "0xffffffff",
+            "BackGroundColor": "0xFFFFBF00"
+          }
         }
       }
     },

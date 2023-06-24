@@ -8,6 +8,7 @@ import '../../../CommonElements/Elements/title_style.dart';
 import 'Elements/AvatarImage/avatar_image.dart';
 import 'Elements/Buttons/buttons.dart';
 import 'Elements/Form/form.dart';
+import 'Elements/logout_dialog.dart';
 
 ProfilePageBody profilePageBodyFromJson(String str) => ProfilePageBody.fromJson(json.decode(str));
 
@@ -20,6 +21,7 @@ class ProfilePageBody {
     required this.editProfileButton,
     required this.form,
     required this.buttons,
+    required this.logoutDialog
   });
 
   AvatarImage avatarImage;
@@ -27,6 +29,7 @@ class ProfilePageBody {
   TitleStyle editProfileButton;
   Form form;
   Buttons buttons;
+  LogoutDialog logoutDialog;
 
   factory ProfilePageBody.fromJson(Map<String, dynamic> json) => ProfilePageBody(
     avatarImage: AvatarImage.fromJson(json["AvatarImage"]),
@@ -34,6 +37,7 @@ class ProfilePageBody {
     editProfileButton: TitleStyle.fromJson(json["EditProfileButton"]),
     form: Form.fromJson(json["Form"]),
     buttons: Buttons.fromJson(json["Buttons"]),
+    logoutDialog: LogoutDialog.fromJson(json["LogoutDialog"]),
   );
 
   Map<String, dynamic> toJson() => {
@@ -42,6 +46,7 @@ class ProfilePageBody {
     "EditProfileButton": editProfileButton.toJson(),
     "Form": form.toJson(),
     "Buttons": buttons.toJson(),
+    "LogoutDialog":logoutDialog.toJson()
   };
 }
 
