@@ -8,13 +8,13 @@ part of 'logged_in_user.dart';
 
 LoggedInUser _$LoggedInUserFromJson(Map<String, dynamic> json) => LoggedInUser(
       token: json['token'] as String?,
-      user: json['user'] == null
-          ? null
-          : User.fromJson(json['user'] as Map<String, dynamic>),
+      expiredAt: json['expiredAt'] as int?,
+      userId: json['userId'] as int?,
     );
 
 Map<String, dynamic> _$LoggedInUserToJson(LoggedInUser instance) =>
     <String, dynamic>{
       'token': instance.token,
-      'user': instance.user,
+      'expiredAt': instance.expiredAt,
+      'userId': instance.userId,
     };

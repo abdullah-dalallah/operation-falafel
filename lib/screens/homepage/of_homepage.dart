@@ -1974,29 +1974,8 @@ class _MainMenuState extends State<MainMenu> {
     super.initState();
 
     Provider.of<HomePageProvider>(context, listen: false).getHomeSliders().then((res) {
-    if(res.statusCode ==200){
-      sliderWidets = buildSliders((res.data as List).map((i) =>
-          SliderItem.fromJson(i)).toList());}
+    if(res.statusCode ==200){sliderWidets = buildSliders((res.data as List).map((i) => SliderItem.fromJson(i)).toList());}});
 
-    });
-
-    Provider.of<HomePageProvider>(context, listen: false).getSocialMediaItems();
-    Provider.of<SettingProvider>(context, listen: false).getLanguages();
-
-
-    Provider.of<AuthProvider>(context, listen: false).getSavedUserDetailsLocally().then((loggedInUser) {
-      if(loggedInUser !=null){
-
-        String email =  Provider.of<AuthProvider>(context, listen: false).email!;
-        String password =  Provider.of<AuthProvider>(context, listen: false).password!;
-        Provider.of<ProfileProvider>(context,listen: false).getUserInfo(loggedInUser.token!, email, password);
-
-        Provider.of<ProfileProvider>(context,listen: false).getUserSavedAddress(loggedInUser.token!);
-      }
-      else{
-        print("no users found!");
-      }
-    });
 
   }
 

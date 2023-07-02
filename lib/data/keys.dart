@@ -2,6 +2,7 @@ class Keys {
   static const successKey = "success";
   static const x_of_awjKey = "x-of-awj";
   static const authorizationKey = "Authorization";
+  static const tokenKey = "token";
 
   /// - Sign up & Sign in & resetpassword
 

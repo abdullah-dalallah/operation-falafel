@@ -269,6 +269,42 @@ class AuthProvider with ChangeNotifier{
    }
 
 
+   Future<Response<dynamic>> refreshUserToken({ required String userToken}) async {
+
+     var url = '${Strings.baseAppAuthUrl}auth/refreshToken';
+
+     Map<String, String> header = <String, String>{};
+     Map<String, String> data = <String, String>{};
+     header.putIfAbsent(Keys.acceptKey, () => "application/json");
+     header.putIfAbsent(Keys.x_of_awjKey, () => userToken);
+     // header.putIfAbsent(Keys.authorizationKey, () => "Bearer " + userToken!);
+     data.putIfAbsent(Keys.tokenKey, () => userToken);
+
+
+     var dio = Dio();
+     try {
+       // FormData formData = FormData.fromMap(data);
+       var response = await dio.post(url,data: data,options: Options(headers: header));// options: Options(headers: header)
+       print("refresh res:${response.data}");
+       if(response.statusCode==200){
+         // Map<String, dynamic> dataMap = jsonDecode(jsonData);
+         print("user token before refresh ${loggedInUser!.token!}");
+         loggedInUser = LoggedInUser.fromJson(response.data);
+         print("user token after refresh ${loggedInUser!.token!}");
+         notifyListeners();
+
+         saveUserDetailsLocally(loggedInUser!, email!, password!);
+       }
+       print(response.data);
+
+       return response;
+     } on DioError catch (e) {
+       print(e.response);
+       return e.response!;
+
+     }
+   }
+
 
 
 }

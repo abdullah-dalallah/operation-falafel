@@ -4,7 +4,13 @@
 
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+
+
+// To parse this JSON data, do
+//
+//     final loggedInUser = loggedInUserFromJson(jsonString);
 part 'logged_in_user.g.dart';
+
 
 LoggedInUser loggedInUserFromJson(String str) => LoggedInUser.fromJson(json.decode(str));
 
@@ -12,41 +18,26 @@ String loggedInUserToJson(LoggedInUser data) => json.encode(data.toJson());
 
 @JsonSerializable()
 class LoggedInUser {
+  String? token;
+  int? expiredAt;
+  int? userId;
+
   LoggedInUser({
     this.token,
-    this.user,
+    this.expiredAt,
+    this.userId,
   });
-
-  String? token;
-  User? user;
 
   factory LoggedInUser.fromJson(Map<String, dynamic> json) => LoggedInUser(
     token: json["token"],
-    user: json["user"] == null ? null : User.fromJson(json["user"]),
+    expiredAt: json["expired_at"],
+    userId: json["user_id"],
   );
 
   Map<String, dynamic> toJson() => {
     "token": token,
-    "user": user?.toJson(),
+    "expired_at": expiredAt,
+    "user_id": userId,
   };
 }
 
-class User {
-  User({
-    this.name,
-    this.id,
-  });
-
-  String? name;
-  int? id;
-
-  factory User.fromJson(Map<String, dynamic> json) => User(
-    name: json["name"],
-    id: json["id"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "name": name,
-    "id": id,
-  };
-}
