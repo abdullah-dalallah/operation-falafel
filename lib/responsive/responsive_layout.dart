@@ -23,20 +23,26 @@ class ResponsiveLayout extends StatefulWidget{
 }
 
 class _ResponsiveLayoutState extends State<ResponsiveLayout> {
+
+  double size =0;
   @override
   Widget build(BuildContext context) {
   return LayoutBuilder(builder: (context,constraints){
-
+    size=constraints.maxWidth;
     if(constraints.maxWidth<500){
-      Provider.of<TabIndexGenerator>(context, listen: false).setLayout("Mobile");
+
       return widget.MobileScaffold;
     }
     else if(constraints.maxWidth <1100){
-      Provider.of<TabIndexGenerator>(context, listen: false).setLayout("Desktop");
+
+
+
       return widget.TabletScaffold;
     }
     else{
-      Provider.of<TabIndexGenerator>(context, listen: false).setLayout("Tablet");
+
+
+
       return widget.DesktopScaffold;
     }
     }
@@ -128,7 +134,28 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
         }
       }),
 
-    ]).then((results) {});
+    ]).then((results) {
+
+      // Provider.of<TabIndexGenerator>(context, listen: false).setLayout("Desktop");
+      // if(size<500){
+      //   Provider.of<TabIndexGenerator>(context, listen: false).setLayout("Mobile");
+      //
+      // }
+      // else if(size <1100){
+      //   if(Provider.of<TabIndexGenerator>(context, listen: false).currentIndex==3)
+      //     Provider.of<TabIndexGenerator>(context, listen: false).setIndex(4);
+      //   Provider.of<TabIndexGenerator>(context, listen: false).setLayout("Tablet");
+      //
+      // }
+      // else{
+      //   if(Provider.of<TabIndexGenerator>(context, listen: false).currentIndex==4)
+      //     Provider.of<TabIndexGenerator>(context, listen: false).setIndex(3);
+      //   Provider.of<TabIndexGenerator>(context, listen: false).setLayout("Desktop");
+      //
+      // }
+
+
+    });
   }
 
   String timestampToDate(int timestamp) {

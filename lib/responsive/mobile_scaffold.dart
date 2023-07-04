@@ -319,16 +319,17 @@ class _MobileScaffoldState extends State<MobileScaffold> {
   @override
   Widget build(BuildContext context) {
 
-    TabIndexGenerator tabIndexGenerator = Provider.of<TabIndexGenerator>(context, listen: true);
-    _currentIndex =tabIndexGenerator.currentIndex;
-    _currentPage=pageKeys[_currentIndex];
+
+
 
     return
 
-      Consumer3<DemoCartProvider,ThemeProvider,AuthProvider>(
-          builder: (context, cartProvider,appTheme,authProvider, child)
+      Consumer4<DemoCartProvider,ThemeProvider,AuthProvider, TabIndexGenerator>(
+          builder: (context, cartProvider,appTheme,authProvider,tabIndexGenerator, child)
     {
 
+      // _currentIndex =tabIndexGenerator.currentIndex;
+      // _currentPage=pageKeys[_currentIndex];
 
       // Language? lng = (Localizations.localeOf(context).languageCode == 'ar') ? appTheme.appTheme.fontSizes?.ar : appTheme.appTheme.fontSizes?.en;
       BottomNavigationButtonBar ? bottomNavigationBar = appTheme.appTheme.designPerPage?.bottomNavigationBar;
@@ -672,9 +673,13 @@ class _MobileScaffoldState extends State<MobileScaffold> {
     _selectTab(pageKeys[index],  index);
   }
 
+
+
   @override
   void initState() {
-    super.initState();
+
+
+    // Provider.of<TabIndexGenerator>(context, listen: false).setLayout("Mobile");
     /// - Old
     // _controller = PersistentTabController(initialIndex: 0);
    /// - Old

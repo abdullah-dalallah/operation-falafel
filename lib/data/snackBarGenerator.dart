@@ -8,22 +8,22 @@ class SnackbarGenerator {
   BuildContext context;
 
   SnackbarGenerator(this.context);
-  snackBarGeneratorLogin() {
-    final snackBar = SnackBar(
-      action: SnackBarAction(
-          label: "Proceed",
-          onPressed: () {
-            Navigator.of(context).pop();
-            Provider.of<TabIndexGenerator>(context, listen: false).setIndex(2);
-          },
-          textColor: Colors.white),
-      content: const Text(
-        "Please Login/Register Your Account",
-        style: TextStyle(color: Colors.amber),
-      ),
-    );
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }
+  // snackBarGeneratorLogin() {
+  //   final snackBar = SnackBar(
+  //     action: SnackBarAction(
+  //         label: "Proceed",
+  //         onPressed: () {
+  //           Navigator.of(context).pop();
+  //           Provider.of<TabIndexGenerator>(context, listen: false).setIndex(2);
+  //         },
+  //         textColor: Colors.white),
+  //     content: const Text(
+  //       "Please Login/Register Your Account",
+  //       style: TextStyle(color: Colors.amber),
+  //     ),
+  //   );
+  //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  // }
 
   snackBarGeneratorToast(String msg) {
     final snackBar = SnackBar(

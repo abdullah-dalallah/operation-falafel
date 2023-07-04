@@ -6,7 +6,7 @@ class TabIndexGenerator with ChangeNotifier {
   // final PersistentTabController _controller = PersistentTabController(initialIndex: 0);
   int _currentIndex=0;
   String currentLayout = "Mobile";
-  setIndex(int index) {
+  Future<void> setIndex(int index)async {
     _currentIndex = index;
     notifyListeners();
   }
@@ -17,7 +17,7 @@ class TabIndexGenerator with ChangeNotifier {
     _currentIndex = value;
   }
 
-  setLayout(String layout){
+ Future<void> setLayout(String layout)async{
     currentLayout = layout;
     notifyListeners();
   }

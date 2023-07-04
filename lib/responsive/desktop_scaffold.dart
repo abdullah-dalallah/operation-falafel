@@ -366,15 +366,21 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
   @override
   Widget build(BuildContext context) {
 
-    TabIndexGenerator tabIndexGenerator = Provider.of<TabIndexGenerator>(context, listen: true);
-    _currentIndex =tabIndexGenerator.currentIndex;
-    _currentPage=pageKeys[_currentIndex];
+
+
 
 
     final bool isKeyboardVisible = KeyboardVisibilityProvider.isKeyboardVisible(context);
-    return Consumer3<DemoCartProvider,ThemeProvider,AuthProvider>(
-        builder: (context, cartProvider,appTheme,authProvider, child)
+    return Consumer4<DemoCartProvider,ThemeProvider,AuthProvider,TabIndexGenerator>(
+        builder: (context, cartProvider,appTheme,authProvider,tabIndexGenerator, child)
         {
+          if(Provider.of<TabIndexGenerator>(context, listen: false).currentIndex==4)
+          _currentIndex =tabIndexGenerator.currentIndex-1;
+          else{
+            _currentIndex =tabIndexGenerator.currentIndex;
+          }
+          _currentPage=pageKeys[_currentIndex];
+
           // Language? lng = (Localizations.localeOf(context).languageCode == 'ar') ? appTheme.appTheme.fontSizes?.ar : appTheme.appTheme.fontSizes?.en;
           BottomNavigationButtonBar ? bottomNavigationBar = appTheme.appTheme.designPerPage?.bottomNavigationBar;
 
@@ -656,7 +662,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
 
   int _currentIndex = 0;
   String _currentPage ='MainMenu';
-  List<String> pageKeys = ["MainMenu","TabeBarMenu","Cart_Screen","TrackMyOrder","Profile", ];
+  List<String> pageKeys = ["MainMenu","TabeBarMenu","TrackMyOrder","Profile", ];
   final Map<String, GlobalKey<NavigatorState>> _navigatorKeys ={
     "MainMenu":GlobalKey<NavigatorState>(),
     "TabeBarMenu":GlobalKey<NavigatorState>(),
@@ -701,4 +707,15 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
     });
     _selectTab(pageKeys[index],  index);
   }
+
+
+  @override
+  void initState() {
+
+
+    // if(Provider.of<TabIndexGenerator>(context, listen: false).currentIndex==4)
+    //   Provider.of<TabIndexGenerator>(context, listen: false).setIndex(3);
+    // Provider.of<TabIndexGenerator>(context, listen: false).setLayout("Desktop");
+  }
+
 }

@@ -130,12 +130,9 @@ class _MyGiftsState extends State<MyGifts> {
                                   );
                                 }
                                 else{
-                                 String currentLayout= Provider.of<TabIndexGenerator>(context, listen: false).currentLayout;
-                                 if(currentLayout == "Desktop"){
-                                   Provider.of<TabIndexGenerator>(context, listen: false).setIndex(3);
-                                 }else{
+
                                    Provider.of<TabIndexGenerator>(context, listen: false).setIndex(4);
-                                 }
+
 
                                   Fluttertoast.showToast(
                                       msg: "${getTranslated(context, "loginFirst")}",

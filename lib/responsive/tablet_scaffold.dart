@@ -470,17 +470,25 @@ class _TabletScaffoldState extends State<TabletScaffold> {
   @override
   Widget build(BuildContext context) {
     final bool isKeyboardVisible = KeyboardVisibilityProvider.isKeyboardVisible(context);
-    TabIndexGenerator tabIndexGenerator = Provider.of<TabIndexGenerator>(context, listen: true);
-    _currentIndex =tabIndexGenerator.currentIndex;
-    _currentPage=pageKeys[_currentIndex];
+
+    // TabIndexGenerator tabIndexGenerator = Provider.of<TabIndexGenerator>(context, listen: false);
 
 
-    return Consumer<DemoCartProvider>(
-        builder: (context, cartProvider, child)
+
+    return Consumer2<DemoCartProvider,TabIndexGenerator>(
+        builder: (context, cartProvider,tabIndexGenerator ,child)
         {
           return Consumer3<DemoCartProvider,ThemeProvider,AuthProvider>(
               builder: (context, cartProvider,appTheme,authProvider, child)
               {
+                if(Provider.of<TabIndexGenerator>(context, listen: false).currentIndex==3) {
+                  _currentIndex =tabIndexGenerator.currentIndex+1;
+                } else {
+                  _currentIndex =tabIndexGenerator.currentIndex;
+                }
+                _currentPage=pageKeys[_currentIndex];
+
+
                 // Language? lng = (Localizations.localeOf(context).languageCode == 'ar') ? appTheme.appTheme.fontSizes?.ar : appTheme.appTheme.fontSizes?.en;
                 BottomNavigationButtonBar ? bottomNavigationBar = appTheme.appTheme
                     .designPerPage?.bottomNavigationBar;
@@ -919,5 +927,11 @@ class _TabletScaffoldState extends State<TabletScaffold> {
     _selectTab(pageKeys[index],  index);
   }
 
+
+  @override
+  void initState() {
+
+    // Provider.of<TabIndexGenerator>(context, listen: false).setLayout("Tablet");
+  }
 
 }
