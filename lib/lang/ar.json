@@ -248,7 +248,12 @@
   "mainCardCheck" : "اجعلها البطاقة الرئيسية",
   "SettingSheetTitle": "الإعدادات",
   "languageName": "English",
-  "selectLanguage": "إختر اللغة"
+  "selectLanguage": "إختر اللغة",
+  "emptyGiftConditions": "شروط القسيمة فارغة!",
+
+  "claimGift": "المطالبة بالهدية",
+  "promoCodeCopiedSuccessfully!": "تم نسخ الرمز الترويجي بنجاح!",
+  "loginFirst":"سجل الدخول أولا!"
 
 
 

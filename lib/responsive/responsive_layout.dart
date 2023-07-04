@@ -3,6 +3,7 @@ import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
 import 'package:operation_falafel/providers/ProfileProviders/profile_provider.dart';
 import 'package:operation_falafel/providers/home_page_provider/home_page_provider.dart';
 import 'package:operation_falafel/providers/settings_provider/setting_provider.dart';
+import 'package:operation_falafel/providers/tab_index_generator_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../data/keys.dart';
@@ -27,12 +28,15 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
   return LayoutBuilder(builder: (context,constraints){
 
     if(constraints.maxWidth<500){
+      Provider.of<TabIndexGenerator>(context, listen: false).setLayout("Mobile");
       return widget.MobileScaffold;
     }
     else if(constraints.maxWidth <1100){
+      Provider.of<TabIndexGenerator>(context, listen: false).setLayout("Desktop");
       return widget.TabletScaffold;
     }
     else{
+      Provider.of<TabIndexGenerator>(context, listen: false).setLayout("Tablet");
       return widget.DesktopScaffold;
     }
     }

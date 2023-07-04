@@ -5,6 +5,7 @@ class Strings {
   static const baseAppContactUsAddressUrl = "https://itscontactus.azurewebsites.net/";
   static const baseAppCardsUrl = "https://itsmobilecard.azurewebsites.net/";
   static const baseSlidersUrl = "https://itsslider.azurewebsites.net";
+  static const baseGiftsUrl = "https://itsmobilegift.azurewebsites.net";
 
 
   static const invalidInput = "Invalid Input";

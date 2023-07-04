@@ -12,6 +12,7 @@ import 'package:operation_falafel/screens/menus/full_menu.dart';
 import 'package:operation_falafel/screens/menus/vegan_menu.dart';
 import 'package:operation_falafel/screens/my%20rewards%20page/my_rewards.dart';
 import 'package:operation_falafel/widgets/address_list_sheet.dart';
+import 'package:operation_falafel/widgets/background.dart';
 import 'package:operation_falafel/widgets/cached_image_with_placeholder.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -78,12 +79,7 @@ class _MainMenuState extends State<MainMenu> {
          return (loadingDesign)?
            Stack(
             children: [
-              Image.asset(
-                "assets/images/background.png",
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                fit: BoxFit.cover,
-              ),
+              Background(),
               Scaffold(
                 key: _drawerKey,
                 backgroundColor: Colors.transparent,

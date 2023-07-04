@@ -6,6 +6,7 @@ import 'package:operation_falafel/data/tab_navigator.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/main.dart';
 import 'package:operation_falafel/providers/demo_cart/demo_cart_provider.dart';
+import 'package:operation_falafel/providers/tab_index_generator_provider.dart';
 
 import 'package:operation_falafel/screens/cart%20page/cart_screen.dart';
 import 'package:operation_falafel/screens/homepage/of_homepage.dart';
@@ -365,7 +366,9 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
   @override
   Widget build(BuildContext context) {
 
-
+    TabIndexGenerator tabIndexGenerator = Provider.of<TabIndexGenerator>(context, listen: true);
+    _currentIndex =tabIndexGenerator.currentIndex;
+    _currentPage=pageKeys[_currentIndex];
 
 
     final bool isKeyboardVisible = KeyboardVisibilityProvider.isKeyboardVisible(context);
@@ -671,6 +674,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
       setState(() {
         _currentPage = pageKeys[index];
         _currentIndex = index;
+        Provider.of<TabIndexGenerator>(context, listen: false).setIndex(index!);
       });
     }
 

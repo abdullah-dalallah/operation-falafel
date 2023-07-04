@@ -3,16 +3,25 @@ import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 // import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class TabIndexGenerator with ChangeNotifier {
-  final PersistentTabController _controller =
-      PersistentTabController(initialIndex: 0);
+  // final PersistentTabController _controller = PersistentTabController(initialIndex: 0);
+  int _currentIndex=0;
+  String currentLayout = "Mobile";
   setIndex(int index) {
-    _controller.jumpToTab(index);
+    _currentIndex = index;
+    notifyListeners();
   }
 
-  get getCurrentIndex {
-    return 0;
+  int get currentIndex => _currentIndex;
+
+  set currentIndex(int value) {
+    _currentIndex = value;
   }
-  get getCurrentController {
-    return _controller;
+
+  setLayout(String layout){
+    currentLayout = layout;
+    notifyListeners();
   }
+
+
+
 }

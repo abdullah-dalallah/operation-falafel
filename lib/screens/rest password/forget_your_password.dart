@@ -10,6 +10,7 @@ import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
 import 'package:operation_falafel/screens/profile/logged_in_user_profile.dart';
 import 'package:operation_falafel/screens/rest%20password/reset_your_password.dart';
 import 'package:operation_falafel/screens/verify_user_screen.dart';
+import 'package:operation_falafel/widgets/background.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
@@ -61,13 +62,7 @@ class _ResetYourPasswordState extends State<ResetYourPassword> {
 
             Stack(
                children: [
-                 Positioned.fill(
-                   child: Image.asset(
-                     'assets/images/background.png',
-                     fit: BoxFit.cover,
-                   ),
-                 ),
-
+                 Background(),
                  Scaffold(
                     resizeToAvoidBottomInset: false, // Prevents resizing when the keyboard appears
                     backgroundColor: Colors.transparent,
@@ -498,6 +493,7 @@ class _ResetYourPasswordState extends State<ResetYourPassword> {
           PersistentNavBarNavigator.pushNewScreen(
             context,
             screen: VerifyUserScreen(
+              statusString:"${res.data[Keys.bodyKey]}" ,
          phoneNumber: fullMobileNumber,
               layOut: widget.layOut!, (value) {
               widget.onChanged!(value);

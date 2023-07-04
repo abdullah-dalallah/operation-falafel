@@ -18,7 +18,8 @@ class VerifyUserByOtpWidget extends StatefulWidget{
   final String layOut ;
   final String verifyPurpose;
   String? phoneNumber;
-  VerifyUserByOtpWidget(this.onChanged,{super.key,required this.layOut, required this.verifyPurpose , this.phoneNumber});
+  String? statusString;
+  VerifyUserByOtpWidget(this.onChanged,{super.key,required this.layOut, required this.verifyPurpose , this.phoneNumber, this.statusString});
 
   @override
   State<VerifyUserByOtpWidget> createState() => _VerifyUserByOtpWidgetState();
@@ -110,11 +111,14 @@ class _VerifyUserByOtpWidgetState extends State<VerifyUserByOtpWidget> {
                 fontFamily: getTranslated(context, "fontFamilyBody"),
                 color:  Colors.white54,
                 fontSize: double.parse(getTranslated(context, "cartpageHeader3")!),
-                fontWeight: FontWeight.w300),
-            textAlign: TextAlign.center,),
+                fontWeight: FontWeight.w300), textAlign: TextAlign.center,),
             const SizedBox(height: 20,),
-
-
+            Text("${widget.statusString}", style: TextStyle(
+                fontFamily: getTranslated(context, "fontFamilyBody"),
+                color:  Colors.amber,
+                fontSize: double.parse(getTranslated(context, "cartpageHeader3")!),
+                fontWeight: FontWeight.w300), textAlign: TextAlign.center,),
+            const SizedBox(height: 20,),
             PinCodeTextField(
 
               appContext: context,
@@ -125,6 +129,7 @@ class _VerifyUserByOtpWidgetState extends State<VerifyUserByOtpWidget> {
               keyboardType:TextInputType.number ,
 
               pinTheme: PinTheme(
+
                 shape: PinCodeFieldShape.box,
                 borderRadius: BorderRadius.circular(5),
                 fieldHeight: 50,
@@ -136,10 +141,11 @@ class _VerifyUserByOtpWidgetState extends State<VerifyUserByOtpWidget> {
                 activeColor: Colors.amber,
                 selectedColor: Colors.amber,
                 inactiveFillColor: Colors.grey.withOpacity(0.5),
-                disabledColor: Colors.red
+                disabledColor: Colors.amber
 
               ),
               animationDuration: Duration(milliseconds: 300),
+              enabled: (widget.statusString!="OTP limit reached. Try tomorrow")?true:false,
 
               enableActiveFill: true,
               textStyle: TextStyle(color: Colors.white60),
@@ -206,9 +212,9 @@ class _VerifyUserByOtpWidgetState extends State<VerifyUserByOtpWidget> {
                   Container(
                     width: 40,
                     height: 40,
-                    decoration: const BoxDecoration(
-                      color: Colors.amber,
-                      borderRadius: BorderRadius.only(
+                    decoration:  BoxDecoration(
+                      color: (widget.statusString!="OTP limit reached. Try tomorrow")?Colors.amber:Colors.grey,
+                      borderRadius:const BorderRadius.only(
                         topRight: Radius.circular(40),
                         bottomLeft: Radius.circular(40),
                         topLeft: Radius.circular(40),
@@ -259,8 +265,11 @@ class _VerifyUserByOtpWidgetState extends State<VerifyUserByOtpWidget> {
                           overlayColor: MaterialStateProperty.all<
                               Color>(Colors.black54),
 
-                          onTap: () { print("Completed");
-                          if(widget.verifyPurpose==Strings.resetPasswordPurpose){
+                          onTap: () {
+
+                            if(widget.statusString!="OTP limit reached. Try tomorrow") {
+                              print("Completed");
+                              if(widget.verifyPurpose==Strings.resetPasswordPurpose){
                             String otp = _otpControllers.text;
                             PersistentNavBarNavigator.pushNewScreen(
                               context,
@@ -270,9 +279,13 @@ class _VerifyUserByOtpWidgetState extends State<VerifyUserByOtpWidget> {
                               pageTransitionAnimation: PageTransitionAnimation
                                   .cupertino,
                             );
-                          }else if(widget.verifyPurpose == Strings.registrationPurpose){
+                          }
+                          else if(widget.verifyPurpose == Strings.registrationPurpose){
                             _verifyOTP();
                           }
+                            }else{
+                              print("Not Completed");
+                            }
 
                           },
                         ),

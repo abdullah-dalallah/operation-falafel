@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/BottomNavigationBar/bottom_navigation_bar_page.dart';
 import 'package:operation_falafel/providers/demo_cart/demo_cart_provider.dart';
 import 'package:operation_falafel/providers/parsistent_tabview_provider.dart';
+import 'package:operation_falafel/providers/tab_index_generator_provider.dart';
 import 'package:operation_falafel/screens/cart%20page/cart_screen.dart';
 import 'package:operation_falafel/screens/homepage/of_homepage.dart';
 import 'package:operation_falafel/screens/other_screen.dart';
@@ -318,7 +319,9 @@ class _MobileScaffoldState extends State<MobileScaffold> {
   @override
   Widget build(BuildContext context) {
 
-
+    TabIndexGenerator tabIndexGenerator = Provider.of<TabIndexGenerator>(context, listen: true);
+    _currentIndex =tabIndexGenerator.currentIndex;
+    _currentPage=pageKeys[_currentIndex];
 
     return
 
@@ -329,8 +332,6 @@ class _MobileScaffoldState extends State<MobileScaffold> {
 
       // Language? lng = (Localizations.localeOf(context).languageCode == 'ar') ? appTheme.appTheme.fontSizes?.ar : appTheme.appTheme.fontSizes?.en;
       BottomNavigationButtonBar ? bottomNavigationBar = appTheme.appTheme.designPerPage?.bottomNavigationBar;
-
-
       List<BottomNavigationBarItem> tabsIcon = [];
       List<Widget> screens =[];
         //bottomNavigationBar != null
@@ -585,7 +586,6 @@ class _MobileScaffoldState extends State<MobileScaffold> {
       }
 
 
-
       return
         (tabsIcon.length>2)?
         WillPopScope(
@@ -606,6 +606,7 @@ class _MobileScaffoldState extends State<MobileScaffold> {
         child: Scaffold(
           body: Stack(children:screens,),
           bottomNavigationBar: BottomNavigationBar(
+
              iconSize: 40,
             showUnselectedLabels: false,
             showSelectedLabels: false,
@@ -643,6 +644,7 @@ class _MobileScaffoldState extends State<MobileScaffold> {
         // _currentPage = tabItem;
         _currentPage = pageKeys[index];
         _currentIndex = index;
+        Provider.of<TabIndexGenerator>(context, listen: false).setIndex(index!);
       });
     }
 

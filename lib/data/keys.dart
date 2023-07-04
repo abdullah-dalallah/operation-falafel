@@ -35,6 +35,7 @@ class Keys {
   static const themeIdKey = "theme_id";
   static const createdByKey = "createdBy";
   static const languageKey = "language";
+  static const langKey = "lang";
 
 
   /// - Profile -> Address

@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
+import 'package:operation_falafel/providers/gifts_provider/loyalty_provider.dart';
 import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/gift_details.dart';
+import 'package:operation_falafel/widgets/background.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
-
+import 'package:intl/intl.dart';
 import '../../../models/AppThemeModels/DesignPerPage/Loyalty-MyGiftsPage/loyalty_my_gifts_page.dart';
 import '../../../models/AppThemeModels/FontSizes/Language/lang.dart';
 import '../../../providers/AppTheme/theme_provider.dart';
@@ -21,28 +24,17 @@ class _MyGiftsListState extends State<MyGiftsList> {
   Widget build(BuildContext context) {
     final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
 
-    return Consumer<ThemeProvider>(builder: (context, appTheme, child)
+    return Consumer2<ThemeProvider, LoyaltyProvider>(builder: (context, appTheme,loyaltyProvider, child)
     {
       Language? lng = (Localizations.localeOf(context).languageCode == 'ar') ? appTheme.appTheme.fontSizes?.ar : appTheme.appTheme.fontSizes?.en;
       LoyaltyMyGiftsPage? loyaltyMyGiftsPage = appTheme.appTheme.designPerPage?.loyaltyMyGiftsPage;
       bool loadingDesign = loyaltyMyGiftsPage != null;
-
+      bool giftsListLoading = loyaltyProvider.gifts==null;
       return
         (loadingDesign)?
         Stack(
         children: [
-          Image.asset(
-            "assets/images/background.png",
-            height: MediaQuery
-                .of(context)
-                .size
-                .height,
-            width: MediaQuery
-                .of(context)
-                .size
-                .width,
-            fit: BoxFit.cover,
-          ),
+          Background(),
           Scaffold(
             key: _drawerKey,
             backgroundColor: Colors.transparent,
@@ -97,8 +89,9 @@ class _MyGiftsListState extends State<MyGiftsList> {
                     Expanded(
                         child: Padding(
                           padding: const EdgeInsets.all(18.0),
-                          child: ListView.builder(
-                          itemCount: 1,
+                          child: (!giftsListLoading)?
+                          ListView.builder(
+                          itemCount: loyaltyProvider.gifts!.length!,
                           itemBuilder: (context, Index) =>
                               Column(
                                 children: [
@@ -106,25 +99,27 @@ class _MyGiftsListState extends State<MyGiftsList> {
                                       onTap: () {
                                         PersistentNavBarNavigator.pushNewScreen(
                                           context,
-                                          screen: GiftDetails(),
+                                          screen: GiftDetails(giftDetails: loyaltyProvider.gifts![Index]),
                                           withNavBar: true,
                                           // OPTIONAL VALUE. True by default.
-                                          pageTransitionAnimation: PageTransitionAnimation
-                                              .cupertino,
+                                          pageTransitionAnimation: PageTransitionAnimation.cupertino,
                                         );
                                       },
                                       leading: Image.asset(
                                         "assets/images/of_credit_icon.png",
                                         height: 60, width: 60,),
                                       title: Text(
-                                        getTranslated(context, "registrationGift")!,
+                                        "${loyaltyProvider.gifts![Index].name}",
+                                      //  getTranslated(context, "registrationGift")!,
                                         style: TextStyle(
                                           fontSize: lng?.header3.size.toDouble(),
                                           // fontSize: 17,
                                           fontFamily: "${lng?.header3.textFamily}",
                                           // fontFamily: "${getTranslated(context, "fontFamilyBody")!}",
                                           color: Color(int.parse(loyaltyMyGiftsPage.body.giftsList.title.color))),),
-                                        subtitle: Text("2023-10-18",
+                                      subtitle: Text(
+                                        DateFormat('yyyy-MM-dd').format(loyaltyProvider.gifts![Index].expireAt! ).toString(),
+                                        // "2023-10-18",
                                         style: TextStyle(
                                             fontSize: lng?.header3.size.toDouble(),
                                             // fontSize: 17,
@@ -147,7 +142,8 @@ class _MyGiftsListState extends State<MyGiftsList> {
                                   ),
                                 ],
                               )
-                      ),
+                      ):
+                          LoadingPage(),
                     ))
                   ],
                 ),
@@ -163,4 +159,15 @@ class _MyGiftsListState extends State<MyGiftsList> {
 
 
   }
+
+  @override
+  void initState() {
+
+
+    if(Provider.of<AuthProvider>(context, listen: false).loggedInUser !=null) {
+      String? userToken =Provider.of<AuthProvider>(context, listen: false).loggedInUser!.token!;
+      Provider.of<LoyaltyProvider>(context, listen: false).getUserGiftsCards(userToken: userToken,lng: "en");
+    }
+  }
+
 }

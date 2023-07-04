@@ -1,8 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
+import 'package:operation_falafel/providers/gifts_provider/loyalty_provider.dart';
+import 'package:operation_falafel/providers/tab_index_generator_provider.dart';
 import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/buy_gift.dart';
 import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/my_gifts_list.dart';
+import 'package:operation_falafel/widgets/background.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
 
@@ -31,18 +36,7 @@ class _MyGiftsState extends State<MyGifts> {
         (loadingDesign)?
         Stack(
         children: [
-          Image.asset(
-            "assets/images/background.png",
-            height: MediaQuery
-                .of(context)
-                .size
-                .height,
-            width: MediaQuery
-                .of(context)
-                .size
-                .width,
-            fit: BoxFit.cover,
-          ),
+          Background(),
           Scaffold(
             key: _drawerKey,
             backgroundColor: Colors.transparent,
@@ -125,14 +119,37 @@ class _MyGiftsState extends State<MyGifts> {
                             padding: const EdgeInsets.all(18.0),
                             child: ElevatedButton(
                               onPressed: () {
-                                PersistentNavBarNavigator.pushNewScreen(
-                                  context,
-                                  screen: MyGiftsList(),
-                                  withNavBar: true,
-                                  // OPTIONAL VALUE. True by default.
-                                  pageTransitionAnimation: PageTransitionAnimation
-                                      .cupertino,
-                                );
+                                if(Provider.of<AuthProvider>(context, listen: false).loggedInUser !=null){
+                                  PersistentNavBarNavigator.pushNewScreen(
+                                    context,
+                                    screen: MyGiftsList(),
+                                    withNavBar: true,
+                                    // OPTIONAL VALUE. True by default.
+                                    pageTransitionAnimation: PageTransitionAnimation
+                                        .cupertino,
+                                  );
+                                }
+                                else{
+                                 String currentLayout= Provider.of<TabIndexGenerator>(context, listen: false).currentLayout;
+                                 if(currentLayout == "Desktop"){
+                                   Provider.of<TabIndexGenerator>(context, listen: false).setIndex(3);
+                                 }else{
+                                   Provider.of<TabIndexGenerator>(context, listen: false).setIndex(4);
+                                 }
+
+                                  Fluttertoast.showToast(
+                                      msg: "${getTranslated(context, "loginFirst")}",
+
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.BOTTOM,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor: Colors.amber.withOpacity(0.8),
+                                      textColor: Colors.white,
+
+                                      fontSize: 16.0
+                                  );
+                                }
+
                               },
                               style: ButtonStyle(
                                   shape: MaterialStateProperty.all<
@@ -306,4 +323,6 @@ class _MyGiftsState extends State<MyGifts> {
     });
 
   }
+
+
 }

@@ -310,6 +310,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                             PersistentNavBarNavigator.pushNewScreen(
                                               context,
                                               screen: VerifyUserScreen(
+                                                statusString:"${res.data[Keys.bodyKey]}" ,
                                                 layOut: widget.layOut, (value) {
                                                 widget.onChanged(value);
                                               },
@@ -789,18 +790,22 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                                 SizedBox(width: 30,
                                                                     height: 30,
                                                                     child: countryCode!.flagImage)
-                                                                    : const Icon(
-                                                                    Icons.flag_outlined),
+                                                                    : const Icon(Icons.flag_outlined),
                                                                 padding: EdgeInsets.zero,
                                                                 onPressed: () async {
-                                                                  final code = await countryPicker
-                                                                      .showPicker(context: context,
-                                                                      initialSelectedLocale: "AE");
-                                                                  if (code != null) {
-                                                                    setState(() {
-                                                                      countryCode = code;
-                                                                    });
-                                                                  };
+                                                                  if(startEdit) {
+                                                                    final code = await countryPicker
+                                                                        .showPicker(
+                                                                        context: context,
+                                                                        initialSelectedLocale: "AE");
+                                                                    if (code !=
+                                                                        null) {
+                                                                      setState(() {
+                                                                        countryCode =
+                                                                            code;
+                                                                      });
+                                                                    };
+                                                                  }
                                                                 },)
                                                           ),
                                                         )),

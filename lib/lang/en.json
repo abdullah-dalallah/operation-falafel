@@ -247,7 +247,11 @@
   "mainCardCheck" : "Make it main card",
   "SettingSheetTitle": "Settings",
   "languageName": "العربيه",
-  "selectLanguage": "SELECT LANGUAGE"
+  "selectLanguage": "SELECT LANGUAGE",
+  "emptyGiftConditions": "Voucher Conditions is Empty!",
+  "claimGift": "Claim Gift",
+  "promoCodeCopiedSuccessfully": "Promo Code Copied Successfully!",
+  "loginFirst":"Login First!"
 
 
 
