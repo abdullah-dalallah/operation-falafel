@@ -19,6 +19,7 @@ class LoyaltyGiftDetailsBody {
     required this.voucher,
     required this.redeemButton,
     required this.sendAsGiftButton,
+    required this.redeemDialog,
   });
 
   String pageImage;
@@ -27,6 +28,7 @@ class LoyaltyGiftDetailsBody {
   Voucher voucher;
   Button redeemButton;
   TitleStyle sendAsGiftButton;
+  RedeemDialog redeemDialog;
 
   factory LoyaltyGiftDetailsBody.fromJson(Map<String, dynamic> json) => LoyaltyGiftDetailsBody(
     pageImage: json["PageImage"],
@@ -35,6 +37,7 @@ class LoyaltyGiftDetailsBody {
     voucher: Voucher.fromJson(json["Voucher"]),
     redeemButton: Button.fromJson(json["RedeemButton"]),
     sendAsGiftButton: TitleStyle.fromJson(json["SendAsGiftButton"]),
+    redeemDialog: RedeemDialog.fromJson(json["RedeemDialog"]),
   );
 
   Map<String, dynamic> toJson() => {
@@ -68,5 +71,42 @@ class Voucher {
   Map<String, dynamic> toJson() => {
     "Title": title.toJson(),
     "SubTitle": subTitle.toJson(),
+  };
+}
+
+
+
+
+
+
+class RedeemDialog {
+  TitleStyle? dialogTitle;
+  TitleStyle? giftTitle;
+  TitleStyle? codeTitle;
+  Button? copyPromoCodButton;
+  TitleStyle? dineInTitle;
+
+  RedeemDialog({
+    this.dialogTitle,
+    this.giftTitle,
+    this.codeTitle,
+    this.copyPromoCodButton,
+    this.dineInTitle,
+  });
+
+  factory RedeemDialog.fromJson(Map<String, dynamic> json) => RedeemDialog(
+    dialogTitle: json["DialogTitle"] == null ? null : TitleStyle.fromJson(json["DialogTitle"]),
+    giftTitle: json["GiftTitle"] == null ? null : TitleStyle.fromJson(json["GiftTitle"]),
+    codeTitle: json["CodeTitle"] == null ? null : TitleStyle.fromJson(json["CodeTitle"]),
+    copyPromoCodButton: json["CopyPromoCodButton"] == null ? null : Button.fromJson(json["CopyPromoCodButton"]),
+    dineInTitle: json["DineinTitle"] == null ? null : TitleStyle.fromJson(json["DineinTitle"]),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "DialogTitle": dialogTitle?.toJson(),
+    "GiftTitle": giftTitle?.toJson(),
+    "CodeTitle": codeTitle?.toJson(),
+    "CopyPromoCodButton": copyPromoCodButton?.toJson(),
+    "DineinTitle": dineInTitle?.toJson(),
   };
 }

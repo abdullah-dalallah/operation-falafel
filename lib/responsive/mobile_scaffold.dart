@@ -328,8 +328,8 @@ class _MobileScaffoldState extends State<MobileScaffold> {
           builder: (context, cartProvider,appTheme,authProvider,tabIndexGenerator, child)
     {
 
-      // _currentIndex =tabIndexGenerator.currentIndex;
-      // _currentPage=pageKeys[_currentIndex];
+      _currentIndex =tabIndexGenerator.currentIndex;
+      _currentPage=pageKeys[_currentIndex];
 
       // Language? lng = (Localizations.localeOf(context).languageCode == 'ar') ? appTheme.appTheme.fontSizes?.ar : appTheme.appTheme.fontSizes?.en;
       BottomNavigationButtonBar ? bottomNavigationBar = appTheme.appTheme.designPerPage?.bottomNavigationBar;

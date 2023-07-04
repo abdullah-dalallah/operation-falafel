@@ -353,10 +353,10 @@ class _GiftDetailsState extends State<GiftDetails> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children:  [
                            /// -  Title fixed
-                            Align(child:Text( getTranslated(context, "claimGift")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),),
+                            Align(child:Text( loyaltyGiftDetailsPage!.body.redeemDialog.dialogTitle!.data,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Color(int.parse(loyaltyGiftDetailsPage!.body.redeemDialog.dialogTitle!.color!)), fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),),
                             const SizedBox(height: 10,),
                            /// - gift name
-                            Align(child:Text( widget.giftDetails!.name!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber, fontSize: double.parse(getTranslated(context, "cartpageHeader3")!)),),),
+                            Align(child:Text( widget.giftDetails!.name!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Color(int.parse(loyaltyGiftDetailsPage.body.giftTitle.color)), fontSize: double.parse(getTranslated(context, "cartpageHeader3")!)),),),
                             const SizedBox(height: 10,),
                             /// - Code & QR
                             QrImageView(
@@ -368,10 +368,11 @@ class _GiftDetailsState extends State<GiftDetails> {
 
 
                             Expanded(
-                              child: Align(child:Text( widget.giftDetails!.code!,
+                              child: Align(child:Text(
+                                widget.giftDetails!.code!,
                                   style: TextStyle(
                                       fontFamily:lng?.header3.textFamily,
-                                      color: Colors.amber,
+                                      color: Color(int.parse(loyaltyGiftDetailsPage.body.redeemDialog.codeTitle!.color)),
                                       fontSize: lng?.header5.size.toDouble()
                                   ),
                                 ),),
@@ -416,11 +417,11 @@ class _GiftDetailsState extends State<GiftDetails> {
                                   ),
                                   child:
                                   Text(
-                                    "COPY PROMO CODE",
+                                   loyaltyGiftDetailsPage.body.redeemDialog.copyPromoCodButton!.data,
                                     // loyaltyGiftDetailsPage!.body.redeemButton.data,
                                     style: TextStyle(
                                         fontFamily:lng?.header3.textFamily,
-                                        color: Color(int.parse(loyaltyGiftDetailsPage.body.redeemButton.color)),
+                                        color: Color(int.parse(loyaltyGiftDetailsPage.body.redeemDialog.copyPromoCodButton!.color)),
                                         fontSize: lng?.header3.size.toDouble()
                                     ),),
                                   // Text(
@@ -435,11 +436,11 @@ class _GiftDetailsState extends State<GiftDetails> {
 
                             const SizedBox(height: 10,),
                             Text(
-                              "For Dine in. Share the code with the cashier",
+                              loyaltyGiftDetailsPage.body.redeemDialog.dineInTitle!.data,
                               // loyaltyGiftDetailsPage!.body.redeemButton.data,
                               style: TextStyle(
                                   fontFamily:lng?.header1.textFamily,
-                                  color: Color(int.parse(loyaltyGiftDetailsPage.body.redeemButton.color)),
+                                  color: Color(int.parse(loyaltyGiftDetailsPage.body.redeemDialog.dineInTitle!.color)),
                                   fontSize: lng?.header1.size.toDouble()
                               ),),
 

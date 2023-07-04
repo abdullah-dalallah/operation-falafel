@@ -1528,6 +1528,37 @@
         "SendAsGiftButton": {
           "Data": "SEND AS GIFT",
           "Color": "0xffffffff"
+        },
+        "RedeemDialog": {
+
+          "DialogTitle": {
+            "Data": "Claim Gift",
+            "Color": "0xffffbf00"
+          },
+
+          "GiftTitle": {
+            "Data": "data",
+            "Color": "0xffffbf00"
+          },
+          "CodeTitle": {
+            "Data": "data",
+            "Color": "0xffffbf00"
+          },
+          "DialogTitle": {
+            "Data": "Claim Gift",
+            "Color": "0xffffbf00"
+          },
+          "CopyPromoCodButton": {
+            "Data": "COPY PROMO CODE",
+            "Color": "0xffffffff",
+            "BackGroundColor": "0xFFFFBF00"
+          },
+          "DineinTitle": {
+            "Data": "For Dine in. Share the code with the cashier",
+            "Color": "0xffffffff"
+          }
+
+
         }
       }
     },
