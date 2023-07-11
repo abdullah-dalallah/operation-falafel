@@ -84,12 +84,14 @@ class RepeatLastCustomizationSheet extends StatelessWidget{
                         Navigator.pop(context);
 
                         showModalBottomSheet(
+                            useSafeArea: true,
+                            isScrollControlled: true,
                             // expand: false,
                             context: context,
                             backgroundColor: Colors.transparent,
                             builder: (context) =>
                                 DraggableScrollableSheet(
-                                    initialChildSize: 0.8,
+                                    initialChildSize: 0.7,
                                     minChildSize: 0.6,
                                     maxChildSize: 1,
                                     expand: true,

@@ -58,25 +58,25 @@ android {
 
     }
 
-    signingConfigs {
-        release {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
-            storePassword keystoreProperties['storePassword']
-
-            if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-                storeFile file(keystoreProperties['storeFileWindows'])
-            }
-//            else
-//            if (Os.isFamily(Os.FAMILY_UNIX)) {
-//                storeFile file(keystoreProperties['storeFileLinux'])
+//    signingConfigs {
+//        release {
+//            keyAlias keystoreProperties['keyAlias']
+//            keyPassword keystoreProperties['keyPassword']
+//            storePassword keystoreProperties['storePassword']
+//
+//            if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+//                storeFile file(keystoreProperties['storeFileWindows'])
 //            }
-            else
-            if (Os.isFamily(Os.FAMILY_MAC)) {
-                storeFile file(keystoreProperties['storeFileMac'])
-            }
-        }
-    }
+////            else
+////            if (Os.isFamily(Os.FAMILY_UNIX)) {
+////                storeFile file(keystoreProperties['storeFileLinux'])
+////            }
+//            else
+//            if (Os.isFamily(Os.FAMILY_MAC)) {
+//                storeFile file(keystoreProperties['storeFileMac'])
+//            }
+//        }
+//    }
 
 
     buildTypes {

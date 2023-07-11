@@ -126,8 +126,7 @@ class _ImageWithAddButtonState extends State<ImageWithAddButton> {
                                               isScrollControlled: true,
                                               // expand: false,
                                               context: context,
-                                              backgroundColor: Colors
-                                                  .transparent,
+                                              backgroundColor: Colors.transparent,
                                               builder: (context) =>
                                                   DraggableScrollableSheet(
                                                       initialChildSize: 0.7,

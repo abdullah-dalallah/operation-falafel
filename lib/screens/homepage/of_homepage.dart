@@ -76,7 +76,8 @@ class _MainMenuState extends State<MainMenu> {
 
 
 
-         return (loadingDesign)?
+         return
+           (loadingDesign)?
            Stack(
             children: [
               Background(),
@@ -1699,7 +1700,7 @@ class _MainMenuState extends State<MainMenu> {
                                     children: [
                                   TextSpan(
                                     text: getTranslated(context, "dashBoardTitle-credit")!,
-                                    style: TextStyle(color: 
+                                    style: TextStyle(color:
                                     Color(int.parse(homePageDesign.body.dashboardWidget.headerTitle.creditText.color))
                                     // Colors.amber
                                     ),
@@ -1951,11 +1952,11 @@ class _MainMenuState extends State<MainMenu> {
                         height: MediaQuery. of(context). size. height,
                         width: MediaQuery. of(context). size. width,
                         child: Image.asset("assets/images/icon_bike.png"))),
-              )
-
+              ),
+             if (!loadingDesign) LoadingPage()
             ],
-          )
-          :LoadingPage();
+          ) :
+         LoadingPage();
 
         });
 
