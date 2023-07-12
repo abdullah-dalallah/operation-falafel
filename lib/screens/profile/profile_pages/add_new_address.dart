@@ -137,6 +137,22 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                 decoration: InputDecoration(
                                   filled: true,
                                   fillColor: Colors.black45,
+                                  errorBorder: UnderlineInputBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(10.0),
+                                    ),
+                                    borderSide: BorderSide(
+                                      color: Colors.red,
+                                      width: 2.0,),
+                                  ),
+                                  focusedErrorBorder: UnderlineInputBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(10.0),
+                                    ),
+                                    borderSide: BorderSide(
+                                      color: Colors.red,
+                                      width: 2.0,),
+                                  ),
                                   contentPadding: const EdgeInsets.only(
                                       left: 10, right: 10),
                                   focusedBorder: const OutlineInputBorder(
@@ -316,6 +332,22 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                         fillColor: Colors.black45,
                                         contentPadding: const EdgeInsets.only(
                                             left: 10, right: 10),
+                                        errorBorder: UnderlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0),
+                                          ),
+                                          borderSide: BorderSide(
+                                            color: Colors.red,
+                                            width: 2.0,),
+                                        ),
+                                        focusedErrorBorder: UnderlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0),
+                                          ),
+                                          borderSide: BorderSide(
+                                            color: Colors.red,
+                                            width: 2.0,),
+                                        ),
                                         focusedBorder: const OutlineInputBorder(
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(10.0),
@@ -361,6 +393,22 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                         fillColor: Colors.black45,
                                         contentPadding: const EdgeInsets.only(
                                             left: 10, right: 10),
+                                        errorBorder: UnderlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0),
+                                          ),
+                                          borderSide: BorderSide(
+                                            color: Colors.red,
+                                            width: 2.0,),
+                                        ),
+                                        focusedErrorBorder: UnderlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0),
+                                          ),
+                                          borderSide: BorderSide(
+                                            color: Colors.red,
+                                            width: 2.0,),
+                                        ),
                                         focusedBorder: const OutlineInputBorder(
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(10.0),
@@ -424,6 +472,22 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                           borderSide: BorderSide(
                                             color: Colors.transparent,
                                             width: 1.0,),
+                                        ),
+                                        errorBorder: UnderlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0),
+                                          ),
+                                          borderSide: BorderSide(
+                                            color: Colors.red,
+                                            width: 2.0,),
+                                        ),
+                                        focusedErrorBorder: UnderlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0),
+                                          ),
+                                          borderSide: BorderSide(
+                                            color: Colors.red,
+                                            width: 2.0,),
                                         ),
                                         enabledBorder: const OutlineInputBorder(
                                           borderRadius: BorderRadius.all(

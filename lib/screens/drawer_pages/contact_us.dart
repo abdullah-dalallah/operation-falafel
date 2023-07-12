@@ -179,6 +179,22 @@ class _ContactUsState extends State<ContactUs> {
                                           top: 10,
                                           bottom: 10,
                                           right: 10),
+                                      errorBorder: UnderlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(10.0),
+                                        ),
+                                        borderSide: BorderSide(
+                                          color: Colors.red,
+                                          width: 2.0,),
+                                      ),
+                                      focusedErrorBorder: UnderlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(10.0),
+                                        ),
+                                        borderSide: BorderSide(
+                                          color: Colors.red,
+                                          width: 2.0,),
+                                      ),
                                       focusedBorder: const OutlineInputBorder(
                                         borderRadius: BorderRadius.all(
                                           Radius.circular(10.0),
@@ -241,6 +257,22 @@ class _ContactUsState extends State<ContactUs> {
                                           top: 10,
                                           bottom: 10,
                                           right: 10),
+                                      errorBorder: UnderlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(10.0),
+                                        ),
+                                        borderSide: BorderSide(
+                                          color: Colors.red,
+                                          width: 2.0,),
+                                      ),
+                                      focusedErrorBorder: UnderlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(10.0),
+                                        ),
+                                        borderSide: BorderSide(
+                                          color: Colors.red,
+                                          width: 2.0,),
+                                      ),
                                       focusedBorder: const OutlineInputBorder(
                                         borderRadius: BorderRadius.all(
                                           Radius.circular(10.0),
@@ -327,6 +359,22 @@ class _ContactUsState extends State<ContactUs> {
                                                 top: 10,
                                                 bottom: 10,
                                                 right: 10),
+                                            errorBorder: UnderlineInputBorder(
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(10.0),
+                                              ),
+                                              borderSide: BorderSide(
+                                                color: Colors.red,
+                                                width: 2.0,),
+                                            ),
+                                            focusedErrorBorder: UnderlineInputBorder(
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(10.0),
+                                              ),
+                                              borderSide: BorderSide(
+                                                color: Colors.red,
+                                                width: 2.0,),
+                                            ),
                                             focusedBorder: const OutlineInputBorder(
                                               borderRadius: BorderRadius.all(
                                                 Radius.circular(10.0),
@@ -512,6 +560,22 @@ class _ContactUsState extends State<ContactUs> {
                                     //amber.withOpacity(0.1),
                                     contentPadding: const EdgeInsets.only(
                                         left: 10, top: 10, bottom: 10, right: 10),
+                                    errorBorder: UnderlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10.0),
+                                      ),
+                                      borderSide: BorderSide(
+                                        color: Colors.red,
+                                        width: 2.0,),
+                                    ),
+                                    focusedErrorBorder: UnderlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10.0),
+                                      ),
+                                      borderSide: BorderSide(
+                                        color: Colors.red,
+                                        width: 2.0,),
+                                    ),
                                     focusedBorder: const OutlineInputBorder(
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(5.0),
