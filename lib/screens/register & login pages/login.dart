@@ -173,6 +173,23 @@ class _LoginState extends State<Login> {
                                           decoration:const InputDecoration(
                                             filled: true,
                                             fillColor: Colors.black45,
+
+                                            errorBorder: UnderlineInputBorder(
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(10.0),
+                                              ),
+                                              borderSide: BorderSide(
+                                                color: Colors.red,
+                                                width: 2.0,),
+                                            ),
+                                            focusedErrorBorder: UnderlineInputBorder(
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(10.0),
+                                              ),
+                                              borderSide: BorderSide(
+                                                color: Colors.red,
+                                                width: 2.0,),
+                                            ),
                                             contentPadding: EdgeInsets.only(
                                                 left: 10, right: 10),
                                             focusedBorder: OutlineInputBorder(
@@ -258,6 +275,22 @@ class _LoginState extends State<Login> {
                                             filled: true,
                                             fillColor: Colors.black45,
                                             contentPadding:const EdgeInsets.only(left: 10, right: 10,top: 13),
+                                            errorBorder: UnderlineInputBorder(
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(10.0),
+                                              ),
+                                              borderSide: BorderSide(
+                                                color: Colors.red,
+                                                width: 2.0,),
+                                            ),
+                                            focusedErrorBorder: UnderlineInputBorder(
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(10.0),
+                                              ),
+                                              borderSide: BorderSide(
+                                                color: Colors.red,
+                                                width: 2.0,),
+                                            ),
                                             focusedBorder:const OutlineInputBorder(
                                               borderRadius: BorderRadius.all(
                                                 Radius.circular(10.0),

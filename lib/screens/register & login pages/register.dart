@@ -112,7 +112,7 @@ class _RegisterState extends State<Register> {
     showGeneralDialog(
       context: context,
       barrierLabel: "Barrier",
-      barrierDismissible: true,
+      barrierDismissible: false,
       barrierColor: Colors.black.withOpacity(0.5),
       transitionDuration: Duration(milliseconds: 500),
       pageBuilder: (context, __, ___) {
@@ -132,7 +132,7 @@ class _RegisterState extends State<Register> {
 
                   DateTime tempValue =value as DateTime;
                   if(tempValue!=null){
-                    _selectedDate = DateFormat('yyyy-MM-dd').format(tempValue).toString();
+                    _selectedDate = DateFormat('dd/MM/yyyy').format(tempValue).toString();
                     // showDatePicker = false;
                     print("DateTime");
                     birthDateController.text = _selectedDate;
@@ -346,8 +346,7 @@ class _RegisterState extends State<Register> {
                                               decoration: const InputDecoration(
                                                 filled: true,
                                                 fillColor: Colors.black45,
-                                                contentPadding: EdgeInsets.only(
-                                                    left: 10, right: 10),
+                                                contentPadding: EdgeInsets.only(left: 10, right: 10),
                                                 focusedBorder: OutlineInputBorder(
                                                   borderRadius: BorderRadius.all(
                                                     Radius.circular(10.0),
@@ -363,6 +362,22 @@ class _RegisterState extends State<Register> {
                                                   borderSide: BorderSide(
                                                       color: Colors.transparent,
                                                       width: 0.0),
+                                                ),
+                                                errorBorder: UnderlineInputBorder(
+                                                  borderRadius: BorderRadius.all(
+                                                    Radius.circular(10.0),
+                                                  ),
+                                                  borderSide: BorderSide(
+                                                    color: Colors.red,
+                                                    width: 2.0,),
+                                                ),
+                                                focusedErrorBorder: UnderlineInputBorder(
+                                                  borderRadius: BorderRadius.all(
+                                                    Radius.circular(10.0),
+                                                  ),
+                                                  borderSide: BorderSide(
+                                                    color: Colors.red,
+                                                    width: 2.0,),
                                                 ),
                                                 hintText: '',
                                                 // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
@@ -419,55 +434,86 @@ class _RegisterState extends State<Register> {
                                         Expanded(
                                           flex: 12,
                                           child: Container(
-                                            height: 50,
-                                            decoration:const BoxDecoration(
-                                              color: Colors.black45,
-
-                                              borderRadius:
-
-
-                                               BorderRadius.only(
-                                                bottomLeft: Radius.circular(10.0),
-                                                topLeft: Radius.circular(10.0),
-                                                 topRight: Radius.circular(10.0),
-                                                 bottomRight: Radius.circular(10.0),
-                                              ),
-
-                                              // border: Border.all(
-                                              //   width: 0,
-                                              //   color: Colors.transparent,
-                                              //   style: BorderStyle.solid,
-                                              // ),
-                                            ),
+                                            // height: 50,
+                                            // decoration:const BoxDecoration(
+                                            //   color: Colors.black45,
+                                            //
+                                            //   borderRadius:
+                                            //
+                                            //
+                                            //    BorderRadius.only(
+                                            //     bottomLeft: Radius.circular(10.0),
+                                            //     topLeft: Radius.circular(10.0),
+                                            //      topRight: Radius.circular(10.0),
+                                            //      bottomRight: Radius.circular(10.0),
+                                            //   ),
+                                            //
+                                            //   // border: Border.all(
+                                            //   //   width: 0,
+                                            //   //   color: Colors.transparent,
+                                            //   //   style: BorderStyle.solid,
+                                            //   // ),
+                                            // ),
                                             child: Row(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
-                                                SizedBox(width: 10,),
+
                                                 Expanded(
                                                     flex: 2,
-                                                    child: Padding(
-                                                        padding: const EdgeInsets.only(
-                                                            left: 0, right: 0),
-                                                        child: IconButton(
-                                                          icon:
-                                                          countryCode != null ?
-                                                          SizedBox(width: 30,
-                                                              height: 30,
-                                                              child: countryCode!
-                                                                  .flagImage)
-                                                              : const Icon(
-                                                              Icons.flag_outlined),
-                                                          padding: EdgeInsets.zero,
-                                                          onPressed: () async {
-                                                            final code = await countryPicker
-                                                                .showPicker(
-                                                                context: context,
-                                                                initialSelectedLocale: "AE");
-                                                            if (code != null) {
-                                                              setState(() {
-                                                                countryCode = code;
-                                                              });
-                                                            };
-                                                          },)
+                                                    child: Container(
+                                                      height: 48,
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.black45,
+
+                                                        borderRadius:
+
+                                                        (Localizations.localeOf(context).languageCode == 'en') ?
+                                                        const BorderRadius.only(
+                                                          bottomLeft: Radius.circular(10.0),
+                                                          topLeft: Radius.circular(10.0),
+
+                                                        ) :
+                                                        (Localizations.localeOf(context).languageCode == 'ar') ?
+                                                        const BorderRadius.only(
+                                                          bottomRight: Radius.circular(10),
+                                                          topRight: Radius.circular(10),
+                                                        ) :
+                                                        const BorderRadius.only(
+                                                          bottomLeft: Radius.circular(10.0),
+                                                          topLeft: Radius.circular(10.0),
+                                                        ),
+
+                                                        // border: Border.all(
+                                                        //   width: 0,
+                                                        //   color: Colors.transparent,
+                                                        //   style: BorderStyle.solid,
+                                                        // ),
+                                                      ),
+                                                      child: Padding(
+                                                          padding: const EdgeInsets.only(
+                                                              left: 0, right: 0),
+                                                          child: IconButton(
+                                                            icon:
+                                                            countryCode != null ?
+                                                            SizedBox(width: 30,
+                                                                height: 30,
+                                                                child: countryCode!
+                                                                    .flagImage)
+                                                                : const Icon(
+                                                                Icons.flag_outlined),
+                                                            padding: EdgeInsets.zero,
+                                                            onPressed: () async {
+                                                              final code = await countryPicker
+                                                                  .showPicker(
+                                                                  context: context,
+                                                                  initialSelectedLocale: "AE");
+                                                              if (code != null) {
+                                                                setState(() {
+                                                                  countryCode = code;
+                                                                });
+                                                              };
+                                                            },)
+                                                      ),
                                                     )),
                                                 Expanded(
                                                   flex: 8,
@@ -479,17 +525,93 @@ class _RegisterState extends State<Register> {
                                                       keyboardType: TextInputType.number,
                                                       autofocus: false,
                                                       style: TextStyle(color: Colors.white),
-                                                      decoration:const InputDecoration(
+                                                      decoration: InputDecoration(
                                                         filled: true,
-                                                        fillColor: Colors.transparent,
+                                                        fillColor: Colors.black45,
                                                         contentPadding: EdgeInsets.only(left: 10, right: 10, ),
+                                                        focusedErrorBorder:UnderlineInputBorder(
+                                                          borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                          const BorderRadius.only(
+                                                            bottomLeft: Radius.circular(10.0),
+                                                            topLeft: Radius.circular(10.0),
+
+                                                          ) :
+                                                          (Localizations.localeOf(context).languageCode == 'en') ?
+                                                          const BorderRadius.only(
+                                                            bottomRight: Radius.circular(10),
+                                                            topRight: Radius.circular(10),
+                                                          ) :
+                                                          const BorderRadius.only(
+                                                            bottomLeft: Radius.circular(10.0),
+                                                            topLeft: Radius.circular(10.0),
+                                                          ),
+                                                          borderSide:  BorderSide(color: Colors.red, width: 2.0,),
+
+                                                        ),
                                                         focusedBorder: OutlineInputBorder(
-                                                          borderRadius: BorderRadius.only(bottomRight: Radius.circular(10.0),topLeft: Radius.circular(0.0),topRight:Radius.circular(10.0), bottomLeft: Radius.circular(0.0), ),
-                                                          borderSide: BorderSide(color: Colors.transparent, width: 1.0,),
+                                                          borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                          const BorderRadius.only(
+                                                            bottomLeft: Radius.circular(10.0),
+                                                            topLeft: Radius.circular(10.0),
+
+                                                          ) :
+                                                          (Localizations.localeOf(context).languageCode == 'en') ?
+                                                          const BorderRadius.only(
+                                                            bottomRight: Radius.circular(10),
+                                                            topRight: Radius.circular(10),
+                                                          ) :
+                                                          const BorderRadius.only(
+                                                            bottomLeft: Radius.circular(10.0),
+                                                            topLeft: Radius.circular(10.0),
+                                                          ),
+                                                          borderSide: BorderSide(
+                                                            color: Colors.transparent,
+                                                            width: 1.0,),
+                                                        ),
+                                                        errorBorder: UnderlineInputBorder(
+                                                          borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                          const BorderRadius.only(
+                                                            bottomLeft: Radius.circular(10.0),
+                                                            topLeft: Radius.circular(10.0),
+
+                                                          ) :
+                                                          (Localizations.localeOf(context).languageCode == 'en') ?
+                                                          const BorderRadius.only(
+                                                            bottomRight: Radius.circular(10),
+                                                            topRight: Radius.circular(10),
+                                                          ) :
+                                                          const BorderRadius.only(
+                                                            bottomLeft: Radius.circular(10.0),
+                                                            topLeft: Radius.circular(10.0),
+                                                          ),
+                                                          borderSide:  BorderSide(color: Colors.red, width: 2.0,),
+
                                                         ),
                                                         enabledBorder: OutlineInputBorder(
-                                                          borderRadius: BorderRadius.all(Radius.circular(0.0),),
-                                                          borderSide: BorderSide(color: Colors.transparent, width: 0.0),
+                                                          borderRadius:
+                                                          (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                          const BorderRadius.only(
+                                                            bottomLeft: Radius.circular(10.0),
+                                                            topLeft: Radius.circular(10.0),
+
+                                                          ) :
+                                                          (Localizations.localeOf(context).languageCode == 'en') ?
+                                                          const BorderRadius.only(
+                                                            bottomRight: Radius.circular(10),
+                                                            topRight: Radius.circular(10),
+                                                          ) :
+                                                          const BorderRadius.only(
+                                                            bottomLeft: Radius.circular(10.0),
+                                                            topLeft: Radius.circular(10.0),
+                                                          ),
+
+                                                          borderSide: BorderSide(
+                                                              color: Colors.transparent,
+                                                              width: 10.0),
                                                         ),
                                                         hintText: '',
                                                         counterText: '',
@@ -620,7 +742,22 @@ class _RegisterState extends State<Register> {
                                                       width: 0.0),
                                                 ),
                                                 hintText: '',
-
+                                                errorBorder: UnderlineInputBorder(
+                                                  borderRadius: BorderRadius.all(
+                                                    Radius.circular(10.0),
+                                                  ),
+                                                  borderSide: BorderSide(
+                                                    color: Colors.red,
+                                                    width: 2.0,),
+                                                ),
+                                                focusedErrorBorder: UnderlineInputBorder(
+                                                  borderRadius: BorderRadius.all(
+                                                    Radius.circular(10.0),
+                                                  ),
+                                                  borderSide: BorderSide(
+                                                    color: Colors.red,
+                                                    width: 2.0,),
+                                                ),
                                                 // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
 
                                               ),
@@ -684,8 +821,7 @@ class _RegisterState extends State<Register> {
                                               decoration: InputDecoration(
                                                 filled: true,
                                                 fillColor: Colors.black45,
-                                                contentPadding:const EdgeInsets.only(
-                                                    left: 10, right: 10, bottom: 0),
+                                                contentPadding:const EdgeInsets.only(left: 10, right: 10, bottom: 0, top: 15),
                                                 focusedBorder:const OutlineInputBorder(
                                                   borderRadius: BorderRadius.all(
                                                     Radius.circular(10.0),
@@ -693,6 +829,22 @@ class _RegisterState extends State<Register> {
                                                   borderSide: BorderSide(
                                                     color: Colors.transparent,
                                                     width: 1.0,),
+                                                ),
+                                                errorBorder: UnderlineInputBorder(
+                                                  borderRadius: BorderRadius.all(
+                                                    Radius.circular(10.0),
+                                                  ),
+                                                  borderSide: BorderSide(
+                                                    color: Colors.red,
+                                                    width: 2.0,),
+                                                ),
+                                                focusedErrorBorder: UnderlineInputBorder(
+                                                  borderRadius: BorderRadius.all(
+                                                    Radius.circular(10.0),
+                                                  ),
+                                                  borderSide: BorderSide(
+                                                    color: Colors.red,
+                                                    width: 2.0,),
                                                 ),
                                                 enabledBorder:const OutlineInputBorder(
                                                   borderRadius: BorderRadius.all(
@@ -831,25 +983,41 @@ class _RegisterState extends State<Register> {
                                                   decoration: const InputDecoration(
                                                     filled: true,
                                                     fillColor: Colors.black45,
-                                                    contentPadding: EdgeInsets.only(
-                                                        left: 10, right: 10),
+                                                    contentPadding: EdgeInsets.only(left: 10, right: 10),
                                                     focusedBorder: OutlineInputBorder(
                                                       borderRadius: BorderRadius.all(
                                                         Radius.circular(10.0),
+
                                                       ),
-                                                      // borderSide: BorderSide(color: Colors.transparent, width: 1.0, ),
+                                                      borderSide: BorderSide(color: Colors.transparent, width: 0.0, ),
+                                                    ),
+                                                    errorBorder: UnderlineInputBorder(
+                                                      borderRadius: BorderRadius.all(
+                                                        Radius.circular(10.0),
+                                                      ),
+                                                      borderSide: BorderSide(
+                                                        color: Colors.red,
+                                                        width: 2.0,),
+                                                    ),
+                                                    focusedErrorBorder: UnderlineInputBorder(
+                                                      borderRadius: BorderRadius.all(
+                                                        Radius.circular(10.0),
+                                                      ),
+                                                      borderSide: BorderSide(
+                                                        color: Colors.red,
+                                                        width: 2.0,),
                                                     ),
                                                     enabledBorder: OutlineInputBorder(
                                                       borderRadius: BorderRadius.all(
                                                         Radius.circular(10.0),
                                                       ),
-                                                      // borderSide: BorderSide(color: Colors.transparent, width: 0.0),
+                                                      borderSide: BorderSide(color: Colors.transparent, width: 0.0),
                                                     ),
                                                     border: OutlineInputBorder(
                                                       borderRadius: BorderRadius.all(
                                                         Radius.circular(10.0),
                                                       ),
-                                                      // borderSide: BorderSide(color: Colors.transparent, width: 0.0),
+                                                      borderSide: BorderSide(color: Colors.transparent, width: 0.0),
                                                     ),
                                                     hintText: '',
                                                     // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
@@ -868,11 +1036,9 @@ class _RegisterState extends State<Register> {
                                                     child: Material(
                                                       color: Colors.transparent,
                                                       child: new InkWell(
-                                                        borderRadius: BorderRadius.all(
-                                                            Radius.circular(10)),
+                                                        borderRadius: BorderRadius.all(Radius.circular(10)),
                                                         splashColor: Colors.black,
-                                                        overlayColor: MaterialStateProperty
-                                                            .all<Color>(Colors.white60),
+                                                        overlayColor: MaterialStateProperty.all<Color>(Colors.white60),
 
                                                         onTap: () {
                                                           showCustomDialog(context);
@@ -943,6 +1109,22 @@ class _RegisterState extends State<Register> {
                                                 //
                                                 // ),
                                                 focusColor: Colors.transparent,
+                                                errorBorder: UnderlineInputBorder(
+                                                  borderRadius: BorderRadius.all(
+                                                    Radius.circular(10.0),
+                                                  ),
+                                                  borderSide: BorderSide(
+                                                    color: Colors.red,
+                                                    width: 2.0,),
+                                                ),
+                                                focusedErrorBorder: UnderlineInputBorder(
+                                                  borderRadius: BorderRadius.all(
+                                                    Radius.circular(10.0),
+                                                  ),
+                                                  borderSide: BorderSide(
+                                                    color: Colors.red,
+                                                    width: 2.0,),
+                                                ),
                                                 focusedBorder: OutlineInputBorder(
                                                   borderRadius: BorderRadius.all(
                                                     Radius.circular(10.0),
@@ -1153,6 +1335,22 @@ class _RegisterState extends State<Register> {
                                                 //
                                                 // ),
                                                 focusColor: Colors.transparent,
+                                                errorBorder: UnderlineInputBorder(
+                                                  borderRadius: BorderRadius.all(
+                                                    Radius.circular(10.0),
+                                                  ),
+                                                  borderSide: BorderSide(
+                                                    color: Colors.red,
+                                                    width: 2.0,),
+                                                ),
+                                                focusedErrorBorder: UnderlineInputBorder(
+                                                  borderRadius: BorderRadius.all(
+                                                    Radius.circular(10.0),
+                                                  ),
+                                                  borderSide: BorderSide(
+                                                    color: Colors.red,
+                                                    width: 2.0,),
+                                                ),
                                                 focusedBorder: OutlineInputBorder(
                                                   borderRadius: BorderRadius.all(
                                                     Radius.circular(10.0),

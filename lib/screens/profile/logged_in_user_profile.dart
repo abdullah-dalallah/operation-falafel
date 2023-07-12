@@ -477,12 +477,11 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                     foregroundColor: Colors.white,
                                                   ),
                                                   onPressed: () {
-                                                    if(startEdit== true){
-                                                      _submitForm();
-                                                    }
-                                                    setState(() {
-                                                      startEdit = !startEdit;
-                                                    });
+                                                    _submitForm();
+                                                    // if(startEdit== true){
+                                                    //
+                                                    // }
+
 
                                                   },
                                                   child: (!updateLoading)?(startEdit)?
@@ -622,7 +621,29 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                                 color: Colors.transparent,
                                                                 width: 1.0,),
                                                             ),
-                                                            errorBorder: OutlineInputBorder(
+                                                            errorBorder: UnderlineInputBorder(
+                                                              borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0,),
+                                                                topLeft: Radius.circular(10.0),
+
+                                                              ) :
+                                                              (Localizations.localeOf(context).languageCode == 'en') ?
+                                                              const BorderRadius.only(
+                                                                bottomRight: Radius.circular(10),
+                                                                topRight: Radius.circular(10),
+                                                              ) :
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
+                                                              ),
+
+                                                              borderSide:const BorderSide(
+                                                                color: Colors.red,
+                                                                width: 1.0,),
+                                                            ),
+                                                            focusedErrorBorder: UnderlineInputBorder(
                                                               borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
 
                                                               const BorderRadius.only(
@@ -845,28 +866,50 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                                 color: Colors.transparent,
                                                                 width: 1.0,),
                                                             ),
-                                                            errorBorder: OutlineInputBorder(
-                                                              borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
+                                                              errorBorder: UnderlineInputBorder(
+                                                                borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
 
-                                                              const BorderRadius.only(
-                                                                bottomLeft: Radius.circular(10.0,),
-                                                                topLeft: Radius.circular(10.0),
+                                                                const BorderRadius.only(
+                                                                  bottomLeft: Radius.circular(10.0,),
+                                                                  topLeft: Radius.circular(10.0),
 
-                                                              ) :
-                                                              (Localizations.localeOf(context).languageCode == 'en') ?
-                                                              const BorderRadius.only(
-                                                                bottomRight: Radius.circular(10),
-                                                                topRight: Radius.circular(10),
-                                                              ) :
-                                                              const BorderRadius.only(
-                                                                bottomLeft: Radius.circular(10.0),
-                                                                topLeft: Radius.circular(10.0),
+                                                                ) :
+                                                                (Localizations.localeOf(context).languageCode == 'en') ?
+                                                                const BorderRadius.only(
+                                                                  bottomRight: Radius.circular(10),
+                                                                  topRight: Radius.circular(10),
+                                                                ) :
+                                                                const BorderRadius.only(
+                                                                  bottomLeft: Radius.circular(10.0),
+                                                                  topLeft: Radius.circular(10.0),
+                                                                ),
+
+                                                                borderSide:const BorderSide(
+                                                                  color: Colors.red,
+                                                                  width: 1.0,),
                                                               ),
+                                                              focusedErrorBorder: UnderlineInputBorder(
+                                                                borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
 
-                                                              borderSide:const BorderSide(
-                                                                color: Colors.red,
-                                                                width: 1.0,),
-                                                            ),
+                                                                const BorderRadius.only(
+                                                                  bottomLeft: Radius.circular(10.0,),
+                                                                  topLeft: Radius.circular(10.0),
+
+                                                                ) :
+                                                                (Localizations.localeOf(context).languageCode == 'en') ?
+                                                                const BorderRadius.only(
+                                                                  bottomRight: Radius.circular(10),
+                                                                  topRight: Radius.circular(10),
+                                                                ) :
+                                                                const BorderRadius.only(
+                                                                  bottomLeft: Radius.circular(10.0),
+                                                                  topLeft: Radius.circular(10.0),
+                                                                ),
+
+                                                                borderSide:const BorderSide(
+                                                                  color: Colors.red,
+                                                                  width: 1.0,),
+                                                              ),
                                                             enabledBorder: OutlineInputBorder(
                                                               borderRadius:
                                                               (Localizations.localeOf(context).languageCode == 'ar') ?
@@ -890,6 +933,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                                   color: Colors.transparent,
                                                                   width: 10.0),
                                                             ),
+
                                                             disabledBorder:OutlineInputBorder(
                                                               borderRadius:
                                                               (Localizations.localeOf(context).languageCode == 'ar') ?
@@ -1020,7 +1064,29 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                                 color: Colors.transparent,
                                                                 width: 1.0,),
                                                             ),
-                                                            errorBorder: OutlineInputBorder(
+                                                            errorBorder: UnderlineInputBorder(
+                                                              borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0,),
+                                                                topLeft: Radius.circular(10.0),
+
+                                                              ) :
+                                                              (Localizations.localeOf(context).languageCode == 'en') ?
+                                                              const BorderRadius.only(
+                                                                bottomRight: Radius.circular(10),
+                                                                topRight: Radius.circular(10),
+                                                              ) :
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
+                                                              ),
+
+                                                              borderSide:const BorderSide(
+                                                                color: Colors.red,
+                                                                width: 1.0,),
+                                                            ),
+                                                            focusedErrorBorder: UnderlineInputBorder(
                                                               borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
 
                                                               const BorderRadius.only(
@@ -1193,7 +1259,29 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                                     color: Colors.transparent,
                                                                     width: 1.0,),
                                                                 ),
-                                                                errorBorder: OutlineInputBorder(
+                                                                errorBorder: UnderlineInputBorder(
+                                                                  borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                                  const BorderRadius.only(
+                                                                    bottomLeft: Radius.circular(10.0,),
+                                                                    topLeft: Radius.circular(10.0),
+
+                                                                  ) :
+                                                                  (Localizations.localeOf(context).languageCode == 'en') ?
+                                                                  const BorderRadius.only(
+                                                                    bottomRight: Radius.circular(10),
+                                                                    topRight: Radius.circular(10),
+                                                                  ) :
+                                                                  const BorderRadius.only(
+                                                                    bottomLeft: Radius.circular(10.0),
+                                                                    topLeft: Radius.circular(10.0),
+                                                                  ),
+
+                                                                  borderSide:const BorderSide(
+                                                                    color: Colors.red,
+                                                                    width: 1.0,),
+                                                                ),
+                                                                focusedErrorBorder: UnderlineInputBorder(
                                                                   borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
 
                                                                   const BorderRadius.only(
@@ -1378,7 +1466,29 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                                 color: Colors.transparent,
                                                                 width: 1.0,),
                                                             ),
-                                                            errorBorder: OutlineInputBorder(
+                                                            errorBorder: UnderlineInputBorder(
+                                                              borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0,),
+                                                                topLeft: Radius.circular(10.0),
+
+                                                              ) :
+                                                              (Localizations.localeOf(context).languageCode == 'en') ?
+                                                              const BorderRadius.only(
+                                                                bottomRight: Radius.circular(10),
+                                                                topRight: Radius.circular(10),
+                                                              ) :
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
+                                                              ),
+
+                                                              borderSide:const BorderSide(
+                                                                color: Colors.red,
+                                                                width: 1.0,),
+                                                            ),
+                                                            focusedErrorBorder: UnderlineInputBorder(
                                                               borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
 
                                                               const BorderRadius.only(
@@ -1587,19 +1697,18 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
 
                                                         child: Stack(
                                                           children: [
-                                                            const TextField(
+                                                             TextField(
                                                               obscureText: true,
                                                               enableSuggestions: false,
                                                               autocorrect: false,
                                                               autofocus: false,
-                                                              style: const TextStyle(
+                                                              style:  TextStyle(
                                                                   color: Colors.white),
                                                               decoration: InputDecoration(
 
                                                                 filled: true,
                                                                 fillColor: Colors.transparent,
-                                                                contentPadding: EdgeInsets.only(
-                                                                    left: 10, right: 10),
+                                                                contentPadding: EdgeInsets.only(left: 10, right: 10),
                                                                 focusedBorder: OutlineInputBorder(
                                                                   borderRadius: BorderRadius.all(
                                                                     Radius.circular(0.0),
@@ -1608,6 +1717,50 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                                     color: Colors.transparent,
                                                                     width: 1.0,),
                                                                 ),
+                                                                  errorBorder: UnderlineInputBorder(
+                                                                    borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                                    const BorderRadius.only(
+                                                                      bottomLeft: Radius.circular(10.0,),
+                                                                      topLeft: Radius.circular(10.0),
+
+                                                                    ) :
+                                                                    (Localizations.localeOf(context).languageCode == 'en') ?
+                                                                    const BorderRadius.only(
+                                                                      bottomRight: Radius.circular(10),
+                                                                      topRight: Radius.circular(10),
+                                                                    ) :
+                                                                    const BorderRadius.only(
+                                                                      bottomLeft: Radius.circular(10.0),
+                                                                      topLeft: Radius.circular(10.0),
+                                                                    ),
+
+                                                                    borderSide:const BorderSide(
+                                                                      color: Colors.red,
+                                                                      width: 1.0,),
+                                                                  ),
+                                                                  focusedErrorBorder: UnderlineInputBorder(
+                                                                    borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                                    const BorderRadius.only(
+                                                                      bottomLeft: Radius.circular(10.0,),
+                                                                      topLeft: Radius.circular(10.0),
+
+                                                                    ) :
+                                                                    (Localizations.localeOf(context).languageCode == 'en') ?
+                                                                    const BorderRadius.only(
+                                                                      bottomRight: Radius.circular(10),
+                                                                      topRight: Radius.circular(10),
+                                                                    ) :
+                                                                    const BorderRadius.only(
+                                                                      bottomLeft: Radius.circular(10.0),
+                                                                      topLeft: Radius.circular(10.0),
+                                                                    ),
+
+                                                                    borderSide:const BorderSide(
+                                                                      color: Colors.red,
+                                                                      width: 1.0,),
+                                                                  ),
                                                                 enabledBorder: OutlineInputBorder(
                                                                   borderRadius: BorderRadius.all(
                                                                     Radius.circular(0.0),
@@ -2611,7 +2764,10 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
 
 
   void _submitForm() {
-    if (_formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate() && startEdit== true) {
+      setState(() {
+        startEdit = !startEdit;
+      });
       _formKey.currentState!.save();
       // Perform your registration logic here
       // You can use the collected form data to create a new user account or make an API call

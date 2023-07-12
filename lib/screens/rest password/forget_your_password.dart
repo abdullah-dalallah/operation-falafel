@@ -271,7 +271,7 @@ class _ResetYourPasswordState extends State<ResetYourPassword> {
                                                                 color: Colors.transparent,
                                                                 width: 1.0,),
                                                             ),
-                                                            errorBorder: OutlineInputBorder(
+                                                            errorBorder: UnderlineInputBorder(
                                                               borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
 
                                                               const BorderRadius.only(
@@ -289,7 +289,28 @@ class _ResetYourPasswordState extends State<ResetYourPassword> {
                                                                 topLeft: Radius.circular(10.0),
                                                               ),
                                                               borderSide: BorderSide(
-                                                                color: Colors.transparent,
+                                                                color: Colors.red,
+                                                                width: 1.0,),
+                                                            ),
+                                                            focusedErrorBorder: UnderlineInputBorder(
+                                                              borderRadius:  (Localizations.localeOf(context).languageCode == 'ar') ?
+
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
+
+                                                              ) :
+                                                              (Localizations.localeOf(context).languageCode == 'en') ?
+                                                              const BorderRadius.only(
+                                                                bottomRight: Radius.circular(10),
+                                                                topRight: Radius.circular(10),
+                                                              ) :
+                                                              const BorderRadius.only(
+                                                                bottomLeft: Radius.circular(10.0),
+                                                                topLeft: Radius.circular(10.0),
+                                                              ),
+                                                              borderSide: BorderSide(
+                                                                color: Colors.red,
                                                                 width: 1.0,),
                                                             ),
                                                             enabledBorder: OutlineInputBorder(
