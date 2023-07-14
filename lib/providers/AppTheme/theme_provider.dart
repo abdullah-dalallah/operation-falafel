@@ -51,7 +51,7 @@ class ThemeProvider  with ChangeNotifier{
 
   Future<Response<dynamic>> getAppTheme(String key, String value, String theme_id, String createdBy, String country, String lang) async {
     print("getting app theme from Online Server...");
-    var url = '${Strings.baseAppThemeUrl}/themeseeeee/getTheme/${country}/${lang}';
+    var url = '${Strings.baseAppThemeUrl}/themes/getThemeeeee/${country}/${lang}';
     Map<String, String> header = <String, String>{};
     header.putIfAbsent(Keys.acceptKey, () => "application/json");
 
@@ -65,9 +65,10 @@ class ThemeProvider  with ChangeNotifier{
     try {
 
       var response = await dio.get(url, data: data,options: Options(headers: header));// options: Options(headers: header)
+
      if(response.statusCode ==200){
-       var tempTheme = response.data[Keys.bodyKey];
-       // print(tempTheme);
+       // var tempTheme = response.data[Keys.bodyKey];
+       // // print(tempTheme);
        if(response.data[Keys.bodyKey]!=null){
          _appTheme = AppTheme.fromJson(response.data[Keys.bodyKey]);
          // _appTheme =   AppTheme(

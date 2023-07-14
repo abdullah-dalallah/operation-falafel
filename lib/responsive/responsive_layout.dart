@@ -67,6 +67,7 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
   void startApp()async{
 
     Future.wait([
+      // Provider.of<ThemeProvider>(context,listen: false).readJson().then((value) {FlutterNativeSplash.remove();})
       Provider.of<ThemeProvider>(context,listen: false).getAppTheme("appTitle", "operation falafel", "12", "1", "uae", "en").then((response) {
         if(response.statusCode==200 && response.data[Keys.bodyKey]!=null){
           // print(response.data[Keys.bodyKey][0][Keys.languageKey]);

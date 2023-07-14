@@ -227,7 +227,13 @@ class ProfileProvider with ChangeNotifier {
 
         if(response.data[Keys.successKey]!=null){
            _userInfoModel=  UserInfoModel.fromJson(response.data);
-           updateForm("${_userInfoModel!.body!.name!}", "${_userInfoModel!.body!.email}", "${_userInfoModel!.body!.mobile}" , _userInfoModel!.body!.dateOfBirth!, _userInfoModel!.body!.gender!);
+           updateForm(
+               (_userInfoModel!.body!.name!!=null)?"${_userInfoModel!.body!.name!}":"",
+               (_userInfoModel!.body!.email!=null)? "${_userInfoModel!.body!.email}":"",
+               (_userInfoModel!.body!.mobile!=null)?"${_userInfoModel!.body!.mobile}" :"",
+               ((_userInfoModel!.body!.dateOfBirth!=null)? _userInfoModel!.body!.dateOfBirth!:null),
+               (_userInfoModel!.body!.gender!=null)?_userInfoModel!.body!.gender!:null
+           );
           notifyListeners();
           print("Saved User fetched From Online Server!");
 
@@ -250,17 +256,31 @@ class ProfileProvider with ChangeNotifier {
   TextEditingController birthDateController =  TextEditingController();
   String? selectedGenderValue  ;
 
-  void updateForm(String name, String email, String mobile , DateTime birthDate, String gender) {
-    nameController.text = name;
-    String tempMobile = mobile.substring(3,mobile.length);
+  void updateForm(String? name, String? email, String? mobile , DateTime? birthDate, String? gender) {
+    nameController.text = name!;
+    String tempMobile = mobile!.substring(3,mobile!.length);
     mobileController.text = tempMobile;
-    emailController.text = email;
-    updateGender(gender);
-    birthDateController.text = DateFormat('yyyy-MM-dd').format(birthDate ).toString();
+    emailController.text = email!;
+    if(gender!=null)updateGender(gender!);
+    if(birthDate!=null)
+    birthDateController.text = DateFormat('yyyy-MM-dd').format(birthDate! ).toString();
     notifyListeners();
   }
 
-  void updateGender(String gender){
+  void resetForm() {
+    nameController.clear();
+    mobileController.clear();
+    emailController.clear();
+    updateGender(null);
+    birthDateController.clear();
+    notifyListeners();
+  }
+
+  void updateBirthDate(String? selectedDate){
+    birthDateController.text = selectedDate!;
+    notifyListeners();
+  }
+  void updateGender(String? gender){
     selectedGenderValue =gender ;
     notifyListeners();
   }
@@ -292,10 +312,10 @@ class ProfileProvider with ChangeNotifier {
 
         if(response.data[Keys.successKey]!=null){
           print(response.data);
-          // _userInfoModel=  UserInfoModel.fromJson(response.data);
+          _userInfoModel=  UserInfoModel.fromJson(response.data);
 
-          // updateForm("${_userInfoModel!.body!.name!}", "${_userInfoModel!.body!.email}", "${_userInfoModel!.body!.mobile}" , _userInfoModel!.body!.dateOfBirth!, _userInfoModel!.body!.gender!);
-          // notifyListeners();
+          updateForm("${_userInfoModel!.body!.name!}", "${_userInfoModel!.body!.email}", "${_userInfoModel!.body!.mobile}" , _userInfoModel!.body!.dateOfBirth!, _userInfoModel!.body!.gender!);
+          notifyListeners();
           // print("Saved User fetched From Online Server!");
 
         }

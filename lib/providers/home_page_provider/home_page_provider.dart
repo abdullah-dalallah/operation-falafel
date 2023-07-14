@@ -26,8 +26,8 @@ class HomePageProvider with ChangeNotifier{
       var response = await dio.get(url, options: Options(headers: header));// options: Options(headers: header)
 
       if(response.statusCode ==200){
-        _sliderItem= (response.data as List).map((i) => SliderItem.fromJson(i)).toList();
 
+        _sliderItem= (response.data as List).map((i) => SliderItem.fromJson(i)).toList();
         print("Slider fetched From Online Server!");
       }
       notifyListeners();

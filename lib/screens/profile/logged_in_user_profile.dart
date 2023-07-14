@@ -82,6 +82,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
     /// multi range.
     setState(() {
       if (args.value is PickerDateRange) {
+
         _range = '${DateFormat('dd/MM/yyyy').format(args.value.startDate)} -'
         // ignore: lines_longer_than_80_chars
             ' ${DateFormat('dd/MM/yyyy').format(args.value.endDate ?? args.value.startDate)}';
@@ -91,10 +92,11 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
       }
       else if (args.value is DateTime) {
 
-        _selectedDate = DateFormat('dd/MM/yyyy').format(args.value).toString();
+        _selectedDate = DateFormat('yyyy-MM-dd').format(args.value).toString();
         // showDatePicker = false;
-        print("DateTime");
+
         birthDateController.text = _selectedDate;
+        Provider.of<ProfileProvider>(context, listen: false).updateBirthDate(_selectedDate);
       }
       else if (args.value is List<DateTime>) {
         _dateCount = args.value.length.toString();
@@ -134,13 +136,17 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
               monthViewSettings:const DateRangePickerMonthViewSettings(weekNumberStyle: DateRangePickerWeekNumberStyle(textStyle: TextStyle(color:Colors.white,backgroundColor: Colors.white)),viewHeaderStyle: DateRangePickerViewHeaderStyle(textStyle: TextStyle(color:Colors.white))),
               showActionButtons: true,
               onSubmit: (value){
-
                DateTime tempValue =value as DateTime;
                if(tempValue!=null){
-                 _selectedDate = DateFormat('dd/MM/yyyy').format(tempValue).toString();
+                 print(tempValue);
+                 _selectedDate = DateFormat('yyyy-MM-dd').format(tempValue).toString();
                  // showDatePicker = false;
                  print("DateTime");
-                 birthDateController.text = _selectedDate;
+
+                 setState(() {
+                   birthDateController.text = _selectedDate;
+                   Provider.of<ProfileProvider>(context, listen: false).updateBirthDate(_selectedDate);
+                 });
 
 
                 Navigator.pop(context);
@@ -159,8 +165,8 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
               rangeTextStyle: TextStyle(color:Colors.white),
               onSelectionChanged: _onSelectionChanged,
               selectionMode: DateRangePickerSelectionMode.single,
-              initialDisplayDate:(_selectedDate!='')?DateFormat('dd/MM/yyyy').parse(_selectedDate):DateTime.now().subtract(const Duration(days: 0)),
-              initialSelectedDate: (_selectedDate!='')?DateFormat('dd/MM/yyyy').parse(_selectedDate):DateTime.now().subtract(const Duration(days: 0)),//(_selectedDate!='')?DateFormat('dd/MM/yyyy').parse(_selectedDate):
+              initialDisplayDate:(_selectedDate!='')?DateFormat('yyyy-MM-dd').parse(_selectedDate):DateTime.now().subtract(const Duration(days: 0)),
+              initialSelectedDate: (_selectedDate!='')?DateFormat('yyyy-MM-dd').parse(_selectedDate):DateTime.now().subtract(const Duration(days: 0)),//(_selectedDate!='')?DateFormat('dd/MM/yyyy').parse(_selectedDate):
               // initialSelectedRange: PickerDateRange(DateTime.now().subtract(const Duration(days: 4)), DateTime.now().add(const Duration(days: 3))),
             ),),
           ),
@@ -477,7 +483,14 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                     foregroundColor: Colors.white,
                                                   ),
                                                   onPressed: () {
-                                                    _submitForm();
+                                                    if(startEdit==false){
+                                                      setState(() {
+                                                      startEdit = !startEdit;
+                                                    });}else{
+                                                      if(startEdit==true)
+                                                        _submitForm();
+                                                    }
+
                                                     // if(startEdit== true){
                                                     //
                                                     // }
@@ -2764,6 +2777,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
 
 
   void _submitForm() {
+
     if (_formKey.currentState!.validate() && startEdit== true) {
       setState(() {
         startEdit = !startEdit;
@@ -2874,6 +2888,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                 Provider.of<AuthProvider>(context, listen: false).logoutFromAllDevices(userToken:userToken,  email:email,   password:password).then((res) {
                                   if(res.statusCode==200){
                                     Provider.of<AuthProvider>(context, listen: false).logOutUserDetailsLocally().then((value) {
+                                      Provider.of<ProfileProvider>(context, listen: false).resetForm();
                                       Navigator.pop(context);
                                       SnackbarGenerator(context).snackBarGeneratorToast("User Logged out successfully",);
                                     });
@@ -2929,6 +2944,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
 
                               onPressed: () {
                                 Provider.of<AuthProvider>(context, listen: false).logOutUserDetailsLocally().then((value) {
+                                  Provider.of<ProfileProvider>(context, listen: false).resetForm();
                                   Navigator.pop(context);
                                   SnackbarGenerator(context).snackBarGeneratorToast("User Logged out successfully",);
                                 });

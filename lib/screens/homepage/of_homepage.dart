@@ -225,28 +225,28 @@ class _MainMenuState extends State<MainMenu> {
                                 //     .toList()
                              ),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children:
-                            (sliderWidets!=null)?
-                            sliderWidets!.map((url) {
-                              int index = sliderWidets!.indexOf(url);
-                              return Padding(
-                                padding: const EdgeInsets.only(left: 25.0,right: 25 ,top: 5,bottom: 5),
-                                child: Container(
-                                  width: 8.0,
-                                  height: 8.0,
-                                  margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: currentPos == index
-                                        ?const Color.fromRGBO(255, 174, 0, 0.9019607843137255)
-                                        : const Color.fromRGBO(211, 211, 211, 0.4),
-                                  ),
-                                ),
-                              );
-                            }).toList():[SizedBox()],
-                          ),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.center,
+                          //   children:
+                          //   (sliderWidets!=null)?
+                          //   sliderWidets!.map((url) {
+                          //     int index = sliderWidets!.indexOf(url);
+                          //     return Padding(
+                          //       padding: const EdgeInsets.only(left: 25.0,right: 25 ,top: 5,bottom: 5),
+                          //       child: Container(
+                          //         width: 8.0,
+                          //         height: 8.0,
+                          //         margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                          //         decoration: BoxDecoration(
+                          //           shape: BoxShape.circle,
+                          //           color: currentPos == index
+                          //               ?const Color.fromRGBO(255, 174, 0, 0.9019607843137255)
+                          //               : const Color.fromRGBO(211, 211, 211, 0.4),
+                          //         ),
+                          //       ),
+                          //     );
+                          //   }).toList():[SizedBox()],
+                          // ),
                           /// - Location
                           Container(
                             height: 35,
@@ -1971,7 +1971,10 @@ class _MainMenuState extends State<MainMenu> {
     super.initState();
 
     Provider.of<HomePageProvider>(context, listen: false).getHomeSliders().then((res) {
-    if(res.statusCode ==200){sliderWidets = buildSliders((res.data as List).map((i) => SliderItem.fromJson(i)).toList());}});
+    if(res.statusCode ==200){
+      sliderWidets = buildSliders((res.data as List).map((i) => SliderItem.fromJson(i)).toList());
+      }
+    });
 
 
   }
