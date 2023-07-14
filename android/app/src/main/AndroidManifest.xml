@@ -42,7 +42,8 @@
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
 
        <meta-data android:name="com.google.android.geo.API_KEY"
-           android:value="AIzaSyC0R8vcU8othuUrB0UP1gyaXWUMTvmFTd8"/>
+           android:value="AIzaSyAx0bdWBJ8nqFsb5bDaLj_TzlaGtComBT8"/>
+<!--           android:value="AIzaSyC0R8vcU8othuUrB0UP1gyaXWUMTvmFTd8"/>-->
 <!--           android:value="AIzaSyAWlPYlT9YiUk0xHljpksMTju3obmXmteM"/>-->
        <uses-library
            android:name="com.google.android.maps"
