@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/home_page_provider/home_page_provider.dart';
@@ -37,6 +38,7 @@ import '../my rewards page/rewards_pages/transfer_credits.dart';
 class MainMenu extends StatefulWidget{
   final String layOut ;
   final ValueChanged onChanged;
+  static const routeName = '/homePage';
   MainMenu(this.onChanged,{super.key, required this.layOut});
   @override
   State<MainMenu> createState() => _MainMenuState();
@@ -151,7 +153,10 @@ class _MainMenuState extends State<MainMenu> {
                                     overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
 
                                     onTap: (){
-                                      Provider.of<ThemeProvider>(context, listen: false).readJson();
+
+                                     // print();
+                                      context.go("${MainMenu.routeName}/locations");
+                                      // Provider.of<ThemeProvider>(context, listen: false).readJson();
                                       // print("text");
                                     },
                                   ),
@@ -206,6 +211,7 @@ class _MainMenuState extends State<MainMenu> {
                                     }
 
                                 ),
+
                                 items:
                                 (sliderWidets!=null)?sliderWidets:
 
@@ -1988,7 +1994,15 @@ class _MainMenuState extends State<MainMenu> {
       CachedImageWithPlaceholder("", BoxFit.cover)
     ];
     if(sliders !=null)
-    slidersWidgets = sliders!.map((e) => CachedImageWithPlaceholder(e.imageUrl!, BoxFit.cover)).toList();
+    slidersWidgets = sliders!.map((e) => InkWell(
+        onTap: (){
+          print("url");
+          GoRouter.of(context).push(Uri(path: '/locations').toString());
+
+          // context.push("/locations");
+          // GoRouter.of(context).go('/locations');
+        },
+        child: CachedImageWithPlaceholder(e.imageUrl!, BoxFit.cover))).toList();
     return slidersWidgets;
   }
 

@@ -29,6 +29,8 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  go_router: ^9.0.3
+  uni_links: ^0.5.1
   fluttertoast: ^8.2.2
   qr_flutter: ^4.1.0
   cached_network_image: ^3.2.3

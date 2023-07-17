@@ -316,6 +316,8 @@ class _MobileScaffoldState extends State<MobileScaffold> {
   // }
   /// - Old build
 
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -607,8 +609,7 @@ class _MobileScaffoldState extends State<MobileScaffold> {
         child: Scaffold(
           body: Stack(children:screens,),
           bottomNavigationBar: BottomNavigationBar(
-
-             iconSize: 40,
+              iconSize: 40,
             showUnselectedLabels: false,
             showSelectedLabels: false,
             type: BottomNavigationBarType.fixed,
@@ -623,6 +624,14 @@ class _MobileScaffoldState extends State<MobileScaffold> {
             : WarningPage();
     });
   }
+
+
+
+
+
+
+
+
 
   int _currentIndex = 0;
   String _currentPage ='MainMenu';
