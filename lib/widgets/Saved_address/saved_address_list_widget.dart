@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/SavedAddressPage/saved_address_page.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:operation_falafel/widgets/loading_widget.dart';
@@ -60,7 +61,7 @@ class _SavedAddressListWidgetState extends State<SavedAddressListWidget> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             /// - Address title
-                            Text("${profileProvider.savedAddressList.savedAddressItem![index].area} - ${profileProvider.savedAddressList.savedAddressItem![index].name}",
+                            MyText("${profileProvider.savedAddressList.savedAddressItem![index].area} - ${profileProvider.savedAddressList.savedAddressItem![index].name}",
                               style:TextStyle(
                                   fontFamily: widget.lng?.header3.textFamily,
                                   color: Color(int.parse(widget.savedAddressPage?.body.addressList.title.color as String)),
@@ -70,7 +71,7 @@ class _SavedAddressListWidgetState extends State<SavedAddressListWidget> {
                               overflow: TextOverflow.ellipsis,
                             ),
                             /// - Address Sub Title
-                            Text("${profileProvider.savedAddressList.savedAddressItem![index].building}",
+                            MyText("${profileProvider.savedAddressList.savedAddressItem![index].building}",
                               style: TextStyle(
                                   fontFamily: widget.lng?.header3.textFamily,
                                   color: Color(int.parse(widget.savedAddressPage?.body.addressList.subTitle.color as String)),

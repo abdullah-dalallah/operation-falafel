@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
 import 'package:operation_falafel/providers/ProfileProviders/profile_provider.dart';
@@ -77,7 +78,7 @@ class _SavedCardsState extends State<SavedCards> {
               backgroundColor: Colors.transparent,
               elevation: 0,
               centerTitle: true,
-              title: Text(
+              title: MyText(
                 savedCardsPage.appBar.title.data,
                 style: TextStyle(
                     fontFamily: "${lng?.logoTitle.textFamily}",
@@ -90,14 +91,14 @@ class _SavedCardsState extends State<SavedCards> {
                 child: Column(
                   children: [
                     /// - Page title
-                    Text(
+                    MyText(
                      savedCardsPage.body.pageTitle.data,
                       style: TextStyle(
                               fontFamily: lng?.titleHeader2.textFamily,
                               color: Color( int.parse(savedCardsPage.body.pageTitle.color)),
                               fontSize: lng?.titleHeader2.size.toDouble()
                       ),),
-                    // Text(getTranslated(context, "savedCards")!,
+                    // MyText(getTranslated(context, "savedCards")!,
                     //   style: TextStyle(fontFamily: "${getTranslated(
                     //       context, "fontFamilyButtons")!}",
                     //       color: Colors.amber,
@@ -107,14 +108,14 @@ class _SavedCardsState extends State<SavedCards> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        MyText(
                           savedCardsPage.body.emptyList.data,
                           style: TextStyle(
                               fontFamily: lng?.titleHeader1.textFamily,
                               color: Color(int.parse(savedCardsPage.body.emptyList.color)),
                               fontSize: lng?.titleHeader1.size.toDouble()),),
 
-                        // Text(getTranslated(context, "youHaveNoSavedCards")!,
+                        // MyText(getTranslated(context, "youHaveNoSavedCards")!,
                         //   style: TextStyle(
                         //       fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",
                         //       color: Colors.white,
@@ -160,7 +161,7 @@ class _SavedCardsState extends State<SavedCards> {
 
 
                             ),
-                            child: Text(
+                            child: MyText(
                               "Add New Card",
                               // getTranslated(context, "addNewAddress")!,
                               style: TextStyle(

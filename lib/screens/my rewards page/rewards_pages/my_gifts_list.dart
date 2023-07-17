@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
 import 'package:operation_falafel/providers/gifts_provider/loyalty_provider.dart';
@@ -57,7 +58,7 @@ class _MyGiftsListState extends State<MyGiftsList> {
               backgroundColor: Colors.transparent,
               elevation: 0,
               centerTitle: true,
-              title: Text(
+              title: MyText(
                 loyaltyMyGiftsPage.appBar.title.data,
                 style: TextStyle(
                     fontFamily: "${lng?.logoTitle.textFamily}",
@@ -71,7 +72,7 @@ class _MyGiftsListState extends State<MyGiftsList> {
 
                   children: [
 
-                    Text(
+                    MyText(
                       loyaltyMyGiftsPage.body.pageTitle.data,
                       style: TextStyle(
                         fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",
@@ -79,7 +80,7 @@ class _MyGiftsListState extends State<MyGiftsList> {
                         fontSize: lng?.titleHeader2.size.toDouble()
                           )
                       ),
-                    // Text(getTranslated(context, "myGifts")!, style: TextStyle(
+                    // MyText(getTranslated(context, "myGifts")!, style: TextStyle(
                     //     fontFamily: "${getTranslated(
                     //         context, "fontFamilyButtons")!}",
                     //     color: Colors.amber,
@@ -108,7 +109,7 @@ class _MyGiftsListState extends State<MyGiftsList> {
                                       leading: Image.asset(
                                         "assets/images/of_credit_icon.png",
                                         height: 60, width: 60,),
-                                      title: Text(
+                                      title: MyText(
                                         "${loyaltyProvider.gifts![Index].name}",
                                       //  getTranslated(context, "registrationGift")!,
                                         style: TextStyle(
@@ -117,7 +118,7 @@ class _MyGiftsListState extends State<MyGiftsList> {
                                           fontFamily: "${lng?.header3.textFamily}",
                                           // fontFamily: "${getTranslated(context, "fontFamilyBody")!}",
                                           color: Color(int.parse(loyaltyMyGiftsPage.body.giftsList.title.color))),),
-                                      subtitle: Text(
+                                      subtitle: MyText(
                                         DateFormat('yyyy-MM-dd').format(loyaltyProvider.gifts![Index].expireAt! ).toString(),
                                         // "2023-10-18",
                                         style: TextStyle(

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/SavedCardsPage/saved_cards_page.dart';
 import 'package:operation_falafel/models/AppThemeModels/FontSizes/Language/lang.dart';
 import 'package:operation_falafel/providers/ProfileProviders/profile_provider.dart';
@@ -59,13 +60,13 @@ class _SavedCardsListWidgetState extends State<SavedCardsListWidget> {
                             children: [
                               Visibility(
                                   visible:profileProvider.savedCards!.body![index].isMain ==1,
-                                  child: Text("Main Card", style: TextStyle(
+                                  child: MyText("Main Card", style: TextStyle(
                                       fontFamily: widget.lng?.header3.textFamily,
                                       color: Color(int.parse(widget.savedCardsPage?.body.cardsList.subTitle.color as String)),
                                       fontSize: widget.lng?.header2.size.toDouble()
                                   ),)),
                               /// - Card title
-                              Text(hideCreditCardNumber("${profileProvider.savedCards!.body![index].cardNumber}"),
+                              MyText(hideCreditCardNumber("${profileProvider.savedCards!.body![index].cardNumber}"),
                                 style:TextStyle(
                                     fontFamily: widget.lng?.header3.textFamily,
                                     color: Color(int.parse(widget.savedCardsPage?.body.cardsList.title.color as String)),
@@ -75,7 +76,7 @@ class _SavedCardsListWidgetState extends State<SavedCardsListWidget> {
                                 overflow: TextOverflow.ellipsis,
                               ),
                               /// - Card Sub Title
-                              Text("${profileProvider.savedCards!.body![index].cardholderName}",
+                              MyText("${profileProvider.savedCards!.body![index].cardholderName}",
                                 style: TextStyle(
                                     fontFamily: widget.lng?.header3.textFamily,
                                     color: Color(int.parse(widget.savedCardsPage?.body.cardsList.title.color as String)),

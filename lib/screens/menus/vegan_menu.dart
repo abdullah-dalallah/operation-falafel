@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 
 class VeganMenu extends StatefulWidget{
   const VeganMenu({super.key});
@@ -56,9 +57,9 @@ class _VeganMenuState extends State<VeganMenu> {
                         child: Image.asset("assets/images/menu_vegan.png",height: 25)),
                   ),
                   const  SizedBox(width: 10,),
-                  Text("VEGAN", style: TextStyle(fontSize: 35,fontFamily: "oldpress", color: Colors.green.shade700)),
+                  MyText("VEGAN", style: TextStyle(fontSize: 35,fontFamily: "oldpress", color: Colors.green.shade700)),
                   const  SizedBox(width: 10,),
-                  Text("MENU", style: TextStyle(fontSize: 35,fontFamily: "oldpress", color: Colors.white)),
+                  MyText("MENU", style: TextStyle(fontSize: 35,fontFamily: "oldpress", color: Colors.white)),
                 ],
               ),
 
@@ -115,7 +116,7 @@ class _VeganMenuState extends State<VeganMenu> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text("NEW AT O:F",style: TextStyle(fontSize: 35,fontFamily: "oldpress", color: Colors.amber.shade500)),
+                                  MyText("NEW AT O:F",style: TextStyle(fontSize: 35,fontFamily: "oldpress", color: Colors.amber.shade500)),
                                 ],
                               ),
 

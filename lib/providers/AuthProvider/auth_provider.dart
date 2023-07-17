@@ -54,6 +54,7 @@ class AuthProvider with ChangeNotifier{
   }
 
   Future<LoggedInUser?> getSavedUserDetailsLocally() async {
+    print('\x1B[33mFourth\x1B[0m');
     print("load logged in user data...");
     SharedPreferences prefs = await GetSharedPref().getSharedPref();
     if(prefs.getString(Keys.savedLoggedInUserKey,)!="{}" && prefs.getString(Keys.savedLoggedInUserKey,)!=null){

@@ -5,6 +5,8 @@ import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/data/keys.dart';
+import 'package:operation_falafel/data/my_text.dart';
+import 'package:operation_falafel/data/my_text_form_field.dart';
 import 'package:operation_falafel/data/snackBarGenerator.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
@@ -89,7 +91,7 @@ class _ContactUsState extends State<ContactUs> {
               backgroundColor: Colors.transparent,
               elevation: 0,
               centerTitle: true,
-              title: Text(
+              title: MyText(
                 drawerContactUsPage.appBar.title.data,
                 style: TextStyle(
                     fontFamily: "${lng?.logoTitle.textFamily}",
@@ -104,7 +106,7 @@ class _ContactUsState extends State<ContactUs> {
                   children: [
 
                     /// - Title
-                    Text(
+                    MyText(
                       drawerContactUsPage.body.pageTitle.data,
                       style: TextStyle(
                           fontFamily: lng?.titleHeader2.textFamily,
@@ -112,7 +114,7 @@ class _ContactUsState extends State<ContactUs> {
                           fontSize: lng?.titleHeader2.size.toDouble()
 
                       ),),
-                    // Text(
+                    // MyText(
                     //   getTranslated(context, "contactUsTitle")!,
                     //   style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",
                     //       color: Colors.amber,
@@ -121,7 +123,7 @@ class _ContactUsState extends State<ContactUs> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        MyText(
                           drawerContactUsPage.body.promotTitle.data,
                           style: TextStyle(
                               fontFamily: lng?.header5.textFamily,
@@ -129,7 +131,7 @@ class _ContactUsState extends State<ContactUs> {
                               fontSize: lng?.header5.size.toDouble()
                           ), textAlign: TextAlign.center,
                         ),
-                        // Text(getTranslated(context, "pleaseFillTheFormBelow")!,
+                        // MyText(getTranslated(context, "pleaseFillTheFormBelow")!,
                         //   style: TextStyle(fontFamily: "${getTranslated(
                         //       context, "fontFamilyBody")!}",
                         //       color: Colors.amber,
@@ -161,7 +163,7 @@ class _ContactUsState extends State<ContactUs> {
                                 SizedBox(
                                   // width: 400,
                                   // height: 40,
-                                  child: TextFormField(
+                                  child: MyTextFormField(
                                     controller: nameController,
                                     autofocus: false,
                                     style: const TextStyle(color: Colors.white70),
@@ -239,7 +241,7 @@ class _ContactUsState extends State<ContactUs> {
                                 SizedBox(
                                   // width: 400,
                                   // height: 40,
-                                  child: TextFormField(
+                                  child: MyTextFormField(
                                     controller: emailController,
                                     autofocus: false,
                                     style: TextStyle(color: Colors.white70),
@@ -340,7 +342,7 @@ class _ContactUsState extends State<ContactUs> {
                                                 },)
                                           ),
                                       Expanded(
-                                        child: TextFormField(
+                                        child: MyTextFormField(
                                           controller: mobileController,
                                           autofocus: false,
                                           style: const TextStyle(color: Colors.white70),
@@ -455,7 +457,7 @@ class _ContactUsState extends State<ContactUs> {
                                     //Add label If you want but add hint outside the decoration to be aligned in the button perfectly.
                                   ),
                                   isExpanded: true,
-                                  hint: Text(
+                                  hint: MyText(
                                     drawerContactUsPage.body.form.inquiryTypeDropDown.labelText.data,
                                     style: TextStyle(
                                         fontSize: lng?.header3.size.toDouble(),
@@ -463,7 +465,7 @@ class _ContactUsState extends State<ContactUs> {
                                         fontFamily: lng?.header3.textFamily
                                     ),
                                   ),
-                                  // Text(
+                                  // MyText(
                                   //   getTranslated(context, "typeOfInquiry")!,
                                   //   style: TextStyle(fontSize: 16,
                                   //       color: Colors.white60,
@@ -505,7 +507,7 @@ class _ContactUsState extends State<ContactUs> {
                                                     : SizedBox(width: 15,)
                                                     : SizedBox(width: 15,),
                                                 SizedBox(width: 5,),
-                                                Text(reason[Keys.nameKey],
+                                                MyText(reason[Keys.nameKey],
                                                   style: TextStyle(
                                                       fontSize:lng?.header3.size.toDouble(),
                                                       color: Color(int.parse(drawerContactUsPage.body.form.inquiryTypeDropDown.itemsTitle.color)),
@@ -547,7 +549,7 @@ class _ContactUsState extends State<ContactUs> {
                                 const SizedBox(height: 10,),
 
                                 /// - Message
-                                TextFormField(
+                                MyTextFormField(
                                  controller: messageController,
                                   autofocus: false,
                                   style: TextStyle(fontSize: 14.0,
@@ -660,7 +662,7 @@ class _ContactUsState extends State<ContactUs> {
                                             ),
                                             SizedBox(width: 10,),
                                             (authProvider.loggedInUser?.token !=null)?
-                                                Text(
+                                                MyText(
 
                                               drawerContactUsPage.body.submitButton.data,
                                               style: TextStyle(
@@ -669,7 +671,7 @@ class _ContactUsState extends State<ContactUs> {
                                                   fontSize: lng?.header5.size.toDouble()
                                               ),)
 
-                                                :Text(
+                                                :MyText(
                                                   "Login",
                                                   style: TextStyle(
                                                       fontFamily: lng?.header5.textFamily,

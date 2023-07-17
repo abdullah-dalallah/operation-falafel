@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:operation_falafel/data/my_text.dart';
 
 import '../localization/localization_constants.dart';
 
@@ -35,14 +36,14 @@ class WarningPage extends StatelessWidget{
                  ],
                ),
                 SizedBox(height: 10,),
-                Text(getTranslated(context, "weWillBeBack")!, style: TextStyle(fontFamily:"${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontWeight: FontWeight.w300,fontSize: 20),),
+                MyText(getTranslated(context, "weWillBeBack")!, style: TextStyle(fontFamily:"${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontWeight: FontWeight.w300,fontSize: 20),),
                 SizedBox(height: 10,),
                 Padding(
                   padding: const EdgeInsets.only(left:18.0,right: 18),
-                  child: Text(getTranslated(context, "weWillBeBackBody")!, style: TextStyle(fontFamily:"${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontWeight: FontWeight.w300,fontSize: 12,),textAlign: TextAlign.center,),
+                  child: MyText(getTranslated(context, "weWillBeBackBody")!, style: TextStyle(fontFamily:"${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontWeight: FontWeight.w300,fontSize: 12,),textAlign: TextAlign.center,),
                 ),
                 SizedBox(height: 20,),
-                Text(getTranslated(context, "thankYouForUnderstanding")!, style: TextStyle(fontFamily:"${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontWeight: FontWeight.w300,fontSize: 15),),
+                MyText(getTranslated(context, "thankYouForUnderstanding")!, style: TextStyle(fontFamily:"${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontWeight: FontWeight.w300,fontSize: 15),),
                 SizedBox(height: 10,),
                 /// - Close App Button
                 Padding(
@@ -65,8 +66,8 @@ class WarningPage extends StatelessWidget{
                           overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
                         ),
                         child:
-                        // Text(OrderNowButton,style: TextStyle(fontFamily: getTranslated(context, "fontFamilyButtons")!,color: Colors.white, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),)
-                        Text(getTranslated(context, "closeApp")!,style: TextStyle(fontFamily: getTranslated(context, "fontFamilyButtons")!,color: Colors.white, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),)
+                        // MyText(OrderNowButton,style: TextStyle(fontFamily: getTranslated(context, "fontFamilyButtons")!,color: Colors.white, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),)
+                        MyText(getTranslated(context, "closeApp")!,style: TextStyle(fontFamily: getTranslated(context, "fontFamilyButtons")!,color: Colors.white, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),)
 
                     ),
 

@@ -1,6 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/demo_cart/demo_cart_provider.dart';
 import 'package:operation_falafel/widgets/address_list_sheet.dart';
@@ -91,7 +92,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                         elevation: 0,
                         centerTitle: true,
                         title:
-                        Text(
+                        MyText(
                           cartPage.appBar.title.data,
                           // getTranslated(context, "operationFalafelLogo")!,
                           style: TextStyle(
@@ -100,13 +101,13 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                               fontWeight: FontWeight.bold,
                               fontSize: lng?.logoTitle.size.toDouble()
                           ),),
-                        // Text(getTranslated(context, "operationFalafelLogo")!,
+                        // MyText(getTranslated(context, "operationFalafelLogo")!,
                         //   style: TextStyle(fontFamily: "${getTranslated(
                         //       context, "fontFamilyTitle")!}",
                         //       fontWeight: FontWeight.bold),),
 
                         // Image.asset("assets/images/of_logo_top.png", width: 220,),
-                        // Text("Operation Falafel",style: TextStyle(fontFamily: "oldpress",color: Colors.white, fontSize: 30),)
+                        // MyText("Operation Falafel",style: TextStyle(fontFamily: "oldpress",color: Colors.white, fontSize: 30),)
                         actions: [
                           Visibility(
                             visible: (widget.layOut == "Desktop") ? true : false,
@@ -124,7 +125,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                   elevation: 0,
 
                                 ),
-                                badgeContent: Text(
+                                badgeContent: MyText(
                                   '${value.cartItems.length}',
                                   style: TextStyle(
                                       color: (value.cartItems.isNotEmpty)
@@ -152,7 +153,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
 
                               children: [
                                 const SizedBox(height: 20,),
-                                Text(
+                                MyText(
                                   cartPage.body.pageTile.data,
                                   // getTranslated(context, "my o:f cart")!,
                                   style: TextStyle(
@@ -163,7 +164,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                       fontSize: lng?.titleHeader2.size.toDouble()
                                   ),
                                 ),
-                                // Text(getTranslated(context, "my o:f cart")!,
+                                // MyText(getTranslated(context, "my o:f cart")!,
                                 //   style: TextStyle(fontFamily: "${getTranslated(
                                 //       context, "fontFamilyButtons")!}",
                                 //       color: Colors.amber,
@@ -190,13 +191,13 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                               child: Column(
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
-                                                  Text("${value.cartItems[index].itemName}", style: TextStyle(
+                                                  MyText("${value.cartItems[index].itemName}", style: TextStyle(
                                                       fontFamily: lng?.header5.textFamily,
                                                       color: Color(int.parse(cartPage.body.itemsList.itemTitle.color)),
                                                       fontSize: lng?.header5.size.toDouble(),
                                                       fontWeight: FontWeight.w300
                                                   ),),
-                                                  // Text("${value.cartItems[index].itemName}", style: TextStyle(
+                                                  // MyText("${value.cartItems[index].itemName}", style: TextStyle(
                                                   //     fontFamily: getTranslated(context, "fontFamilyBody")!,
                                                   //     color: Colors.amber,
                                                   //     fontSize: double.parse(getTranslated(context, "cartpageHeader2")!),
@@ -223,7 +224,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                                 child: Row(
                                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                   children: [
-                                                                    Text("${value.cartItems[index].selectedOtions[index2].keys.elementAt(0)}",
+                                                                    MyText("${value.cartItems[index].selectedOtions[index2].keys.elementAt(0)}",
                                                                       style: TextStyle(
                                                                           fontSize: lng?.header2.size.toDouble(),
                                                                           // fontSize: double.parse(getTranslated(context, "cartpageHeader3")!),
@@ -249,7 +250,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                                 child: Row(
                                                                   mainAxisAlignment: MainAxisAlignment.start,
                                                                   children: [
-                                                                    Text("${value
+                                                                    MyText("${value
                                                                         .cartItems[index]
                                                                         .selectedAddon[index2][value
                                                                         .cartItems[index]
@@ -263,7 +264,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                                           // fontFamily: getTranslated(context, "fontFamilyBody")!,
                                                                           color: Color(int.parse(cartPage.body.itemsList.optionsTitle.color)),
                                                                           fontWeight: FontWeight.w300),),
-                                                                    Text("${value
+                                                                    MyText("${value
                                                                         .cartItems[index]
                                                                         .selectedAddon[index2]
                                                                         .keys.elementAt(
@@ -278,7 +279,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                                     Expanded(
                                                                         child: SizedBox(
                                                                           width: 2,)),
-                                                                    Text("AED ${value
+                                                                    MyText("AED ${value
                                                                         .cartItems[index]
                                                                         .selectedAddon[index2][value
                                                                         .cartItems[index]
@@ -307,7 +308,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                       PluseMinusWidgetCart(
                                                         ItemQuantity: value.cartItems[index].itemQuantity,
                                                         itemIndex: index,),
-                                                      Text("AED ${value.cartItems[index].itemTotalPrice}",
+                                                      MyText("AED ${value.cartItems[index].itemTotalPrice}",
                                                         style: TextStyle(
                                                             fontFamily: lng?.header5.textFamily,
                                                             color: Color(int.parse(cartPage.body.itemsList.totalPrice.color)),
@@ -339,14 +340,14 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                         visible: (cartPage.body.specialInstructions.visibility=='true'),
                                         child: Column(
                                           children: [
-                                            Text(
+                                            MyText(
                                               cartPage.body.specialInstructions.title.data ,
                                               style: TextStyle(
                                                 fontFamily: "${lng?.header5.textFamily}",
                                                 color: Color(int.parse(cartPage.body.specialInstructions.title.color)),
                                                 fontSize: lng?.header5.size.toDouble()
                                               ),),
-                                            // Text(getTranslated(context, "sepecial instructions")!,
+                                            // MyText(getTranslated(context, "sepecial instructions")!,
                                             //   style: TextStyle(fontFamily: "${getTranslated(
                                             //       context, "fontFamilyBody")!}",
                                             //     color: Colors.amber,
@@ -590,7 +591,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                           foregroundColor: MaterialStateProperty.all(Colors.black),
                                                           padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
                                                           textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                                                      child: Text(
+                                                      child: MyText(
                                                           cartPage.body.promoCode.addButton.data,
                                                         // getTranslated(context, "add")!,
                                                         style:
@@ -621,7 +622,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                         visible: cartPage.body.tip.visibility=='true',
                                         child: Column(
                                           children: [
-                                            Text(
+                                            MyText(
                                               cartPage.body.tip.title.data,
                                               style: TextStyle(
                                                 fontFamily: "${lng?.header5.textFamily}",
@@ -629,7 +630,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                 fontSize: lng?.header5.size.toDouble(),
                                               ),),
 
-                                            // Text(
+                                            // MyText(
                                             //   getTranslated(context, "tip the driver")!,
                                             //   style: TextStyle(fontFamily: "${getTranslated(
                                             //       context, "fontFamilyBody")!}",
@@ -701,14 +702,14 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Text(
+                                                  MyText(
                                                     cartPage.body.subTotal.data,
                                                     style: TextStyle(
                                                         fontFamily: "${lng?.header3.textFamily}",
                                                         color: Color(int.parse(cartPage.body.subTotal.color)),
                                                         fontSize: lng?.header3.size.toDouble(),
                                                         fontWeight: FontWeight.w300),),
-                                                  // Text(
+                                                  // MyText(
                                                   //   getTranslated(context, "subTotal")!,
                                                   //   style: TextStyle(
                                                   //       fontFamily: "${getTranslated(
@@ -719,7 +720,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                   //           getTranslated(context,
                                                   //               "cartpageHeader2SubTotal")!),
                                                   //       fontWeight: FontWeight.w300),),
-                                                  Text("AED ${value.Details.Total}",
+                                                  MyText("AED ${value.Details.Total}",
                                                     style: TextStyle(
                                                         fontFamily: "${lng?.header3.textFamily}",
                                                         color: Color(int.parse(cartPage.body.subTotal.color)),
@@ -732,14 +733,14 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Text(
+                                                  MyText(
                                                     cartPage.body.totalAfterPromoCode.data,
                                                     style: TextStyle(
                                                         fontFamily: "${lng?.header3.textFamily}",
                                                         color: Color(int.parse(cartPage.body.totalAfterPromoCode.color)),
                                                         fontSize: lng?.header3.size.toDouble(),
                                                         fontWeight: FontWeight.w300),),
-                                                  // Text(
+                                                  // MyText(
                                                   //   getTranslated(context, "totalAfterPromoCode")!,
                                                   //   style: TextStyle(
                                                   //       fontFamily: "${getTranslated(
@@ -750,7 +751,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                   //           getTranslated(context,
                                                   //               "cartpageHeader2SubTotal")!),
                                                   //       fontWeight: FontWeight.w300),),
-                                                  Text("AED ${value.Details.Total}",
+                                                  MyText("AED ${value.Details.Total}",
                                                     style: TextStyle(
                                                         fontFamily: "${lng?.header3.textFamily}",
                                                         color: Color(int.parse(cartPage.body.totalAfterPromoCode.color)),
@@ -763,21 +764,21 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Text(
+                                                  MyText(
                                                     cartPage.body.deliveryFee.data,
                                                     style: TextStyle(
                                                         fontFamily: "${lng?.header3.textFamily}",
                                                         color: Color(int.parse(cartPage.body.deliveryFee.color)),
                                                         fontSize: lng?.header3.size.toDouble(),
                                                         fontWeight: FontWeight.w300),),
-                                                  // Text(
+                                                  // MyText(
                                                   //   getTranslated(context, "delivery fee")!,
                                                   //   style: TextStyle(
                                                   //       fontFamily: "${getTranslated(context, "fontFamilyBody")!}",
                                                   //       color: Colors.white,
                                                   //       fontSize: 15,
                                                   //       fontWeight: FontWeight.w300),),
-                                                  Text("AED 0.00", style: TextStyle(
+                                                  MyText("AED 0.00", style: TextStyle(
                                                       fontFamily: "${lng?.header3.textFamily}",
                                                       color: Color(int.parse(cartPage.body.deliveryFee.color)),
                                                       fontSize: lng?.header3.size.toDouble(),
@@ -838,14 +839,14 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                         child: Row(
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Text(
+                                            MyText(
                                               cartPage.body.credit.data,
                                               // getTranslated(context, "earned credits")!,
                                               style: TextStyle(
                                                   fontFamily: lng?.header1.textFamily,
                                                   color: Color(int.parse(cartPage.body.credit.color)),
                                                   fontSize: lng?.header1.size.toDouble()),),
-                                            Text(getTranslated(
+                                            MyText(getTranslated(
                                                 context, "total of credits")!,
                                               style: TextStyle(
                                                   fontFamily: getTranslated(
@@ -865,7 +866,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                             Align(alignment: Alignment.centerLeft,
                                                 child: Padding(
                                                   padding: const EdgeInsets.only(left: 18.0, right: 18),
-                                                  child: Text(
+                                                  child: MyText(
                                                     cartPage.body.selectAddress.title.data,
                                                     // getTranslated(context, "address")!,
                                                     style: TextStyle(
@@ -922,7 +923,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
 
                                                       );
                                                     },
-                                                    title: Text(
+                                                    title: MyText(
                                                       cartPage.body.selectAddress.hintText.data,
                                                       // getTranslated(context, "pleaseSelectAddress")!,
                                                       style: TextStyle(
@@ -952,7 +953,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                               padding: EdgeInsets.only(left: 18.0, right: 18),
                                               child:
 
-                                              Text(
+                                              MyText(
                                                 cartPage.body.selectPayment.title.data,
                                                 style:  TextStyle(
                                                     color: Color(int.parse(cartPage.body.selectPayment.title.color)),
@@ -961,7 +962,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                     fontSize: lng?.titleHeader1.size.toDouble()
                                                   // fontFamily: getTranslated(context, "cartpageHeader2")
                                                 ),),
-                                              // Text(
+                                              // MyText(
                                               //   getTranslated(context, "payment")!,
                                               //   style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",
                                               //       color: Colors.amber,
@@ -989,7 +990,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                   // padding: EdgeInsets.all(18),
                                                   child: ListTile(
 
-                                                    title: Text(
+                                                    title: MyText(
                                                       cartPage.body.selectPayment.hintText.data,
                                                       // getTranslated(context, "pleaseSelectAddress")!,
                                                       style: TextStyle(
@@ -1012,7 +1013,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
 
                                       /// - checkbox
                                       const SizedBox(height: 15,),
-                                      Text(getTranslated(context, "optional")!, style: TextStyle(fontFamily: "${getTranslated(
+                                      MyText(getTranslated(context, "optional")!, style: TextStyle(fontFamily: "${getTranslated(
                                             context, "fontFamilyBody")!}",
                                             color: Colors.amber,
                                             fontSize: double.parse(getTranslated(
@@ -1062,7 +1063,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                     children: [
 
 
-                                      Text(
+                                      MyText(
                                         cartPage.body.emptyCart.data,
                                          style: TextStyle(
                                             fontFamily: lng?.titleHeader1.textFamily,
@@ -1072,7 +1073,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                             fontSize: lng?.titleHeader1.size.toDouble()
                                         ),
                                       ),
-                                      // Text(getTranslated(context, "yourCartIsEmpity")!,
+                                      // MyText(getTranslated(context, "yourCartIsEmpity")!,
                                       //   style: TextStyle(fontFamily: getTranslated(
                                       //       context, "fontFamilyButtons")!,
                                       //       color: Colors.white,
@@ -1098,7 +1099,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
 
                                               ),
                                               child:
-                                              Text(
+                                              MyText(
                                                cartPage.body.orderNowButton.data,
                                                 style: TextStyle(
                                                     fontFamily:"${lng?.titleHeader1.textFamily}",
@@ -1109,7 +1110,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                 )
                                                 ,)
 
-                                              // Text(
+                                              // MyText(
                                               //   getTranslated(context, "ORDER NOW")!,
                                               //   style: TextStyle(
                                               //       fontFamily: getTranslated(
@@ -1155,7 +1156,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
 
 
                               ),
-                              child: Text(
+                              child: MyText(
                                 cartPage.body.bringItButton.data,
                                 // getTranslated(context, "bringItOn")!,
                                 style: TextStyle(

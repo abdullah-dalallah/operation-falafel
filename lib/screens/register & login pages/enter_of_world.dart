@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/screens/register%20&%20login%20pages/register.dart';
 import 'package:operation_falafel/widgets/background.dart';
@@ -39,6 +40,7 @@ class EnterOFWorld extends StatelessWidget{
                                         child: Image.asset(
                                           "assets/images/of_logo.png",
                                           height: 280,
+                                          
                                           // fit: BoxFit.cover,
                                         ),
                                       ),
@@ -49,6 +51,7 @@ class EnterOFWorld extends StatelessWidget{
                                             "assets/images/arrow_down.png",
                                             height: 60,
                                             color: Colors.white,
+
                                             // fit: BoxFit.cover,
                                           ),
                                         ),),
@@ -57,8 +60,10 @@ class EnterOFWorld extends StatelessWidget{
                                         child:  RotationTransition(
                                           turns: const AlwaysStoppedAnimation(-15 / 600 ),
                                           child:  Image.asset(
+
                                             "assets/images/page7_right_icon.png",
                                             height: 60,
+
                                             // fit: BoxFit.cover,
                                           ),
                                         ),),
@@ -66,16 +71,16 @@ class EnterOFWorld extends StatelessWidget{
                                   ),
                                ),
 
-                              Text(getTranslated(context, "enterOFWorld")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyButtons"),color: Colors.amber,fontSize: double.parse(getTranslated(context, "enterOfTitleSize")!),height: double.parse(getTranslated(context, "enterOfTitleheight")!)),textAlign: TextAlign.center,),
+                              MyText(getTranslated(context, "enterOFWorld")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyButtons"),color: Colors.amber,fontSize: double.parse(getTranslated(context, "enterOfTitleSize")!),height: double.parse(getTranslated(context, "enterOfTitleheight")!)),textAlign: TextAlign.center,),
 
                             ],
                           ),
                         ),
-                        const SizedBox(height: 50,),
+                        const SizedBox(height: 10,),
                         Padding(
                           padding: const EdgeInsets.only(left: 80.0, right: 80),
                           child: SizedBox(
-                            height: 50,
+                            // height: 50,
                             child: ElevatedButton(
                                 onPressed: () {
 
@@ -92,14 +97,15 @@ class EnterOFWorld extends StatelessWidget{
                                     shadowColor: MaterialStateProperty.all(Colors.transparent),
                                     backgroundColor: MaterialStateProperty.all(Colors.black),
                                     foregroundColor: MaterialStateProperty.all(Colors.white),
-                                    padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
+                                    padding: MaterialStateProperty.all(const EdgeInsets.only(bottom: 10, top: 8)),
                                     textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
                                 child: Row(
+                                  crossAxisAlignment:CrossAxisAlignment.center,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    const Icon(Icons.apple, color: Colors.white,),
-                                    SizedBox(width: 10,),
-                                    Text( getTranslated(context, "signInWithApple")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody"),color: Colors.white, fontWeight: FontWeight.normal, fontSize: 20),textAlign: TextAlign.center,),
+                                    Expanded(child: const Icon(Icons.apple, color: Colors.white,)),
+                                    // SizedBox(width: 5,),
+                                    Expanded(flex: 4, child: MyText( getTranslated(context, "signInWithApple")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody"),color: Colors.white, fontWeight: FontWeight.normal, fontSize: 18),textAlign: TextAlign.center,)),
                                   ],
                                 )
                             ),
@@ -137,7 +143,7 @@ class EnterOFWorld extends StatelessWidget{
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
 
-                                    Text(getTranslated(context, "register")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody"),color: Colors.white, fontWeight: FontWeight.normal, fontSize: 20),textAlign: TextAlign.center,),
+                                    MyText(getTranslated(context, "register")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody"),color: Colors.white, fontWeight: FontWeight.normal, fontSize: 20),textAlign: TextAlign.center,),
                                   ],
                                 )
                             ),
@@ -158,7 +164,7 @@ class EnterOFWorld extends StatelessWidget{
                                       pageTransitionAnimation: PageTransitionAnimation.cupertino,
                                     );
                                   },
-                                  child: Text(getTranslated(context, "login")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody"),color: Colors.amber, fontWeight: FontWeight.normal, fontSize: 15),textAlign: TextAlign.center,)),
+                                  child: MyText(getTranslated(context, "login")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody"),color: Colors.amber, fontWeight: FontWeight.normal, fontSize: 15),textAlign: TextAlign.center,)),
                               GestureDetector(
                                   onTap: (){
                                     PersistentNavBarNavigator.pushNewScreen(
@@ -168,7 +174,7 @@ class EnterOFWorld extends StatelessWidget{
                                       pageTransitionAnimation: PageTransitionAnimation.cupertino,
                                     );
                                   },
-                                  child: Text(getTranslated(context, "regesterLater")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody"),color: Colors.amber, fontWeight: FontWeight.normal, fontSize: 15),textAlign: TextAlign.center,)),
+                                  child: MyText(getTranslated(context, "regesterLater")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody"),color: Colors.amber, fontWeight: FontWeight.normal, fontSize: 15),textAlign: TextAlign.center,)),
                             ],
                           ),
                         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:provider/provider.dart';
 
@@ -68,7 +69,7 @@ class _HelpPageState extends State<HelpPage> {
               backgroundColor: Colors.transparent,
               elevation: 0,
               centerTitle: true,
-              title: Text(
+              title: MyText(
                 helpPage.appBar.title.data,
                 style: TextStyle(
                     fontFamily: "${lng?.logoTitle.textFamily}",
@@ -78,14 +79,14 @@ class _HelpPageState extends State<HelpPage> {
             body: Center(
               child: Column(
                 children: [
-                  Text(
+                  MyText(
                     helpPage.body.pageTitle.data,
                     style: TextStyle(
                         fontFamily: lng?.titleHeader2.textFamily,
                         color: Color(int.parse(helpPage.body.pageTitle.color)),
                         fontSize:lng?.titleHeader2.size.toDouble()
                     ),),
-                  // Text(
+                  // MyText(
                   //   getTranslated(context, "gotAnyQuestions")!,
                   //   style: TextStyle(
                   //       fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",
@@ -129,13 +130,13 @@ class _HelpPageState extends State<HelpPage> {
                               padding: const EdgeInsets.only(top: 10.0),
                               child: Column(
                                 children: [
-                                  Text(
+                                  MyText(
                                     helpPage.body.callUsWidget.data,
                                     style: TextStyle(
                                       fontSize: lng?.header2.size.toDouble(),
                                       fontFamily: lng?.header2.textFamily,
                                       color: Color(int.parse(helpPage.body.callUsWidget.color)),),),
-                                  // Text(getTranslated(context, "callUs")!,
+                                  // MyText(getTranslated(context, "callUs")!,
                                   //   style: TextStyle(fontSize: 13,
                                   //     fontFamily: "${getTranslated(
                                   //         context, "fontFamilyBody")!}",
@@ -158,7 +159,7 @@ class _HelpPageState extends State<HelpPage> {
                               padding: const EdgeInsets.only(top: 10.0),
                               child: Column(
                                 children: [
-                                  Text(
+                                  MyText(
                                     helpPage.body.emailUsWidget.data,
                                     style: TextStyle(
                                       fontSize: lng?.header2.size.toDouble(),

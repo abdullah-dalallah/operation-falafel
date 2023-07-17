@@ -29,7 +29,7 @@ class ProfilePageBody {
   TitleStyle editProfileButton;
   Form form;
   Buttons buttons;
-  LogoutDialog logoutDialog;
+  LogoutDialog? logoutDialog;
 
   factory ProfilePageBody.fromJson(Map<String, dynamic> json) => ProfilePageBody(
     avatarImage: AvatarImage.fromJson(json["AvatarImage"]),
@@ -46,7 +46,7 @@ class ProfilePageBody {
     "EditProfileButton": editProfileButton.toJson(),
     "Form": form.toJson(),
     "Buttons": buttons.toJson(),
-    "LogoutDialog":logoutDialog.toJson()
+    "LogoutDialog":logoutDialog!.toJson()
   };
 }
 

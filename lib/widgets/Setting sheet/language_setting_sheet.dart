@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 
 import 'list_of_languages.dart';
@@ -30,7 +31,7 @@ class LanguageSettingSheet extends StatelessWidget{
                child: Row(
                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                  children: [
-                   Text(
+                   MyText(
                        getTranslated(context, "language")!,
                        style: TextStyle(
                            fontFamily:  getTranslated(context, "fontFamilyBody")!,
@@ -51,7 +52,7 @@ class LanguageSettingSheet extends StatelessWidget{
 
              Padding(
                padding:  EdgeInsets.all(8.0),
-               child: Text( getTranslated(context, "selectLanguage")!, style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300,fontFamily:  getTranslated(context, "fontFamilyBody")!),),
+               child: MyText( getTranslated(context, "selectLanguage")!, style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300,fontFamily:  getTranslated(context, "fontFamilyBody")!),),
              ),
 
              ListOfLanguages(scrollController: scrollController, selectedLanguage: Localizations.localeOf(context).languageCode.toString()),

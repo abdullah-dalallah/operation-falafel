@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/home_page_provider/home_page_provider.dart';
 import 'package:operation_falafel/providers/home_page_provider/models/slider_model.dart';
@@ -162,7 +163,7 @@ class _MainMenuState extends State<MainMenu> {
                         ),
                       ),
                     ],
-                    title: Text(
+                    title: MyText(
                      homePageDesign.appBar.titleText.data,
                      // getTranslated(context, "operationFalafelLogo")!,
                       style: TextStyle(
@@ -262,7 +263,7 @@ class _MainMenuState extends State<MainMenu> {
                                 // Image.asset("assets/images/home_pin.png", scale: 2.5,),
 
                                 const SizedBox(width: 10,),
-                                Text("Al Souq Al Kabeer", style: TextStyle(fontFamily:"Raleway-Regular", color: Color(int.parse(homePageDesign.body.locationWidget.locationTile.color)), fontWeight: FontWeight.w300,fontSize: 13),), Expanded(child: SizedBox(width: 10,)),
+                                MyText("Al Souq Al Kabeer", style: TextStyle(fontFamily:"Raleway-Regular", color: Color(int.parse(homePageDesign.body.locationWidget.locationTile.color)), fontWeight: FontWeight.w300,fontSize: 13),), Expanded(child: SizedBox(width: 10,)),
 
                                 TextButton(
                                     onPressed: () {
@@ -298,7 +299,7 @@ class _MainMenuState extends State<MainMenu> {
                                       // Colors.amber,
                                     ),
                                     child:
-                                    Text(
+                                    MyText(
                                       homePageDesign.body.locationWidget.locationChangeButton.data,
                                       // getTranslated(context, "changeLocation")!,
                                       style: TextStyle(
@@ -332,7 +333,7 @@ class _MainMenuState extends State<MainMenu> {
                           //               ),
                           //
                           //             ),
-                          //             child: Center(child: Text(getTranslated(context, "ORDER NOW")!, style: TextStyle(fontFamily:(languageflag=="en")? getTranslated(context, "fontFamilyButtons")!:getTranslated(context, "fontFamilyBody")!, fontSize: 40, color: Colors.white),))
+                          //             child: Center(child: MyText(getTranslated(context, "ORDER NOW")!, style: TextStyle(fontFamily:(languageflag=="en")? getTranslated(context, "fontFamilyButtons")!:getTranslated(context, "fontFamilyBody")!, fontSize: 40, color: Colors.white),))
                           //
                           //         ),
                           //       Positioned.fill(
@@ -511,7 +512,7 @@ class _MainMenuState extends State<MainMenu> {
                           //         angle: -math.pi / 4,
                           //         child: Image.asset("assets/images/arrow_down.png" ,height: 32,)),
                           //     const SizedBox(width: 8,),
-                          //     Text("YOUR O:F FAVORITES", style: TextStyle(fontSize: 33,fontFamily: "oldpress", color: Colors.amber.shade500),),
+                          //     MyText("YOUR O:F FAVORITES", style: TextStyle(fontSize: 33,fontFamily: "oldpress", color: Colors.amber.shade500),),
                           //     const SizedBox(width: 30,),
                           //     Transform(
                           //         transform: Matrix4.rotationY(math.pi),
@@ -919,7 +920,7 @@ class _MainMenuState extends State<MainMenu> {
                           //         angle: -math.pi / 2,
                           //         child: Image.asset("assets/images/page7_right_icon.png" ,height: 32,)),
                           //     const SizedBox(width: 10,),
-                          //     const Text("OUR O:F BEST SELLERS", style: TextStyle(fontSize: 33,fontFamily: "oldpress", color: Colors.white),),
+                          //     const MyText("OUR O:F BEST SELLERS", style: TextStyle(fontSize: 33,fontFamily: "oldpress", color: Colors.white),),
                           //     const SizedBox(width: 10,),
                           //     Transform.rotate(
                           //         angle: -math.pi / 8,
@@ -1648,8 +1649,8 @@ class _MainMenuState extends State<MainMenu> {
                               overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
                             ),
                             child:
-                            // Text(OrderNowButton,style: TextStyle(fontFamily: getTranslated(context, "fontFamilyButtons")!,color: Colors.white, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),)
-                            Text(
+                            // MyText(OrderNowButton,style: TextStyle(fontFamily: getTranslated(context, "fontFamilyButtons")!,color: Colors.white, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),)
+                            MyText(
                               homePageDesign.body.orderNowButtonWidget.data,
                               // getTranslated(context, "ORDER NOW")!,
                               style: TextStyle(
@@ -1738,7 +1739,7 @@ class _MainMenuState extends State<MainMenu> {
 
                                             Image.network("${homePageDesign?.body.dashboardWidget.buttons.myCode.imageIcon}",height:double.parse(homePageDesign?.body.dashboardWidget.buttons.myCode.mobileSize as String) ),
                                             const SizedBox(height: 5,),
-                                            Text(
+                                            MyText(
                                               homePageDesign.body.dashboardWidget.buttons.myCode.data,
                                               // getTranslated(context, "dashBoardTitle-myCode")!,
                                               style: TextStyle(
@@ -1782,7 +1783,7 @@ class _MainMenuState extends State<MainMenu> {
 
                                             Image.network("${homePageDesign?.body.dashboardWidget.buttons.myRewards.imageIcon}",height:double.parse(homePageDesign?.body.dashboardWidget.buttons.myCode.mobileSize as String) ),
                                             const SizedBox(height: 5,),
-                                            Text(
+                                            MyText(
                                               homePageDesign.body.dashboardWidget.buttons.myRewards.data,
                                               // getTranslated(context, "dashBoardTitle-myCode")!,
                                               style: TextStyle(
@@ -1797,7 +1798,7 @@ class _MainMenuState extends State<MainMenu> {
                                             // Image.asset("assets/images/gift.png", height: 35,width: 35,),
                                             // const SizedBox(height: 5,),
                                             // // Icon(Icons.qr_code_2, color: Colors.amber,size: 35,),
-                                            // Text(getTranslated(context, "dashBoardTitle-myRewards")!, style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300,fontFamily:getTranslated(context, "fontFamilyBody")!,),textAlign:TextAlign.center,)
+                                            // MyText(getTranslated(context, "dashBoardTitle-myRewards")!, style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300,fontFamily:getTranslated(context, "fontFamilyBody")!,),textAlign:TextAlign.center,)
                                           ],
                                         ),
                                         Positioned.fill(
@@ -1834,7 +1835,7 @@ class _MainMenuState extends State<MainMenu> {
 
                                             Image.network("${homePageDesign?.body.dashboardWidget.buttons.referFriend.imageIcon}",height:double.parse(homePageDesign?.body.dashboardWidget.buttons.myCode.mobileSize as String) ),
                                             const SizedBox(height: 5,),
-                                            Text(
+                                            MyText(
                                               homePageDesign.body.dashboardWidget.buttons.referFriend.data,
                                               // getTranslated(context, "dashBoardTitle-myCode")!,
                                               style: TextStyle(
@@ -1849,7 +1850,7 @@ class _MainMenuState extends State<MainMenu> {
                                             // Icon(Icons.supervised_user_circle_sharp, color: Colors.amber,size: 35,),
                                             // const SizedBox(height: 5,),
                                             // // Icon(Icons.qr_code_2, color: Colors.amber,size: 35,),
-                                            // Text(getTranslated(context, "dashBoardTitle-referToFriend")!, style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300,fontFamily:getTranslated(context, "fontFamilyBody")!,),textAlign:TextAlign.center,)
+                                            // MyText(getTranslated(context, "dashBoardTitle-referToFriend")!, style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300,fontFamily:getTranslated(context, "fontFamilyBody")!,),textAlign:TextAlign.center,)
 
                                           ],
                                         ),
@@ -1887,7 +1888,7 @@ class _MainMenuState extends State<MainMenu> {
                                           children: [
                                             Image.network("${homePageDesign?.body.dashboardWidget.buttons.transferCredit.imageIcon}",height:double.parse(homePageDesign?.body.dashboardWidget.buttons.myCode.mobileSize as String) ),
                                             const SizedBox(height: 5,),
-                                            Text(
+                                            MyText(
                                               homePageDesign.body.dashboardWidget.buttons.transferCredit.data,
                                               // getTranslated(context, "dashBoardTitle-myCode")!,
                                               style: TextStyle(
@@ -1901,7 +1902,7 @@ class _MainMenuState extends State<MainMenu> {
 
                                             // const Icon(Icons.monetization_on_outlined, color: Colors.amber,size: 35,),
                                             // const SizedBox(height: 5,),
-                                            // Text(getTranslated(context, "dashBoardTitle-transferCredit")!, style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300,fontFamily:getTranslated(context, "fontFamilyBody")!,),textAlign:TextAlign.center,)
+                                            // MyText(getTranslated(context, "dashBoardTitle-transferCredit")!, style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300,fontFamily:getTranslated(context, "fontFamilyBody")!,),textAlign:TextAlign.center,)
                                           ],
                                         ),
                                         Positioned.fill(

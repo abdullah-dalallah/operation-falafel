@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/demo_cart/demo_cart_provider.dart';
 import 'package:operation_falafel/widgets/add_on_tile_widget.dart';
@@ -206,14 +207,14 @@ class _ItemDetailsSheetState extends State<ItemDetailsSheet> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text("Chicken Fatteh", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                          const MyText("Chicken Fatteh", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
                           const SizedBox(height: 8,),
-                          const Text("Chicken topped with rice, fatteh yogurt,fried bread,pine nuts,sumac. parsley and gheee.", style: TextStyle(color: Colors.white, fontSize: 15),),
+                          const MyText("Chicken topped with rice, fatteh yogurt,fried bread,pine nuts,sumac. parsley and gheee.", style: TextStyle(color: Colors.white, fontSize: 15),),
                           const SizedBox(height: 8,),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children:const [
-                              Text("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
+                              MyText("AED 44", style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.w300),),
                             ],
                           ),
                           const SizedBox(height: 8,),
@@ -237,7 +238,7 @@ class _ItemDetailsSheetState extends State<ItemDetailsSheet> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text("${itemOptions.keys.elementAt(index)}", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
+                                  MyText("${itemOptions.keys.elementAt(index)}", style: TextStyle(color: Colors.amber, fontSize: 20,fontWeight: FontWeight.w300),),
 
                                   ListView.builder(
                                     padding:const EdgeInsets.only(top: 0),
@@ -371,7 +372,7 @@ class _ItemDetailsSheetState extends State<ItemDetailsSheet> {
                                   child:const Icon(Icons.remove,size: 18,),
                                 ),
                               ),
-                              SizedBox(width:30, child: Text("${itemQuantity}",textAlign: TextAlign.center,style: TextStyle(color: Colors.white),),),
+                              SizedBox(width:30, child: MyText("${itemQuantity}",textAlign: TextAlign.center,style: TextStyle(color: Colors.white),),),
                               SizedBox(
                                 width:45,
                                 height:45,
@@ -463,7 +464,7 @@ class _ItemDetailsSheetState extends State<ItemDetailsSheet> {
 
 
                               ),
-                              child:  Text(getTranslated(context, "addToCart")!,style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.white,fontWeight: FontWeight.w300, fontSize: 20),)
+                              child:  MyText(getTranslated(context, "addToCart")!,style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!,color: Colors.white,fontWeight: FontWeight.w300, fontSize: 20),)
 
 
                             // Padding(

@@ -1,6 +1,8 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
+import 'package:operation_falafel/data/my_text_form_field.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/widgets/Map/map_page.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
@@ -90,7 +92,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
               backgroundColor: Colors.transparent,
               elevation: 0,
               centerTitle: true,
-              title: Text(
+              title: MyText(
                 addNewAddressPage.appBar.title.data,
                 style: TextStyle(
                     fontFamily: "${lng?.logoTitle.textFamily}",
@@ -104,7 +106,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                   constraints: BoxConstraints(maxWidth: 450,),
                   child: Column(
                     children: [
-                      Text(
+                      MyText(
                         addNewAddressPage.body.pageTitle.data,
                         style: TextStyle(
                             fontFamily:lng?.titleHeader2.textFamily,
@@ -124,7 +126,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                             /// - Address Line
                             Padding(
                               padding: const EdgeInsets.only(left: 18.0, right: 18, top: 8, bottom: 8),
-                              child: TextFormField(
+                              child: MyTextFormField(
                                 controller: _controllerAddressLine,
                                 validator: (value) {
                                   if (value!.isEmpty) {
@@ -222,7 +224,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                     //Add label If you want but add hint outside the decoration to be aligned in the button perfectly.
                                   ),
                                   isExpanded: true,
-                                  hint:  Text(
+                                  hint:  MyText(
                                     "City",
                                     // addNewAddressPage.body.form.addressTypeDropDown.labelText.data,
                                     style: TextStyle(
@@ -264,7 +266,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                                 SizedBox(width: 5,),
 
 
-                                                Text(
+                                                MyText(
                                                   addressTypeItem[Keys.nameKey],
                                                   // getTranslated(context, addressItem)!,
                                                   style: TextStyle(
@@ -317,7 +319,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                 children: [
                                   Expanded(
                                     flex: 4,
-                                    child: TextFormField(
+                                    child: MyTextFormField(
                                       controller: _controllerBuildingName,
                                       validator: (value) {
                                         if (value!.isEmpty) {
@@ -378,7 +380,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                   const SizedBox(width: 10,),
                                   Expanded(
                                     flex: 3,
-                                    child: TextFormField(
+                                    child: MyTextFormField(
                                       controller: _controllerFlatNumber,
                                       validator: (value) {
                                         if (value!.isEmpty) {
@@ -450,7 +452,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                 children: [
                                   Expanded(
                                     flex: 4,
-                                    child: TextFormField(
+                                    child: MyTextFormField(
                                       controller: _controllerArea,
                                       validator: (value) {
                                         if (value!.isEmpty) {
@@ -548,7 +550,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                         //Add label If you want but add hint outside the decoration to be aligned in the button perfectly.
                                       ),
                                       isExpanded: true,
-                                      hint:  Text(
+                                      hint:  MyText(
                                         addNewAddressPage.body.form.addressTypeDropDown.labelText.data,
                                         style: TextStyle(
                                             fontSize: lng?.header3.size.toDouble(),
@@ -589,7 +591,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                                     SizedBox(width: 5,),
 
 
-                                                    Text(
+                                                    MyText(
                                                         addressTypeItem[Keys.nameKey],
                                                       // getTranslated(context, addressItem)!,
                                                       style: TextStyle(
@@ -664,7 +666,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
 
                                 ),
                                 const SizedBox(width: 10,),
-                                Text(
+                                MyText(
                                   addNewAddressPage.body.form.addressTypeDropDown.primaryAddress.title.data,
                                   style: TextStyle(
                                       fontFamily: lng?.header3.textFamily,
@@ -727,7 +729,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                               )
                                           ),
                                         ),
-                                        child:Text(
+                                        child:MyText(
                                           addNewAddressPage.body.form.addressTypeDropDown.addNewAddressButton.data,
                                           style: TextStyle(
                                               fontFamily: lng?.header3.textFamily,
@@ -746,7 +748,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                       // Divider(color: Colors.white,height: 1,),
                       ListTile(
                         tileColor: Colors.black,
-                        title: Text("Location on Map",
+                        title: MyText("Location on Map",
                           style: TextStyle(
                               fontFamily: lng?.header3.textFamily,
                               color: Colors.amber,
@@ -755,7 +757,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                           ),
                           // style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,fontSize: double.parse(getTranslated(context, "cartpageHeader2SubTotal")!)),
                         ),
-                        subtitle: Text("Name ",
+                        subtitle: MyText("Name ",
                           style: TextStyle(
                               fontFamily: lng?.header3.textFamily,
                               color: Colors.white,
@@ -795,7 +797,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                        )
                                    ),
                                  ),
-                                 child:Text(
+                                 child:MyText(
                                    "change",
                                    style: TextStyle(
                                        fontFamily: lng?.header3.textFamily,

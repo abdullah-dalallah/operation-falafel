@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/screens/tabbar%20menu%20page/widgets/image_with_add_button.dart';
 import 'package:provider/provider.dart';
@@ -39,17 +40,17 @@ class CustomListTile extends StatelessWidget{
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Chicken Fatteh", style: TextStyle(
+                  MyText("Chicken Fatteh", style: TextStyle(
                       fontFamily: lng?.header5.textFamily,
                       color: Color(int.parse(menuPage?.body.itemsList.itemTitle.color as String)),
                       fontSize: lng?.header5.size.toDouble(),
                       fontWeight: FontWeight.w300),),
-                  // Text("Chicken Fatteh", style: TextStyle(
+                  // MyText("Chicken Fatteh", style: TextStyle(
                   //     fontFamily: getTranslated(context, "fontFamilyBody")!,
                   //     color: Colors.amber,
                   //     fontSize: 20,
                   //     fontWeight: FontWeight.w300),),
-                  Text(
+                  MyText(
                     "Chicken topped with rice, fatteh yogurt,fried bread,pine nuts,sumac. parsley and gheee.",
                     style: TextStyle(
                         fontFamily: lng?.header3.textFamily,
@@ -65,7 +66,7 @@ class CustomListTile extends StatelessWidget{
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Text(
+                      MyText(
                         "AED 44", style: TextStyle(
                           fontFamily: lng?.header5.textFamily,
                           color: Color(int.parse(menuPage?.body.itemsList.totalPrice.color as String)),

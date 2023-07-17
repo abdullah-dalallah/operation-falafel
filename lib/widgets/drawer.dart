@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/main.dart';
 import 'package:operation_falafel/providers/home_page_provider/home_page_provider.dart';
@@ -10,6 +11,7 @@ import 'package:operation_falafel/widgets/buy_gift_payment_sheet.dart';
 import 'package:operation_falafel/widgets/Setting%20sheet/setting_sheet.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
+
 
 import '../data/keys.dart';
 import '../models/AppThemeModels/DesignPerPage/Drawer/drawer.dart';
@@ -144,7 +146,7 @@ class _DrawerState extends State<DrawerWidget> {
                           const SizedBox(width: 15,),
                           Expanded(
                             flex: 5,
-                            child: Text("HI ABDULLH", style: TextStyle(
+                            child: MyText("HI ABDULLH", style: TextStyle(
                                 fontFamily: getTranslated(context, "fontFamilyBody")!,
                                   color: Color(int.parse(drawerPage.name.color)),
                                   // color: Colors.amber,
@@ -174,7 +176,7 @@ class _DrawerState extends State<DrawerWidget> {
                                           widget.onChanged(0);
                                           // Navigator.pop(context);
                                         },
-                                        title: Text(
+                                        title: MyText(
                                           drawerPage.home.data,
                                           // getTranslated(context, "home")!,
                                           style: TextStyle(
@@ -216,7 +218,7 @@ class _DrawerState extends State<DrawerWidget> {
                                                 .cupertino,
                                           );
                                         },
-                                        title: Text(
+                                        title: MyText(
                                           drawerPage.notification.data,
                                           // getTranslated(context, "home")!,
                                           style: TextStyle(
@@ -257,7 +259,7 @@ class _DrawerState extends State<DrawerWidget> {
                                           );
                                         },
 
-                                        title: Text(
+                                        title: MyText(
                                           drawerPage.partners.data,
                                           // getTranslated(context, "home")!,
                                           style: TextStyle(
@@ -267,7 +269,7 @@ class _DrawerState extends State<DrawerWidget> {
                                               fontSize: lng?.header3.size.toDouble(),
                                               // fontSize: 15,
                                               fontWeight: FontWeight.w300),),
-                                        // title: Text(
+                                        // title: MyText(
                                         //   getTranslated(context, "partners")!,
                                         //   style: TextStyle(
                                         //       fontFamily: "${getTranslated(
@@ -305,7 +307,7 @@ class _DrawerState extends State<DrawerWidget> {
                                                 .cupertino,
                                           );
                                         },
-                                        title: Text(
+                                        title: MyText(
                                           drawerPage.locations.data,
                                           // getTranslated(context, "home")!,
                                           style: TextStyle(
@@ -315,7 +317,7 @@ class _DrawerState extends State<DrawerWidget> {
                                               fontSize: lng?.header3.size.toDouble(),
                                               // fontSize: 15,
                                               fontWeight: FontWeight.w300),),
-                                        // title: Text(
+                                        // title: MyText(
                                         //   getTranslated(context, "locations")!,
                                         //   style: TextStyle(
                                         //       fontFamily: "${getTranslated(
@@ -352,7 +354,7 @@ class _DrawerState extends State<DrawerWidget> {
                                                 .cupertino,
                                           );
                                         },
-                                        title: Text(
+                                        title: MyText(
                                           drawerPage.feedback.data,
                                           // getTranslated(context, "home")!,
                                           style: TextStyle(
@@ -362,7 +364,7 @@ class _DrawerState extends State<DrawerWidget> {
                                               fontSize: lng?.header3.size.toDouble(),
                                               // fontSize: 15,
                                               fontWeight: FontWeight.w300),),
-                                        // title: Text(
+                                        // title: MyText(
                                         //   getTranslated(context, "feedback")!,
                                         //   style: TextStyle(
                                         //       fontFamily: "${getTranslated(
@@ -396,7 +398,7 @@ class _DrawerState extends State<DrawerWidget> {
                                             .cupertino,
                                       );
                                     },
-                                    title: Text(
+                                    title: MyText(
                                       drawerPage.contactUs.data,
                                       // getTranslated(context, "home")!,
                                       style: TextStyle(
@@ -406,7 +408,7 @@ class _DrawerState extends State<DrawerWidget> {
                                           fontSize: lng?.header3.size.toDouble(),
                                           // fontSize: 15,
                                           fontWeight: FontWeight.w300),),
-                                    // title: Text(
+                                    // title: MyText(
                                     //   getTranslated(context, "contact us")!,
                                     //   style: TextStyle(
                                     //       fontFamily: "${getTranslated(
@@ -427,7 +429,7 @@ class _DrawerState extends State<DrawerWidget> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Text(getTranslated(context, "language")!,
+                            // MyText(getTranslated(context, "language")!,
                             //   style: TextStyle(fontFamily: getTranslated(
                             //       context, "fontFamilyButtons"), color: Colors
                             //       .amber, fontSize: double.parse(getTranslated(
@@ -460,7 +462,7 @@ class _DrawerState extends State<DrawerWidget> {
                                 side: BorderSide(width: 1.5, color: Colors.white60),
                                      foregroundColor: Colors.white60
                               ),
-                              child:  Text("${getTranslated(context, "SettingSheetTitle")!}"),
+                              child:  MyText("${getTranslated(context, "SettingSheetTitle")!}"),
                           )
 
                             // Row(
@@ -645,7 +647,7 @@ class _DrawerState extends State<DrawerWidget> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            MyText(
                               drawerPage.followUs.data,
                               style: TextStyle(
                                   fontFamily: "${lng?.titleHeader1.textFamily}",
@@ -653,7 +655,7 @@ class _DrawerState extends State<DrawerWidget> {
                                   fontSize: lng?.titleHeader1.size.toDouble()
                               )
                               ,),
-                            // Text(getTranslated(context, "follow us")!,
+                            // MyText(getTranslated(context, "follow us")!,
                             //   style: TextStyle(fontFamily: getTranslated(
                             //       context, "fontFamilyButtons"), color: Colors
                             //       .amber, fontSize: double.parse(getTranslated(

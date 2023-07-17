@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 
 class RegisterCheckbox extends StatelessWidget{
@@ -53,11 +54,11 @@ class RegisterCheckbox extends StatelessWidget{
     );
   }
 
-  Widget _buildText( BuildContext context) {
+  Widget _buildMyText( BuildContext context) {
     return Row(
 
       children: [
-        // RichText(
+        // RichMyText(
         //   text: TextSpan(
         //     text: "",
         //     style: TextStyle(color: (widget.colorOfText!=null)?widget.colorOfText!:Colors.green, fontSize: 15,fontWeight: FontWeight.w300, fontFamily: widget.fontFamily),
@@ -72,7 +73,7 @@ class RegisterCheckbox extends StatelessWidget{
         //   ),
         // ),
 
-       Text(getTranslated(context,text)!, style:  TextStyle(color: (colorOfText!=null)?colorOfText!:Colors.green, fontSize: 15,fontWeight: FontWeight.w300, fontFamily: fontFamily,decoration: TextDecoration.underline),),
+       MyText(getTranslated(context,text)!, style:  TextStyle(color: (colorOfText!=null)?colorOfText!:Colors.green, fontSize: 15,fontWeight: FontWeight.w300, fontFamily: fontFamily,decoration: TextDecoration.underline),),
 
 
 
@@ -108,11 +109,11 @@ class RegisterCheckbox extends StatelessWidget{
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children:  [
-                                Align(child:Text( getTranslated(context, "termsTitleNewUser")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),),
+                                Align(child:MyText( getTranslated(context, "termsTitleNewUser")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),),
                                 Expanded(child: ListView(
                                   padding: EdgeInsets.all(18),
                                   children: [
-                                    Text("${getTranslated(context, "terms")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white),),
+                                    MyText("${getTranslated(context, "terms")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white),),
                                   ],
                                 )),
                               ],
@@ -193,7 +194,7 @@ class RegisterCheckbox extends StatelessWidget{
                 onTap: (){
                   showCustomDialog( context);
                 },
-                child: _buildText(context)),
+                child: _buildMyText(context)),
 
 
 

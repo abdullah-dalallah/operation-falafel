@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 
 class CardMainCheckbox extends StatelessWidget{
@@ -53,11 +54,11 @@ class CardMainCheckbox extends StatelessWidget{
     );
   }
 
-  Widget _buildText( BuildContext context) {
+  Widget _buildMyText( BuildContext context) {
     return Row(
 
       children: [
-        // RichText(
+        // RichMyText(
         //   text: TextSpan(
         //     text: "",
         //     style: TextStyle(color: (widget.colorOfText!=null)?widget.colorOfText!:Colors.green, fontSize: 15,fontWeight: FontWeight.w300, fontFamily: widget.fontFamily),
@@ -72,7 +73,7 @@ class CardMainCheckbox extends StatelessWidget{
         //   ),
         // ),
 
-        Text(getTranslated(context,text)!, style:  TextStyle(color: (colorOfText!=null)?colorOfText!:Colors.green, fontSize: 15,fontWeight: FontWeight.bold, fontFamily: fontFamily,),),
+        MyText(getTranslated(context,text)!, style:  TextStyle(color: (colorOfText!=null)?colorOfText!:Colors.green, fontSize: 15,fontWeight: FontWeight.bold, fontFamily: fontFamily,),),
 
 
 
@@ -95,7 +96,7 @@ class CardMainCheckbox extends StatelessWidget{
 
             _buildLabel(),
             const SizedBox(width: 10),
-           _buildText(context),
+           _buildMyText(context),
 
 
 

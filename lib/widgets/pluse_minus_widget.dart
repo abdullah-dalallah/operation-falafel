@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/providers/demo_cart/demo_cart_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -95,7 +96,7 @@ class _PluseMinusWidgetCartState extends State<PluseMinusWidgetCart> {
                 child:const Icon(Icons.remove,size: 18,),
               ),
             ),
-            SizedBox(width:30, child: Text(  "${widget.ItemQuantity}" ,textAlign: TextAlign.center,style: TextStyle(color: Colors.white),),),
+            SizedBox(width:30, child: MyText(  "${widget.ItemQuantity}" ,textAlign: TextAlign.center,style: TextStyle(color: Colors.white),),),
             SizedBox(
               width:30,
               height:25,

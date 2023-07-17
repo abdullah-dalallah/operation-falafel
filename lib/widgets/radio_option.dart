@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 
 class RadioOption<T> extends StatelessWidget{
@@ -45,8 +46,8 @@ class RadioOption<T> extends StatelessWidget{
     );
   }
 
-  Widget _buildText() {
-    return Text(
+  Widget _buildMyText() {
+    return MyText(
       text,
       style:  TextStyle(color: Colors.amber, fontSize: 15,fontWeight: FontWeight.w300),
     );
@@ -67,7 +68,7 @@ class RadioOption<T> extends StatelessWidget{
             children: [
               _buildLabel(),
               const SizedBox(width: 10),
-              _buildText(),
+              _buildMyText(),
             ],
           ),
         ),

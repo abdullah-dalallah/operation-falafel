@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/data/keys.dart';
+import 'package:operation_falafel/data/my_text.dart';
+import 'package:operation_falafel/data/my_text_form_field.dart';
 import 'package:operation_falafel/data/snackBarGenerator.dart';
 import 'package:operation_falafel/data/strings.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
@@ -88,7 +90,7 @@ class _ResetYourPasswordState extends State<ResetYourPassword> {
                       backgroundColor: Colors.transparent,
                       elevation: 0,
                       // centerTitle: true,
-                      // title:Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),),
+                      // title:MyText(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),),
                       // actions: [],
                     ),
                     body: Center(
@@ -112,7 +114,7 @@ class _ResetYourPasswordState extends State<ResetYourPassword> {
                                           ),
                                         ),
                                         const SizedBox(height: 30,),
-                                        Text(
+                                        MyText(
                                           forgetPasswordPage.pageTile.data,
                                           style: TextStyle(
                                               fontFamily: lng?.titleHeader2.textFamily,
@@ -122,7 +124,7 @@ class _ResetYourPasswordState extends State<ResetYourPassword> {
                                               height: 1
                                           ),
                                           textAlign: TextAlign.center,),
-                                        // Text(getTranslated(context, "resetYourPassword")!,
+                                        // MyText(getTranslated(context, "resetYourPassword")!,
                                         //   style: TextStyle(fontFamily: getTranslated(
                                         //       context, "fontFamilyButtons"),
                                         //       color: Colors.amber,
@@ -162,12 +164,12 @@ class _ResetYourPasswordState extends State<ResetYourPassword> {
                                                       left: 8, right: 8, bottom: 5),
                                                   child:
 
-                                                  Text(
+                                                  MyText(
                                                     forgetPasswordPage.form.phoneNumber.data,
                                                     style: TextStyle(
                                                         fontFamily: lng?.header2.textFamily,
                                                         color: Color(int.parse(forgetPasswordPage.form.phoneNumber.color))),),
-                                                  // Text(
+                                                  // MyText(
                                                   //   "${getTranslated(context, "mobileNo")!} :",
                                                   //   style: TextStyle(fontFamily: getTranslated(
                                                   //       context, "fontFamilyBody")!,
@@ -240,7 +242,7 @@ class _ResetYourPasswordState extends State<ResetYourPassword> {
                                                       flex: 8,
                                                       child: SizedBox(
 
-                                                        child: TextFormField(
+                                                        child: MyTextFormField(
                                                           maxLength: 9,
                                                           controller: mobileController,
                                                           keyboardType: TextInputType.number,
@@ -338,7 +340,7 @@ class _ResetYourPasswordState extends State<ResetYourPassword> {
                                                             ),
                                                             hintText: '',
                                                             counterText: '',
-                                                            // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+                                                            // label: MyText(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
 
                                                           ),
                                                           validator: (value) {

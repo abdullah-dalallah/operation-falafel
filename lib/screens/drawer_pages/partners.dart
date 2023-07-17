@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:provider/provider.dart';
 
@@ -73,12 +74,12 @@ class _PartnersState extends State<Partners> {
               elevation: 0,
               centerTitle: true,
               title:
-              Text(
+              MyText(
                 drawerPartnersPage.appBar.title.data,
                 style: TextStyle(
                     fontFamily: "${lng?.logoTitle.textFamily}",
                     fontWeight: FontWeight.bold),),
-              // Text(getTranslated(context, "operationFalafelLogo")!,
+              // MyText(getTranslated(context, "operationFalafelLogo")!,
               //   style: TextStyle(
               //       fontFamily: "${getTranslated(context, "fontFamilyTitle")!}",
               //       fontWeight: FontWeight.bold),),
@@ -92,7 +93,7 @@ class _PartnersState extends State<Partners> {
                   children: [
                     ///- page Title
 
-                    Text(
+                    MyText(
                       drawerPartnersPage.body.pageTitle.data,
                       style: TextStyle(
                           fontFamily: "${lng?.titleHeader2.textFamily}",
@@ -101,7 +102,7 @@ class _PartnersState extends State<Partners> {
                       ),
 
                     ),
-                    // Text(getTranslated(context, "partnersTitle")!,
+                    // MyText(getTranslated(context, "partnersTitle")!,
                     //   style: TextStyle(fontFamily: "${getTranslated(
                     //       context, "fontFamilyButtons")!}",
                     //       color: Colors.amber,
@@ -133,7 +134,7 @@ class _PartnersState extends State<Partners> {
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text(
+                                      MyText(
                                         getTranslated(context, "audTitle")!,
                                         style:  TextStyle(
                                           fontFamily: "${lng?.header3.textFamily}",
@@ -141,14 +142,14 @@ class _PartnersState extends State<Partners> {
                                           ,fontSize:lng?.header3.size.toDouble(),
                                           color: Color(int.parse(drawerPartnersPage.body.partnersList.title.color)),
                                         ),),
-                                      // Text(
+                                      // MyText(
                                       //   getTranslated(context, "audTitle")!,
                                       //   style: TextStyle(
                                       //       fontFamily: "${getTranslated(context, "fontFamilyBody")!}",
                                       //       color: Colors.amber,
                                       //       fontSize: 15
                                       //   ),),
-                                      Text(
+                                      MyText(
                                         getTranslated(context, "validOnAppDlivery")!,
                                         style: TextStyle(
                                           fontFamily: "${lng?.header2.textFamily}",
@@ -188,14 +189,14 @@ class _PartnersState extends State<Partners> {
                                     crossAxisAlignment: CrossAxisAlignment
                                         .start,
                                     children: [
-                                      Text(getTranslated(context, "dhaTitle")!,
+                                      MyText(getTranslated(context, "dhaTitle")!,
                                         style: TextStyle(
                                           fontFamily: "${lng?.header3.textFamily}",
                                           fontWeight: FontWeight.bold
                                           ,fontSize:lng?.header3.size.toDouble(),
                                           color: Color(int.parse(drawerPartnersPage.body.partnersList.title.color)),
                                         ),),
-                                      Text(getTranslated(
+                                      MyText(getTranslated(
                                           context, "validOnAppDlivery")!,
                                         style: TextStyle(
                                           fontFamily: "${lng?.header2.textFamily}",

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:provider/provider.dart';
@@ -62,7 +63,7 @@ class _GiftFriendState extends State<GiftFriend> {
               backgroundColor: Colors.transparent,
               elevation: 0,
               centerTitle: true,
-              title: Text(
+              title: MyText(
                 loyaltySendAsGiftPage.appBar.title.data,
                 style: TextStyle(
                     fontFamily: "${lng?.logoTitle.textFamily}",
@@ -82,7 +83,7 @@ class _GiftFriendState extends State<GiftFriend> {
                         // Image.asset("assets/images/gift.png", height: 60, width: 60,),
                         SizedBox(width: 15,),
 
-                        Text(
+                        MyText(
                           loyaltySendAsGiftPage.body.pageTitle.data,
                           style: TextStyle(
                               fontFamily: lng?.titleHeader1.textFamily,
@@ -90,7 +91,7 @@ class _GiftFriendState extends State<GiftFriend> {
                               fontSize: lng?.titleHeader1.size.toDouble()),
                         ),
 
-                        // Text(
+                        // MyText(
                         //   getTranslated(context, "giftfriend")!,
                         //   style: TextStyle(
                         //       fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",

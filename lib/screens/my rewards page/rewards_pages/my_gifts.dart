@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
 import 'package:operation_falafel/providers/gifts_provider/loyalty_provider.dart';
@@ -59,7 +60,7 @@ class _MyGiftsState extends State<MyGifts> {
               backgroundColor: Colors.transparent,
               elevation: 0,
               centerTitle: true,
-              title: Text(
+              title: MyText(
                 loyaltyMyRewardsPage.appBar.title.data,
                 style: TextStyle(
                     fontFamily: "${lng?.logoTitle.textFamily}",
@@ -91,7 +92,7 @@ class _MyGiftsState extends State<MyGifts> {
                                 Expanded(
                                   // flex: 2,
                                     child:
-                                    Text(
+                                    MyText(
                                       loyaltyMyRewardsPage.body.pageTitle.data,
                                       style: TextStyle(
                                           fontFamily: lng?.titleHeader2.textFamily,
@@ -99,7 +100,7 @@ class _MyGiftsState extends State<MyGifts> {
                                           fontSize: lng?.titleHeader2.size.toDouble()
 
                                       ),),
-                                    // Text(
+                                    // MyText(
                                     //   getTranslated(context, "myRewardsTitle")!,
                                     //   style: TextStyle(
                                     //       fontFamily: "${getTranslated(
@@ -172,7 +173,7 @@ class _MyGiftsState extends State<MyGifts> {
                                         top: 10, bottom: 10,)),
                                   textStyle: MaterialStateProperty.all(
                                       const TextStyle(fontSize: 30))),
-                              child:  Text(
+                              child:  MyText(
                                 loyaltyMyRewardsPage.body.myGiftsButton.data,
                                 style: TextStyle(
                                   fontFamily: lng?.header3.textFamily,
@@ -223,7 +224,7 @@ class _MyGiftsState extends State<MyGifts> {
                                   textStyle: MaterialStateProperty.all(
                                       const TextStyle(fontSize: 30))),
                               child:
-                              Text(
+                              MyText(
                                 loyaltyMyRewardsPage.body.buyGiftButton.data,
                                 style: TextStyle(
                                   fontFamily: lng?.header3.textFamily,
@@ -231,7 +232,7 @@ class _MyGiftsState extends State<MyGifts> {
                                   fontSize: lng?.header3.size.toDouble(),
                                   fontWeight: FontWeight.w300,),
                                 textAlign: TextAlign.center,),
-                              // Text(
+                              // MyText(
                               //   getTranslated(context, "buyGifts")!,
                               //   style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")!,
                               //     color: Colors.amber,
@@ -269,7 +270,7 @@ class _MyGiftsState extends State<MyGifts> {
 
                               // Image.network("${loyaltyMyRewardsPage.body.myCode.imageIcon}", height: 60, width: 60,),
                               // Image.asset("assets/images/my_rewards_gencode.png", height: 60, width: 60,),
-                              Text(
+                              MyText(
                                 loyaltyMyRewardsPage.body.myCode.data ,
                                 style: TextStyle(
                                   color: Color(int.parse(loyaltyMyRewardsPage.body.myCode.color)),
@@ -278,7 +279,7 @@ class _MyGiftsState extends State<MyGifts> {
                                   fontFamily: lng?.header5.textFamily,),
                                 textAlign: TextAlign.center,)
 
-                              // Text(
+                              // MyText(
                               //   getTranslated(context, "dashBoardTitle-myCode")!,
                               //   style: TextStyle(color: Colors.white,
                               //     fontSize: 20,

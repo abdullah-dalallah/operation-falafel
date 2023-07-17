@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/screens/item%20details%20page/item_details_sheet.dart';
 
@@ -34,7 +35,7 @@ class RepeatLastCustomizationSheet extends StatelessWidget{
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      MyText(
                           getTranslated(context, "repeatOrder")!,
                           style: TextStyle(
                               fontFamily:  getTranslated(context, "fontFamilyBody")!,
@@ -53,8 +54,8 @@ class RepeatLastCustomizationSheet extends StatelessWidget{
                 const Divider(color: Colors.grey,),
                 const ListTile(
                   title:
-                  Text("Chicken Fatteh", style: TextStyle(color: Colors.amber,fontWeight: FontWeight.bold, ),),
-                  subtitle:Text("perfect for shharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w300),),
+                  MyText("Chicken Fatteh", style: TextStyle(color: Colors.amber,fontWeight: FontWeight.bold, ),),
+                  subtitle:MyText("perfect for shharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w300),),
 
                 ),
                 // const Expanded(child:  SizedBox(height: 10,)),
@@ -116,7 +117,7 @@ class RepeatLastCustomizationSheet extends StatelessWidget{
                           style: BorderStyle.solid,
                         ),
                       ),
-                      child: Text( getTranslated(context, "addNew")!,style: TextStyle(fontSize:15,color: Colors.amber,  fontFamily:  getTranslated(context, "fontFamilyBody", )!,), ),
+                      child: MyText( getTranslated(context, "addNew")!,style: TextStyle(fontSize:15,color: Colors.amber,  fontFamily:  getTranslated(context, "fontFamilyBody", )!,), ),
                     ),
                   ),
                 ),
@@ -141,7 +142,7 @@ class RepeatLastCustomizationSheet extends StatelessWidget{
                           style: BorderStyle.solid,
                         ),
                       ),
-                      child: Text( getTranslated(context, "repeatLast")!, style: TextStyle(fontSize:15,color: Colors.white, fontFamily:  getTranslated(context, "fontFamilyBody")!,)),
+                      child: MyText( getTranslated(context, "repeatLast")!, style: TextStyle(fontSize:15,color: Colors.white, fontFamily:  getTranslated(context, "fontFamilyBody")!,)),
                     ),
                   ),
                 ),

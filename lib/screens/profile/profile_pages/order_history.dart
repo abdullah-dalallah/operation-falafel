@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -61,7 +62,7 @@ class OrderHistory extends StatelessWidget{
                         backgroundColor: Colors.transparent,
                         elevation: 0,
                         centerTitle: true,
-                        title: Text(
+                        title: MyText(
                           orderHistoryPage.appBar.title.data,
                           style: TextStyle(
                               fontFamily: "${lng?.logoTitle.textFamily}",
@@ -73,7 +74,7 @@ class OrderHistory extends StatelessWidget{
                           constraints: BoxConstraints(maxWidth: 450,),
                           child: Column(
                             children: [
-                              Text(
+                              MyText(
                                 orderHistoryPage.body.pageTitle.data,
                                 style: TextStyle(
                                     fontFamily:lng?.titleHeader2.textFamily,
@@ -81,7 +82,7 @@ class OrderHistory extends StatelessWidget{
                                     fontSize:lng?.titleHeader2.size.toDouble()
                                 ),),
 
-                              // Text(getTranslated(context, "orderHistory")!,
+                              // MyText(getTranslated(context, "orderHistory")!,
                               //   style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",
                               //       color: Colors.amber,
                               //       fontSize: double.parse(getTranslated(context, "fontFamilyTitleُSize")!)),),
@@ -125,7 +126,7 @@ class OrderHistory extends StatelessWidget{
                                           Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
-                                              Text(getTranslated(context, "newOrder")!,
+                                              MyText(getTranslated(context, "newOrder")!,
                                                 style: TextStyle(
                                                     fontFamily: lng?.header3.textFamily,
                                                     color: Color(int.parse(orderHistoryPage.body.orderList.orderTitle.color)),
@@ -137,7 +138,7 @@ class OrderHistory extends StatelessWidget{
                                                 //     color: Colors.green,
                                                 //     fontSize: 15),
                                               ),
-                                              Text("2022-10-19 20:22:17",
+                                              MyText("2022-10-19 20:22:17",
 
                                                 style: TextStyle(
                                                     fontFamily: lng?.header3.textFamily,
@@ -202,13 +203,13 @@ class OrderHistory extends StatelessWidget{
                                                         //   color: Colors.white54,
                                                         //   size: 14,),
                                                         SizedBox(width: 5,),
-                                                        Text( orderHistoryPage.body.orderList.viewReceipt.data,
+                                                        MyText( orderHistoryPage.body.orderList.viewReceipt.data,
                                                             style: TextStyle(
                                                                 fontFamily: lng?.header1.textFamily,
                                                                 color: Color(int.parse(orderHistoryPage.body.orderList.viewReceipt.color)),
                                                                 fontSize: lng?.header1.size.toDouble())
                                                         ),
-                                                        // Text(getTranslated(context, "viewReceipt")!,
+                                                        // MyText(getTranslated(context, "viewReceipt")!,
                                                         //     style: TextStyle(
                                                         //         fontFamily: getTranslated(context, "fontFamilyBody")!,
                                                         //         color: Colors.white,
@@ -249,13 +250,13 @@ class OrderHistory extends StatelessWidget{
                                                           color: Colors.white54,
                                                         ),
                                                         SizedBox(width: 5,),
-                                                        Text(
+                                                        MyText(
                                                             orderHistoryPage.body.orderList.reorder.data,
                                                             style: TextStyle(
                                                                 fontFamily: lng?.header1.textFamily,
                                                                 color: Color(int.parse(orderHistoryPage.body.orderList.reorder.color)),
                                                                 fontSize: lng?.header1.size.toDouble())),
-                                                        // Text(
+                                                        // MyText(
                                                         //     getTranslated(context, "reOrder")!,
                                                         //     style: TextStyle(
                                                         //         fontFamily: getTranslated(context, "fontFamilyBody")!,
@@ -303,7 +304,7 @@ class OrderHistory extends StatelessWidget{
                                           Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
-                                              Text(getTranslated(context, "newOrder")!,
+                                              MyText(getTranslated(context, "newOrder")!,
                                                 style: TextStyle(
                                                     fontFamily: lng?.header3.textFamily,
                                                     color: Color(int.parse(orderHistoryPage.body.orderList.orderTitle.color)),
@@ -315,7 +316,7 @@ class OrderHistory extends StatelessWidget{
                                                 //     color: Colors.green,
                                                 //     fontSize: 15),
                                               ),
-                                              Text("2022-10-19 20:22:17",
+                                              MyText("2022-10-19 20:22:17",
 
                                                 style: TextStyle(
                                                     fontFamily: lng?.header3.textFamily,
@@ -380,13 +381,13 @@ class OrderHistory extends StatelessWidget{
                                                         //   color: Colors.white54,
                                                         //   size: 14,),
                                                         SizedBox(width: 5,),
-                                                        Text( orderHistoryPage.body.orderList.viewReceipt.data,
+                                                        MyText( orderHistoryPage.body.orderList.viewReceipt.data,
                                                             style: TextStyle(
                                                                 fontFamily: lng?.header1.textFamily,
                                                                 color: Color(int.parse(orderHistoryPage.body.orderList.viewReceipt.color)),
                                                                 fontSize: lng?.header1.size.toDouble())
                                                         ),
-                                                        // Text(getTranslated(context, "viewReceipt")!,
+                                                        // MyText(getTranslated(context, "viewReceipt")!,
                                                         //     style: TextStyle(
                                                         //         fontFamily: getTranslated(context, "fontFamilyBody")!,
                                                         //         color: Colors.white,
@@ -427,13 +428,13 @@ class OrderHistory extends StatelessWidget{
                                                           color: Colors.white54,
                                                         ),
                                                         SizedBox(width: 5,),
-                                                        Text(
+                                                        MyText(
                                                             orderHistoryPage.body.orderList.reorder.data,
                                                             style: TextStyle(
                                                                 fontFamily: lng?.header1.textFamily,
                                                                 color: Color(int.parse(orderHistoryPage.body.orderList.reorder.color)),
                                                                 fontSize: lng?.header1.size.toDouble())),
-                                                        // Text(
+                                                        // MyText(
                                                         //     getTranslated(context, "reOrder")!,
                                                         //     style: TextStyle(
                                                         //         fontFamily: getTranslated(context, "fontFamilyBody")!,
@@ -482,13 +483,13 @@ class OrderHistory extends StatelessWidget{
                                     //       Column(
                                     //         crossAxisAlignment: CrossAxisAlignment.start,
                                     //         children: [
-                                    //           Text(getTranslated(context, "newOrder")!,
+                                    //           MyText(getTranslated(context, "newOrder")!,
                                     //             style: TextStyle(
                                     //                 fontFamily: "${getTranslated(
                                     //                     context, "fontFamilyBody")!}",
                                     //                 color: Colors.green,
                                     //                 fontSize: 15),),
-                                    //           Text("2022-10-19 20:22:17",
+                                    //           MyText("2022-10-19 20:22:17",
                                     //             style: TextStyle(
                                     //                 fontFamily: "${getTranslated(
                                     //                     context, "fontFamilyBody")!}",
@@ -544,7 +545,7 @@ class OrderHistory extends StatelessWidget{
                                     //                       color: Colors.white54,
                                     //                       size: 14,),
                                     //                     SizedBox(width: 5,),
-                                    //                     Text(getTranslated(
+                                    //                     MyText(getTranslated(
                                     //                         context, "viewReceipt")!,
                                     //                         style: TextStyle(
                                     //                             fontFamily: getTranslated(
@@ -590,7 +591,7 @@ class OrderHistory extends StatelessWidget{
                                     //                       color: Colors.white54,
                                     //                       size: 14,),
                                     //                     SizedBox(width: 5,),
-                                    //                     Text(getTranslated(
+                                    //                     MyText(getTranslated(
                                     //                         context, "reOrder")!,
                                     //                         style: TextStyle(
                                     //                             fontFamily: getTranslated(

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/providers/demo_cart/demo_cart_provider.dart';
 import 'package:operation_falafel/screens/item%20details%20page/item_details_sheet.dart';
 import 'package:operation_falafel/screens/tabbar%20menu%20page/widgets/repeat_last_customization_sheet.dart';
@@ -173,7 +174,7 @@ class _ImageWithAddButtonState extends State<ImageWithAddButton> {
                                             textStyle: MaterialStateProperty
                                                 .all(
                                                 const TextStyle(fontSize: 30))),
-                                        child:  Text(
+                                        child:  MyText(
                                           menuPage?.body.itemsList.addButton.data as String,
                                           style: TextStyle(
                                               color: Color(int.parse( menuPage?.body.itemsList.addButton.color as String)),
@@ -290,10 +291,10 @@ class _ImageWithAddButtonState extends State<ImageWithAddButton> {
 
                                 (value.cartItems.isEmpty) ?
                                 const SizedBox(width: 30,
-                                  child: Text(
+                                  child: MyText(
                                     "0", textAlign: TextAlign.center,),) :
                                 SizedBox(width: 30,
-                                  child: Text(
+                                  child: MyText(
                                       "${value.cartItems[0].itemQuantity}",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(color: Colors.white)),),

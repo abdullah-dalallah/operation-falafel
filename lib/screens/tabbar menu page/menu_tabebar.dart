@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/screens/item%20details%20page/item_details_sheet.dart';
 import 'package:operation_falafel/screens/tabbar%20menu%20page/widgets/custom_list_tile.dart';
@@ -95,7 +96,7 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                       SliverAppBar(
 
 
-                        title: Text(
+                        title: MyText(
                           getTranslated(context, "operationFalafelLogo")!,
                           style: TextStyle(
                             fontFamily:lng?.logoTitle.textFamily,
@@ -205,32 +206,32 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                             controller: _cardController,
                             isScrollable: true,
                             tabs: const[
-                              Tab(child: Text("NEW AT O:F",
+                              Tab(child: MyText("NEW AT O:F",
                                 style: TextStyle(fontSize: 15),),),
-                              Tab(child: Text("FALAFEL & CO",
+                              Tab(child: MyText("FALAFEL & CO",
                                   style: TextStyle(fontSize: 15)),),
-                              Tab(child: Text("MANAEESH & WRAPS",
-                                  style: TextStyle(fontSize: 15)),),
-
-                              Tab(child: Text("SANDWICHES",
-                                  style: TextStyle(fontSize: 15)),),
-                              Tab(child: Text("O:F BOXES",
-                                  style: TextStyle(fontSize: 15)),),
-                              Tab(child: Text("SOUP & SALADS",
+                              Tab(child: MyText("MANAEESH & WRAPS",
                                   style: TextStyle(fontSize: 15)),),
 
-                              Tab(child: Text(
+                              Tab(child: MyText("SANDWICHES",
+                                  style: TextStyle(fontSize: 15)),),
+                              Tab(child: MyText("O:F BOXES",
+                                  style: TextStyle(fontSize: 15)),),
+                              Tab(child: MyText("SOUP & SALADS",
+                                  style: TextStyle(fontSize: 15)),),
+
+                              Tab(child: MyText(
                                   "PLATTERS", style: TextStyle(fontSize: 15)),),
-                              Tab(child: Text(
+                              Tab(child: MyText(
                                   "O:F KIDS", style: TextStyle(fontSize: 15)),),
-                              Tab(child: Text(
+                              Tab(child: MyText(
                                   "XL MEZZA", style: TextStyle(fontSize: 15)),),
 
-                              Tab(child: Text(
+                              Tab(child: MyText(
                                   "DESSERTS", style: TextStyle(fontSize: 15)),),
-                              Tab(child: Text(
+                              Tab(child: MyText(
                                   "DRINKS", style: TextStyle(fontSize: 15)),),
-                              Tab(child: Text(
+                              Tab(child: MyText(
                                   "SAUCES", style: TextStyle(fontSize: 15)),),
 
 

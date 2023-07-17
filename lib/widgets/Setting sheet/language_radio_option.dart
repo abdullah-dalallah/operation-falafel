@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 
 class LanguageRadioOption<T> extends StatelessWidget{
@@ -47,9 +48,9 @@ class LanguageRadioOption<T> extends StatelessWidget{
     );
   }
 
-  Widget _buildText() {
+  Widget _buildMyText() {
     final bool isSelected = value == groupValue;
-    return Text(
+    return MyText(
       name,
       style:  TextStyle(color:isSelected?Colors.amber: Colors.white, fontSize: 15,fontWeight: FontWeight.w300),
     );
@@ -80,7 +81,7 @@ class LanguageRadioOption<T> extends StatelessWidget{
                   child: Image.network(iconImage,height: 30,width: 30,fit: BoxFit.cover,)),
               const SizedBox(width: 10),
               // ImageIcon(NetworkImage(iconImage)),
-              _buildText(),
+              _buildMyText(),
               Expanded(child: const SizedBox(width: 10)),
               _buildLabel(),
 

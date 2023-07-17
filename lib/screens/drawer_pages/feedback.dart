@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/data/keys.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/data/snackBarGenerator.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
@@ -87,7 +88,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
               backgroundColor: Colors.transparent,
               elevation: 0,
               centerTitle: true,
-              title:  Text(
+              title:  MyText(
                 drawerFeedBackPage.appBar.title.data,
                 style: TextStyle(
                     fontFamily: "${lng?.logoTitle.textFamily}",
@@ -124,14 +125,14 @@ class _FeedbackPageState extends State<FeedbackPage> {
                               children: [
                                 StarsWidgets((value) => {setStars(value)}),
                                 const SizedBox(height: 10,),
-                                Text(
+                                MyText(
                                   drawerFeedBackPage.body.promotTitle.data,
                                   style: TextStyle(
                                       fontFamily: "${lng?.header5.textFamily}",
                                       color: Color(int.parse(drawerFeedBackPage.body.promotTitle.color)),
                                       fontSize: lng?.header5.size.toDouble()
                                   ),
-                                // Text(getTranslated(context, "weLoveToHereFromYou")!,
+                                // MyText(getTranslated(context, "weLoveToHereFromYou")!,
                                 //   style: TextStyle(
                                 //       fontFamily: "${getTranslated(context, "fontFamilyBody")!}",
                                 //       color: Colors.amber,
@@ -225,13 +226,13 @@ class _FeedbackPageState extends State<FeedbackPage> {
                                           ),
                                             const  SizedBox(width: 5,),
                                           (authProvider.loggedInUser?.token !=null)?
-                                          Text(
+                                          MyText(
                                             drawerFeedBackPage.body.submitButton.data,
                                             style: TextStyle(
                                                 fontFamily: lng?.header5.textFamily,
                                                 color: Color(int.parse(drawerFeedBackPage.body.submitButton.color)),
                                                 fontSize: lng?.header5.size.toDouble()),)
-                                              :Text(
+                                              :MyText(
                                             "Login",
                                             style: TextStyle(
                                                 fontFamily: lng?.header5.textFamily,
@@ -242,7 +243,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                                         ],),
 
 
-                                        // Text(
+                                        // MyText(
                                         //   getTranslated(context, "submit")!,
                                         //   style: TextStyle(
                                         //       fontFamily: getTranslated(context, "fontFamilyBody")!,

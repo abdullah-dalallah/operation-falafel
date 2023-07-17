@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/widgets/Map/custom_animated_marker.dart';
 
 import 'package:shimmer/shimmer.dart';
@@ -58,7 +59,7 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       // appBar: AppBar(
-      //   title: Text('Google Maps'),
+      //   title: MyText('Google Maps'),
       // ),
       body: SafeArea(
         child: Stack(
@@ -151,14 +152,14 @@ class _MapPageState extends State<MapPage> {
 
                         onTap: (){},
                         tileColor: Colors.transparent,
-                        title: Text(
+                        title: MyText(
                           "Choose your location",
                           style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,fontSize: double.parse(getTranslated(context, "cartpageHeader2SubTotal")!)),
 
                         ),
                         subtitle:
                         // addressName!=''?
-                        // Text(addressName,
+                        // MyText(addressName,
                         //   style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,fontSize: double.parse(getTranslated(context, "cartpageHeader2SubTotal")!))
                         //   ,maxLines: 1,overflow: TextOverflow.ellipsis,)
                         //     :
@@ -178,7 +179,7 @@ class _MapPageState extends State<MapPage> {
                         //   ),
                         //
                         // ),
-                          Text('Ana Hair Extension DXB, 34GR+68R - Marina Street - Dubai Marina - Dubai',
+                          MyText('Ana Hair Extension DXB, 34GR+68R - Marina Street - Dubai Marina - Dubai',
                             style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,fontSize: double.parse(getTranslated(context, "cartpageHeader2SubTotal")!))
                             ,maxLines: 1,overflow: TextOverflow.ellipsis,)
                       ),
@@ -210,7 +211,7 @@ class _MapPageState extends State<MapPage> {
                                   onPressed: () {
 
                                   },
-                                  child: Text(
+                                  child: MyText(
                                    " Confirm location",
                                     style: TextStyle(color: Colors.white, fontSize: 15),
                                   ),
@@ -239,7 +240,7 @@ class _MapPageState extends State<MapPage> {
                                 onPressed: () {
                                   Navigator.pop(context);
                                 },
-                                child: Text(
+                                child: MyText(
                                   "Cancel",
                                   style: TextStyle(color: Colors.black,fontSize: 15),
                                 ),

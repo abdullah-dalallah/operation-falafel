@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:operation_falafel/data/keys.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/data/snackBarGenerator.dart';
 import 'package:operation_falafel/data/strings.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
@@ -101,19 +102,19 @@ class _VerifyUserByOtpWidgetState extends State<VerifyUserByOtpWidget> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("${getTranslated(context, "verifyYourIdentity")}", style: TextStyle(
+            MyText("${getTranslated(context, "verifyYourIdentity")}", style: TextStyle(
                 fontFamily: getTranslated(context, "fontFamilyBody"),
                 color:  Colors.amber,
                 fontSize: double.parse(getTranslated(context, "cartpageHeader2")!),
                 fontWeight: FontWeight.w300),),
             const SizedBox(height: 20,),
-            Text("${getTranslated(context, "verifyYourIdentityMsg")}", style: TextStyle(
+            MyText("${getTranslated(context, "verifyYourIdentityMsg")}", style: TextStyle(
                 fontFamily: getTranslated(context, "fontFamilyBody"),
                 color:  Colors.white54,
                 fontSize: double.parse(getTranslated(context, "cartpageHeader3")!),
                 fontWeight: FontWeight.w300), textAlign: TextAlign.center,),
             const SizedBox(height: 20,),
-            Text("${widget.statusString}", style: TextStyle(
+            MyText("${widget.statusString}", style: TextStyle(
                 fontFamily: getTranslated(context, "fontFamilyBody"),
                 color:  Colors.amber,
                 fontSize: double.parse(getTranslated(context, "cartpageHeader3")!),

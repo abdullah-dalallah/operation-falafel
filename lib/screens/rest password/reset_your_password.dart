@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/data/keys.dart';
+import 'package:operation_falafel/data/my_text.dart';
+import 'package:operation_falafel/data/my_text_form_field.dart';
 import 'package:operation_falafel/data/snackBarGenerator.dart';
 import 'package:operation_falafel/data/strings.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
@@ -95,9 +97,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               ),
               backgroundColor: Colors.transparent,
               elevation: 0,
-              // title: Text("${widget.otp}/  ${widget.phoneNumber}")
+              // title: MyText("${widget.otp}/  ${widget.phoneNumber}")
               // centerTitle: true,
-              // title:Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),),
+              // title:MyText(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),),
               // actions: [],
             ),
             body: Center(
@@ -122,7 +124,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                   Padding(
                                     padding: const EdgeInsets.only(
                                         top: 45.0, right: 20, left: 20),
-                                    child: Text("${resetPasswordPage.pageTile!.data!}",
+                                    child: MyText("${resetPasswordPage.pageTile!.data!}",
                                       style: TextStyle(
                                           fontFamily: getTranslated(context, "fontFamilyButtons"),
                                           color: Colors.amber,
@@ -190,12 +192,12 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                                 left: 8, right: 8, bottom: 5),
                                             child:
 
-                                            Text(
+                                            MyText(
                                               "${resetPasswordPage.form!.currentPassword!.data}*",
                                               style: TextStyle(
                                                   fontFamily: lng?.header2.textFamily,
                                                   color: Color(int.parse( resetPasswordPage.form!.currentPassword!.color))),),
-                                            // Text(
+                                            // MyText(
                                             //   "Current Password*",
                                             //   style: TextStyle(
                                             //       fontFamily: getTranslated(
@@ -203,7 +205,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                             //       color: Colors.amber),),
                                           ),
 
-                                          TextFormField(
+                                          MyTextFormField(
                                             controller: currentPasswordController,
                                             obscureText: _obscureTextcurrentPassword,
                                             enableSuggestions: false,
@@ -242,7 +244,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                               ),
                                               hintText: '',
 
-                                              // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+                                              // label: MyText(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
 
                                             ),
                                             validator: (value) {
@@ -287,7 +289,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                                     "assets/images/page2orders_icon.png",
                                                     height: 10,),
                                                   SizedBox(width: 5,),
-                                                  Text(
+                                                  MyText(
                                                     "Password must be 6-30 characters",
                                                     style: TextStyle(
                                                         color: Colors.red),)
@@ -301,7 +303,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                                     "assets/images/page2orders_icon.png",
                                                     height: 10,),
                                                   SizedBox(width: 5,),
-                                                  Text(
+                                                  MyText(
                                                     "Password must be contain only letters",
                                                     style: TextStyle(
                                                         color: Colors.red),)
@@ -315,7 +317,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                                     "assets/images/page2orders_icon.png",
                                                     height: 10,),
                                                   SizedBox(width: 5,),
-                                                  Text(
+                                                  MyText(
                                                     "Password must be contain numbers",
                                                     style: TextStyle(
                                                         color: Colors.red),)
@@ -331,7 +333,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                                     "assets/images/page2orders_icon.png",
                                                     height: 10,),
                                                   SizedBox(width: 5,),
-                                                  Text(
+                                                  MyText(
                                                     "Password must be contain \nspecial characters (!@#\$%^&*())",
                                                     style: TextStyle(
                                                         color: Colors.red),)
@@ -380,7 +382,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                           left: 8, right: 8, bottom: 5),
                                       child:
 
-                                      Text(
+                                      MyText(
                                         "${resetPasswordPage.form!.newPassword!.data}*",
                                         style: TextStyle(
                                             fontFamily: lng?.header2.textFamily,
@@ -388,7 +390,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
 
                                     ),
 
-                                    TextFormField(
+                                    MyTextFormField(
                                       controller: newPasswordController,
                                       obscureText: _obscureTextNewPassword,
                                       enableSuggestions: false,
@@ -427,7 +429,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                         ),
                                         hintText: '',
 
-                                        // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+                                        // label: MyText(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
 
                                       ),
                                       validator: (value) {
@@ -474,7 +476,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                               "assets/images/page2orders_icon.png",
                                               height: 10,),
                                             SizedBox(width: 5,),
-                                            Text(
+                                            MyText(
                                               "Password must be 6-30 characters",
                                               style: TextStyle(
                                                   color: Colors.red),)
@@ -488,7 +490,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                               "assets/images/page2orders_icon.png",
                                               height: 10,),
                                             SizedBox(width: 5,),
-                                            Text(
+                                            MyText(
                                               "Password must be contain only letters",
                                               style: TextStyle(
                                                   color: Colors.red),)
@@ -502,7 +504,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                               "assets/images/page2orders_icon.png",
                                               height: 10,),
                                             SizedBox(width: 5,),
-                                            Text(
+                                            MyText(
                                               "Password must be contain numbers",
                                               style: TextStyle(
                                                   color: Colors.red),)
@@ -518,7 +520,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                               "assets/images/page2orders_icon.png",
                                               height: 10,),
                                             SizedBox(width: 5,),
-                                            Text(
+                                            MyText(
                                               "Password must be contain \nspecial characters (!@#\$%^&*())",
                                               style: TextStyle(
                                                   color: Colors.red),)
@@ -562,12 +564,12 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                           left: 8, right: 8, bottom: 5),
                                       child:
 
-                                      Text(
+                                      MyText(
                                       "${ resetPasswordPage.form!.confirmPassword!.data}*",
                                         style: TextStyle(
                                             fontFamily: lng?.header2.textFamily,
                                             color: Color(int.parse(resetPasswordPage.form!.confirmPassword!.color))),),
-                                      // Text(
+                                      // MyText(
                                       //   "Confirm Password*",
                                       //   style: TextStyle(
                                       //       fontFamily: getTranslated(
@@ -575,7 +577,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                       //       color: Colors.amber),),
                                     ),
 
-                                    TextFormField(
+                                    MyTextFormField(
                                       controller: confirmNewPasswordController,
                                       obscureText: _obscureTextConfirmNewPassword,
                                       enableSuggestions: false,
@@ -613,7 +615,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                         ),
                                         hintText: '',
 
-                                        // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+                                        // label: MyText(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
 
                                       ),
                                       validator: (value) {
@@ -663,7 +665,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                               "assets/images/page2orders_icon.png",
                                               height: 10,),
                                             SizedBox(width: 5,),
-                                            Text(
+                                            MyText(
                                               "Password must be 6-30 characters",
                                               style: TextStyle(
                                                   color: Colors.red),)
@@ -677,7 +679,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                               "assets/images/page2orders_icon.png",
                                               height: 10,),
                                             SizedBox(width: 5,),
-                                            Text(
+                                            MyText(
                                               "Password must be contain only letters",
                                               style: TextStyle(
                                                   color: Colors.red),)
@@ -691,7 +693,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                               "assets/images/page2orders_icon.png",
                                               height: 10,),
                                             SizedBox(width: 5,),
-                                            Text(
+                                            MyText(
                                               "Password must be contain numbers",
                                               style: TextStyle(
                                                   color: Colors.red),)
@@ -707,7 +709,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                               "assets/images/page2orders_icon.png",
                                               height: 10,),
                                             SizedBox(width: 5,),
-                                            Text(
+                                            MyText(
                                               "Password must be contain \nspecial characters (!@#\$%^&*())",
                                               style: TextStyle(
                                                   color: Colors.red),)

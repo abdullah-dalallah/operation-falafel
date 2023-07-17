@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
+import 'package:operation_falafel/data/my_text_form_field.dart';
 import 'package:operation_falafel/providers/ProfileProviders/profile_provider.dart';
 import 'package:operation_falafel/screens/rest%20password/forget_your_password.dart';
 import 'package:operation_falafel/widgets/background.dart';
@@ -74,7 +76,7 @@ class _LoginState extends State<Login> {
                 backgroundColor: Colors.transparent,
                 elevation: 0,
                 // centerTitle: true,
-                // title:Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),),
+                // title:MyText(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),),
                 // actions: [],
               ),
               body: Form(
@@ -98,7 +100,7 @@ class _LoginState extends State<Login> {
                                 ),
                               ),
 
-                              Text(
+                              MyText(
                                 loginPage.pageTile.data,
                                 style: TextStyle(
                                     fontFamily: lng?.titleHeader2.textFamily,
@@ -108,7 +110,7 @@ class _LoginState extends State<Login> {
                                 ),
                                 textAlign: TextAlign.center,
                               ),
-                              // Text(getTranslated(context, "welcomeBack")!,
+                              // MyText(getTranslated(context, "welcomeBack")!,
                               //   style: TextStyle(fontFamily: getTranslated(
                               //       context, "fontFamilyButtons"),
                               //       color: Colors.amber,
@@ -145,19 +147,19 @@ class _LoginState extends State<Login> {
                                         padding: const EdgeInsets.only(
                                             left: 8.0, right: 8, bottom: 5),
                                         child:
-                                        Text(
+                                        MyText(
                                           loginPage.form.email.data,
                                           style: TextStyle(
                                               fontFamily: lng?.header2.textFamily,
                                               color: Color(int.parse(loginPage.form.email.color))),),
-                                        // Text("${getTranslated(context, "emailAddress")!} :",
+                                        // MyText("${getTranslated(context, "emailAddress")!} :",
                                         //   style: TextStyle(fontFamily: getTranslated(
                                         //       context, "fontFamilyBody")!,
                                         //       color: Colors.amber),),
                                       ),
                                       SizedBox(
 
-                                        child: TextFormField(
+                                        child: MyTextFormField(
                                           controller: _controllerEmail,
                                           keyboardType: TextInputType.emailAddress,
                                           validator: (value) {
@@ -210,7 +212,7 @@ class _LoginState extends State<Login> {
                                             ),
                                             hintText: '',
 
-                                            // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+                                            // label: MyText(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
 
                                           ),
 
@@ -249,14 +251,14 @@ class _LoginState extends State<Login> {
                                       Padding(
                                         padding: const EdgeInsets.only(
                                             left: 8.0, right: 8, bottom: 5),
-                                        child:        Text(
+                                        child:        MyText(
                                           loginPage.form.password.data,
                                           style: TextStyle(
                                               fontFamily: lng?.header2.textFamily,
                                               color: Color(int.parse(loginPage.form.password.color))),),
                                       ),
                                        SizedBox(
-                                        child: TextFormField(
+                                        child: MyTextFormField(
                                           controller: _controllerPassword,
                                           validator: (value) {
                                             if (value!.isEmpty) {
@@ -322,7 +324,7 @@ class _LoginState extends State<Login> {
                                                       });
                                               }, icon: Icon( _securePassword ? Icons.visibility : Icons.visibility_off, color: Colors.amber,)),
                                             hintText: '',
-                                            // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+                                            // label: MyText(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
 
                                           ),
 

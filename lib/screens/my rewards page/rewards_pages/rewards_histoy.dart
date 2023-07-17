@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:provider/provider.dart';
 
@@ -56,7 +57,7 @@ class _RewardsHistoryState extends State<RewardsHistory> {
               backgroundColor: Colors.transparent,
               elevation: 0,
               centerTitle: true,
-              title: Text(
+              title: MyText(
                 "${loyaltyHistoryPage?.appBar.title.data}",
                 style: TextStyle(
                     fontFamily: "${lng?.logoTitle.textFamily}",
@@ -72,14 +73,14 @@ class _RewardsHistoryState extends State<RewardsHistory> {
                     const SizedBox(height: 25,),
 
                     /// - Title
-                    Text(
+                    MyText(
                       loyaltyHistoryPage?.body.pageTitle.data as String,
                       style: TextStyle(
                           fontFamily: lng?.titleHeader2.textFamily,
                           color: Color(int.parse(loyaltyHistoryPage?.body.pageTitle.color as String)),
                           fontSize: lng?.titleHeader2.size.toDouble()),
                       textAlign: TextAlign.center,),
-                    // Text(
+                    // MyText(
                     //   getTranslated(context, "history")!,
                     //   style: TextStyle(
                     //     fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",
@@ -96,17 +97,17 @@ class _RewardsHistoryState extends State<RewardsHistory> {
                             padding: const EdgeInsets.only(
                                 left: 50.0, right: 50),
                             child: ListTile(
-                              title: Text("${getTranslated(context, "earnd")!}",
+                              title: MyText("${getTranslated(context, "earnd")!}",
                                 style: TextStyle(fontSize: 15, color: Color(int.parse(loyaltyHistoryPage?.body.historyList.title.color as String,))),),
                               subtitle: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text("2.09625 ${getTranslated(context, "pointEarnd")!} 19.75",
+                                  MyText("2.09625 ${getTranslated(context, "pointEarnd")!} 19.75",
                                     style: TextStyle(
                                         fontSize: 15,
                                         fontFamily: getTranslated(context, "fontFamilyBody")!,
                                         color: Color(int.parse(loyaltyHistoryPage?.body.historyList.subTitle.color as String,))),),
-                                  Text("2022-10-19 20:22:17", style: TextStyle(
+                                  MyText("2022-10-19 20:22:17", style: TextStyle(
                                       fontSize: 13,
                                       fontFamily: getTranslated(
                                           context, "fontFamilyBody")!,

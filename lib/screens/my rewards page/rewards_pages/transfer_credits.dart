@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:provider/provider.dart';
@@ -61,7 +62,7 @@ class _TransferCreditState extends State<TransferCredit> {
               backgroundColor: Colors.transparent,
               elevation: 0,
               centerTitle: true,
-              title: Text(
+              title: MyText(
                 loyaltyTransferCreditPage.appBar.title.data,
                 style: TextStyle(
                     fontFamily: "${lng?.logoTitle.textFamily}",
@@ -89,7 +90,7 @@ class _TransferCreditState extends State<TransferCredit> {
                                   Padding(
                                     padding: const EdgeInsets.all(38.0),
                                     child:
-                                    Text(
+                                    MyText(
                                       loyaltyTransferCreditPage.body.pageTitle.data,
                                       style: TextStyle(
                                           fontFamily: lng?.titleHeader2.textFamily,
@@ -98,7 +99,7 @@ class _TransferCreditState extends State<TransferCredit> {
                                           textAlign: TextAlign.center,
                                     ),
 
-                                    // Text(
+                                    // MyText(
                                     //   getTranslated(context, "transferCreditsTitle")!,
                                     //   style: TextStyle(
                                     //       fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",
@@ -199,11 +200,11 @@ class _TransferCreditState extends State<TransferCredit> {
                                           mainAxisAlignment: MainAxisAlignment
                                               .center,
                                           children: [
-                                            Text('0', style: TextStyle(
+                                            MyText('0', style: TextStyle(
                                                 fontFamily: getTranslated(
                                                     context, "fontFamilyBody")!,
                                                 color: Color(int.parse(loyaltyTransferCreditPage.body.form.creditLeft.color))),),
-                                            Text(getTranslated(
+                                            MyText(getTranslated(
                                                 context, "creditLefts")!,
                                               style: TextStyle(
                                                   fontFamily: getTranslated(

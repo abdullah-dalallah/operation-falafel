@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/screens/profile/profile_pages/add_new_address.dart';
 import 'package:operation_falafel/screens/profile/profile_pages/update_address.dart';
@@ -68,7 +69,7 @@ class _SavedAddressState extends State<SavedAddress> {
                                 backgroundColor: Colors.transparent,
                                 elevation: 0,
                                 centerTitle: true,
-                                title: Text(
+                                title: MyText(
                                   savedAddressPage?.appBar.title.data as String,
                                   style: TextStyle(
                                       fontFamily: "${lng?.logoTitle.textFamily}",
@@ -80,7 +81,7 @@ class _SavedAddressState extends State<SavedAddress> {
                                   constraints: BoxConstraints(maxWidth: 450,),
                                   child: Column(
                                     children: [
-                                      Text(
+                                      MyText(
                                        savedAddressPage?.body.pageTitle.data as String,
                                         style: TextStyle(
                                             fontFamily: lng?.titleHeader2.textFamily,
@@ -89,7 +90,7 @@ class _SavedAddressState extends State<SavedAddress> {
                                         ),
                                       ),
 
-                                      // Text(
+                                      // MyText(
                                       //   getTranslated(context, "savedAddressTitl")!,
                                       //   style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",
                                       //       color: Colors.amber,
@@ -133,7 +134,7 @@ class _SavedAddressState extends State<SavedAddress> {
 
 
                                               ),
-                                              child: Text(
+                                              child: MyText(
                                                 getTranslated(context, "addNewAddress")!,
                                                 style: TextStyle(
                                                     fontFamily: lng?.header3.textFamily,

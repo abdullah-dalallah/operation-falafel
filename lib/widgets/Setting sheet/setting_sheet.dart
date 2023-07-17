@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/widgets/Setting%20sheet/list_of_languages.dart';
 
@@ -38,7 +39,7 @@ class _SettingSheetState extends State<SettingSheet> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      // Text(
+                      // MyText(
                       //     loyaltyPaymentSheet.sheetTile.data,
                       //     style: TextStyle(
                       //         fontFamily: lng?.header3.textFamily,
@@ -46,7 +47,7 @@ class _SettingSheetState extends State<SettingSheet> {
                       //         fontWeight: FontWeight.w400,
                       //         color: Color(int.parse(loyaltyPaymentSheet.sheetTile.color))
                       //     )),
-                      Text(
+                      MyText(
                           getTranslated(context, "SettingSheetTitle")!,
                           style: TextStyle(
                               fontFamily: getTranslated(context, "fontFamilyBody")!,
@@ -100,14 +101,14 @@ class _SettingSheetState extends State<SettingSheet> {
                  },
                   tileColor: Colors.white,
                   title:
-                  // Text(loyaltyPaymentSheet.selectPaymentTitle.data,
+                  // MyText(loyaltyPaymentSheet.selectPaymentTitle.data,
                   //   style: TextStyle(
                   //       fontSize: lng?.header3.size.toDouble(),
                   //       fontFamily: lng?.header3.textFamily,
                   //       color: Color(int.parse(loyaltyPaymentSheet.selectPaymentTitle.color)),
                   //       fontWeight: FontWeight.bold
                   //   ),),
-                  Text(
+                  MyText(
                     getTranslated(context, "language")!,
                     style: TextStyle(
                         fontSize: 15,
@@ -123,7 +124,7 @@ class _SettingSheetState extends State<SettingSheet> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text(
+                            MyText(
                               getTranslated(context, "languageName")!,
                               style: TextStyle(
                                   fontSize: 15,
@@ -136,7 +137,7 @@ class _SettingSheetState extends State<SettingSheet> {
                         ),
                       )
 
-                  // subtitle:Text("perfect for shharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w300),),
+                  // subtitle:MyText("perfect for shharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w300),),
 
                 ),
 

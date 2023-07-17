@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 
 import 'Saved_address/saved_address_list_sheet.dart';
@@ -31,7 +32,7 @@ class AddressListSheet extends StatelessWidget{
            child: Row(
              mainAxisAlignment: MainAxisAlignment.spaceBetween,
              children: [
-               Text(
+               MyText(
                   getTranslated(context, "selectAddress")!,
                    style: TextStyle(
                      fontFamily:  getTranslated(context, "fontFamilyBody")!,
@@ -64,7 +65,7 @@ class AddressListSheet extends StatelessWidget{
                onPressed: () { },
                child: Row(
                  children: [
-                   Text(getTranslated(context, "addAddress")!,style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400, fontFamily:  getTranslated(context, "fontFamilyBody")!,),),
+                   MyText(getTranslated(context, "addAddress")!,style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400, fontFamily:  getTranslated(context, "fontFamilyBody")!,),),
                  ],
                ),
              ),
@@ -74,7 +75,7 @@ class AddressListSheet extends StatelessWidget{
 
           Padding(
            padding:  EdgeInsets.all(8.0),
-           child: Text( getTranslated(context, "savedAddress")!, style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300,fontFamily:  getTranslated(context, "fontFamilyBody")!),),
+           child: MyText( getTranslated(context, "savedAddress")!, style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300,fontFamily:  getTranslated(context, "fontFamilyBody")!),),
          ),
 
           SavedAddressListSheet(scrollController: scrollController),
@@ -86,11 +87,11 @@ class AddressListSheet extends StatelessWidget{
          //     padding: const EdgeInsets.only(top: 0),
          //     children: [
          //       ListTile(
-         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         title: MyText("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
          //         subtitle: Column(
          //           crossAxisAlignment: CrossAxisAlignment.start,
          //           children: [
-         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             MyText("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
          //            Divider(color: Colors.white,)
          //           ],
          //         ),
@@ -101,11 +102,11 @@ class AddressListSheet extends StatelessWidget{
          //
          //       ),
          //       ListTile(
-         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         title: MyText("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
          //         subtitle: Column(
          //           crossAxisAlignment: CrossAxisAlignment.start,
          //           children: [
-         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             MyText("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
          //             Divider(color: Colors.white,)
          //           ],
          //         ),
@@ -116,11 +117,11 @@ class AddressListSheet extends StatelessWidget{
          //
          //       ),
          //       ListTile(
-         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         title: MyText("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
          //         subtitle: Column(
          //           crossAxisAlignment: CrossAxisAlignment.start,
          //           children: [
-         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             MyText("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
          //             Divider(color: Colors.white,)
          //           ],
          //         ),
@@ -131,11 +132,11 @@ class AddressListSheet extends StatelessWidget{
          //
          //       ),
          //       ListTile(
-         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         title: MyText("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
          //         subtitle: Column(
          //           crossAxisAlignment: CrossAxisAlignment.start,
          //           children: [
-         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             MyText("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
          //             Divider(color: Colors.white,)
          //           ],
          //         ),
@@ -146,11 +147,11 @@ class AddressListSheet extends StatelessWidget{
          //
          //       ),
          //       ListTile(
-         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         title: MyText("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
          //         subtitle: Column(
          //           crossAxisAlignment: CrossAxisAlignment.start,
          //           children: [
-         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             MyText("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
          //             Divider(color: Colors.white,)
          //           ],
          //         ),
@@ -161,11 +162,11 @@ class AddressListSheet extends StatelessWidget{
          //
          //       ),
          //       ListTile(
-         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         title: MyText("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
          //         subtitle: Column(
          //           crossAxisAlignment: CrossAxisAlignment.start,
          //           children: [
-         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             MyText("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
          //             Divider(color: Colors.white,)
          //           ],
          //         ),
@@ -176,57 +177,11 @@ class AddressListSheet extends StatelessWidget{
          //
          //       ),
          //       ListTile(
-         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         title: MyText("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
          //         subtitle: Column(
          //           crossAxisAlignment: CrossAxisAlignment.start,
          //           children: [
-         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
-         //             Divider(color: Colors.white,)
-         //           ],
-         //         ),
-         //         leading: Padding(
-         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
-         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
-         //         ),
-         //
-         //       ),
-         //
-         //       ListTile(
-         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
-         //         subtitle: Column(
-         //           crossAxisAlignment: CrossAxisAlignment.start,
-         //           children: [
-         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
-         //             Divider(color: Colors.white,)
-         //           ],
-         //         ),
-         //         leading: Padding(
-         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
-         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
-         //         ),
-         //
-         //       ),
-         //       ListTile(
-         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
-         //         subtitle: Column(
-         //           crossAxisAlignment: CrossAxisAlignment.start,
-         //           children: [
-         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
-         //             Divider(color: Colors.white,)
-         //           ],
-         //         ),
-         //         leading: Padding(
-         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
-         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
-         //         ),
-         //
-         //       ),
-         //       ListTile(
-         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
-         //         subtitle: Column(
-         //           crossAxisAlignment: CrossAxisAlignment.start,
-         //           children: [
-         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             MyText("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
          //             Divider(color: Colors.white,)
          //           ],
          //         ),
@@ -238,11 +193,57 @@ class AddressListSheet extends StatelessWidget{
          //       ),
          //
          //       ListTile(
-         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         title: MyText("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
          //         subtitle: Column(
          //           crossAxisAlignment: CrossAxisAlignment.start,
          //           children: [
-         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             MyText("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             Divider(color: Colors.white,)
+         //           ],
+         //         ),
+         //         leading: Padding(
+         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
+         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
+         //         ),
+         //
+         //       ),
+         //       ListTile(
+         //         title: MyText("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         subtitle: Column(
+         //           crossAxisAlignment: CrossAxisAlignment.start,
+         //           children: [
+         //             MyText("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             Divider(color: Colors.white,)
+         //           ],
+         //         ),
+         //         leading: Padding(
+         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
+         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
+         //         ),
+         //
+         //       ),
+         //       ListTile(
+         //         title: MyText("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         subtitle: Column(
+         //           crossAxisAlignment: CrossAxisAlignment.start,
+         //           children: [
+         //             MyText("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             Divider(color: Colors.white,)
+         //           ],
+         //         ),
+         //         leading: Padding(
+         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
+         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
+         //         ),
+         //
+         //       ),
+         //
+         //       ListTile(
+         //         title: MyText("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         subtitle: Column(
+         //           crossAxisAlignment: CrossAxisAlignment.start,
+         //           children: [
+         //             MyText("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
          //             Divider(color: Colors.white,)
          //           ],
          //         ),
@@ -256,11 +257,11 @@ class AddressListSheet extends StatelessWidget{
          //
          //
          //       ListTile(
-         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         title: MyText("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
          //         subtitle: Column(
          //           crossAxisAlignment: CrossAxisAlignment.start,
          //           children: [
-         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             MyText("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
          //             Divider(color: Colors.white,)
          //           ],
          //         ),
@@ -271,11 +272,11 @@ class AddressListSheet extends StatelessWidget{
          //
          //       ),
          //       ListTile(
-         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         title: MyText("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
          //         subtitle: Column(
          //           crossAxisAlignment: CrossAxisAlignment.start,
          //           children: [
-         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             MyText("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
          //             Divider(color: Colors.white,)
          //           ],
          //         ),
@@ -286,11 +287,11 @@ class AddressListSheet extends StatelessWidget{
          //
          //       ),
          //       ListTile(
-         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         title: MyText("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
          //         subtitle: Column(
          //           crossAxisAlignment: CrossAxisAlignment.start,
          //           children: [
-         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             MyText("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
          //             Divider(color: Colors.white,)
          //           ],
          //         ),
@@ -301,11 +302,11 @@ class AddressListSheet extends StatelessWidget{
          //
          //       ),
          //       ListTile(
-         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         title: MyText("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
          //         subtitle: Column(
          //           crossAxisAlignment: CrossAxisAlignment.start,
          //           children: [
-         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             MyText("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
          //             Divider(color: Colors.white,)
          //           ],
          //         ),
@@ -316,11 +317,11 @@ class AddressListSheet extends StatelessWidget{
          //
          //       ),
          //       ListTile(
-         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         title: MyText("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
          //         subtitle: Column(
          //           crossAxisAlignment: CrossAxisAlignment.start,
          //           children: [
-         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             MyText("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
          //             Divider(color: Colors.white,)
          //           ],
          //         ),
@@ -331,11 +332,11 @@ class AddressListSheet extends StatelessWidget{
          //
          //       ),
          //       ListTile(
-         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         title: MyText("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
          //         subtitle: Column(
          //           crossAxisAlignment: CrossAxisAlignment.start,
          //           children: [
-         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             MyText("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
          //             Divider(color: Colors.white,)
          //           ],
          //         ),
@@ -346,57 +347,11 @@ class AddressListSheet extends StatelessWidget{
          //
          //       ),
          //       ListTile(
-         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         title: MyText("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
          //         subtitle: Column(
          //           crossAxisAlignment: CrossAxisAlignment.start,
          //           children: [
-         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
-         //             Divider(color: Colors.white,)
-         //           ],
-         //         ),
-         //         leading: Padding(
-         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
-         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
-         //         ),
-         //
-         //       ),
-         //
-         //       ListTile(
-         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
-         //         subtitle: Column(
-         //           crossAxisAlignment: CrossAxisAlignment.start,
-         //           children: [
-         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
-         //             Divider(color: Colors.white,)
-         //           ],
-         //         ),
-         //         leading: Padding(
-         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
-         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
-         //         ),
-         //
-         //       ),
-         //       ListTile(
-         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
-         //         subtitle: Column(
-         //           crossAxisAlignment: CrossAxisAlignment.start,
-         //           children: [
-         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
-         //             Divider(color: Colors.white,)
-         //           ],
-         //         ),
-         //         leading: Padding(
-         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
-         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
-         //         ),
-         //
-         //       ),
-         //       ListTile(
-         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
-         //         subtitle: Column(
-         //           crossAxisAlignment: CrossAxisAlignment.start,
-         //           children: [
-         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             MyText("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
          //             Divider(color: Colors.white,)
          //           ],
          //         ),
@@ -408,11 +363,57 @@ class AddressListSheet extends StatelessWidget{
          //       ),
          //
          //       ListTile(
-         //         title: Text("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         title: MyText("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
          //         subtitle: Column(
          //           crossAxisAlignment: CrossAxisAlignment.start,
          //           children: [
-         //             Text("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             MyText("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             Divider(color: Colors.white,)
+         //           ],
+         //         ),
+         //         leading: Padding(
+         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
+         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
+         //         ),
+         //
+         //       ),
+         //       ListTile(
+         //         title: MyText("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         subtitle: Column(
+         //           crossAxisAlignment: CrossAxisAlignment.start,
+         //           children: [
+         //             MyText("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             Divider(color: Colors.white,)
+         //           ],
+         //         ),
+         //         leading: Padding(
+         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
+         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
+         //         ),
+         //
+         //       ),
+         //       ListTile(
+         //         title: MyText("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         subtitle: Column(
+         //           crossAxisAlignment: CrossAxisAlignment.start,
+         //           children: [
+         //             MyText("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
+         //             Divider(color: Colors.white,)
+         //           ],
+         //         ),
+         //         leading: Padding(
+         //           padding: const EdgeInsets.only(bottom: 8.0, left: 18),
+         //           child: Image.asset("assets/images/icon_location_address.png",scale:3,),
+         //         ),
+         //
+         //       ),
+         //
+         //       ListTile(
+         //         title: MyText("Flat | Acadmic City", style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300),),
+         //         subtitle: Column(
+         //           crossAxisAlignment: CrossAxisAlignment.start,
+         //           children: [
+         //             MyText("Abu hail - building", style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w300),),
          //             Divider(color: Colors.white,)
          //           ],
          //         ),

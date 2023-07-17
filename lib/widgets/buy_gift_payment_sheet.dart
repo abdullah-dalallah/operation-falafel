@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/widgets/payment_checkboxlist.dart';
 import 'package:provider/provider.dart';
@@ -62,7 +63,7 @@ class _BuyGiftPaymentSheetState extends State<BuyGiftPaymentSheet> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      MyText(
                           loyaltyPaymentSheet.sheetTile.data,
                           style: TextStyle(
                               fontFamily: lng?.header3.textFamily,
@@ -70,7 +71,7 @@ class _BuyGiftPaymentSheetState extends State<BuyGiftPaymentSheet> {
                               fontWeight: FontWeight.w400,
                               color: Color(int.parse(loyaltyPaymentSheet.sheetTile.color))
                           )),
-                      // Text(
+                      // MyText(
                       //     getTranslated(context, "payment")!,
                       //     style: TextStyle(
                       //         fontFamily: getTranslated(
@@ -101,7 +102,7 @@ class _BuyGiftPaymentSheetState extends State<BuyGiftPaymentSheet> {
                 const Divider(color: Colors.grey,),
                 ListTile(
                   title:
-                  Text(
+                  MyText(
                     loyaltyPaymentSheet.selectPaymentTitle.data,
                     style: TextStyle(
                         fontSize: lng?.header3.size.toDouble(),
@@ -109,7 +110,7 @@ class _BuyGiftPaymentSheetState extends State<BuyGiftPaymentSheet> {
                         color: Color(int.parse(loyaltyPaymentSheet.selectPaymentTitle.color)),
                         fontWeight: FontWeight.bold
                     ),),
-                  // Text(
+                  // MyText(
                   //   getTranslated(context, "pleaseSelectPaymentType")!,
                   //   style: TextStyle(
                   //       fontSize: 15,
@@ -117,7 +118,7 @@ class _BuyGiftPaymentSheetState extends State<BuyGiftPaymentSheet> {
                   //       color: Colors.amber,
                   //       fontWeight: FontWeight.bold
                   //   ),),
-                  // subtitle:Text("perfect for shharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w300),),
+                  // subtitle:MyText("perfect for shharing! Build your own 12 O:F slider box with your favourites.", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w300),),
 
                 ),
                 // const Expanded(child:  SizedBox(height: 10,)),

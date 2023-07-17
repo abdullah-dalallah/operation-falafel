@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/data/snackBarGenerator.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/gifts_provider/models/gift.dart';
@@ -73,7 +74,7 @@ class _GiftDetailsState extends State<GiftDetails> {
               backgroundColor: Colors.transparent,
               elevation: 0,
               centerTitle: true,
-              title: Text(
+              title: MyText(
                 loyaltyGiftDetailsPage.appBar.title.data,
                 style: TextStyle(
                     fontFamily: "${lng?.logoTitle.textFamily}",
@@ -90,7 +91,7 @@ class _GiftDetailsState extends State<GiftDetails> {
                     //   "assets/images/gift.png", height: 150, width: 150,),
 
                     const SizedBox(height: 15,),
-                    // Text(
+                    // MyText(
                     //   loyaltyGiftDetailsPage.body.pageTitle.data,
                     //   style: TextStyle(
                     //       fontFamily: lng?.header5.textFamily,
@@ -98,13 +99,13 @@ class _GiftDetailsState extends State<GiftDetails> {
                     //       fontSize: lng?.header5.size.toDouble()
                     //   ),),
 
-                    // Text(
+                    // MyText(
                     //   getTranslated(context, "welcomeToOFFamily")!,
                     //   style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",
                     //       color: Colors.amber,
                     //       fontSize: 25
                     //   ),),
-                    Text(
+                    MyText(
                       "${widget.giftDetails!.name!}",
                       // getTranslated(context, "registrationGift")!,
                       style:  TextStyle(
@@ -121,14 +122,14 @@ class _GiftDetailsState extends State<GiftDetails> {
                     //
                     //         Row(
                     //           children: [
-                    //             Text(
+                    //             MyText(
                     //               "${loyaltyGiftDetailsPage.body.voucher.title.data}:",
                     //               style: TextStyle(
                     //                   fontFamily: lng?.header5.textFamily,
                     //                   color: Color(int.parse(loyaltyGiftDetailsPage.body.voucher.title.color)),
                     //                   fontSize: lng?.header5.size.toDouble(),
                     //                   fontWeight: FontWeight.bold),),
-                    //             // Text(
+                    //             // MyText(
                     //             //   "${getTranslated(context, "voucherTitle")!}:",
                     //             //   style: TextStyle(
                     //             //       fontFamily: "${getTranslated(context, "fontFamilyBody")!}",
@@ -140,7 +141,7 @@ class _GiftDetailsState extends State<GiftDetails> {
                     //
                     //         Align(
                     //             alignment: Alignment.centerLeft,
-                    //             child: Text(
+                    //             child: MyText(
                     //               "${getTranslated(context, "voucherBody")!}:",
                     //               style: TextStyle(
                     //                   fontFamily: lng?.header3.textFamily,
@@ -155,14 +156,14 @@ class _GiftDetailsState extends State<GiftDetails> {
                       padding: const EdgeInsets.only(left: 28.0, right: 28),
                       child: Row(
                         children: [
-                          Text(
+                          MyText(
                             "${loyaltyGiftDetailsPage.body.voucher.title.data}:",
                             style: TextStyle(
                                 fontFamily: lng?.header5.textFamily,
                                 color: Color(int.parse(loyaltyGiftDetailsPage.body.voucher.title.color)),
                                 fontSize: lng?.header5.size.toDouble(),
                                 fontWeight: FontWeight.bold),),
-                          // Text(
+                          // MyText(
                           //   "${getTranslated(context, "voucherTitle")!}:",
                           //   style: TextStyle(
                           //       fontFamily: "${getTranslated(context, "fontFamilyBody")!}",
@@ -193,7 +194,7 @@ class _GiftDetailsState extends State<GiftDetails> {
                                       String titleOfCondition = widget.giftDetails!.giftCategory!.giftConditions![index1].giftConditionTranslates![index2].title!;
                                       return  Align(
                                           alignment: Alignment.centerLeft,
-                                          child: Text(
+                                          child: MyText(
                                             "- ${titleOfCondition}",
                                             // "${getTranslated(context, "voucherBody")!}",
                                             style: TextStyle(
@@ -213,7 +214,7 @@ class _GiftDetailsState extends State<GiftDetails> {
                             Icon(Icons.not_interested_outlined, color: Colors.white60,),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Text(
+                              child: MyText(
                                 getTranslated(context, "emptyGiftConditions")!,
                                 style: TextStyle(
                                     fontFamily: lng?.header3.textFamily,
@@ -251,14 +252,14 @@ class _GiftDetailsState extends State<GiftDetails> {
 
                           ),
                           child:
-                          Text(
+                          MyText(
                            loyaltyGiftDetailsPage.body.redeemButton.data,
                             style: TextStyle(
                                 fontFamily:lng?.header5.textFamily,
                                 color: Color(int.parse(loyaltyGiftDetailsPage.body.redeemButton.color)),
                                 fontSize: lng?.header5.size.toDouble()
                             ),),
-                          // Text(
+                          // MyText(
                           //   getTranslated(context, "redeem")!,
                           //   style: TextStyle(
                           //       fontFamily: getTranslated(context, "fontFamilyBody")!,
@@ -291,7 +292,7 @@ class _GiftDetailsState extends State<GiftDetails> {
                             );
                           },
                           child:
-                          Text(
+                          MyText(
                             loyaltyGiftDetailsPage.body.sendAsGiftButton.data,
                             style: TextStyle(
                               fontSize: lng?.header3.size.toDouble(),
@@ -299,7 +300,7 @@ class _GiftDetailsState extends State<GiftDetails> {
                               fontFamily: lng?.header3.textFamily,),
                             textAlign: TextAlign.center,
                           ),
-                          // Text(
+                          // MyText(
                           //   getTranslated(context, "sendAsGift")!,
                           //   style: TextStyle(fontSize: 15,
                           //     fontWeight: FontWeight.w400,
@@ -353,10 +354,10 @@ class _GiftDetailsState extends State<GiftDetails> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children:  [
                            /// -  Title fixed
-                            Align(child:Text( loyaltyGiftDetailsPage!.body.redeemDialog.dialogTitle!.data,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Color(int.parse(loyaltyGiftDetailsPage!.body.redeemDialog.dialogTitle!.color!)), fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),),
+                            Align(child:MyText( loyaltyGiftDetailsPage!.body.redeemDialog.dialogTitle!.data,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Color(int.parse(loyaltyGiftDetailsPage!.body.redeemDialog.dialogTitle!.color!)), fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),),
                             const SizedBox(height: 10,),
                            /// - gift name
-                            Align(child:Text( widget.giftDetails!.name!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Color(int.parse(loyaltyGiftDetailsPage.body.giftTitle.color)), fontSize: double.parse(getTranslated(context, "cartpageHeader3")!)),),),
+                            Align(child:MyText( widget.giftDetails!.name!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color:Color(int.parse(loyaltyGiftDetailsPage.body.giftTitle.color)), fontSize: double.parse(getTranslated(context, "cartpageHeader3")!)),),),
                             const SizedBox(height: 10,),
                             /// - Code & QR
                             QrImageView(
@@ -368,7 +369,7 @@ class _GiftDetailsState extends State<GiftDetails> {
 
 
                             Expanded(
-                              child: Align(child:Text(
+                              child: Align(child:MyText(
                                 widget.giftDetails!.code!,
                                   style: TextStyle(
                                       fontFamily:lng?.header3.textFamily,
@@ -416,7 +417,7 @@ class _GiftDetailsState extends State<GiftDetails> {
 
                                   ),
                                   child:
-                                  Text(
+                                  MyText(
                                    loyaltyGiftDetailsPage.body.redeemDialog.copyPromoCodButton!.data,
                                     // loyaltyGiftDetailsPage!.body.redeemButton.data,
                                     style: TextStyle(
@@ -424,7 +425,7 @@ class _GiftDetailsState extends State<GiftDetails> {
                                         color: Color(int.parse(loyaltyGiftDetailsPage.body.redeemDialog.copyPromoCodButton!.color)),
                                         fontSize: lng?.header3.size.toDouble()
                                     ),),
-                                  // Text(
+                                  // MyText(
                                   //   getTranslated(context, "redeem")!,
                                   //   style: TextStyle(
                                   //       fontFamily: getTranslated(context, "fontFamilyBody")!,
@@ -435,7 +436,7 @@ class _GiftDetailsState extends State<GiftDetails> {
                             ),
 
                             const SizedBox(height: 10,),
-                            Text(
+                            MyText(
                               loyaltyGiftDetailsPage.body.redeemDialog.dineInTitle!.data,
                               // loyaltyGiftDetailsPage!.body.redeemButton.data,
                               style: TextStyle(
@@ -447,7 +448,7 @@ class _GiftDetailsState extends State<GiftDetails> {
                             // Expanded(child: ListView(
                             //   padding: EdgeInsets.all(18),
                             //   children: [
-                            //     Text("${getTranslated(context, "terms")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white),),
+                            //     MyText("${getTranslated(context, "terms")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white),),
                             //   ],
                             // )),
                           ],

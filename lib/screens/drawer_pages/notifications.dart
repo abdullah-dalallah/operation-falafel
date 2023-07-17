@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:provider/provider.dart';
 
@@ -72,13 +73,13 @@ class _NotificationsState extends State<Notifications> {
               backgroundColor: Colors.transparent,
               elevation: 0,
               centerTitle: true,
-              title:  Text(
+              title:  MyText(
                 drawerNotificationPage.appBar.title.data,
                 style: TextStyle(
                     fontFamily: "${lng?.logoTitle.textFamily}",
                     fontWeight: FontWeight.bold),),
 
-              // Text(getTranslated(context, "operationFalafelLogo")!,
+              // MyText(getTranslated(context, "operationFalafelLogo")!,
               //   style: TextStyle(
               //       fontFamily: "${getTranslated(context, "fontFamilyTitle")!}",
               //       fontWeight: FontWeight.bold),),
@@ -90,13 +91,13 @@ class _NotificationsState extends State<Notifications> {
                 children: [
 
                   /// - Title Page
-                  Text(
+                  MyText(
                     drawerNotificationPage.body.pageTitle.data,
                     style: TextStyle(
                         fontFamily: "${lng?.titleHeader2.textFamily}",
                         color: Color(int.parse(drawerNotificationPage.body.pageTitle.color)),
                         fontSize: lng?.titleHeader2.size.toDouble(),),),
-                  // Text(getTranslated(context, "notificationsTitle")!,
+                  // MyText(getTranslated(context, "notificationsTitle")!,
                   //   style: TextStyle(fontFamily: "${getTranslated(
                   //       context, "fontFamilyButtons")!}",
                   //       color: Colors.amber,
@@ -118,20 +119,20 @@ class _NotificationsState extends State<Notifications> {
 
                                     },
 
-                                    title: Text(
+                                    title: MyText(
                                       getTranslated(context, "orderInitiated")!,
                                       style: TextStyle(
                                         fontFamily: "${lng?.header3.textFamily}",
                                         color: Color(int.parse(drawerNotificationPage.body.notificationList.title.color)),
                                         fontSize: lng?.header3.size.toDouble(),),),
-                                    // title: Text(
+                                    // title: MyText(
                                     //   getTranslated(context, "orderInitiated")!,
                                     //   style: TextStyle(
                                     //       fontFamily: "${getTranslated(
                                     //           context, "fontFamilyBody")!}",
                                     //       color: Colors.amber,
                                     //       fontSize: 15),),
-                                    subtitle: Text("10/19/2022 08:22:17",
+                                    subtitle: MyText("10/19/2022 08:22:17",
                                       style: TextStyle(
                                         fontFamily: "${lng?.header3.textFamily}",
                                         color: Color(int.parse(drawerNotificationPage.body.notificationList.subTitle.color)),

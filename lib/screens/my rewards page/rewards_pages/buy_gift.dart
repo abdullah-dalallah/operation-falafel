@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 // import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/screens/tabbar%20menu%20page/menu_tabebar.dart';
@@ -75,7 +76,7 @@ class _BuyGiftState extends State<BuyGift> {
                             backgroundColor: Colors.transparent,
                             elevation: 0,
                             centerTitle: true,
-                            title: Text(
+                            title: MyText(
                               loyaltyBuyGiftPage.appBar.title.data,
                               style: TextStyle(
                                   fontFamily: "${lng?.logoTitle.textFamily}",
@@ -90,7 +91,7 @@ class _BuyGiftState extends State<BuyGift> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
 
-                                  Text(
+                                  MyText(
                                     loyaltyBuyGiftPage.body.pageTitle.data,
                                     style: TextStyle(
                                         fontFamily: lng?.titleHeader2.textFamily,
@@ -98,7 +99,7 @@ class _BuyGiftState extends State<BuyGift> {
                                         fontSize: lng?.titleHeader2.size.toDouble()
                                     ),),
 
-                                  // Text(getTranslated(context, "buyGifts")!,
+                                  // MyText(getTranslated(context, "buyGifts")!,
                                   //   style: TextStyle(
                                   //     fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",
                                   //     color: Colors.amber,

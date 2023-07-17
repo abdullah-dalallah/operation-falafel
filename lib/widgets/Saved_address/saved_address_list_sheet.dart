@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/ProfileProviders/profile_provider.dart';
@@ -35,14 +36,14 @@ class _SavedAddressListSheetState extends State<SavedAddressListSheet> {
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) {
               return ListTile(
-                title: Text("${profileProvider.savedAddressList.savedAddressItem![index].flat} | ${profileProvider.savedAddressList.savedAddressItem![index].name}", style: TextStyle(
+                title: MyText("${profileProvider.savedAddressList.savedAddressItem![index].flat} | ${profileProvider.savedAddressList.savedAddressItem![index].name}", style: TextStyle(
                     color: Colors.amber,
                     fontSize: 15,
                     fontWeight: FontWeight.w300),),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("${profileProvider.savedAddressList.savedAddressItem![index].area} - ${profileProvider.savedAddressList.savedAddressItem![index].building}", style: TextStyle(
+                    MyText("${profileProvider.savedAddressList.savedAddressItem![index].area} - ${profileProvider.savedAddressList.savedAddressItem![index].building}", style: TextStyle(
                         color: Colors.white,
                         fontSize: 15,
                         fontWeight: FontWeight.w300),),

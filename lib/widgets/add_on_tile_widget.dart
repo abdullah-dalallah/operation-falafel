@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 
 class AddOnTileWidget extends StatefulWidget{
   final String text;
@@ -104,7 +105,7 @@ class _AddOnTileWidgetState extends State<AddOnTileWidget> {
                       child:const Icon(Icons.remove,size: 18,),
                     ),
                   ),
-                  SizedBox(width:30, child: Text("${widget.quantity}",textAlign: TextAlign.center,style: TextStyle(color: Colors.white),),),
+                  SizedBox(width:30, child: MyText("${widget.quantity}",textAlign: TextAlign.center,style: TextStyle(color: Colors.white),),),
                   /// - Pluse
                   SizedBox(
                     width:25,
@@ -163,7 +164,7 @@ class _AddOnTileWidgetState extends State<AddOnTileWidget> {
           /// - pluse & minus
           const SizedBox(width: 10,),
           /// - Text
-          Text(widget.text, style:  TextStyle(
+          MyText(widget.text, style:  TextStyle(
               color:
               (widget.colorOfText!=null)?
               (widget.quantity == 0)?
@@ -179,7 +180,7 @@ class _AddOnTileWidgetState extends State<AddOnTileWidget> {
 
           /// - Price
           (widget.priceText!=null)?
-          Text(widget.priceText!, style:  TextStyle(
+          MyText(widget.priceText!, style:  TextStyle(
               color:
               (widget.colorOfText!=null)?
               (widget.quantity == 0)?

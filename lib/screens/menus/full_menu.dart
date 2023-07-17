@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/screens/tabbar%20menu%20page/menu_tabebar.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
@@ -44,7 +45,7 @@ class FullMenu extends StatelessWidget{
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("FULL MENU", style: TextStyle(fontSize: 45,fontFamily: "oldpress", color: Colors.amber.shade500)),
+                  MyText("FULL MENU", style: TextStyle(fontSize: 45,fontFamily: "oldpress", color: Colors.amber.shade500)),
                 ],
               ),
               const  SizedBox(height: 10,),
@@ -96,7 +97,7 @@ class FullMenu extends StatelessWidget{
                                child: Row(
                                  mainAxisAlignment: MainAxisAlignment.center,
                                  children: [
-                                   Text("NEW AT O:F",style: TextStyle(fontSize: 35,fontFamily: "oldpress", color: Colors.amber.shade500)),
+                                   MyText("NEW AT O:F",style: TextStyle(fontSize: 35,fontFamily: "oldpress", color: Colors.amber.shade500)),
                                  ],
                                ),
 

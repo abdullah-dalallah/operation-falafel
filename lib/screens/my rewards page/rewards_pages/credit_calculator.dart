@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:provider/provider.dart';
@@ -66,7 +67,7 @@ class _CreditCalculatorState extends State<CreditCalculator> {
               backgroundColor: Colors.transparent,
               elevation: 0,
               centerTitle: true,
-              title: Text(
+              title: MyText(
                 loyaltyCreditCalculationPage.appBar.title.data,
                 style: TextStyle(
                     fontFamily: "${lng?.logoTitle.textFamily}",
@@ -85,7 +86,7 @@ class _CreditCalculatorState extends State<CreditCalculator> {
                           SizedBox(height: 25,),
 
                           /// - Title
-                          Text(
+                          MyText(
                             loyaltyCreditCalculationPage.body.pageTitle.data,
                             style: TextStyle(
                                 fontFamily: lng?.titleHeader2.textFamily,
@@ -94,7 +95,7 @@ class _CreditCalculatorState extends State<CreditCalculator> {
                               textAlign: TextAlign.center,
                           ),
 
-                          // Text(
+                          // MyText(
                           //   getTranslated(context, "creditCalculator")!,
                           //   style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",
                           //       color: Colors.amber,

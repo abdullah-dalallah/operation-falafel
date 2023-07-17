@@ -50,6 +50,7 @@ class ThemeProvider  with ChangeNotifier{
   }
 
   Future<Response<dynamic>> getAppTheme(String key, String value, String theme_id, String createdBy, String country, String lang) async {
+    print('\x1B[33mFirst\x1B[0m');
     print("getting app theme from Online Server...");
     var url = '${Strings.baseAppThemeUrl}/themes/getThemeeeee/${country}/${lang}';
     Map<String, String> header = <String, String>{};
@@ -94,8 +95,8 @@ class ThemeProvider  with ChangeNotifier{
 
       return response;
     } on DioError catch (e) {
-      print(e.response);
-      readJson();
+      print("Theme Error ${e.response}");
+      // readJson();
       return e.response!;
 
     }

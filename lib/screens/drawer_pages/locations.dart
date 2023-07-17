@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:expandable/expandable.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -53,7 +54,7 @@ class _LocationsState extends State<Locations> {
             backgroundColor: Colors.transparent,
             elevation: 0,
             centerTitle: true,
-            title:Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),),
+            title:MyText(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),),
             actions: [],
           ),
           body:Center(
@@ -63,7 +64,7 @@ class _LocationsState extends State<Locations> {
 
                 children: [
 
-                  Text(getTranslated(context, "locationsTitle")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber, fontSize: double.parse(getTranslated(context, "fontFamilyTitleُSize")!)),),
+                  MyText(getTranslated(context, "locationsTitle")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber, fontSize: double.parse(getTranslated(context, "fontFamilyTitleُSize")!)),),
                   Padding(
                     padding: const EdgeInsets.all(18.0),
                     child: Image.asset("assets/images/location_map.png", fit: BoxFit.contain,),
@@ -120,7 +121,7 @@ class _LocationsState extends State<Locations> {
                                              IntrinsicHeight(
                                                child: Stack(
                                                  children: [
-                                                   Align(child:Text(getTranslated(context, "uae")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.black, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
+                                                   Align(child:MyText(getTranslated(context, "uae")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.black, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
                                                    ),
                                                    Visibility(
                                                      visible: false,
@@ -144,7 +145,7 @@ class _LocationsState extends State<Locations> {
                                                                style: BorderStyle.solid,
                                                              ),
                                                            ),
-                                                           child: Text(getTranslated(context, "commingSoon")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber),),
+                                                           child: MyText(getTranslated(context, "commingSoon")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber),),
 
 
 
@@ -197,11 +198,11 @@ class _LocationsState extends State<Locations> {
                                                                        children:  [
                                                                          Image.asset("assets/images/driver.png",height: 30,),
                                                                          const SizedBox(width: 10,),
-                                                                         Expanded(child:  Text("The Beach Mall JBR 24 hours", style: TextStyle(fontSize:13,fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                                         Expanded(child:  MyText("The Beach Mall JBR 24 hours", style: TextStyle(fontSize:13,fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
                                                                        ],
                                                                      ),
                                                                    const SizedBox(height: 15,),
-                                                                   Text("Dine In and Takeaway", style: TextStyle(fontSize:13,fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),),
+                                                                   MyText("Dine In and Takeaway", style: TextStyle(fontSize:13,fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),),
 
                                                                  ],
                                                                ),
@@ -234,7 +235,7 @@ class _LocationsState extends State<Locations> {
                                                                    onTap: (){
                                                                      launch("tel://0442430069");
                                                                    },
-                                                                   child: Text("0442430069", style: TextStyle(fontSize:13,fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,decoration: TextDecoration.underline),))),
+                                                                   child: MyText("0442430069", style: TextStyle(fontSize:13,fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,decoration: TextDecoration.underline),))),
 
 
                                                              ],
@@ -275,10 +276,10 @@ class _LocationsState extends State<Locations> {
                                                                            children:  [
                                                                              Image.asset("assets/images/driver.png",height: 30,),
                                                                              const SizedBox(width: 10,),
-                                                                             Expanded(child:  Text("MBR Bolevard Downtown 24 hours", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                                             Expanded(child:  MyText("MBR Bolevard Downtown 24 hours", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
                                                                            ],
                                                                          ),
-                                                                       Center(child: Text("Dine In,Delivery and Takeaway", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                                       Center(child: MyText("Dine In,Delivery and Takeaway", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
                                                                        const SizedBox(height: 15,),
                                                                      ],
                                                                    ),
@@ -311,7 +312,7 @@ class _LocationsState extends State<Locations> {
                                                                      onTap: (){
                                                                        launch("tel://045578020");
                                                                      },
-                                                                     child: Text("04 557 8020", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,decoration: TextDecoration.underline),))),
+                                                                     child: MyText("04 557 8020", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,decoration: TextDecoration.underline),))),
 
 
                                                                ],
@@ -354,10 +355,10 @@ class _LocationsState extends State<Locations> {
                                                                              children:  [
                                                                                Image.asset("assets/images/driver.png",height: 30,),
                                                                                const SizedBox(width: 10,),
-                                                                               Expanded(child:  Text("The Ribbon Motor City 9:00 am -1 am", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                                               Expanded(child:  MyText("The Ribbon Motor City 9:00 am -1 am", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
                                                                              ],
                                                                            ),
-                                                                         Center(child: Text("Dine In,Delivery and Takeaway", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                                         Center(child: MyText("Dine In,Delivery and Takeaway", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
                                                                          const SizedBox(height: 15,),
                                                                        ],
                                                                      ),
@@ -392,7 +393,7 @@ class _LocationsState extends State<Locations> {
                                                                        onTap: (){
                                                                          launch("tel://045142805");
                                                                        },
-                                                                       child: Text("04 514 2805", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,decoration: TextDecoration.underline),))),
+                                                                       child: MyText("04 514 2805", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,decoration: TextDecoration.underline),))),
 
 
                                                                  ],
@@ -434,10 +435,10 @@ class _LocationsState extends State<Locations> {
                                                                            children:  [
                                                                              Image.asset("assets/images/driver.png",height: 30,),
                                                                              const SizedBox(width: 10,),
-                                                                             Expanded(child:  Text("The Outlet Village 10:00 am - 12:00 am", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                                             Expanded(child:  MyText("The Outlet Village 10:00 am - 12:00 am", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
                                                                            ],
                                                                          ),
-                                                                       Center(child: Text("Dine In and Takeaway", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                                       Center(child: MyText("Dine In and Takeaway", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
                                                                        const SizedBox(height: 15,),
                                                                      ],
                                                                    ),
@@ -471,7 +472,7 @@ class _LocationsState extends State<Locations> {
                                                                      onTap: (){
                                                                        launch("tel://042731628");
                                                                      },
-                                                                     child: Text("04 273 1628", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,decoration: TextDecoration.underline),))),
+                                                                     child: MyText("04 273 1628", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,decoration: TextDecoration.underline),))),
 
 
                                                                ],
@@ -513,11 +514,11 @@ class _LocationsState extends State<Locations> {
                                                                            children:  [
                                                                              Image.asset("assets/images/driver.png",height: 30,),
                                                                              const SizedBox(width: 10,),
-                                                                             Expanded(child:  Text("Dubai Media City CNBC Building C7 - G Floor - Dubai\nOpen 24 hours", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                                             Expanded(child:  MyText("Dubai Media City CNBC Building C7 - G Floor - Dubai\nOpen 24 hours", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
                                                                            ],
                                                                          ),
 
-                                                                       Center(child: Text("Dine In,Delivery and Takeaway", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                                       Center(child: MyText("Dine In,Delivery and Takeaway", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
                                                                        const SizedBox(height: 15,),
                                                                      ],
                                                                    ),
@@ -550,7 +551,7 @@ class _LocationsState extends State<Locations> {
                                                                      onTap: (){
                                                                        launch("tel://600530006");
                                                                      },
-                                                                     child: Text("600 530006", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,decoration: TextDecoration.underline),))),
+                                                                     child: MyText("600 530006", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,decoration: TextDecoration.underline),))),
 
 
                                                                ],
@@ -562,7 +563,7 @@ class _LocationsState extends State<Locations> {
                                                    }break;
                                                   
 
-                                                   default: return Text("location");
+                                                   default: return MyText("location");
                                                  };
                                                }
                                        ),
@@ -616,7 +617,7 @@ class _LocationsState extends State<Locations> {
                                          IntrinsicHeight(
                                            child: Stack(
                                              children: [
-                                               Align(child:Text(getTranslated(context, "ksa")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.black, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
+                                               Align(child:MyText(getTranslated(context, "ksa")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.black, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
                                                ),
                                                Visibility(
                                                  visible: false,
@@ -640,7 +641,7 @@ class _LocationsState extends State<Locations> {
                                                            style: BorderStyle.solid,
                                                          ),
                                                        ),
-                                                       child: Text(getTranslated(context, "commingSoon")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber),),
+                                                       child: MyText(getTranslated(context, "commingSoon")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber),),
 
 
 
@@ -693,12 +694,12 @@ class _LocationsState extends State<Locations> {
                                                                    children:  [
                                                                      Image.asset("assets/images/driver.png",height: 30,),
                                                                      const SizedBox(width: 10,),
-                                                                     Expanded(child:  Text("Rubeen Plaza,Northern Ring Branch Road,Hittin 7 am - 1 am", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                                     Expanded(child:  MyText("Rubeen Plaza,Northern Ring Branch Road,Hittin 7 am - 1 am", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
                                                                    ],
                                                                  ),
 
                                                                const SizedBox(height: 15,),
-                                                               Text("Dine In , Takeaway", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),),
+                                                               MyText("Dine In , Takeaway", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),),
 
                                                              ],
                                                            ),
@@ -732,7 +733,7 @@ class _LocationsState extends State<Locations> {
                                                              onTap: (){
                                                                launch("tel://0112465709");
                                                              },
-                                                             child: Text("0112465709", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,decoration: TextDecoration.underline),))),
+                                                             child: MyText("0112465709", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,decoration: TextDecoration.underline),))),
 
 
                                                        ],
@@ -775,10 +776,10 @@ class _LocationsState extends State<Locations> {
                                                                    children:  [
                                                                      Image.asset("assets/images/driver.png",height: 30,),
                                                                      const SizedBox(width: 10,),
-                                                                     Expanded(child:  Text("Al-Shatea Square,Ash Shati Al Gharabi street 15 7am - 1 am", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                                     Expanded(child:  MyText("Al-Shatea Square,Ash Shati Al Gharabi street 15 7am - 1 am", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
                                                                    ],
                                                                  ),
-                                                               Center(child: Text("Dine In,pickup", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                               Center(child: MyText("Dine In,pickup", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
                                                                const SizedBox(height: 15,),
                                                              ],
                                                            ),
@@ -811,7 +812,7 @@ class _LocationsState extends State<Locations> {
                                                              onTap: (){
                                                                launch("tel://920029970");
                                                              },
-                                                             child: Text("920029970", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,decoration: TextDecoration.underline),))),
+                                                             child: MyText("920029970", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,decoration: TextDecoration.underline),))),
 
 
                                                        ],
@@ -853,11 +854,11 @@ class _LocationsState extends State<Locations> {
                                                                    children:  [
                                                                      Image.asset("assets/images/driver.png",height: 30,),
                                                                      const SizedBox(width: 10,),
-                                                                     Expanded(child:  Text("Dhahran Mall. Gate 10 9:00 am - 12:00 am", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                                     Expanded(child:  MyText("Dhahran Mall. Gate 10 9:00 am - 12:00 am", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
                                                                    ],
                                                                  ),
 
-                                                               Center(child: Text("Dine in, Takeaway", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
+                                                               Center(child: MyText("Dine in, Takeaway", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white),)),
                                                                const SizedBox(height: 15,),
                                                              ],
                                                            ),
@@ -891,7 +892,7 @@ class _LocationsState extends State<Locations> {
                                                              onTap: (){
                                                                launch("tel://920029970");
                                                              },
-                                                             child: Text("920029970", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,decoration: TextDecoration.underline),))),
+                                                             child: MyText("920029970", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,decoration: TextDecoration.underline),))),
 
 
                                                        ],
@@ -930,7 +931,7 @@ class _LocationsState extends State<Locations> {
                                IntrinsicHeight(
                                  child: Stack(
                                    children: [
-                                     Align(child:Text(getTranslated(context, "france")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.black, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
+                                     Align(child:MyText(getTranslated(context, "france")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.black, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
                                      ),
                                      Positioned(right: 0, child:  RotationTransition(
                                        turns:  AlwaysStoppedAnimation(-15 / 600 ),
@@ -952,7 +953,7 @@ class _LocationsState extends State<Locations> {
                                                style: BorderStyle.solid,
                                              ),
                                            ),
-                                           child: Text(getTranslated(context, "commingSoon")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber),),
+                                           child: MyText(getTranslated(context, "commingSoon")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber),),
 
 
 
@@ -983,7 +984,7 @@ class _LocationsState extends State<Locations> {
                                IntrinsicHeight(
                                  child: Stack(
                                    children: [
-                                     Align(child:Text(getTranslated(context, "usa")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.black, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
+                                     Align(child:MyText(getTranslated(context, "usa")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.black, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
                                      ),
                                      Positioned(right: 0, child:  RotationTransition(
                                        turns:  AlwaysStoppedAnimation(-15 / 600 ),
@@ -1005,7 +1006,7 @@ class _LocationsState extends State<Locations> {
                                                style: BorderStyle.solid,
                                              ),
                                            ),
-                                           child: Text(getTranslated(context, "commingSoon")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber),),
+                                           child: MyText(getTranslated(context, "commingSoon")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber),),
 
 
 
@@ -1036,7 +1037,7 @@ class _LocationsState extends State<Locations> {
                              IntrinsicHeight(
                                child: Stack(
                                  children: [
-                                   Align(child:                                        Text(getTranslated(context, "uk")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.black, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
+                                   Align(child:                                        MyText(getTranslated(context, "uk")!,style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.black, fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
                                    ),
                                    Positioned(right: 0, child:  RotationTransition(
                                      turns:  AlwaysStoppedAnimation(-15 / 600 ),
@@ -1058,7 +1059,7 @@ class _LocationsState extends State<Locations> {
                                              style: BorderStyle.solid,
                                            ),
                                          ),
-                                         child: Text(getTranslated(context, "commingSoon")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber),),
+                                         child: MyText(getTranslated(context, "commingSoon")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color: Colors.amber),),
 
 
 

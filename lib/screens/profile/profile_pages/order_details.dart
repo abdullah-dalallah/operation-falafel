@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:provider/provider.dart';
@@ -60,7 +61,7 @@ class _OrderDetailsState extends State<OrderDetails> {
               backgroundColor: Colors.transparent,
               elevation: 0,
               centerTitle: true,
-              title: Text(
+              title: MyText(
                 orderDetailsPage.appBar.title.data,
                 style: TextStyle(
                     fontFamily: "${lng?.logoTitle.textFamily}",
@@ -73,7 +74,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
+                    MyText(
                       orderDetailsPage.body.pageTitle.data,
                       style: TextStyle(
                         fontFamily: lng?.titleHeader2.textFamily,
@@ -81,7 +82,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                           fontSize: lng?.titleHeader2.size.toDouble()
                       ),),
 
-                    // Text(getTranslated(context, "orderDetails")!,
+                    // MyText(getTranslated(context, "orderDetails")!,
                     //   style: TextStyle(fontFamily: "${getTranslated(
                     //       context, "fontFamilyButtons")!}",
                     //       color: Colors.amber,
@@ -98,7 +99,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              MyText(
                                 getTranslated(context, "newOrder")!,
                                 style: TextStyle(
                                     fontFamily: lng?.header3.textFamily,
@@ -106,7 +107,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                                     fontSize: lng?.header3.size.toDouble()
                                 ),
                               ),
-                              // Text(
+                              // MyText(
                               //   getTranslated(context, "newOrder")!,
                               //   style: TextStyle(
                               //       fontFamily: "${getTranslated(context, "fontFamilyBody")!}",
@@ -115,7 +116,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                               //   ),
                               // ),
 
-                              Text(
+                              MyText(
                                 "2022-10-19 20:22:17",
                                 style: TextStyle(
                                     fontFamily: lng?.header3.textFamily,
@@ -161,13 +162,13 @@ class _OrderDetailsState extends State<OrderDetails> {
                                           color: Colors.white54,
                                         ),
                                         SizedBox(width: 5,),
-                                        Text(
+                                        MyText(
                                             orderDetailsPage.body.orderTile.reorder.data,
                                             style: TextStyle(
                                                 fontFamily: lng?.header1.textFamily,
                                                 color: Color(int.parse(orderDetailsPage.body.orderTile.reorder.color)),
                                                 fontSize: lng?.header1.size.toDouble())),
-                                        // Text(
+                                        // MyText(
                                         //     getTranslated(context, "reOrder")!,
                                         //     style: TextStyle(
                                         //         fontFamily: getTranslated(context, "fontFamilyBody")!,
@@ -192,13 +193,13 @@ class _OrderDetailsState extends State<OrderDetails> {
                       padding: const EdgeInsets.only(left: 18.0, right: 18),
                       child: Row(
                         children: [
-                          Text(
+                          MyText(
                             "${orderDetailsPage.body.orderId.data}: 999748117",
                             style: TextStyle(
                                 fontFamily: lng?.header3.textFamily,
                                 color: Color(int.parse(orderDetailsPage.body.orderId.color)),
                                 fontSize: lng?.header3.size.toDouble()),),
-                          // Text("${getTranslated(context, "orderId")!}: 999748117",
+                          // MyText("${getTranslated(context, "orderId")!}: 999748117",
                           //   style: TextStyle(fontFamily: "${getTranslated(
                           //       context, "fontFamilyBody")!}",
                           //       color: Colors.white70,
@@ -215,7 +216,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                         children: [
                           Expanded(
                               child:
-                              Text(
+                              MyText(
                                     "${orderDetailsPage.body.addressHeader.data}: Jumeirah Lakes Tower | Flat/Building:mazaya business avenue 2903 | Area:Dubai - Jumeirah Lake Tower - mazaya business avenue BB1 -2903 - mazaya business avenue",
                                      style: TextStyle(
                                     fontFamily: lng?.header3.textFamily,
@@ -236,14 +237,14 @@ class _OrderDetailsState extends State<OrderDetails> {
                       padding: const EdgeInsets.only(left: 18.0, right: 18),
                       child: Row(
                         children: [
-                          Text("${orderDetailsPage.body.orderSummaryHeader.data}",
+                          MyText("${orderDetailsPage.body.orderSummaryHeader.data}",
                             style: TextStyle(
                                 fontFamily: lng?.header3.textFamily,
                                 color: Color(int.parse(orderDetailsPage.body.orderSummaryHeader.color)),
                                 fontSize: lng?.header3.size.toDouble()
                             ),
                           ),
-                          // Text("${getTranslated(context, "orderSummary")!}",
+                          // MyText("${getTranslated(context, "orderSummary")!}",
                           //   style: TextStyle(fontFamily: "${getTranslated(
                           //       context, "fontFamilyBody")!}",
                           //       color: Colors.white70,
@@ -263,13 +264,13 @@ class _OrderDetailsState extends State<OrderDetails> {
                             child: Row(mainAxisAlignment: MainAxisAlignment
                                 .spaceBetween,
                               children: [
-                                Text("X1 Chicken Shawerma Pita",
+                                MyText("X1 Chicken Shawerma Pita",
                                   style: TextStyle(
                                       fontFamily: lng?.header3.textFamily,
                                       color: Color(int.parse(orderDetailsPage.body.orderOptions.optionTitle.color)),
                                       fontSize: lng?.header3.size.toDouble()
                                   ),),
-                                Text("AED 17",  style: TextStyle(
+                                MyText("AED 17",  style: TextStyle(
                                     fontFamily: lng?.header3.textFamily,
                                     color: Color(int.parse(orderDetailsPage.body.orderOptions.optionPrice.color)),
                                     fontSize: lng?.header3.size.toDouble()
@@ -284,12 +285,12 @@ class _OrderDetailsState extends State<OrderDetails> {
                             child: Row(mainAxisAlignment: MainAxisAlignment
                                 .spaceBetween,
                               children: [
-                                Text("X1 Fries Filling", style: TextStyle(
+                                MyText("X1 Fries Filling", style: TextStyle(
                                     fontFamily: "${getTranslated(
                                         context, "fontFamilyBody")!}",
                                     color: Colors.amber,
                                     fontSize: 15),),
-                                Text("AED 17", style: TextStyle(
+                                MyText("AED 17", style: TextStyle(
                                     fontFamily: "${getTranslated(
                                         context, "fontFamilyBody")!}",
                                     color: Colors.white70,
@@ -313,19 +314,19 @@ class _OrderDetailsState extends State<OrderDetails> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              MyText(
                                 orderDetailsPage.body.paymentMethodHeader.data,
                                 style: TextStyle(
                                     fontFamily: lng?.header3.textFamily,
                                     color: Color(int.parse(orderDetailsPage.body.paymentMethodHeader.color)),
                                     fontSize: lng?.header3.size.toDouble()),),
-                              // Text(
+                              // MyText(
                               //   getTranslated(context, "paymentMethod")!,
                               //   style: TextStyle(
                               //       fontFamily: "${getTranslated(context, "fontFamilyBody")!}",
                               //       color: Colors.amber,
                               //       fontSize: 17),),
-                              Text("Credit/Debit Card",
+                              MyText("Credit/Debit Card",
                                 style:TextStyle(
                                     fontFamily: lng?.header3.textFamily,
                                     color: Color(int.parse(orderDetailsPage.body.paymentMethod.color)),
@@ -350,19 +351,19 @@ class _OrderDetailsState extends State<OrderDetails> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          MyText(
                             orderDetailsPage.body.subTotalHeader.data,
                             style: TextStyle(
                                 fontFamily: lng?.header3.textFamily,
                                 color: Color(int.parse(orderDetailsPage.body.subTotalHeader.color)),
                                 fontSize: lng?.header3.size.toDouble()),),
-                          // Text(
+                          // MyText(
                           //   getTranslated(context, "subTotalDetails")!,
                           //   style: TextStyle(
                           //       fontFamily: "${getTranslated(context, "fontFamilyBody")!}",
                           //       color: Colors.white70,
                           //       fontSize: 17),),
-                          Text("AED 17.00", style: TextStyle(
+                          MyText("AED 17.00", style: TextStyle(
                               fontFamily: lng?.header3.textFamily,
                               color: Color(int.parse(orderDetailsPage.body.subTotalHeader.color)),
                               fontSize: lng?.header3.size.toDouble()),),
@@ -378,13 +379,13 @@ class _OrderDetailsState extends State<OrderDetails> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
 
-                          Text(
+                          MyText(
                             orderDetailsPage.body.oFLoyaltyHeader.data,
                             style:  TextStyle(
                                 fontFamily: lng?.header3.textFamily,
                                 color: Color(int.parse(orderDetailsPage.body.oFLoyaltyHeader.color)),
                                 fontSize: lng?.header3.size.toDouble())),
-                          Text("AED 4.25", style: TextStyle(
+                          MyText("AED 4.25", style: TextStyle(
                               fontFamily: lng?.header3.textFamily,
                               color: Color(int.parse(orderDetailsPage.body.oFLoyaltyHeader.color)),
                               fontSize: lng?.header3.size.toDouble()),),
@@ -400,12 +401,12 @@ class _OrderDetailsState extends State<OrderDetails> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
 
-                          Text(orderDetailsPage.body.serviceChargeHeader.data,
+                          MyText(orderDetailsPage.body.serviceChargeHeader.data,
                             style:  TextStyle(
                                 fontFamily: lng?.header3.textFamily,
                                 color: Color(int.parse(orderDetailsPage.body.serviceChargeHeader.color)),
                                 fontSize: lng?.header3.size.toDouble())),
-                          Text("AED 4.25", style:  TextStyle(
+                          MyText("AED 4.25", style:  TextStyle(
                               fontFamily: lng?.header3.textFamily,
                               color: Color(int.parse(orderDetailsPage.body.serviceChargeHeader.color)),
                               fontSize: lng?.header3.size.toDouble())),
@@ -421,12 +422,12 @@ class _OrderDetailsState extends State<OrderDetails> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
 
-                          Text(orderDetailsPage.body.totalHeader.data,
+                          MyText(orderDetailsPage.body.totalHeader.data,
                             style: TextStyle(
                                 fontFamily: lng?.header3.textFamily,
                                 color: Color(int.parse(orderDetailsPage.body.totalHeader.color)),
                                 fontSize: lng?.header3.size.toDouble())),
-                          Text("AED 19.75", style:TextStyle(
+                          MyText("AED 19.75", style:TextStyle(
                               fontFamily: lng?.header3.textFamily,
                               color: Color(int.parse(orderDetailsPage.body.totalHeader.color)),
                               fontSize: lng?.header3.size.toDouble())),

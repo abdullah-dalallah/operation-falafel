@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:operation_falafel/data/keys.dart';
+import 'package:operation_falafel/data/my_text.dart';
+import 'package:operation_falafel/data/my_text_form_field.dart';
 import 'package:operation_falafel/data/strings.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/ProfileProviders/profile_provider.dart';
@@ -264,7 +266,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                       actions: [
 
                       ],
-                      title: Text(
+                      title: MyText(
                         profilePage?.appBar.title.data as String,
                         // getTranslated(context, "operationFalafelLogo")!,
                         style: TextStyle(
@@ -292,12 +294,12 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                   child: ListTile(
 
                                     tileColor: Colors.amber.withOpacity(0.2),
-                                    title: Text("${getTranslated(context, "verifyYourIdentity")}", style: TextStyle(
+                                    title: MyText("${getTranslated(context, "verifyYourIdentity")}", style: TextStyle(
                                         fontFamily: getTranslated(context, "fontFamilyBody"),
                                         color:  Colors.amber,
                                         fontSize: double.parse(getTranslated(context, "cartpageHeader2")!),
                                         fontWeight: FontWeight.bold),),
-                                    subtitle:  Text("${getTranslated(context, "verifyYourIdentityMsg")}", style: TextStyle(
+                                    subtitle:  MyText("${getTranslated(context, "verifyYourIdentityMsg")}", style: TextStyle(
                                         fontFamily: getTranslated(context, "fontFamilyBody"),
                                         color:  Colors.white54,
                                         fontSize: double.parse(getTranslated(context, "cartpageHeader3")!),
@@ -348,7 +350,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                           vertical: 0.0,
                                           horizontal: 0.0,
                                         ),),
-                                      child: const Text(
+                                      child: const MyText(
                                         'Verify',
                                         style: TextStyle(
                                           fontSize: 15.0,
@@ -456,7 +458,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                         child: Column  (
                                           children: [
                                             (profileProvider.userInfoModel!=null)?
-                                            Text("${profileProvider.userInfoModel!.body!.name}", style: TextStyle(
+                                            MyText("${profileProvider.userInfoModel!.body!.name}", style: TextStyle(
                                                 fontFamily:lng?.titleHeader1.textFamily,
 
                                                 color: Color(int.parse(profilePage?.body.name.color as String)),
@@ -498,14 +500,14 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
 
                                                   },
                                                   child: (!updateLoading)?(startEdit)?
-                                                  Text("SAVE PROFILE",
+                                                  MyText("SAVE PROFILE",
                                                     style: TextStyle(
                                                         fontFamily:lng?.header2.textFamily,
                                                         color: Color(int.parse(profilePage?.body.editProfileButton.color as String)),
                                                         fontSize: lng?.header2.size.toDouble()
                                                     ),
                                                   ):
-                                                  Text(
+                                                  MyText(
                                                     profilePage?.body.editProfileButton.data as String,
                                                     style: TextStyle(
                                                         fontFamily:lng?.header2.textFamily,
@@ -585,7 +587,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                             // ),
                                                           ),
                                                           child: Center(
-                                                            child: Text(
+                                                            child: MyText(
                                                               profilePage?.body.form.name.data as String,
                                                               style: TextStyle(
                                                                   fontSize: lng?.header2.size.toDouble(),
@@ -593,7 +595,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                                   color: Color(int.parse(profilePage?.body.form.name.color as String))),),
                                                           ),
                                                         )
-                                                      // Text(
+                                                      // MyText(
                                                       //       "${getTranslated(context, "name")!} :",
                                                       //       style: TextStyle(fontSize: 13,
                                                       //           fontFamily: getTranslated(
@@ -604,7 +606,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                       flex: 5,
                                                       child: SizedBox(
 
-                                                        child: TextFormField(
+                                                        child: MyTextFormField(
                                                           controller: profileProvider.nameController,
                                                           enabled: startEdit,
                                                           autofocus: false,
@@ -725,7 +727,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                                   width: 10.0),
                                                             ),
                                                             hintText: '',
-                                                            // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+                                                            // label: MyText(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
 
                                                           ),
 
@@ -783,14 +785,14 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                           padding: const EdgeInsets.only(left: 10, right: 10),
                                                           child:
                                                           Center(
-                                                            child: Text(
+                                                            child: MyText(
                                                               profilePage?.body.form.phoneNumber.data as String,
                                                               style: TextStyle(
                                                                   fontSize: lng?.header2.size.toDouble(),
                                                                   fontFamily: lng?.header2.textFamily,
                                                                   color: Color(int.parse(profilePage?.body.form.phoneNumber.color as String))),),
                                                           )
-                                                        // Text("${getTranslated(
+                                                        // MyText("${getTranslated(
                                                         //     context, "mobileNo")!} :",
                                                         //   style: TextStyle(
                                                         //       fontFamily: getTranslated(
@@ -847,7 +849,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                       flex: 7,
                                                       child: SizedBox(
 
-                                                        child: TextFormField(
+                                                        child: MyTextFormField(
                                                           controller: profileProvider.mobileController,
                                                           maxLength: 9,
                                                           enabled: startEdit,
@@ -972,7 +974,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                             ),
                                                             hintText: '',
                                                              counterText: ''
-                                                            // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+                                                            // label: MyText(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
 
                                                           ),
                                                           validator: (value) {
@@ -1032,7 +1034,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                             // ),
                                                           ),
                                                           child: Center(
-                                                            child: Text(
+                                                            child: MyText(
                                                                 profilePage?.body.form.email.data as String,
                                                                 style: TextStyle(
                                                                     fontSize: lng?.header2.size.toDouble(),
@@ -1045,7 +1047,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                       flex: 5,
                                                       child: SizedBox(
 
-                                                        child: TextFormField(
+                                                        child: MyTextFormField(
                                                           controller: profileProvider.emailController,
                                                           enabled: startEdit,
                                                           autofocus: false,
@@ -1169,7 +1171,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                             ),
                                                             hintText: '',
 
-                                                            // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+                                                            // label: MyText(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
 
                                                           ),
                                                           validator: (value) {
@@ -1227,7 +1229,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                             // ),
                                                           ),
                                                           child: Center(
-                                                            child: Text(
+                                                            child: MyText(
                                                               profilePage?.body.form.dateOfBirth.data as String,
                                                               style: TextStyle(
                                                                   fontSize: lng?.header2.size.toDouble(),
@@ -1241,7 +1243,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
 
                                                         child: Stack(
                                                           children: [
-                                                            TextFormField(
+                                                            MyTextFormField(
                                                               controller: profileProvider.birthDateController,
                                                               enabled: startEdit,
                                                               autofocus: false,
@@ -1364,7 +1366,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                                 ),
                                                                 hintText: '',
 
-                                                                // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+                                                                // label: MyText(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
 
                                                               ),
 
@@ -1441,7 +1443,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                           //   style: BorderStyle.solid,
                                                           // ),
                                                         ),
-                                                        child: Center(child: Text("${getTranslated(context, "gender")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)))),
+                                                        child: Center(child: MyText("${getTranslated(context, "gender")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)))),
                                                     Expanded(
                                                       flex: 7,
                                                       child: SizedBox(
@@ -1574,7 +1576,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                             //Add label If you want but add hint outside the decoration to be aligned in the button perfectly.
                                                           ),
                                                           isExpanded: true,
-                                                          hint: Text(
+                                                          hint: MyText(
                                                             profilePage?.body.form.gender.dropDownWidget.labelText.data as String,
                                                             style: TextStyle(
                                                                 fontSize: lng?.header3.size.toDouble(),
@@ -1589,12 +1591,12 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                                 height:double.parse(profilePage?.body.form.gender.dropDownWidget.selectedIcon.height as String) ,
                                                                 width: double.parse(profilePage?.body.form.gender.dropDownWidget.selectedIcon.width as String),),
                                                               SizedBox(width: 5,),
-                                                              Text("${profileProvider.selectedGenderValue}",style: TextStyle(
+                                                              MyText("${profileProvider.selectedGenderValue}",style: TextStyle(
                                                                   fontSize: lng?.header3.size.toDouble(),
                                                                   fontFamily: lng?.header3.textFamily,
                                                                   color: Color(int.parse(profilePage?.body.form.gender.dropDownWidget.labelText.color as String))),),
                                                             ],
-                                                          ):Text("Disabled", style: TextStyle(color: Colors.grey),),
+                                                          ):MyText("Disabled", style: TextStyle(color: Colors.grey),),
                                                           iconSize: 30,
                                                           buttonHeight: (profileProvider.selectedGenderValue != null) ? 50 : 50,
                                                           buttonPadding: const EdgeInsets.only(left: 20, right: 20),
@@ -1632,7 +1634,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                                         SizedBox(width: 5,),
 
 
-                                                                        Text(
+                                                                        MyText(
                                                                           getTranslated(context, gender)!,
                                                                           style: TextStyle(
                                                                               fontSize: lng?.header3.size.toDouble(),
@@ -1698,7 +1700,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                 child: Row(
                                                   children: [
                                                     Expanded(flex: 2,
-                                                        child:      Text(
+                                                        child:      MyText(
                                                           profilePage?.body.form.password.data as String,
                                                           style: TextStyle(
                                                               fontSize: lng?.header2.size.toDouble(),
@@ -1783,8 +1785,8 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                                       width: 0.0),
                                                                 ),
                                                                 hintText: 'Tap to Edit',
-                                                                hintStyle: TextStyle(color: Colors.white60)
-                                                                // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+                                                                hintStyle: TextStyle(color: Colors.white60, fontSize: 12),
+                                                                // label: MyText(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
 
                                                               ),
 
@@ -1846,7 +1848,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                             //     child: Row(
                                             //       children: [
                                             //         Expanded(flex:3, child:
-                                            //         Text("${getTranslated(context, "referralCode")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)
+                                            //         MyText("${getTranslated(context, "referralCode")!} :", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.amber),)
                                             //         ),
                                             //         const Expanded(
                                             //           flex: 5,
@@ -1873,7 +1875,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                             //                   borderSide: BorderSide(color: Colors.transparent, width: 0.0),
                                             //                 ),
                                             //                 // hintText: '',
-                                            //                 // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+                                            //                 // label: MyText(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
                                             //
                                             //               ),
                                             //
@@ -1890,7 +1892,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Text(
+                                                  MyText(
                                                     profilePage?.body.form.uploadId.data as String,
                                                     style: TextStyle(
                                                         fontSize: lng?.header3.size.toDouble(),
@@ -1927,7 +1929,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                                   left: 30)),
                                                           textStyle: MaterialStateProperty.all(
                                                               const TextStyle(fontSize: 15))),
-                                                      child:      Text(
+                                                      child:      MyText(
                                                         profilePage?.body.form.uploadId.chooseButton.data as String,
                                                         style: TextStyle(
                                                             fontSize: lng?.header3.size.toDouble(),
@@ -2006,7 +2008,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                 //                                 top: 10, bottom: 10,)),
                                 //                           textStyle: MaterialStateProperty.all(
                                 //                               const TextStyle(fontSize: 30))),
-                                //                       child: Text(
+                                //                       child: MyText(
                                 //                         profilePage?.body.buttons.orderHistory.data as String ,
                                 //                         style: TextStyle(
                                 //                           fontFamily: getTranslated(context, "fontFamilyBody")!,
@@ -2065,7 +2067,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                 //                           textStyle: MaterialStateProperty
                                 //                               .all(
                                 //                               const TextStyle(fontSize: 30))),
-                                //                       child: Text(
+                                //                       child: MyText(
                                 //                         profilePage?.body.buttons.savedAddress.data as String ,
                                 //                         style: TextStyle(
                                 //                           fontFamily: getTranslated(context, "fontFamilyBody")!,
@@ -2122,7 +2124,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                 //                           textStyle: MaterialStateProperty
                                 //                               .all(
                                 //                               const TextStyle(fontSize: 30))),
-                                //                       child: Text(
+                                //                       child: MyText(
                                 //                         profilePage?.body.buttons.savedCards.data as String ,
                                 //                         style: TextStyle(
                                 //                           fontFamily: getTranslated(context, "fontFamilyBody")!,
@@ -2186,7 +2188,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                 //                           textStyle: MaterialStateProperty
                                 //                               .all(
                                 //                               const TextStyle(fontSize: 30))),
-                                //                       child: Text(
+                                //                       child: MyText(
                                 //                         profilePage?.body.buttons.loyalty.data as String ,
                                 //                         style: TextStyle(
                                 //                           fontFamily: getTranslated(context, "fontFamilyBody")!,
@@ -2245,7 +2247,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                 //                           textStyle: MaterialStateProperty
                                 //                               .all(
                                 //                               const TextStyle(fontSize: 30))),
-                                //                       child: Text(
+                                //                       child: MyText(
                                 //                         profilePage?.body.buttons.help.data as String ,
                                 //                         style: TextStyle(
                                 //                           fontFamily: getTranslated(context, "fontFamilyBody")!,
@@ -2299,7 +2301,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                 //                           textStyle: MaterialStateProperty
                                 //                               .all(
                                 //                               const TextStyle(fontSize: 30))),
-                                //                       child: Text(
+                                //                       child: MyText(
                                 //                         profilePage?.body.buttons.signOut.data as String ,
                                 //                         style: TextStyle(
                                 //                           fontFamily: getTranslated(context, "fontFamilyBody")!,
@@ -2308,7 +2310,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                 //                           fontWeight: FontWeight.w300,),
                                 //                         textAlign: TextAlign.center,),
                                 //
-                                //                       // Text(
+                                //                       // MyText(
                                 //                       //   getTranslated(context, "sighOut")!,
                                 //                       //   style: TextStyle(
                                 //                       //     fontFamily: getTranslated(
@@ -2402,7 +2404,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                   top: 10, bottom: 10,)),
                                             textStyle: MaterialStateProperty.all(
                                                 const TextStyle(fontSize: 30))),
-                                        child: Text(
+                                        child: MyText(
                                           profilePage?.body.buttons.orderHistory.data as String ,
                                           style: TextStyle(
                                             fontFamily: getTranslated(context, "fontFamilyBody")!,
@@ -2461,7 +2463,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                             textStyle: MaterialStateProperty
                                                 .all(
                                                 const TextStyle(fontSize: 30))),
-                                        child: Text(
+                                        child: MyText(
                                           profilePage?.body.buttons.savedAddress.data as String ,
                                           style: TextStyle(
                                             fontFamily: getTranslated(context, "fontFamilyBody")!,
@@ -2518,7 +2520,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                             textStyle: MaterialStateProperty
                                                 .all(
                                                 const TextStyle(fontSize: 30))),
-                                        child: Text(
+                                        child: MyText(
                                           profilePage?.body.buttons.savedCards.data as String ,
                                           style: TextStyle(
                                             fontFamily: getTranslated(context, "fontFamilyBody")!,
@@ -2582,7 +2584,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                             textStyle: MaterialStateProperty
                                                 .all(
                                                 const TextStyle(fontSize: 30))),
-                                        child: Text(
+                                        child: MyText(
                                           profilePage?.body.buttons.loyalty.data as String ,
                                           style: TextStyle(
                                             fontFamily: getTranslated(context, "fontFamilyBody")!,
@@ -2641,7 +2643,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                             textStyle: MaterialStateProperty
                                                 .all(
                                                 const TextStyle(fontSize: 30))),
-                                        child: Text(
+                                        child: MyText(
                                           profilePage?.body.buttons.help.data as String ,
                                           style: TextStyle(
                                             fontFamily: getTranslated(context, "fontFamilyBody")!,
@@ -2694,7 +2696,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                             textStyle: MaterialStateProperty
                                                 .all(
                                                 const TextStyle(fontSize: 30))),
-                                        child: Text(
+                                        child: MyText(
                                           profilePage?.body.buttons.signOut.data as String ,
                                           style: TextStyle(
                                             fontFamily: getTranslated(context, "fontFamilyBody")!,
@@ -2703,7 +2705,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                             fontWeight: FontWeight.w300,),
                                           textAlign: TextAlign.center,),
 
-                                        // Text(
+                                        // MyText(
                                         //   getTranslated(context, "sighOut")!,
                                         //   style: TextStyle(
                                         //     fontFamily: getTranslated(
@@ -2858,20 +2860,20 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children:  [
-                            Align(child:Text("${profilePage.body.logoutDialog.dialogTitle!.data}",
+                            Align(child:MyText("${profilePage.body.logoutDialog!.dialogTitle!.data}",
                               style: TextStyle(
                                 fontFamily: "${lng.titleHeader1.textFamily}",
-                                  color: Color(int.parse(profilePage?.body.logoutDialog.dialogTitle!.color as String)),
+                                  color: Color(int.parse(profilePage!.body.logoutDialog!.dialogTitle!.color as String)),
                                   fontSize: lng?.titleHeader1.size.toDouble(),
 
                               ),),),
 
 
                             const SizedBox(height: 10,),
-                            Text(profilePage.body.logoutDialog.dialogBodyTitle!.data,
+                            MyText(profilePage.body.logoutDialog!.dialogBodyTitle!.data,
                               style: TextStyle(
                               fontFamily: "${lng.header3.textFamily}",
-                              color: Color(int.parse(profilePage?.body.logoutDialog.dialogBodyTitle!.color as String)),
+                              color: Color(int.parse(profilePage!.body.logoutDialog!.dialogBodyTitle!.color as String)),
                               fontSize: lng?.header3.size.toDouble(),
 
                             ),
@@ -2919,13 +2921,13 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                   foregroundColor: MaterialStateProperty.all(Colors.black),
                                   padding: MaterialStateProperty.all(const EdgeInsets.only(top: 10, bottom: 10,right: 10, left: 10)),
                                   textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 12))),
-                              child: Text(
-                                profilePage.body.logoutDialog.logoutAllDevices!.data,
+                              child: MyText(
+                                profilePage.body.logoutDialog!.logoutAllDevices!.data,
                                 style:
 
                                 TextStyle(
                                   fontFamily: "${lng.header2.textFamily}",
-                                  color: Color(int.parse(profilePage?.body.logoutDialog.logoutAllDevices!.color as String)),
+                                  color: Color(int.parse(profilePage!.body.logoutDialog!.logoutAllDevices!.color as String)),
                                   fontSize: lng?.header2.size.toDouble(),
 
                                 ),
@@ -2969,17 +2971,17 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                   foregroundColor: MaterialStateProperty.all(Colors.black),
                                   padding: MaterialStateProperty.all(const EdgeInsets.only(top: 10, bottom: 10,right: 10, left: 10)),
                                   textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 12))),
-                              child: Text(
-                                profilePage.body.logoutDialog.logoutOnDevice!.data,
+                              child: MyText(
+                                profilePage.body.logoutDialog!.logoutOnDevice!.data,
                                 style:  TextStyle(
                                   fontFamily: "${lng.header2.textFamily}",
-                                  color: Color(int.parse(profilePage?.body.logoutDialog.logoutOnDevice!.color as String)),
+                                  color: Color(int.parse(profilePage!.body.logoutDialog!.logoutOnDevice!.color as String)),
                                   fontSize: lng?.header2.size.toDouble(),
 
                                 ),
                                 textAlign: TextAlign.center,),
 
-                              // Text(
+                              // MyText(
                               //   getTranslated(context, "sighOut")!,
                               //   style: TextStyle(
                               //     fontFamily: getTranslated(

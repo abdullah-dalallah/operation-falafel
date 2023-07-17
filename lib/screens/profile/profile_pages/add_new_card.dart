@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:operation_falafel/data/keys.dart';
+import 'package:operation_falafel/data/my_text.dart';
+import 'package:operation_falafel/data/my_text_form_field.dart';
 import 'package:operation_falafel/data/snackBarGenerator.dart';
 import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/AddNewCardPage/add_new_card_page.dart';
 import 'package:operation_falafel/models/AppThemeModels/FontSizes/Language/lang.dart';
@@ -58,7 +60,7 @@ class _AddNewCardState extends State<AddNewCard> {
               backgroundColor: Colors.transparent,
               elevation: 0,
               centerTitle: true,
-              title: Text(
+              title: MyText(
                 addNewCardPage.appBar!.title!.data,
                 style: TextStyle(
                     fontFamily: "${lng?.logoTitle.textFamily}",
@@ -72,7 +74,7 @@ class _AddNewCardState extends State<AddNewCard> {
                   constraints: BoxConstraints(maxWidth: 450,),
                   child: Column(
                     children: [
-                      Text(
+                      MyText(
                         addNewCardPage.body!.pageTitle!.data,
                         style: TextStyle(
                             fontFamily:lng?.titleHeader2.textFamily,
@@ -118,7 +120,7 @@ class _AddNewCardState extends State<AddNewCard> {
                             /// -  Card Number
                             Padding(
                               padding: const EdgeInsets.only(left: 18.0, right: 18, top: 8, bottom: 8),
-                              child: TextFormField(
+                              child: MyTextFormField(
                                 controller: cardNumberController,
                                 keyboardType: TextInputType.number,
                                 inputFormatters: [
@@ -197,7 +199,7 @@ class _AddNewCardState extends State<AddNewCard> {
                             /// - Card Holder Name
                             Padding(
                               padding: const EdgeInsets.only(left: 18.0, right: 18, top: 8, bottom: 8),
-                              child: TextFormField(
+                              child: MyTextFormField(
                                 controller: cardHolderNameController,
                                 autofocus: false,
                                 style: const TextStyle(color: Colors.white),
@@ -261,7 +263,7 @@ class _AddNewCardState extends State<AddNewCard> {
                                 children: [
                                   Expanded(
                                     flex: 2,
-                                    child: TextFormField(
+                                    child: MyTextFormField(
                                       controller: cvv,
                                       keyboardType: TextInputType.number,
                                       inputFormatters: [
@@ -326,7 +328,7 @@ class _AddNewCardState extends State<AddNewCard> {
                                   SizedBox(width: 16.0),
                                   Expanded(
                                     flex: 3,
-                                    child:TextFormField(
+                                    child:MyTextFormField(
                                       controller: expiryDate,
                                       keyboardType: TextInputType.datetime,
                                       inputFormatters: [
@@ -426,7 +428,7 @@ class _AddNewCardState extends State<AddNewCard> {
                                             )
                                         ),
                                       ),
-                                      child:Text(addNewCardPage.body!.addNewCardButton!.data,
+                                      child:MyText(addNewCardPage.body!.addNewCardButton!.data,
                                         style: TextStyle(
                                             fontFamily: lng?.header3.textFamily,
                                             color: Color(int.parse(addNewCardPage.body!.addNewCardButton!.color)),

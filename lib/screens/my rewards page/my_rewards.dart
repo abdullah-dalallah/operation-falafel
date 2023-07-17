@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/credit_calculator.dart';
 import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/how_it_works.dart';
@@ -149,17 +150,17 @@ class _MyRewardsState extends State<MyRewards> {
               elevation: 0,
               centerTitle: true,
               title:
-              Text(
+              MyText(
                 loyaltyPage.appBar.title.data,
                 style: TextStyle(
                     fontFamily: "${lng?.logoTitle.textFamily}",
                     fontWeight: FontWeight.bold),),
-              // Text(getTranslated(context, "operationFalafelLogo")!,
+              // MyText(getTranslated(context, "operationFalafelLogo")!,
               //   style: TextStyle(
               //       fontFamily: "${getTranslated(context, "fontFamilyTitle")!}",
               //       fontWeight: FontWeight.bold),),
               // Image.asset("assets/images/of_logo_top.png", width: 220,),
-              // Text("Operation Falafel",style: TextStyle(fontFamily: "oldpress",color: Colors.white, fontSize: 30),)
+              // MyText("Operation Falafel",style: TextStyle(fontFamily: "oldpress",color: Colors.white, fontSize: 30),)
               actions: [
                 // CupertinoSwitch(
                 //   value: _switchValue,
@@ -173,7 +174,7 @@ class _MyRewardsState extends State<MyRewards> {
             ),
             body: Column(
               children: [
-                Text(
+                MyText(
                   loyaltyPage.body.pageTitle.data,
                   style: TextStyle(
                       fontFamily: lng?.titleHeader2.textFamily,
@@ -181,7 +182,7 @@ class _MyRewardsState extends State<MyRewards> {
                       fontSize: lng?.titleHeader2.size.toDouble()
 
                   ),),
-                // Text(getTranslated(context, "ofLoyalty")!, style: TextStyle(
+                // MyText(getTranslated(context, "ofLoyalty")!, style: TextStyle(
                 //     fontFamily: "${getTranslated(
                 //         context, "fontFamilyButtons")!}",
                 //     color: Colors.amber,
@@ -312,7 +313,7 @@ class _MyRewardsState extends State<MyRewards> {
                         ]),
                   ),
 
-                  // RichText(
+                  // RichMyText(
                   //
                   //   text: TextSpan(
                   //       text: getTranslated(context, "dashBoardTitle-youHave")!,
@@ -389,14 +390,14 @@ class _MyRewardsState extends State<MyRewards> {
                                           padding: MaterialStateProperty.all(const EdgeInsets.only(top: 10, bottom: 10,)),
                                           textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
                                       child:
-                                      Text(
+                                      MyText(
                                         loyaltyPage.body.buttons.howItWorks.data,
                                         style: TextStyle(
                                             fontFamily: lng?.header3.textFamily,
                                             color: Color(int.parse(loyaltyPage.body.buttons.howItWorks.color)),
                                             fontSize: lng?.header3.size.toDouble(),
                                             fontWeight: FontWeight.w300),),
-                                      // Text(
+                                      // MyText(
                                       //   getTranslated(context, "howItworks")!,
                                       //   style: TextStyle(
                                       //       fontFamily: getTranslated(
@@ -451,7 +452,7 @@ class _MyRewardsState extends State<MyRewards> {
                                                 top: 10, bottom: 10,)),
                                           textStyle: MaterialStateProperty.all(
                                               const TextStyle(fontSize: 30))),
-                                      child: Text(
+                                      child: MyText(
                                         loyaltyPage.body.buttons.myRewards.data,
                                         style: TextStyle(
                                             fontFamily: lng?.header3.textFamily,
@@ -505,7 +506,7 @@ class _MyRewardsState extends State<MyRewards> {
                                           // padding: MaterialStateProperty.all(const EdgeInsets.only(top:10, bottom:10,)),
                                           textStyle: MaterialStateProperty.all(
                                               const TextStyle(fontSize: 30))),
-                                      child:  Text(
+                                      child:  MyText(
                                         loyaltyPage.body.buttons.referFriend.data,
                                         style: TextStyle(
                                             fontFamily: lng?.header3.textFamily,
@@ -564,7 +565,7 @@ class _MyRewardsState extends State<MyRewards> {
                                           textStyle: MaterialStateProperty.all(
                                               const TextStyle(fontSize: 30))),
                                       child:
-                                      Text(
+                                      MyText(
                                         loyaltyPage.body.buttons.transferCredits.data,
                                         style: TextStyle(
                                             fontFamily: lng?.header3.textFamily,
@@ -572,7 +573,7 @@ class _MyRewardsState extends State<MyRewards> {
                                             fontSize: lng?.header3.size.toDouble(),
                                             fontWeight: FontWeight.w300),),
 
-                                      // Text(getTranslated(
+                                      // MyText(getTranslated(
                                       //     context, "transferCredits")!,
                                       //   style: TextStyle(
                                       //       fontFamily: getTranslated(
@@ -628,7 +629,7 @@ class _MyRewardsState extends State<MyRewards> {
                                                 top: 10, bottom: 10,)),
                                           textStyle: MaterialStateProperty.all(
                                               const TextStyle(fontSize: 30))),
-                                      child: Text(
+                                      child: MyText(
                                         loyaltyPage.body.buttons.creditCalculator.data,
                                         style: TextStyle(
                                             fontFamily: lng?.header3.textFamily,
@@ -681,7 +682,7 @@ class _MyRewardsState extends State<MyRewards> {
                                                 top: 10, bottom: 10,)),
                                           textStyle: MaterialStateProperty.all(
                                               const TextStyle(fontSize: 30))),
-                                      child: Text(
+                                      child: MyText(
                                         loyaltyPage.body.buttons.history.data,
                                         style: TextStyle(
                                             fontFamily: lng?.header3.textFamily,

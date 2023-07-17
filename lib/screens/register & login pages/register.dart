@@ -4,6 +4,8 @@ import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/data/keys.dart';
+import 'package:operation_falafel/data/my_text.dart';
+import 'package:operation_falafel/data/my_text_form_field.dart';
 import 'package:operation_falafel/data/snackBarGenerator.dart';
 import 'package:operation_falafel/data/strings.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
@@ -264,7 +266,7 @@ class _RegisterState extends State<Register> {
                 backgroundColor: Colors.transparent,
                 elevation: 0,
                 // centerTitle: true,
-                // title:Text(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),),
+                // title:MyText(getTranslated(context, "operationFalafelLogo")!, style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyTitle")!}", fontWeight: FontWeight.bold),),
                 // actions: [],
               ),
               body: Center(
@@ -273,13 +275,13 @@ class _RegisterState extends State<Register> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(registerPage.pageTile.data,
+                      MyText(registerPage.pageTile.data,
                         style: TextStyle(
                           fontFamily: lng?.titleHeader2.textFamily,
                           color: Color(int.parse(registerPage.pageTile.color)),
                           fontSize: double.parse(getTranslated(context, "enterOfTitleSize")!),
                           height: 0.8), textAlign: TextAlign.center,),
-                      // Text(getTranslated(context, "register")!, style: TextStyle(
+                      // MyText(getTranslated(context, "register")!, style: TextStyle(
                       //     fontFamily: getTranslated(context, "fontFamilyButtons"),
                       //     color: Colors.amber,
                       //     fontSize: double.parse(
@@ -321,13 +323,13 @@ class _RegisterState extends State<Register> {
                                       children: [
                                         Expanded(flex: 2,
                                             child:
-                                            Text(
+                                            MyText(
                                               "${registerPage.form.name.data}*",
                                               style: TextStyle(
                                                   fontFamily: lng?.header2.textFamily,
                                                   color: Color(int.parse(registerPage.form.name.color))
                                               ),)
-                                        // Text(
+                                        // MyText(
                                         //       "${getTranslated(context, "name")!}*",
                                         //       style: TextStyle(
                                         //           fontFamily: getTranslated(
@@ -339,7 +341,7 @@ class _RegisterState extends State<Register> {
                                           flex: 5,
                                           child: SizedBox(
 
-                                            child: TextFormField(
+                                            child: MyTextFormField(
                                              controller: nameController,
                                               autofocus: false,
                                               style:const TextStyle(color: Colors.white),
@@ -380,7 +382,7 @@ class _RegisterState extends State<Register> {
                                                     width: 2.0,),
                                                 ),
                                                 hintText: '',
-                                                // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+                                                // label: MyText(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
 
                                               ),
                                               validator: (value) {
@@ -423,7 +425,7 @@ class _RegisterState extends State<Register> {
                                       children: [
                                         Expanded(flex: 5, child: Padding(
                                           padding: const EdgeInsets.only(left: 0, right: 0),
-                                          child: Text(
+                                          child: MyText(
                                             "${registerPage.form.phoneNumber.data}*",
                                             style: TextStyle(
                                                 fontFamily: lng?.header2.textFamily,
@@ -519,7 +521,7 @@ class _RegisterState extends State<Register> {
                                                   flex: 8,
                                                   child: SizedBox(
 
-                                                    child: TextFormField(
+                                                    child: MyTextFormField(
                                                       maxLength: 9,
                                                      controller: mobileController,
                                                       keyboardType: TextInputType.number,
@@ -615,7 +617,7 @@ class _RegisterState extends State<Register> {
                                                         ),
                                                         hintText: '',
                                                         counterText: '',
-                                                        // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+                                                        // label: MyText(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
 
                                                       ),
                                                       validator: (value) {
@@ -706,7 +708,7 @@ class _RegisterState extends State<Register> {
                                     child: Row(
                                       children: [
                                         Expanded(flex: 2,
-                                            child:  Text(
+                                            child:  MyText(
                                               "${registerPage.form.email.data}*",
                                               style: TextStyle(
                                                   fontFamily: lng?.header2.textFamily,
@@ -717,7 +719,7 @@ class _RegisterState extends State<Register> {
                                           flex: 5,
                                           child: SizedBox(
 
-                                            child: TextFormField(
+                                            child: MyTextFormField(
                                                 controller: emailController,
                                               autofocus: false,
                                               style:const  TextStyle(color: Colors.white),
@@ -758,7 +760,7 @@ class _RegisterState extends State<Register> {
                                                     color: Colors.red,
                                                     width: 2.0,),
                                                 ),
-                                                // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+                                                // label: MyText(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
 
                                               ),
                                               validator: (value) {
@@ -801,7 +803,7 @@ class _RegisterState extends State<Register> {
                                     child: Row(
                                       children: [
                                         Expanded(flex: 2,
-                                            child:  Text(
+                                            child:  MyText(
                                               "${registerPage.form.password.data}*",
                                               style: TextStyle(
                                                   fontFamily: lng?.header2.textFamily,
@@ -811,7 +813,7 @@ class _RegisterState extends State<Register> {
                                          Expanded(
                                           flex: 5,
                                           child: SizedBox(
-                                            child: TextFormField(
+                                            child: MyTextFormField(
                                               controller: passwordController,
                                               obscureText: _obscureText,
                                               enableSuggestions: false,
@@ -861,7 +863,7 @@ class _RegisterState extends State<Register> {
                                                 ),
                                                   hintText: '',
 
-                                                // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+                                                // label: MyText(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
 
                                               ),
                                               validator: (value) {
@@ -901,7 +903,7 @@ class _RegisterState extends State<Register> {
                                               children: [
                                                 Image.asset("assets/images/page2orders_icon.png", height: 10,),
                                                 SizedBox(width: 5,),
-                                                Text("Password must be 6-30 characters",style: TextStyle(color: Colors.red),)
+                                                MyText("Password must be 6-30 characters",style: TextStyle(color: Colors.red),)
                                               ],
                                             ),
                                             Row(
@@ -909,7 +911,7 @@ class _RegisterState extends State<Register> {
                                               children: [
                                                 Image.asset("assets/images/page2orders_icon.png", height: 10,),
                                                 SizedBox(width: 5,),
-                                                Text("Password must be contain only letters",style: TextStyle(color: Colors.red),)
+                                                MyText("Password must be contain only letters",style: TextStyle(color: Colors.red),)
                                               ],
                                             ),
                                             Row(
@@ -917,7 +919,7 @@ class _RegisterState extends State<Register> {
                                               children: [
                                                 Image.asset("assets/images/page2orders_icon.png", height: 10,),
                                                 SizedBox(width: 5,),
-                                                Text("Password must be contain numbers",style: TextStyle(color: Colors.red),)
+                                                MyText("Password must be contain numbers",style: TextStyle(color: Colors.red),)
                                               ],
                                             ),
                                             Row(
@@ -926,7 +928,7 @@ class _RegisterState extends State<Register> {
                                               children: [
                                                 Image.asset("assets/images/page2orders_icon.png", height: 10,),
                                                 SizedBox(width: 5,),
-                                                Text("Password must be contain \nspecial characters (!@#\$%^&*())", style: TextStyle(color: Colors.red),)
+                                                MyText("Password must be contain \nspecial characters (!@#\$%^&*())", style: TextStyle(color: Colors.red),)
                                               ],
                                             ),
                                           ],
@@ -962,7 +964,7 @@ class _RegisterState extends State<Register> {
                                     child: Row(
                                       children: [
                                         Expanded(flex: 2,
-                                            child:  Text(
+                                            child:  MyText(
                                               "${registerPage.form.dateOfBirth.data}:",
                                               style: TextStyle(
                                                   fontFamily: lng?.header2.textFamily,
@@ -974,7 +976,7 @@ class _RegisterState extends State<Register> {
 
                                             child: Stack(
                                               children: [
-                                                TextFormField(
+                                                MyTextFormField(
                                                   controller: birthDateController,
                                                   enabled: true,
                                                   autofocus: false,
@@ -1020,7 +1022,7 @@ class _RegisterState extends State<Register> {
                                                       borderSide: BorderSide(color: Colors.transparent, width: 0.0),
                                                     ),
                                                     hintText: '',
-                                                    // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+                                                    // label: MyText(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
 
                                                   ),
                                                   validator: (value) {
@@ -1083,7 +1085,7 @@ class _RegisterState extends State<Register> {
                                     child: Row(
                                       children: [
                                         Expanded(flex: 2,
-                                            child:  Text(
+                                            child:  MyText(
                                               "${registerPage.form.nationality.data}:",
                                               style: TextStyle(
                                                   fontFamily: lng?.header2.textFamily,
@@ -1146,7 +1148,7 @@ class _RegisterState extends State<Register> {
                                                 //Add label If you want but add hint outside the decoration to be aligned in the button perfectly.
                                               ),
                                               isExpanded: true,
-                                              hint: Text(
+                                              hint: MyText(
 
                                                 registerPage.form.nationality.dropDownWidget.labelText.data,
                                                 style: TextStyle(
@@ -1200,7 +1202,7 @@ class _RegisterState extends State<Register> {
                                                            // const  SizedBox(width: 5,),
                                                             Expanded(
 
-                                                              child: Text(item["name"]!,
+                                                              child: MyText(item["name"]!,
                                                                 style: TextStyle(
                                                                   fontSize: lng?.header2.size.toDouble(),
                                                                   color: Color(int.parse(registerPage.form.nationality.dropDownWidget.itemsTitle.color)),
@@ -1273,7 +1275,7 @@ class _RegisterState extends State<Register> {
                                         //               width: 0.0),
                                         //         ),
                                         //         hintText: '',
-                                        //         // label: Text(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
+                                        //         // label: MyText(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
                                         //
                                         //       ),
                                         //
@@ -1308,7 +1310,7 @@ class _RegisterState extends State<Register> {
                                     child: Row(
                                       children: [
                                         Expanded(flex: 2,
-                                            child: Text(
+                                            child: MyText(
                                               "${registerPage.form.gender.data}:",
                                               style: TextStyle(
                                                   fontFamily: lng?.header2.textFamily,
@@ -1373,7 +1375,7 @@ class _RegisterState extends State<Register> {
                                               ),
                                               isExpanded: true,
                                               hint:
-                                              Text(
+                                              MyText(
                                                 registerPage.form.gender.dropDownWidget.labelText.data,
                                                 style: TextStyle(
                                                     fontSize: lng?.header3.size.toDouble(),
@@ -1381,7 +1383,7 @@ class _RegisterState extends State<Register> {
                                                     fontFamily: lng?.header3.textFamily,
                                                 ),
                                               ),
-                                              // Text(
+                                              // MyText(
                                               //   getTranslated(context, "selectGender")!,
                                               //   style: TextStyle(fontSize: 16,
                                               //       color: Colors.white60,
@@ -1435,7 +1437,7 @@ class _RegisterState extends State<Register> {
                                                                 : SizedBox(width: 15,)
                                                                 : SizedBox(width: 15,),
                                                             SizedBox(width: 5,),
-                                                            Text(getTranslated(
+                                                            MyText(getTranslated(
                                                                 context, gender)!,
                                                               style: TextStyle(
                                                                 fontSize: lng?.header2.size.toDouble(),

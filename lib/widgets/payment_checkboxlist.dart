@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 
 class PaymentCheckboxList extends StatelessWidget{
   final bool value;
@@ -54,7 +55,7 @@ class PaymentCheckboxList extends StatelessWidget{
     );
   }
 
-  Widget _buildText() {
+  Widget _buildMyText() {
     return Row(
 
       children: [
@@ -62,7 +63,7 @@ class PaymentCheckboxList extends StatelessWidget{
         SizedBox(width: 10,),
         Image.asset(paymentImage2,height: 20,),
         SizedBox(width: 10,),
-        Text(text, style:  TextStyle(color: (colorOfText!=null)?colorOfText!:Colors.green, fontSize: 15,fontWeight: FontWeight.w300, fontFamily: fontFamily),),
+        MyText(text, style:  TextStyle(color: (colorOfText!=null)?colorOfText!:Colors.green, fontSize: 15,fontWeight: FontWeight.w300, fontFamily: fontFamily),),
 
 
 
@@ -83,12 +84,12 @@ class PaymentCheckboxList extends StatelessWidget{
 
             _buildLabel(),
             const SizedBox(width: 10),
-            _buildText(),
+            _buildMyText(),
 
             Expanded(child: SizedBox(width: 10,)),
 
             (priceText!=null)?
-            Text(priceText!, style:  TextStyle(color: (colorOfText!=null)?colorOfText!:Colors.green, fontSize: 15,fontWeight: FontWeight.w300, fontFamily: fontFamily),):
+            MyText(priceText!, style:  TextStyle(color: (colorOfText!=null)?colorOfText!:Colors.green, fontSize: 15,fontWeight: FontWeight.w300, fontFamily: fontFamily),):
             const SizedBox(width: 1,),
             const SizedBox(width: 10,),
 

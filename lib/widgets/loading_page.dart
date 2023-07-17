@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/widgets/background.dart';
 
 import '../localization/localization_constants.dart';
@@ -125,7 +126,7 @@ class _LoadingPageState extends State<LoadingPage> with TickerProviderStateMixin
                   // ),
 
                   SizedBox(height: 20,),
-                  Text("Loading...", style: TextStyle(fontFamily:"${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontWeight: FontWeight.bold,fontSize: 15),),
+                  MyText("Loading...", style: TextStyle(fontFamily:"${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontWeight: FontWeight.bold,fontSize: 15),),
 
 
 

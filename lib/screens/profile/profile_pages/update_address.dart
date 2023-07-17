@@ -1,6 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:provider/provider.dart';
@@ -69,7 +70,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
               backgroundColor: Colors.transparent,
               elevation: 0,
               centerTitle: true,
-              title: Text(
+              title: MyText(
                 editAddressPage.appBar.title.data,
                 style: TextStyle(
                     fontFamily: "${lng?.logoTitle.textFamily}",
@@ -81,7 +82,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
                 constraints: BoxConstraints(maxWidth: 450,),
                 child: Column(
                   children: [
-                    Text(
+                    MyText(
                       editAddressPage.body.pageTitle.data,
                       style: TextStyle(
                           fontFamily: "${lng?.titleHeader2.textFamily}",
@@ -89,7 +90,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
                           fontSize:lng?.titleHeader2.size.toDouble()
                       ),),
 
-                    // Text(
+                    // MyText(
                     //   getTranslated(context, "address")!,
                     //   style: TextStyle(
                     //       fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",
@@ -318,7 +319,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
                                     ),
                                     isExpanded: true,
                                     hint:
-                                    Text(
+                                    MyText(
                                       editAddressPage.body.form.addressTypeDropDown.labelText.data,
                                       style: TextStyle(
                                           fontSize: lng?.header3.size.toDouble(),
@@ -326,7 +327,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
                                           fontFamily: lng?.header3.textFamily
                                       ),
                                     ),
-                                    // Text(
+                                    // MyText(
                                     //   getTranslated(context, "addressType")!,
                                     //   style: TextStyle(
                                     //       fontSize: 15,
@@ -373,7 +374,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
                                                       : SizedBox(width: 15,)
                                                       : SizedBox(width: 15,),
                                                   SizedBox(width: 5,),
-                                                  Text(
+                                                  MyText(
                                                     getTranslated(context, order)!,
                                                     style: TextStyle(
                                                         fontSize: lng?.header2.size.toDouble(),
@@ -381,7 +382,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
                                                         fontFamily: lng?.header2.textFamily
                                                     ),
                                                   ),
-                                                  // Text(
+                                                  // MyText(
                                                   //   getTranslated(context, order)!,
                                                   //   style: TextStyle(
                                                   //       fontSize: 13,
@@ -453,7 +454,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
                               ),
 
                               const SizedBox(width: 10,),
-                              Text(
+                              MyText(
                                 editAddressPage.body.form.primaryAddress.title.data,
                                 style: TextStyle(
                                     fontFamily: lng?.header3.textFamily,
@@ -480,7 +481,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
                                             )
                                         ),
                                       ),
-                                      child: Text(
+                                      child: MyText(
                                         editAddressPage.body.form.updateAddressButton.data,
                                         style: TextStyle(
                                             fontFamily: lng?.header3.textFamily,

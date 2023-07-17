@@ -99,7 +99,6 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
               });
             }
           });
-
         }
         FlutterNativeSplash.remove();
       }),
@@ -137,23 +136,7 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
 
     ]).then((results) {
 
-      // Provider.of<TabIndexGenerator>(context, listen: false).setLayout("Desktop");
-      // if(size<500){
-      //   Provider.of<TabIndexGenerator>(context, listen: false).setLayout("Mobile");
-      //
-      // }
-      // else if(size <1100){
-      //   if(Provider.of<TabIndexGenerator>(context, listen: false).currentIndex==3)
-      //     Provider.of<TabIndexGenerator>(context, listen: false).setIndex(4);
-      //   Provider.of<TabIndexGenerator>(context, listen: false).setLayout("Tablet");
-      //
-      // }
-      // else{
-      //   if(Provider.of<TabIndexGenerator>(context, listen: false).currentIndex==4)
-      //     Provider.of<TabIndexGenerator>(context, listen: false).setIndex(3);
-      //   Provider.of<TabIndexGenerator>(context, listen: false).setLayout("Desktop");
-      //
-      // }
+
 
 
     });
