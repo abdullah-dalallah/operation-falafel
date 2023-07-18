@@ -13,6 +13,7 @@ import '../../../providers/AppTheme/theme_provider.dart';
 
 
 class HelpPage extends StatefulWidget{
+  static const routeName = 'HelpPage';
   @override
   State<HelpPage> createState() => _HelpPageState();
 }

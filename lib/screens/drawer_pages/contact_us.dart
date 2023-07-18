@@ -21,6 +21,7 @@ import '../../providers/AppTheme/theme_provider.dart';
 import '../../widgets/loading_page.dart';
 
 class ContactUs extends StatefulWidget{
+  static const routeName = 'ContactUs';
   final ValueChanged onChanged;
   final String layOut ;
   const ContactUs(this.onChanged,{super.key,required this.layOut});

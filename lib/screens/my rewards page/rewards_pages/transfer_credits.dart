@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/widgets/background.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:provider/provider.dart';
 import 'dart:math' as math;
@@ -11,6 +12,7 @@ import '../../../models/AppThemeModels/FontSizes/Language/lang.dart';
 import '../../../providers/AppTheme/theme_provider.dart';
 
 class TransferCredit extends StatefulWidget{
+  static const routeName = 'TransferCredit';
   @override
   State<TransferCredit> createState() => _TransferCreditState();
 }
@@ -29,18 +31,19 @@ class _TransferCreditState extends State<TransferCredit> {
         (loadingDesign)?
         Stack(
         children: [
-          Image.asset(
-            "assets/images/background.png",
-            height: MediaQuery
-                .of(context)
-                .size
-                .height,
-            width: MediaQuery
-                .of(context)
-                .size
-                .width,
-            fit: BoxFit.cover,
-          ),
+          Background(),
+          // Image.asset(
+          //   "assets/images/background.png",
+          //   height: MediaQuery
+          //       .of(context)
+          //       .size
+          //       .height,
+          //   width: MediaQuery
+          //       .of(context)
+          //       .size
+          //       .width,
+          //   fit: BoxFit.cover,
+          // ),
           Scaffold(
             backgroundColor: Colors.transparent,
             appBar: AppBar(

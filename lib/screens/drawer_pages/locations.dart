@@ -7,6 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class Locations extends StatefulWidget{
+  static const routeName = 'Locations';
   @override
   State<Locations> createState() => _LocationsState();
 }

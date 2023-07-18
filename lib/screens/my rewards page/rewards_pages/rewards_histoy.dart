@@ -9,6 +9,7 @@ import '../../../models/AppThemeModels/FontSizes/Language/lang.dart';
 import '../../../providers/AppTheme/theme_provider.dart';
 
 class RewardsHistory extends StatefulWidget{
+  static const routeName = 'RewardsHistory';
   @override
   State<RewardsHistory> createState() => _RewardsHistoryState();
 }

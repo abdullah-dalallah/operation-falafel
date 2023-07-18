@@ -12,6 +12,7 @@ import 'package:shimmer/shimmer.dart';
 import '../../localization/localization_constants.dart';
 
 class MapPage extends StatefulWidget {
+  static const routeName = 'MapPage';
   @override
   _MapPageState createState() => _MapPageState();
 }

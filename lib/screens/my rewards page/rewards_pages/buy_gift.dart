@@ -14,6 +14,7 @@ import '../../../models/AppThemeModels/FontSizes/Language/lang.dart';
 import '../../../providers/AppTheme/theme_provider.dart';
 
 class BuyGift extends StatefulWidget{
+  static const routeName = 'BuyGift';
   @override
   State<BuyGift> createState() => _BuyGiftState();
 }

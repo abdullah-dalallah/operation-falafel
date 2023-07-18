@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/screens/profile/profile_pages/add_new_address.dart';
 import 'package:operation_falafel/screens/profile/profile_pages/update_address.dart';
+import 'package:operation_falafel/widgets/background.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +18,7 @@ import '../../../providers/ProfileProviders/profile_provider.dart';
 import '../../../widgets/Saved_address/saved_address_list_widget.dart';
 
 class SavedAddress extends StatefulWidget{
+  static const routeName = 'SavedAddress';
   @override
   State<SavedAddress> createState() => _SavedAddressState();
 }
@@ -36,18 +39,7 @@ class _SavedAddressState extends State<SavedAddress> {
               (loadingDesign)?
               Stack(
                           children: [
-                            Image.asset(
-                              "assets/images/background.png",
-                              height: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .height,
-                              width: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width,
-                              fit: BoxFit.cover,
-                            ),
+                            Background(),
                             Scaffold(
                               backgroundColor: Colors.transparent,
                               appBar: AppBar(
@@ -110,14 +102,16 @@ class _SavedAddressState extends State<SavedAddress> {
                                           height: 38,
                                           child: ElevatedButton(
                                               onPressed: () {
-                                                PersistentNavBarNavigator.pushNewScreen(
-                                                  context,
-                                                  screen: AddNewAddress(),
-                                                  withNavBar: true,
-                                                  // OPTIONAL VALUE. True by default.
-                                                  pageTransitionAnimation: PageTransitionAnimation
-                                                      .cupertino,
-                                                );
+                                                context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${AddNewAddress.routeName}");
+
+                                                // PersistentNavBarNavigator.pushNewScreen(
+                                                //   context,
+                                                //   screen: AddNewAddress(),
+                                                //   withNavBar: true,
+                                                //   // OPTIONAL VALUE. True by default.
+                                                //   pageTransitionAnimation: PageTransitionAnimation
+                                                //       .cupertino,
+                                                // );
                                               },
                                               style: ButtonStyle(
                                                 backgroundColor: MaterialStateProperty.all<Color>(Color(int.parse(savedAddressPage?.body.addNewAdressButton.backGroundColor as String))),

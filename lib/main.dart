@@ -1,15 +1,19 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:operation_falafel/localization/demo_localization.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/AddNewCardPage/add_new_card_page.dart';
 import 'package:operation_falafel/providers/AppTheme/theme_provider.dart';
 import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
 import 'package:operation_falafel/providers/ProfileProviders/profile_provider.dart';
 import 'package:operation_falafel/providers/contact_provider.dart';
 import 'package:operation_falafel/providers/demo_cart/demo_cart_provider.dart';
 import 'package:operation_falafel/providers/gifts_provider/loyalty_provider.dart';
+import 'package:operation_falafel/providers/gifts_provider/models/gift.dart';
 import 'package:operation_falafel/providers/home_page_provider/home_page_provider.dart';
 import 'package:operation_falafel/providers/parsistent_tabview_provider.dart';
 import 'package:operation_falafel/providers/settings_provider/setting_provider.dart';
@@ -20,19 +24,43 @@ import 'package:operation_falafel/responsive/mobile_scaffold.dart';
 import 'package:operation_falafel/responsive/responsive_layout.dart';
 import 'package:operation_falafel/responsive/tablet_scaffold.dart';
 import 'package:operation_falafel/screens/cart%20page/cart_screen.dart';
+import 'package:operation_falafel/screens/drawer_pages/contact_us.dart';
+import 'package:operation_falafel/screens/drawer_pages/feedback.dart';
 import 'package:operation_falafel/screens/drawer_pages/locations.dart';
+import 'package:operation_falafel/screens/drawer_pages/partners.dart';
 import 'package:operation_falafel/screens/homepage/of_homepage.dart';
+import 'package:operation_falafel/screens/my%20rewards%20page/my_rewards.dart';
+import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/buy_gift.dart';
+import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/credit_calculator.dart';
+import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/gift_details.dart';
+import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/gift_friend.dart';
+import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/how_it_works.dart';
+import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/my_gifts.dart';
+import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/my_gifts_list.dart';
+import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/rewards_histoy.dart';
+import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/transfer_credits.dart';
 import 'package:operation_falafel/screens/profile/logged_in_user_profile.dart';
+import 'package:operation_falafel/screens/profile/profile_pages/add_new_address.dart';
+import 'package:operation_falafel/screens/profile/profile_pages/add_new_card.dart';
+import 'package:operation_falafel/screens/profile/profile_pages/help_page.dart';
+import 'package:operation_falafel/screens/profile/profile_pages/order_details.dart';
+import 'package:operation_falafel/screens/profile/profile_pages/order_history.dart';
+import 'package:operation_falafel/screens/profile/profile_pages/saved_address.dart';
+import 'package:operation_falafel/screens/profile/profile_pages/update_address.dart';
 import 'package:operation_falafel/screens/register%20&%20login%20pages/enter_of_world.dart';
 import 'package:operation_falafel/screens/rest%20password/forget_your_password.dart';
 import 'package:operation_falafel/screens/tabbar%20menu%20page/menu_tabebar.dart';
 import 'package:operation_falafel/screens/track%20orders/track_my_order.dart';
+import 'package:operation_falafel/widgets/Map/map_page.dart';
+import 'package:operation_falafel/widgets/drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'dart:ui' as ui;
+
 import 'package:window_manager/window_manager.dart';
 
+import 'screens/drawer_pages/notifications.dart';
+import 'screens/profile/profile_pages/saved_cards.dart';
 import 'widgets/deep_link_handler.dart';
 
 
@@ -45,9 +73,10 @@ import 'package:flutter_web_plugins/url_strategy.dart';
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorAKey = GlobalKey<NavigatorState>(debugLabel: 'shellA');
 final _shellNavigatorBKey = GlobalKey<NavigatorState>(debugLabel: 'shellB');
-final _shellNavigatorCKey = GlobalKey<NavigatorState>(debugLabel: 'shellB');
-final _shellNavigatorDKey = GlobalKey<NavigatorState>(debugLabel: 'shellB');
-final _shellNavigatorEKey = GlobalKey<NavigatorState>(debugLabel: 'shellB');
+final _shellNavigatorCKey = GlobalKey<NavigatorState>(debugLabel: 'shellC');
+final _shellNavigatorDKey = GlobalKey<NavigatorState>(debugLabel: 'shellD');
+final _shellNavigatorEKey = GlobalKey<NavigatorState>(debugLabel: 'shellE');
+final _shellNavigatorFKey = GlobalKey<NavigatorState>(debugLabel: 'shellF');
 
 final goRouter = GoRouter(
   initialLocation: '/homePage',
@@ -65,6 +94,7 @@ final goRouter = GoRouter(
         return ScaffoldWithNestedNavigation(navigationShell: navigationShell);
       },
       branches: [
+        /// - Home
         StatefulShellBranch(
           navigatorKey: _shellNavigatorAKey,
           routes: [
@@ -75,37 +105,107 @@ final goRouter = GoRouter(
               ),
 
               routes: [
+                /// - Drawer
+                /// - Locations
                 GoRoute(
-                  path: 'locations',
+                  path: '${Locations.routeName}',
                   builder: (context, state) =>  Locations(),
+
                 ),
+                /// - Notification
+                GoRoute(
+                  path: '${Notifications.routeName}',
+                  builder: (context, state) =>  Notifications(),
+                ),
+                /// - Partner
+                GoRoute(
+                  path: '${Partners.routeName}',
+                  builder: (context, state) =>  Partners(),
+                ),
+                /// - FeedBack
+                GoRoute(
+                  path: '${FeedbackPage.routeName}',
+                  builder: (context, state) =>  FeedbackPage(
+                    layOut: "",(value) => {},
+                  ),
+                ),
+                /// - Contact us
+                GoRoute(
+                  path: '${ContactUs.routeName}',
+                  builder: (context, state) =>  ContactUs(
+                    layOut: "",(value) => {},
+                  ),
+                ),
+                /// - Drawer
+
+                /// - Dash Bord -> Transfer credit
+                GoRoute(
+                  path: '${TransferCredit.routeName}',
+                  builder: (context, state) =>  TransferCredit(),
+
+                ),
+
+
               ],
             ),
           ],
         ),
+        /// - Menu
         StatefulShellBranch(
           navigatorKey: _shellNavigatorBKey,
           routes: [
-            // Shopping Cart
-            GoRoute(
-              path: '/TabeBarMenu',
-              builder:(context, state) =>  TabeBarMenu(layOut: "",(value) {
 
-                }),
+            GoRoute(
+              path: '${TabeBarMenu.routeName}',
+              builder:(context, state) =>  TabeBarMenu(layOut: "",(value) {}),
 
               routes: [
+
+                /// - Drawer
+                /// - Locations
                 GoRoute(
-                  path: 'locations',
+                  path: '${Locations.routeName}',
                   builder: (context, state) =>  Locations(),
+
                 ),
+                /// - Notification
+                GoRoute(
+                  path: '${Notifications.routeName}',
+                  builder: (context, state) =>  Notifications(),
+                ),
+                /// - Partner
+                GoRoute(
+                  path: '${Partners.routeName}',
+                  builder: (context, state) =>  Partners(),
+                ),
+                /// - FeedBack
+                GoRoute(
+                  path: '${FeedbackPage.routeName}',
+                  builder: (context, state) =>  FeedbackPage(
+                    layOut: "",(value) => {},
+                  ),
+                ),
+                /// - Contact us
+                GoRoute(
+                  path: '${ContactUs.routeName}',
+                  builder: (context, state) =>  ContactUs(
+                    layOut: "",(value) => {},
+                  ),
+                ),
+                /// - Drawer
+
               ],
             ),
+
+
+
           ],
         ),
+        /// -Cart
         StatefulShellBranch(
           navigatorKey: _shellNavigatorCKey,
           routes: [
-            // Shopping Cart
+
             GoRoute(
               path: '/CartScreen',
               builder:(context, state) =>  Cart_Screen(layOut: "",(value) {
@@ -113,18 +213,47 @@ final goRouter = GoRouter(
               }),
 
               routes: [
+                /// - Drawer
+                /// - Locations
                 GoRoute(
-                  path: 'locations',
+                  path: '${Locations.routeName}',
                   builder: (context, state) =>  Locations(),
+
                 ),
+                /// - Notification
+                GoRoute(
+                  path: '${Notifications.routeName}',
+                  builder: (context, state) =>  Notifications(),
+                ),
+                /// - Partner
+                GoRoute(
+                  path: '${Partners.routeName}',
+                  builder: (context, state) =>  Partners(),
+                ),
+                /// - FeedBack
+                GoRoute(
+                  path: '${FeedbackPage.routeName}',
+                  builder: (context, state) =>  FeedbackPage(
+                    layOut: "",(value) => {},
+                  ),
+                ),
+                /// - Contact us
+                GoRoute(
+                  path: '${ContactUs.routeName}',
+                  builder: (context, state) =>  ContactUs(
+                    layOut: "",(value) => {},
+                  ),
+                ),
+                /// - Drawer
               ],
             ),
           ],
         ),
+        /// - Track order
         StatefulShellBranch(
           navigatorKey: _shellNavigatorDKey,
           routes: [
-            // Shopping Cart
+
             GoRoute(
               path: '/TrackMyOrder',
               builder:(context, state) =>  TrackMyOrder(layOut: "",(value) {
@@ -132,16 +261,43 @@ final goRouter = GoRouter(
               }),
 
               routes: [
+                /// - Drawer
+                /// - Locations
                 GoRoute(
-                  path: 'locations',
+                  path: '${Locations.routeName}',
                   builder: (context, state) =>  Locations(),
+
                 ),
+                /// - Notification
+                GoRoute(
+                  path: '${Notifications.routeName}',
+                  builder: (context, state) =>  Notifications(),
+                ),
+                /// - Partner
+                GoRoute(
+                  path: '${Partners.routeName}',
+                  builder: (context, state) =>  Partners(),
+                ),
+                /// - FeedBack
+                GoRoute(
+                  path: '${FeedbackPage.routeName}',
+                  builder: (context, state) =>  FeedbackPage(
+                    layOut: "",(value) => {},
+                  ),
+                ),
+                /// - Contact us
+                GoRoute(
+                  path: '${ContactUs.routeName}',
+                  builder: (context, state) =>  ContactUs(
+                    layOut: "",(value) => {},
+                  ),
+                ),
+                /// - Drawer
               ],
             ),
           ],
         ),
-
-
+        /// - Profile
         StatefulShellBranch(
           navigatorKey: _shellNavigatorEKey,
           routes: [
@@ -168,10 +324,161 @@ final goRouter = GoRouter(
               }  ,
 
               routes: [
+                /// - Drawer
+                /// - Locations
                 GoRoute(
-                  path: 'locations',
+                  path: '${Locations.routeName}',
                   builder: (context, state) =>  Locations(),
+
                 ),
+                /// - Notification
+                GoRoute(
+                  path: '${Notifications.routeName}',
+                  builder: (context, state) =>  Notifications(),
+                ),
+                /// - Partner
+                GoRoute(
+                  path: '${Partners.routeName}',
+                  builder: (context, state) =>  Partners(),
+                ),
+                /// - FeedBack
+                GoRoute(
+                  path: '${FeedbackPage.routeName}',
+                  builder: (context, state) =>  FeedbackPage(
+                    layOut: "",(value) => {},
+                  ),
+                ),
+                /// - Contact us
+                GoRoute(
+                  path: '${ContactUs.routeName}',
+                  builder: (context, state) =>  ContactUs(
+                    layOut: "",(value) => {},
+                  ),
+                ),
+                /// - Drawer
+
+                /// - My Rewards
+                GoRoute(
+                    path: MyRewards.routeName,
+                    builder: (context, state) =>  const KeyboardVisibilityProvider(
+                      child: MyRewards(
+                        layOut: "",
+                      ),
+                    ),
+                    routes: [
+                      GoRoute(
+                        path: '${TransferCredit.routeName}',
+                        builder: (context, state) =>  TransferCredit(),
+
+                      ),
+                      GoRoute(
+                        path: '${HowItWorks.routeName}',
+                        builder: (context, state) =>  HowItWorks(),
+
+                      ),
+                      GoRoute(
+                        path: '${CreditCalculator.routeName}',
+                        builder: (context, state) =>  CreditCalculator(),
+
+                      ),
+                      GoRoute(
+                        path: '${RewardsHistory.routeName}',
+                        builder: (context, state) =>  RewardsHistory(),
+
+                      ),
+                      GoRoute(
+                          path: '${MyGifts.routeName}',
+                          builder: (context, state) =>  MyGifts(),
+                          routes: [
+                            GoRoute(
+                                path: '${MyGiftsList.routeName}',
+                                builder: (context, state) =>  MyGiftsList(),
+                                routes: [
+                                  GoRoute(
+                                      name: '${GiftDetails.routeName}',
+                                      path: '${GiftDetails.routeName}',
+                                      builder: (context, state) {
+                                        // final Gift? myObject = state.extra as Gift?;
+                                        final Gift? myObject =Gift.fromJson(state.extra as Map<String, dynamic>)  ;
+                                        return  GiftDetails(giftDetails: myObject);
+                                      },
+                                      routes: [
+                                        GoRoute(
+                                          path: '${GiftFriend.routeName}',
+                                          builder: (context, state) =>  GiftFriend(),
+
+                                        ),
+                                      ]
+
+                                  ),
+                                ]
+                            ),
+                            GoRoute(
+                              path: '${BuyGift.routeName}',
+                              builder: (context, state) =>  BuyGift(),
+
+                            ),
+
+
+                          ]
+                      ),
+
+
+                    ]
+                ),
+
+
+
+                /// - Saved Address
+                GoRoute(
+                  path: '${SavedAddress.routeName}',
+                  builder: (context, state) =>  SavedAddress(),
+                  routes: [
+                    GoRoute(
+                      path: '${AddNewAddress.routeName}',
+                      builder: (context, state) =>  AddNewAddress(),
+                      routes: [
+                        GoRoute(
+                          path: '${MapPage.routeName}',
+                          builder: (context, state) =>  MapPage(),
+                        ),
+                      ]
+                    ),
+                    GoRoute(
+                      path: '${UpdateAddress.routeName}',
+                      builder: (context, state) =>  UpdateAddress(),
+                    ),
+                  ]
+                ),
+                ///  - Order History
+                GoRoute(
+                  path: '${OrderHistory.routeName}',
+                  builder: (context, state) =>  OrderHistory(),
+                  routes: [
+                    GoRoute(
+                      path: '${OrderDetails.routeName}',
+                      builder: (context, state) =>  OrderDetails(),
+                    ),
+                  ]
+                ),
+                ///  - Saved Cards
+                GoRoute(
+                  path: '${SavedCards.routeName}',
+                  builder: (context, state) =>  SavedCards(),
+                  routes: [
+                    GoRoute(
+                      path: '${AddNewCard.routeName}',
+                      builder: (context, state) =>  AddNewCard(),
+                    ),
+                  ]
+                ),
+                ///  - Help
+                GoRoute(
+                  path: '${HelpPage.routeName}',
+                  builder: (context, state) =>  HelpPage(),
+                ),
+
+
               ],
             ),
           ],

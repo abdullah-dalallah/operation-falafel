@@ -10,6 +10,7 @@ import '../../../models/AppThemeModels/FontSizes/Language/lang.dart';
 import '../../../providers/AppTheme/theme_provider.dart';
 
 class GiftFriend extends StatefulWidget{
+  static const routeName = 'GiftsFriend';
   @override
   State<GiftFriend> createState() => _GiftFriendState();
 }

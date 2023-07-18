@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/data/snackBarGenerator.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/gifts_provider/models/gift.dart';
 import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/gift_friend.dart';
+import 'package:operation_falafel/widgets/background.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
@@ -16,8 +18,9 @@ import '../../../providers/AppTheme/theme_provider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class GiftDetails extends StatefulWidget{
+  static const routeName = 'GiftsDetails';
   final Gift? giftDetails ;
-  const GiftDetails({super.key,required this.giftDetails});
+  const GiftDetails({super.key, this.giftDetails});
   @override
   State<GiftDetails> createState() => _GiftDetailsState();
 }
@@ -40,18 +43,7 @@ class _GiftDetailsState extends State<GiftDetails> {
         (loadingDesign)?
         Stack(
         children: [
-          Image.asset(
-            "assets/images/background.png",
-            height: MediaQuery
-                .of(context)
-                .size
-                .height,
-            width: MediaQuery
-                .of(context)
-                .size
-                .width,
-            fit: BoxFit.cover,
-          ),
+          Background(),
           Scaffold(
             key: _drawerKey,
             backgroundColor: Colors.transparent,
@@ -235,6 +227,7 @@ class _GiftDetailsState extends State<GiftDetails> {
                         height: 38,
                         child: ElevatedButton(
                           onPressed: (){
+
                             showRedeemDialog( context, loyaltyGiftDetailsPage!, lng!);
                           },
                           style: ButtonStyle(
@@ -282,14 +275,17 @@ class _GiftDetailsState extends State<GiftDetails> {
                             foregroundColor: Colors.white,
                           ),
                           onPressed: () {
-                            PersistentNavBarNavigator.pushNewScreen(
-                              context,
-                              screen: GiftFriend(),
-                              withNavBar: true,
-                              // OPTIONAL VALUE. True by default.
-                              pageTransitionAnimation: PageTransitionAnimation
-                                  .cupertino,
-                            );
+                            // print("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${GiftFriend.routeName}");
+                            context.push("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${GiftFriend.routeName}" );
+
+                            // PersistentNavBarNavigator.pushNewScreen(
+                            //   context,
+                            //   screen: GiftFriend(),
+                            //   withNavBar: true,
+                            //   // OPTIONAL VALUE. True by default.
+                            //   pageTransitionAnimation: PageTransitionAnimation
+                            //       .cupertino,
+                            // );
                           },
                           child:
                           MyText(

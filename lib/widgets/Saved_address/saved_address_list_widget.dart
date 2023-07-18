@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/SavedAddressPage/saved_address_page.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
@@ -95,14 +96,16 @@ class _SavedAddressListWidgetState extends State<SavedAddressListWidget> {
 
                               child: ElevatedButton(
                                   onPressed: () {
-                                    PersistentNavBarNavigator.pushNewScreen(
-                                      context,
-                                      screen: UpdateAddress(),
-                                      withNavBar: true,
-                                      // OPTIONAL VALUE. True by default.
-                                      pageTransitionAnimation: PageTransitionAnimation
-                                          .cupertino,
-                                    );
+                                    context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${UpdateAddress.routeName}");
+
+                                    // PersistentNavBarNavigator.pushNewScreen(
+                                    //   context,
+                                    //   screen: UpdateAddress(),
+                                    //   withNavBar: true,
+                                    //   // OPTIONAL VALUE. True by default.
+                                    //   pageTransitionAnimation: PageTransitionAnimation
+                                    //       .cupertino,
+                                    // );
                                   },
                                   style: ButtonStyle(
                                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(const RoundedRectangleBorder(

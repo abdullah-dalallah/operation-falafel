@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
@@ -16,6 +17,7 @@ import '../../../models/AppThemeModels/FontSizes/Language/lang.dart';
 import '../../../providers/AppTheme/theme_provider.dart';
 
 class SavedCards extends StatefulWidget{
+  static const routeName = 'SavedCards';
   @override
   State<SavedCards> createState() => _SavedCardsState();
 }
@@ -137,14 +139,16 @@ class _SavedCardsState extends State<SavedCards> {
                         height: 38,
                         child: ElevatedButton(
                             onPressed: () {
-                              PersistentNavBarNavigator.pushNewScreen(
-                                context,
-                                screen: AddNewCard(),
-                                withNavBar: true,
-                                // OPTIONAL VALUE. True by default.
-                                pageTransitionAnimation: PageTransitionAnimation
-                                    .cupertino,
-                              );
+                              context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${AddNewCard.routeName}");
+
+                              // PersistentNavBarNavigator.pushNewScreen(
+                              //   context,
+                              //   screen: AddNewCard(),
+                              //   withNavBar: true,
+                              //   // OPTIONAL VALUE. True by default.
+                              //   pageTransitionAnimation: PageTransitionAnimation
+                              //       .cupertino,
+                              // );
                             },
                             style: ButtonStyle(
                               // backgroundColor: MaterialStateProperty.all<Color>(Color(int.parse(savedAddressPage?.body.addNewAdressButton.backGroundColor as String))),

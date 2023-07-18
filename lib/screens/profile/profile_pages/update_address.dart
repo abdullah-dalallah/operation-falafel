@@ -11,6 +11,7 @@ import '../../../models/AppThemeModels/FontSizes/Language/lang.dart';
 import '../../../providers/AppTheme/theme_provider.dart';
 
 class UpdateAddress extends StatefulWidget{
+  static const routeName = 'UpdateAddress';
   @override
   State<UpdateAddress> createState() => _UpdateAddressState();
 }

@@ -17,6 +17,7 @@ import '../../providers/AppTheme/theme_provider.dart';
 import '../../widgets/loading_page.dart';
 
 class FeedbackPage extends StatefulWidget{
+  static const routeName = 'FeedbackPage';
   final ValueChanged onChanged;
   final String layOut ;
   const FeedbackPage(this.onChanged,{super.key,required this.layOut});

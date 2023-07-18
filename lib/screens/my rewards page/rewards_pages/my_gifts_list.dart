@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
 import 'package:operation_falafel/providers/gifts_provider/loyalty_provider.dart';
+import 'package:operation_falafel/providers/gifts_provider/models/gift.dart';
 import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/gift_details.dart';
 import 'package:operation_falafel/widgets/background.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
@@ -15,6 +17,7 @@ import '../../../models/AppThemeModels/FontSizes/Language/lang.dart';
 import '../../../providers/AppTheme/theme_provider.dart';
 
 class MyGiftsList extends StatefulWidget{
+  static const routeName = 'MyGiftsList';
   @override
   State<MyGiftsList> createState() => _MyGiftsListState();
 }
@@ -98,13 +101,16 @@ class _MyGiftsListState extends State<MyGiftsList> {
                                 children: [
                                   ListTile(
                                       onTap: () {
-                                        PersistentNavBarNavigator.pushNewScreen(
-                                          context,
-                                          screen: GiftDetails(giftDetails: loyaltyProvider.gifts![Index]),
-                                          withNavBar: true,
-                                          // OPTIONAL VALUE. True by default.
-                                          pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                        );
+                                        context.goNamed("${GiftDetails.routeName}",extra:loyaltyProvider.gifts![Index].toJson());
+
+                                        // context.namedLocation("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${MyGiftsList.routeName}", pathParameters:{"giftDetails": loyaltyProvider.gifts![Index]} );
+                                        // PersistentNavBarNavigator.pushNewScreen(
+                                        //   context,
+                                        //   screen: GiftDetails(giftDetails: loyaltyProvider.gifts![Index]),
+                                        //   withNavBar: true,
+                                        //   // OPTIONAL VALUE. True by default.
+                                        //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                        // );
                                       },
                                       leading: Image.asset(
                                         "assets/images/of_credit_icon.png",

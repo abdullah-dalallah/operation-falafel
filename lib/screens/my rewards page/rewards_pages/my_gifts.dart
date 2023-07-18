@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:go_router/go_router.dart';
 import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
@@ -18,6 +19,7 @@ import '../../../providers/AppTheme/theme_provider.dart';
 import '../../../widgets/loading_page.dart';
 
 class MyGifts extends StatefulWidget{
+  static const routeName = 'MyGifts';
   @override
   State<MyGifts> createState() => _MyGiftsState();
 }
@@ -120,19 +122,25 @@ class _MyGiftsState extends State<MyGifts> {
                             padding: const EdgeInsets.all(18.0),
                             child: ElevatedButton(
                               onPressed: () {
+
+
+
                                 if(Provider.of<AuthProvider>(context, listen: false).loggedInUser !=null){
-                                  PersistentNavBarNavigator.pushNewScreen(
-                                    context,
-                                    screen: MyGiftsList(),
-                                    withNavBar: true,
-                                    // OPTIONAL VALUE. True by default.
-                                    pageTransitionAnimation: PageTransitionAnimation
-                                        .cupertino,
-                                  );
+                                  context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${MyGiftsList.routeName}");
+
+                                  // PersistentNavBarNavigator.pushNewScreen(
+                                  //   context,
+                                  //   screen: MyGiftsList(),
+                                  //   withNavBar: true,
+                                  //   // OPTIONAL VALUE. True by default.
+                                  //   pageTransitionAnimation: PageTransitionAnimation
+                                  //       .cupertino,
+                                  // );
                                 }
                                 else{
 
-                                   Provider.of<TabIndexGenerator>(context, listen: false).setIndex(4);
+                                   // Provider.of<TabIndexGenerator>(context, listen: false).setIndex(4);
+                                   context.go("/Profile");
 
 
                                   Fluttertoast.showToast(
@@ -189,14 +197,15 @@ class _MyGiftsState extends State<MyGifts> {
                             padding: const EdgeInsets.all(18.0),
                             child: ElevatedButton(
                               onPressed: () {
-                                PersistentNavBarNavigator.pushNewScreen(
-                                  context,
-                                  screen: BuyGift(),
-                                  withNavBar: true,
-                                  // OPTIONAL VALUE. True by default.
-                                  pageTransitionAnimation: PageTransitionAnimation
-                                      .cupertino,
-                                );
+                                context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${BuyGift.routeName}");
+                                // PersistentNavBarNavigator.pushNewScreen(
+                                //   context,
+                                //   screen: BuyGift(),
+                                //   withNavBar: true,
+                                //   // OPTIONAL VALUE. True by default.
+                                //   pageTransitionAnimation: PageTransitionAnimation
+                                //       .cupertino,
+                                // );
                               },
                               style: ButtonStyle(
                                   shape: MaterialStateProperty.all<

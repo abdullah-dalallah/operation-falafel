@@ -18,6 +18,7 @@ import '../../providers/AppTheme/theme_provider.dart';
 class TabeBarMenu extends StatefulWidget{
   final ValueChanged onChanged;
   final String layOut ;
+  static const routeName = '/Menu';
   const TabeBarMenu(this.onChanged,{super.key,required this.layOut});
   @override
   State<TabeBarMenu> createState() => _TabeBarMenuState();

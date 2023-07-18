@@ -5,6 +5,7 @@ import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 
 class HowItWorks extends StatefulWidget{
+  static const routeName = 'HowItWorks';
   @override
   State<HowItWorks> createState() => _HowItWorksState();
 }

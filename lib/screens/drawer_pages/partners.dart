@@ -10,6 +10,7 @@ import '../../providers/AppTheme/theme_provider.dart';
 import '../../widgets/loading_page.dart';
 
 class Partners extends StatefulWidget{
+  static const routeName = 'Partners';
   @override
   State<Partners> createState() => _PartnersState();
 }

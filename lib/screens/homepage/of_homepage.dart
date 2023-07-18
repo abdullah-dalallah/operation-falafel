@@ -13,6 +13,7 @@ import 'package:operation_falafel/providers/settings_provider/setting_provider.d
 import 'package:operation_falafel/screens/menus/full_menu.dart';
 import 'package:operation_falafel/screens/menus/vegan_menu.dart';
 import 'package:operation_falafel/screens/my%20rewards%20page/my_rewards.dart';
+import 'package:operation_falafel/screens/tabbar%20menu%20page/menu_tabebar.dart';
 import 'package:operation_falafel/widgets/address_list_sheet.dart';
 import 'package:operation_falafel/widgets/background.dart';
 import 'package:operation_falafel/widgets/cached_image_with_placeholder.dart';
@@ -90,7 +91,8 @@ class _MainMenuState extends State<MainMenu> {
                 appBar: AppBar(
                   // toolbarHeight: 40,
                     leading:Visibility(
-                      visible: (widget.layOut=="Mobile")?true:false,
+                      visible: true,
+                      // (widget.layOut=="Mobile")?true:false,
                       child: IconButton(
                         onPressed: (){
 
@@ -1639,7 +1641,10 @@ class _MainMenuState extends State<MainMenu> {
                       child: Container(
                         constraints: const BoxConstraints(maxWidth: 450, ),
                         child:  ElevatedButton(
-                            onPressed: (){widget.onChanged(1);},
+                            onPressed: (){
+                              context.go("${TabeBarMenu.routeName}");
+                              // widget.onChanged(1);
+                              },
                             style: ButtonStyle(
                               minimumSize: MaterialStateProperty.all<Size>(Size.fromHeight(45)),
                               // maximumSize: MaterialStateProperty.all<Size>(Size.fromWidth(400)),
@@ -1816,12 +1821,13 @@ class _MainMenuState extends State<MainMenu> {
                                                 overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
 
                                                 onTap: (){
-                                                  PersistentNavBarNavigator.pushNewScreen(
-                                                    context,
-                                                    screen: MyRewards(layOut: widget.layOut),
-                                                    withNavBar: true, // OPTIONAL VALUE. True by default.
-                                                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                                  );
+                                                  context.go("/Profile/${MyRewards.routeName}");
+                                                  // PersistentNavBarNavigator.pushNewScreen(
+                                                  //   context,
+                                                  //   screen: MyRewards(layOut: widget.layOut),
+                                                  //   withNavBar: true, // OPTIONAL VALUE. True by default.
+                                                  //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                                  // );
                                                 },
                                               ),
 
@@ -1912,20 +1918,21 @@ class _MainMenuState extends State<MainMenu> {
                                           ],
                                         ),
                                         Positioned.fill(
-                                            child: new Material(
+                                            child:  Material(
                                               color: Colors.transparent,
-                                              child:  new InkWell(
-                                                borderRadius: BorderRadius.all(Radius.circular(0)),
+                                              child:   InkWell(
+                                                borderRadius:const BorderRadius.all(Radius.circular(0)),
                                                 splashColor: Colors.black,
                                                 overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
 
                                                 onTap: (){
-                                                  PersistentNavBarNavigator.pushNewScreen(
-                                                    context,
-                                                    screen: TransferCredit(),
-                                                    withNavBar: true, // OPTIONAL VALUE. True by default.
-                                                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                                  );
+                                                  context.go("${MainMenu.routeName}/${TransferCredit.routeName}");
+                                                  // PersistentNavBarNavigator.pushNewScreen(
+                                                  //   context,
+                                                  //   screen: TransferCredit(),
+                                                  //   withNavBar: true, // OPTIONAL VALUE. True by default.
+                                                  //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                                  // );
                                                 },
                                               ),
 

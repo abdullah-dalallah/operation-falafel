@@ -10,6 +10,7 @@ import '../../../models/AppThemeModels/FontSizes/Language/lang.dart';
 import '../../../providers/AppTheme/theme_provider.dart';
 
 class CreditCalculator extends StatefulWidget{
+  static const routeName = 'CreditCalculator';
   @override
   State<CreditCalculator> createState() => _CreditCalculatorState();
 }

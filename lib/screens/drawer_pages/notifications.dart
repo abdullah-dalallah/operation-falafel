@@ -10,6 +10,7 @@ import '../../providers/AppTheme/theme_provider.dart';
 import '../../widgets/loading_page.dart';
 
 class Notifications extends StatefulWidget{
+  static const routeName = 'Notifications';
   @override
   State<Notifications> createState() => _NotificationsState();
 }

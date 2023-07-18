@@ -6,6 +6,7 @@ import 'package:operation_falafel/providers/AppTheme/theme_provider.dart';
 import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
 import 'package:operation_falafel/providers/demo_cart/demo_cart_provider.dart';
 import 'package:operation_falafel/providers/tab_index_generator_provider.dart';
+import 'package:operation_falafel/widgets/drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:badges/badges.dart' as badges;
 
@@ -304,6 +305,8 @@ class MobileNavigationBar extends StatelessWidget{
       }
 
 
+
+
         return  Scaffold(
         body: body,
         bottomNavigationBar: NavigationBar(
@@ -315,6 +318,8 @@ class MobileNavigationBar extends StatelessWidget{
           destinations: destinationIcons,
           onDestinationSelected: onDestinationSelected,
         ),
+
+
       );
     });
   }

@@ -17,6 +17,9 @@ import 'package:provider/provider.dart';
 import 'package:credit_card_type_detector/credit_card_type_detector.dart';
 
 class AddNewCard extends StatefulWidget{
+  static const routeName = 'AddNewCard';
+
+  const AddNewCard({super.key});
   @override
   State<AddNewCard> createState() => _AddNewCardState();
 }

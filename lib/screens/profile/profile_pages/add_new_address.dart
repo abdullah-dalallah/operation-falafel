@@ -1,10 +1,12 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/data/my_text_form_field.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/widgets/Map/map_page.dart';
+import 'package:operation_falafel/widgets/background.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
@@ -18,6 +20,7 @@ import '../../../providers/AuthProvider/auth_provider.dart';
 import '../../../providers/ProfileProviders/profile_provider.dart';
 
 class AddNewAddress extends StatefulWidget{
+  static const routeName = 'AddNewAddress';
   @override
   State<AddNewAddress> createState() => _AddNewAddressState();
 }
@@ -58,18 +61,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
         (loadingDesign)?
         Stack(
         children: [
-          Image.asset(
-            "assets/images/background.png",
-            height: MediaQuery
-                .of(context)
-                .size
-                .height,
-            width: MediaQuery
-                .of(context)
-                .size
-                .width,
-            fit: BoxFit.cover,
-          ),
+          Background(),
           Scaffold(
 
             backgroundColor: Colors.transparent,
@@ -773,14 +765,16 @@ class _AddNewAddressState extends State<AddNewAddress> {
 
                              child: ElevatedButton(
                                  onPressed: () {
-                                   PersistentNavBarNavigator.pushNewScreen(
-                                     context,
-                                     screen: MapPage(),
-                                     withNavBar: true,
-                                     // OPTIONAL VALUE. True by default.
-                                     pageTransitionAnimation: PageTransitionAnimation
-                                         .cupertino,
-                                   );
+                                   context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${MapPage.routeName}");
+
+                                   // PersistentNavBarNavigator.pushNewScreen(
+                                   //   context,
+                                   //   screen: MapPage(),
+                                   //   withNavBar: true,
+                                   //   // OPTIONAL VALUE. True by default.
+                                   //   pageTransitionAnimation: PageTransitionAnimation
+                                   //       .cupertino,
+                                   // );
                                    // pushNewScreen(context, screen:  MapPage());
 
                                  },
