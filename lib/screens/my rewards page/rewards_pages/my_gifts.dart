@@ -126,21 +126,21 @@ class _MyGiftsState extends State<MyGifts> {
 
 
                                 if(Provider.of<AuthProvider>(context, listen: false).loggedInUser !=null){
-                                  context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${MyGiftsList.routeName}");
+                                  // context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${MyGiftsList.routeName}");
 
-                                  // PersistentNavBarNavigator.pushNewScreen(
-                                  //   context,
-                                  //   screen: MyGiftsList(),
-                                  //   withNavBar: true,
-                                  //   // OPTIONAL VALUE. True by default.
-                                  //   pageTransitionAnimation: PageTransitionAnimation
-                                  //       .cupertino,
-                                  // );
+                                  PersistentNavBarNavigator.pushNewScreen(
+                                    context,
+                                    screen: MyGiftsList(),
+                                    withNavBar: true,
+                                    // OPTIONAL VALUE. True by default.
+                                    pageTransitionAnimation: PageTransitionAnimation
+                                        .cupertino,
+                                  );
                                 }
                                 else{
 
-                                   // Provider.of<TabIndexGenerator>(context, listen: false).setIndex(4);
-                                   context.go("/Profile");
+                                   Provider.of<TabIndexGenerator>(context, listen: false).setIndex(4);
+                                   // context.go("/Profile");
 
 
                                   Fluttertoast.showToast(
@@ -197,15 +197,15 @@ class _MyGiftsState extends State<MyGifts> {
                             padding: const EdgeInsets.all(18.0),
                             child: ElevatedButton(
                               onPressed: () {
-                                context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${BuyGift.routeName}");
-                                // PersistentNavBarNavigator.pushNewScreen(
-                                //   context,
-                                //   screen: BuyGift(),
-                                //   withNavBar: true,
-                                //   // OPTIONAL VALUE. True by default.
-                                //   pageTransitionAnimation: PageTransitionAnimation
-                                //       .cupertino,
-                                // );
+                                // context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${BuyGift.routeName}");
+                                PersistentNavBarNavigator.pushNewScreen(
+                                  context,
+                                  screen: BuyGift(),
+                                  withNavBar: true,
+                                  // OPTIONAL VALUE. True by default.
+                                  pageTransitionAnimation: PageTransitionAnimation
+                                      .cupertino,
+                                );
                               },
                               style: ButtonStyle(
                                   shape: MaterialStateProperty.all<

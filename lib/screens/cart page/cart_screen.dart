@@ -1,6 +1,9 @@
 
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/demo_cart/demo_cart_provider.dart';
@@ -10,12 +13,15 @@ import 'package:operation_falafel/widgets/drawer.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 
 import 'package:operation_falafel/widgets/pluse_minus_widget.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:uni_links/uni_links.dart';
 
 import '../../models/AppThemeModels/DesignPerPage/CartPage/cart_page.dart';
 import '../../models/AppThemeModels/FontSizes/Language/lang.dart';
 import '../../providers/AppTheme/theme_provider.dart';
+import '../my rewards page/my_rewards.dart';
 
 
 class Cart_Screen extends StatefulWidget{
@@ -1184,4 +1190,10 @@ class _Cart_ScreenState extends State<Cart_Screen> {
      ],
    );
   }
+
+
+
+
+
+
 }

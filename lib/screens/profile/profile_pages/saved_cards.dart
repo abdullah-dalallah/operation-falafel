@@ -139,16 +139,16 @@ class _SavedCardsState extends State<SavedCards> {
                         height: 38,
                         child: ElevatedButton(
                             onPressed: () {
-                              context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${AddNewCard.routeName}");
+                              // context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${AddNewCard.routeName}");
 
-                              // PersistentNavBarNavigator.pushNewScreen(
-                              //   context,
-                              //   screen: AddNewCard(),
-                              //   withNavBar: true,
-                              //   // OPTIONAL VALUE. True by default.
-                              //   pageTransitionAnimation: PageTransitionAnimation
-                              //       .cupertino,
-                              // );
+                              PersistentNavBarNavigator.pushNewScreen(
+                                context,
+                                screen: AddNewCard(),
+                                withNavBar: true,
+                                // OPTIONAL VALUE. True by default.
+                                pageTransitionAnimation: PageTransitionAnimation
+                                    .cupertino,
+                              );
                             },
                             style: ButtonStyle(
                               // backgroundColor: MaterialStateProperty.all<Color>(Color(int.parse(savedAddressPage?.body.addNewAdressButton.backGroundColor as String))),

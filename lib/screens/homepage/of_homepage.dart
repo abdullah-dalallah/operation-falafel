@@ -1,5 +1,8 @@
 
+import 'dart:async';
 
+import 'package:flutter/services.dart';
+import 'package:uni_links/uni_links.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -37,10 +40,10 @@ import '../my rewards page/rewards_pages/transfer_credits.dart';
 
 
 class MainMenu extends StatefulWidget{
-  final String layOut ;
+  String? layOut ;
   final ValueChanged onChanged;
   static const routeName = '/homePage';
-  MainMenu(this.onChanged,{super.key, required this.layOut});
+  MainMenu(this.onChanged,{super.key, this.layOut});
   @override
   State<MainMenu> createState() => _MainMenuState();
 }
@@ -157,7 +160,7 @@ class _MainMenuState extends State<MainMenu> {
                                     onTap: (){
 
                                      // print();
-                                      context.go("${MainMenu.routeName}/locations");
+                                     //  context.go("${MainMenu.routeName}/locations");
                                       // Provider.of<ThemeProvider>(context, listen: false).readJson();
                                       // print("text");
                                     },
@@ -1642,8 +1645,8 @@ class _MainMenuState extends State<MainMenu> {
                         constraints: const BoxConstraints(maxWidth: 450, ),
                         child:  ElevatedButton(
                             onPressed: (){
-                              context.go("${TabeBarMenu.routeName}");
-                              // widget.onChanged(1);
+                              // context.go("${TabeBarMenu.routeName}");
+                              widget.onChanged(1);
                               },
                             style: ButtonStyle(
                               minimumSize: MaterialStateProperty.all<Size>(Size.fromHeight(45)),
@@ -1821,13 +1824,13 @@ class _MainMenuState extends State<MainMenu> {
                                                 overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
 
                                                 onTap: (){
-                                                  context.go("/Profile/${MyRewards.routeName}");
-                                                  // PersistentNavBarNavigator.pushNewScreen(
-                                                  //   context,
-                                                  //   screen: MyRewards(layOut: widget.layOut),
-                                                  //   withNavBar: true, // OPTIONAL VALUE. True by default.
-                                                  //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                                  // );
+                                                  // context.go("/Profile/${MyRewards.routeName}");
+                                                  PersistentNavBarNavigator.pushNewScreen(
+                                                    context,
+                                                    screen: MyRewards(layOut: widget.layOut!),
+                                                    withNavBar: true, // OPTIONAL VALUE. True by default.
+                                                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                                  );
                                                 },
                                               ),
 
@@ -1926,13 +1929,13 @@ class _MainMenuState extends State<MainMenu> {
                                                 overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
 
                                                 onTap: (){
-                                                  context.go("${MainMenu.routeName}/${TransferCredit.routeName}");
-                                                  // PersistentNavBarNavigator.pushNewScreen(
-                                                  //   context,
-                                                  //   screen: TransferCredit(),
-                                                  //   withNavBar: true, // OPTIONAL VALUE. True by default.
-                                                  //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                                  // );
+                                                  // context.go("${MainMenu.routeName}/${TransferCredit.routeName}");
+                                                  PersistentNavBarNavigator.pushNewScreen(
+                                                    context,
+                                                    screen: TransferCredit(),
+                                                    withNavBar: true, // OPTIONAL VALUE. True by default.
+                                                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                                  );
                                                 },
                                               ),
 
@@ -1954,7 +1957,7 @@ class _MainMenuState extends State<MainMenu> {
 
                   ],
                 ),
-                drawer: DrawerWidget(layOut: widget.layOut,onChanged: (value) {widget.onChanged(value);},),
+                drawer: DrawerWidget(layOut: widget.layOut!,onChanged: (value) {widget.onChanged(value);},),
 
 
               ),
@@ -1983,7 +1986,6 @@ class _MainMenuState extends State<MainMenu> {
   @override
   void initState() {
     super.initState();
-
     Provider.of<HomePageProvider>(context, listen: false).getHomeSliders().then((res) {
     if(res.statusCode ==200){
       sliderWidets = buildSliders((res.data as List).map((i) => SliderItem.fromJson(i)).toList());
@@ -2004,7 +2006,7 @@ class _MainMenuState extends State<MainMenu> {
     slidersWidgets = sliders!.map((e) => InkWell(
         onTap: (){
           print("url");
-          GoRouter.of(context).push(Uri(path: '/locations').toString());
+          // GoRouter.of(context).push(Uri(path: '/locations').toString());
 
           // context.push("/locations");
           // GoRouter.of(context).go('/locations');
@@ -2012,5 +2014,14 @@ class _MainMenuState extends State<MainMenu> {
         child: CachedImageWithPlaceholder(e.imageUrl!, BoxFit.cover))).toList();
     return slidersWidgets;
   }
+
+
+
+
+
+
+
+
+
 
 }

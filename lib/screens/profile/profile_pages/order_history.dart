@@ -157,16 +157,16 @@ class OrderHistory extends StatelessWidget{
                                                   width: 110,
                                                   child: ElevatedButton(
                                                     onPressed: () {
-                                                      context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${OrderDetails.routeName}");
+                                                      // context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${OrderDetails.routeName}");
 
-                                                      // PersistentNavBarNavigator.pushNewScreen(
-                                                      //   context,
-                                                      //   screen: OrderDetails(),
-                                                      //   withNavBar: true,
-                                                      //   // OPTIONAL VALUE. True by default.
-                                                      //   pageTransitionAnimation: PageTransitionAnimation
-                                                      //       .cupertino,
-                                                      // );
+                                                      PersistentNavBarNavigator.pushNewScreen(
+                                                        context,
+                                                        screen: OrderDetails(),
+                                                        withNavBar: true,
+                                                        // OPTIONAL VALUE. True by default.
+                                                        pageTransitionAnimation: PageTransitionAnimation
+                                                            .cupertino,
+                                                      );
                                                     },
                                                     style: ButtonStyle(
                                                       backgroundColor: MaterialStateProperty.all<Color>(Color(int.parse(orderHistoryPage.body.orderList.viewReceipt.backGroundColor))),

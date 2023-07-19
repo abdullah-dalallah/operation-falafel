@@ -102,16 +102,16 @@ class _SavedAddressState extends State<SavedAddress> {
                                           height: 38,
                                           child: ElevatedButton(
                                               onPressed: () {
-                                                context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${AddNewAddress.routeName}");
+                                                // context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${AddNewAddress.routeName}");
 
-                                                // PersistentNavBarNavigator.pushNewScreen(
-                                                //   context,
-                                                //   screen: AddNewAddress(),
-                                                //   withNavBar: true,
-                                                //   // OPTIONAL VALUE. True by default.
-                                                //   pageTransitionAnimation: PageTransitionAnimation
-                                                //       .cupertino,
-                                                // );
+                                                PersistentNavBarNavigator.pushNewScreen(
+                                                  context,
+                                                  screen: AddNewAddress(),
+                                                  withNavBar: true,
+                                                  // OPTIONAL VALUE. True by default.
+                                                  pageTransitionAnimation: PageTransitionAnimation
+                                                      .cupertino,
+                                                );
                                               },
                                               style: ButtonStyle(
                                                 backgroundColor: MaterialStateProperty.all<Color>(Color(int.parse(savedAddressPage?.body.addNewAdressButton.backGroundColor as String))),

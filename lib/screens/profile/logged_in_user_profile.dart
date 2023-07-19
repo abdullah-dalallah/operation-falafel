@@ -2372,16 +2372,16 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                       // width: 130,
                                       child: ElevatedButton(
                                         onPressed: () {
-                                          context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${OrderHistory.routeName}");
+                                          // context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${OrderHistory.routeName}");
 
-                                          // PersistentNavBarNavigator.pushNewScreen(
-                                          //   context,
-                                          //   screen: OrderHistory(),
-                                          //   withNavBar: true,
-                                          //   // OPTIONAL VALUE. True by default.
-                                          //   pageTransitionAnimation: PageTransitionAnimation
-                                          //       .cupertino,
-                                          // );
+                                          PersistentNavBarNavigator.pushNewScreen(
+                                            context,
+                                            screen: OrderHistory(),
+                                            withNavBar: true,
+                                            // OPTIONAL VALUE. True by default.
+                                            pageTransitionAnimation: PageTransitionAnimation
+                                                .cupertino,
+                                          );
                                         },
                                         style: ButtonStyle(
                                             shape: MaterialStateProperty.all<
@@ -2427,17 +2427,17 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                       // width: 130,
                                       child: ElevatedButton(
                                         onPressed: () {
-                                          context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${SavedAddress.routeName}");
+                                          // context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${SavedAddress.routeName}");
 
-                                          // PersistentNavBarNavigator
-                                          //     .pushNewScreen(
-                                          //   context,
-                                          //   screen: SavedAddress(),
-                                          //   withNavBar: true,
-                                          //   // OPTIONAL VALUE. True by default.
-                                          //   pageTransitionAnimation: PageTransitionAnimation
-                                          //       .cupertino,
-                                          // );
+                                          PersistentNavBarNavigator
+                                              .pushNewScreen(
+                                            context,
+                                            screen: SavedAddress(),
+                                            withNavBar: true,
+                                            // OPTIONAL VALUE. True by default.
+                                            pageTransitionAnimation: PageTransitionAnimation
+                                                .cupertino,
+                                          );
                                         },
                                         style: ButtonStyle(
                                             shape: MaterialStateProperty.all<
@@ -2488,17 +2488,17 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                       // width: 130,
                                       child: ElevatedButton(
                                         onPressed: () {
-                                          context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${SavedCards.routeName}");
+                                          // context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${SavedCards.routeName}");
 
-                                          // PersistentNavBarNavigator
-                                          //     .pushNewScreen(
-                                          //   context,
-                                          //   screen: SavedCards(),
-                                          //   withNavBar: true,
-                                          //   // OPTIONAL VALUE. True by default.
-                                          //   pageTransitionAnimation: PageTransitionAnimation
-                                          //       .cupertino,
-                                          // );
+                                          PersistentNavBarNavigator
+                                              .pushNewScreen(
+                                            context,
+                                            screen: SavedCards(),
+                                            withNavBar: true,
+                                            // OPTIONAL VALUE. True by default.
+                                            pageTransitionAnimation: PageTransitionAnimation
+                                                .cupertino,
+                                          );
                                         },
                                         style: ButtonStyle(
                                             shape: MaterialStateProperty.all<
@@ -2551,18 +2551,18 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                       height: 60,
                                       child: ElevatedButton(
                                         onPressed: () {
-                                          context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${MyRewards.routeName}");
+                                          // context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${MyRewards.routeName}");
 
 
-                                          // PersistentNavBarNavigator.pushNewScreen(
-                                          //   context,
-                                          //   screen: MyRewards(
-                                          //       layOut: widget.layOut),
-                                          //   withNavBar: true,
-                                          //   // OPTIONAL VALUE. True by default.
-                                          //   pageTransitionAnimation: PageTransitionAnimation
-                                          //       .cupertino,
-                                          // );
+                                          PersistentNavBarNavigator.pushNewScreen(
+                                            context,
+                                            screen: MyRewards(
+                                                layOut: widget.layOut),
+                                            withNavBar: true,
+                                            // OPTIONAL VALUE. True by default.
+                                            pageTransitionAnimation: PageTransitionAnimation
+                                                .cupertino,
+                                          );
                                         },
                                         style: ButtonStyle(
                                             shape: MaterialStateProperty.all<
@@ -2613,15 +2613,15 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
 
                                       child: ElevatedButton(
                                         onPressed: () {
-                                          context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${HelpPage.routeName}");
-                                          // PersistentNavBarNavigator.pushNewScreen(
-                                          //   context,
-                                          //   screen: HelpPage(),
-                                          //   withNavBar: true,
-                                          //   // OPTIONAL VALUE. True by default.
-                                          //   pageTransitionAnimation: PageTransitionAnimation
-                                          //       .cupertino,
-                                          // );
+                                          // context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${HelpPage.routeName}");
+                                          PersistentNavBarNavigator.pushNewScreen(
+                                            context,
+                                            screen: HelpPage(),
+                                            withNavBar: true,
+                                            // OPTIONAL VALUE. True by default.
+                                            pageTransitionAnimation: PageTransitionAnimation
+                                                .cupertino,
+                                          );
                                         },
                                         style: ButtonStyle(
                                             shape: MaterialStateProperty.all<

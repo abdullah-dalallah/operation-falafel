@@ -78,7 +78,8 @@ final _shellNavigatorDKey = GlobalKey<NavigatorState>(debugLabel: 'shellD');
 final _shellNavigatorEKey = GlobalKey<NavigatorState>(debugLabel: 'shellE');
 final _shellNavigatorFKey = GlobalKey<NavigatorState>(debugLabel: 'shellF');
 
-final goRouter = GoRouter(
+ GoRouter goRouter = GoRouter(
+
   initialLocation: '/homePage',
   // * Passing a navigatorKey causes an issue on hot reload:
   // * https://github.com/flutter/flutter/issues/113757#issuecomment-1518421380
@@ -91,6 +92,7 @@ final goRouter = GoRouter(
     // https://github.com/flutter/packages/blob/main/packages/go_router/example/lib/stateful_shell_route.dart
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
+
         return ScaffoldWithNestedNavigation(navigationShell: navigationShell);
       },
       branches: [
@@ -99,10 +101,13 @@ final goRouter = GoRouter(
           navigatorKey: _shellNavigatorAKey,
           routes: [
             GoRoute(
-              path: MainMenu.routeName,
-              builder: (context, state) =>  MainMenu(
-                  layOut: '',(value) {}
-              ),
+              path: "${MainMenu.routeName}",
+              builder: (context, state) {
+
+              return  MainMenu(
+                    layOut: "",(value) {}
+                );
+              },
 
               routes: [
                 /// - Drawer
@@ -428,7 +433,6 @@ final goRouter = GoRouter(
                 ),
 
 
-
                 /// - Saved Address
                 GoRoute(
                   path: '${SavedAddress.routeName}',
@@ -498,7 +502,7 @@ final goRouter = GoRouter(
 
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 ///
   // // Must add this line.
   // await windowManager.ensureInitialized();
@@ -518,6 +522,10 @@ Future<void> main() async {
   // });
 
 // turn off the # in the URLs on the web
+
+
+
+
   usePathUrlStrategy();
   runApp(MyApp());
 }
@@ -584,10 +592,10 @@ class _MyAppState extends State<MyApp> {
 
 
         ],
-        child: MaterialApp.router(
+        child: MaterialApp(
          // routes: {
          //   ResetYourPassword.routeName: (ctx) =>  ResetYourPassword(),
-         //   "/details":(ctx)=> Locations(),
+         //
          //   // '/': (context) =>  KeyboardVisibilityProvider(child: ResponsiveLayout(DesktopScaffold: DesktopScaffold(),MobileScaffold: MobileScaffold(),TabletScaffold: TabletScaffold(), ),),
          // },
           debugShowCheckedModeBanner: false,
@@ -619,16 +627,10 @@ class _MyAppState extends State<MyApp> {
             ),
             primarySwatch: Colors.blue,
           ),
-          routerConfig: goRouter,
+          // routerConfig: goRouter,
           // routerConfig: _appRoute,
 
-          // home:
-          //DeepLinkHandlerWidget(),
-
-            // KeyboardVisibilityProvider(child: ResponsiveLayout(DesktopScaffold: DesktopScaffold(),MobileScaffold: MobileScaffold(),TabletScaffold: TabletScaffold(), ),
-
-            // const Tabs_Screen()
-            // ),
+          home: KeyboardVisibilityProvider(child: ResponsiveLayout(DesktopScaffold: DesktopScaffold(),MobileScaffold: MobileScaffold(),TabletScaffold: TabletScaffold(), ),),
           ),
       );
     }
@@ -637,34 +639,7 @@ class _MyAppState extends State<MyApp> {
 
 
 
- final GoRouter _appRoute = GoRouter(
 
-   routes: <RouteBase>[
-     GoRoute(
-
-         path: '/',
-         builder: (BuildContext context, GoRouterState state){
-           return KeyboardVisibilityProvider(child: ResponsiveLayout(DesktopScaffold: DesktopScaffold(),MobileScaffold: MobileScaffold(),TabletScaffold: TabletScaffold(), ),);
-         }
-     ),
-     GoRoute(
-
-         path: '/MainMenu',
-         builder: (BuildContext context, GoRouterState state){
-           return MainMenu(layOut: 'Mobile',(value) {
-
-           },);
-         }
-     ),
-     GoRoute(
-         path: '/locations',
-         builder: (BuildContext context, GoRouterState state){
-           return Locations();
-         }
-     ),
-
-   ]
- );
 
 }
 

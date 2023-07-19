@@ -1,14 +1,19 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/screens/item%20details%20page/item_details_sheet.dart';
+import 'package:operation_falafel/screens/my%20rewards%20page/my_rewards.dart';
 import 'package:operation_falafel/screens/tabbar%20menu%20page/widgets/custom_list_tile.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:operation_falafel/widgets/radio_option.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
+import 'package:uni_links/uni_links.dart';
 
 import '../../models/AppThemeModels/DesignPerPage/MenuPage/menu_page.dart';
 import '../../models/AppThemeModels/FontSizes/Language/lang.dart';
@@ -126,6 +131,7 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                           visible: (widget.layOut == "Mobile") ? true : false,
                           child: IconButton(
                             onPressed: (){
+
                               _drawerKey.currentState?.openDrawer();
                             },
                             icon:  ImageIcon(
@@ -176,6 +182,7 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                                             Color>(Colors.black54),
 
                                         onTap: () {
+                                          // Navigator.pushNamed(context, "/ResetYourPassword");
                                           print("text");
                                         },
                                       ),
@@ -741,6 +748,8 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
       :const LoadingPage();
     });
   }
+
+
 }
 
 

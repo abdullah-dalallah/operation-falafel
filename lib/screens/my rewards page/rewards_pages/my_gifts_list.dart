@@ -101,16 +101,16 @@ class _MyGiftsListState extends State<MyGiftsList> {
                                 children: [
                                   ListTile(
                                       onTap: () {
-                                        context.goNamed("${GiftDetails.routeName}",extra:loyaltyProvider.gifts![Index].toJson());
+                                        // context.goNamed("${GiftDetails.routeName}",extra:loyaltyProvider.gifts![Index].toJson());
 
                                         // context.namedLocation("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${MyGiftsList.routeName}", pathParameters:{"giftDetails": loyaltyProvider.gifts![Index]} );
-                                        // PersistentNavBarNavigator.pushNewScreen(
-                                        //   context,
-                                        //   screen: GiftDetails(giftDetails: loyaltyProvider.gifts![Index]),
-                                        //   withNavBar: true,
-                                        //   // OPTIONAL VALUE. True by default.
-                                        //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                        // );
+                                        PersistentNavBarNavigator.pushNewScreen(
+                                          context,
+                                          screen: GiftDetails(giftDetails: loyaltyProvider.gifts![Index]),
+                                          withNavBar: true,
+                                          // OPTIONAL VALUE. True by default.
+                                          pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                        );
                                       },
                                       leading: Image.asset(
                                         "assets/images/of_credit_icon.png",

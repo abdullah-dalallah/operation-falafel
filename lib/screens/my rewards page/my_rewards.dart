@@ -365,15 +365,15 @@ class _MyRewardsState extends State<MyRewards> {
                                     // width: 130,
                                     child: ElevatedButton(
                                       onPressed: () {
-                                        context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${HowItWorks.routeName}");
-                                        // PersistentNavBarNavigator.pushNewScreen(
-                                        //   context,
-                                        //   screen: HowItWorks(),
-                                        //   withNavBar: true,
-                                        //   // OPTIONAL VALUE. True by default.
-                                        //   pageTransitionAnimation: PageTransitionAnimation
-                                        //       .cupertino,
-                                        // );
+                                        // context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${HowItWorks.routeName}");
+                                        PersistentNavBarNavigator.pushNewScreen(
+                                          context,
+                                          screen: HowItWorks(),
+                                          withNavBar: true,
+                                          // OPTIONAL VALUE. True by default.
+                                          pageTransitionAnimation: PageTransitionAnimation
+                                              .cupertino,
+                                        );
                                       },
                                       style: ButtonStyle(
                                           shape: MaterialStateProperty.all<
@@ -421,16 +421,16 @@ class _MyRewardsState extends State<MyRewards> {
                                     // width: 130,
                                     child: ElevatedButton(
                                       onPressed: () {
-                                        context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${MyGifts.routeName}");
+                                        // context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${MyGifts.routeName}");
 
-                                        // PersistentNavBarNavigator.pushNewScreen(
-                                        //   context,
-                                        //   screen: MyGifts(),
-                                        //   withNavBar: true,
-                                        //   // OPTIONAL VALUE. True by default.
-                                        //   pageTransitionAnimation: PageTransitionAnimation
-                                        //       .cupertino,
-                                        // );
+                                        PersistentNavBarNavigator.pushNewScreen(
+                                          context,
+                                          screen: MyGifts(),
+                                          withNavBar: true,
+                                          // OPTIONAL VALUE. True by default.
+                                          pageTransitionAnimation: PageTransitionAnimation
+                                              .cupertino,
+                                        );
                                       },
                                       style: ButtonStyle(
                                           shape: MaterialStateProperty.all<
@@ -535,15 +535,15 @@ class _MyRewardsState extends State<MyRewards> {
                                     height: 60,
                                     child: ElevatedButton(
                                       onPressed: () {
-                                        context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${TransferCredit.routeName}");
-                                        // PersistentNavBarNavigator.pushNewScreen(
-                                        //   context,
-                                        //   screen: TransferCredit(),
-                                        //   withNavBar: true,
-                                        //   // OPTIONAL VALUE. True by default.
-                                        //   pageTransitionAnimation: PageTransitionAnimation
-                                        //       .cupertino,
-                                        // );
+                                        // context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${TransferCredit.routeName}");
+                                        PersistentNavBarNavigator.pushNewScreen(
+                                          context,
+                                          screen: TransferCredit(),
+                                          withNavBar: true,
+                                          // OPTIONAL VALUE. True by default.
+                                          pageTransitionAnimation: PageTransitionAnimation
+                                              .cupertino,
+                                        );
                                       },
                                       style: ButtonStyle(
                                           shape: MaterialStateProperty.all<
@@ -601,15 +601,15 @@ class _MyRewardsState extends State<MyRewards> {
 
                                     child: ElevatedButton(
                                       onPressed: () {
-                                        context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${CreditCalculator.routeName}");
-                                        // PersistentNavBarNavigator.pushNewScreen(
-                                        //   context,
-                                        //   screen: CreditCalculator(),
-                                        //   withNavBar: true,
-                                        //   // OPTIONAL VALUE. True by default.
-                                        //   pageTransitionAnimation: PageTransitionAnimation
-                                        //       .cupertino,
-                                        // );
+                                        // context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${CreditCalculator.routeName}");
+                                        PersistentNavBarNavigator.pushNewScreen(
+                                          context,
+                                          screen: CreditCalculator(),
+                                          withNavBar: true,
+                                          // OPTIONAL VALUE. True by default.
+                                          pageTransitionAnimation: PageTransitionAnimation
+                                              .cupertino,
+                                        );
                                       },
                                       style: ButtonStyle(
                                           shape: MaterialStateProperty.all<
@@ -657,17 +657,17 @@ class _MyRewardsState extends State<MyRewards> {
                                     child: ElevatedButton(
                                       onPressed: () {
 
-                                        print( GoRouter.of(context).routerDelegate.currentConfiguration.fullPath);
-                                        context.push('${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${RewardsHistory.routeName}');
+                                        // print( GoRouter.of(context).routerDelegate.currentConfiguration.fullPath);
+                                        // context.push('${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${RewardsHistory.routeName}');
                                         // context.go("${MainMenu.routeName}/${MyRewards.routeName}/${CreditCalculator.routeName}");
 
-                                        // PersistentNavBarNavigator.pushNewScreen(
-                                        //   context,
-                                        //   screen: RewardsHistory(),
-                                        //   withNavBar: true,
-                                        //   // OPTIONAL VALUE. True by default.
-                                        //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                        // );
+                                        PersistentNavBarNavigator.pushNewScreen(
+                                          context,
+                                          screen: RewardsHistory(),
+                                          withNavBar: true,
+                                          // OPTIONAL VALUE. True by default.
+                                          pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                        );
                                       },
                                       style: ButtonStyle(
                                           shape: MaterialStateProperty.all<

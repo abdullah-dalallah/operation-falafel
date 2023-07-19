@@ -765,16 +765,16 @@ class _AddNewAddressState extends State<AddNewAddress> {
 
                              child: ElevatedButton(
                                  onPressed: () {
-                                   context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${MapPage.routeName}");
+                                   // context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${MapPage.routeName}");
 
-                                   // PersistentNavBarNavigator.pushNewScreen(
-                                   //   context,
-                                   //   screen: MapPage(),
-                                   //   withNavBar: true,
-                                   //   // OPTIONAL VALUE. True by default.
-                                   //   pageTransitionAnimation: PageTransitionAnimation
-                                   //       .cupertino,
-                                   // );
+                                   PersistentNavBarNavigator.pushNewScreen(
+                                     context,
+                                     screen: MapPage(),
+                                     withNavBar: true,
+                                     // OPTIONAL VALUE. True by default.
+                                     pageTransitionAnimation: PageTransitionAnimation
+                                         .cupertino,
+                                   );
                                    // pushNewScreen(context, screen:  MapPage());
 
                                  },
