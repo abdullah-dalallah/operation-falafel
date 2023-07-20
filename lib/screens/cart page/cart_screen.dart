@@ -7,10 +7,13 @@ import 'package:flutter/services.dart';
 import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/demo_cart/demo_cart_provider.dart';
+import 'package:operation_falafel/providers/slider_provider.dart';
 import 'package:operation_falafel/widgets/address_list_sheet.dart';
 import 'package:operation_falafel/widgets/checkbox_option.dart';
+import 'package:operation_falafel/widgets/credit_card_payment_method_checkbox.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
+import 'package:operation_falafel/widgets/loyalty_payment_method_checkbox.dart';
 
 import 'package:operation_falafel/widgets/pluse_minus_widget.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -21,6 +24,7 @@ import 'package:uni_links/uni_links.dart';
 import '../../models/AppThemeModels/DesignPerPage/CartPage/cart_page.dart';
 import '../../models/AppThemeModels/FontSizes/Language/lang.dart';
 import '../../providers/AppTheme/theme_provider.dart';
+import '../../widgets/background.dart';
 import '../my rewards page/my_rewards.dart';
 
 
@@ -57,18 +61,17 @@ class _Cart_ScreenState extends State<Cart_Screen> {
    return Stack(
       alignment: Alignment.topCenter,
      children: [
-       Image.asset(
-         "assets/images/background.png",
-         height: MediaQuery.of(context).size.height,
-         width: MediaQuery.of(context).size.width,
-         fit: BoxFit.cover,
-       ),
-       Consumer<DemoCartProvider>(
-          builder: (context, value, child) {
-          bool cartEmpty = value.cartItems.isEmpty;
-          return Consumer<ThemeProvider>(
-                  builder: (context, appTheme, child)
+       Background(),
+       // Image.asset(
+       //   "assets/images/background.png",
+       //   height: MediaQuery.of(context).size.height,
+       //   width: MediaQuery.of(context).size.width,
+       //   fit: BoxFit.cover,
+       // ),
+        Consumer3<ThemeProvider,DemoCartProvider,SliderProvider>(
+                  builder: (context, appTheme,demoCartProvider,SliderProvider, child)
                   {
+                    bool cartEmpty = demoCartProvider.cartItems.isEmpty;
 
                     Language? lng= (Localizations.localeOf(context).languageCode=='ar')? appTheme.appTheme.fontSizes?.ar : appTheme.appTheme.fontSizes?.en;
                     CartPage? cartPage = appTheme.appTheme.designPerPage?.cartPage;
@@ -123,18 +126,18 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                 // padding:
                                 // (Localizations.localeOf(context).languageCode=='ar')? EdgeInsets.only(bottom: 9, left: 7, right: 7, top:7):EdgeInsets.only(bottom: 9, left: 7, right: 7, top:5),
 
-                                showBadge: (value.cartItems.isNotEmpty) ? true : false,
+                                showBadge: (demoCartProvider.cartItems.isNotEmpty) ? true : false,
                                 badgeStyle: badges.BadgeStyle(
-                                  badgeColor: (value.cartItems.isNotEmpty)
+                                  badgeColor: (demoCartProvider.cartItems.isNotEmpty)
                                       ? Colors.red
                                       : Colors.transparent,
                                   elevation: 0,
 
                                 ),
                                 badgeContent: MyText(
-                                  '${value.cartItems.length}',
+                                  '${demoCartProvider.cartItems.length}',
                                   style: TextStyle(
-                                      color: (value.cartItems.isNotEmpty)
+                                      color: (demoCartProvider.cartItems.isNotEmpty)
                                       ? Colors.white
                                       : Colors.transparent,
                                       fontFamily: getTranslated(context, "fontFamilyBody")
@@ -159,6 +162,8 @@ class _Cart_ScreenState extends State<Cart_Screen> {
 
                               children: [
                                 const SizedBox(height: 20,),
+
+                                /// - Cart Title
                                 MyText(
                                   cartPage.body.pageTile.data,
                                   // getTranslated(context, "my o:f cart")!,
@@ -189,7 +194,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                       ListView.builder(
                                           physics: const NeverScrollableScrollPhysics(),
                                           shrinkWrap: true,
-                                          itemCount: value.cartItems.length,
+                                          itemCount: demoCartProvider.cartItems.length,
                                           itemBuilder: (context, index) {
                                             return Padding(
                                               padding: const EdgeInsets.only(
@@ -197,7 +202,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                               child: Column(
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
-                                                  MyText("${value.cartItems[index].itemName}", style: TextStyle(
+                                                  MyText("${demoCartProvider.cartItems[index].itemName}", style: TextStyle(
                                                       fontFamily: lng?.header5.textFamily,
                                                       color: Color(int.parse(cartPage.body.itemsList.itemTitle.color)),
                                                       fontSize: lng?.header5.size.toDouble(),
@@ -211,8 +216,8 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                   // ),),
                                                   const SizedBox(height: 5,),
                                                   Visibility(
-                                                    visible: (value.cartItems[index].selectedOtions.length != 0 ||
-                                                        value.cartItems[index].selectedAddon.length != 0)
+                                                    visible: (demoCartProvider.cartItems[index].selectedOtions.length != 0 ||
+                                                        demoCartProvider.cartItems[index].selectedAddon.length != 0)
                                                         ? true
                                                         : false,
                                                     child: Column(
@@ -223,14 +228,14 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                         ListView.builder(
                                                             physics: const NeverScrollableScrollPhysics(),
                                                             shrinkWrap: true,
-                                                            itemCount: value.cartItems[index].selectedOtions.length,
+                                                            itemCount: demoCartProvider.cartItems[index].selectedOtions.length,
                                                             itemBuilder: (context, index2) {
                                                               return Padding(
                                                                 padding: const EdgeInsets.all(2.0),
                                                                 child: Row(
                                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                   children: [
-                                                                    MyText("${value.cartItems[index].selectedOtions[index2].keys.elementAt(0)}",
+                                                                    MyText("${demoCartProvider.cartItems[index].selectedOtions[index2].keys.elementAt(0)}",
                                                                       style: TextStyle(
                                                                           fontSize: lng?.header2.size.toDouble(),
                                                                           // fontSize: double.parse(getTranslated(context, "cartpageHeader3")!),
@@ -249,16 +254,16 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                         ListView.builder(
                                                             physics: const NeverScrollableScrollPhysics(),
                                                             shrinkWrap: true,
-                                                            itemCount: value.cartItems[index].selectedAddon.length,
+                                                            itemCount: demoCartProvider.cartItems[index].selectedAddon.length,
                                                             itemBuilder: (context, index2) {
                                                               return Padding(
                                                                 padding: const EdgeInsets.all(2.0),
                                                                 child: Row(
                                                                   mainAxisAlignment: MainAxisAlignment.start,
                                                                   children: [
-                                                                    MyText("${value
+                                                                    MyText("${demoCartProvider
                                                                         .cartItems[index]
-                                                                        .selectedAddon[index2][value
+                                                                        .selectedAddon[index2][demoCartProvider
                                                                         .cartItems[index]
                                                                         .selectedAddon[index2]
                                                                         .keys.elementAt(
@@ -270,7 +275,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                                           // fontFamily: getTranslated(context, "fontFamilyBody")!,
                                                                           color: Color(int.parse(cartPage.body.itemsList.optionsTitle.color)),
                                                                           fontWeight: FontWeight.w300),),
-                                                                    MyText("${value
+                                                                    MyText("${demoCartProvider
                                                                         .cartItems[index]
                                                                         .selectedAddon[index2]
                                                                         .keys.elementAt(
@@ -285,9 +290,9 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                                     Expanded(
                                                                         child: SizedBox(
                                                                           width: 2,)),
-                                                                    MyText("AED ${value
+                                                                    MyText("AED ${demoCartProvider
                                                                         .cartItems[index]
-                                                                        .selectedAddon[index2][value
+                                                                        .selectedAddon[index2][demoCartProvider
                                                                         .cartItems[index]
                                                                         .selectedAddon[index2]
                                                                         .keys.elementAt(
@@ -312,9 +317,9 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                     children: [
                                                       PluseMinusWidgetCart(
-                                                        ItemQuantity: value.cartItems[index].itemQuantity,
+                                                        ItemQuantity: demoCartProvider.cartItems[index].itemQuantity,
                                                         itemIndex: index,),
-                                                      MyText("AED ${value.cartItems[index].itemTotalPrice}",
+                                                      MyText("AED ${demoCartProvider.cartItems[index].itemTotalPrice}",
                                                         style: TextStyle(
                                                             fontFamily: lng?.header5.textFamily,
                                                             color: Color(int.parse(cartPage.body.itemsList.totalPrice.color)),
@@ -324,7 +329,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                     ],
                                                   ),
 
-                                                  (index < value.cartItems.length - 1)
+                                                  (index < demoCartProvider.cartItems.length - 1)
                                                       ? const Padding(
                                                     padding: EdgeInsets.all(18.0),
                                                     child: Divider(
@@ -623,7 +628,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                       ),
                                       const SizedBox(height: 15,),
 
-
+                                      /// - Tip
                                       Visibility(
                                         visible: cartPage.body.tip.visibility=='true',
                                         child: Column(
@@ -695,14 +700,70 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                           ],
                                         ),
                                       ),
+                                      const SizedBox(height: 15,),
 
+                               /// - New Changes
+                                      /// - Payment
+                                      Container(
+                                        color: Colors.black,
+                                        child: Column(
+                                          children: [
+                                            const SizedBox(height: 15,),
+                                            /// - Title
+                                            Align(alignment: Alignment.centerLeft, child: Padding(
+                                              padding: EdgeInsets.only(left: 18.0, right: 18),
+                                              child:
+
+                                              MyText(
+                                                cartPage.body.selectPayment.title.data,
+                                                style:  TextStyle(
+                                                    color: Color(int.parse(cartPage.body.selectPayment.title.color)),
+                                                    fontWeight: FontWeight.w300,
+                                                    fontFamily: lng?.titleHeader1.textFamily,
+                                                    fontSize: lng?.titleHeader1.size.toDouble()
+                                                  // fontFamily: getTranslated(context, "cartpageHeader2")
+                                                ),),
+                                              // MyText(
+                                              //   getTranslated(context, "payment")!,
+                                              //   style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",
+                                              //       color: Colors.amber,
+                                              //       fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
+                                            )),
+                                            /// - Credit Card
+                                            CreditCardPaymentMethodCheckbox(
+                                              onChanged: _creditCardPaymentChangedHandler(),
+                                              value: creditCardCheckboxValue,
+                                              addOnFlag: false,
+                                              text: "Debit/Credit Card",
+                                              colorOfBox: Colors.white,
+                                              colorOfText: Colors.white,
+
+                                            ),
+                                            /// - Loyalty
+                                            LoyaltyPaymentMethodCheckbox(
+                                              pointValue: SliderProvider.selectedPoint,
+                                              onChanged: _loyaltyPaymentChangedHandler(),
+                                              value: loyaltyCheckboxValue,
+                                              addOnFlag: false,
+                                              text: "O:F Loyalty Credits",
+                                              colorOfBox: Colors.white,
+                                              colorOfText: Colors.white,
+                                            )
+                                          ],
+                                        ),
+                                      ),
+
+
+                                /// - New Changes
 
                                       /// - sub total
-                                      const SizedBox(height: 15,),
-                                      Padding(
+                                      // const SizedBox(height: 15,),
+                                      Container(
+                                        color: Colors.black,
                                         padding: const EdgeInsets.all(8.0),
                                         child: Column(
                                           children: [
+                                            Divider(color:Colors.white54),
                                             Padding(
                                               padding: const EdgeInsets.all(8.0),
                                               child: Row(
@@ -726,7 +787,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                   //           getTranslated(context,
                                                   //               "cartpageHeader2SubTotal")!),
                                                   //       fontWeight: FontWeight.w300),),
-                                                  MyText("AED ${value.Details.Total}",
+                                                  MyText("AED ${demoCartProvider.Details.Total}",
                                                     style: TextStyle(
                                                         fontFamily: "${lng?.header3.textFamily}",
                                                         color: Color(int.parse(cartPage.body.subTotal.color)),
@@ -757,7 +818,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                   //           getTranslated(context,
                                                   //               "cartpageHeader2SubTotal")!),
                                                   //       fontWeight: FontWeight.w300),),
-                                                  MyText("AED ${value.Details.Total}",
+                                                  MyText("AED ${demoCartProvider.Details.Total}",
                                                     style: TextStyle(
                                                         fontFamily: "${lng?.header3.textFamily}",
                                                         color: Color(int.parse(cartPage.body.totalAfterPromoCode.color)),
@@ -795,73 +856,85 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                         ),
                                       ),
 
-                                      /// - Total
+                                      /// - Total & credit calculation
                                       Container(
                                           decoration: const BoxDecoration(
                                             color: Colors.black,
-                                            borderRadius: BorderRadius.only(
-                                              topRight: Radius.circular(10),
-                                              bottomLeft: Radius.circular(10),
-                                              topLeft: Radius.circular(10),
-                                              bottomRight: Radius.circular(10),
-                                            ),
+                                            // borderRadius: BorderRadius.only(
+                                            //   topRight: Radius.circular(10),
+                                            //   bottomLeft: Radius.circular(10),
+                                            //   topLeft: Radius.circular(10),
+                                            //   bottomRight: Radius.circular(10),
+                                            // ),
                                             // border: Border.all(
                                             //   width: 0.5,
                                             //   color: Colors.white,
                                             //   style: BorderStyle.solid,
                                             // ),
                                           ),
-                                          padding:const EdgeInsets.only(left: 25, right: 24, top: 10, bottom: 10),
-                                          child: RichText(
-                                            text: TextSpan(
-                                              text: "${cartPage.body.total.totalTitle.data} ",
-                                              // text: getTranslated(context, "total")!,
-                                              style: TextStyle(
-                                                fontFamily: "${lng?.header5.textFamily}",
-                                                // fontFamily: "${getTranslated(context, "fontFamilyBody")!}",
-                                                color: Color(int.parse(cartPage.body.total.totalTitle.color)),
-                                                // color: Colors.amber,
-                                                fontWeight: FontWeight.w300,
-                                                fontSize: lng?.header5.size.toDouble(),
-                                                // fontSize: double.parse(getTranslated(context, "cartpageHeader2")!),
-                                              ),
-                                              children: [
-                                                TextSpan(
-                                                  text: ' AED ${value.Details.Total}',
-                                                  style: TextStyle(
-                                                      fontWeight: FontWeight.w300,
-                                                      color: Color(int.parse(cartPage.body.total.price.color))
-                                                  ),
-                                                ),
+                                          padding:const EdgeInsets.only(left: 0, right: 0, top: 10, bottom: 10),
+                                          child: Column(
+                                            children: [
+                                              /// - Total
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
+                                                  RichText(
+                                                    text: TextSpan(
+                                                      text: "${cartPage.body.total.totalTitle.data} ",
+                                                      // text: getTranslated(context, "total")!,
+                                                      style: TextStyle(
+                                                        fontFamily: "${lng?.header5.textFamily}",
+                                                        // fontFamily: "${getTranslated(context, "fontFamilyBody")!}",
+                                                        color: Color(int.parse(cartPage.body.total.totalTitle.color)),
+                                                        // color: Colors.amber,
+                                                        fontWeight: FontWeight.w300,
+                                                        fontSize: lng?.header5.size.toDouble(),
+                                                        // fontSize: double.parse(getTranslated(context, "cartpageHeader2")!),
+                                                      ),
+                                                      children: [
+                                                        TextSpan(
+                                                          text: ' AED ${demoCartProvider.Details.Total}',
+                                                          style: TextStyle(
+                                                              fontWeight: FontWeight.w300,
+                                                              color: Color(int.parse(cartPage.body.total.price.color))
+                                                          ),
+                                                        ),
 
-                                              ],
-                                            ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              /// - credit calculation
+                                              Padding(
+                                                padding: const EdgeInsets.only(left: 8.0, right: 8, top: 15),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    MyText(
+                                                      cartPage.body.credit.data,
+                                                      // getTranslated(context, "earned credits")!,
+                                                      style: TextStyle(
+                                                          fontFamily: lng?.header1.textFamily,
+                                                          color: Color(int.parse(cartPage.body.credit.color)),
+                                                          fontSize: lng?.header1.size.toDouble()),),
+                                                    MyText(getTranslated(
+                                                        context, "total of credits")!,
+                                                      style: TextStyle(
+                                                          fontFamily: getTranslated(
+                                                              context, "fontFamilyBody"),
+                                                          color: Colors.amber,
+                                                          fontSize: 10),),
+                                                  ],
+                                                ),
+                                              ),
+                                              const SizedBox(height: 10,),
+                                            ],
                                           )
                                       ),
 
-                                      /// - credit calculation
-                                      Padding(
-                                        padding: const EdgeInsets.only(left: 18.0, right: 18, top: 10),
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            MyText(
-                                              cartPage.body.credit.data,
-                                              // getTranslated(context, "earned credits")!,
-                                              style: TextStyle(
-                                                  fontFamily: lng?.header1.textFamily,
-                                                  color: Color(int.parse(cartPage.body.credit.color)),
-                                                  fontSize: lng?.header1.size.toDouble()),),
-                                            MyText(getTranslated(
-                                                context, "total of credits")!,
-                                              style: TextStyle(
-                                                  fontFamily: getTranslated(
-                                                      context, "fontFamilyBody"),
-                                                  color: Colors.amber,
-                                                  fontSize: 10),),
-                                          ],
-                                        ),
-                                      ),
+
 
                                       /// - Address
                                       Visibility(
@@ -951,7 +1024,8 @@ class _Cart_ScreenState extends State<Cart_Screen> {
 
                                       /// - Payment
                                       Visibility(
-                                        visible: (cartPage.body.selectPayment.visibility=='true'),
+                                        visible:false,
+                                        //(cartPage.body.selectPayment.visibility=='true'),
                                         child: Column(
                                           children: [
                                             const SizedBox(height: 15,),
@@ -1109,10 +1183,10 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                cartPage.body.orderNowButton.data,
                                                 style: TextStyle(
                                                     fontFamily:"${lng?.titleHeader1.textFamily}",
-                                                    
+
                                                     color: Color(int.parse(cartPage.body.orderNowButton.color)),
                                                     fontSize: lng?.titleHeader1.size.toDouble(),
-                                                    
+
                                                 )
                                                 ,)
 
@@ -1180,18 +1254,49 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                         widget.onChanged(value);
                       },),
                     )
-                    :LoadingPage()
-                    ;
+                    :LoadingPage();
 
-                  });
+                  }
+
+                  )
 
 
-    }),
+
+
+
      ],
    );
   }
 
 
+  /// - Code changes - Payment mehtod
+
+  bool creditCardCheckboxValue = false;
+  ValueChanged _creditCardPaymentChangedHandler() {
+    return (value) => setState(() {
+      // print(value);
+      // if(value==true)
+      //   creditCardCheckboxValue = false;
+      // else
+        creditCardCheckboxValue =value;
+       print(value);
+
+    });
+  }
+
+  bool loyaltyCheckboxValue = false;
+  ValueChanged _loyaltyPaymentChangedHandler() {
+    return (value) => setState(() {
+      // print(value);
+      // if(value==true)
+      //   creditCardCheckboxValue = false;
+      // else
+      loyaltyCheckboxValue =value;
+      print(value);
+
+    });
+  }
+  /// - Code changes - Payment mehtod
 
 
 

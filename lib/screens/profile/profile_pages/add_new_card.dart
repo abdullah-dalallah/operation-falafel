@@ -105,7 +105,6 @@ class _AddNewCardState extends State<AddNewCard> {
                                       onChanged: _valueChangedHandler(),
                                       label: '1',
                                       text: "mainCardCheck",
-
                                       addOnFlag: false,
                                       colorOfBox: (validateMainCheckbox==false)?
                                       (mainCheckboxBool==true)?
