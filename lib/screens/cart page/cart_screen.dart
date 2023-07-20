@@ -9,6 +9,7 @@ import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/demo_cart/demo_cart_provider.dart';
 import 'package:operation_falafel/providers/slider_provider.dart';
 import 'package:operation_falafel/widgets/address_list_sheet.dart';
+import 'package:operation_falafel/widgets/cart_gifts_widget.dart';
 import 'package:operation_falafel/widgets/checkbox_option.dart';
 import 'package:operation_falafel/widgets/credit_card_payment_method_checkbox.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
@@ -745,10 +746,15 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                               onChanged: _loyaltyPaymentChangedHandler(),
                                               value: loyaltyCheckboxValue,
                                               addOnFlag: false,
-                                              text: "O:F Loyalty Credits",
+                                              text: "Loyalty Credits",
                                               colorOfBox: Colors.white,
                                               colorOfText: Colors.white,
-                                            )
+                                              fontFamily: "${getTranslated(context, "fontFamilyBody")!}",
+                                            ),
+                                            const SizedBox(height: 15,),
+                                            /// -  OF Gifts
+                                            CartGiftsWidget(),
+
                                           ],
                                         ),
                                       ),
@@ -801,6 +807,39 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   MyText(
+                                                    "LOYALTY POINT",
+                                                    // cartPage.body.totalAfterPromoCode.data,
+                                                    style: TextStyle(
+                                                        fontFamily: "${lng?.header3.textFamily}",
+                                                        color: Color(int.parse(cartPage.body.totalAfterPromoCode.color)),
+                                                        fontSize: lng?.header3.size.toDouble(),
+                                                        fontWeight: FontWeight.w300),),
+                                                  // MyText(
+                                                  //   getTranslated(context, "totalAfterPromoCode")!,
+                                                  //   style: TextStyle(
+                                                  //       fontFamily: "${getTranslated(
+                                                  //           context,
+                                                  //           "fontFamilyBody")!}",
+                                                  //       color: Colors.amber,
+                                                  //       fontSize: double.parse(
+                                                  //           getTranslated(context,
+                                                  //               "cartpageHeader2SubTotal")!),
+                                                  //       fontWeight: FontWeight.w300),),
+                                                  MyText('AED -${SliderProvider.selectedPoint/10}',
+                                                    //"AED ${demoCartProvider.Details.Total}",
+                                                    style: TextStyle(
+                                                        fontFamily: "${lng?.header3.textFamily}",
+                                                        color: Color(int.parse(cartPage.body.totalAfterPromoCode.color)),
+                                                        fontSize: lng?.header3.size.toDouble(),
+                                                        fontWeight: FontWeight.w300),),
+                                                ],),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  MyText(
                                                     cartPage.body.totalAfterPromoCode.data,
                                                     style: TextStyle(
                                                         fontFamily: "${lng?.header3.textFamily}",
@@ -818,7 +857,8 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                   //           getTranslated(context,
                                                   //               "cartpageHeader2SubTotal")!),
                                                   //       fontWeight: FontWeight.w300),),
-                                                  MyText("AED ${demoCartProvider.Details.Total}",
+                                                  MyText('AED ${demoCartProvider.Details.Total-SliderProvider.selectedPoint/10}',
+                                                    //"AED ${demoCartProvider.Details.Total}",
                                                     style: TextStyle(
                                                         fontFamily: "${lng?.header3.textFamily}",
                                                         color: Color(int.parse(cartPage.body.totalAfterPromoCode.color)),
@@ -894,7 +934,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                       ),
                                                       children: [
                                                         TextSpan(
-                                                          text: ' AED ${demoCartProvider.Details.Total}',
+                                                          text: ' AED ${demoCartProvider.Details.Total-SliderProvider.selectedPoint/10}',
                                                           style: TextStyle(
                                                               fontWeight: FontWeight.w300,
                                                               color: Color(int.parse(cartPage.body.total.price.color))

@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/localization/localization_constants.dart';
 
 class CustomSliderThumbCircle extends SliderComponentShape {
   final double thumbRadius;
@@ -40,14 +41,16 @@ class CustomSliderThumbCircle extends SliderComponentShape {
     final Canvas canvas = context.canvas;
 
     final paint = Paint()
-      ..color = Colors.white //Thumb Background Color
+      ..color = Colors.black //Thumb Background Color
       ..style = PaintingStyle.fill;
 
     TextSpan span = new TextSpan(
       style: new TextStyle(
-        fontSize: thumbRadius * .8,
+        fontFamily: "Raleway-Regular",
+        fontSize: thumbRadius * .7,
         fontWeight: FontWeight.w700,
-        color: sliderTheme.thumbColor, //Text Color of Value on Thumb
+        // color: sliderTheme.thumbColor, //Text Color of Value on Thumb
+        color: Colors.white
       ),
       text: formatNumberWithK(getValue(value)),
     );

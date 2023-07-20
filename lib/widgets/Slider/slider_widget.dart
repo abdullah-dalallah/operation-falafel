@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/slider_provider.dart';
 import 'package:operation_falafel/widgets/Slider/custom_slider_thumb_circle.dart';
 import 'package:provider/provider.dart';
@@ -37,91 +38,106 @@ class _SliderWidgetState extends State<SliderWidget> {
 
     if (this.widget.fullWidth) paddingFactor = .3;
 
-    return Container(
-      width: this.widget.fullWidth ? double.infinity : (this.widget.sliderHeight) * 5.5,
-      height: (this.widget.sliderHeight),
-      decoration:  BoxDecoration(
-        color: Colors.white54,
-        borderRadius:  BorderRadius.all(
-          Radius.circular((this.widget.sliderHeight * .3)),
-        ),
-        // gradient:  LinearGradient(
-        //     colors: [
-        //       const Color(0xFF00c6ff),
-        //       const Color(0xFF0072ff),
-        //     ],
-        //     begin: const FractionalOffset(0.0, 0.0),
-        //     end: const FractionalOffset(1.0, 1.00),
-        //     stops: [0.0, 1.0],
-        //     tileMode: TileMode.clamp),
-      ),
-      child: Padding(
-        padding: EdgeInsets.fromLTRB(this.widget.sliderHeight * paddingFactor, 2, this.widget.sliderHeight * paddingFactor, 2),
-        child: Row(
-          children: <Widget>[
-            Text(
-              '${formatNumberWithK(this.widget.min)} Point',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: this.widget.sliderHeight * .3,
-                fontWeight: FontWeight.w700,
-                color: Colors.white,
+    return
 
-              ),
-            ),
-            SizedBox(
-              width: this.widget.sliderHeight * .1,
-            ),
-            Expanded(
-              child: Center(
-                child: SliderTheme(
-                  data: SliderTheme.of(context).copyWith(
-                    activeTrackColor: Colors.amber.withOpacity(1),
-                    inactiveTrackColor: Colors.white.withOpacity(.5),
-                    trackHeight: 4.0,
-                    thumbShape: CustomSliderThumbCircle(
-                      thumbRadius: this.widget.sliderHeight * .4,
-                      min: this.widget.min,
-                      max: this.widget.max,
-                      imageProvider: AssetImage('assets/images/page2orders_icon.png')
-                    ),
-                    overlayColor: Colors.white.withOpacity(.4),
-                    //valueIndicatorColor: Colors.white,
-                    activeTickMarkColor: Colors.white,
-                    inactiveTickMarkColor: Colors.red.withOpacity(.7),
+      Consumer<SliderProvider>(
+          builder: (context,SliderProvider, child)
+            {
+             return Container(
+                width: this.widget.fullWidth ? double.infinity : (this.widget
+                    .sliderHeight) * 5.5,
+                height: (this.widget.sliderHeight),
+                decoration: BoxDecoration(
+                  color: Colors.white54,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular((this.widget.sliderHeight * .3)),
                   ),
-                  child: Slider(
-                      value: _value,
-                      onChanged: (value) {
-                        setState(() {
-                          _value = value;
-                        });
-
-                        Provider.of<SliderProvider>(context, listen: false).onChangePoint(getValue(value).toDouble());
-                      }),
+                  // gradient:  LinearGradient(
+                  //     colors: [
+                  //       const Color(0xFF00c6ff),
+                  //       const Color(0xFF0072ff),
+                  //     ],
+                  //     begin: const FractionalOffset(0.0, 0.0),
+                  //     end: const FractionalOffset(1.0, 1.00),
+                  //     stops: [0.0, 1.0],
+                  //     tileMode: TileMode.clamp),
                 ),
-              ),
-            ),
-            SizedBox(
-              width: this.widget.sliderHeight * .1,
-            ),
-            Text(
-              '${formatNumberWithK(this.widget.max)} Point',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: this.widget.sliderHeight * .3,
-                fontWeight: FontWeight.w700,
-                color: Colors.white,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(
+                      this.widget.sliderHeight * paddingFactor, 2,
+                      this.widget.sliderHeight * paddingFactor, 2),
+                  child: Row(
+                    children: <Widget>[
+                      Text(
+                        '${formatNumberWithK(this.widget.min)} pts',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: this.widget.sliderHeight * .3,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
+                            fontFamily: "${getTranslated(context, "fontFamilyBody")!}"
+                        ),
+                      ),
+                      SizedBox(
+                        width: this.widget.sliderHeight * .1,
+                      ),
+                      Expanded(
+                        child: Center(
+                          child: SliderTheme(
+                            data: SliderTheme.of(context).copyWith(
+                              activeTrackColor: Colors.amber.withOpacity(1),
+                              inactiveTrackColor: Colors.white.withOpacity(.5),
+                              trackHeight: 4.0,
+                              thumbShape: CustomSliderThumbCircle(
+                                  thumbRadius: this.widget.sliderHeight * .4,
+                                  min: this.widget.min,
+                                  max: this.widget.max,
+                                  imageProvider: AssetImage(
+                                      'assets/images/page2orders_icon.png')
+                              ),
+                              overlayColor: Colors.white.withOpacity(.4),
+                              //valueIndicatorColor: Colors.white,
+                              activeTickMarkColor: Colors.white,
+                              inactiveTickMarkColor: Colors.red.withOpacity(.7),
+                            ),
+                            child: Slider(
+                                value:getSliderValue(SliderProvider.selectedPoint) ,
+                                //_value,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _value = value;
+                                  });
+
+                                  SliderProvider.onChangePoint(getValue(value).toDouble());
+                                }),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: this.widget.sliderHeight * .1,
+                      ),
+                      Text(
+                        '${formatNumberWithK(this.widget.max)} pts',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: this.widget.sliderHeight * .3,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
+                            fontFamily: "${getTranslated(context, "fontFamilyBody")!}"
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            });
   }
 
   int getValue(double value) {
     return (widget.min+(widget.max-widget.min)*value).round();
+  }
+  double getSliderValue(double value){
+    return ((value-widget.min)/widget.max-widget.min);
   }
 
 
