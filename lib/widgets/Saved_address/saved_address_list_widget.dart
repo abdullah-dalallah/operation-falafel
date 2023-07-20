@@ -37,7 +37,7 @@ class _SavedAddressListWidgetState extends State<SavedAddressListWidget> {
             padding: const EdgeInsets.only(left: 50.0, right: 50),
             child: ListView.builder(
               itemCount: profileProvider.savedAddressList.savedAddressItem?.length,
-              physics: const BouncingScrollPhysics(),
+              // physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return Container(
                   decoration: const BoxDecoration(
@@ -96,16 +96,16 @@ class _SavedAddressListWidgetState extends State<SavedAddressListWidget> {
 
                               child: ElevatedButton(
                                   onPressed: () {
-                                    context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${UpdateAddress.routeName}");
+                                    // context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${UpdateAddress.routeName}");
 
-                                    // PersistentNavBarNavigator.pushNewScreen(
-                                    //   context,
-                                    //   screen: UpdateAddress(),
-                                    //   withNavBar: true,
-                                    //   // OPTIONAL VALUE. True by default.
-                                    //   pageTransitionAnimation: PageTransitionAnimation
-                                    //       .cupertino,
-                                    // );
+                                    PersistentNavBarNavigator.pushNewScreen(
+                                      context,
+                                      screen: UpdateAddress(),
+                                      withNavBar: true,
+                                      // OPTIONAL VALUE. True by default.
+                                      pageTransitionAnimation: PageTransitionAnimation
+                                          .cupertino,
+                                    );
                                   },
                                   style: ButtonStyle(
                                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(const RoundedRectangleBorder(

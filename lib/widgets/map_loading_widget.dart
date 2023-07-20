@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/data/my_text.dart';
 
-class LoadingWidget extends StatefulWidget{
+class MapLoadingWidget extends StatefulWidget{
 
   @override
-  State<LoadingWidget> createState() => _LoadingWidgetState();
+  State<MapLoadingWidget> createState() => _LoadingWidgetState();
 }
 
-class _LoadingWidgetState extends State<LoadingWidget> with TickerProviderStateMixin{
+class _LoadingWidgetState extends State<MapLoadingWidget> with TickerProviderStateMixin{
   late AnimationController _animationController;
   late Animation<double> _opacityAnimation1;
   late Animation<double> _opacityAnimation2;
@@ -65,7 +65,7 @@ class _LoadingWidgetState extends State<LoadingWidget> with TickerProviderStateM
                 builder: (context, child) {
                   return Opacity(
                     opacity: _opacityAnimation1.value,
-                    child: Image.asset('assets/images/page2_icon.png', height: 25,width: 25,),
+                    child: Image.asset('assets/images/page2_icon.png', height: 18,width: 18,),
                   );
                 },
               ),
@@ -75,7 +75,7 @@ class _LoadingWidgetState extends State<LoadingWidget> with TickerProviderStateM
                 builder: (context, child) {
                   return Opacity(
                     opacity: _opacityAnimation2.value,
-                    child: Image.asset('assets/images/page2_icon.png', height: 25,width: 25,),
+                    child: Image.asset('assets/images/page2_icon.png', height: 18,width: 18,),
                   );
                 },
               ),
@@ -85,18 +85,13 @@ class _LoadingWidgetState extends State<LoadingWidget> with TickerProviderStateM
                 builder: (context, child) {
                   return Opacity(
                     opacity: _opacityAnimation3.value,
-                    child: Image.asset('assets/images/page2_icon.png', height: 25,width: 25,),
+                    child: Image.asset('assets/images/page2_icon.png', height: 18,width: 18,),
                   );
                 },
               ),
             ],
           ),
-          // ClipRRect(
-          //   borderRadius: BorderRadius.circular(50.0),
-          //   child: Image.asset("assets/images/loading_page.gif", height: 45,width: 45,fit: BoxFit.cover,),
-          // ),
-          SizedBox(height: 10,),
-          MyText("Loading...", style: TextStyle(color: Colors.white, ),textAlign: TextAlign.center,)
+
         ],
       ),
     );

@@ -22,7 +22,7 @@ class ProfileProvider with ChangeNotifier {
   }
   Future<Response<dynamic>> getUserSavedAddress(String userToken,) async {
     print("getting user Saved address from Online Server...");
-    var url = '${Strings.baseAppAddressUrl}/address/user/3';
+    var url = '${Strings.baseAppAddressUrl}address';
     print(url);
     Map<String, String> header = <String, String>{};
     header.putIfAbsent(Keys.acceptKey, () => "application/json");

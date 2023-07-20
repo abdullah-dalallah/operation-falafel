@@ -1,18 +1,28 @@
 
 import 'dart:async';
 
+
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:operation_falafel/data/my_text.dart';
+import 'package:operation_falafel/data/snackBarGenerator.dart';
 import 'package:operation_falafel/widgets/Map/custom_animated_marker.dart';
+import 'package:operation_falafel/widgets/loading_widget.dart';
+import 'package:operation_falafel/widgets/map_loading_widget.dart';
 
 import 'package:shimmer/shimmer.dart';
 
 import '../../localization/localization_constants.dart';
 
 class MapPage extends StatefulWidget {
+   LatLng? currentLocation;
+   final ValueChanged onAddressSelected;
+   final ValueChanged onLocationSelected;
   static const routeName = 'MapPage';
+
+   MapPage({required this.onAddressSelected,required this.onLocationSelected,this.currentLocation,super.key,});
   @override
   _MapPageState createState() => _MapPageState();
 }
@@ -20,18 +30,29 @@ class MapPage extends StatefulWidget {
 class _MapPageState extends State<MapPage> {
   // Initialize variables
   late GoogleMapController mapController;
-  late LatLng centerMarkerPosition;
+
+  LatLng? centerMarkerPosition ;
   String addressName = '';
   bool isMarkerLoading = false;
-
+  Placemark? fullAddress;
   Timer? _timer;
 
   @override
   void initState() {
     super.initState();
     // Set the initial position of the center marker
-    centerMarkerPosition = LatLng(25.074759, 55.140225);
+    // centerMarkerPosition = LatLng(25.074759, 55.140225);
+    if(widget.currentLocation!=null){
+      centerMarkerPosition =widget.currentLocation;
+      // getAddressNameFromLocation(centerMarkerPosition!);
+    }
+    else{
+      centerMarkerPosition = LatLng(25.074759, 55.140225);
+      // getAddressNameFromLocation(centerMarkerPosition!);
+    }
+
   }
+
 
   // Get the address name from the marked location
   Future<void> getAddressNameFromLocation(LatLng position) async {
@@ -42,10 +63,13 @@ class _MapPageState extends State<MapPage> {
       });
 
       // Use geocoding API to get the address name from the location
-      List<Placemark> placemarks = await placemarkFromCoordinates(
-          position.latitude, position.longitude);
-      addressName = placemarks[0].name!;
-      print(addressName);
+      List<Placemark> placemarks = await placemarkFromCoordinates(position.latitude, position.longitude);
+      fullAddress = placemarks.first;
+      addressName = placemarks.first.street!;
+
+
+
+
 
       // Set the loading status to false
       setState(() {
@@ -70,7 +94,7 @@ class _MapPageState extends State<MapPage> {
             GoogleMap(
               // mapType: MapType.satellite,
               initialCameraPosition: CameraPosition(
-                target: centerMarkerPosition,
+                target: centerMarkerPosition!,
                 zoom: 10,
               ),
               onMapCreated: (GoogleMapController controller) {mapController = controller;},
@@ -94,13 +118,13 @@ class _MapPageState extends State<MapPage> {
 
               },
               onCameraIdle: () {
-                print("${centerMarkerPosition.latitude},${centerMarkerPosition.longitude}");
+                // print("${centerMarkerPosition?.latitude},${centerMarkerPosition!.longitude}");
                 if (_timer != null) {
                   _timer?.cancel();
                 }
                 // Get the address name from the marked location
                   _timer = Timer(const Duration(milliseconds: 700), () {
-                    getAddressNameFromLocation(centerMarkerPosition);
+                    getAddressNameFromLocation(centerMarkerPosition!);
                   });
 
               },
@@ -153,10 +177,13 @@ class _MapPageState extends State<MapPage> {
 
                         onTap: (){},
                         tileColor: Colors.transparent,
-                        title: MyText(
-                          "Choose your location",
-                          style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,fontSize: double.parse(getTranslated(context, "cartpageHeader2SubTotal")!)),
+                        title: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: MyText(
+                            "Choose your location",
+                            style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,fontSize: double.parse(getTranslated(context, "cartpageHeader2SubTotal")!)),
 
+                          ),
                         ),
                         subtitle:
                         // addressName!=''?
@@ -180,10 +207,19 @@ class _MapPageState extends State<MapPage> {
                         //   ),
                         //
                         // ),
-                          MyText('Ana Hair Extension DXB, 34GR+68R - Marina Street - Dubai Marina - Dubai',
+                        (addressName!='')?
+                        MyText('${addressName}',
                             style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white,fontSize: double.parse(getTranslated(context, "cartpageHeader2SubTotal")!))
-                            ,maxLines: 1,overflow: TextOverflow.ellipsis,)
-                      ),
+                            ,maxLines: 1,overflow: TextOverflow.ellipsis,) :
+                        Row(
+                          children: [
+                            SizedBox(
+                                height: 30,
+                                child: MapLoadingWidget()),
+                          ],
+                        )
+                      )
+                      ,
                       // Material(
                       //     // color: Colors.transparent,
                       //   child:
@@ -210,6 +246,15 @@ class _MapPageState extends State<MapPage> {
                                               borderRadius: BorderRadius.circular(10.0),
                                               side: BorderSide(color: Colors.transparent)))),
                                   onPressed: () {
+                                  if(centerMarkerPosition!= null && fullAddress!=null){
+                                    widget.onLocationSelected(centerMarkerPosition,);
+                                    widget.onAddressSelected(fullAddress,);
+                                    Navigator.pop(context);
+                                  }
+                                  else{
+                                    SnackbarGenerator(context).snackBarGeneratorToast("Please mark your Address!",);
+
+                                  }
 
                                   },
                                   child: MyText(

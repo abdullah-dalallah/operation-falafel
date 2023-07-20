@@ -1,7 +1,10 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/data/my_text_form_field.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
@@ -679,36 +682,42 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                             // Invalid!
                                             return;
                                           }
+                                          if(selectedLocation!=null && selectedPlaceMark!=null){
+                                            String savedUserToken = Provider.of<AuthProvider>(context,listen: false).loggedInUser!.token??"";
+                                            Provider.of<ProfileProvider>(context,listen: false).addNewUserAddress(
+                                                userToken: savedUserToken,
+                                                addressLine: _controllerAddressLine.text,
+                                                area: _controllerArea.text,
+                                                buildingName: _controllerBuildingName.text,
+                                                flatNumber: _controllerFlatNumber.text,
+                                                addressTypeId: selectedAddressItemById!,
+                                                isPrimary: primary?1:0,
+                                                cityId: selectCityId!,
+                                                lat: "${selectedLocation!.latitude}", long: "${selectedLocation!.longitude}").then((response) {
+                                              if(response.data[Keys.successKey]==true){
+                                                Provider.of<ProfileProvider>(context,listen: false).getUserSavedAddress(savedUserToken).then((res) {
+                                                  if(res.data[Keys.successKey]==true){
+                                                    Navigator.pop(context);
+                                                  }else{
+                                                    SnackbarGenerator(context).snackBarGeneratorToast("Please Refresh Address Lsit!",);
+                                                    Navigator.pop(context);
+                                                  }
 
-                                          String savedUserToken = Provider.of<AuthProvider>(context,listen: false).loggedInUser!.token??"";
-                                          Provider.of<ProfileProvider>(context,listen: false).addNewUserAddress(
-                                              userToken: savedUserToken,
-                                              addressLine: _controllerAddressLine.text,
-                                              area: _controllerArea.text,
-                                              buildingName: _controllerBuildingName.text,
-                                              flatNumber: _controllerFlatNumber.text,
-                                              addressTypeId: selectedAddressItemById!,
-                                              isPrimary: primary?1:0,
-                                              cityId: selectCityId!,
-                                              lat: "25.265486", long: "31.256986").then((response) {
-                                                if(response.data[Keys.successKey]==true){
-                                                  Provider.of<ProfileProvider>(context,listen: false).getUserSavedAddress(savedUserToken).then((res) {
-                                                    if(res.data[Keys.successKey]==true){
-                                                      Navigator.pop(context);
-                                                    }else{
-                                                      SnackbarGenerator(context).snackBarGeneratorToast("Please Refresh Address Lsit!",);
-                                                      Navigator.pop(context);
-                                                    }
+                                                });
+                                              }
 
-                                                  });
-                                                }
+                                            });
+                                          }
+                                          else{
+                                            print(selectedLocation);
+                                            print(selectedPlaceMark);
+                                            SnackbarGenerator(context).snackBarGeneratorToast("Please mark your location first!",);
+                                          }
 
-                                          });
 
                                         },
                                         style: ButtonStyle(
-                                          backgroundColor: MaterialStateProperty
-                                              .all<Color>(Colors.amber),
+                                          backgroundColor:(selectedLocation!=null && selectedPlaceMark!=null)?MaterialStateProperty.all<Color>(Colors.amber):MaterialStateProperty.all<Color>(Colors.grey),
                                           foregroundColor:
                                           MaterialStateProperty.all<Color>(Color(int.parse(addNewAddressPage.body.form.addressTypeDropDown.addNewAddressButton.backGroundColor))),
                                           shape: MaterialStateProperty.all(
@@ -749,15 +758,28 @@ class _AddNewAddressState extends State<AddNewAddress> {
                           ),
                           // style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.amber,fontSize: double.parse(getTranslated(context, "cartpageHeader2SubTotal")!)),
                         ),
-                        subtitle: MyText("Name ",
+                        subtitle:
+                          (selectedPlaceMark!=null)?
+                          MyText("${selectedPlaceMark?.street}",
                           style: TextStyle(
                               fontFamily: lng?.header3.textFamily,
                               color: Colors.white,
                               //Color(int.parse(addNewAddressPage.body.form.addressTypeDropDown.addNewAddressButton.color)),
-                              fontSize: lng?.header3.size.toDouble()
+                              fontSize: lng?.header1.size.toDouble()
                           ),
                           // style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontSize: double.parse(getTranslated(context, "cartpageHeader3")!)),
-                        ),
+                        )
+                        :MyText("Please mark your location on map!",
+                            style: TextStyle(
+
+                                fontFamily: lng?.header3.textFamily,
+                                color: Colors.white,
+                                //Color(int.parse(addNewAddressPage.body.form.addressTypeDropDown.addNewAddressButton.color)),
+                                fontSize: lng?.header1.size.toDouble()
+                            ),
+                            // style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontSize: double.parse(getTranslated(context, "cartpageHeader3")!)),
+                          )
+                        ,
                          trailing:
                          /// - change location
                          SizedBox(
@@ -766,15 +788,26 @@ class _AddNewAddressState extends State<AddNewAddress> {
                              child: ElevatedButton(
                                  onPressed: () {
                                    // context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${MapPage.routeName}");
+                                    if(currentMarkerPosition!=null){
+                                      PersistentNavBarNavigator.pushNewScreen(
+                                        context,
+                                        screen: MapPage(
+                                          onLocationSelected: (location) => changeSelectedLocation(location),
+                                          onAddressSelected: (address) => changeSelectedAddress(address),
+                                          currentLocation: currentMarkerPosition,
+                                             
+                                        ),
+                                        withNavBar: true,
+                                        // OPTIONAL VALUE. True by default.
+                                        pageTransitionAnimation: PageTransitionAnimation
+                                            .cupertino,
+                                      );
+                                    }
+                                    else {
+                                      print('no value');
+                                      // checkLocationPermission();
+                                    }
 
-                                   PersistentNavBarNavigator.pushNewScreen(
-                                     context,
-                                     screen: MapPage(),
-                                     withNavBar: true,
-                                     // OPTIONAL VALUE. True by default.
-                                     pageTransitionAnimation: PageTransitionAnimation
-                                         .cupertino,
-                                   );
                                    // pushNewScreen(context, screen:  MapPage());
 
                                  },
@@ -835,6 +868,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
     if (status.isGranted) {
       setState(() {
         _permissionStatus = status;
+        _getCurrentLocation();
       });
     } else {
       requestLocationPermission();
@@ -845,8 +879,51 @@ class _AddNewAddressState extends State<AddNewAddress> {
   Future<void> requestLocationPermission() async {
     final status = await Permission.location.request();
     setState(() {
+      print(status);
       _permissionStatus = status;
+      if(status.isPermanentlyDenied){
+        openAppSettings();
+      }
+      if(status.isGranted){
+        _getCurrentLocation();
+      }
     });
+  }
+
+
+  LatLng? currentMarkerPosition ;
+  LatLng convertToLatLng(Position position) {
+    return LatLng(position.latitude, position.longitude);
+  }
+  Future<void> _getCurrentLocation() async {
+    try {
+      Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+      print("fetching location:${position}");
+      setState(() {
+        currentMarkerPosition =convertToLatLng(position);
+      });
+    } catch (e) {
+      print("Error while fetching location: $e");
+      // centerMarkerPosition = LatLng(25.074759, 55.140225);
+    }
+  }
+
+  Placemark? selectedPlaceMark;
+  LatLng? selectedLocation;
+
+  void changeSelectedAddress(Placemark placeMark ){
+    // print("Selected Address ${placeMark}");
+    setState(() {
+      selectedPlaceMark=placeMark;
+    });
+    
+  }
+  void changeSelectedLocation(LatLng selectedLatLng){
+    // print("Selected Location  ${selectedLatLng}");
+    setState(() {
+      selectedLocation=selectedLatLng;
+    });
+
   }
 
 }

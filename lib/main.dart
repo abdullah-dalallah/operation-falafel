@@ -444,7 +444,10 @@ final _shellNavigatorFKey = GlobalKey<NavigatorState>(debugLabel: 'shellF');
                       routes: [
                         GoRoute(
                           path: '${MapPage.routeName}',
-                          builder: (context, state) =>  MapPage(),
+                          builder: (context, state) =>  MapPage(
+                              onAddressSelected: (value) {},
+                              onLocationSelected: (value) {},
+                          ),
                         ),
                       ]
                     ),
