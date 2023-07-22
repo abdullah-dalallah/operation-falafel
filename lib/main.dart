@@ -1,9 +1,12 @@
+import 'dart:async';
 import 'dart:convert';
 
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
+import 'package:operation_falafel/data/snackBarGenerator.dart';
 import 'package:operation_falafel/localization/demo_localization.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/AddNewCardPage/add_new_card_page.dart';
@@ -54,6 +57,8 @@ import 'package:operation_falafel/screens/tabbar%20menu%20page/menu_tabebar.dart
 import 'package:operation_falafel/screens/track%20orders/track_my_order.dart';
 import 'package:operation_falafel/widgets/Map/map_page.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
+import 'package:operation_falafel/widgets/network_error_page.dart';
+import 'package:operation_falafel/widgets/warning_page.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -506,7 +511,7 @@ final _shellNavigatorFKey = GlobalKey<NavigatorState>(debugLabel: 'shellF');
 
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 ///
   // // Must add this line.
   // await windowManager.ensureInitialized();
@@ -552,6 +557,7 @@ class MyApp extends StatefulWidget {
 
 
 class _MyAppState extends State<MyApp> {
+
   Locale? _locale;
   void setLocale(Locale locale){
     print(" language changed ${locale}");
@@ -635,15 +641,43 @@ class _MyAppState extends State<MyApp> {
           // routerConfig: goRouter,
           // routerConfig: _appRoute,
 
-          home: KeyboardVisibilityProvider(child: ResponsiveLayout(DesktopScaffold: DesktopScaffold(),MobileScaffold: MobileScaffold(),TabletScaffold: TabletScaffold(), ),),
+          home:
+          (_connectionStatus.name=="none")?
+          NetworkErrorPage()
+          : KeyboardVisibilityProvider(child: ResponsiveLayout(DesktopScaffold: DesktopScaffold(),MobileScaffold: MobileScaffold(),TabletScaffold: TabletScaffold(), ),),
           ),
       );
     }
 
   }
 
+  @override
+  void initState() {
 
+    _connectivitySubscription = _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
 
+  }
+
+  ConnectivityResult _connectionStatus = ConnectivityResult.none;
+  late StreamSubscription<ConnectivityResult> _connectivitySubscription;
+  final Connectivity _connectivity = Connectivity();
+  Future<void> _updateConnectionStatus(ConnectivityResult result,) async {
+
+    setState(() {
+      _connectionStatus = ConnectivityResult.none;
+    });
+    if (result == ConnectivityResult.mobile || result == ConnectivityResult.wifi) {
+
+    } else {
+      print("no net");
+      SnackbarGenerator(context).snackBarGeneratorToast("Please check your internet connectivity!");
+    }
+    print("NetWork Check...${result}");
+    setState(() {
+      _connectionStatus = result;
+
+    });
+  }
 
 
 }

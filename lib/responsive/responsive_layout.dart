@@ -1,17 +1,23 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
+import 'package:operation_falafel/data/snackBarGenerator.dart';
 import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
 import 'package:operation_falafel/providers/ProfileProviders/profile_provider.dart';
 import 'package:operation_falafel/providers/home_page_provider/home_page_provider.dart';
 import 'package:operation_falafel/providers/settings_provider/setting_provider.dart';
 import 'package:operation_falafel/providers/tab_index_generator_provider.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
-
+import 'package:connectivity_plus/connectivity_plus.dart';
 import '../data/keys.dart';
 import '../localization/localization_constants.dart';
 import '../main.dart';
 import '../providers/AppTheme/theme_provider.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:intl/intl.dart';
+
+import '../widgets/warning_page.dart';
 class ResponsiveLayout extends StatefulWidget{
   final Widget MobileScaffold;
   final Widget DesktopScaffold;
@@ -52,7 +58,8 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
   @override
   void initState() {
     super.initState();
-     startApp();
+    // _connectivitySubscription = _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
+    startApp();
   }
 
 
@@ -164,6 +171,36 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
       print('Timestamp is after the current date');
       return "Valid";
     }
+  }
+
+  ConnectivityResult _connectionStatus = ConnectivityResult.none;
+  late StreamSubscription<ConnectivityResult> _connectivitySubscription;
+  final Connectivity _connectivity = Connectivity();
+  Future<void> _updateConnectionStatus(ConnectivityResult result,) async {
+    if (result == ConnectivityResult.mobile ||
+        result == ConnectivityResult.wifi) {
+      // callMultipleFunctions();
+      // startApp();
+      print("network:${result}");
+      PersistentNavBarNavigator.pushNewScreen(
+        context,
+        screen: WarningPage(),
+        withNavBar: true, // OPTIONAL VALUE. True by default.
+        pageTransitionAnimation: PageTransitionAnimation.cupertino,
+      );
+    } else {
+      print("network:${result}");
+      PersistentNavBarNavigator.pushNewScreen(
+        context,
+        screen: WarningPage(),
+        withNavBar: true, // OPTIONAL VALUE. True by default.
+        pageTransitionAnimation: PageTransitionAnimation.cupertino,
+      );
+      SnackbarGenerator(context).snackBarGeneratorToast("Please check your internet connectivity!");
+    }
+    setState(() {
+      _connectionStatus = result;
+    });
   }
 
 }

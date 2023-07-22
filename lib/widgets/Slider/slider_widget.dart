@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/CartPage/cart_page.dart';
+import 'package:operation_falafel/models/AppThemeModels/FontSizes/Language/lang.dart';
 import 'package:operation_falafel/providers/slider_provider.dart';
 import 'package:operation_falafel/widgets/Slider/custom_slider_thumb_circle.dart';
 import 'package:provider/provider.dart';
@@ -11,12 +13,16 @@ class SliderWidget extends StatefulWidget {
   final int min;
   final int max;
   final fullWidth;
-
+  final CartPage? cartPage;
+  final Language? lng;
   SliderWidget(
       {this.sliderHeight = 48,
         this.max = 10,
         this.min = 0,
-        this.fullWidth = false});
+        this.fullWidth = false,
+        required this.cartPage,
+        required this.lng
+      });
 
   @override
   _SliderWidgetState createState() => _SliderWidgetState();
@@ -48,7 +54,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                 width: this.widget.fullWidth ? double.infinity : (this.widget.sliderHeight) * 5.5,
                 height: (this.widget.sliderHeight),
                 decoration: BoxDecoration(
-                  color: Colors.white54,
+                  color: Color(int.parse(widget.cartPage!.body.paymentMethods.loyaltyCreditPeymantMethodCheckBox!.selectedPoint!.sliderDesign!.sliderBackGroundColor!)),
                   borderRadius: BorderRadius.all(
                     Radius.circular((this.widget.sliderHeight * .3)),
                   ),
@@ -67,13 +73,13 @@ class _SliderWidgetState extends State<SliderWidget> {
                   child: Row(
                     children: <Widget>[
                       MyText(
-                        '${formatNumberWithK(this.widget.min)} pts',
+                        '${formatNumberWithK(this.widget.min)} ${widget.cartPage!.body.paymentMethods.loyaltyCreditPeymantMethodCheckBox!.selectedPoint!.sliderDesign!.minPtsTitle!.data!}',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: this.widget.sliderHeight * .3,
                             fontWeight: FontWeight.w700,
-                            color: Colors.white,
-                            fontFamily: "${getTranslated(context, "fontFamilyBody")!}"
+                            color: Color(int.parse(widget.cartPage!.body.paymentMethods.loyaltyCreditPeymantMethodCheckBox!.selectedPoint!.sliderDesign!.minPtsTitle!.color)),
+                            fontFamily: widget.lng!.header2.textFamily
                         ),
                       ),
                       SizedBox(
@@ -83,15 +89,21 @@ class _SliderWidgetState extends State<SliderWidget> {
                         child: Center(
                           child: SliderTheme(
                             data: SliderTheme.of(context).copyWith(
-                              activeTrackColor: Colors.amber.withOpacity(1),
-                              inactiveTrackColor: Colors.white.withOpacity(.5),
+                              activeTrackColor:
+                              Color(int.parse(widget.cartPage!.body.paymentMethods.loyaltyCreditPeymantMethodCheckBox!.selectedPoint!.sliderDesign!.acitveTrackColor!)),
+                              // Colors.amber.withOpacity(1),
+                              inactiveTrackColor:Color(int.parse(widget.cartPage!.body.paymentMethods.loyaltyCreditPeymantMethodCheckBox!.selectedPoint!.sliderDesign!.inAcitveTrackColor!)),
+
+                              // Colors.white.withOpacity(.5),
                               trackHeight: 4.0,
                               thumbShape: CustomSliderThumbCircle(
                                   thumbRadius: this.widget.sliderHeight * .4,
                                   min: this.widget.min,
                                   max: this.widget.max,
                                   imageProvider: AssetImage(
-                                      'assets/images/page2orders_icon.png')
+                                      'assets/images/page2orders_icon.png'),
+                                  lng: widget.lng,
+                                  cartPage: widget.cartPage
                               ),
                               overlayColor: Colors.white.withOpacity(.4),
                               //valueIndicatorColor: Colors.white,
@@ -115,13 +127,13 @@ class _SliderWidgetState extends State<SliderWidget> {
                         width: this.widget.sliderHeight * .1,
                       ),
                       MyText(
-                        '${formatNumberWithK(this.widget.max)} pts',
+                        '${formatNumberWithK(this.widget.max)} ${widget.cartPage!.body.paymentMethods.loyaltyCreditPeymantMethodCheckBox!.selectedPoint!.sliderDesign!.maxPtsTitle!.data!}',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: this.widget.sliderHeight * .3,
                             fontWeight: FontWeight.w700,
-                            color: Colors.white,
-                            fontFamily: "${getTranslated(context, "fontFamilyBody")!}"
+                            color: Color(int.parse(widget.cartPage!.body.paymentMethods.loyaltyCreditPeymantMethodCheckBox!.selectedPoint!.sliderDesign!.maxPtsTitle!.color)),
+                            fontFamily: widget.lng!.header2.textFamily
                         ),
                       ),
                     ],

@@ -3,6 +3,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/CartPage/cart_page.dart';
+import 'package:operation_falafel/models/AppThemeModels/FontSizes/Language/lang.dart';
 
 class CreditCardPaymentMethodCheckbox extends StatelessWidget{
   final bool value;
@@ -15,6 +17,8 @@ class CreditCardPaymentMethodCheckbox extends StatelessWidget{
   String? fontFamily;
   String? priceText;
   final ValueChanged onChanged;
+  final CartPage? cartPage;
+  final Language? lng;
   CreditCardPaymentMethodCheckbox({super.key,
     required this.value,
     required this.colorOfSelectedBox,
@@ -24,7 +28,9 @@ class CreditCardPaymentMethodCheckbox extends StatelessWidget{
     this.colorOfBox,
     this.colorOfText,
     required this.addOnFlag,
-    this.fontFamily
+    this.fontFamily,
+    required this.cartPage,
+    required this.lng
   });
 
   Widget _buildLabel() {
@@ -43,12 +49,17 @@ class CreditCardPaymentMethodCheckbox extends StatelessWidget{
         ),
         border: Border.all(
           width: 1,
-          color: (isSelected)?colorOfSelectedBox!:(colorOfBox!=null)?colorOfBox!:Colors.amber,
+          color: (isSelected)?
+
+          Color(int.parse(cartPage!.body.paymentMethods.creditCardPaymentMethodCheckBox!.checkBoxDesgin!.selectedColor!))
+              :(colorOfBox!=null)?colorOfBox!:Colors.white,
           style: BorderStyle.solid,
         ),
       ),
       child: Center(
-        child: isSelected ? Image.asset("assets/images/page2_icon.png", height: 50,width: 50,) :null,
+        child: isSelected ?
+        (cartPage!=null)?Image.network(cartPage!.body.paymentMethods!.creditCardPaymentMethodCheckBox!.checkBoxDesgin!.selectedImage!,height: 50,width: 50,)
+            : Image.asset("assets/images/page2_icon.png", height: 50,width: 50,) :null,
       ),
     );
   }
@@ -59,6 +70,9 @@ class CreditCardPaymentMethodCheckbox extends StatelessWidget{
       children: [
         Icon(Icons.add_card_rounded, size: 20,color:Colors.white70),
         SizedBox(width: 5,),
+        (cartPage!=null)?
+        MyText("${cartPage!.body.paymentMethods.creditCardPaymentMethodCheckBox!.data}", style: TextStyle(color:Color(int.parse(cartPage!.body.paymentMethods.creditCardPaymentMethodCheckBox!.color!)), fontSize: (lng!.header3.size).toDouble(),fontFamily: lng!.header3.textFamily),)
+            :
         MyText("${text}", style: TextStyle(color:Colors.white70, fontSize: 15),),
       ],
     );
@@ -106,12 +120,14 @@ class CreditCardPaymentMethodCheckbox extends StatelessWidget{
                 child: ListTile(
                   contentPadding: EdgeInsets.only(left:28,right:18, bottom: 5),
                   dense: true,
-                  title:MyText("Selected Card", style: TextStyle(color:Colors.amber),),
+                  title:
+                  MyText("${cartPage!.body!.paymentMethods!.creditCardPaymentMethodCheckBox!.selectedCard!.title!.data!}", style: TextStyle(color:Color(int.parse(cartPage!.body!.paymentMethods!.creditCardPaymentMethodCheckBox!.selectedCard!.title!.color!)), fontFamily: lng!.header2.textFamily,fontSize: lng!.header2.size.toDouble()),),
+                  // MyText("Selected Card", style: TextStyle(color:Colors.amber),),
                   subtitle: Row(
                     children: [
                       Image.asset("assets/images/masterCard_logo.png", height: 20,width: 24,color: Colors.white,),
                       SizedBox(width: 5,),
-                      MyText("card ending in 4444", style: TextStyle(color:Colors.white54),),
+                      MyText("card ending in 4444", style: TextStyle(color:Color(int.parse(cartPage!.body.paymentMethods.creditCardPaymentMethodCheckBox!.selectedCard!.subTitle!.color)), fontFamily: lng!.header2.textFamily,fontSize: lng!.header2.size.toDouble(),),),
                     ],
                   ),
                   trailing: Column(
@@ -130,7 +146,7 @@ class CreditCardPaymentMethodCheckbox extends StatelessWidget{
 
 
                           },
-                          child: MyText("Change", style: TextStyle(color:Colors.amber, fontSize: 12 , fontWeight: FontWeight.normal),),
+                          child: MyText("${cartPage!.body.paymentMethods.creditCardPaymentMethodCheckBox!.selectedCard!.changeButton!.data}", style: TextStyle(color:Color(int.parse(cartPage!.body.paymentMethods.creditCardPaymentMethodCheckBox!.selectedCard!.changeButton!.color)), fontSize: lng!.header2.size.toDouble() , fontWeight: FontWeight.bold),),
 
 
 
@@ -157,7 +173,7 @@ class CreditCardPaymentMethodCheckbox extends StatelessWidget{
 
 
                   },
-                  child: MyText("Add New Card", style: TextStyle(color:Colors.amber),),
+                  child: MyText("${cartPage!.body.paymentMethods.creditCardPaymentMethodCheckBox!.selectedCard!.addNewCardButton!.data}", style: TextStyle(color:Color(int.parse(cartPage!.body.paymentMethods.creditCardPaymentMethodCheckBox!.selectedCard!.changeButton!.color),),fontFamily:lng!.header2.textFamily),),
 
 
 

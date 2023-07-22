@@ -739,6 +739,8 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                               colorOfBox: Colors.white,
                                               colorOfSelectedBox: Colors.amber,
                                               colorOfText: Colors.white,
+                                              lng: lng,
+                                              cartPage: cartPage,
 
                                             ),
                                             /// - Loyalty
@@ -751,10 +753,15 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                               colorOfBox: Colors.white,
                                               colorOfText: Colors.white,
                                               fontFamily: "${getTranslated(context, "fontFamilyBody")!}",
+                                              cartPage: cartPage,
+                                              lng: lng,
                                             ),
                                             const SizedBox(height: 15,),
                                             /// -  OF Gifts
-                                            CartGiftsWidget(),
+                                            CartGiftsWidget(
+                                              cartPage: cartPage,
+                                              lng: lng,
+                                            ),
 
                                           ],
                                         ),

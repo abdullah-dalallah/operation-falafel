@@ -4,18 +4,25 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/CartPage/cart_page.dart';
+
+import '../../models/AppThemeModels/FontSizes/Language/lang.dart';
 
 class CustomSliderThumbCircle extends SliderComponentShape {
   final double thumbRadius;
   final int min;
   final int max;
   final ImageProvider imageProvider;
-
+  final CartPage? cartPage;
+  final Language? lng;
+  
   const CustomSliderThumbCircle({
     required this.thumbRadius,
     this.min = 0,
     this.max = 10,
     required this.imageProvider,
+    required this.cartPage,
+    required this.lng
   });
 
   @override
@@ -41,16 +48,16 @@ class CustomSliderThumbCircle extends SliderComponentShape {
     final Canvas canvas = context.canvas;
 
     final paint = Paint()
-      ..color = Colors.black //Thumb Background Color
+      ..color = Color(int.parse(cartPage!.body.paymentMethods.loyaltyCreditPeymantMethodCheckBox!.selectedPoint!.sliderDesign!.sliderThumCircle!.circleColor!)) //Thumb Background Color
       ..style = PaintingStyle.fill;
 
     TextSpan span = new TextSpan(
       style: new TextStyle(
-        fontFamily: "Raleway-Regular",
+        fontFamily: lng!.header2.textFamily,
         fontSize: thumbRadius * .7,
         fontWeight: FontWeight.w700,
         // color: sliderTheme.thumbColor, //Text Color of Value on Thumb
-        color: Colors.white
+        color: Color(int.parse(cartPage!.body.paymentMethods.loyaltyCreditPeymantMethodCheckBox!.selectedPoint!.sliderDesign!.sliderThumCircle!.circleTitle!.color!))
       ),
       text: formatNumberWithK(getValue(value)),
     );

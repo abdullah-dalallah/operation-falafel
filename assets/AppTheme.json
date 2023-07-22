@@ -436,8 +436,8 @@
               "SelectedColor":"0xFFFFBF00",
               "SelectedImage": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/falafel.png"
             },
-            "Data": "COPY PROMO CODE",
-            "Color": "0xffffffff",
+            "Data": "Debit/Credit Card",
+            "Color": "0x8Affffff",
             "SelectedCard":{
               "Title":{
                 "Data": "Selected Card",
@@ -445,16 +445,16 @@
               },
               "SubTitle":{
                 "Data": "Selected Card",
-                "Color": "0xFFFFBF00"
+                "Color": "0x8Affffff"
               },
               "ChangeButton": {
                 "Data": "Change",
-                "Color": "0xffffffff",
+                "Color": "0xFFFFBF00",
                 "BackGroundColor": "0xFFFFBF00"
               },
               "AddNewCardButton": {
                 "Data": "Add New Card",
-                "Color": "0xffffffff",
+                "Color": "0xFFFFBF00",
                 "BackGroundColor": "0xFFFFBF00"
               }
 
@@ -468,7 +468,7 @@
               "SelectedImage": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/falafel.png"
             },
             "Data": "Loyalty Credits",
-            "Color": "0xffffffff",
+            "Color": "0x8Affffff",
             "SelectedPoint":{
               "MinusArrow": {
                 "ImageIcon": "/// < URL OF Arrow Back Icon PNG Image",
@@ -486,7 +486,7 @@
               },
               "SelectedAmountOfPoints":{
                 "Data": "api",
-                "Color": "0xffffffff"
+                "Color": "0x8Affffff"
               },
               "FullPointButton": {
                 "Data": "Full Point",
@@ -494,7 +494,7 @@
                 "BackGroundColor": "0xFFFFBF00"
               },
               "SliderDesign":{
-                "SliderBackGroundColor": "0xffffffff",
+                "SliderBackGroundColor": "0x8Affffff",
                 "MinPtsTitle":{
                   "Data": "pts",
                   "Color": "0xffffffff"
@@ -506,7 +506,7 @@
                 "AcitveTrackColor":"0xFFFFBF00",
                 "InAcitveTrackColor":"0xffffffff",
                 "SliderThumCircle":{
-                  "CircleColor":"0xffffffff",
+                  "CircleColor":"0xff000000",
                   "CircleTitle":{
                     "Data": "api",
                     "Color": "0xffffffff"
@@ -527,7 +527,7 @@
               },
               "LabelTitle":{
                 "Data": "O:F Gifts",
-                "Color": "0xffffffff"
+                "Color": "0x8Affffff"
               }
             },
             "Title":{
@@ -536,27 +536,27 @@
             },
             "SubTitle":{
               "Data": "Select Voucher",
-              "Color": "0xffffffff"
+              "Color": "0x8Affffff"
             },
             "ChooseButton": {
               "Data": "Choose",
-              "Color": "0xffffffff",
+              "Color": "0xFFFFBF00",
               "BackGroundColor": "0xFFFFBF00"
             },
             "SelectedVoucher":{
               "Title":{
                 "Data": "api",
-                "Color": "0xffffffff"
+                "Color": "0x8Affffff"
               },
               "RemoveButton": {
                 "Data": "Remove",
-                "Color": "0xffffffff",
+                "Color": "0xFFFFBF00",
                 "BackGroundColor": "0xFFFFBF00"
               },
               "VoucherDetailsList":{
                 "Title":{
                   "Data": "api",
-                  "Color": "0xffffffff"
+                  "Color": "0x8Affffff"
                 },
                 "Icon": {
                   "ImageIcon": "///  URL OF Falafel Icon PNG Image",

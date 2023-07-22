@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/models/AppThemeModels/FontSizes/Language/lang.dart';
 
+import '../models/AppThemeModels/DesignPerPage/CartPage/cart_page.dart';
 import 'cart_gifts_sheet.dart';
 
 class CartGiftsWidget extends StatefulWidget{
+  final CartPage? cartPage;
+  final Language? lng;
+  const CartGiftsWidget({required this.lng, required this.cartPage, super.key});
+
   @override
   State<CartGiftsWidget> createState() => _CartGiftsWidgetState();
 }
@@ -22,10 +28,10 @@ class _CartGiftsWidgetState extends State<CartGiftsWidget> {
              width: 112,
              child: Row(
                children: [
-                 Image.asset("assets/images/how2.png", height: 35,),
+                 Image.asset("assets/images/how2.png", height: 35,), /// <---  Add Icon after deploy from server
                  SizedBox(width: 10,),
                  // Icon(Icons.add,color: Colors.white54,),
-                 MyText('O:F Gifts', style: TextStyle(color: Colors.white54, fontFamily:"${getTranslated(context, "fontFamilyButtons")!}",fontSize: 25),)
+                 MyText(widget.cartPage!.body.paymentMethods.oFGifts!.borderLabel!.labelTitle!.data!, style: TextStyle(color: Color(int.parse(widget.cartPage!.body.paymentMethods.oFGifts!.borderLabel!.labelTitle!.color!)), fontFamily:widget.lng!.titleHeader2.textFamily,fontSize: widget.lng!.header5.size.toDouble()),)
                ],
              ),
            ),
@@ -41,8 +47,8 @@ class _CartGiftsWidgetState extends State<CartGiftsWidget> {
                // tileColor: Colors.green,
                visualDensity: VisualDensity(vertical:-4),
                // dense: true,
-               title:  MyText('Operation Falafel Vouchers', style: TextStyle(color: Colors.amber, fontFamily:"${getTranslated(context, "fontFamilyBody")!}"),),
-               subtitle:  MyText('Select Voucher', style: TextStyle(color: Colors.white54,fontFamily:"${getTranslated(context, "fontFamilyBody")!}"),),
+               title:  MyText(widget.cartPage!.body.paymentMethods.oFGifts!.title!.data!, style: TextStyle(color: Color(int.parse(widget.cartPage!.body.paymentMethods.oFGifts!.title!.color)), fontFamily:widget.lng!.header3.textFamily, fontSize: widget.lng!.header3.size.toDouble()),),
+               subtitle:  MyText(widget.cartPage!.body.paymentMethods.oFGifts!.subTitle!.data!, style: TextStyle(color: Color(int.parse(widget.cartPage!.body.paymentMethods.oFGifts!.subTitle!.color)),fontFamily:widget.lng!.header2.textFamily,fontSize: widget.lng!.header2.size.toDouble()),),
                trailing: SizedBox(
                 height: 30,
                 child: TextButton(
@@ -72,7 +78,7 @@ class _CartGiftsWidgetState extends State<CartGiftsWidget> {
                     );
 
                   },
-                  child: MyText("Choose", style: TextStyle(color:Colors.amber, fontSize: 12 , fontWeight: FontWeight.normal,fontFamily: "${getTranslated(context, "fontFamilyBody")!}"),),
+                  child: MyText(widget.cartPage!.body.paymentMethods.oFGifts!.chooseButton!.data, style: TextStyle(color:Color(int.parse(widget.cartPage!.body.paymentMethods.oFGifts!.chooseButton!.color)), fontSize: widget.lng!.header2.size.toDouble() , fontWeight: FontWeight.normal,fontFamily: widget.lng!.header2.textFamily),),
 
 
 
@@ -126,7 +132,7 @@ class _CartGiftsWidgetState extends State<CartGiftsWidget> {
             ),
             ExpansionTile(
               initiallyExpanded: true,
-              title:MyText("Free Delivery. Min order. AED 30.", style: TextStyle( color:Colors.white70, fontSize: 15, fontWeight: FontWeight.bold,fontFamily: "${getTranslated(context, "fontFamilyBody")!}"),),
+              title:MyText("Free Delivery. Min order. AED 30.", style: TextStyle( color:Color(int.parse(widget.cartPage!.body.paymentMethods.oFGifts!.selectedVoucher!.title!.color!)), fontSize: widget.lng!.header2.size.toDouble(), fontWeight: FontWeight.bold,fontFamily: widget.lng!.header2.textFamily),),
               trailing: SizedBox(
                 height: 30,
                 child: TextButton(
@@ -137,7 +143,7 @@ class _CartGiftsWidgetState extends State<CartGiftsWidget> {
 
                   },
                   child:
-                  MyText("Remove", style: TextStyle(color:Colors.amber, fontSize: 12 , fontWeight: FontWeight.bold,fontFamily: "${getTranslated(context, "fontFamilyBody")!}"),),
+                  MyText(widget.cartPage!.body.paymentMethods.oFGifts!.selectedVoucher!.removeButton!.data, style: TextStyle(color:Color(int.parse(widget.cartPage!.body.paymentMethods.oFGifts!.selectedVoucher!.removeButton!.color!)), fontSize: widget.lng!.header2.size.toDouble() , fontWeight: FontWeight.bold,fontFamily: widget.lng!.header2.textFamily),),
 
 
 
@@ -199,12 +205,13 @@ class _CartGiftsWidgetState extends State<CartGiftsWidget> {
                       Padding(
                         padding: const EdgeInsets.only(top: 8.0, bottom: 8, left: 18, right: 18),
                         child: Row(
-                          children: [
-                            Image.asset("assets/images/page2orders_icon.png", height: 14,),
-                            SizedBox(width: 10,),
-                            MyText("Valid on orders of at least AED 30 after discounts", style: TextStyle(color:Colors.white70, fontSize: 12 , fontWeight: FontWeight.normal,fontFamily: "${getTranslated(context, "fontFamilyBody")!}"),),
-                          ],
-                        ),
+                            children: [
+                              Image.asset("assets/images/page2orders_icon.png", height: 14,),/// <---- Add Icon After deploy the Icon in the server
+                              SizedBox(width: 10,),
+                              Expanded(child: MyText("Valid on orders of at least AED 30 after discounts", style: TextStyle(color:Color(int.parse(widget.cartPage!.body.paymentMethods.oFGifts!.selectedVoucher!.voucherDetailsList!.title!.color!)), fontSize: widget.lng!.header1.size.toDouble() , fontWeight: FontWeight.normal,fontFamily: widget.lng!.header1.textFamily),)),
+                            ],
+                          ),
+
                       );
 
                   },
