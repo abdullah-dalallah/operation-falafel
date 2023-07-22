@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 
 class CartGiftsSheet extends StatefulWidget{
@@ -28,7 +29,7 @@ class _CartGiftsSheetState extends State<CartGiftsSheet> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Choose Vaoucher", style: TextStyle(color:Colors.amber, fontSize: 17 , fontWeight: FontWeight.normal,fontFamily: "${getTranslated(context, "fontFamilyBody")!}"),),
+                MyText("Choose Vaoucher", style: TextStyle(color:Colors.amber, fontSize: 17 , fontWeight: FontWeight.normal,fontFamily: "${getTranslated(context, "fontFamilyBody")!}"),),
                 IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(CupertinoIcons.clear, color: Colors.white ,size: 18,)),
               ],
             ),
@@ -44,7 +45,7 @@ class _CartGiftsSheetState extends State<CartGiftsSheet> {
             itemBuilder: (context, index) {
               return ExpansionTile(
                 initiallyExpanded: true,
-                title:Text("Free Delivery. Min order. AED 30.", style: TextStyle( color:Colors.white70, fontSize: 15, fontWeight: FontWeight.bold,fontFamily: "${getTranslated(context, "fontFamilyBody")!}"),),
+                title:MyText("Free Delivery. Min order. AED 30.", style: TextStyle( color:Colors.white70, fontSize: 15, fontWeight: FontWeight.bold,fontFamily: "${getTranslated(context, "fontFamilyBody")!}"),),
                 trailing: SizedBox(
                   height: 30,
                   child: TextButton(
@@ -55,7 +56,7 @@ class _CartGiftsSheetState extends State<CartGiftsSheet> {
 
                     },
                     child:
-                    Text("Apply", style: TextStyle(color:Colors.amber, fontSize: 12 , fontWeight: FontWeight.bold,fontFamily: "${getTranslated(context, "fontFamilyBody")!}"),),
+                    MyText("Apply", style: TextStyle(color:Colors.amber, fontSize: 12 , fontWeight: FontWeight.bold,fontFamily: "${getTranslated(context, "fontFamilyBody")!}"),),
 
 
 
@@ -121,7 +122,7 @@ class _CartGiftsSheetState extends State<CartGiftsSheet> {
                         children: [
                           Image.asset("assets/images/page2orders_icon.png", height: 14,),
                           SizedBox(width: 10,),
-                          Text("Valid on orders of at least AED 30 after discounts", style: TextStyle(color:Colors.white70, fontSize: 12 , fontWeight: FontWeight.normal,fontFamily: "${getTranslated(context, "fontFamilyBody")!}"),),
+                          MyText("Valid on orders of at least AED 30 after discounts", style: TextStyle(color:Colors.white70, fontSize: 12 , fontWeight: FontWeight.normal,fontFamily: "${getTranslated(context, "fontFamilyBody")!}"),),
                         ],
                       ),
                     );

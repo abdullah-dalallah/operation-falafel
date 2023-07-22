@@ -58,15 +58,15 @@ class LoyaltyPaymentMethodCheckbox extends StatelessWidget{
     );
   }
 
-  Widget _buildMyText( BuildContext context) {
+  Widget _buildMyMyText( BuildContext context) {
     return Row(
 
       children: [
         Transform.rotate(
             angle: -35 * (pi / 180), // Convert degrees to radians.
-            child: Text("O:F", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color:Colors.white70, fontSize: 20, ),)),
+            child: MyText("O:F", style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",color:Colors.white70, fontSize: 20, ),)),
         SizedBox(width: 5,),
-        Text("${text}", style: TextStyle(color:Colors.white70, fontSize: 15,fontFamily: fontFamily),),
+        MyText("${text}", style: TextStyle(color:Colors.white70, fontSize: 15,fontFamily: fontFamily),),
       ],
     );
   }
@@ -88,7 +88,7 @@ class LoyaltyPaymentMethodCheckbox extends StatelessWidget{
 
             _buildLabel(),
             SizedBox(width: 10,),
-            _buildMyText(context)
+            _buildMyMyText(context)
 
 
           ],
@@ -123,18 +123,18 @@ class LoyaltyPaymentMethodCheckbox extends StatelessWidget{
                        tempValue = Provider.of<SliderProvider>(context, listen: false).selectedPoint;
                         Provider.of<SliderProvider>(context, listen: false).onChangePoint(tempValue-1);
 
-                      }, icon: Icon(Icons.arrow_back_ios_new,color: Colors.white70,)),
+                      }, icon: Icon(Icons.arrow_back_ios_new,color: Colors.white70,size:26)),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                        Text("${pointValue/10} AED", style: TextStyle(color:Colors.amber,fontSize:17,fontFamily: "${getTranslated(context, "fontFamilyBody")!}"),),
+                        MyText("${pointValue/10} AED", style: TextStyle(color:Colors.amber,fontSize:17,fontFamily: "${getTranslated(context, "fontFamilyBody")!}"),),
                         SizedBox(height: 5,),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
 
-                            Text("${pointValue}", style: TextStyle(color:Colors.white54, fontSize: 12,fontFamily: "${getTranslated(context, "fontFamilyBody")!}"),),
-                            Text(" Point", style: TextStyle(color:Colors.white54, fontSize: 12,fontFamily: "${getTranslated(context, "fontFamilyBody")!}"),),
+                            MyText("${pointValue}", style: TextStyle(color:Colors.white54, fontSize: 12,fontFamily: "${getTranslated(context, "fontFamilyBody")!}"),),
+                            MyText(" Point", style: TextStyle(color:Colors.white54, fontSize: 12,fontFamily: "${getTranslated(context, "fontFamilyBody")!}"),),
                           ],
                         ),
                       ],),
@@ -155,7 +155,7 @@ class LoyaltyPaymentMethodCheckbox extends StatelessWidget{
                             Provider.of<SliderProvider>(context, listen: false).onChangePoint(200);
 
                           },
-                          child: Text("All Point", style: TextStyle(color:Colors.amber, fontSize: 12 , fontWeight: FontWeight.normal,fontFamily: "${getTranslated(context, "fontFamilyBody")!}"),),
+                          child: MyText("All Point", style: TextStyle(color:Colors.amber, fontSize: 12 , fontWeight: FontWeight.normal,fontFamily: "${getTranslated(context, "fontFamilyBody")!}"),),
 
 
 

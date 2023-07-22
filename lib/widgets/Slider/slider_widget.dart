@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/slider_provider.dart';
 import 'package:operation_falafel/widgets/Slider/custom_slider_thumb_circle.dart';
@@ -44,8 +45,7 @@ class _SliderWidgetState extends State<SliderWidget> {
           builder: (context,SliderProvider, child)
             {
              return Container(
-                width: this.widget.fullWidth ? double.infinity : (this.widget
-                    .sliderHeight) * 5.5,
+                width: this.widget.fullWidth ? double.infinity : (this.widget.sliderHeight) * 5.5,
                 height: (this.widget.sliderHeight),
                 decoration: BoxDecoration(
                   color: Colors.white54,
@@ -63,12 +63,10 @@ class _SliderWidgetState extends State<SliderWidget> {
                   //     tileMode: TileMode.clamp),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(
-                      this.widget.sliderHeight * paddingFactor, 2,
-                      this.widget.sliderHeight * paddingFactor, 2),
+                  padding: EdgeInsets.fromLTRB(this.widget.sliderHeight * paddingFactor, 2, this.widget.sliderHeight * paddingFactor, 2),
                   child: Row(
                     children: <Widget>[
-                      Text(
+                      MyText(
                         '${formatNumberWithK(this.widget.min)} pts',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -116,7 +114,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                       SizedBox(
                         width: this.widget.sliderHeight * .1,
                       ),
-                      Text(
+                      MyText(
                         '${formatNumberWithK(this.widget.max)} pts',
                         textAlign: TextAlign.center,
                         style: TextStyle(

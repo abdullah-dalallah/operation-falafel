@@ -737,6 +737,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                               addOnFlag: false,
                                               text: "Debit/Credit Card",
                                               colorOfBox: Colors.white,
+                                              colorOfSelectedBox: Colors.amber,
                                               colorOfText: Colors.white,
 
                                             ),

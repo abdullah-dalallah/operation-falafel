@@ -10,13 +10,14 @@ class CreditCardPaymentMethodCheckbox extends StatelessWidget{
   final String text;
   final bool addOnFlag;
   Color? colorOfBox;
+  Color? colorOfSelectedBox;
   Color? colorOfText;
   String? fontFamily;
   String? priceText;
   final ValueChanged onChanged;
   CreditCardPaymentMethodCheckbox({super.key,
     required this.value,
-
+    required this.colorOfSelectedBox,
     required this.text,
     required this.onChanged,
     this.priceText,
@@ -42,7 +43,7 @@ class CreditCardPaymentMethodCheckbox extends StatelessWidget{
         ),
         border: Border.all(
           width: 1,
-          color: (colorOfBox!=null)?colorOfBox!:Colors.amber,
+          color: (isSelected)?colorOfSelectedBox!:(colorOfBox!=null)?colorOfBox!:Colors.amber,
           style: BorderStyle.solid,
         ),
       ),
@@ -52,13 +53,13 @@ class CreditCardPaymentMethodCheckbox extends StatelessWidget{
     );
   }
 
-  Widget _buildMyText( BuildContext context) {
+  Widget _buildMyMyText( BuildContext context) {
     return Row(
 
       children: [
         Icon(Icons.add_card_rounded, size: 20,color:Colors.white70),
         SizedBox(width: 5,),
-        Text("${text}", style: TextStyle(color:Colors.white70, fontSize: 15),),
+        MyText("${text}", style: TextStyle(color:Colors.white70, fontSize: 15),),
       ],
     );
   }
@@ -80,7 +81,7 @@ class CreditCardPaymentMethodCheckbox extends StatelessWidget{
 
                 _buildLabel(),
                 SizedBox(width: 10,),
-                _buildMyText(context)
+                _buildMyMyText(context)
 
 
               ],
@@ -88,9 +89,9 @@ class CreditCardPaymentMethodCheckbox extends StatelessWidget{
             children: [
 
               Container(
-                decoration:  BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.white24,
-                  borderRadius: const BorderRadius.only(
+                  borderRadius:  BorderRadius.only(
                     topRight: Radius.circular(0),
                     bottomLeft: Radius.circular(0),
                     topLeft: Radius.circular(0),
@@ -105,12 +106,12 @@ class CreditCardPaymentMethodCheckbox extends StatelessWidget{
                 child: ListTile(
                   contentPadding: EdgeInsets.only(left:28,right:18, bottom: 5),
                   dense: true,
-                  title:Text("Selected Card", style: TextStyle(color:Colors.amber),),
+                  title:MyText("Selected Card", style: TextStyle(color:Colors.amber),),
                   subtitle: Row(
                     children: [
                       Image.asset("assets/images/masterCard_logo.png", height: 20,width: 24,color: Colors.white,),
                       SizedBox(width: 5,),
-                      Text("card ending in 4444", style: TextStyle(color:Colors.white54),),
+                      MyText("card ending in 4444", style: TextStyle(color:Colors.white54),),
                     ],
                   ),
                   trailing: Column(
@@ -129,7 +130,7 @@ class CreditCardPaymentMethodCheckbox extends StatelessWidget{
 
 
                           },
-                          child: Text("Change", style: TextStyle(color:Colors.amber, fontSize: 12 , fontWeight: FontWeight.normal),),
+                          child: MyText("Change", style: TextStyle(color:Colors.amber, fontSize: 12 , fontWeight: FontWeight.normal),),
 
 
 
@@ -156,7 +157,7 @@ class CreditCardPaymentMethodCheckbox extends StatelessWidget{
 
 
                   },
-                  child: Text("Add New Card", style: TextStyle(color:Colors.amber),),
+                  child: MyText("Add New Card", style: TextStyle(color:Colors.amber),),
 
 
 

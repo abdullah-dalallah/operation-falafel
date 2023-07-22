@@ -428,6 +428,144 @@
         "OrderNowButton": {
           "Data": "Order Now",
           "Color": "0xffffffff"
+        },
+        "PaymentMethods": {
+          "CreditCardPaymentMethodCheckBox": {
+            "CheckBoxDesgin": {
+              "Color": "0xffffffff",
+              "SelectedColor":"0xFFFFBF00",
+              "SelectedImage": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/falafel.png"
+            },
+            "Data": "COPY PROMO CODE",
+            "Color": "0xffffffff",
+            "SelectedCard":{
+              "Title":{
+                "Data": "Selected Card",
+                "Color": "0xFFFFBF00"
+              },
+              "SubTitle":{
+                "Data": "Selected Card",
+                "Color": "0xFFFFBF00"
+              },
+              "ChangeButton": {
+                "Data": "Change",
+                "Color": "0xffffffff",
+                "BackGroundColor": "0xFFFFBF00"
+              },
+              "AddNewCardButton": {
+                "Data": "Add New Card",
+                "Color": "0xffffffff",
+                "BackGroundColor": "0xFFFFBF00"
+              }
+
+            }
+
+          },
+          "LoyaltyCreditPeymantMethodCheckBox":{
+            "CheckBoxDesgin": {
+              "Color": "0xffffffff",
+              "SelectedColor":"0xFFFFBF00",
+              "SelectedImage": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/falafel.png"
+            },
+            "Data": "Loyalty Credits",
+            "Color": "0xffffffff",
+            "SelectedPoint":{
+              "MinusArrow": {
+                "ImageIcon": "/// < URL OF Arrow Back Icon PNG Image",
+                "MobileSize": "26",
+                "TabletSize": "26"
+              },
+              "PlusArrow": {
+                "ImageIcon": "/// > URL OF Arrow Back Icon PNG Image",
+                "MobileSize": "26",
+                "TabletSize": "26"
+              },
+              "SelectedPriceOfDiscount":{
+                "Data": "api",
+                "Color": "0xFFFFBF00"
+              },
+              "SelectedAmountOfPoints":{
+                "Data": "api",
+                "Color": "0xffffffff"
+              },
+              "FullPointButton": {
+                "Data": "Full Point",
+                "Color": "0xFFFFBF00",
+                "BackGroundColor": "0xFFFFBF00"
+              },
+              "SliderDesign":{
+                "SliderBackGroundColor": "0xffffffff",
+                "MinPtsTitle":{
+                  "Data": "pts",
+                  "Color": "0xffffffff"
+                },
+                "MaxPtsTitle":{
+                  "Data": "pts",
+                  "Color": "0xffffffff"
+                },
+                "AcitveTrackColor":"0xFFFFBF00",
+                "InAcitveTrackColor":"0xffffffff",
+                "SliderThumCircle":{
+                  "CircleColor":"0xffffffff",
+                  "CircleTitle":{
+                    "Data": "api",
+                    "Color": "0xffffffff"
+                  },
+                  "CircleTitleVisibility":true
+
+                }
+
+              }
+            }
+          },
+          "O:FGifts":{
+            "BorderLabel":{
+              "GiftIcon": {
+                "ImageIcon": "///  URL OF Gifts Icon PNG Image",
+                "height": "35",
+                "width": "35"
+              },
+              "LabelTitle":{
+                "Data": "O:F Gifts",
+                "Color": "0xffffffff"
+              }
+            },
+            "Title":{
+              "Data": "Operation Falafel Vouchers",
+              "Color": "0xFFFFBF00"
+            },
+            "SubTitle":{
+              "Data": "Select Voucher",
+              "Color": "0xffffffff"
+            },
+            "ChooseButton": {
+              "Data": "Choose",
+              "Color": "0xffffffff",
+              "BackGroundColor": "0xFFFFBF00"
+            },
+            "SelectedVoucher":{
+              "Title":{
+                "Data": "api",
+                "Color": "0xffffffff"
+              },
+              "RemoveButton": {
+                "Data": "Remove",
+                "Color": "0xffffffff",
+                "BackGroundColor": "0xFFFFBF00"
+              },
+              "VoucherDetailsList":{
+                "Title":{
+                  "Data": "api",
+                  "Color": "0xffffffff"
+                },
+                "Icon": {
+                  "ImageIcon": "///  URL OF Falafel Icon PNG Image",
+                  "height": "14",
+                  "width": "14"
+                }
+              }
+            }
+          }
         }
       }
     },

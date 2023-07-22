@@ -10,6 +10,7 @@ import '../../CommonElements/Elements/cart_check_box.dart';
 import '../../CommonElements/Elements/title_style.dart';
 
 import 'Elements/ItemsList/item_list.dart';
+import 'Elements/PaymentMethods/payment_mothods.dart';
 import 'Elements/PromoCode/promo_code.dart';
 import 'Elements/SpecialInstructions/special_Instructions.dart';
 import 'Elements/bring_it_button.dart';
@@ -43,6 +44,7 @@ class CartPageBody {
     required this.bringItButton,
     required this.emptyCart,
     required this.orderNowButton,
+    required this.paymentMethods
   });
 
   TitleStyle pageTile;
@@ -62,7 +64,7 @@ class CartPageBody {
   BringItButton bringItButton;
   TitleStyle emptyCart;
   TitleStyle orderNowButton;
-
+  PaymentMethods paymentMethods;
   factory CartPageBody.fromJson(Map<String, dynamic> json) => CartPageBody(
     pageTile: TitleStyle.fromJson(json["PageTile"]),
     itemsList: ItemsList.fromJson(json["ItemsList"]),
@@ -81,6 +83,7 @@ class CartPageBody {
     bringItButton: BringItButton.fromJson(json["BringItButton"]),
     emptyCart: TitleStyle.fromJson(json["EmptyCart"]),
     orderNowButton: TitleStyle.fromJson(json["OrderNowButton"]),
+    paymentMethods: PaymentMethods.fromJson(json["PaymentMethods"]),
   );
 
   Map<String, dynamic> toJson() => {
@@ -101,6 +104,7 @@ class CartPageBody {
     "BringItButton": bringItButton.toJson(),
     "EmptyCart": emptyCart.toJson(),
     "OrderNowButton": orderNowButton.toJson(),
+    "PaymentMethods":paymentMethods.toJson()
   };
 }
 

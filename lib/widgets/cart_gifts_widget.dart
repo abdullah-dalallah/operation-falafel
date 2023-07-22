@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 
 import 'cart_gifts_sheet.dart';
@@ -24,7 +25,7 @@ class _CartGiftsWidgetState extends State<CartGiftsWidget> {
                  Image.asset("assets/images/how2.png", height: 35,),
                  SizedBox(width: 10,),
                  // Icon(Icons.add,color: Colors.white54,),
-                 Text('O:F Gifts', style: TextStyle(color: Colors.white54, fontFamily:"${getTranslated(context, "fontFamilyButtons")!}",fontSize: 25),)
+                 MyText('O:F Gifts', style: TextStyle(color: Colors.white54, fontFamily:"${getTranslated(context, "fontFamilyButtons")!}",fontSize: 25),)
                ],
              ),
            ),
@@ -40,9 +41,9 @@ class _CartGiftsWidgetState extends State<CartGiftsWidget> {
                // tileColor: Colors.green,
                visualDensity: VisualDensity(vertical:-4),
                // dense: true,
-               title:  Text('Operation Falafel Vouchers', style: TextStyle(color: Colors.amber, fontFamily:"${getTranslated(context, "fontFamilyBody")!}"),),
-               subtitle:  Text('Select Voucher', style: TextStyle(color: Colors.white54,fontFamily:"${getTranslated(context, "fontFamilyBody")!}"),),
-              trailing: SizedBox(
+               title:  MyText('Operation Falafel Vouchers', style: TextStyle(color: Colors.amber, fontFamily:"${getTranslated(context, "fontFamilyBody")!}"),),
+               subtitle:  MyText('Select Voucher', style: TextStyle(color: Colors.white54,fontFamily:"${getTranslated(context, "fontFamilyBody")!}"),),
+               trailing: SizedBox(
                 height: 30,
                 child: TextButton(
                   style: TextButton.styleFrom(
@@ -71,7 +72,7 @@ class _CartGiftsWidgetState extends State<CartGiftsWidget> {
                     );
 
                   },
-                  child: Text("Choose", style: TextStyle(color:Colors.amber, fontSize: 12 , fontWeight: FontWeight.normal,fontFamily: "${getTranslated(context, "fontFamilyBody")!}"),),
+                  child: MyText("Choose", style: TextStyle(color:Colors.amber, fontSize: 12 , fontWeight: FontWeight.normal,fontFamily: "${getTranslated(context, "fontFamilyBody")!}"),),
 
 
 
@@ -125,7 +126,7 @@ class _CartGiftsWidgetState extends State<CartGiftsWidget> {
             ),
             ExpansionTile(
               initiallyExpanded: true,
-              title:Text("Free Delivery. Min order. AED 30.", style: TextStyle( color:Colors.white70, fontSize: 15, fontWeight: FontWeight.bold,fontFamily: "${getTranslated(context, "fontFamilyBody")!}"),),
+              title:MyText("Free Delivery. Min order. AED 30.", style: TextStyle( color:Colors.white70, fontSize: 15, fontWeight: FontWeight.bold,fontFamily: "${getTranslated(context, "fontFamilyBody")!}"),),
               trailing: SizedBox(
                 height: 30,
                 child: TextButton(
@@ -136,7 +137,7 @@ class _CartGiftsWidgetState extends State<CartGiftsWidget> {
 
                   },
                   child:
-                  Text("Remove", style: TextStyle(color:Colors.amber, fontSize: 12 , fontWeight: FontWeight.bold,fontFamily: "${getTranslated(context, "fontFamilyBody")!}"),),
+                  MyText("Remove", style: TextStyle(color:Colors.amber, fontSize: 12 , fontWeight: FontWeight.bold,fontFamily: "${getTranslated(context, "fontFamilyBody")!}"),),
 
 
 
@@ -201,7 +202,7 @@ class _CartGiftsWidgetState extends State<CartGiftsWidget> {
                           children: [
                             Image.asset("assets/images/page2orders_icon.png", height: 14,),
                             SizedBox(width: 10,),
-                            Text("Valid on orders of at least AED 30 after discounts", style: TextStyle(color:Colors.white70, fontSize: 12 , fontWeight: FontWeight.normal,fontFamily: "${getTranslated(context, "fontFamilyBody")!}"),),
+                            MyText("Valid on orders of at least AED 30 after discounts", style: TextStyle(color:Colors.white70, fontSize: 12 , fontWeight: FontWeight.normal,fontFamily: "${getTranslated(context, "fontFamilyBody")!}"),),
                           ],
                         ),
                       );
@@ -215,7 +216,6 @@ class _CartGiftsWidgetState extends State<CartGiftsWidget> {
 
               ],
             )
-
           ],
         ),
       ),
