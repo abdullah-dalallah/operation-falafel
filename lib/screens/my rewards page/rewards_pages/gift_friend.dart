@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/data/my_text.dart';
+import 'package:operation_falafel/data/my_text_form_field.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:provider/provider.dart';
@@ -116,7 +117,7 @@ class _GiftFriendState extends State<GiftFriend> {
                           children: [
 
                             /// - Name
-                            TextField(
+                            MyTextFormField(
 
                               autofocus: false,
                               style: const TextStyle(color: Colors.white),
@@ -150,7 +151,7 @@ class _GiftFriendState extends State<GiftFriend> {
                             const SizedBox(height: 20,),
 
                             /// - Mobile No
-                            TextField(
+                            MyTextFormField(
                               keyboardType: TextInputType.number,
 
                               autofocus: false,
@@ -187,7 +188,7 @@ class _GiftFriendState extends State<GiftFriend> {
                             const SizedBox(height: 20,),
 
                             /// - Email Address
-                            TextField(
+                            MyTextFormField(
 
 
                               autofocus: false,
@@ -224,7 +225,7 @@ class _GiftFriendState extends State<GiftFriend> {
                             const SizedBox(height: 20,),
 
                             /// - Add Notes
-                            TextField(
+                            MyTextFormField(
 
 
                               autofocus: false,

@@ -176,8 +176,8 @@ class _DrawerState extends State<DrawerWidget> {
                                     children: [
                                       ListTile(
                                         onTap: () {
-                                          context.go("${MainMenu.routeName}");
-                                          // widget.onChanged(0);
+                                          // context.go("${MainMenu.routeName}");
+                                          widget.onChanged(0);
                                           Navigator.pop(context);
                                         },
                                         title: MyText(
@@ -212,16 +212,16 @@ class _DrawerState extends State<DrawerWidget> {
                                     children: [
                                       ListTile(
                                         onTap: () {
-                                          context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${Notifications.routeName}");
-                                          // Navigator.pop(context);
-                                          // PersistentNavBarNavigator.pushNewScreen(
-                                          //   context,
-                                          //   screen: Notifications(),
-                                          //   withNavBar: true,
-                                          //   // OPTIONAL VALUE. True by default.
-                                          //   pageTransitionAnimation: PageTransitionAnimation
-                                          //       .cupertino,
-                                          // );
+                                          // context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${Notifications.routeName}");
+                                          Navigator.pop(context);
+                                          PersistentNavBarNavigator.pushNewScreen(
+                                            context,
+                                            screen: Notifications(),
+                                            withNavBar: true,
+                                            // OPTIONAL VALUE. True by default.
+                                            pageTransitionAnimation: PageTransitionAnimation
+                                                .cupertino,
+                                          );
                                         },
                                         title: MyText(
                                           drawerPage.notification.data,
@@ -254,15 +254,15 @@ class _DrawerState extends State<DrawerWidget> {
                                     children: [
                                       ListTile(
                                         onTap: () {
-                                          context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${Partners.routeName}");
-                                          // PersistentNavBarNavigator.pushNewScreen(
-                                          //   context,
-                                          //   screen: Partners(),
-                                          //   withNavBar: true,
-                                          //   // OPTIONAL VALUE. True by default.
-                                          //   pageTransitionAnimation: PageTransitionAnimation
-                                          //       .cupertino,
-                                          // );
+                                          // context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${Partners.routeName}");
+                                          PersistentNavBarNavigator.pushNewScreen(
+                                            context,
+                                            screen: Partners(),
+                                            withNavBar: true,
+                                            // OPTIONAL VALUE. True by default.
+                                            pageTransitionAnimation: PageTransitionAnimation
+                                                .cupertino,
+                                          );
                                         },
 
                                         title: MyText(
@@ -304,16 +304,16 @@ class _DrawerState extends State<DrawerWidget> {
                                     children: [
                                       ListTile(
                                         onTap: () {
-                                          context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${Locations.routeName}");
+                                          // context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${Locations.routeName}");
 
-                                          // PersistentNavBarNavigator.pushNewScreen(
-                                          //   context,
-                                          //   screen: Locations(),
-                                          //   withNavBar: true,
-                                          //   // OPTIONAL VALUE. True by default.
-                                          //   pageTransitionAnimation: PageTransitionAnimation
-                                          //       .cupertino,
-                                          // );
+                                          PersistentNavBarNavigator.pushNewScreen(
+                                            context,
+                                            screen: Locations(),
+                                            withNavBar: true,
+                                            // OPTIONAL VALUE. True by default.
+                                            pageTransitionAnimation: PageTransitionAnimation
+                                                .cupertino,
+                                          );
                                         },
                                         title: MyText(
                                           drawerPage.locations.data,
@@ -354,14 +354,14 @@ class _DrawerState extends State<DrawerWidget> {
                                     children: [
                                       ListTile(
                                         onTap: () {
-                                          context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${FeedbackPage.routeName}");
-                                          // PersistentNavBarNavigator.pushNewScreen(
-                                          //   context,
-                                          //   screen: FeedbackPage(layOut: widget.layOut,(value) {widget.onChanged(value);}),
-                                          //   withNavBar: true,
-                                          //   pageTransitionAnimation: PageTransitionAnimation
-                                          //       .cupertino,
-                                          // );
+                                          // context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${FeedbackPage.routeName}");
+                                          PersistentNavBarNavigator.pushNewScreen(
+                                            context,
+                                            screen: FeedbackPage(layOut: widget.layOut,(value) {widget.onChanged(value);}),
+                                            withNavBar: true,
+                                            pageTransitionAnimation: PageTransitionAnimation
+                                                .cupertino,
+                                          );
                                         },
                                         title: MyText(
                                           drawerPage.feedback.data,
@@ -399,15 +399,15 @@ class _DrawerState extends State<DrawerWidget> {
                                   visible: drawerPage.contactUs.visibility=='true',
                                   child: ListTile(
                                     onTap: () {
-                                      context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${ContactUs.routeName}");
+                                      // context.go("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${ContactUs.routeName}");
 
-                                      // PersistentNavBarNavigator.pushNewScreen(
-                                      //   context,
-                                      //   screen: ContactUs(layOut: widget.layOut,(value) {widget.onChanged(value);}),
-                                      //   withNavBar: true,
-                                      //   pageTransitionAnimation: PageTransitionAnimation
-                                      //       .cupertino,
-                                      // );
+                                      PersistentNavBarNavigator.pushNewScreen(
+                                        context,
+                                        screen: ContactUs(layOut: widget.layOut,(value) {widget.onChanged(value);}),
+                                        withNavBar: true,
+                                        pageTransitionAnimation: PageTransitionAnimation
+                                            .cupertino,
+                                      );
                                     },
                                     title: MyText(
                                       drawerPage.contactUs.data,

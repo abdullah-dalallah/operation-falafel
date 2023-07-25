@@ -2,6 +2,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/data/my_text.dart';
+import 'package:operation_falafel/data/my_text_form_field.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:provider/provider.dart';
@@ -110,7 +111,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
                           /// - Address Line
                           Padding(
                             padding: const EdgeInsets.only(left: 18.0, right: 18, top: 8, bottom: 8),
-                            child: TextField(
+                            child: MyTextFormField(
 
                               autofocus: false,
                               style: const TextStyle(color: Colors.white),
@@ -159,7 +160,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
                               children: [
                                 Expanded(
                                   flex: 4,
-                                  child: TextField(
+                                  child: MyTextFormField(
 
                                     autofocus: false,
                                     style: const TextStyle(color: Colors.white),
@@ -198,7 +199,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
                                 const SizedBox(width: 10,),
                                 Expanded(
                                   flex: 3,
-                                  child: TextField(
+                                  child: MyTextFormField(
                                     autofocus: false,
                                     style: const TextStyle(color: Colors.white),
                                     decoration: InputDecoration(
@@ -244,7 +245,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
                               children: [
                                 Expanded(
                                   flex: 4,
-                                  child: TextField(
+                                  child: MyTextFormField(
                                     autofocus: false,
                                     style: const TextStyle(color: Colors.white),
                                     decoration: InputDecoration(

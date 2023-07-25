@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:operation_falafel/data/my_text.dart';
+import 'package:operation_falafel/data/my_text_form_field.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/demo_cart/demo_cart_provider.dart';
 import 'package:operation_falafel/providers/slider_provider.dart';
@@ -371,7 +372,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                               child: SizedBox(
                                                 // width: 400,
                                                 // height: 40,
-                                                child: TextField(
+                                                child: MyTextFormField(
                                                   autofocus: false,
                                                   style: TextStyle(color: Color(int.parse(cartPage.body.specialInstructions.textfieldHint.color))),
                                                   keyboardType: TextInputType.multiline,
@@ -470,7 +471,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                 child: SizedBox(
                                                   // width: 295,
                                                   height: 50,
-                                                  child: TextField(
+                                                  child: MyTextFormField(
                                                     autofocus: false,
                                                     style:
                                                     TextStyle(color: Color(int.parse(cartPage.body.promoCode.textfieldHint.color))),
@@ -657,7 +658,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                               child: SizedBox(
                                                 // width: 400,
                                                 // height: 40,
-                                                child: TextField(
+                                                child: MyTextFormField(
                                                   autofocus: false,
                                                   style: TextStyle(color: Color(int.parse(cartPage.body.tip.textfieldHint.color))),
 

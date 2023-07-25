@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/data/my_text.dart';
+import 'package:operation_falafel/data/my_text_form_field.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:provider/provider.dart';
@@ -117,7 +118,7 @@ class _CreditCalculatorState extends State<CreditCalculator> {
                                   child: SizedBox(
                                     // width: 295,
                                     height: 50,
-                                    child: TextField(
+                                    child: MyTextFormField(
                                       controller: amountController,
                                       keyboardType: TextInputType.number,
                                       autofocus: false,
@@ -192,7 +193,7 @@ class _CreditCalculatorState extends State<CreditCalculator> {
                                   child: SizedBox(
                                     // width: 295,
                                     height: 50,
-                                    child: TextField(
+                                    child: MyTextFormField(
                                       controller: earnedCreditsController,
                                       enabled: false,
                                       keyboardType: TextInputType.number,
