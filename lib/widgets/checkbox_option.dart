@@ -70,7 +70,7 @@ class CheckboxOption extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin:const EdgeInsets.all(8),
+      margin:const EdgeInsets.only( bottom: 8),
       child: InkWell(
         onTap: () => onChanged(value),
         splashColor: Colors.grey.withOpacity(0.5),

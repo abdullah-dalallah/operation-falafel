@@ -424,7 +424,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                       ),
                                       /// - checkbox
                                       Padding(
-                                        padding: const EdgeInsets.all(18.0),
+                                        padding: const EdgeInsets.all(18 ),
                                         child: Column(
                                           children: [
                                             Visibility(
@@ -746,6 +746,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                             ),
                                             /// - Loyalty
                                             LoyaltyPaymentMethodCheckbox(
+                                              pointController: SliderProvider.pointController,
                                               pointValue: SliderProvider.selectedPoint,
                                               onChanged: _loyaltyPaymentChangedHandler(),
                                               value: loyaltyCheckboxValue,

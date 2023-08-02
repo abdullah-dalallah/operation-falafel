@@ -38,7 +38,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
     "office",
   ];
 
-  int? selectedAddressItemById;
+  int? selectedAddressTypeValue;
   int? selectCityId ;
 
   bool primary = false;
@@ -54,7 +54,8 @@ class _AddNewAddressState extends State<AddNewAddress> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer2<ThemeProvider, ProfileProvider>(builder: (context, appTheme,profileProvider, child)
+    return Consumer2<ThemeProvider, ProfileProvider>(
+        builder: (context, appTheme,profileProvider, child)
     {
       Language? lng = (Localizations.localeOf(context).languageCode == 'ar') ? appTheme.appTheme.fontSizes?.ar : appTheme.appTheme.fontSizes?.en;
       AddNewAddressPage? addNewAddressPage = appTheme.appTheme.designPerPage?.addNewAddressPage;
@@ -235,9 +236,9 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                   dropdownDecoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(10),),
                                   itemHeight: 30,
                                   items: profileProvider.citiesList
-                                      .map((addressTypeItem) =>
+                                      .map((addressCityItem) =>
                                       DropdownMenuItem<dynamic>(
-                                        value: addressTypeItem[Keys.idKey],
+                                        value: addressCityItem[Keys.idKey],
                                         child:
                                         Column(
                                           mainAxisAlignment: MainAxisAlignment.center,
@@ -249,7 +250,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
 
                                                 (selectCityId != null)
                                                     ?
-                                                (selectCityId == addressTypeItem[Keys.idKey]) ?
+                                                (selectCityId == addressCityItem[Keys.idKey]) ?
                                                 Image.network(
                                                   addNewAddressPage.body.form.addressTypeDropDown.selectedIcon.imageIcon,
                                                   height: 15, width: 15,)
@@ -262,7 +263,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
 
 
                                                 MyText(
-                                                  addressTypeItem[Keys.nameKey],
+                                                  addressCityItem[Keys.nameKey],
                                                   // getTranslated(context, addressItem)!,
                                                   style: TextStyle(
                                                       fontSize: lng?.header2.size.toDouble(),
@@ -555,7 +556,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                       ),
                                       icon: const ImageIcon(AssetImage("assets/images/down.png"),),
                                       iconSize: 30,
-                                      buttonHeight: (selectedAddressItemById != null) ? 50 : 50,
+                                      buttonHeight: (selectedAddressTypeValue != null) ? 50 : 50,
                                       buttonPadding: const EdgeInsets.only(left: 20, right: 20),
                                       dropdownDecoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(10),),
                                       itemHeight: 30,
@@ -572,9 +573,9 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                                 Row(
                                                   children: [
 
-                                                    (selectedAddressItemById != null)
+                                                    (selectedAddressTypeValue != null)
                                                         ?
-                                                    (selectedAddressItemById == addressTypeItem[Keys.idKey]) ?
+                                                    (selectedAddressTypeValue == addressTypeItem[Keys.idKey]) ?
                                                     Image.network(
                                                       addNewAddressPage.body.form.addressTypeDropDown.selectedIcon.imageIcon,
                                                       height: 15, width: 15,)
@@ -613,7 +614,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                       onChanged: (value) {
                                         //Do something when changing the item if you want.
                                         setState(() {
-                                          selectedAddressItemById = value;
+                                          selectedAddressTypeValue = value;
                                         });
 
                                          print(value);
@@ -621,7 +622,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                       },
                                       onSaved: (value) {
                                         setState(() {
-                                          selectedAddressItemById = value;
+                                          selectedAddressTypeValue = value;
                                         });
                                       },
                                     ),
@@ -690,7 +691,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                                 area: _controllerArea.text,
                                                 buildingName: _controllerBuildingName.text,
                                                 flatNumber: _controllerFlatNumber.text,
-                                                addressTypeId: selectedAddressItemById!,
+                                                addressTypeId: selectedAddressTypeValue!,
                                                 isPrimary: primary?1:0,
                                                 cityId: selectCityId!,
                                                 lat: "${selectedLocation!.latitude}", long: "${selectedLocation!.longitude}").then((response) {

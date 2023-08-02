@@ -494,7 +494,7 @@
                 "BackGroundColor": "0xFFFFBF00"
               },
               "SliderDesign":{
-                "SliderBackGroundColor": "0x8Affffff",
+                "SliderBackGroundColor": "0x3DFFFFFF",
                 "MinPtsTitle":{
                   "Data": "pts",
                   "Color": "0xffffffff"

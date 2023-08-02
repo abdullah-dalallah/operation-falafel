@@ -55,8 +55,10 @@ class _SliderWidgetState extends State<SliderWidget> {
                 height: (this.widget.sliderHeight),
                 decoration: BoxDecoration(
                   color: Color(int.parse(widget.cartPage!.body.paymentMethods.loyaltyCreditPeymantMethodCheckBox!.selectedPoint!.sliderDesign!.sliderBackGroundColor!)),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular((this.widget.sliderHeight * .3)),
+                  borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular((this.widget.sliderHeight * .2)),
+                    bottomLeft: Radius.circular((this.widget.sliderHeight * .2)),
+                    // Radius.circular((this.widget.sliderHeight * .3)),
                   ),
                   // gradient:  LinearGradient(
                   //     colors: [
@@ -119,6 +121,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                                   });
 
                                   SliderProvider.onChangePoint(getValue(value).toDouble());
+                                  SliderProvider.onChangePointController(getValue(value).toDouble());
                                 }),
                           ),
                         ),

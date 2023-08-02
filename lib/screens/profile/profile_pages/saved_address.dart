@@ -155,6 +155,7 @@ class _SavedAddressState extends State<SavedAddress> {
   void initState() {
     var authProvider = Provider.of<AuthProvider>(context,listen: false);
     String token =authProvider.loggedInUser?.token??"";
+
     Provider.of<ProfileProvider>(context,listen: false).getUserSavedAddress(token);
   }
 }

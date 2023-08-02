@@ -22,12 +22,12 @@ class ProfileProvider with ChangeNotifier {
   }
   Future<Response<dynamic>> getUserSavedAddress(String userToken,) async {
     print("getting user Saved address from Online Server...");
-    var url = '${Strings.baseAppAddressUrl}address';
+    var url = '${Strings.baseAppAddressUrl}/address/user';
     print(url);
     Map<String, String> header = <String, String>{};
     header.putIfAbsent(Keys.acceptKey, () => "application/json");
     header.putIfAbsent(Keys.x_of_awjKey, () => "${userToken}");
-    header.putIfAbsent(Keys.authorizationKey, () => "Bearer " + userToken!);
+    // header.putIfAbsent(Keys.authorizationKey, () => "Bearer " + userToken!);
 
 
 
@@ -70,7 +70,7 @@ class ProfileProvider with ChangeNotifier {
     Map<String, String> header = <String, String>{};
     header.putIfAbsent(Keys.acceptKey, () => "application/json");
     header.putIfAbsent(Keys.x_of_awjKey, () => "${userToken}");
-    header.putIfAbsent(Keys.authorizationKey, () => "Bearer " + userToken!);
+    // header.putIfAbsent(Keys.authorizationKey, () => "Bearer " + userToken!);
 
     Map<String, dynamic> data = <String, dynamic>{};
     data.putIfAbsent(Keys.nameKey, () => addressLine);
@@ -118,7 +118,7 @@ class ProfileProvider with ChangeNotifier {
     Map<String, String> header = <String, String>{};
     header.putIfAbsent(Keys.acceptKey, () => "application/json");
     header.putIfAbsent(Keys.x_of_awjKey, () => "${userToken}");
-    header.putIfAbsent(Keys.authorizationKey, () => "Bearer " + userToken!);
+    // header.putIfAbsent(Keys.authorizationKey, () => "Bearer " + userToken!);
 
 
 
@@ -138,6 +138,48 @@ class ProfileProvider with ChangeNotifier {
 
         }
 
+      }
+      notifyListeners();
+      return response;
+    } on DioError catch (e) {
+      print(e.response);
+
+      return e.response!;
+
+    }
+  }
+
+
+  /// - Update Address
+  Future<Response<dynamic>> updateUserAddress({required String userToken,required int addressId,required String addressLine,required String buildingName ,required String flatNumber,required String area,required int addressTypeId,required int isPrimary ,required int cityId, required String lat, required String long })
+  async {
+    print("Add new address to Online Server...");
+    var url = '${Strings.baseAppAddressUrl}/address/${addressId}';
+    print(url);
+    Map<String, String> header = <String, String>{};
+    header.putIfAbsent(Keys.acceptKey, () => "application/json");
+    header.putIfAbsent(Keys.x_of_awjKey, () => "${userToken}");
+    // header.putIfAbsent(Keys.authorizationKey, () => "Bearer " + userToken!);
+
+    Map<String, dynamic> data = <String, dynamic>{};
+    data.putIfAbsent(Keys.nameKey, () => addressLine);
+    data.putIfAbsent(Keys.areaKey, () => area);
+    data.putIfAbsent(Keys.buildingKey, () => buildingName);
+    data.putIfAbsent(Keys.flatKey, () => flatNumber);
+    data.putIfAbsent(Keys.latKey, () => lat);
+    data.putIfAbsent(Keys.longKey, () => long);
+    data.putIfAbsent(Keys.is_primaryKey, () => isPrimary);
+    data.putIfAbsent(Keys.address_type_idKey, () => addressTypeId);
+    data.putIfAbsent(Keys.city_idKey, () => cityId);
+
+
+    var dio = Dio();
+    try {
+
+      var response = await dio.put(url, options: Options(headers: header), data: data);// options: Options(headers: header)
+      print(response.data);
+      if(response.statusCode ==200){
+        print("address updated to the server");
       }
       notifyListeners();
       return response;
@@ -197,6 +239,42 @@ class ProfileProvider with ChangeNotifier {
 
     }
   }
+
+
+  /// - Delete Address
+  Future<Response<dynamic>> deleteAddress({required String userToken,required int addressId})
+  async {
+    print("Deleting user address from Online Server...");
+    var url = '${Strings.baseAppAddressUrl}address/${addressId}';
+    print(url);
+    Map<String, String> header = <String, String>{};
+    header.putIfAbsent(Keys.acceptKey, () => "application/json");
+    header.putIfAbsent(Keys.x_of_awjKey, () => "${userToken}");
+    // header.putIfAbsent(Keys.authorizationKey, () => "Bearer " + userToken!);
+
+    // Map<String, dynamic> data = <String, dynamic>{};
+
+
+
+
+    var dio = Dio();
+    try {
+
+      var response = await dio.delete(url, options: Options(headers: header),);// options: Options(headers: header)
+      print(response.data);
+      if(response.statusCode ==200){
+        print("address deleted from server successfully");
+      }
+      notifyListeners();
+      return response;
+    } on DioError catch (e) {
+      print(e.response);
+
+      return e.response!;
+
+    }
+  }
+
 
 
 
