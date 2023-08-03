@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/AddNewAddressPage/Body/Elements/AddNewAddressForm/Elements/address_type_dropdown.dart';
+
 import '../../../../CommonElements/Elements/buttons.dart';
 import '../../../../CommonElements/Elements/title_style.dart';
 import 'Elements/PrimaryAddress/primary_address.dart';
@@ -20,6 +22,7 @@ class FormEditAddress {
     required this.villa,
     required this.area,
     required this.addressTypeDropDown,
+    required this.addressCityDropDown,
     required this.primaryAddress,
     required this.updateAddressButton,
   });
@@ -28,7 +31,8 @@ class FormEditAddress {
   TitleStyle buildingName;
   TitleStyle villa;
   TitleStyle area;
-  AddressTypeDropDown addressTypeDropDown;
+  AddressDropDown addressTypeDropDown;
+  AddressDropDown addressCityDropDown;
   PrimaryAddress primaryAddress;
   Button updateAddressButton;
 
@@ -37,7 +41,8 @@ class FormEditAddress {
     buildingName: TitleStyle.fromJson(json["BuildingName"]),
     villa: TitleStyle.fromJson(json["Villa"]),
     area: TitleStyle.fromJson(json["Area"]),
-    addressTypeDropDown: AddressTypeDropDown.fromJson(json["AddressTypeDropDown"]),
+    addressTypeDropDown: AddressDropDown.fromJson(json["AddressTypeDropDown"]),
+    addressCityDropDown: AddressDropDown.fromJson(json["AddressCityDropDown"]),
     primaryAddress: PrimaryAddress.fromJson(json["PrimaryAddress"]),
     updateAddressButton: Button.fromJson(json["UpdateAddressButton"]),
   );
@@ -48,6 +53,7 @@ class FormEditAddress {
     "Villa": villa.toJson(),
     "Area": area.toJson(),
     "AddressTypeDropDown": addressTypeDropDown.toJson(),
+    "AddressCityDropDown": addressCityDropDown.toJson(),
     "PrimaryAddress": primaryAddress.toJson(),
     "UpdateAddressButton": updateAddressButton.toJson(),
   };

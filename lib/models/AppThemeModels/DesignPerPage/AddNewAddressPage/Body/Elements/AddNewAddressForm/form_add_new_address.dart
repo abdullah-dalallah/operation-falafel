@@ -20,14 +20,19 @@ class FormAddNewAddress {
     required this.villa,
     required this.area,
     required this.addressTypeDropDown,
-
+    required this.addressCityDropDown,
+    required this.primaryAddress,
+    required this.addNewAddressButton
   });
 
   TitleStyle addressLine;
   TitleStyle buildingName;
   TitleStyle villa;
   TitleStyle area;
-  AddressTypeDropDown addressTypeDropDown;
+  AddressDropDown addressTypeDropDown;
+  AddressDropDown addressCityDropDown;
+  PrimaryAddress primaryAddress;
+  Button addNewAddressButton;
 
 
   factory FormAddNewAddress.fromJson(Map<String, dynamic> json) => FormAddNewAddress(
@@ -35,7 +40,10 @@ class FormAddNewAddress {
     buildingName: TitleStyle.fromJson(json["BuildingName"]),
     villa: TitleStyle.fromJson(json["Villa"]),
     area: TitleStyle.fromJson(json["Area"]),
-    addressTypeDropDown: AddressTypeDropDown.fromJson(json["AddressTypeDropDown"]),
+    addressTypeDropDown: AddressDropDown.fromJson(json["AddressTypeDropDown"]),
+    addressCityDropDown: AddressDropDown.fromJson(json["AddressCityDropDown"]),
+    primaryAddress: PrimaryAddress.fromJson(json["PrimaryAddress"]),
+    addNewAddressButton: Button.fromJson(json["AddNewAddressButton"]),
 
   );
 
@@ -45,6 +53,9 @@ class FormAddNewAddress {
     "Villa": villa.toJson(),
     "Area": area.toJson(),
     "AddressTypeDropDown": addressTypeDropDown.toJson(),
+    "AddressCityDropDown": addressCityDropDown.toJson(),
+    "PrimaryAddress": primaryAddress.toJson(),
+    "AddNewAddressButton": addNewAddressButton.toJson(),
 
   };
 }

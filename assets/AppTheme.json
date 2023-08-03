@@ -610,7 +610,7 @@
             "Color": "0xffffffff"
           },
           "Plus&Minus": {
-            "BackGroundColor": "0xff000000",
+            "BackGroundColor": "0xFFFFBF00",
             "IconColor": "0xffffffff"
           },
           "Quantity": {
@@ -625,7 +625,7 @@
           "AddButton": {
             "Data": "Add",
             "Color": "0xffffffff",
-            "BackGroundColor": "0xff648316"
+            "BackGroundColor": "0xFFFFBF00"
           }
         }
       }
@@ -1213,7 +1213,7 @@
           },
           "AddressTypeDropDown": {
             "LabelText": {
-              "Data": "Address Type",
+              "Data": "Type",
               "Color": "0xff454545"
             },
             "ItemsTitle": {
@@ -1226,6 +1226,23 @@
               "width": "15"
             }
           },
+
+          "AddressCityDropDown": {
+            "LabelText": {
+              "Data": "City",
+              "Color": "0xff454545"
+            },
+            "ItemsTitle": {
+              "Data": "api",
+              "Color": "0xffffffff"
+            },
+            "SelectedIcon": {
+              "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/falafel.png",
+              "height": "15",
+              "width": "15"
+            }
+          },
+
           "PrimaryAddress": {
             "Icon": {
               "ActiveIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/star_full.png",
@@ -1272,16 +1289,16 @@
             "Color": "0xff454545"
           },
           "Villa": {
-            "Data": "text data",
+            "Data": "Villa",
             "Color": "0xff454545"
           },
           "Area": {
-            "Data": "text data",
+            "Data": "Area",
             "Color": "0xff454545"
           },
           "AddressTypeDropDown": {
             "LabelText": {
-              "Data": "Address Type",
+              "Data": "Type",
               "Color": "0xff454545"
             },
             "ItemsTitle": {
@@ -1292,22 +1309,39 @@
               "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/falafel.png",
               "height": "15",
               "width": "15"
-            },
-            "PrimaryAddress": {
-              "Icon": {
-                "ActiveIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/star_full.png",
-                "InactiveImage": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/star_empty.png"
-              },
-              "Title": {
-                "Data": "Primary Address",
-                "Color": "0xffffffff"
-              }
-            },
-            "AddNewAddressButton": {
-              "Data": "Save Address",
-              "Color": "0xffffffff",
-              "BackGroundColor": "0xff648316"
             }
+          },
+
+          "AddressCityDropDown": {
+            "LabelText": {
+              "Data": "City",
+              "Color": "0xff454545"
+            },
+            "ItemsTitle": {
+              "Data": "api",
+              "Color": "0xffffffff"
+            },
+            "SelectedIcon": {
+              "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/falafel.png",
+              "height": "15",
+              "width": "15"
+            }
+          },
+
+          "PrimaryAddress": {
+            "Icon": {
+              "ActiveIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/star_full.png",
+              "InactiveImage": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/star_empty.png"
+            },
+            "Title": {
+              "Data": "Primary Address",
+              "Color": "0xffffffff"
+            }
+          },
+          "AddNewAddressButton": {
+            "Data": "Save Address",
+            "Color": "0xffffffff",
+            "BackGroundColor": "0xff648316"
           }
         }
       }

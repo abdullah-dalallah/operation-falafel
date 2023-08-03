@@ -248,11 +248,11 @@ class _LoyaltyPaymentMethodCheckboxState extends State<LoyaltyPaymentMethodCheck
                                       style: TextStyle(
                                           fontSize: widget.lng?.header2.size.toDouble(),
                                           fontFamily: widget.lng?.header2.textFamily,
-                                          color: Colors.amber),),
+                                          color: Color(int.parse(widget.cartPage!.body.paymentMethods.loyaltyCreditPeymantMethodCheckBox!.selectedPoint!.selectedPriceOfDiscount!.color!))),),
                                   ),
                                 ),
                               ),
-                               Padding(
+                              const  Padding(
                                  padding: const EdgeInsets.only(right: 18.0),
                                  child: SizedBox(
                                    width: 15,
@@ -268,7 +268,7 @@ class _LoyaltyPaymentMethodCheckboxState extends State<LoyaltyPaymentMethodCheck
                                     keyboardType: TextInputType.number,
                                     enabled: true,
                                     autofocus: true,
-                                    style:  TextStyle(color: Colors.white38, fontFamily:getTranslated(context, "fontFamilyBody")!,fontSize: 15),
+                                    style:  TextStyle(color: Color(int.parse(widget.cartPage!.body.paymentMethods.loyaltyCreditPeymantMethodCheckBox!.selectedPoint!.selectedAmountOfPoints!.color!)), fontFamily:getTranslated(context, "fontFamilyBody")!,fontSize: 15),
                                     decoration:  InputDecoration(
 
                                       filled: true,
@@ -385,13 +385,11 @@ class _LoyaltyPaymentMethodCheckboxState extends State<LoyaltyPaymentMethodCheck
                                             width: 10.0),
                                       ),
                                       hintText: '${widget.pointValue} ',
-                                       hintStyle: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38, fontSize: 15),
+                                      hintStyle: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Color(int.parse(widget.cartPage!.body.paymentMethods.loyaltyCreditPeymantMethodCheckBox!.selectedPoint!.selectedAmountOfPoints!.color!)), fontSize: 15),
                                       suffixIcon:   SizedBox(
                                         height: 30,
                                         child: TextButton(
-                                          style: TextButton.styleFrom(
-                                            foregroundColor: Colors.white,
-                                          ),
+                                          style: TextButton.styleFrom(foregroundColor: Colors.white, ),
                                           onPressed: () {
 
                                             Provider.of<SliderProvider>(context, listen: false).onChangePointController(200);
@@ -404,9 +402,9 @@ class _LoyaltyPaymentMethodCheckboxState extends State<LoyaltyPaymentMethodCheck
 
                                         ),
                                       ),
-                                       prefixIcon: Padding(
+                                      prefixIcon: Padding(
                                          padding: const EdgeInsets.only(right: 8.0, top: 14),
-                                         child: MyText("pts:", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38, fontSize: 15),),
+                                         child: MyText("pts:", style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Color(int.parse(widget.cartPage!.body.paymentMethods.loyaltyCreditPeymantMethodCheckBox!.selectedPoint!.selectedAmountOfPoints!.color!)), fontSize: 15),),
                                        ),
                                       // label: MyText(getTranslated(context, "sepecial instructions")!, style: TextStyle(fontFamily:getTranslated(context, "fontFamilyBody")!, color: Colors.white38),),
 

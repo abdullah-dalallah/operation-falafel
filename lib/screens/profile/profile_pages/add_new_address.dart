@@ -180,7 +180,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                               ),
                             ),
 
-                            /// - City --->  Design is missing
+                            /// - City
                             Padding(
                               padding: const EdgeInsets.only(left: 18.0, right: 18, top: 8, bottom: 8),
                               child: DropdownButtonFormField2(
@@ -221,11 +221,11 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                   ),
                                   isExpanded: true,
                                   hint:  MyText(
-                                    "City",
+                                    addNewAddressPage.body.form.addressCityDropDown.labelText.data,
                                     // addNewAddressPage.body.form.addressTypeDropDown.labelText.data,
                                     style: TextStyle(
                                         fontSize: lng?.header3.size.toDouble(),
-                                        color: Color(int.parse(addNewAddressPage.body.form.addressTypeDropDown.labelText.color)),
+                                        color: Color(int.parse(addNewAddressPage.body.form.addressCityDropDown.labelText.color)),
                                         fontFamily: lng?.header3.textFamily
                                     ),
                                   ),
@@ -252,7 +252,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                                     ?
                                                 (selectCityId == addressCityItem[Keys.idKey]) ?
                                                 Image.network(
-                                                  addNewAddressPage.body.form.addressTypeDropDown.selectedIcon.imageIcon,
+                                                  addNewAddressPage.body.form.addressCityDropDown.selectedIcon.imageIcon,
                                                   height: 15, width: 15,)
                                                     : SizedBox(width: 15,)
 
@@ -267,7 +267,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                                   // getTranslated(context, addressItem)!,
                                                   style: TextStyle(
                                                       fontSize: lng?.header2.size.toDouble(),
-                                                      color: Color(int.parse(addNewAddressPage.body.form.addressTypeDropDown.itemsTitle.color)),
+                                                      color: Color(int.parse(addNewAddressPage.body.form.addressCityDropDown.itemsTitle.color)),
                                                       fontFamily: lng?.header2.textFamily
                                                   ),
                                                 ),
@@ -646,7 +646,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                       });
                                     },
                                     child:
-                           Image.network(addNewAddressPage.body.form.addressTypeDropDown.primaryAddress.icon.inactiveImage, height: 40, width: 40,),
+                           Image.network(addNewAddressPage.body.form.primaryAddress.icon.inactiveImage, height: 40, width: 40,),
                                     // Image.asset(
                                     //   "assets/images/star_empty.png", height: 40,
                                     //   width: 40,)
@@ -658,12 +658,12 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                       });
                                     },
                                     child:
-                                    Image.network(addNewAddressPage.body.form.addressTypeDropDown.primaryAddress.icon.activeIcon, height: 40, width: 40,),
+                                    Image.network(addNewAddressPage.body.form.primaryAddress.icon.activeIcon, height: 40, width: 40,),
 
                                 ),
                                 const SizedBox(width: 10,),
                                 MyText(
-                                  addNewAddressPage.body.form.addressTypeDropDown.primaryAddress.title.data,
+                                  addNewAddressPage.body.form.primaryAddress.title.data,
                                   style: TextStyle(
                                       fontFamily: lng?.header3.textFamily,
                                       color: Colors.white,
@@ -720,7 +720,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                         style: ButtonStyle(
                                           backgroundColor:(selectedLocation!=null && selectedPlaceMark!=null)?MaterialStateProperty.all<Color>(Colors.amber):MaterialStateProperty.all<Color>(Colors.grey),
                                           foregroundColor:
-                                          MaterialStateProperty.all<Color>(Color(int.parse(addNewAddressPage.body.form.addressTypeDropDown.addNewAddressButton.backGroundColor))),
+                                          MaterialStateProperty.all<Color>(Color(int.parse(addNewAddressPage.body.form.addNewAddressButton.backGroundColor))),
                                           shape: MaterialStateProperty.all(
                                               RoundedRectangleBorder(
                                                   borderRadius: BorderRadius
@@ -732,10 +732,10 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                           ),
                                         ),
                                         child:MyText(
-                                          addNewAddressPage.body.form.addressTypeDropDown.addNewAddressButton.data,
+                                          addNewAddressPage.body.form.addNewAddressButton.data,
                                           style: TextStyle(
                                               fontFamily: lng?.header3.textFamily,
-                                              color: Color(int.parse(addNewAddressPage.body.form.addressTypeDropDown.addNewAddressButton.color)),
+                                              color: Color(int.parse(addNewAddressPage.body.form.addNewAddressButton.color)),
                                               fontSize: lng?.header3.size.toDouble()
                                           ),
                                         )
@@ -814,7 +814,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                  },
                                  style: ButtonStyle(
                                    backgroundColor: MaterialStateProperty.all<Color>(Colors.amber),
-                                   foregroundColor: MaterialStateProperty.all<Color>(Color(int.parse(addNewAddressPage.body.form.addressTypeDropDown.addNewAddressButton.backGroundColor))),
+                                   foregroundColor: MaterialStateProperty.all<Color>(Color(int.parse(addNewAddressPage.body.form.addNewAddressButton.backGroundColor))),
                                    shape: MaterialStateProperty.all(
                                        RoundedRectangleBorder(
                                            borderRadius: BorderRadius
@@ -829,7 +829,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                    "change",
                                    style: TextStyle(
                                        fontFamily: lng?.header3.textFamily,
-                                       color: Color(int.parse(addNewAddressPage.body.form.addressTypeDropDown.addNewAddressButton.color)),
+                                       color: Color(int.parse(addNewAddressPage.body.form.addNewAddressButton.color)),
                                        fontSize: lng?.header3.size.toDouble()
                                    ),
                                  )

@@ -156,7 +156,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
 
                               ),
                             ),
-                            /// - City --->  Design is missing
+                            /// - City
                             Padding(
                               padding: const EdgeInsets.only(left: 18.0, right: 18, top: 8, bottom: 8),
                               child: DropdownButtonFormField2(
@@ -197,13 +197,11 @@ class _UpdateAddressState extends State<UpdateAddress> {
                                 ),
                                 isExpanded: true,
                                 hint:  MyText(
-                                  "City",
+                                  editAddressPage.body.form.addressCityDropDown.labelText.data,
                                   // addNewAddressPage.body.form.addressTypeDropDown.labelText.data,
                                   style: TextStyle(
                                       fontSize: lng?.header3.size.toDouble(),
-                                      color: Colors.white54,
-                                      // Color(int.parse(addNewAddressPage.body.form.addressTypeDropDown.labelText.color)),
-
+                                      color: Color(int.parse(editAddressPage.body.form.addressCityDropDown.labelText.color)),
                                       fontFamily: lng?.header3.textFamily
                                   ),
                                 ),
@@ -215,9 +213,9 @@ class _UpdateAddressState extends State<UpdateAddress> {
                                 itemHeight: 30,
                                 value: selectCityId,
                                 items: profileProvider.citiesList
-                                    .map((addressTypeItem) =>
+                                    .map((addressCityItem) =>
                                     DropdownMenuItem<dynamic>(
-                                      value: addressTypeItem[Keys.idKey],
+                                      value: addressCityItem[Keys.idKey],
                                       child:
                                       Column(
                                         mainAxisAlignment: MainAxisAlignment.center,
@@ -229,13 +227,10 @@ class _UpdateAddressState extends State<UpdateAddress> {
 
                                               (selectCityId != null)
                                                   ?
-                                              (selectCityId == addressTypeItem[Keys.idKey]) ?
-                                              Image.asset(
-                                                "assets/images/page2_icon.png",
+                                              (selectCityId == addressCityItem[Keys.idKey]) ?
+                                              Image.network(
+                                                editAddressPage.body.form.addressCityDropDown.selectedIcon.imageIcon,
                                                 height: 15, width: 15,)
-                                              // Image.network(
-                                              //   addNewAddressPage.body.form.addressTypeDropDown.selectedIcon.imageIcon,
-                                              //   height: 15, width: 15,)
                                                   : SizedBox(width: 15,)
 
                                                   : SizedBox(width: 15,),
@@ -245,12 +240,11 @@ class _UpdateAddressState extends State<UpdateAddress> {
 
 
                                               MyText(
-                                                addressTypeItem[Keys.nameKey],
+                                                addressCityItem[Keys.nameKey],
                                                 // getTranslated(context, addressItem)!,
                                                 style: TextStyle(
                                                     fontSize: lng?.header2.size.toDouble(),
-                                                    color: Colors.white54,
-                                                    // Color(int.parse(addNewAddressPage.body.form.addressTypeDropDown.itemsTitle.color)),
+                                                    color: Color(int.parse(editAddressPage.body.form.addressCityDropDown.itemsTitle.color)),
                                                     fontFamily: lng?.header2.textFamily
                                                 ),
                                               ),
