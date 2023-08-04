@@ -1,9 +1,11 @@
+import 'dart:io';
 import 'dart:ui';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mime/mime.dart';
 import 'package:operation_falafel/data/keys.dart';
 import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/data/my_text_form_field.dart';
@@ -35,6 +37,7 @@ import '../../models/AppThemeModels/DesignPerPage/ProfilePage/profile_page.dart'
 import '../../models/AppThemeModels/FontSizes/Language/lang.dart';
 import '../../providers/AppTheme/theme_provider.dart';
 import '../../providers/AuthProvider/auth_provider.dart';
+import 'package:image_picker/image_picker.dart';
 
 class LoggedInUserProfile extends StatefulWidget{
   final ValueChanged onChanged;
@@ -410,10 +413,19 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                   bottomRight: Radius.circular(100),
 
                                                 ),
-                                                child: Image.asset(
-                                                  "assets/images/tempuser.gif", height: 100,
-                                                  width: 100,
-                                                  fit: BoxFit.cover,)),
+                                                child:
+
+                                                   (imageFile!=null)? Image(
+                                                     image: FileImage(imageFile!),
+                                                     height: 100,
+                                                     width: 100,
+                                                     fit: BoxFit.cover,
+                                                   ):
+                                                   (profileProvider.userInfoModel !=null)?
+                                                   (profileProvider.userInfoModel!.body!.image !=null)?
+                                                   Image.network(profileProvider.userInfoModel!.body!.image!, height: 100, width: 100, fit: BoxFit.cover,)
+                                                       : Image.asset("assets/images/tempuser.gif", height: 100, width: 100, fit: BoxFit.cover,)
+                                                       : Image.asset("assets/images/tempuser.gif", height: 100, width: 100, fit: BoxFit.cover,)),
                                           ),
                                           Positioned(
                                             child: SizedBox(
@@ -423,6 +435,7 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                               child: ElevatedButton(
                                                   onPressed: () {
 
+                                                    showEditProfilePicDialog( context,profilePage ,  lng!  );
                                                   },
                                                   style: ButtonStyle(
                                                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -442,8 +455,18 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
                                                       foregroundColor: MaterialStateProperty.all(Colors.white),
                                                       padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
                                                       textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
-                                                  child:
+                                                  child:(uploadingImageLoading==true)?
+                                                  const  SizedBox(
+                                                    height: 20,
+                                                    width: 20,
+                                                    child: CircularProgressIndicator(
+                                                      color: Colors.amber,
+                                                      strokeWidth: 2,
+                                                    ),
+                                                  ):
                                                   Image.network(profilePage?.body.avatarImage.editButton.imageIcon as String)
+
+
                                                 // ImageIcon(NetworkImage(profilePage?.body.avatarImage.editButton.imageIcon as String)  )
                                                 // const Icon(
                                                 //   Icons.mode_edit_outline_outlined,
@@ -3061,5 +3084,220 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
       },
     );
   }
+
+
+   File? imageFile;
+  bool uploadingImageLoading=false;
+  Future<void> pickImage() async {
+    try {
+      final picker = ImagePicker();
+      final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+      //getImage(source: ImageSource.gallery);
+
+      if (pickedFile != null) {
+
+        // imageFile = File(pickedFile.path);
+
+        File selectedImage = File(pickedFile.path);
+        List<String> acceptedMimeTypes = ['image/png', 'image/jpeg', 'image/gif'];
+        String mimeType = await selectedImage.readAsBytes().then((bytes) {
+          return lookupMimeType(selectedImage.path, headerBytes: bytes)!;
+        });
+
+        if (acceptedMimeTypes.contains(mimeType)) {
+          setState(() {
+            uploadingImageLoading =true;
+            imageFile = selectedImage;
+          });
+          print(mimeType);
+          String userToken  =  Provider.of<AuthProvider>(context, listen: false).loggedInUser!.token!;
+          Provider.of<ProfileProvider>(context, listen: false).uploadImageFile(userToken: userToken, imageFile: imageFile!).then((res) {
+            if(res.statusCode ==200){
+              SnackbarGenerator(context).snackBarGeneratorToast("${res.data[Keys.bodyKey]}",);
+            }else{
+              SnackbarGenerator(context).snackBarGeneratorToast("Upload error: ${res}",);
+            }
+            setState(() {
+              uploadingImageLoading =false;
+
+            });
+          });
+        } else {
+          SnackbarGenerator(context).snackBarGeneratorToast("Invalid image format. Please select an image in PNG, JPEG, or GIF format.",);
+          print('Invalid image format. Please select an image in PNG, JPEG, or GIF format.');
+        }
+
+
+
+
+        // Do something with the selected image file
+      } else {
+        print('No image selected.');
+      }
+    } catch (e) {
+      print('Error picking image: $e');
+    }
+  }
+  void showEditProfilePicDialog(BuildContext context,ProfilePage profilePage , Language lng,  ) {
+    showGeneralDialog(
+      context: context,
+      barrierLabel: "Barrier",
+      barrierDismissible: true,
+      barrierColor: Colors.black.withOpacity(0.5),
+      transitionDuration: Duration(milliseconds: 500),
+      pageBuilder: (context, __, ___) {
+        return Center(
+          child: Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                    height: 190,
+                    constraints:const BoxConstraints(maxWidth: 450, ),
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    padding:const EdgeInsets.all(8),
+                    decoration: BoxDecoration(color: Colors.black54, borderRadius: BorderRadius.circular(40)),
+                    child: Scaffold(
+                      backgroundColor: Colors.transparent,
+
+                      body:Center(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children:  [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Align(child:MyText("Are you sure you want to Edit your profile picture?",
+                                style: TextStyle(
+                                  fontFamily: "${lng.titleHeader2.textFamily}",
+                                  color: Colors.white,
+                                  fontSize: lng?.titleHeader1.size.toDouble(),
+
+                                ),),),
+                            ),
+
+
+                            const SizedBox(height: 10,),
+
+
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: ElevatedButton(
+
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                        pickImage();
+                                      },
+                                      style: ButtonStyle(
+                                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                              const RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius
+                                                      .all(
+                                                      Radius.circular(10)),
+                                                  side: BorderSide(
+                                                      color: Colors
+                                                          .transparent,
+                                                      width: 1)
+                                              )
+                                          ),
+                                          overlayColor: MaterialStateProperty.all(Colors.black12),
+                                          elevation: MaterialStateProperty.all(0),
+                                          shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                          backgroundColor: MaterialStateProperty.all(Colors.amber),
+
+                                          foregroundColor: MaterialStateProperty.all(Colors.black),
+                                          padding: MaterialStateProperty.all(const EdgeInsets.only(top: 10, bottom: 10,right: 10, left: 10)),
+                                          textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 12))),
+                                      child: MyText(
+                                        "Upload Image",
+                                        style:
+
+                                        TextStyle(
+                                          fontFamily: "${lng.titleHeader1.textFamily}",
+                                          color: Colors.white,
+                                          fontSize: lng?.header5.size.toDouble(),
+
+                                        ),
+                                        // TextStyle(
+                                        //   fontFamily: getTranslated(context, "fontFamilyBody")!,
+                                        //   color: Colors.white,
+                                        //   fontWeight: FontWeight.w300,),
+
+
+                                        textAlign: TextAlign.center,),
+
+
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+
+
+
+                          ],
+
+                        ),
+                      ),
+                    )
+                ),
+              ),
+              Positioned(
+                top: 1,
+                right: 20,
+                child:  SizedBox(
+                  width:40,
+                  height:40,
+
+                  child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+
+                      },
+                      style: ButtonStyle(
+                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(100)),
+                                  side: BorderSide(color: Colors.transparent,width: 1)
+                              )
+                          ),
+                          overlayColor: MaterialStateProperty.all(Colors.white30),
+                          elevation:MaterialStateProperty.all(0),
+                          shadowColor: MaterialStateProperty.all(Colors.transparent),
+                          backgroundColor: MaterialStateProperty.all(Colors.black),
+                          foregroundColor: MaterialStateProperty.all(Colors.white),
+                          padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
+                          textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 30))),
+                      child: const Icon(Icons.close, color: Colors.white,)
+                  ),
+                ),),
+            ],
+          ),
+
+        );
+      },
+      transitionBuilder: (_, anim, __, child) {
+        Tween<Offset> tween;
+        if (anim.status == AnimationStatus.reverse) {
+          tween = Tween(begin: Offset(-1, 0), end: Offset.zero);
+        }
+        else {
+          tween = Tween(begin: Offset(1, 0), end: Offset.zero);
+        }
+
+        return SlideTransition(
+          position: tween.animate(anim),
+          child: FadeTransition(
+            opacity: anim,
+            child: child,
+          ),
+        );
+      },
+    );
+  }
+
+
 
 }

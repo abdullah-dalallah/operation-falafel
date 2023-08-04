@@ -10,6 +10,7 @@ import 'package:operation_falafel/data/snackBarGenerator.dart';
 import 'package:operation_falafel/data/strings.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
+import 'package:operation_falafel/providers/ProfileProviders/profile_provider.dart';
 import 'package:operation_falafel/widgets/checkbox_option.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:operation_falafel/widgets/register_checkbox.dart';
@@ -1706,6 +1707,7 @@ class _RegisterState extends State<Register> {
         ).then((res) {
           if(res.statusCode==200){
             SnackbarGenerator(context).snackBarGeneratorToast("Registration Successful!",);
+            Provider.of<ProfileProvider>(context, listen: false).getUserInfo(res.data[Keys.bodyKey][Keys.tokenKey],);
             Provider.of<AuthProvider>(context, listen: false).verifyingUserByRequestingOTP(
                 userToken: Provider.of<AuthProvider>(context, listen: false).loggedInUser!.token!
             ).then((res) {

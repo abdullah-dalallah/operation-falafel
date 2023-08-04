@@ -10,6 +10,7 @@ class Keys {
   static const emailKey = "email";
   static const passwordKey = "password";
   static const acceptKey = "Accept";
+  static const contentTypeKey = "Content-Type";
   static const otpKey = "otp";
 
   static const bodyKey = "body";

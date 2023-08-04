@@ -29,7 +29,7 @@ class SavedAddressListWidget extends StatefulWidget{
 
 class _SavedAddressListWidgetState extends State<SavedAddressListWidget> {
 
-  void showLogOutDialog(BuildContext context,SavedAddressPage savedAddressPage , Language lng,SavedAddressItem savedAddressItem  ) {
+  void showDeleteAddressDialog(BuildContext context,SavedAddressPage savedAddressPage , Language lng,SavedAddressItem savedAddressItem  ) {
     showGeneralDialog(
       context: context,
       barrierLabel: "Barrier",
@@ -317,7 +317,7 @@ class _SavedAddressListWidgetState extends State<SavedAddressListWidget> {
                             IconButton(
                                 onPressed: () {
 
-                                  showLogOutDialog( context, widget!.savedAddressPage! , widget.lng!, profileProvider.savedAddressList.savedAddressItem![index]);
+                                  showDeleteAddressDialog( context, widget!.savedAddressPage! , widget.lng!, profileProvider.savedAddressList.savedAddressItem![index]);
                                   
                                   
                                 

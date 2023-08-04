@@ -5,6 +5,7 @@ import 'package:operation_falafel/main.dart';
 import 'package:operation_falafel/providers/settings_provider/setting_provider.dart';
 import 'package:operation_falafel/widgets/Setting%20sheet/language_radio_option.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
+import 'package:operation_falafel/widgets/loading_widget.dart';
 import 'package:provider/provider.dart';
 
 class ListOfLanguages extends StatefulWidget{
@@ -72,7 +73,7 @@ class _ListOfLanguagesState extends State<ListOfLanguages> {
                }
            ),
          )
-        :LoadingPage()
+        :LoadingWidget()
         ;
        }
      );

@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:mime/mime.dart';
 import 'package:operation_falafel/providers/ProfileProviders/models/Saved%20cards/card_item.dart';
 import 'package:operation_falafel/providers/ProfileProviders/models/saved_address_list_res_model.dart';
 import 'package:operation_falafel/providers/ProfileProviders/models/user_info_model.dart';
@@ -9,7 +11,9 @@ import 'package:intl/intl.dart';
 import '../../data/keys.dart';
 import '../../data/strings.dart';
 import 'models/Saved cards/saved_cards.dart';
-
+import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
 
 class ProfileProvider with ChangeNotifier {
 
@@ -282,17 +286,17 @@ class ProfileProvider with ChangeNotifier {
   UserInfoModel? _userInfoModel ;
   UserInfoModel? get userInfoModel => _userInfoModel;
 
-  Future<Response<dynamic>> getUserInfo(String userToken,String email, String password) async {
+  Future<Response<dynamic>> getUserInfo(String userToken,) async {
     print("getting user info Saved from Online Server...");
     var url = '${Strings.baseAppAuthUrl}user';
     print(url);
     Map<String, String> header = <String, String>{};
     header.putIfAbsent(Keys.acceptKey, () => "application/json");
     header.putIfAbsent(Keys.x_of_awjKey, () => "${userToken}");
-    header.putIfAbsent(Keys.authorizationKey, () => "Bearer " + userToken!);
+    // header.putIfAbsent(Keys.authorizationKey, () => "Bearer " + userToken!);
     Map<String, String> body = <String, String>{};
-    body.putIfAbsent(Keys.emailKey, () => email);
-    body.putIfAbsent(Keys.passwordKey, () => password);
+    // body.putIfAbsent(Keys.emailKey, () => email);
+    // body.putIfAbsent(Keys.passwordKey, () => password);
 
 
 
@@ -409,6 +413,100 @@ class ProfileProvider with ChangeNotifier {
     }
   }
 
+
+
+  Future<FormData> createFormData(File imageFile) async {
+    String fileName = imageFile.path.split('/').last;
+    return FormData.fromMap({
+      'image': await MultipartFile.fromFile('${imageFile.path}',filename: '${fileName}'),
+    });
+  }
+
+  Future<void> uploadProfileImage({required String userToken,required File imageFile}) async {
+    String url = '${Strings.baseAppAuthUrl}user/user-image'; // Replace with your server URL
+
+    Map<String, String> header = <String, String>{};
+    // header.putIfAbsent(Keys.acceptKey, () => "*/*");
+    header.putIfAbsent(Keys.contentTypeKey, () => "multipart/form-data");
+    header.putIfAbsent(Keys.x_of_awjKey, () => "${userToken}");
+    // header.putIfAbsent(Keys.authorizationKey, () => "Bearer " + userToken!);
+
+    String fileName = imageFile.path.split('/').last;
+    print(imageFile.path);
+    FormData formData = FormData.fromMap({
+      "image": await MultipartFile.fromFile(imageFile.path,filename: fileName),//filename: fileName
+
+    });
+
+
+   print(formData.files[0].value.filename);
+    Dio dio = Dio();
+    try {
+      Response response = await dio.put(url, data:formData, options:Options(headers: header) );
+          print(response.data);
+          print(response.statusCode);
+      if (response.statusCode == 200) {
+        print('Image uploaded successfully');
+        print('Server response: ${response.data}');
+      } else {
+        print('Image upload failed');
+      }
+    }on DioError catch (e) {
+      print(e.response);
+      print('Error uploading image: $e');
+    }
+  }
+  Future<void> uploadImage({required String userToken,required File imageFile}) async {
+    String url = '${Strings.baseAppAuthUrl}user/user-image'; // Replace with your server URL
+
+    try {
+      String fileName = imageFile.path.split('/').last;
+      var request = http.MultipartRequest('PUT', Uri.parse(url));
+      request.headers[Keys.x_of_awjKey] = '$userToken'; // Set the auth token in the header
+      request.files.add(
+        await http.MultipartFile.fromPath('image', imageFile.path, filename: fileName),
+      );
+
+      var response = await request.send();
+      if (response.statusCode == 200) {
+        print('Image uploaded successfully');
+        print('Server response: ${await response.stream.bytesToString()}');
+      } else {
+        print(await response.stream.bytesToString());
+        print('Image upload failed with status ${response.statusCode}');
+      }
+    } catch (e) {
+      // print(e);
+      print('Error uploading image: $e');
+    }
+  }
+  Future<Response<dynamic>> uploadImageFile({required String userToken,required File imageFile}) async {
+    try {
+      String url = '${Strings.baseAppAuthUrl}user/user-image'; // Replace with your server URL
+      List<int> fileBytes = await imageFile.readAsBytes();
+      String mimeType = lookupMimeType(imageFile.path) ?? 'image/jpeg'; // Replace 'image/jpeg' with the default MIME type for your file type.
+      String fileName = imageFile.path.split('/').last; // Extract the file name from the path
+
+      FormData formData = FormData.fromMap({
+        'image': MultipartFile.fromBytes(fileBytes, filename: fileName,contentType: MediaType.parse(mimeType) ),//contentType: MediaType.parse(mimeType)
+      });
+
+      Dio dio = Dio();
+
+      // Set the Bearer token in the request header
+      dio.options.headers[Keys.x_of_awjKey] = '$userToken';
+
+      Response response = await dio.put(url, data: formData);
+
+      // Handle the server response as needed
+      print('Upload response: ${response.data}');
+      return response;
+    } on DioError catch (e) {
+      // Handle upload error
+      print('Upload error: $e');
+      return e.response!;
+    }
+  }
 
   /// - User Credit Cards
   SavedCards? _savedCards ;

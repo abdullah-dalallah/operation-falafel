@@ -51,7 +51,7 @@ class _VerifyUserByOtpWidgetState extends State<VerifyUserByOtpWidget> {
           print('OTP Verified!');
 
           if(widget.verifyPurpose == Strings.registrationPurpose) {
-            Provider.of<ProfileProvider>(context, listen: false).getUserInfo(authProvider.loggedInUser!.token!, authProvider!.email!, authProvider!.password!).then((res){
+            Provider.of<ProfileProvider>(context, listen: false).getUserInfo(authProvider.loggedInUser!.token!, ).then((res){
             if(res.statusCode==200) {
               SnackbarGenerator(context).snackBarGeneratorToast("User Verified successfully",);
               Navigator.pop(context);
@@ -114,7 +114,7 @@ class _VerifyUserByOtpWidgetState extends State<VerifyUserByOtpWidget> {
                 fontSize: double.parse(getTranslated(context, "cartpageHeader3")!),
                 fontWeight: FontWeight.w300), textAlign: TextAlign.center,),
             const SizedBox(height: 20,),
-            MyText("${widget.statusString}", style: TextStyle(
+            if(widget.statusString!=null) MyText("${widget.statusString}", style: TextStyle(
                 fontFamily: getTranslated(context, "fontFamilyBody"),
                 color:  Colors.amber,
                 fontSize: double.parse(getTranslated(context, "cartpageHeader3")!),

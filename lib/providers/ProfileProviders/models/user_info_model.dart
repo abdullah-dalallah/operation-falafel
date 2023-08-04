@@ -36,6 +36,7 @@ class Body {
   String? name;
   String? email;
   String? mobile;
+  String? image;
   DateTime? dateOfBirth;
   String? gender;
   int? verified;
@@ -45,6 +46,7 @@ class Body {
     this.name,
     this.email,
     this.mobile,
+    this.image,
     this.dateOfBirth,
     this.gender,
     this.verified,
@@ -55,6 +57,7 @@ class Body {
     name: json["name"],
     email: json["email"],
     mobile: json["mobile"],
+    image: json["image"],
     dateOfBirth: json["dateOfBirth"] == null ? null : DateTime.parse(json["dateOfBirth"]),
     gender: json["gender"],
     verified: json["verified"],
@@ -65,6 +68,7 @@ class Body {
     "name": name,
     "email": email,
     "mobile": mobile,
+    "image": image,
     "dateOfBirth": "${dateOfBirth!.year.toString().padLeft(4, '0')}-${dateOfBirth!.month.toString().padLeft(2, '0')}-${dateOfBirth!.day.toString().padLeft(2, '0')}",
     "gender": gender,
     "verified": verified,

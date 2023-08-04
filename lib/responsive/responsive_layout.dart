@@ -123,14 +123,14 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
                String email =  Provider.of<AuthProvider>(context, listen: false).email!;
                String password =  Provider.of<AuthProvider>(context, listen: false).password!;
                String userToken =  Provider.of<AuthProvider>(context, listen: false).loggedInUser!.token!;
-               Provider.of<ProfileProvider>(context,listen: false).getUserInfo(userToken, email, password);
+               Provider.of<ProfileProvider>(context,listen: false).getUserInfo(userToken, );
                Provider.of<ProfileProvider>(context,listen: false).getUserSavedAddress(userToken);
              });
            }
            else{
              String email =  Provider.of<AuthProvider>(context, listen: false).email!;
              String password =  Provider.of<AuthProvider>(context, listen: false).password!;
-             Provider.of<ProfileProvider>(context,listen: false).getUserInfo(loggedInUser.token!, email, password);
+             Provider.of<ProfileProvider>(context,listen: false).getUserInfo(loggedInUser.token!, );
 
              Provider.of<ProfileProvider>(context,listen: false).getUserSavedAddress(loggedInUser.token!);
            }

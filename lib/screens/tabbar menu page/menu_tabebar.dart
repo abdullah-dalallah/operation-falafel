@@ -210,7 +210,7 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                             labelColor: Colors.black,
                             indicatorColor: Colors.transparent,
                             unselectedLabelColor: Colors.grey.shade300,
-
+                            onTap:  (value){ print(value);},
                             controller: _cardController,
                             isScrollable: true,
                             tabs: const[

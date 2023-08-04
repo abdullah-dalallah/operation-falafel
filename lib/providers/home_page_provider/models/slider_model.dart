@@ -13,9 +13,8 @@ class SliderItem {
   String? image;
   int? status;
   int? isDeleted;
-  int? createdBy;
-  DateTime? createdAt;
-  DateTime? updatedAt;
+  String? target;
+  String? destination;
   String? imageUrl;
 
   SliderItem({
@@ -23,9 +22,9 @@ class SliderItem {
     this.image,
     this.status,
     this.isDeleted,
-    this.createdBy,
-    this.createdAt,
-    this.updatedAt,
+
+    this.target,
+    this.destination,
     this.imageUrl,
   });
 
@@ -34,9 +33,9 @@ class SliderItem {
     image: json["image"],
     status: json["status"],
     isDeleted: json["is_deleted"],
-    createdBy: json["createdBy"],
-    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
+
+    destination: json["destination"],
+    target: json["target"] ,
     imageUrl: json["imageUrl"],
   );
 
@@ -45,9 +44,8 @@ class SliderItem {
     "image": image,
     "status": status,
     "is_deleted": isDeleted,
-    "createdBy": createdBy,
-    "createdAt": createdAt?.toIso8601String(),
-    "updatedAt": updatedAt?.toIso8601String(),
+    "target": target,
+    "destination": destination,
     "imageUrl": imageUrl,
   };
 }

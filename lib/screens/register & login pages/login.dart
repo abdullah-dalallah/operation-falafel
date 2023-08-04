@@ -479,7 +479,7 @@ class _LoginState extends State<Login> {
                                                 Provider.of<AuthProvider>(context, listen: false).userLogin(_controllerEmail.text,_controllerPassword.text).then((response) {
                                                   if(response.statusCode==200){
                                                     String userToken =  Provider.of<AuthProvider>(context, listen: false).loggedInUser!.token!;
-                                                    Provider.of<ProfileProvider>(context, listen: false).getUserInfo(userToken, _controllerEmail.text, _controllerPassword.text).then((res){
+                                                    Provider.of<ProfileProvider>(context, listen: false).getUserInfo(userToken,).then((res){
                                                     if(response.statusCode==200) {
                                                       SnackbarGenerator(context).snackBarGeneratorToast("User Logged in successfully",);
                                                       Navigator.pop(context);
