@@ -92,7 +92,7 @@ class _TransferCreditState extends State<TransferCredit> {
                                 // flex: 2,
                                   child:
                                   Padding(
-                                    padding: const EdgeInsets.all(38.0),
+                                    padding: const EdgeInsets.all(30.0),
                                     child:
                                     MyText(
                                       loyaltyTransferCreditPage.body.pageTitle.data,
@@ -116,7 +116,7 @@ class _TransferCreditState extends State<TransferCredit> {
 
 
                               Expanded(
-                                flex: 1,
+                                // flex: 1,
                                 child:
                                 Image.network(loyaltyTransferCreditPage.body.pageImage, height: 170, width: 170,)
                                 // Image.asset("assets/images/transfer_image.png", height: 170, width: 170,)

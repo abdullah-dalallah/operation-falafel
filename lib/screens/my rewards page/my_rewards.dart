@@ -400,7 +400,7 @@ class _MyRewardsState extends State<MyRewards> {
                                             fontFamily: lng?.header3.textFamily,
                                             color: Color(int.parse(loyaltyPage.body.buttons.howItWorks.color)),
                                             fontSize: lng?.header3.size.toDouble(),
-                                            fontWeight: FontWeight.w300),),
+                                            fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
                                       // MyText(
                                       //   getTranslated(context, "howItworks")!,
                                       //   style: TextStyle(
@@ -464,7 +464,7 @@ class _MyRewardsState extends State<MyRewards> {
                                             fontFamily: lng?.header3.textFamily,
                                             color: Color(int.parse(loyaltyPage.body.buttons.myRewards.color)),
                                             fontSize: lng?.header3.size.toDouble(),
-                                            fontWeight: FontWeight.w300),),
+                                            fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
                                     ),
                                   ),
                                 ),
@@ -518,7 +518,7 @@ class _MyRewardsState extends State<MyRewards> {
                                             fontFamily: lng?.header3.textFamily,
                                             color: Color(int.parse(loyaltyPage.body.buttons.referFriend.color)),
                                             fontSize: lng?.header3.size.toDouble(),
-                                            fontWeight: FontWeight.w300),),
+                                            fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
                                     ),
                                   ),
                                 ),
@@ -578,7 +578,7 @@ class _MyRewardsState extends State<MyRewards> {
                                             fontFamily: lng?.header3.textFamily,
                                             color: Color(int.parse(loyaltyPage.body.buttons.transferCredits.color)),
                                             fontSize: lng?.header3.size.toDouble(),
-                                            fontWeight: FontWeight.w300),),
+                                            fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
 
                                       // MyText(getTranslated(
                                       //     context, "transferCredits")!,
@@ -643,7 +643,7 @@ class _MyRewardsState extends State<MyRewards> {
                                             fontFamily: lng?.header3.textFamily,
                                             color: Color(int.parse(loyaltyPage.body.buttons.creditCalculator.color)),
                                             fontSize: lng?.header3.size.toDouble(),
-                                            fontWeight: FontWeight.w300),),
+                                            fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
                                     ),
                                   ),
                                 ),
@@ -701,7 +701,7 @@ class _MyRewardsState extends State<MyRewards> {
                                             fontFamily: lng?.header3.textFamily,
                                             color: Color(int.parse(loyaltyPage.body.buttons.history.color)),
                                             fontSize: lng?.header3.size.toDouble(),
-                                            fontWeight: FontWeight.w300),),
+                                            fontWeight: FontWeight.w300),textAlign: TextAlign.center,),
                                     ),
                                   ),
                                 ),

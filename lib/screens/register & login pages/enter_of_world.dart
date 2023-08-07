@@ -39,7 +39,7 @@ class EnterOFWorld extends StatelessWidget{
                                         padding: const EdgeInsets.all(15.0),
                                         child: Image.asset(
                                           "assets/images/of_logo.png",
-                                          height: 280,
+                                          height: 230,
                                           
                                           // fit: BoxFit.cover,
                                         ),
@@ -167,12 +167,13 @@ class EnterOFWorld extends StatelessWidget{
                                   child: MyText(getTranslated(context, "login")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody"),color: Colors.amber, fontWeight: FontWeight.normal, fontSize: 15),textAlign: TextAlign.center,)),
                               GestureDetector(
                                   onTap: (){
-                                    PersistentNavBarNavigator.pushNewScreen(
-                                      context,
-                                      screen: LoggedInUserProfile(layOut: layOut,(value) {onChanged(value);}),
-                                      withNavBar: true, // OPTIONAL VALUE. True by default.
-                                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                    );
+                                    onChanged(0);
+                                    // PersistentNavBarNavigator.pushNewScreen(
+                                    //   context,
+                                    //   screen: LoggedInUserProfile(layOut: layOut,(value) {onChanged(value);}),
+                                    //   withNavBar: true, // OPTIONAL VALUE. True by default.
+                                    //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                    // );
                                   },
                                   child: MyText(getTranslated(context, "regesterLater")!, style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody"),color: Colors.amber, fontWeight: FontWeight.normal, fontSize: 15),textAlign: TextAlign.center,)),
                             ],
