@@ -109,8 +109,8 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
         }
         FlutterNativeSplash.remove();
       }),
-      Provider.of<HomePageProvider>(context, listen: false).getSocialMediaItems(),
-      Provider.of<SettingProvider>(context, listen: false).getLanguages(),
+      // Provider.of<HomePageProvider>(context, listen: false).getSocialMediaItems(),
+      // Provider.of<SettingProvider>(context, listen: false).getLanguages(),
       Provider.of<AuthProvider>(context, listen: false).getSavedUserDetailsLocally().then((loggedInUser) {
         if(loggedInUser !=null){
 

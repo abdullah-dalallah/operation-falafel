@@ -59,8 +59,7 @@ class HomePageProvider with ChangeNotifier{
       var response = await dio.get(url, options: Options(headers: header));// options: Options(headers: header)
 
       if(response.statusCode ==200){
-        _socialMediaItems= (response.data as List).map((i) =>
-            SocialMediaItem.fromJson(i)).toList();
+        _socialMediaItems= (response.data as List).map((i) => SocialMediaItem.fromJson(i)).toList();
 
         print("social-media fetched From Online Server!");
       }
@@ -68,6 +67,7 @@ class HomePageProvider with ChangeNotifier{
       return response;
     } on DioError catch (e) {
       print(e.response);
+
 
       return e.response!;
 

@@ -74,6 +74,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 // private navigators
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -83,428 +84,428 @@ final _shellNavigatorCKey = GlobalKey<NavigatorState>(debugLabel: 'shellC');
 final _shellNavigatorDKey = GlobalKey<NavigatorState>(debugLabel: 'shellD');
 final _shellNavigatorEKey = GlobalKey<NavigatorState>(debugLabel: 'shellE');
 final _shellNavigatorFKey = GlobalKey<NavigatorState>(debugLabel: 'shellF');
-
- GoRouter goRouter = GoRouter(
-
-  initialLocation: '/homePage',
-  // * Passing a navigatorKey causes an issue on hot reload:
-  // * https://github.com/flutter/flutter/issues/113757#issuecomment-1518421380
-  // * However it's still necessary otherwise the navigator pops back to
-  // * root on hot reload
-  navigatorKey: _rootNavigatorKey,
-  debugLogDiagnostics: true,
-  routes: [
-    // Stateful navigation based on:
-    // https://github.com/flutter/packages/blob/main/packages/go_router/example/lib/stateful_shell_route.dart
-    StatefulShellRoute.indexedStack(
-      builder: (context, state, navigationShell) {
-
-        return ScaffoldWithNestedNavigation(navigationShell: navigationShell);
-      },
-      branches: [
-        /// - Home
-        StatefulShellBranch(
-          navigatorKey: _shellNavigatorAKey,
-          routes: [
-            GoRoute(
-              path: "${MainMenu.routeName}",
-              builder: (context, state) {
-
-              return  MainMenu(
-                    layOut: "",(value) {}
-                );
-              },
-
-              routes: [
-                /// - Drawer
-                /// - Locations
-                GoRoute(
-                  path: '${Locations.routeName}',
-                  builder: (context, state) =>  Locations(),
-
-                ),
-                /// - Notification
-                GoRoute(
-                  path: '${Notifications.routeName}',
-                  builder: (context, state) =>  Notifications(),
-                ),
-                /// - Partner
-                GoRoute(
-                  path: '${Partners.routeName}',
-                  builder: (context, state) =>  Partners(),
-                ),
-                /// - FeedBack
-                GoRoute(
-                  path: '${FeedbackPage.routeName}',
-                  builder: (context, state) =>  FeedbackPage(
-                    layOut: "",(value) => {},
-                  ),
-                ),
-                /// - Contact us
-                GoRoute(
-                  path: '${ContactUs.routeName}',
-                  builder: (context, state) =>  ContactUs(
-                    layOut: "",(value) => {},
-                  ),
-                ),
-                /// - Drawer
-
-                /// - Dash Bord -> Transfer credit
-                GoRoute(
-                  path: '${TransferCredit.routeName}',
-                  builder: (context, state) =>  TransferCredit(),
-
-                ),
-
-
-              ],
-            ),
-          ],
-        ),
-        /// - Menu
-        StatefulShellBranch(
-          navigatorKey: _shellNavigatorBKey,
-          routes: [
-
-            GoRoute(
-              path: '${TabeBarMenu.routeName}',
-              builder:(context, state) =>  TabeBarMenu(layOut: "",(value) {}),
-
-              routes: [
-
-                /// - Drawer
-                /// - Locations
-                GoRoute(
-                  path: '${Locations.routeName}',
-                  builder: (context, state) =>  Locations(),
-
-                ),
-                /// - Notification
-                GoRoute(
-                  path: '${Notifications.routeName}',
-                  builder: (context, state) =>  Notifications(),
-                ),
-                /// - Partner
-                GoRoute(
-                  path: '${Partners.routeName}',
-                  builder: (context, state) =>  Partners(),
-                ),
-                /// - FeedBack
-                GoRoute(
-                  path: '${FeedbackPage.routeName}',
-                  builder: (context, state) =>  FeedbackPage(
-                    layOut: "",(value) => {},
-                  ),
-                ),
-                /// - Contact us
-                GoRoute(
-                  path: '${ContactUs.routeName}',
-                  builder: (context, state) =>  ContactUs(
-                    layOut: "",(value) => {},
-                  ),
-                ),
-                /// - Drawer
-
-              ],
-            ),
-
-
-
-          ],
-        ),
-        /// -Cart
-        StatefulShellBranch(
-          navigatorKey: _shellNavigatorCKey,
-          routes: [
-
-            GoRoute(
-              path: '/CartScreen',
-              builder:(context, state) =>  Cart_Screen(layOut: "",(value) {
-
-              }),
-
-              routes: [
-                /// - Drawer
-                /// - Locations
-                GoRoute(
-                  path: '${Locations.routeName}',
-                  builder: (context, state) =>  Locations(),
-
-                ),
-                /// - Notification
-                GoRoute(
-                  path: '${Notifications.routeName}',
-                  builder: (context, state) =>  Notifications(),
-                ),
-                /// - Partner
-                GoRoute(
-                  path: '${Partners.routeName}',
-                  builder: (context, state) =>  Partners(),
-                ),
-                /// - FeedBack
-                GoRoute(
-                  path: '${FeedbackPage.routeName}',
-                  builder: (context, state) =>  FeedbackPage(
-                    layOut: "",(value) => {},
-                  ),
-                ),
-                /// - Contact us
-                GoRoute(
-                  path: '${ContactUs.routeName}',
-                  builder: (context, state) =>  ContactUs(
-                    layOut: "",(value) => {},
-                  ),
-                ),
-                /// - Drawer
-              ],
-            ),
-          ],
-        ),
-        /// - Track order
-        StatefulShellBranch(
-          navigatorKey: _shellNavigatorDKey,
-          routes: [
-
-            GoRoute(
-              path: '/TrackMyOrder',
-              builder:(context, state) =>  TrackMyOrder(layOut: "",(value) {
-
-              }),
-
-              routes: [
-                /// - Drawer
-                /// - Locations
-                GoRoute(
-                  path: '${Locations.routeName}',
-                  builder: (context, state) =>  Locations(),
-
-                ),
-                /// - Notification
-                GoRoute(
-                  path: '${Notifications.routeName}',
-                  builder: (context, state) =>  Notifications(),
-                ),
-                /// - Partner
-                GoRoute(
-                  path: '${Partners.routeName}',
-                  builder: (context, state) =>  Partners(),
-                ),
-                /// - FeedBack
-                GoRoute(
-                  path: '${FeedbackPage.routeName}',
-                  builder: (context, state) =>  FeedbackPage(
-                    layOut: "",(value) => {},
-                  ),
-                ),
-                /// - Contact us
-                GoRoute(
-                  path: '${ContactUs.routeName}',
-                  builder: (context, state) =>  ContactUs(
-                    layOut: "",(value) => {},
-                  ),
-                ),
-                /// - Drawer
-              ],
-            ),
-          ],
-        ),
-        /// - Profile
-        StatefulShellBranch(
-          navigatorKey: _shellNavigatorEKey,
-          routes: [
-            // Shopping Cart
-            GoRoute(
-              path: '/Profile',
-              builder:(context, state) {
-                return
-                  Consumer<AuthProvider>(
-                      builder: (context, authProvider, child)
-                      {
-
-                        if(authProvider.loggedInUser != null ){
-                          return KeyboardVisibilityProvider(child: LoggedInUserProfile(layOut: "", (value) => {},));
-                        }else{
-                          return EnterOFWorld(layOut: "", (value) => {},);
-                        }
-
-
-
-                      });
-
-
-              }  ,
-
-              routes: [
-                /// - Drawer
-                /// - Locations
-                GoRoute(
-                  path: '${Locations.routeName}',
-                  builder: (context, state) =>  Locations(),
-
-                ),
-                /// - Notification
-                GoRoute(
-                  path: '${Notifications.routeName}',
-                  builder: (context, state) =>  Notifications(),
-                ),
-                /// - Partner
-                GoRoute(
-                  path: '${Partners.routeName}',
-                  builder: (context, state) =>  Partners(),
-                ),
-                /// - FeedBack
-                GoRoute(
-                  path: '${FeedbackPage.routeName}',
-                  builder: (context, state) =>  FeedbackPage(
-                    layOut: "",(value) => {},
-                  ),
-                ),
-                /// - Contact us
-                GoRoute(
-                  path: '${ContactUs.routeName}',
-                  builder: (context, state) =>  ContactUs(
-                    layOut: "",(value) => {},
-                  ),
-                ),
-                /// - Drawer
-
-                /// - My Rewards
-                GoRoute(
-                    path: MyRewards.routeName,
-                    builder: (context, state) =>  const KeyboardVisibilityProvider(
-                      child: MyRewards(
-                        layOut: "",
-                      ),
-                    ),
-                    routes: [
-                      GoRoute(
-                        path: '${TransferCredit.routeName}',
-                        builder: (context, state) =>  TransferCredit(),
-
-                      ),
-                      GoRoute(
-                        path: '${HowItWorks.routeName}',
-                        builder: (context, state) =>  HowItWorks(),
-
-                      ),
-                      GoRoute(
-                        path: '${CreditCalculator.routeName}',
-                        builder: (context, state) =>  CreditCalculator(),
-
-                      ),
-                      GoRoute(
-                        path: '${RewardsHistory.routeName}',
-                        builder: (context, state) =>  RewardsHistory(),
-
-                      ),
-                      GoRoute(
-                          path: '${MyGifts.routeName}',
-                          builder: (context, state) =>  MyGifts(),
-                          routes: [
-                            GoRoute(
-                                path: '${MyGiftsList.routeName}',
-                                builder: (context, state) =>  MyGiftsList(),
-                                routes: [
-                                  GoRoute(
-                                      name: '${GiftDetails.routeName}',
-                                      path: '${GiftDetails.routeName}',
-                                      builder: (context, state) {
-                                        // final Gift? myObject = state.extra as Gift?;
-                                        final Gift? myObject =Gift.fromJson(state.extra as Map<String, dynamic>)  ;
-                                        return  GiftDetails(giftDetails: myObject);
-                                      },
-                                      routes: [
-                                        GoRoute(
-                                          path: '${GiftFriend.routeName}',
-                                          builder: (context, state) =>  GiftFriend(),
-
-                                        ),
-                                      ]
-
-                                  ),
-                                ]
-                            ),
-                            GoRoute(
-                              path: '${BuyGift.routeName}',
-                              builder: (context, state) =>  BuyGift(),
-
-                            ),
-
-
-                          ]
-                      ),
-
-
-                    ]
-                ),
-
-
-                /// - Saved Address
-                GoRoute(
-                  path: '${SavedAddress.routeName}',
-                  builder: (context, state) =>  SavedAddress(),
-                  routes: [
-                    GoRoute(
-                      path: '${AddNewAddress.routeName}',
-                      builder: (context, state) =>  AddNewAddress(),
-                      routes: [
-                        GoRoute(
-                          path: '${MapPage.routeName}',
-                          builder: (context, state) =>  MapPage(
-                              onAddressSelected: (value) {},
-                              onLocationSelected: (value) {},
-                          ),
-                        ),
-                      ]
-                    ),
-                    GoRoute(
-                      path: '${UpdateAddress.routeName}',
-                      builder: (context, state) =>  UpdateAddress(),
-                    ),
-                  ]
-                ),
-                ///  - Order History
-                GoRoute(
-                  path: '${OrderHistory.routeName}',
-                  builder: (context, state) =>  OrderHistory(),
-                  routes: [
-                    GoRoute(
-                      path: '${OrderDetails.routeName}',
-                      builder: (context, state) =>  OrderDetails(),
-                    ),
-                  ]
-                ),
-                ///  - Saved Cards
-                GoRoute(
-                  path: '${SavedCards.routeName}',
-                  builder: (context, state) =>  SavedCards(),
-                  routes: [
-                    GoRoute(
-                      path: '${AddNewCard.routeName}',
-                      builder: (context, state) =>  AddNewCard(),
-                    ),
-                  ]
-                ),
-                ///  - Help
-                GoRoute(
-                  path: '${HelpPage.routeName}',
-                  builder: (context, state) =>  HelpPage(),
-                ),
-
-
-              ],
-            ),
-          ],
-        )
-
-
-
-
-      ],
-    ),
-  ],
-);
-
+/// - Go router
+//  GoRouter goRouter = GoRouter(
+//
+//   initialLocation: '/homePage',
+//   // * Passing a navigatorKey causes an issue on hot reload:
+//   // * https://github.com/flutter/flutter/issues/113757#issuecomment-1518421380
+//   // * However it's still necessary otherwise the navigator pops back to
+//   // * root on hot reload
+//   navigatorKey: _rootNavigatorKey,
+//   debugLogDiagnostics: true,
+//   routes: [
+//     // Stateful navigation based on:
+//     // https://github.com/flutter/packages/blob/main/packages/go_router/example/lib/stateful_shell_route.dart
+//     StatefulShellRoute.indexedStack(
+//       builder: (context, state, navigationShell) {
+//
+//         return ScaffoldWithNestedNavigation(navigationShell: navigationShell);
+//       },
+//       branches: [
+//         /// - Home
+//         StatefulShellBranch(
+//           navigatorKey: _shellNavigatorAKey,
+//           routes: [
+//             GoRoute(
+//               path: "${MainMenu.routeName}",
+//               builder: (context, state) {
+//
+//               return  MainMenu(
+//                     layOut: "",(value) {}
+//                 );
+//               },
+//
+//               routes: [
+//                 /// - Drawer
+//                 /// - Locations
+//                 GoRoute(
+//                   path: '${Locations.routeName}',
+//                   builder: (context, state) =>  Locations(),
+//
+//                 ),
+//                 /// - Notification
+//                 GoRoute(
+//                   path: '${Notifications.routeName}',
+//                   builder: (context, state) =>  Notifications(),
+//                 ),
+//                 /// - Partner
+//                 GoRoute(
+//                   path: '${Partners.routeName}',
+//                   builder: (context, state) =>  Partners(),
+//                 ),
+//                 /// - FeedBack
+//                 GoRoute(
+//                   path: '${FeedbackPage.routeName}',
+//                   builder: (context, state) =>  FeedbackPage(
+//                     layOut: "",(value) => {},
+//                   ),
+//                 ),
+//                 /// - Contact us
+//                 GoRoute(
+//                   path: '${ContactUs.routeName}',
+//                   builder: (context, state) =>  ContactUs(
+//                     layOut: "",(value) => {},
+//                   ),
+//                 ),
+//                 /// - Drawer
+//
+//                 /// - Dash Bord -> Transfer credit
+//                 GoRoute(
+//                   path: '${TransferCredit.routeName}',
+//                   builder: (context, state) =>  TransferCredit(),
+//
+//                 ),
+//
+//
+//               ],
+//             ),
+//           ],
+//         ),
+//         /// - Menu
+//         StatefulShellBranch(
+//           navigatorKey: _shellNavigatorBKey,
+//           routes: [
+//
+//             GoRoute(
+//               path: '${TabeBarMenu.routeName}',
+//               builder:(context, state) =>  TabeBarMenu(layOut: "",(value) {}),
+//
+//               routes: [
+//
+//                 /// - Drawer
+//                 /// - Locations
+//                 GoRoute(
+//                   path: '${Locations.routeName}',
+//                   builder: (context, state) =>  Locations(),
+//
+//                 ),
+//                 /// - Notification
+//                 GoRoute(
+//                   path: '${Notifications.routeName}',
+//                   builder: (context, state) =>  Notifications(),
+//                 ),
+//                 /// - Partner
+//                 GoRoute(
+//                   path: '${Partners.routeName}',
+//                   builder: (context, state) =>  Partners(),
+//                 ),
+//                 /// - FeedBack
+//                 GoRoute(
+//                   path: '${FeedbackPage.routeName}',
+//                   builder: (context, state) =>  FeedbackPage(
+//                     layOut: "",(value) => {},
+//                   ),
+//                 ),
+//                 /// - Contact us
+//                 GoRoute(
+//                   path: '${ContactUs.routeName}',
+//                   builder: (context, state) =>  ContactUs(
+//                     layOut: "",(value) => {},
+//                   ),
+//                 ),
+//                 /// - Drawer
+//
+//               ],
+//             ),
+//
+//
+//
+//           ],
+//         ),
+//         /// -Cart
+//         StatefulShellBranch(
+//           navigatorKey: _shellNavigatorCKey,
+//           routes: [
+//
+//             GoRoute(
+//               path: '/CartScreen',
+//               builder:(context, state) =>  Cart_Screen(layOut: "",(value) {
+//
+//               }),
+//
+//               routes: [
+//                 /// - Drawer
+//                 /// - Locations
+//                 GoRoute(
+//                   path: '${Locations.routeName}',
+//                   builder: (context, state) =>  Locations(),
+//
+//                 ),
+//                 /// - Notification
+//                 GoRoute(
+//                   path: '${Notifications.routeName}',
+//                   builder: (context, state) =>  Notifications(),
+//                 ),
+//                 /// - Partner
+//                 GoRoute(
+//                   path: '${Partners.routeName}',
+//                   builder: (context, state) =>  Partners(),
+//                 ),
+//                 /// - FeedBack
+//                 GoRoute(
+//                   path: '${FeedbackPage.routeName}',
+//                   builder: (context, state) =>  FeedbackPage(
+//                     layOut: "",(value) => {},
+//                   ),
+//                 ),
+//                 /// - Contact us
+//                 GoRoute(
+//                   path: '${ContactUs.routeName}',
+//                   builder: (context, state) =>  ContactUs(
+//                     layOut: "",(value) => {},
+//                   ),
+//                 ),
+//                 /// - Drawer
+//               ],
+//             ),
+//           ],
+//         ),
+//         /// - Track order
+//         StatefulShellBranch(
+//           navigatorKey: _shellNavigatorDKey,
+//           routes: [
+//
+//             GoRoute(
+//               path: '/TrackMyOrder',
+//               builder:(context, state) =>  TrackMyOrder(layOut: "",(value) {
+//
+//               }),
+//
+//               routes: [
+//                 /// - Drawer
+//                 /// - Locations
+//                 GoRoute(
+//                   path: '${Locations.routeName}',
+//                   builder: (context, state) =>  Locations(),
+//
+//                 ),
+//                 /// - Notification
+//                 GoRoute(
+//                   path: '${Notifications.routeName}',
+//                   builder: (context, state) =>  Notifications(),
+//                 ),
+//                 /// - Partner
+//                 GoRoute(
+//                   path: '${Partners.routeName}',
+//                   builder: (context, state) =>  Partners(),
+//                 ),
+//                 /// - FeedBack
+//                 GoRoute(
+//                   path: '${FeedbackPage.routeName}',
+//                   builder: (context, state) =>  FeedbackPage(
+//                     layOut: "",(value) => {},
+//                   ),
+//                 ),
+//                 /// - Contact us
+//                 GoRoute(
+//                   path: '${ContactUs.routeName}',
+//                   builder: (context, state) =>  ContactUs(
+//                     layOut: "",(value) => {},
+//                   ),
+//                 ),
+//                 /// - Drawer
+//               ],
+//             ),
+//           ],
+//         ),
+//         /// - Profile
+//         StatefulShellBranch(
+//           navigatorKey: _shellNavigatorEKey,
+//           routes: [
+//             // Shopping Cart
+//             GoRoute(
+//               path: '/Profile',
+//               builder:(context, state) {
+//                 return
+//                   Consumer<AuthProvider>(
+//                       builder: (context, authProvider, child)
+//                       {
+//
+//                         if(authProvider.loggedInUser != null ){
+//                           return KeyboardVisibilityProvider(child: LoggedInUserProfile(layOut: "", (value) => {},));
+//                         }else{
+//                           return EnterOFWorld(layOut: "", (value) => {},);
+//                         }
+//
+//
+//
+//                       });
+//
+//
+//               }  ,
+//
+//               routes: [
+//                 /// - Drawer
+//                 /// - Locations
+//                 GoRoute(
+//                   path: '${Locations.routeName}',
+//                   builder: (context, state) =>  Locations(),
+//
+//                 ),
+//                 /// - Notification
+//                 GoRoute(
+//                   path: '${Notifications.routeName}',
+//                   builder: (context, state) =>  Notifications(),
+//                 ),
+//                 /// - Partner
+//                 GoRoute(
+//                   path: '${Partners.routeName}',
+//                   builder: (context, state) =>  Partners(),
+//                 ),
+//                 /// - FeedBack
+//                 GoRoute(
+//                   path: '${FeedbackPage.routeName}',
+//                   builder: (context, state) =>  FeedbackPage(
+//                     layOut: "",(value) => {},
+//                   ),
+//                 ),
+//                 /// - Contact us
+//                 GoRoute(
+//                   path: '${ContactUs.routeName}',
+//                   builder: (context, state) =>  ContactUs(
+//                     layOut: "",(value) => {},
+//                   ),
+//                 ),
+//                 /// - Drawer
+//
+//                 /// - My Rewards
+//                 GoRoute(
+//                     path: MyRewards.routeName,
+//                     builder: (context, state) =>  const KeyboardVisibilityProvider(
+//                       child: MyRewards(
+//                         layOut: "",
+//                       ),
+//                     ),
+//                     routes: [
+//                       GoRoute(
+//                         path: '${TransferCredit.routeName}',
+//                         builder: (context, state) =>  TransferCredit(),
+//
+//                       ),
+//                       GoRoute(
+//                         path: '${HowItWorks.routeName}',
+//                         builder: (context, state) =>  HowItWorks(),
+//
+//                       ),
+//                       GoRoute(
+//                         path: '${CreditCalculator.routeName}',
+//                         builder: (context, state) =>  CreditCalculator(),
+//
+//                       ),
+//                       GoRoute(
+//                         path: '${RewardsHistory.routeName}',
+//                         builder: (context, state) =>  RewardsHistory(),
+//
+//                       ),
+//                       GoRoute(
+//                           path: '${MyGifts.routeName}',
+//                           builder: (context, state) =>  MyGifts(),
+//                           routes: [
+//                             GoRoute(
+//                                 path: '${MyGiftsList.routeName}',
+//                                 builder: (context, state) =>  MyGiftsList(),
+//                                 routes: [
+//                                   GoRoute(
+//                                       name: '${GiftDetails.routeName}',
+//                                       path: '${GiftDetails.routeName}',
+//                                       builder: (context, state) {
+//                                         // final Gift? myObject = state.extra as Gift?;
+//                                         final Gift? myObject =Gift.fromJson(state.extra as Map<String, dynamic>)  ;
+//                                         return  GiftDetails(giftDetails: myObject);
+//                                       },
+//                                       routes: [
+//                                         GoRoute(
+//                                           path: '${GiftFriend.routeName}',
+//                                           builder: (context, state) =>  GiftFriend(),
+//
+//                                         ),
+//                                       ]
+//
+//                                   ),
+//                                 ]
+//                             ),
+//                             GoRoute(
+//                               path: '${BuyGift.routeName}',
+//                               builder: (context, state) =>  BuyGift(),
+//
+//                             ),
+//
+//
+//                           ]
+//                       ),
+//
+//
+//                     ]
+//                 ),
+//
+//
+//                 /// - Saved Address
+//                 GoRoute(
+//                   path: '${SavedAddress.routeName}',
+//                   builder: (context, state) =>  SavedAddress(),
+//                   routes: [
+//                     GoRoute(
+//                       path: '${AddNewAddress.routeName}',
+//                       builder: (context, state) =>  AddNewAddress(),
+//                       routes: [
+//                         GoRoute(
+//                           path: '${MapPage.routeName}',
+//                           builder: (context, state) =>  MapPage(
+//                               onAddressSelected: (value) {},
+//                               onLocationSelected: (value) {},
+//                           ),
+//                         ),
+//                       ]
+//                     ),
+//                     GoRoute(
+//                       path: '${UpdateAddress.routeName}',
+//                       builder: (context, state) =>  UpdateAddress(),
+//                     ),
+//                   ]
+//                 ),
+//                 ///  - Order History
+//                 GoRoute(
+//                   path: '${OrderHistory.routeName}',
+//                   builder: (context, state) =>  OrderHistory(),
+//                   routes: [
+//                     GoRoute(
+//                       path: '${OrderDetails.routeName}',
+//                       builder: (context, state) =>  OrderDetails(),
+//                     ),
+//                   ]
+//                 ),
+//                 ///  - Saved Cards
+//                 GoRoute(
+//                   path: '${SavedCards.routeName}',
+//                   builder: (context, state) =>  SavedCards(),
+//                   routes: [
+//                     GoRoute(
+//                       path: '${AddNewCard.routeName}',
+//                       builder: (context, state) =>  AddNewCard(),
+//                     ),
+//                   ]
+//                 ),
+//                 ///  - Help
+//                 GoRoute(
+//                   path: '${HelpPage.routeName}',
+//                   builder: (context, state) =>  HelpPage(),
+//                 ),
+//
+//
+//               ],
+//             ),
+//           ],
+//         )
+//
+//
+//
+//
+//       ],
+//     ),
+//   ],
+// );
+/// - Go router
 
 
 
@@ -642,20 +643,27 @@ class _MyAppState extends State<MyApp> {
           // routerConfig: _appRoute,
 
           home:
-          (_connectionStatus.name=="none")?
+          (!hasInternet)?
+         (_connectionStatus.name=="none")?//_connectionStatus.name=="none"
           NetworkErrorPage()
-          : KeyboardVisibilityProvider(child: ResponsiveLayout(DesktopScaffold: DesktopScaffold(),MobileScaffold: MobileScaffold(),TabletScaffold: TabletScaffold(), ),),
+         : KeyboardVisibilityProvider(child: ResponsiveLayout(DesktopScaffold: DesktopScaffold(),MobileScaffold: MobileScaffold(),TabletScaffold: TabletScaffold(), ),)
+         : KeyboardVisibilityProvider(child: ResponsiveLayout(DesktopScaffold: DesktopScaffold(),MobileScaffold: MobileScaffold(),TabletScaffold: TabletScaffold(), ),),
           ),
       );
     }
 
   }
 
+  bool hasInternet = false;
+  late StreamSubscription internetSubscription;
   @override
   void initState() {
 
     _connectivitySubscription = _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
-
+    internetSubscription = InternetConnectionChecker().onStatusChange.listen((event) {
+      final hasInternet = event ==InternetConnectionStatus.connected;
+        setState(() =>this.hasInternet= hasInternet);
+    });
   }
 
   ConnectivityResult _connectionStatus = ConnectivityResult.none;
@@ -670,7 +678,7 @@ class _MyAppState extends State<MyApp> {
 
     } else {
       print("no net");
-      SnackbarGenerator(context).snackBarGeneratorToast("Please check your internet connectivity!");
+      // SnackbarGenerator(context).snackBarGeneratorToast("Please check your internet connectivity!");
     }
     print("NetWork Check...${result}");
     setState(() {

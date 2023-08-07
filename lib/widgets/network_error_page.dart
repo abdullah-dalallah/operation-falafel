@@ -7,6 +7,9 @@ import '../data/my_text.dart';
 import '../localization/localization_constants.dart';
 
 class NetworkErrorPage extends StatelessWidget{
+
+   NetworkErrorPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -18,6 +21,7 @@ class NetworkErrorPage extends StatelessWidget{
 
           body:  Center(
             child: Container(
+              padding: EdgeInsets.all(18),
               constraints: BoxConstraints(maxWidth: 450, ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -28,11 +32,14 @@ class NetworkErrorPage extends StatelessWidget{
                     alignment: Alignment.bottomRight,
                     children: [
                       // Image.asset("assets/images/of_logo.png", height: 150,width: 150,),
-                      Image.asset("assets/images/no-internet1.png", ),
+                      Padding(
+                        padding: const EdgeInsets.all(18.0),
+                        child: Image.asset("assets/images/no-internet1.png", ),
+                      ),
                     ],
                   ),
                   SizedBox(height: 10,),
-                  MyText("Oops! Something went wrong", style: TextStyle(fontFamily:"${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontWeight: FontWeight.w300,fontSize: 30 ),textAlign: TextAlign.center,),
+                  MyText("Oops! Something went wrong", style: TextStyle(fontFamily:"${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontWeight: FontWeight.w300,fontSize: 25 ),textAlign: TextAlign.center,),
                   // MyText(getTranslated(context, "weWillBeBack")!, style: TextStyle(fontFamily:"${getTranslated(context, "fontFamilyBody")!}",color: Colors.white, fontWeight: FontWeight.w300,fontSize: 20),),
                   SizedBox(height: 10,),
                   // Padding(
