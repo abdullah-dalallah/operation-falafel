@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:operation_falafel/data/keys.dart';
 import 'package:operation_falafel/data/strings.dart';
 import 'package:operation_falafel/providers/gifts_provider/models/gift.dart';
+import 'package:operation_falafel/providers/gifts_provider/models/gift_for_sale.dart';
 
 class LoyaltyProvider with ChangeNotifier{
 
@@ -43,5 +44,42 @@ class LoyaltyProvider with ChangeNotifier{
     }
   }
 
+  List<GiftForSale>? GiftsForSale ;
+
+  Future<Response<dynamic>> getGiftsCardsForSale({ required String userToken, required String lng, required country}) async {
+
+    var url = '${Strings.baseGiftsUrl}/gifts-categories/for-sale';
+
+    Map<String, String> header = <String, String>{};
+    Map<String, String> data = <String, String>{};
+    header.putIfAbsent(Keys.acceptKey, () => "application/json");
+    header.putIfAbsent(Keys.x_of_awjKey, () => userToken);
+    header.putIfAbsent(Keys.langKey, () => lng);
+    header.putIfAbsent(Keys.countryKey, () => country);
+
+
+
+    var dio = Dio();
+    try {
+      // FormData formData = FormData.fromMap(data);
+      var response = await dio.get(url,options: Options(headers: header));// options: Options(headers: header)
+
+      if(response.statusCode==200){
+
+        GiftsForSale = (response.data as List).map((i) => GiftForSale.fromJson(i)).toList();
+        print(GiftsForSale!.length);
+        print(GiftsForSale![0]!.name);
+        notifyListeners();
+
+      }
+
+
+      return response;
+    } on DioError catch (e) {
+      print(e.response);
+      return e.response!;
+
+    }
+  }
 
 }

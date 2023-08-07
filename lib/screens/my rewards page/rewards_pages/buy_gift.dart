@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:operation_falafel/data/my_text.dart';
 // import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
+import 'package:operation_falafel/providers/gifts_provider/loyalty_provider.dart';
+import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/gift_for_sale_details_page.dart';
 import 'package:operation_falafel/screens/tabbar%20menu%20page/menu_tabebar.dart';
+import 'package:operation_falafel/widgets/background.dart';
 import 'package:operation_falafel/widgets/buy_gift_payment_sheet.dart';
+import 'package:operation_falafel/widgets/cached_image_with_placeholder.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
@@ -33,28 +38,29 @@ class _BuyGiftState extends State<BuyGift> {
   @override
   Widget build(BuildContext context) {
     final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
-    return Consumer<ThemeProvider>(builder: (context, appTheme, child)
+    return Consumer2<ThemeProvider,LoyaltyProvider>(builder: (context, appTheme,loyaltyProvider, child)
     {
       Language? lng = (Localizations.localeOf(context).languageCode == 'ar') ? appTheme.appTheme.fontSizes?.ar : appTheme.appTheme.fontSizes?.en;
       LoyaltyBuyGiftPage? loyaltyBuyGiftPage = appTheme.appTheme.designPerPage?.loyaltyBuyGiftPage;
       bool loadingDesign = loyaltyBuyGiftPage != null;
-
+      bool giftsListLoading = loyaltyProvider.GiftsForSale==null;
 
                     return (loadingDesign)?
                     Stack(
                       children: [
-                        Image.asset(
-                          "assets/images/background.png",
-                          height: MediaQuery
-                              .of(context)
-                              .size
-                              .height,
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width,
-                          fit: BoxFit.cover,
-                        ),
+                        Background(),
+                        // Image.asset(
+                        //   "assets/images/background.png",
+                        //   height: MediaQuery
+                        //       .of(context)
+                        //       .size
+                        //       .height,
+                        //   width: MediaQuery
+                        //       .of(context)
+                        //       .size
+                        //       .width,
+                        //   fit: BoxFit.cover,
+                        // ),
                         Scaffold(
                           key: _drawerKey,
                           backgroundColor: Colors.transparent,
@@ -108,7 +114,9 @@ class _BuyGiftState extends State<BuyGift> {
                                   //   ),),
 
                                   Expanded(
-                                    child: GridView.builder(
+                                    child:
+                                    (!giftsListLoading)?
+                                    GridView.builder(
                                       padding: const EdgeInsets.all(10),
                                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: 2,
@@ -122,6 +130,7 @@ class _BuyGiftState extends State<BuyGift> {
                                             child: Stack(
                                               children: [
                                                 Container(
+
                                                   decoration: BoxDecoration(
                                                     color: Colors.black.withOpacity(0.4),
                                                     borderRadius: const BorderRadius.only(
@@ -136,10 +145,13 @@ class _BuyGiftState extends State<BuyGift> {
                                                       style: BorderStyle.solid,
                                                     ),
                                                   ),
-                                                  child: Image.asset(giftImgs[index],),
+                                                  child: SizedBox(
+                                                      height: 150,
+                                                      width: MediaQuery.of(context).size.width,
+                                                      child: CachedImageWithPlaceholder(loyaltyProvider.GiftsForSale![index].image!, BoxFit.cover))
+                                                  // Image.asset(giftImgs[index],),
 
                                                 ),
-
                                                 Positioned.fill(
                                                     child: Material(
                                                       color: Colors.transparent,
@@ -151,24 +163,12 @@ class _BuyGiftState extends State<BuyGift> {
                                                             .all<Color>(Colors.black54),
 
                                                         onTap: () {
-                                                          showModalBottomSheet(
-                                                            // expand: false,
-                                                              context: context,
-                                                              backgroundColor: Colors
-                                                                  .transparent,
-                                                              builder: (context) =>
-                                                                  DraggableScrollableSheet(
-                                                                      initialChildSize: 0.5,
-                                                                      minChildSize: 0.3,
-                                                                      maxChildSize: 0.6,
-                                                                      expand: true,
-                                                                      builder: (context,
-                                                                          scrollController) {
-                                                                        return BuyGiftPaymentSheet(
-                                                                            scrollController: scrollController);
-                                                                      }
-
-                                                                  )
+                                                          PersistentNavBarNavigator.pushNewScreen(
+                                                            context,
+                                                            screen: GiftForSaleDetailsPage(giftForSale: loyaltyProvider.GiftsForSale![index]),
+                                                            withNavBar: true,
+                                                            // OPTIONAL VALUE. True by default.
+                                                            pageTransitionAnimation: PageTransitionAnimation.cupertino,
                                                           );
                                                         },
                                                       ),
@@ -181,8 +181,9 @@ class _BuyGiftState extends State<BuyGift> {
                                           ),
 
 
-                                      itemCount: giftImgs.length,
-                                    ),
+                                      itemCount: loyaltyProvider.GiftsForSale!.length,
+                                    ):
+                                       LoadingPage(),
                                   )
 
                                 ],
@@ -197,5 +198,16 @@ class _BuyGiftState extends State<BuyGift> {
                     :LoadingPage();
     });
 
+  }
+
+  @override
+  void initState() {
+
+    super.initState();
+
+    if(Provider.of<AuthProvider>(context, listen: false).loggedInUser !=null) {
+      String? userToken =Provider.of<AuthProvider>(context, listen: false).loggedInUser!.token!;
+      Provider.of<LoyaltyProvider>(context, listen: false).getGiftsCardsForSale(userToken: userToken,lng: "en",country: "UAE");
+    }
   }
 }

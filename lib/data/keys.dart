@@ -37,6 +37,7 @@ class Keys {
   static const createdByKey = "createdBy";
   static const languageKey = "language";
   static const langKey = "lang";
+  static const countryKey = "country";
 
 
   /// - Profile -> Address

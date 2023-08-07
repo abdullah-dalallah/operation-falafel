@@ -276,16 +276,16 @@ class _GiftDetailsState extends State<GiftDetails> {
                           ),
                           onPressed: () {
                             // print("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${GiftFriend.routeName}");
-                            context.push("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${GiftFriend.routeName}" );
+                            // context.push("${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${GiftFriend.routeName}" );
 
-                            // PersistentNavBarNavigator.pushNewScreen(
-                            //   context,
-                            //   screen: GiftFriend(),
-                            //   withNavBar: true,
-                            //   // OPTIONAL VALUE. True by default.
-                            //   pageTransitionAnimation: PageTransitionAnimation
-                            //       .cupertino,
-                            // );
+                            PersistentNavBarNavigator.pushNewScreen(
+                              context,
+                              screen: GiftFriend(),
+                              withNavBar: true,
+                              // OPTIONAL VALUE. True by default.
+                              pageTransitionAnimation: PageTransitionAnimation
+                                  .cupertino,
+                            );
                           },
                           child:
                           MyText(
