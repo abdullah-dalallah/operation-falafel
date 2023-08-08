@@ -12,6 +12,7 @@ import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
 import 'package:operation_falafel/providers/contact_provider.dart';
 import 'package:operation_falafel/screens/register%20&%20login%20pages/login.dart';
+import 'package:operation_falafel/widgets/background.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
 
@@ -59,18 +60,7 @@ class _ContactUsState extends State<ContactUs> {
         (loadingDesign)?
         Stack(
         children: [
-          Image.asset(
-            "assets/images/background.png",
-            height: MediaQuery
-                .of(context)
-                .size
-                .height,
-            width: MediaQuery
-                .of(context)
-                .size
-                .width,
-            fit: BoxFit.cover,
-          ),
+          Background(),
           Scaffold(
             backgroundColor: Colors.transparent,
             appBar: AppBar(
@@ -622,6 +612,7 @@ class _ContactUsState extends State<ContactUs> {
                                     child: ElevatedButton(
                                         onPressed:
                                         (){
+
                                           (authProvider.loggedInUser?.token !=null)?
                                           (submitionLoading!=true)? _submitForm() :null:
                                           PersistentNavBarNavigator.pushNewScreen(
@@ -630,10 +621,7 @@ class _ContactUsState extends State<ContactUs> {
                                             withNavBar: true, // OPTIONAL VALUE. True by default.
                                             pageTransitionAnimation: PageTransitionAnimation.cupertino,
                                           );
-                                        }
-
-
-                                        ,
+                                        },
                                         style: ButtonStyle(
                                           backgroundColor: MaterialStateProperty.all<Color>(Color(int.parse(drawerContactUsPage.body.submitButton.backGroundColor))),
                                           foregroundColor:

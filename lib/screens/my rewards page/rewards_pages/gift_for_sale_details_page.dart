@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/Loyalty-GiftDetailsPage/loyalty_gift_detail_page.dart';
+import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/Loyalty-GiftForSaleDetailsPage/loyalty_gift_for_sale_detail_page.dart';
 import 'package:operation_falafel/models/AppThemeModels/FontSizes/Language/lang.dart';
 import 'package:operation_falafel/providers/AppTheme/theme_provider.dart';
 import 'package:operation_falafel/providers/gifts_provider/models/gift_for_sale.dart';
@@ -31,8 +32,8 @@ class _GiftForSaleDetailsPageState extends State<GiftForSaleDetailsPage> {
        return Consumer<ThemeProvider>(builder: (context, appTheme, child)
        {
          Language? lng = (Localizations.localeOf(context).languageCode == 'ar') ? appTheme.appTheme.fontSizes?.ar : appTheme.appTheme.fontSizes?.en;
-         LoyaltyGiftDetailsPage? loyaltyGiftDetailsPage = appTheme.appTheme.designPerPage?.loyaltyGiftDetailsPage;
-         bool loadingDesign = loyaltyGiftDetailsPage != null;
+         LoyaltyGiftForSaleDetailsPage? loyaltyGiftForSaleDetailsPage = appTheme.appTheme.designPerPage?.loyaltyGiftForSaleDetailsPage;
+         bool loadingDesign = loyaltyGiftForSaleDetailsPage != null;
 
          return
            (loadingDesign)?
@@ -50,19 +51,19 @@ class _GiftForSaleDetailsPageState extends State<GiftForSaleDetailsPage> {
                      icon:
                      (Localizations.localeOf(context).languageCode == 'en') ?
                      ImageIcon(
-                       NetworkImage(loyaltyGiftDetailsPage.appBar.backIcon.imageIcon),
-                       size: double.parse(loyaltyGiftDetailsPage?.appBar.backIcon.mobileSize as String),
+                       NetworkImage(loyaltyGiftForSaleDetailsPage.appBar.backIcon.imageIcon),
+                       size: double.parse(loyaltyGiftForSaleDetailsPage?.appBar.backIcon.mobileSize as String),
                      ) :
                      ImageIcon(
-                       NetworkImage(loyaltyGiftDetailsPage.appBar.backIcon.imageIcon),
-                       size: double.parse(loyaltyGiftDetailsPage?.appBar.backIcon.mobileSize as String),
+                       NetworkImage(loyaltyGiftForSaleDetailsPage.appBar.backIcon.imageIcon),
+                       size: double.parse(loyaltyGiftForSaleDetailsPage?.appBar.backIcon.mobileSize as String),
                      ),
                    ),
                    backgroundColor: Colors.transparent,
                    elevation: 0,
                    centerTitle: true,
                    title: MyText(
-                     loyaltyGiftDetailsPage.appBar.title.data,
+                     loyaltyGiftForSaleDetailsPage.appBar.title.data,
                      style: TextStyle(
                          fontFamily: "${lng?.logoTitle.textFamily}",
                          fontWeight: FontWeight.bold),),
@@ -73,16 +74,16 @@ class _GiftForSaleDetailsPageState extends State<GiftForSaleDetailsPage> {
                      constraints: BoxConstraints(maxWidth: 450,),
                      child: Column(
                        children: [
-                         Image.network(loyaltyGiftDetailsPage.body.pageImage, height: 150, width: 150,),
+                         Image.network(loyaltyGiftForSaleDetailsPage.body.pageImage, height: 150, width: 150,),
                          // Image.asset(
                          //   "assets/images/gift.png", height: 150, width: 150,),
 
                          const SizedBox(height: 15,),
                          // MyText(
-                         //   loyaltyGiftDetailsPage.body.pageTitle.data,
+                         //   loyaltyGiftForSaleDetailsPage.body.pageTitle.data,
                          //   style: TextStyle(
                          //       fontFamily: lng?.header5.textFamily,
-                         //       color: Color(int.parse(loyaltyGiftDetailsPage.body.pageTitle.color)),
+                         //       color: Color(int.parse(loyaltyGiftForSaleDetailsPage.body.pageTitle.color)),
                          //       fontSize: lng?.header5.size.toDouble()
                          //   ),),
 
@@ -97,7 +98,7 @@ class _GiftForSaleDetailsPageState extends State<GiftForSaleDetailsPage> {
                            // getTranslated(context, "registrationGift")!,
                            style:  TextStyle(
                                fontFamily: lng?.header5.textFamily,
-                               color: Color(int.parse(loyaltyGiftDetailsPage.body.giftTitle.color)),
+                               color: Color(int.parse(loyaltyGiftForSaleDetailsPage.body.giftTitle.color)),
                                fontSize: lng?.header5.size.toDouble()
                            ),),
                          const SizedBox(height: 25,),
@@ -110,10 +111,10 @@ class _GiftForSaleDetailsPageState extends State<GiftForSaleDetailsPage> {
                          //         Row(
                          //           children: [
                          //             MyText(
-                         //               "${loyaltyGiftDetailsPage.body.voucher.title.data}:",
+                         //               "${loyaltyGiftForSaleDetailsPage.body.voucher.title.data}:",
                          //               style: TextStyle(
                          //                   fontFamily: lng?.header5.textFamily,
-                         //                   color: Color(int.parse(loyaltyGiftDetailsPage.body.voucher.title.color)),
+                         //                   color: Color(int.parse(loyaltyGiftForSaleDetailsPage.body.voucher.title.color)),
                          //                   fontSize: lng?.header5.size.toDouble(),
                          //                   fontWeight: FontWeight.bold),),
                          //             // MyText(
@@ -132,7 +133,7 @@ class _GiftForSaleDetailsPageState extends State<GiftForSaleDetailsPage> {
                          //               "${getTranslated(context, "voucherBody")!}:",
                          //               style: TextStyle(
                          //                   fontFamily: lng?.header3.textFamily,
-                         //                   color: Color(int.parse(loyaltyGiftDetailsPage.body.voucher.subTitle.color)),
+                         //                   color: Color(int.parse(loyaltyGiftForSaleDetailsPage.body.voucher.subTitle.color)),
                          //                   fontSize: lng?.header3.size.toDouble(),
                          //                   fontWeight: FontWeight.bold),)),
                          //       ],
@@ -144,10 +145,10 @@ class _GiftForSaleDetailsPageState extends State<GiftForSaleDetailsPage> {
                            child: Row(
                              children: [
                                MyText(
-                                 "${loyaltyGiftDetailsPage.body.voucher.title.data}:",
+                                 "${loyaltyGiftForSaleDetailsPage.body.voucher.title.data}:",
                                  style: TextStyle(
                                      fontFamily: lng?.header5.textFamily,
-                                     color: Color(int.parse(loyaltyGiftDetailsPage.body.voucher.title.color)),
+                                     color: Color(int.parse(loyaltyGiftForSaleDetailsPage.body.voucher.title.color)),
                                      fontSize: lng?.header5.size.toDouble(),
                                      fontWeight: FontWeight.bold),),
                                // MyText(
@@ -186,7 +187,7 @@ class _GiftForSaleDetailsPageState extends State<GiftForSaleDetailsPage> {
                                                // "${getTranslated(context, "voucherBody")!}",
                                                style: TextStyle(
                                                    fontFamily: lng?.header3.textFamily,
-                                                   color: Color(int.parse(loyaltyGiftDetailsPage.body.voucher.subTitle.color)),
+                                                   color: Color(int.parse(loyaltyGiftForSaleDetailsPage.body.voucher.subTitle.color)),
                                                    fontSize: lng?.header3.size.toDouble(),
                                                    fontWeight: FontWeight.bold),));
                                        }
@@ -205,7 +206,7 @@ class _GiftForSaleDetailsPageState extends State<GiftForSaleDetailsPage> {
                                      getTranslated(context, "emptyGiftConditions")!,
                                      style: TextStyle(
                                          fontFamily: lng?.header3.textFamily,
-                                         color: Color(int.parse(loyaltyGiftDetailsPage.body.voucher.subTitle.color)),
+                                         color: Color(int.parse(loyaltyGiftForSaleDetailsPage.body.voucher.subTitle.color)),
                                          fontSize: lng?.header3.size.toDouble(),
                                          fontWeight: FontWeight.bold),
                                    ),
@@ -241,10 +242,10 @@ class _GiftForSaleDetailsPageState extends State<GiftForSaleDetailsPage> {
 
                                          )
                                  );
-                                 // showRedeemDialog( context, loyaltyGiftDetailsPage!, lng!);
+                                 // showRedeemDialog( context, loyaltyGiftForSaleDetailsPage!, lng!);
                                },
                                style: ButtonStyle(
-                                 backgroundColor: MaterialStateProperty.all<Color>(Color(int.parse(loyaltyGiftDetailsPage.body.redeemButton.backGroundColor))),
+                                 backgroundColor: MaterialStateProperty.all<Color>(Color(int.parse(loyaltyGiftForSaleDetailsPage.body.buyButton.backGroundColor))),
                                  foregroundColor:
                                  MaterialStateProperty.all<Color>(Colors.black),
                                  shape: MaterialStateProperty.all(
@@ -259,10 +260,10 @@ class _GiftForSaleDetailsPageState extends State<GiftForSaleDetailsPage> {
                                ),
                                child:
                                MyText("Buy Now",
-                                 // loyaltyGiftDetailsPage.body.redeemButton.data,
+                                 // loyaltyGiftForSaleDetailsPage.body.redeemButton.data,
                                  style: TextStyle(
                                      fontFamily:lng?.header5.textFamily,
-                                     color: Color(int.parse(loyaltyGiftDetailsPage.body.redeemButton.color)),
+                                     color: Color(int.parse(loyaltyGiftForSaleDetailsPage.body.buyButton.color)),
                                      fontSize: lng?.header5.size.toDouble()
                                  ),),
                                // MyText(
@@ -302,7 +303,7 @@ class _GiftForSaleDetailsPageState extends State<GiftForSaleDetailsPage> {
                          //       },
                          //       child:
                          //       MyText(
-                         //         loyaltyGiftDetailsPage.body.sendAsGiftButton.data,
+                         //         loyaltyGiftForSaleDetailsPage.body.sendAsGiftButton.data,
                          //         style: TextStyle(
                          //           fontSize: lng?.header3.size.toDouble(),
                          //           fontWeight: FontWeight.w400,

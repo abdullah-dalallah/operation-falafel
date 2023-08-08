@@ -23,6 +23,7 @@ import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/LoginPage/
 import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/Loyalty-BuyGiftPage/loyalty_buy_gift_page.dart';
 import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/Loyalty-CreditCalculationPage/loyalty_credit_calculation_page.dart';
 import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/Loyalty-GiftDetailsPage/loyalty_gift_detail_page.dart';
+import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/Loyalty-GiftForSaleDetailsPage/loyalty_gift_for_sale_detail_page.dart';
 import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/Loyalty-HistoryPage/loyalty_history_page.dart';
 import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/Loyalty-HowItWorkPage/loyalty_how_it_work_page.dart';
 import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/Loyalty-MyGiftsPage/loyalty_my_gifts_page.dart';
@@ -73,6 +74,7 @@ class DesignPerPage {
     required this.loyaltyMyRewardsPage,
     required this.loyaltyMyGiftsPage,
     required this.loyaltyGiftDetailsPage,
+    required this.loyaltyGiftForSaleDetailsPage,
     required this.loyaltySendAsGiftPage,
     required this.loyaltyBuyGiftPage,
     required this.loyaltyPaymentSheet,
@@ -111,6 +113,7 @@ class DesignPerPage {
   LoyaltyMyRewardsPage loyaltyMyRewardsPage;
   LoyaltyMyGiftsPage loyaltyMyGiftsPage;
   LoyaltyGiftDetailsPage loyaltyGiftDetailsPage;
+  LoyaltyGiftForSaleDetailsPage loyaltyGiftForSaleDetailsPage;
   LoyaltySendAsGiftPage loyaltySendAsGiftPage;
   LoyaltyBuyGiftPage loyaltyBuyGiftPage;
   LoyaltyPaymentSheet loyaltyPaymentSheet;
@@ -149,6 +152,7 @@ class DesignPerPage {
     loyaltyMyRewardsPage: LoyaltyMyRewardsPage.fromJson(json["Loyalty-MyRewardsPage"]),
     loyaltyMyGiftsPage: LoyaltyMyGiftsPage.fromJson(json["Loyalty-MyGiftsPage"]),
     loyaltyGiftDetailsPage: LoyaltyGiftDetailsPage.fromJson(json["Loyalty-GiftDetailsPage"]),
+    loyaltyGiftForSaleDetailsPage: LoyaltyGiftForSaleDetailsPage.fromJson(json["Loyalty-GiftForSaleDetailsPage"]),
     loyaltySendAsGiftPage: LoyaltySendAsGiftPage.fromJson(json["Loyalty-SendAsGiftPage"]),
     loyaltyBuyGiftPage: LoyaltyBuyGiftPage.fromJson(json["Loyalty-BuyGiftPage"]),
     loyaltyPaymentSheet: LoyaltyPaymentSheet.fromJson(json["Loyalty-PaymentSheet"]),
@@ -187,6 +191,7 @@ class DesignPerPage {
     "Loyalty-MyRewardsPage": loyaltyMyRewardsPage.toJson(),
     "Loyalty-MyGiftsPage": loyaltyMyGiftsPage.toJson(),
     "Loyalty-GiftDetailsPage": loyaltyGiftDetailsPage.toJson(),
+    "Loyalty-GiftForSaleDetailsPage": loyaltyGiftForSaleDetailsPage.toJson(),
     "Loyalty-SendAsGiftPage": loyaltySendAsGiftPage.toJson(),
     "Loyalty-BuyGiftPage": loyaltyBuyGiftPage.toJson(),
     "Loyalty-PaymentSheet": loyaltyPaymentSheet.toJson(),

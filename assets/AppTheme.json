@@ -768,17 +768,17 @@
         },
         "Buttons": {
           "OrderHistory": {
-            "Data": "Order History",
+            "Data": "Order\nHistory",
             "Color": "0xffffffff",
             "BackGroundColor": "0xff000000"
           },
           "SavedAddress": {
-            "Data": "Saved Address",
+            "Data": "Saved\nAddress",
             "Color": "0xffffffff",
             "BackGroundColor": "0xff000000"
           },
           "SavedCards": {
-            "Data": "Saved Cards",
+            "Data": "Saved\nCards",
             "Color": "0xffffffff",
             "BackGroundColor": "0xff000000"
           },
@@ -793,7 +793,7 @@
             "BackGroundColor": "0xff000000"
           },
           "SignOut": {
-            "Data": "Sign Out",
+            "Data": "Sign\nOut",
             "Color": "0xffffffff",
             "BackGroundColor": "0xff000000"
           }
@@ -1517,27 +1517,27 @@
         },
         "Buttons": {
           "HowItWorks": {
-            "Data": "How It Works",
+            "Data": "How It\nWorks",
             "Color": "0xffffffff",
             "BackGroundColor": "0xff000000"
           },
           "MyRewards": {
-            "Data": "My Rewards",
+            "Data": "My\nRewards",
             "Color": "0xffffffff",
             "BackGroundColor": "0xff000000"
           },
           "ReferFriend": {
-            "Data": "Refer a Friend",
+            "Data": "Refer a\nFriend",
             "Color": "0xffffffff",
             "BackGroundColor": "0xff000000"
           },
           "TransferCredits": {
-            "Data": "Transfer Credits",
+            "Data": "Transfer\nCredits",
             "Color": "0xffffffff",
             "BackGroundColor": "0xff000000"
           },
           "CreditCalculator": {
-            "Data": "Credit Calculator",
+            "Data": "Credit\nCalculator",
             "Color": "0xffffffff",
             "BackGroundColor": "0xff000000"
           },
@@ -1694,6 +1694,80 @@
         },
         "RedeemButton": {
           "Data": "REDEEM",
+          "Color": "0xffffffff",
+          "BackGroundColor": "0xFFFFBF00"
+        },
+        "SendAsGiftButton": {
+          "Data": "SEND AS GIFT",
+          "Color": "0xffffffff"
+        },
+        "RedeemDialog": {
+
+          "DialogTitle": {
+            "Data": "Claim Gift",
+            "Color": "0xffffbf00"
+          },
+
+          "GiftTitle": {
+            "Data": "data",
+            "Color": "0xffffbf00"
+          },
+          "CodeTitle": {
+            "Data": "data",
+            "Color": "0xffffbf00"
+          },
+          "DialogTitle": {
+            "Data": "Claim Gift",
+            "Color": "0xffffbf00"
+          },
+          "CopyPromoCodButton": {
+            "Data": "COPY PROMO CODE",
+            "Color": "0xffffffff",
+            "BackGroundColor": "0xFFFFBF00"
+          },
+          "DineinTitle": {
+            "Data": "For Dine in. Share the code with the cashier",
+            "Color": "0xffffffff"
+          }
+
+
+        }
+      }
+    },
+    "Loyalty-GiftForSaleDetailsPage": {
+      "AppBar": {
+        "BackIcon": {
+          "ImageIcon": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/back_new.png",
+          "MobileSize": "30",
+          "TabletSize": "30"
+        },
+        "Title": {
+          "Data": "OPERATION:FALAFEL",
+          "Color": "0xffffffff"
+        }
+      },
+      "Body": {
+        "PageImage": "https://sqlvas774pizbiy4km.blob.core.windows.net/liveenvironment/mobile/assest/imag/gift.png",
+        "PageTitle": {
+          "Data": "WELCOME TO O:F FAMILY",
+          "Color": "0xffffbf00"
+        },
+        "GiftTitle": {
+          "Data": "api",
+          "Color": "0xFFFFBF00"
+        },
+        "Voucher": {
+          "Title": {
+            "Data": "Voucher",
+            "Color": "0xffffffff"
+          },
+          "SubTitle": {
+            "Data": "api",
+            "Color": "0xffffffff"
+          }
+        },
+        "BuyButton": {
+          "Data": "Buy Now",
           "Color": "0xffffffff",
           "BackGroundColor": "0xFFFFBF00"
         },

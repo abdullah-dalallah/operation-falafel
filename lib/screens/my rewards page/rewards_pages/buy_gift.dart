@@ -11,6 +11,7 @@ import 'package:operation_falafel/widgets/background.dart';
 import 'package:operation_falafel/widgets/buy_gift_payment_sheet.dart';
 import 'package:operation_falafel/widgets/cached_image_with_placeholder.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
+import 'package:operation_falafel/widgets/loading_widget.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
 
@@ -183,7 +184,7 @@ class _BuyGiftState extends State<BuyGift> {
 
                                       itemCount: loyaltyProvider.GiftsForSale!.length,
                                     ):
-                                       LoadingPage(),
+                                       LoadingWidget(),
                                   )
 
                                 ],
