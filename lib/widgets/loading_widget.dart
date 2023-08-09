@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/data/my_text.dart';
+import 'package:operation_falafel/localization/localization_constants.dart';
 
 class LoadingWidget extends StatefulWidget{
 
@@ -96,7 +97,7 @@ class _LoadingWidgetState extends State<LoadingWidget> with TickerProviderStateM
           //   child: Image.asset("assets/images/loading_page.gif", height: 45,width: 45,fit: BoxFit.cover,),
           // ),
           SizedBox(height: 10,),
-          MyText("Loading...", style: TextStyle(color: Colors.white, ),textAlign: TextAlign.center,)
+          MyText("Loading...", style: TextStyle(color: Colors.white, fontFamily: getTranslated(context, "fontFamilyBody", )! ),textAlign: TextAlign.center,)
         ],
       ),
     );

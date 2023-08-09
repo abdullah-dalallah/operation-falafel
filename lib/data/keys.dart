@@ -66,4 +66,27 @@ class Keys {
   static const isMainKey = "is_main";
 
 
+  /// -  Network Payment
+
+  static const actionKey = "action";
+  static const amountKey = "amount";
+  static const amountCurrencyCodeKey = "currencyCode";
+  static const amountValueKey = "value";
+
+  static const emailAddressKey = "emailAddress";
+  static const billingAddressKey = "billingAddress";
+  static const billingAddressFirstNameKey = "firstName";
+  static const billingAddressLastNameKey = "lastName";
+
+
+  static const panKey = "pan";
+  static const expiryKey = "expiry";
+  static const cvvKey = "cvv";
+  static const cardholderNameKey = "cardholderName";
+
+
+  static const merchantAttributes = "merchantAttributes";
+  static const redirectUrl = "redirectUrl";
+  static const skipConfirmationPage = "skipConfirmationPage";
+
 }

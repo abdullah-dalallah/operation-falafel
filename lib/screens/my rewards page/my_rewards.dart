@@ -11,6 +11,7 @@ import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/cred
 import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/how_it_works.dart';
 import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/my_gifts.dart';
 import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/rewards_histoy.dart';
+import 'package:operation_falafel/widgets/background.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:provider/provider.dart';
@@ -69,18 +70,19 @@ class _MyRewardsState extends State<MyRewards> {
         (loadingDesign)?
         Stack(
         children: [
-          Image.asset(
-            "assets/images/background.png",
-            height: MediaQuery
-                .of(context)
-                .size
-                .height,
-            width: MediaQuery
-                .of(context)
-                .size
-                .width,
-            fit: BoxFit.cover,
-          ),
+          Background(),
+          // Image.asset(
+          //   "assets/images/background.png",
+          //   height: MediaQuery
+          //       .of(context)
+          //       .size
+          //       .height,
+          //   width: MediaQuery
+          //       .of(context)
+          //       .size
+          //       .width,
+          //   fit: BoxFit.cover,
+          // ),
           Align(
             alignment: Alignment.topCenter,
 

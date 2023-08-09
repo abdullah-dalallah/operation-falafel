@@ -6,16 +6,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/data/my_text_form_field.dart';
+import 'package:operation_falafel/data/network_constants.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/providers/NetworkPaymentProvider/network_two_stage_payment_provider.dart';
 import 'package:operation_falafel/providers/demo_cart/demo_cart_provider.dart';
+import 'package:operation_falafel/providers/palcing_order_model_provider.dart';
 import 'package:operation_falafel/providers/slider_provider.dart';
+import 'package:operation_falafel/screens/network%20payment%20web%20page/authentication_screen.dart';
 import 'package:operation_falafel/widgets/address_list_sheet.dart';
 import 'package:operation_falafel/widgets/cart_gifts_widget.dart';
 import 'package:operation_falafel/widgets/checkbox_option.dart';
 import 'package:operation_falafel/widgets/credit_card_payment_method_checkbox.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
+import 'package:operation_falafel/widgets/loading_widget.dart';
 import 'package:operation_falafel/widgets/loyalty_payment_method_checkbox.dart';
+import 'package:operation_falafel/widgets/placing_order_model.dart';
 
 import 'package:operation_falafel/widgets/pluse_minus_widget.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -1271,7 +1277,86 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                           width: MediaQuery.of(context).size.width,
                           height: 50,
                           child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+
+                                /// - Show creating order sheet model
+                                showModalBottomSheet(
+                                  // expand: false,
+                                    context: context,
+                                    backgroundColor: Colors.transparent,
+                                    builder: (modelContext) => PlacingOrderModel(context, )).then((value) {
+                                  if (Provider.of<PlacingOrderModelProvider>(context, listen: false).makeOrderProgress == 1){
+                                    /// - show loading
+                                    // _showMakingOrderDialog(context);
+
+                                    print('requesting to access token...');
+                                    // Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestAccessToken(NetworkConstants.networkAuthorizationApiKey).then((value) {
+                                    //   String? accessToken = Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestTokenResponse.accessToken;
+                                    //   print('creating order...');
+                                    //   Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestCreateOrder(accessToken!,NetworkConstants.outletReference).then((value) {
+                                    //     //  print(paymentUrl!);
+                                    //     // _launchURL(paymentUrl!);
+                                    //
+                                    //     String?  orderReference= Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestCreateOrderResponse.embedded!.payment![0].orderReference;
+                                    //     String?  paymentReference= Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestCreateOrderResponse.embedded!.payment![0].id;
+                                    //     String? paymentUrl = Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestCreateOrderResponse.embedded!.payment![0].links!.paymentCard!.href;
+                                    //     String? directPaymentUrl = Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestCreateOrderResponse.links!.payment!.href;
+                                    //
+                                    //     print(paymentUrl);
+                                    //     print("Submit payment card information...");
+                                    //     Navigator.of(context, rootNavigator: true).pop();
+                                    //     Navigator.push(
+                                    //       context,
+                                    //       MaterialPageRoute(
+                                    //         builder: (context) => AuthenticationScreen(
+                                    //           // authenticationUrl: '${href}',
+                                    //           // acsPaReq: '${acsPaReq}',
+                                    //           // acsMd: '${acsMd}',
+                                    //           // acsUrl: '${acsurl}',
+                                    //           // accessToken: accessToken,
+                                    //           directPaymentLink: directPaymentUrl!,
+                                    //         ),
+                                    //       ),
+                                    //     );
+                                    //
+                                    //     // Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestSubmitPaymentCardInformation(paymentUrl!,accessToken).then((value) {
+                                    //     //
+                                    //     //   String? acsurl =  Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestSubmitPaymentCardInformationResponse.the3Ds!.acsUrl;
+                                    //     //   String? acsPaReq =  Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestSubmitPaymentCardInformationResponse.the3Ds!.acsPaReq;
+                                    //     //   String? acsMd =  Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestSubmitPaymentCardInformationResponse.the3Ds!.acsMd;
+                                    //     //   String? href =  Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestSubmitPaymentCardInformationResponse.links!.cnp3Ds!.href;
+                                    //     //
+                                    //     //
+                                    //     //   print(acsurl);
+                                    //     //   print(acsPaReq);
+                                    //     //   print(acsMd);
+                                    //     //
+                                    //     //   Navigator.push(
+                                    //     //     context,
+                                    //     //     MaterialPageRoute(
+                                    //     //       builder: (context) => AuthenticationScreen(
+                                    //     //         authenticationUrl: '${href}',
+                                    //     //         acsPaReq: '${acsPaReq}',
+                                    //     //         acsMd: '${acsMd}',
+                                    //     //         acsUrl: '${acsurl}',
+                                    //     //         accessToken: accessToken,
+                                    //     //       ),
+                                    //     //     ),
+                                    //     //   );
+                                    //     //
+                                    //     // });
+                                    //
+                                    //
+                                    //   });
+                                    //
+                                    // });
+
+
+
+                                  }
+                                });
+
+                              },
                               style: ButtonStyle(
                                 backgroundColor: MaterialStateProperty.all<Color>(Color(int.parse(cartPage.body.bringItButton.backGroundColor)),),
                                 //MaterialStateProperty.all<Color>(Color(0xFF84ab24)),
@@ -1300,9 +1385,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                           ),
                         ),
                       ),
-                      drawer: DrawerWidget(layOut: widget.layOut, onChanged: (value) {
-                        widget.onChanged(value);
-                      },),
+                      drawer: DrawerWidget(layOut: widget.layOut, onChanged: (value) {widget.onChanged(value);},),
                     )
                     :LoadingPage();
 
@@ -1349,6 +1432,63 @@ class _Cart_ScreenState extends State<Cart_Screen> {
   /// - Code changes - Payment mehtod
 
 
+  void _showMakingOrderDialog(BuildContext context, [bool mounted = true]) async {
+    // show the loading dialog
+    showDialog(
+      // The user CANNOT close this dialog  by pressing outsite it
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return Dialog(
+            // The background color
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 25.0, right: 25),
+              child: Container(
+                decoration: const BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
+                        bottomLeft: Radius.circular(20),
+                        bottomRight: Radius.circular(20))),
+                height: 150,
+                width: 100,
+                // padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children:  [
+
+                    LoadingWidget(),
+                    // The loading indicator
+                    // CircularProgressIndicator(
+                    //   color: Colors.amber,
+                    // ),
+                    // SizedBox(
+                    //   height: 15,
+                    // ),
+                    // // Some text
+                    // Text(
+                    //   'Loading...',
+                    //   style: TextStyle(color: Colors.black),
+                    // )
+                  ],
+                ),
+              ),
+            ),
+          );
+        });
+
+    // // Your asynchronous computation here (fetching data from an API, processing files, inserting something to the database, etc)
+    // await Future.delayed(const Duration(seconds: 3));
+    //
+    // // Close the dialog programmatically
+    // // We use "mounted" variable to get rid of the "Do not use BuildContexts across async gaps" warning
+    // if (!mounted) return;
+    // Navigator.of(context).pop();
+  }
 
 
 }

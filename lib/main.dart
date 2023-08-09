@@ -12,12 +12,14 @@ import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/models/AppThemeModels/DesignPerPage/AddNewCardPage/add_new_card_page.dart';
 import 'package:operation_falafel/providers/AppTheme/theme_provider.dart';
 import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
+import 'package:operation_falafel/providers/NetworkPaymentProvider/network_two_stage_payment_provider.dart';
 import 'package:operation_falafel/providers/ProfileProviders/profile_provider.dart';
 import 'package:operation_falafel/providers/contact_provider.dart';
 import 'package:operation_falafel/providers/demo_cart/demo_cart_provider.dart';
 import 'package:operation_falafel/providers/gifts_provider/loyalty_provider.dart';
 import 'package:operation_falafel/providers/gifts_provider/models/gift.dart';
 import 'package:operation_falafel/providers/home_page_provider/home_page_provider.dart';
+import 'package:operation_falafel/providers/palcing_order_model_provider.dart';
 import 'package:operation_falafel/providers/parsistent_tabview_provider.dart';
 import 'package:operation_falafel/providers/settings_provider/setting_provider.dart';
 import 'package:operation_falafel/providers/slider_provider.dart';
@@ -601,6 +603,8 @@ class _MyAppState extends State<MyApp> {
           ChangeNotifierProvider(create: (context) => LoyaltyProvider()),
           ChangeNotifierProvider(create: (context) => TabIndexGenerator()),
           ChangeNotifierProvider(create: (context) => SliderProvider()),
+          ChangeNotifierProvider(create: (context) => PlacingOrderModelProvider()),
+          ChangeNotifierProvider(create: (context) => NetworkTwoStagePaymentProvider()),
 
 
         ],
