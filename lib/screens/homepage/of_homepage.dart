@@ -2,6 +2,8 @@
 import 'dart:async';
 
 import 'package:flutter/services.dart';
+import 'package:operation_falafel/models/open_container.dart';
+import 'package:operation_falafel/widgets/search_anchor_page/search_anchor_page.dart';
 import 'package:uni_links/uni_links.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
@@ -112,66 +114,89 @@ class _MainMenuState extends State<MainMenu> {
                     elevation: 0,
                     centerTitle: true,
                     actions: [
+
                       Padding(
                         padding: const EdgeInsets.only(top: 10.0, right: 15, bottom: 11, left:15),
-                        child: Stack(
-                          children: [
-                            Container(
-                               padding: EdgeInsets.all(8),
-                              width: 35,
-                              height: 35,
-                              decoration: BoxDecoration(
-                                color: Colors.black.withOpacity(0.4),
-                                borderRadius: const BorderRadius.only(
-                                  topRight: Radius.circular(40),
-                                  bottomLeft: Radius.circular(40),
-                                  topLeft: Radius.circular(40),
-                                  bottomRight: Radius.circular(40),
-                                ),
-                                // border: Border.all(
-                                //   width: 0.5,
-                                //   color: Colors.white,
-                                //   style: BorderStyle.solid,
-                                // ),
-                              ),
-                              child:
-                              // ImageIcon(
-                              //   size:(widget.layOut=="Mobile")? double.parse(homePageDesign?.appBar.drawerIcon.mobileSize as String):double.parse(homePageDesign?.appBar.drawerIcon.tabletSize as String),
-                              //
-                              //   ((homePageDesign!=null)?
-                              //   NetworkImage("${homePageDesign.appBar.searchAction.imageIcon}"):
-                              //   AssetImage("assets/images/icon_search.png")) as ImageProvider<Object>?,
-                              // ),
+                        child: OpenContainer(
 
-                               Image.network("${homePageDesign.appBar.searchAction.imageIcon}",height: double.parse(homePageDesign?.appBar.searchAction.mobileSize as String),),
+                          transitionType: ContainerTransitionType.fadeThrough,
+                          // closedColor: Theme.of(context).cardColor,
+                          middleColor: Colors.black54,
+                          openColor: Colors.black54,
+                          closedColor: Colors.black54,
+                          closedElevation: 0.0,
+                          openElevation: 4.0,
 
-                              // Image.asset("assets/images/icon_search.png",height: 30,width: 30,),
+                          transitionDuration: const Duration(milliseconds: 500),
+                          closedShape: RoundedRectangleBorder(
+                             borderRadius: BorderRadius.circular(100.0),
+                           ),
 
-                            ),
 
-                            Positioned.fill(
-                                child:  Material(
-                                  color: Colors.transparent,
-                                  child:   InkWell(
-                                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                                    splashColor: Colors.black,
-                                    overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+                          openBuilder: (BuildContext context, VoidCallback _) =>SearchAnchorPage(),
+                          closedBuilder: (BuildContext context, VoidCallback openContainer) {
+                            return  Stack(
+                                children: [
+                                  Container(
+                                    padding: EdgeInsets.all(8),
+                                    width: 35,
+                                    height: 35,
+                                    decoration: BoxDecoration(
+                                      color: Colors.black.withOpacity(0.4),
+                                      borderRadius: const BorderRadius.only(
+                                        topRight: Radius.circular(40),
+                                        bottomLeft: Radius.circular(40),
+                                        topLeft: Radius.circular(40),
+                                        bottomRight: Radius.circular(40),
+                                      ),
+                                      // border: Border.all(
+                                      //   width: 0.5,
+                                      //   color: Colors.white,
+                                      //   style: BorderStyle.solid,
+                                      // ),
+                                    ),
+                                    child:
+                                    // ImageIcon(
+                                    //   size:(widget.layOut=="Mobile")? double.parse(homePageDesign?.appBar.drawerIcon.mobileSize as String):double.parse(homePageDesign?.appBar.drawerIcon.tabletSize as String),
+                                    //
+                                    //   ((homePageDesign!=null)?
+                                    //   NetworkImage("${homePageDesign.appBar.searchAction.imageIcon}"):
+                                    //   AssetImage("assets/images/icon_search.png")) as ImageProvider<Object>?,
+                                    // ),
 
-                                    onTap: (){
+                                    Image.network("${homePageDesign.appBar.searchAction.imageIcon}",height: double.parse(homePageDesign?.appBar.searchAction.mobileSize as String),),
 
-                                     // print();
-                                     //  context.go("${MainMenu.routeName}/locations");
-                                      // Provider.of<ThemeProvider>(context, listen: false).readJson();
-                                      // print("text");
-                                    },
+                                    // Image.asset("assets/images/icon_search.png",height: 30,width: 30,),
+
                                   ),
 
-                                )
-                            ),
+                                  // Positioned.fill(
+                                  //     child:  Material(
+                                  //       color: Colors.transparent,
+                                  //       child:   InkWell(
+                                  //         borderRadius: BorderRadius.all(Radius.circular(20)),
+                                  //         splashColor: Colors.black,
+                                  //         overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+                                  //
+                                  //         onTap: (){
+                                  //
+                                  //           // print();
+                                  //           //  context.go("${MainMenu.routeName}/locations");
+                                  //           // Provider.of<ThemeProvider>(context, listen: false).readJson();
+                                  //           // print("text");
+                                  //         },
+                                  //       ),
+                                  //
+                                  //     )
+                                  // ),
 
-                          ],
+                                ],
+                              );
+                          },
                         ),
                       ),
+
+
                     ],
                     title: MyText(
                      homePageDesign.appBar.titleText.data,

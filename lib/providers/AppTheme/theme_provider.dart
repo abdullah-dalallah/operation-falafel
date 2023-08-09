@@ -52,7 +52,7 @@ class ThemeProvider  with ChangeNotifier{
   Future<Response<dynamic>> getAppTheme(String key, String value, String theme_id, String createdBy, String country, String lang) async {
     print('\x1B[33mFirst\x1B[0m');
     print("getting app theme from Online Server...");
-    var url = '${Strings.baseAppThemeUrl}/themes/getTheme0000/${country}/${lang}';
+    var url = '${Strings.baseAppThemeUrl}/themes/getTheme/${country}/${lang}';
     Map<String, String> header = <String, String>{};
     header.putIfAbsent(Keys.acceptKey, () => "application/json");
 

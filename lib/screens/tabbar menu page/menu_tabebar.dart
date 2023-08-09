@@ -5,12 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/models/open_container.dart';
 import 'package:operation_falafel/screens/item%20details%20page/item_details_sheet.dart';
 import 'package:operation_falafel/screens/my%20rewards%20page/my_rewards.dart';
 import 'package:operation_falafel/screens/tabbar%20menu%20page/widgets/custom_list_tile.dart';
+import 'package:operation_falafel/widgets/background.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:operation_falafel/widgets/radio_option.dart';
+import 'package:operation_falafel/widgets/search_anchor_page/search_anchor_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
 import 'package:uni_links/uni_links.dart';
@@ -67,10 +70,7 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
       Consumer<ThemeProvider>(
         builder: (context, appTheme, child)
     {
-      Language? lng = (Localizations
-          .localeOf(context)
-          .languageCode == 'ar') ? appTheme.appTheme.fontSizes?.ar : appTheme
-          .appTheme.fontSizes?.en;
+      Language? lng = (Localizations.localeOf(context).languageCode == 'ar') ? appTheme.appTheme.fontSizes?.ar : appTheme.appTheme.fontSizes?.en;
       MenuPage? menuPage = appTheme.appTheme.designPerPage?.menuPage;
       bool loadingDesign = menuPage != null;
 
@@ -78,18 +78,19 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
         (loadingDesign)?
         Stack(
         children: [
-          Image.asset(
-            "assets/images/background.png",
-            height: MediaQuery
-                .of(context)
-                .size
-                .height,
-            width: MediaQuery
-                .of(context)
-                .size
-                .width,
-            fit: BoxFit.cover,
-          ),
+          Background(),
+          // Image.asset(
+          //   "assets/images/background.png",
+          //   height: MediaQuery
+          //       .of(context)
+          //       .size
+          //       .height,
+          //   width: MediaQuery
+          //       .of(context)
+          //       .size
+          //       .width,
+          //   fit: BoxFit.cover,
+          // ),
           Scaffold(
             key: _drawerKey,
             backgroundColor: Colors.transparent,
@@ -143,56 +144,137 @@ class _TabeBarMenuState extends State<TabeBarMenu> with SingleTickerProviderStat
                         ),
                         actions: [
                           Padding(
-                            padding: const EdgeInsets.only(
-                                top: 10.0, right: 15, bottom: 10, left: 15),
-                            child: Stack(
-                              children: [
-                                Container(
+                            padding: const EdgeInsets.only(top: 10.0, right: 15, bottom: 11, left:15),
+                            child: OpenContainer(
 
-                                  width: 35,
-                                  height: 35,
-                                  decoration: BoxDecoration(
-                                    color: Colors.black.withOpacity(0.4),
-                                    borderRadius: const BorderRadius.only(
-                                      topRight: Radius.circular(50),
-                                      bottomLeft: Radius.circular(50),
-                                      topLeft: Radius.circular(50),
-                                      bottomRight: Radius.circular(50),
-                                    ),
-                                    border: Border.all(
-                                      width: 0.5,
-                                      color: Colors.white,
-                                      style: BorderStyle.solid,
-                                    ),
-                                  ),
-                                  child: const Icon(Icons.search),
+                              transitionType: ContainerTransitionType.fadeThrough,
+                              // closedColor: Theme.of(context).cardColor,
+                              middleColor: Colors.black54,
+                              openColor: Colors.black54,
+                              closedColor: Colors.black54,
+                              closedElevation: 0.0,
+                              openElevation: 4.0,
 
-                                  // Image.asset("assets/images/icon_search.png",height: 30,width: 35,),
+                              transitionDuration: const Duration(milliseconds: 500),
+                              closedShape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(100.0),
+                              ),
 
-                                ),
 
-                                Positioned.fill(
-                                    child: Material(
-                                      color: Colors.transparent,
-                                      child: InkWell(
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(50)),
-                                        splashColor: Colors.black,
-                                        overlayColor: MaterialStateProperty.all<
-                                            Color>(Colors.black54),
-
-                                        onTap: () {
-                                          // Navigator.pushNamed(context, "/ResetYourPassword");
-                                          print("text");
-                                        },
+                              openBuilder: (BuildContext context, VoidCallback _) =>SearchAnchorPage(),
+                              closedBuilder: (BuildContext context, VoidCallback openContainer) {
+                                return  Stack(
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.all(8),
+                                      width: 35,
+                                      height: 35,
+                                      decoration: BoxDecoration(
+                                        color: Colors.black.withOpacity(0.4),
+                                        borderRadius: const BorderRadius.only(
+                                          topRight: Radius.circular(40),
+                                          bottomLeft: Radius.circular(40),
+                                          topLeft: Radius.circular(40),
+                                          bottomRight: Radius.circular(40),
+                                        ),
+                                        // border: Border.all(
+                                        //   width: 0.5,
+                                        //   color: Colors.white,
+                                        //   style: BorderStyle.solid,
+                                        // ),
                                       ),
+                                      child:
+                                      // ImageIcon(
+                                      //   size:(widget.layOut=="Mobile")? double.parse(homePageDesign?.appBar.drawerIcon.mobileSize as String):double.parse(homePageDesign?.appBar.drawerIcon.tabletSize as String),
+                                      //
+                                      //   ((homePageDesign!=null)?
+                                      //   NetworkImage("${homePageDesign.appBar.searchAction.imageIcon}"):
+                                      //   AssetImage("assets/images/icon_search.png")) as ImageProvider<Object>?,
+                                      // ),
 
-                                    )
-                                ),
+                                      Image.network("${menuPage.appBar.searchAction.imageIcon}",height: double.parse(menuPage?.appBar.searchAction.mobileSize as String),),
 
-                              ],
+                                      // Image.asset("assets/images/icon_search.png",height: 30,width: 30,),
+
+                                    ),
+
+                                    // Positioned.fill(
+                                    //     child:  Material(
+                                    //       color: Colors.transparent,
+                                    //       child:   InkWell(
+                                    //         borderRadius: BorderRadius.all(Radius.circular(20)),
+                                    //         splashColor: Colors.black,
+                                    //         overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+                                    //
+                                    //         onTap: (){
+                                    //
+                                    //           // print();
+                                    //           //  context.go("${MainMenu.routeName}/locations");
+                                    //           // Provider.of<ThemeProvider>(context, listen: false).readJson();
+                                    //           // print("text");
+                                    //         },
+                                    //       ),
+                                    //
+                                    //     )
+                                    // ),
+
+                                  ],
+                                );
+                              },
                             ),
                           ),
+
+                          // Padding(
+                          //   padding: const EdgeInsets.only(
+                          //       top: 10.0, right: 15, bottom: 10, left: 15),
+                          //   child: Stack(
+                          //     children: [
+                          //       Container(
+                          //
+                          //         width: 35,
+                          //         height: 35,
+                          //         decoration: BoxDecoration(
+                          //           color: Colors.black.withOpacity(0.4),
+                          //           borderRadius: const BorderRadius.only(
+                          //             topRight: Radius.circular(50),
+                          //             bottomLeft: Radius.circular(50),
+                          //             topLeft: Radius.circular(50),
+                          //             bottomRight: Radius.circular(50),
+                          //           ),
+                          //           border: Border.all(
+                          //             width: 0.5,
+                          //             color: Colors.white,
+                          //             style: BorderStyle.solid,
+                          //           ),
+                          //         ),
+                          //         child: const Icon(Icons.search),
+                          //
+                          //         // Image.asset("assets/images/icon_search.png",height: 30,width: 35,),
+                          //
+                          //       ),
+                          //
+                          //       Positioned.fill(
+                          //           child: Material(
+                          //             color: Colors.transparent,
+                          //             child: InkWell(
+                          //               borderRadius: const BorderRadius.all(
+                          //                   Radius.circular(50)),
+                          //               splashColor: Colors.black,
+                          //               overlayColor: MaterialStateProperty.all<
+                          //                   Color>(Colors.black54),
+                          //
+                          //               onTap: () {
+                          //                 // Navigator.pushNamed(context, "/ResetYourPassword");
+                          //                 print("text");
+                          //               },
+                          //             ),
+                          //
+                          //           )
+                          //       ),
+                          //
+                          //     ],
+                          //   ),
+                          // ),
                         ],
                       ),
                       SliverAppBar(
