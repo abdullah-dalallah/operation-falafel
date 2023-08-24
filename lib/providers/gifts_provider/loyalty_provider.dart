@@ -5,6 +5,8 @@ import 'package:operation_falafel/data/strings.dart';
 import 'package:operation_falafel/providers/gifts_provider/models/gift.dart';
 import 'package:operation_falafel/providers/gifts_provider/models/gift_for_sale.dart';
 
+import '../home_page_provider/models/slider_model.dart';
+
 class LoyaltyProvider with ChangeNotifier{
 
   List<Gift>? gifts ;
@@ -77,6 +79,41 @@ class LoyaltyProvider with ChangeNotifier{
       return response;
     } on DioError catch (e) {
       print(e.response);
+      return e.response!;
+
+    }
+  }
+
+  List<SliderItem>? _sliderItem;
+  List<SliderItem>? get sliderItem => _sliderItem;
+
+  Future<Response<dynamic>> getLoyaltySliders() async {
+    print("getting loyalty Slider from Online Server...");
+    var url = '${Strings.baseSlidersUrl}/sliders?related_to=loyalty';
+    print(url);
+    Map<String, String> header = <String, String>{};
+    header.putIfAbsent(Keys.acceptKey, () => "application/json");
+
+
+
+    var dio = Dio();
+    try {
+
+      var response = await dio.get(url, options: Options(headers: header));// options: Options(headers: header)
+
+      if(response.statusCode ==200){
+       if ((response.data as List).isNotEmpty){
+         _sliderItem= (response.data as List).map((i) => SliderItem.fromJson(i)).toList();
+       print("Slider fetched From Online Server!");
+       }else{
+         print("Slider Empty");
+       }
+      }
+      notifyListeners();
+      return response;
+    } on DioError catch (e) {
+      print(e.response);
+
       return e.response!;
 
     }

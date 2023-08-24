@@ -1289,7 +1289,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                     /// - show loading
                                     // _showMakingOrderDialog(context);
 
-                                    print('requesting to access token...');
+                                    // print('requesting to access token...');
                                     // Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestAccessToken(NetworkConstants.networkAuthorizationApiKey).then((value) {
                                     //   String? accessToken = Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestTokenResponse.accessToken;
                                     //   print('creating order...');

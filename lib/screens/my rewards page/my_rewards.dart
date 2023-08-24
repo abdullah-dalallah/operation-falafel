@@ -7,11 +7,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/providers/gifts_provider/loyalty_provider.dart';
+import 'package:operation_falafel/providers/home_page_provider/models/slider_model.dart';
 import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/credit_calculator.dart';
 import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/how_it_works.dart';
 import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/my_gifts.dart';
 import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/rewards_histoy.dart';
 import 'package:operation_falafel/widgets/background.dart';
+import 'package:operation_falafel/widgets/cached_image_with_placeholder.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:provider/provider.dart';
@@ -233,11 +236,29 @@ class _MyRewardsState extends State<MyRewards> {
                                 }
 
                             ),
-                            items: imgList.map((item) =>
-                                Image.asset(item, fit: BoxFit.contain,
-                                ),
-                            )
-                                .toList()),
+                            items:
+
+                            (sliderWidets!=null)?sliderWidets:
+
+                            [
+                              const Center(
+                                  child:   SizedBox(
+                                    height: 20,
+                                    width: 20,
+                                    child: CircularProgressIndicator(
+                                      color: Colors.amber,
+                                      strokeWidth: 2,
+                                    ),
+                                  )
+                                // child: CircularProgressIndicator(strokeWidth: 2.1,)
+                              ),
+                            ],
+                            // imgList.map((item) =>
+                            //     Image.asset(item, fit: BoxFit.contain,
+                            //     ),
+                            // ).toList()
+
+                        ),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -730,4 +751,35 @@ class _MyRewardsState extends State<MyRewards> {
       ;
     });
   }
+
+
+
+  List<Widget>? sliderWidets ;
+
+  @override
+  void initState() {
+    Provider.of<LoyaltyProvider>(context, listen: false).getLoyaltySliders().then((res) {
+      if(res.statusCode ==200){
+        sliderWidets = buildSliders((res.data as List).map((i) => SliderItem.fromJson(i)).toList());
+      }
+    });
+  }
+  List<Widget>  buildSliders(List<SliderItem>? sliders){
+    List<Widget> slidersWidgets =[
+      CachedImageWithPlaceholder("", BoxFit.cover),
+      CachedImageWithPlaceholder("", BoxFit.cover)
+    ];
+    if(sliders !=null)
+      slidersWidgets = sliders!.map((e) => InkWell(
+          onTap: (){
+            print("url");
+            // GoRouter.of(context).push(Uri(path: '/locations').toString());
+
+            // context.push("/locations");
+            // GoRouter.of(context).go('/locations');
+          },
+          child: CachedImageWithPlaceholder(e.imageUrl!, BoxFit.cover))).toList();
+    return slidersWidgets;
+  }
+
 }

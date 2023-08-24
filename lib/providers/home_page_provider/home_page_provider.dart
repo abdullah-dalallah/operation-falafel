@@ -13,7 +13,7 @@ class HomePageProvider with ChangeNotifier{
 
   Future<Response<dynamic>> getHomeSliders() async {
     print("getting Slider from Online Server...");
-    var url = '${Strings.baseSlidersUrl}/sliders';
+    var url = '${Strings.baseSlidersUrl}/sliders?related_to=main';
     print(url);
     Map<String, String> header = <String, String>{};
     header.putIfAbsent(Keys.acceptKey, () => "application/json");
