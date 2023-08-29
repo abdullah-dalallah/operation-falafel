@@ -194,25 +194,32 @@ class _ScaffoldWithNestedNavigationState extends State<ScaffoldWithNestedNavigat
         }
         else{
           print("Online Theme not found!");
-          Provider.of<ThemeProvider>(context,listen: false).getSavedAppThemeLocally().then((appTheme) {
-            // print(appTheme);
-
-            if(appTheme.id!=null){
-              if(appTheme.language!=null){
-                _changeLanguage(Provider.of<ThemeProvider>(context,listen: false).appTheme.language!);
-
-              }
+          print("Shared Preferences Theme not Found! Get from Json File...");
+          Provider.of<ThemeProvider>(context,listen: false).readJson().then((appTheme) {
+            if(appTheme.language!=null){
+              _changeLanguage(Provider.of<ThemeProvider>(context,listen: false).appTheme.language!);
             }
-            else{
-              print("Shared Preferences Theme not Found!");
-              Provider.of<ThemeProvider>(context,listen: false).readJson().then((appTheme) {
-                if(appTheme.language!=null){
-                  _changeLanguage(Provider.of<ThemeProvider>(context,listen: false).appTheme.language!);
-                }
-                FlutterNativeSplash.remove();
-              });
-            }
+            FlutterNativeSplash.remove();
           });
+          // Provider.of<ThemeProvider>(context,listen: false).getSavedAppThemeLocally().then((appTheme) {
+          //   // print(appTheme);
+          //
+          //   if(appTheme.id!=null){
+          //     if(appTheme.language!=null){
+          //       _changeLanguage(Provider.of<ThemeProvider>(context,listen: false).appTheme.language!);
+          //
+          //     }
+          //   }
+          //   else{
+          //     print("Shared Preferences Theme not Found!");
+          //     Provider.of<ThemeProvider>(context,listen: false).readJson().then((appTheme) {
+          //       if(appTheme.language!=null){
+          //         _changeLanguage(Provider.of<ThemeProvider>(context,listen: false).appTheme.language!);
+          //       }
+          //       FlutterNativeSplash.remove();
+          //     });
+          //   }
+          // });
         }
         FlutterNativeSplash.remove();
       }),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/data/my_text_form_field.dart';
 import 'package:operation_falafel/providers/ProfileProviders/profile_provider.dart';
+import 'package:operation_falafel/providers/gifts_provider/loyalty_provider.dart';
 import 'package:operation_falafel/screens/rest%20password/forget_your_password.dart';
 import 'package:operation_falafel/widgets/background.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
@@ -482,6 +483,7 @@ class _LoginState extends State<Login> {
                                                     Provider.of<ProfileProvider>(context, listen: false).getUserInfo(userToken,).then((res){
                                                     if(response.statusCode==200) {
                                                       SnackbarGenerator(context).snackBarGeneratorToast("User Logged in successfully",);
+                                                      Provider.of<LoyaltyProvider>(context, listen: false).getLoyaltyTotalPoint(userToken: userToken).then((value) {});
                                                       Navigator.pop(context);
                                                     }
                                                     });

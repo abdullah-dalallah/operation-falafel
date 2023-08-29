@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:operation_falafel/models/open_container.dart';
+import 'package:operation_falafel/providers/gifts_provider/loyalty_provider.dart';
 import 'package:operation_falafel/widgets/search_anchor_page/search_anchor_page.dart';
 import 'package:uni_links/uni_links.dart';
 import 'package:flutter/cupertino.dart';
@@ -67,8 +68,8 @@ class _MainMenuState extends State<MainMenu> {
   Widget build(BuildContext context) {
     String languageflag= Localizations.localeOf(context).languageCode;
     return
-      Consumer2<ThemeProvider,HomePageProvider>(
-        builder: (context, appTheme,homePageProvider, child) {
+      Consumer4<ThemeProvider,HomePageProvider,LoyaltyProvider,AuthProvider >(
+        builder: (context, appTheme,homePageProvider,loyaltyProvider,authProvider, child) {
 
           Language? lng= (Localizations.localeOf(context).languageCode=='ar')? appTheme.appTheme.fontSizes?.ar : appTheme.appTheme.fontSizes?.en;
           HomePage? homePageDesign = appTheme.appTheme.designPerPage?.homePage;
@@ -1738,15 +1739,16 @@ class _MainMenuState extends State<MainMenu> {
                                       // fontFamily:getTranslated(context, "fontFamilyBody")!,
                                     ),
                                     children: [
-                                  TextSpan(
-                                    text: getTranslated(context, "dashBoardTitle-credit")!,
+                                     TextSpan(
+                                    text: "${(loyaltyProvider!.loyaltyPoint!=null)?(authProvider.loggedInUser !=null)?formatNumberWithK(loyaltyProvider!.loyaltyPoint!.body!.amount!.toDouble()):0.0:0.0}${getTranslated(context, "dashBoardTitle-credit")!}",
                                     style: TextStyle(color:
                                     Color(int.parse(homePageDesign.body.dashboardWidget.headerTitle.creditText.color))
                                     // Colors.amber
                                     ),
                                     recognizer: new TapGestureRecognizer()..onTap = () => print('Tap Here onTap'),
                                   ),
-                                  TextSpan(
+
+                                     TextSpan(
                                     text: '${headerTitleParts[1]} 00/00/0000',
                                     // text: '${getTranslated(context, "dashBoardTitle-valid")!} 00/00/0000',
                                     style: TextStyle(color:  Color(int.parse(homePageDesign.body.dashboardWidget.headerTitle.text.color)),),
@@ -2040,6 +2042,20 @@ class _MainMenuState extends State<MainMenu> {
     return slidersWidgets;
   }
 
+
+  String formatNumberWithK(double number) {
+    if (number! >= 1000 && number! < 1000000) {
+      double result = number! / 1000;
+      return result.toStringAsFixed(1) + "K";
+    }
+    else if(number! >= 1000000){
+      double result = number! / 1000000;
+      return result.toStringAsFixed(1) + "M";
+    }
+    else {
+      return number.toString();
+    }
+  }
 
 
 

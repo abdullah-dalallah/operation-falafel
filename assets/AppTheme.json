@@ -1988,12 +1988,20 @@
             "Color": "0xFFFFBF00"
           },
           "SubTitle": {
-            "Data": "api",
-            "Color": "0xffffbf00"
+            "Data": "Point",
+            "Color": "0xff4caf50"
           },
           "DateTitle": {
             "Data": "api",
-            "Color": "0xff454545"
+            "Color": "0xff878787"
+          },
+          "EmptyList": {
+            "Data": "No Point History!",
+            "Color": "0xff878787"
+          },
+          "EmptyList-LoginRequired": {
+            "Data": "Only authenticated users can\naccess to Point history!",
+            "Color": "0xff878787"
           }
         }
       }

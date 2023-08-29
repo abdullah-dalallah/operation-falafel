@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
 import 'package:operation_falafel/providers/gifts_provider/loyalty_provider.dart';
 import 'package:operation_falafel/providers/home_page_provider/models/slider_model.dart';
 import 'package:operation_falafel/screens/my%20rewards%20page/rewards_pages/credit_calculator.dart';
@@ -26,6 +27,7 @@ import '../../models/AppThemeModels/DesignPerPage/Loyalty-MyRewardsPage/loyalty_
 import '../../models/AppThemeModels/DesignPerPage/LoyaltyPage/loyalty_page.dart';
 import '../../models/AppThemeModels/FontSizes/Language/lang.dart';
 import '../../providers/AppTheme/theme_provider.dart';
+import '../../providers/tab_index_generator_provider.dart';
 import '../homepage/of_homepage.dart';
 import 'rewards_pages/transfer_credits.dart';
 
@@ -57,7 +59,7 @@ class _MyRewardsState extends State<MyRewards> {
   Widget build(BuildContext context) {
     final bool isKeyboardVisible = KeyboardVisibilityProvider.isKeyboardVisible(context);
 
-    return Consumer<ThemeProvider>(builder: (context, appTheme, child)
+    return Consumer3<ThemeProvider,LoyaltyProvider,AuthProvider>(builder: (context, appTheme,loyaltyProvider,authProvider, child)
     {
       Language? lng = (Localizations.localeOf(context).languageCode == 'ar') ? appTheme.appTheme.fontSizes?.ar : appTheme.appTheme.fontSizes?.en;
       LoyaltyPage? loyaltyPage = appTheme.appTheme.designPerPage?.loyaltyPage;
@@ -199,8 +201,7 @@ class _MyRewardsState extends State<MyRewards> {
 
 
 
-                (widget.layOut == "Mobile") ? SizedBox(height: 0,) : (widget
-                    .layOut == "Tablet") ? SizedBox(height: 60,) : SizedBox(
+                (widget.layOut == "Mobile") ? SizedBox(height: 0,) : (widget.layOut == "Tablet") ? SizedBox(height: 60,) : SizedBox(
                   height: 100,),
 
                 Expanded(
@@ -311,7 +312,9 @@ class _MyRewardsState extends State<MyRewards> {
                   child: RichText(
 
                     text:  TextSpan(
-                        text: headerTitleParts![0],
+                        text:
+                        // "Test",
+                        headerTitleParts![0],
                         // text: getTranslated(context, "dashBoardTitle-youHave")!,
                         style: TextStyle(
                           color: Color(int.parse(loyaltyPage.body.creditBalance.creditTitle.color)),
@@ -323,7 +326,7 @@ class _MyRewardsState extends State<MyRewards> {
                         ),
                         children: [
                           TextSpan(
-                            text: getTranslated(context, "dashBoardTitle-credit")!,
+                            text: "${(loyaltyProvider!.loyaltyPoint!=null)?(authProvider.loggedInUser !=null)?loyaltyProvider!.loyaltyPoint!.body!.amount!.toDouble():0.0:0.0}${getTranslated(context, "dashBoardTitle-credit")!}",
                             style: TextStyle(color:
                             Color(int.parse(loyaltyPage.body.creditBalance.balance.color))
                               // Colors.amber
@@ -331,7 +334,7 @@ class _MyRewardsState extends State<MyRewards> {
                             recognizer: new TapGestureRecognizer()..onTap = () => print('Tap Here onTap'),
                           ),
                           TextSpan(
-                            text: '${headerTitleParts[1]} 00/00/0000',
+                            text: '${headerTitleParts![1]} 00/00/0000',
                             // text: '${getTranslated(context, "dashBoardTitle-valid")!} 00/00/0000',
                             style: TextStyle(color:  Color(int.parse(loyaltyPage.body.creditBalance.creditTitle.color)),),
                             recognizer: new TapGestureRecognizer()..onTap = () => print('Tap Here onTap'),
@@ -683,7 +686,9 @@ class _MyRewardsState extends State<MyRewards> {
                                         // print( GoRouter.of(context).routerDelegate.currentConfiguration.fullPath);
                                         // context.push('${GoRouter.of(context).routerDelegate.currentConfiguration.fullPath}/${RewardsHistory.routeName}');
                                         // context.go("${MainMenu.routeName}/${MyRewards.routeName}/${CreditCalculator.routeName}");
-
+                                        if(Provider.of<AuthProvider>(context, listen: false).loggedInUser ==null){
+                                          Provider.of<TabIndexGenerator>(context, listen: false).setIndex(4);
+                                        }
                                         PersistentNavBarNavigator.pushNewScreen(
                                           context,
                                           screen: RewardsHistory(),
@@ -691,6 +696,10 @@ class _MyRewardsState extends State<MyRewards> {
                                           // OPTIONAL VALUE. True by default.
                                           pageTransitionAnimation: PageTransitionAnimation.cupertino,
                                         );
+
+
+
+
                                       },
                                       style: ButtonStyle(
                                           shape: MaterialStateProperty.all<
@@ -758,11 +767,7 @@ class _MyRewardsState extends State<MyRewards> {
 
   @override
   void initState() {
-    Provider.of<LoyaltyProvider>(context, listen: false).getLoyaltySliders().then((res) {
-      if(res.statusCode ==200){
-        sliderWidets = buildSliders((res.data as List).map((i) => SliderItem.fromJson(i)).toList());
-      }
-    });
+    start();
   }
   List<Widget>  buildSliders(List<SliderItem>? sliders){
     List<Widget> slidersWidgets =[
@@ -782,4 +787,21 @@ class _MyRewardsState extends State<MyRewards> {
     return slidersWidgets;
   }
 
+
+
+  void start()async{
+    Future.wait([
+     Provider.of<LoyaltyProvider>(context, listen: false).getLoyaltySliders().then((res) {
+      if(res.statusCode ==200){
+        sliderWidets = buildSliders((res.data as List).map((i) => SliderItem.fromJson(i)).toList());
+      }
+    }),
+
+    ]).then((value) {
+      if(Provider.of<AuthProvider>(context, listen: false).loggedInUser !=null) {
+        String? userToken =Provider.of<AuthProvider>(context, listen: false).loggedInUser!.token!;
+        Provider.of<LoyaltyProvider>(context, listen: false).getLoyaltyTotalPoint(userToken: userToken).then((value) {});
+      }
+    });
+  }
 }

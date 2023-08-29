@@ -242,7 +242,7 @@ class AuthProvider with ChangeNotifier{
    }
 
 
-   Future<Response<dynamic>> logoutFromAllDevices({ required String userToken, required String email,  required String password}) async {
+   Future<Response<dynamic>> logoutFromAllDevices({ required String userToken, }) async {//required String email,  required String password
 
      var url = '${Strings.baseAppAuthUrl}auth/logoutFromAllDevices';
 
@@ -251,8 +251,8 @@ class AuthProvider with ChangeNotifier{
      header.putIfAbsent(Keys.acceptKey, () => "application/json");
      header.putIfAbsent(Keys.x_of_awjKey, () => userToken);
      header.putIfAbsent(Keys.authorizationKey, () => "Bearer " + userToken!);
-     data.putIfAbsent(Keys.emailKey, () => email);
-     data.putIfAbsent(Keys.passwordKey, () => password);
+     // data.putIfAbsent(Keys.emailKey, () => email);
+     // data.putIfAbsent(Keys.passwordKey, () => password);
 
 
      var dio = Dio();

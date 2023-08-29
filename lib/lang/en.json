@@ -31,13 +31,14 @@
   "ORDER NOW": "ORDER NOW!",
 
   "dashBoardTitle-youHave": "you have ",
-  "dashBoardTitle-credit": "12 Credit ",
+  "dashBoardTitle-credit": " Credit ",
+  "dashBoardTitle-credit": " Credit ",
   "dashBoardTitle-valid": "valid until ",
   "dashBoardTitle-transferCredit" : "Transfer\nCredit",
   "dashBoardTitle-referToFriend": "Refer a\nFriend",
   "dashBoardTitle-myRewards": "My\nRewards",
   "dashBoardTitle-myCode": "My\nCode",
-
+  "point":"Point",
   "addAddress": "Add Address",
   "selectAddress": "SELECT ADDRESS",
   "saveAddress": "Save address",

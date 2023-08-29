@@ -2917,9 +2917,9 @@ class _LoggedInUserProfileState extends State<LoggedInUserProfile> {
 
                               onPressed: () {
                                 String userToken = Provider.of<AuthProvider>(context, listen: false).loggedInUser!.token!;
-                                String email = Provider.of<AuthProvider>(context, listen: false).email!;
-                                String password = Provider.of<AuthProvider>(context, listen: false).password!;
-                                Provider.of<AuthProvider>(context, listen: false).logoutFromAllDevices(userToken:userToken,  email:email,   password:password).then((res) {
+                                // String email = Provider.of<AuthProvider>(context, listen: false).email!;
+                                // String password = Provider.of<AuthProvider>(context, listen: false).password!;
+                                Provider.of<AuthProvider>(context, listen: false).logoutFromAllDevices(userToken:userToken,  ).then((res) {//email:email,   password:password
                                   if(res.statusCode==200){
                                     Provider.of<AuthProvider>(context, listen: false).logOutUserDetailsLocally().then((value) {
                                       Provider.of<ProfileProvider>(context, listen: false).resetForm();

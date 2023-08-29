@@ -17,6 +17,7 @@ import '../providers/AppTheme/theme_provider.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:intl/intl.dart';
 
+import '../providers/gifts_provider/loyalty_provider.dart';
 import '../widgets/warning_page.dart';
 class ResponsiveLayout extends StatefulWidget{
   final Widget MobileScaffold;
@@ -87,25 +88,32 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
         }
         else{
           print("Online Theme not found!");
-          Provider.of<ThemeProvider>(context,listen: false).getSavedAppThemeLocally().then((appTheme) {
-            // print(appTheme);
-
-            if(appTheme.id!=null){
-              if(appTheme.language!=null){
-                _changeLanguage(Provider.of<ThemeProvider>(context,listen: false).appTheme.language!);
-
-              }
+          print("Shared Preferences Theme not Found! Get from Json File...");
+          Provider.of<ThemeProvider>(context,listen: false).readJson().then((appTheme) {
+            if(appTheme.language!=null){
+              _changeLanguage(Provider.of<ThemeProvider>(context,listen: false).appTheme.language!);
             }
-            else{
-              print("Shared Preferences Theme not Found!");
-              Provider.of<ThemeProvider>(context,listen: false).readJson().then((appTheme) {
-                if(appTheme.language!=null){
-                  _changeLanguage(Provider.of<ThemeProvider>(context,listen: false).appTheme.language!);
-                }
-                FlutterNativeSplash.remove();
-              });
-            }
+            FlutterNativeSplash.remove();
           });
+          // Provider.of<ThemeProvider>(context,listen: false).getSavedAppThemeLocally().then((appTheme) {
+          //   // print(appTheme);
+          //
+          //   if(appTheme.id!=null){
+          //     if(appTheme.language!=null){
+          //       _changeLanguage(Provider.of<ThemeProvider>(context,listen: false).appTheme.language!);
+          //
+          //     }
+          //   }
+          //   else{
+          //     print("Shared Preferences Theme not Found!");
+          //     Provider.of<ThemeProvider>(context,listen: false).readJson().then((appTheme) {
+          //       if(appTheme.language!=null){
+          //         _changeLanguage(Provider.of<ThemeProvider>(context,listen: false).appTheme.language!);
+          //       }
+          //       FlutterNativeSplash.remove();
+          //     });
+          //   }
+          // });
         }
         FlutterNativeSplash.remove();
       }),
@@ -125,13 +133,15 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
                String userToken =  Provider.of<AuthProvider>(context, listen: false).loggedInUser!.token!;
                Provider.of<ProfileProvider>(context,listen: false).getUserInfo(userToken, );
                Provider.of<ProfileProvider>(context,listen: false).getUserSavedAddress(userToken);
+               Provider.of<LoyaltyProvider>(context, listen: false).getLoyaltyTotalPoint(userToken: userToken).then((value) {});
+
              });
            }
            else{
              String email =  Provider.of<AuthProvider>(context, listen: false).email!;
              String password =  Provider.of<AuthProvider>(context, listen: false).password!;
              Provider.of<ProfileProvider>(context,listen: false).getUserInfo(loggedInUser.token!, );
-
+             Provider.of<LoyaltyProvider>(context, listen: false).getLoyaltyTotalPoint(userToken: userToken).then((value) {});
              Provider.of<ProfileProvider>(context,listen: false).getUserSavedAddress(loggedInUser.token!);
            }
 

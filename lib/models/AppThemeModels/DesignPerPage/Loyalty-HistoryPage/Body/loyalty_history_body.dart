@@ -35,22 +35,31 @@ class HistoryList {
     required this.title,
     required this.subTitle,
     required this.dateTitle,
+    required this.emptyList,
+    required this.emptyListLoginRequired
   });
 
   TitleStyle title;
   TitleStyle subTitle;
   TitleStyle dateTitle;
+  TitleStyle emptyListLoginRequired;
+  TitleStyle emptyList;
+
 
   factory HistoryList.fromJson(Map<String, dynamic> json) => HistoryList(
     title: TitleStyle.fromJson(json["Title"]),
     subTitle: TitleStyle.fromJson(json["SubTitle"]),
     dateTitle: TitleStyle.fromJson(json["DateTitle"]),
+      emptyListLoginRequired: TitleStyle.fromJson(json["EmptyList-LoginRequired"]),
+      emptyList: TitleStyle.fromJson(json["EmptyList"])
   );
 
   Map<String, dynamic> toJson() => {
     "Title": title.toJson(),
     "SubTitle": subTitle.toJson(),
     "DateTitle": dateTitle.toJson(),
+    "EmptyList-LoginRequired": emptyListLoginRequired.toJson(),
+    "EmptyList": emptyList.toJson()
   };
 }
 

@@ -31,7 +31,7 @@
   "ORDER NOW":"أطلب ألان!",
 
   "dashBoardTitle-youHave": "لديك ",
-  "dashBoardTitle-credit": "١٢ رصيد ",
+  "dashBoardTitle-credit": " رصيد ",
 
   "dashBoardTitle-valid": "صالحه الى ",
   "dashBoardTitle-transferCredit" : "تحويل\nرصيد",
@@ -162,6 +162,7 @@
 
   "earnd": "إكتسب",
   "pointEarnd":"نقاط مكتسبه من خلال انفاق",
+  "point":"نقطه",
   "notificationsTitle": "الإشعارات",
   "partnersTitle": "الشركاء",
   "locationsTitle":"الأماكن",

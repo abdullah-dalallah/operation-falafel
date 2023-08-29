@@ -2,7 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:operation_falafel/data/my_text.dart';
+import 'package:operation_falafel/data/snackBarGenerator.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
+import 'package:operation_falafel/providers/gifts_provider/loyalty_provider.dart';
+import 'package:operation_falafel/widgets/background.dart';
+import 'package:provider/provider.dart';
 
 class HowItWorks extends StatefulWidget{
   static const routeName = 'HowItWorks';
@@ -16,12 +21,13 @@ class _HowItWorksState extends State<HowItWorks> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Image.asset(
-          "assets/images/background.png",
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          fit: BoxFit.cover,
-        ),
+        // Image.asset(
+        //   "assets/images/background.png",
+        //   height: MediaQuery.of(context).size.height,
+        //   width: MediaQuery.of(context).size.width,
+        //   fit: BoxFit.cover,
+        // ),
+        Background(),
         Scaffold(
           key: _drawerKey,
           backgroundColor: Colors.transparent,
@@ -222,7 +228,36 @@ class _HowItWorksState extends State<HowItWorks> {
                 ],
               ),
             ),
-          ) ,
+          ),
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: Colors.amber,
+            child: Text("Add",style: TextStyle(fontFamily: getTranslated(context, "fontFamilyBody")),),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            elevation: 5,
+            onPressed: () {
+              if(Provider.of<AuthProvider>(context, listen: false).loggedInUser !=null) {
+                int? userId =Provider.of<AuthProvider>(context, listen: false).loggedInUser!.userId!;
+                String? userToken =Provider.of<AuthProvider>(context, listen: false).loggedInUser!.token!;
+                Provider.of<LoyaltyProvider>(context, listen: false).addLoyaltyPoint(
+                  userToken: userToken,
+                  amount: 30,
+                  loyaltySource: "Mobile",
+                  loyaltyType: "Order",
+                  orderAmount: 300,
+                  orderNumber: 25644,
+                  reason: "Earned point from order num#25941 with value 300 aed",
+                  userId: userId
+                ).then((res) {
+                   if(res.statusCode==200){
+                     SnackbarGenerator(context).snackBarGeneratorToast("Loyalty point added to Online Server successfully",);
+                     Provider.of<LoyaltyProvider>(context, listen: false).getLoyaltyTotalPoint(userToken: userToken).then((value) {});
+                   }
+                });
+              }
+            },
+          ),
 
         ),
       ],

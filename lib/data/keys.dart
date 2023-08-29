@@ -89,4 +89,15 @@ class Keys {
   static const redirectUrl = "redirectUrl";
   static const skipConfirmationPage = "skipConfirmationPage";
 
+  ///  - Loyalty History
+  static const reasonKey = "reason";
+
+  /// - Adding Loyalty Point
+  static const userIdKey = "user_id";
+  static const orderNumberKey = "order_number";
+  static const orderAmountKey = "order_amount";
+  static const loyaltyTypeKey = "loyalty_type";
+  static const loyaltySourceKey = "loyalty_source";
+
+
 }
