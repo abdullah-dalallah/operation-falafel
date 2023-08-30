@@ -48,6 +48,20 @@ class LoyaltyProvider with ChangeNotifier{
     }
   }
 
+  Gift? _selectedGift;
+  Gift? get selectedGift => _selectedGift;
+
+  void selectGift(Gift selectedGift){
+    _selectedGift  = selectedGift;
+    notifyListeners();
+
+  }
+  void resetSelectGift(){
+    _selectedGift  = null;
+    notifyListeners();
+
+  }
+
   List<GiftForSale>? GiftsForSale ;
 
   Future<Response<dynamic>> getGiftsCardsForSale({ required String userToken, required String lng, required country}) async {

@@ -8,10 +8,13 @@ import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/data/my_text_form_field.dart';
 import 'package:operation_falafel/data/network_constants.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
 import 'package:operation_falafel/providers/NetworkPaymentProvider/network_two_stage_payment_provider.dart';
 import 'package:operation_falafel/providers/demo_cart/demo_cart_provider.dart';
+import 'package:operation_falafel/providers/gifts_provider/loyalty_provider.dart';
 import 'package:operation_falafel/providers/palcing_order_model_provider.dart';
 import 'package:operation_falafel/providers/slider_provider.dart';
+import 'package:operation_falafel/providers/tab_index_generator_provider.dart';
 import 'package:operation_falafel/screens/network%20payment%20web%20page/authentication_screen.dart';
 import 'package:operation_falafel/widgets/address_list_sheet.dart';
 import 'package:operation_falafel/widgets/cart_gifts_widget.dart';
@@ -76,8 +79,8 @@ class _Cart_ScreenState extends State<Cart_Screen> {
        //   width: MediaQuery.of(context).size.width,
        //   fit: BoxFit.cover,
        // ),
-        Consumer3<ThemeProvider,DemoCartProvider,SliderProvider>(
-                  builder: (context, appTheme,demoCartProvider,SliderProvider, child)
+        Consumer5<ThemeProvider,DemoCartProvider,SliderProvider, AuthProvider,LoyaltyProvider>(
+                  builder: (context, appTheme,demoCartProvider,SliderProvider,authProvider,loyaltyProvider, child)
                   {
                     bool cartEmpty = demoCartProvider.cartItems.isEmpty;
 
@@ -722,55 +725,88 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                               padding: EdgeInsets.only(left: 18.0, right: 18),
                                               child:
 
-                                              MyText(
-                                                cartPage.body.selectPayment.title.data,
-                                                style:  TextStyle(
-                                                    color: Color(int.parse(cartPage.body.selectPayment.title.color)),
-                                                    fontWeight: FontWeight.w300,
-                                                    fontFamily: lng?.titleHeader1.textFamily,
-                                                    fontSize: lng?.titleHeader1.size.toDouble()
-                                                  // fontFamily: getTranslated(context, "cartpageHeader2")
-                                                ),),
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  MyText(
+                                                    cartPage.body.selectPayment.title.data,
+                                                    style:  TextStyle(
+                                                        color: Color(int.parse(cartPage.body.selectPayment.title.color)),
+                                                        fontWeight: FontWeight.w300,
+                                                        fontFamily: lng?.titleHeader1.textFamily,
+                                                        fontSize: lng?.titleHeader1.size.toDouble()
+                                                      // fontFamily: getTranslated(context, "cartpageHeader2")
+                                                    ),),
+                                                  Visibility(
+                                                    visible: (authProvider.loggedInUser!=null)?false:true,
+                                                    child: SizedBox(
+                                                      height: 30,
+                                                      child: TextButton(
+                                                        style: TextButton.styleFrom(
+                                                          foregroundColor: Colors.white,
+                                                        ),
+                                                        onPressed: () {
+                                                          Provider.of<TabIndexGenerator>(context, listen: false).setIndex(4);
+                                                        },
+                                                        child: MyText("Login", style: TextStyle(color:Color(int.parse(cartPage!.body.paymentMethods.creditCardPaymentMethodCheckBox!.selectedCard!.changeButton!.color),),fontFamily:lng!.header2.textFamily),),
+
+
+
+
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+
                                               // MyText(
                                               //   getTranslated(context, "payment")!,
                                               //   style: TextStyle(fontFamily: "${getTranslated(context, "fontFamilyButtons")!}",
                                               //       color: Colors.amber,
                                               //       fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
                                             )),
-                                            /// - Credit Card
-                                            CreditCardPaymentMethodCheckbox(
-                                              onChanged: _creditCardPaymentChangedHandler(),
-                                              value: creditCardCheckboxValue,
-                                              addOnFlag: false,
-                                              text: "Debit/Credit Card",
-                                              colorOfBox: Colors.white,
-                                              colorOfSelectedBox: Colors.amber,
-                                              colorOfText: Colors.white,
-                                              lng: lng,
-                                              cartPage: cartPage,
 
-                                            ),
-                                            /// - Loyalty
-                                            LoyaltyPaymentMethodCheckbox(
-                                              pointController: SliderProvider.pointController,
-                                              pointValue: SliderProvider.selectedPoint,
-                                              onChanged: _loyaltyPaymentChangedHandler(),
-                                              value: loyaltyCheckboxValue,
-                                              addOnFlag: false,
-                                              text: "Loyalty Credits",
-                                              colorOfBox: Colors.white,
-                                              colorOfText: Colors.white,
-                                              fontFamily: "${getTranslated(context, "fontFamilyBody")!}",
-                                              cartPage: cartPage,
-                                              lng: lng,
-                                            ),
-                                            const SizedBox(height: 15,),
-                                            /// -  OF Gifts
-                                            CartGiftsWidget(
-                                              cartPage: cartPage,
-                                              lng: lng,
-                                            ),
+                                            Visibility(
+                                              visible: (authProvider.loggedInUser!=null)?true:false,
+                                              child: Column(
+                                                children: [
+                                                  /// - Credit Card
+                                                  CreditCardPaymentMethodCheckbox(
+                                                    onChanged: _creditCardPaymentChangedHandler(),
+                                                    value: creditCardCheckboxValue,
+                                                    addOnFlag: false,
+                                                    text: "Debit/Credit Card",
+                                                    colorOfBox: Colors.white,
+                                                    colorOfSelectedBox: Colors.amber,
+                                                    colorOfText: Colors.white,
+                                                    lng: lng,
+                                                    cartPage: cartPage,
 
+                                                  ),
+                                                  /// - Loyalty
+                                                  LoyaltyPaymentMethodCheckbox(
+                                                    pointController: SliderProvider.pointController,
+                                                    pointValue: SliderProvider.selectedPoint,
+                                                    onChanged: _loyaltyPaymentChangedHandler(),
+                                                    value: loyaltyCheckboxValue,
+                                                    addOnFlag: false,
+                                                    text: "Loyalty Credits",
+                                                    colorOfBox: Colors.white,
+                                                    colorOfText: Colors.white,
+                                                    fontFamily: "${getTranslated(context, "fontFamilyBody")!}",
+                                                    cartPage: cartPage,
+                                                    lng: lng,
+                                                    maxValue: loyaltyProvider.loyaltyPoint!.body!.amount!,
+                                                  ),
+                                                  const SizedBox(height: 15,),
+                                                  /// -  OF Gifts
+                                                  CartGiftsWidget(
+                                                    cartPage: cartPage,
+                                                    lng: lng,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -1278,83 +1314,93 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                           height: 50,
                           child: ElevatedButton(
                               onPressed: () {
-
+                                if(authProvider.loggedInUser!=null){
                                 /// - Show creating order sheet model
                                 showModalBottomSheet(
                                   // expand: false,
+                                    isDismissible: false,
                                     context: context,
                                     backgroundColor: Colors.transparent,
                                     builder: (modelContext) => PlacingOrderModel(context, )).then((value) {
-                                  if (Provider.of<PlacingOrderModelProvider>(context, listen: false).makeOrderProgress == 1){
-                                    /// - show loading
-                                    // _showMakingOrderDialog(context);
 
-                                    // print('requesting to access token...');
-                                    // Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestAccessToken(NetworkConstants.networkAuthorizationApiKey).then((value) {
-                                    //   String? accessToken = Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestTokenResponse.accessToken;
-                                    //   print('creating order...');
-                                    //   Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestCreateOrder(accessToken!,NetworkConstants.outletReference).then((value) {
-                                    //     //  print(paymentUrl!);
-                                    //     // _launchURL(paymentUrl!);
-                                    //
-                                    //     String?  orderReference= Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestCreateOrderResponse.embedded!.payment![0].orderReference;
-                                    //     String?  paymentReference= Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestCreateOrderResponse.embedded!.payment![0].id;
-                                    //     String? paymentUrl = Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestCreateOrderResponse.embedded!.payment![0].links!.paymentCard!.href;
-                                    //     String? directPaymentUrl = Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestCreateOrderResponse.links!.payment!.href;
-                                    //
-                                    //     print(paymentUrl);
-                                    //     print("Submit payment card information...");
-                                    //     Navigator.of(context, rootNavigator: true).pop();
-                                    //     Navigator.push(
-                                    //       context,
-                                    //       MaterialPageRoute(
-                                    //         builder: (context) => AuthenticationScreen(
-                                    //           // authenticationUrl: '${href}',
-                                    //           // acsPaReq: '${acsPaReq}',
-                                    //           // acsMd: '${acsMd}',
-                                    //           // acsUrl: '${acsurl}',
-                                    //           // accessToken: accessToken,
-                                    //           directPaymentLink: directPaymentUrl!,
-                                    //         ),
-                                    //       ),
-                                    //     );
-                                    //
-                                    //     // Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestSubmitPaymentCardInformation(paymentUrl!,accessToken).then((value) {
-                                    //     //
-                                    //     //   String? acsurl =  Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestSubmitPaymentCardInformationResponse.the3Ds!.acsUrl;
-                                    //     //   String? acsPaReq =  Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestSubmitPaymentCardInformationResponse.the3Ds!.acsPaReq;
-                                    //     //   String? acsMd =  Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestSubmitPaymentCardInformationResponse.the3Ds!.acsMd;
-                                    //     //   String? href =  Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestSubmitPaymentCardInformationResponse.links!.cnp3Ds!.href;
-                                    //     //
-                                    //     //
-                                    //     //   print(acsurl);
-                                    //     //   print(acsPaReq);
-                                    //     //   print(acsMd);
-                                    //     //
-                                    //     //   Navigator.push(
-                                    //     //     context,
-                                    //     //     MaterialPageRoute(
-                                    //     //       builder: (context) => AuthenticationScreen(
-                                    //     //         authenticationUrl: '${href}',
-                                    //     //         acsPaReq: '${acsPaReq}',
-                                    //     //         acsMd: '${acsMd}',
-                                    //     //         acsUrl: '${acsurl}',
-                                    //     //         accessToken: accessToken,
-                                    //     //       ),
-                                    //     //     ),
-                                    //     //   );
-                                    //     //
-                                    //     // });
-                                    //
-                                    //
-                                    //   });
-                                    //
-                                    // });
+                                    if (Provider.of<PlacingOrderModelProvider>(context, listen: false).makeOrderProgress == 1){
+                                      /// - show loading
+                                      // _showMakingOrderDialog(context);
+
+                                      // print('requesting to access token...');
+                                      // Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestAccessToken(NetworkConstants.networkAuthorizationApiKey).then((value) {
+                                      //   String? accessToken = Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestTokenResponse.accessToken;
+                                      //   print('creating order...');
+                                      //   Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestCreateOrder(accessToken!,NetworkConstants.outletReference).then((value) {
+                                      //     //  print(paymentUrl!);
+                                      //     // _launchURL(paymentUrl!);
+                                      //
+                                      //     String?  orderReference= Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestCreateOrderResponse.embedded!.payment![0].orderReference;
+                                      //     String?  paymentReference= Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestCreateOrderResponse.embedded!.payment![0].id;
+                                      //     String? paymentUrl = Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestCreateOrderResponse.embedded!.payment![0].links!.paymentCard!.href;
+                                      //     String? directPaymentUrl = Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestCreateOrderResponse.links!.payment!.href;
+                                      //
+                                      //     print(paymentUrl);
+                                      //     print("Submit payment card information...");
+                                      //     Navigator.of(context, rootNavigator: true).pop();
+                                      //     Navigator.push(
+                                      //       context,
+                                      //       MaterialPageRoute(
+                                      //         builder: (context) => AuthenticationScreen(
+                                      //           // authenticationUrl: '${href}',
+                                      //           // acsPaReq: '${acsPaReq}',
+                                      //           // acsMd: '${acsMd}',
+                                      //           // acsUrl: '${acsurl}',
+                                      //           // accessToken: accessToken,
+                                      //           directPaymentLink: directPaymentUrl!,
+                                      //         ),
+                                      //       ),
+                                      //     );
+                                      //
+                                      //     // Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestSubmitPaymentCardInformation(paymentUrl!,accessToken).then((value) {
+                                      //     //
+                                      //     //   String? acsurl =  Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestSubmitPaymentCardInformationResponse.the3Ds!.acsUrl;
+                                      //     //   String? acsPaReq =  Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestSubmitPaymentCardInformationResponse.the3Ds!.acsPaReq;
+                                      //     //   String? acsMd =  Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestSubmitPaymentCardInformationResponse.the3Ds!.acsMd;
+                                      //     //   String? href =  Provider.of<NetworkTwoStagePaymentProvider>(context, listen: false).requestSubmitPaymentCardInformationResponse.links!.cnp3Ds!.href;
+                                      //     //
+                                      //     //
+                                      //     //   print(acsurl);
+                                      //     //   print(acsPaReq);
+                                      //     //   print(acsMd);
+                                      //     //
+                                      //     //   Navigator.push(
+                                      //     //     context,
+                                      //     //     MaterialPageRoute(
+                                      //     //       builder: (context) => AuthenticationScreen(
+                                      //     //         authenticationUrl: '${href}',
+                                      //     //         acsPaReq: '${acsPaReq}',
+                                      //     //         acsMd: '${acsMd}',
+                                      //     //         acsUrl: '${acsurl}',
+                                      //     //         accessToken: accessToken,
+                                      //     //       ),
+                                      //     //     ),
+                                      //     //   );
+                                      //     //
+                                      //     // });
+                                      //
+                                      //
+                                      //   });
+                                      //
+                                      // });
 
 
 
-                                  }
+                                    }
+
+
+
+
                                 });
+                                }
+                                else{
+                                  Provider.of<TabIndexGenerator>(context, listen: false).setIndex(4);
+                                }
 
                               },
                               style: ButtonStyle(
@@ -1400,6 +1446,13 @@ class _Cart_ScreenState extends State<Cart_Screen> {
      ],
    );
   }
+
+
+
+
+
+
+
 
 
   /// - Code changes - Payment mehtod

@@ -26,6 +26,7 @@ class LoyaltyPaymentMethodCheckbox extends StatefulWidget{
   final CartPage? cartPage;
   final Language? lng;
   final TextEditingController pointController;
+  final int maxValue;
   LoyaltyPaymentMethodCheckbox({super.key,
     required this.pointController,
     required this.value,
@@ -38,7 +39,8 @@ class LoyaltyPaymentMethodCheckbox extends StatefulWidget{
     required this.addOnFlag,
     this.fontFamily,
     required this.cartPage,
-    required this.lng
+    required this.lng,
+    required this.maxValue
   });
 
   @override
@@ -270,7 +272,6 @@ class _LoyaltyPaymentMethodCheckboxState extends State<LoyaltyPaymentMethodCheck
                                     autofocus: true,
                                     style:  TextStyle(color: Color(int.parse(widget.cartPage!.body.paymentMethods.loyaltyCreditPeymantMethodCheckBox!.selectedPoint!.selectedAmountOfPoints!.color!)), fontFamily:getTranslated(context, "fontFamilyBody")!,fontSize: 15),
                                     decoration:  InputDecoration(
-
                                       filled: true,
                                       fillColor: Colors.black45,
                                       contentPadding: const EdgeInsets.only(left: 10, right: 10),
@@ -392,7 +393,7 @@ class _LoyaltyPaymentMethodCheckboxState extends State<LoyaltyPaymentMethodCheck
                                           style: TextButton.styleFrom(foregroundColor: Colors.white, ),
                                           onPressed: () {
 
-                                            Provider.of<SliderProvider>(context, listen: false).onChangePointController(200);
+                                            Provider.of<SliderProvider>(context, listen: false).onChangePointController(widget.maxValue.toDouble());
 
                                           },
                                           child: MyText(widget.cartPage!.body.paymentMethods.loyaltyCreditPeymantMethodCheckBox!.selectedPoint!.fullPointButton!.data!, style: TextStyle(color:Color(int.parse(widget.cartPage!.body.paymentMethods.loyaltyCreditPeymantMethodCheckBox!.selectedPoint!.fullPointButton!.color)), fontSize: widget.lng!.header2.size.toDouble() , fontWeight: FontWeight.normal,fontFamily: widget.lng!.header2.textFamily),),
@@ -414,8 +415,8 @@ class _LoyaltyPaymentMethodCheckboxState extends State<LoyaltyPaymentMethodCheck
                                       tempValue = Provider.of<SliderProvider>(context, listen: false).selectedPoint;
                                       if(value.isNotEmpty){
                                         double tempValue = double.parse(value);
-                                        if(tempValue>200){
-                                          tempValue=200;
+                                        if(tempValue>widget.maxValue){
+                                          tempValue=widget.maxValue.toDouble();
                                           Provider.of<SliderProvider>(context, listen: false).onChangePointController(tempValue);
 
                                         }
@@ -438,7 +439,7 @@ class _LoyaltyPaymentMethodCheckboxState extends State<LoyaltyPaymentMethodCheck
 
 
                         SliderWidget(
-                            max: 200,min: 0,
+                            max: widget.maxValue,min: 0,
                             fullWidth: true,
                             lng: widget.lng,
                             cartPage: widget.cartPage,
