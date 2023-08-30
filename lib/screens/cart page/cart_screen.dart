@@ -796,7 +796,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                     fontFamily: "${getTranslated(context, "fontFamilyBody")!}",
                                                     cartPage: cartPage,
                                                     lng: lng,
-                                                    maxValue: loyaltyProvider.loyaltyPoint!.body!.amount!,
+                                                    maxValue: (authProvider.loggedInUser!=null)?(loyaltyProvider.loyaltyPoint!=null)?loyaltyProvider.loyaltyPoint!.body!.amount!:0:0,
                                                   ),
                                                   const SizedBox(height: 15,),
                                                   /// -  OF Gifts
