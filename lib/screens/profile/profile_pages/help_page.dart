@@ -1,8 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:operation_falafel/data/keys.dart';
 import 'package:operation_falafel/data/my_text.dart';
+import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
+import 'package:operation_falafel/providers/ProfileProviders/profile_provider.dart';
+import 'package:operation_falafel/providers/gifts_provider/loyalty_provider.dart';
+import 'package:operation_falafel/widgets/background.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../localization/localization_constants.dart';
 import '../../../models/AppThemeModels/DesignPerPage/HelpPage/help_page.dart';
@@ -25,10 +32,7 @@ class _HelpPageState extends State<HelpPage> {
 
     return Consumer<ThemeProvider>(builder: (context, appTheme, child)
     {
-      Language? lng = (Localizations
-          .localeOf(context)
-          .languageCode == 'ar') ? appTheme.appTheme.fontSizes?.ar : appTheme
-          .appTheme.fontSizes?.en;
+      Language? lng = (Localizations.localeOf(context).languageCode == 'ar') ? appTheme.appTheme.fontSizes?.ar : appTheme.appTheme.fontSizes?.en;
       DesignHelpPage? helpPage = appTheme.appTheme.designPerPage?.helpPage;
       bool loadingDesign = helpPage != null;
 
@@ -36,18 +40,19 @@ class _HelpPageState extends State<HelpPage> {
       return (loadingDesign)?
       Stack(
         children: [
-          Image.asset(
-            "assets/images/background.png",
-            height: MediaQuery
-                .of(context)
-                .size
-                .height,
-            width: MediaQuery
-                .of(context)
-                .size
-                .width,
-            fit: BoxFit.cover,
-          ),
+          Background(),
+          // Image.asset(
+          //   "assets/images/background.png",
+          //   height: MediaQuery
+          //       .of(context)
+          //       .size
+          //       .height,
+          //   width: MediaQuery
+          //       .of(context)
+          //       .size
+          //       .width,
+          //   fit: BoxFit.cover,
+          // ),
           Scaffold(
 
             backgroundColor: Colors.transparent,
@@ -110,7 +115,7 @@ class _HelpPageState extends State<HelpPage> {
                     ),
                   ),
 
-                  /// - my Code
+
                   /// - Contact us
                   const SizedBox(height: 20,),
                   SizedBox(
@@ -121,58 +126,142 @@ class _HelpPageState extends State<HelpPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Column(
+                        /// - Phone number
+                        Stack(
                           children: [
-                            Image.network(helpPage.body.callUsWidget.imageIcon, height: double.parse(helpPage.body.callUsWidget.mobileSize), color: Colors.amber,),
-                            // Image.asset("assets/images/page8_phone.png", height: 29, color: Colors.amber,),
-
-                            const SizedBox(width: 8,),
                             Padding(
-                              padding: const EdgeInsets.only(top: 10.0),
+                              padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 children: [
-                                  MyText(
-                                    helpPage.body.callUsWidget.data,
-                                    style: TextStyle(
-                                      fontSize: lng?.header2.size.toDouble(),
-                                      fontFamily: lng?.header2.textFamily,
-                                      color: Color(int.parse(helpPage.body.callUsWidget.color)),),),
-                                  // MyText(getTranslated(context, "callUs")!,
-                                  //   style: TextStyle(fontSize: 13,
-                                  //     fontFamily: "${getTranslated(
-                                  //         context, "fontFamilyBody")!}",
-                                  //     color: Colors.white,),),
-                                  SizedBox(width: 60,
-                                      child: Divider(
-                                        color: Colors.white, thickness: 1,))
+                                  Image.network(helpPage.body.callUsWidget.imageIcon, height: double.parse(helpPage.body.callUsWidget.mobileSize), color: Colors.amber,),
+                                  // Image.asset("assets/images/page8_phone.png", height: 29, color: Colors.amber,),
+
+                                  const SizedBox(width: 8,),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10.0),
+                                    child: Column(
+                                      children: [
+                                        MyText(
+                                          helpPage.body.callUsWidget.data,
+                                          style: TextStyle(
+                                            fontSize: lng?.header2.size.toDouble(),
+                                            fontFamily: lng?.header2.textFamily,
+                                            color: Color(int.parse(helpPage.body.callUsWidget.color)),),),
+                                        // MyText(getTranslated(context, "callUs")!,
+                                        //   style: TextStyle(fontSize: 13,
+                                        //     fontFamily: "${getTranslated(
+                                        //         context, "fontFamilyBody")!}",
+                                        //     color: Colors.white,),),
+                                        SizedBox(width: 60,
+                                            child: Divider(
+                                              color: Colors.white, thickness: 1,))
+                                      ],
+                                    ),
+                                  )
                                 ],
                               ),
-                            )
+                            ),
+                            Positioned.fill(
+
+                                child:  Material(
+                                  color: Colors.transparent,
+                                  child:   InkWell(
+                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    splashColor: Colors.black,
+                                    overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                    onTap: (){
+
+
+                                      if(Provider.of<AuthProvider>(context, listen: false).loggedInUser!=null) {
+                                        String userToken =  Provider.of<AuthProvider>(context, listen: false).loggedInUser!.token!;
+                                        Provider.of<ProfileProvider>(context, listen: false).getHelpContacts( userToken).then((res) {
+
+                                          if(res.statusCode==200) {
+                                            print(res.data[Keys.bodyKey][Keys.phoneKey]);
+                                            launchPhone("${res.data[Keys.bodyKey][Keys.phoneKey]}");
+                                          }
+                                        });
+
+                                      }else{
+
+                                      }
+
+
+                                    },
+                                  ),
+
+                                )
+                            ),
                           ],
                         ),
-                        Column(
+                        /// - Email
+                        Stack(
                           children: [
-                            Image.network(helpPage.body.emailUsWidget.imageIcon, height: double.parse(helpPage.body.callUsWidget.mobileSize), color: Colors.amber,),
-
-                            // Image.asset("assets/images/page8_mail.png", height: 25, color: Colors.amber,),
-                            const SizedBox(width: 8,),
                             Padding(
-                              padding: const EdgeInsets.only(top: 10.0),
+                              padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 children: [
-                                  MyText(
-                                    helpPage.body.emailUsWidget.data,
-                                    style: TextStyle(
-                                      fontSize: lng?.header2.size.toDouble(),
-                                      fontFamily: lng?.header2.textFamily,
-                                      color: Color(int.parse(helpPage.body.emailUsWidget.color)),),),
+                                  Image.network(helpPage.body.emailUsWidget.imageIcon, height: double.parse(helpPage.body.callUsWidget.mobileSize), color: Colors.amber,),
 
-                                  SizedBox(width: double.parse(getTranslated(context, "emailUsDividerLength")!),
-                                      child: Divider(
-                                        color: Colors.white, thickness: 1,))
+                                  // Image.asset("assets/images/page8_mail.png", height: 25, color: Colors.amber,),
+                                  const SizedBox(width: 8,),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10.0),
+                                    child: Column(
+                                      children: [
+                                        MyText(
+                                          helpPage.body.emailUsWidget.data,
+                                          style: TextStyle(
+                                            fontSize: lng?.header2.size.toDouble(),
+                                            fontFamily: lng?.header2.textFamily,
+                                            color: Color(int.parse(helpPage.body.emailUsWidget.color)),),),
+
+                                        SizedBox(width: double.parse(getTranslated(context, "emailUsDividerLength")!),
+                                            child: Divider(
+                                              color: Colors.white, thickness: 1,))
+                                      ],
+                                    ),
+                                  )
                                 ],
                               ),
-                            )
+                            ),
+                            Positioned.fill(
+
+                                child:  Material(
+                                  color: Colors.transparent,
+                                  child:   InkWell(
+                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    splashColor: Colors.black,
+                                    overlayColor: MaterialStateProperty.all<Color>(Colors.black54),
+
+                                    onTap: (){
+
+
+                                      if(Provider.of<AuthProvider>(context, listen: false).loggedInUser!=null) {
+                                        String userToken =  Provider.of<AuthProvider>(context, listen: false).loggedInUser!.token!;
+                                        Provider.of<ProfileProvider>(context, listen: false).getHelpContacts( userToken).then((res) {
+
+
+                                          if(res.statusCode==200) {
+                                            print(res.data[Keys.bodyKey][Keys
+                                                .emailKey]);
+                                            launchEmail(
+                                              "${res.data[Keys.bodyKey][Keys
+                                                  .emailKey]}",);
+                                          }
+                                          });
+
+                                      }else{
+
+                                      }
+
+
+                                    },
+                                  ),
+
+                                )
+                            ),
                           ],
                         ),
                       ],
@@ -194,4 +283,15 @@ class _HelpPageState extends State<HelpPage> {
 
 
   }
+
+
+  void launchEmail(String email,) async {
+    final Uri emailUrl = Uri.parse('mailto:$email');
+    await launchUrl(emailUrl);
+  }
+  void launchPhone(String phone) async {
+    final Uri phoneUrl = Uri.parse('tel:$phone');
+    await launchUrl(phoneUrl);
+  }
+
 }

@@ -27,6 +27,7 @@ class LoyaltyPaymentMethodCheckbox extends StatefulWidget{
   final Language? lng;
   final TextEditingController pointController;
   final int maxValue;
+  final int pointRate;
   LoyaltyPaymentMethodCheckbox({super.key,
     required this.pointController,
     required this.value,
@@ -40,7 +41,8 @@ class LoyaltyPaymentMethodCheckbox extends StatefulWidget{
     this.fontFamily,
     required this.cartPage,
     required this.lng,
-    required this.maxValue
+    required this.maxValue,
+    required this.pointRate
   });
 
   @override
@@ -246,7 +248,7 @@ class _LoyaltyPaymentMethodCheckboxState extends State<LoyaltyPaymentMethodCheck
                                   ),
                                   child: Center(
                                     child: MyText(
-                                      '${widget.pointValue/10} AED',
+                                      '${(widget.pointValue/widget.pointRate).toStringAsFixed(1)} AED',
                                       style: TextStyle(
                                           fontSize: widget.lng?.header2.size.toDouble(),
                                           fontFamily: widget.lng?.header2.textFamily,

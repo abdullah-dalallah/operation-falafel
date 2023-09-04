@@ -598,4 +598,29 @@ class ProfileProvider with ChangeNotifier {
     }
   }
 
+  Future<Response<dynamic>> getHelpContacts(String userToken,) async {
+    print("getting Help Contacts from Online Server...");
+    var url = '${Strings.baseAppContactUsUrl}contact-details';
+    print(url);
+    Map<String, String> header = <String, String>{};
+    header.putIfAbsent(Keys.acceptKey, () => "application/json");
+    header.putIfAbsent(Keys.x_of_awjKey, () => "${userToken}");
+    Map<String, String> body = <String, String>{};
+
+    var dio = Dio();
+    try {
+
+      var response = await dio.get(url,data: body, options: Options(headers: header));// options: Options(headers: header)
+
+      if(response.statusCode ==200){}
+      notifyListeners();
+      return response;
+    } on DioError catch (e) {
+      print(e.response);
+
+      return e.response!;
+
+    }
+  }
+
 }

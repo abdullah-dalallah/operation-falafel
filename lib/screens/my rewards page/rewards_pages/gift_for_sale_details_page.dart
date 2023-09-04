@@ -230,8 +230,8 @@ class _GiftForSaleDetailsPageState extends State<GiftForSaleDetailsPage> {
                                          .transparent,
                                      builder: (context) =>
                                          DraggableScrollableSheet(
-                                             initialChildSize: 0.5,
-                                             minChildSize: 0.3,
+                                             initialChildSize: 0.6,
+                                             minChildSize: 0.5,
                                              maxChildSize: 0.6,
                                              expand: true,
                                              builder: (context,

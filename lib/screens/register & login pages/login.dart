@@ -484,6 +484,9 @@ class _LoginState extends State<Login> {
                                                     if(response.statusCode==200) {
                                                       SnackbarGenerator(context).snackBarGeneratorToast("User Logged in successfully",);
                                                       Provider.of<LoyaltyProvider>(context, listen: false).getLoyaltyTotalPoint(userToken: userToken).then((value) {});
+                                                      Provider.of<LoyaltyProvider>(context, listen: false).getLoyaltyPointRate(userToken: userToken).then((res) {
+
+                                                      });
                                                       Navigator.pop(context);
                                                     }
                                                     });

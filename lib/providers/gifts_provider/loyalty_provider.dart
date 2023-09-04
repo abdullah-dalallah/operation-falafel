@@ -5,6 +5,7 @@ import 'package:operation_falafel/data/strings.dart';
 import 'package:operation_falafel/providers/gifts_provider/models/gift.dart';
 import 'package:operation_falafel/providers/gifts_provider/models/gift_for_sale.dart';
 import 'package:operation_falafel/providers/gifts_provider/models/loyalty_point_history.dart';
+import 'package:operation_falafel/providers/gifts_provider/models/loyalty_point_rate.dart';
 
 import '../home_page_provider/models/slider_model.dart';
 import 'models/loyalty_point.dart';
@@ -256,6 +257,62 @@ class LoyaltyProvider with ChangeNotifier{
     }
 
 
+  }
+
+  LoyaltyPointRate? _loyaltyPointRate ;
+
+  LoyaltyPointRate? get loyaltyPointRate => _loyaltyPointRate;
+  Future<Response<dynamic>> getLoyaltyPointRate({ required String userToken,}) async {
+    print("getting loyalty point history from Online Server...");
+    var url = '${Strings.baseLoyaltyUrl}/loyalty-point/loyalty-point-rate';
+    print(url);
+    Map<String, String> header = <String, String>{};
+    Map<String, String> body = <String, String>{};
+    header.putIfAbsent(Keys.acceptKey, () => "application/json");
+    header.putIfAbsent(Keys.x_of_awjKey, () => userToken);
+    body.putIfAbsent(Keys.nameKey, () => "Promo");
+
+    var dio = Dio();
+    try {
+
+      var response = await dio.get(url,data: body, options: Options(headers: header));// options: Options(headers: header)
+
+      if(response.statusCode ==200){
+        if (response.data.isNotEmpty){
+          print(response.data);
+          _loyaltyPointRate=  LoyaltyPointRate.fromJson(response.data);
+          print("Loyalty point rate fetched From Online Server!");
+        }else{
+          print("Loyalty point rate Empty");
+        }
+      }
+      notifyListeners();
+      return response;
+    } on DioError catch (e) {
+      print(e.response);
+      return e.response!;
+    }
+  }
+
+  Future<Response<dynamic>> getReferToFriendMessage({ required String userToken,}) async {
+    print("getting Refer To Friend Message from Online Server...");
+    var url = '${Strings.baseAppAuthUrl}user/refer-msg';
+    print(url);
+    Map<String, String> header = <String, String>{};
+    header.putIfAbsent(Keys.acceptKey, () => "application/json");
+    header.putIfAbsent(Keys.x_of_awjKey, () => userToken);
+
+    var dio = Dio();
+    try {
+
+      var response = await dio.get(url, options: Options(headers: header));// options: Options(headers: header)
+
+      notifyListeners();
+      return response;
+    } on DioError catch (e) {
+      print(e.response);
+      return e.response!;
+    }
   }
 
 

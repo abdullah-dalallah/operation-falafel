@@ -11,7 +11,7 @@ class ContactProvider with ChangeNotifier {
     required String userToken, required String name, required String email,
     required String phone, required int contact_reason_id, required String message
   }) async {
-    var url = '${Strings.baseAppContactUsAddressUrl}contact-forms';
+    var url = '${Strings.baseAppContactUsUrl}contact-forms';
 
     Map<String, String> header = <String, String>{};
     Map<String, dynamic> data = <String, dynamic>{};
@@ -40,7 +40,7 @@ class ContactProvider with ChangeNotifier {
   }
 
   Future<Response<dynamic>> getReasonContactUSForm({required String userToken,}) async {
-    var url = '${Strings.baseAppContactUsAddressUrl}contact-reasons';
+    var url = '${Strings.baseAppContactUsUrl}contact-reasons';
 
     Map<String, String> header = <String, String>{};
     header.putIfAbsent(Keys.acceptKey, () => "application/json");
@@ -62,7 +62,7 @@ class ContactProvider with ChangeNotifier {
   }
 
   Future<Response<dynamic>> feedBack({required String userToken,required int rate, required String message}) async {
-    var url = '${Strings.baseAppContactUsAddressUrl}feedbacks';
+    var url = '${Strings.baseAppContactUsUrl}feedbacks';
 
     Map<String, String> header = <String, String>{};
     Map<String, dynamic> data = <String, dynamic>{};

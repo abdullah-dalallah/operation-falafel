@@ -1719,7 +1719,9 @@ class _RegisterState extends State<Register> {
                 });
               }
             });
+            Provider.of<LoyaltyProvider>(context, listen: false).getLoyaltyPointRate(userToken: res.data[Keys.bodyKey][Keys.tokenKey],).then((res) {
 
+            });
 
 
           }

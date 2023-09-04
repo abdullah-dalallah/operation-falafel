@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:operation_falafel/data/keys.dart';
 import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
@@ -503,16 +504,23 @@ class _MyRewardsState extends State<MyRewards> {
                                     // width: 130,
                                     child: ElevatedButton(
                                       onPressed: () {
-                                        final RenderBox renderBox = context
-                                            .findRenderObject() as RenderBox;
-                                        Share.share(
-                                          "You have been invited by Abdullh to join the O:F Family! Click below to install our app. Onelink.to/dhdbm3. Once you join, you will receive a 25% discount on your first order & 5Dhs credit when you use code 248921 in your registration page"
-                                          , subject: "check out The website"
-                                          ,
-                                          sharePositionOrigin: renderBox
-                                              .localToGlobal(
-                                              Offset.zero) & renderBox.size,
-                                        );
+
+                                        if(Provider.of<AuthProvider>(context, listen: false).loggedInUser!=null) {
+                                          String userToken =  Provider.of<AuthProvider>(context, listen: false).loggedInUser!.token!;
+                                          Provider.of<LoyaltyProvider>(
+                                              context, listen: false).getReferToFriendMessage(userToken: userToken).then((res) {
+                                            print("Message: ${res.data[Keys.bodyKey]}");
+                                            final RenderBox renderBox = context.findRenderObject() as RenderBox;
+                                            Share.share(
+                                              "${res.data[Keys.bodyKey]}"
+                                              ,subject: "check out The website"
+                                              ,sharePositionOrigin: renderBox.localToGlobal(Offset.zero)&renderBox.size,
+                                            );
+                                          });
+
+                                        }else{
+                                          Provider.of<TabIndexGenerator>(context, listen: false).setIndex(4);
+                                        }
                                       },
                                       style: ButtonStyle(
                                           shape: MaterialStateProperty.all<

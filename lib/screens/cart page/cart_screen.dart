@@ -88,6 +88,8 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                     CartPage? cartPage = appTheme.appTheme.designPerPage?.cartPage;
                     bool loadingDesign= cartPage!=null;
 
+                    int loyaltyPointRate = ((loyaltyProvider.loyaltyPointRate!=null)?loyaltyProvider.loyaltyPointRate!.body!.value!:0);
+
                     return
                       (loadingDesign)?
                       Scaffold(
@@ -796,6 +798,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                     fontFamily: "${getTranslated(context, "fontFamilyBody")!}",
                                                     cartPage: cartPage,
                                                     lng: lng,
+                                                    pointRate: (loyaltyProvider.loyaltyPointRate!=null)?loyaltyProvider.loyaltyPointRate!.body!.value!:0,
                                                     maxValue: (authProvider.loggedInUser!=null)?(loyaltyProvider.loyaltyPoint!=null)?loyaltyProvider.loyaltyPoint!.body!.amount!:0:0,
                                                   ),
                                                   const SizedBox(height: 15,),
@@ -853,71 +856,77 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                         fontWeight: FontWeight.w300),),
                                                 ],),
                                             ),
-                                            Padding(
-                                              padding: const EdgeInsets.all(8.0),
-                                              child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                  MyText(
-                                                    "LOYALTY POINT",
-                                                    // cartPage.body.totalAfterPromoCode.data,
-                                                    style: TextStyle(
-                                                        fontFamily: "${lng?.header3.textFamily}",
-                                                        color: Color(int.parse(cartPage.body.totalAfterPromoCode.color)),
-                                                        fontSize: lng?.header3.size.toDouble(),
-                                                        fontWeight: FontWeight.w300),),
-                                                  // MyText(
-                                                  //   getTranslated(context, "totalAfterPromoCode")!,
-                                                  //   style: TextStyle(
-                                                  //       fontFamily: "${getTranslated(
-                                                  //           context,
-                                                  //           "fontFamilyBody")!}",
-                                                  //       color: Colors.amber,
-                                                  //       fontSize: double.parse(
-                                                  //           getTranslated(context,
-                                                  //               "cartpageHeader2SubTotal")!),
-                                                  //       fontWeight: FontWeight.w300),),
-                                                  MyText('AED -${SliderProvider.selectedPoint/10}',
-                                                    //"AED ${demoCartProvider.Details.Total}",
-                                                    style: TextStyle(
-                                                        fontFamily: "${lng?.header3.textFamily}",
-                                                        color: Color(int.parse(cartPage.body.totalAfterPromoCode.color)),
-                                                        fontSize: lng?.header3.size.toDouble(),
-                                                        fontWeight: FontWeight.w300),),
-                                                ],),
+                                            if(authProvider.loggedInUser!=null)
+                                            Column(
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsets.all(8.0),
+                                                  child: Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    children: [
+                                                      MyText(
+                                                        "LOYALTY POINT",
+                                                        // cartPage.body.totalAfterPromoCode.data,
+                                                        style: TextStyle(
+                                                            fontFamily: "${lng?.header3.textFamily}",
+                                                            color: Color(int.parse(cartPage.body.totalAfterPromoCode.color)),
+                                                            fontSize: lng?.header3.size.toDouble(),
+                                                            fontWeight: FontWeight.w300),),
+                                                      // MyText(
+                                                      //   getTranslated(context, "totalAfterPromoCode")!,
+                                                      //   style: TextStyle(
+                                                      //       fontFamily: "${getTranslated(
+                                                      //           context,
+                                                      //           "fontFamilyBody")!}",
+                                                      //       color: Colors.amber,
+                                                      //       fontSize: double.parse(
+                                                      //           getTranslated(context,
+                                                      //               "cartpageHeader2SubTotal")!),
+                                                      //       fontWeight: FontWeight.w300),),
+                                                      MyText('AED -${(SliderProvider.selectedPoint/loyaltyPointRate).toStringAsFixed(1)}',
+                                                        //"AED ${demoCartProvider.Details.Total}",
+                                                        style: TextStyle(
+                                                            fontFamily: "${lng?.header3.textFamily}",
+                                                            color: Color(int.parse(cartPage.body.totalAfterPromoCode.color)),
+                                                            fontSize: lng?.header3.size.toDouble(),
+                                                            fontWeight: FontWeight.w300),),
+                                                    ],),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.all(8.0),
+                                                  child: Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    children: [
+                                                      MyText(
+                                                        cartPage.body.totalAfterPromoCode.data,
+                                                        style: TextStyle(
+                                                            fontFamily: "${lng?.header3.textFamily}",
+                                                            color: Color(int.parse(cartPage.body.totalAfterPromoCode.color)),
+                                                            fontSize: lng?.header3.size.toDouble(),
+                                                            fontWeight: FontWeight.w300),),
+                                                      // MyText(
+                                                      //   getTranslated(context, "totalAfterPromoCode")!,
+                                                      //   style: TextStyle(
+                                                      //       fontFamily: "${getTranslated(
+                                                      //           context,
+                                                      //           "fontFamilyBody")!}",
+                                                      //       color: Colors.amber,
+                                                      //       fontSize: double.parse(
+                                                      //           getTranslated(context,
+                                                      //               "cartpageHeader2SubTotal")!),
+                                                      //       fontWeight: FontWeight.w300),),
+                                                      MyText('AED ${demoCartProvider.Details.Total-SliderProvider.selectedPoint/10}',
+                                                        //"AED ${demoCartProvider.Details.Total}",
+                                                        style: TextStyle(
+                                                            fontFamily: "${lng?.header3.textFamily}",
+                                                            color: Color(int.parse(cartPage.body.totalAfterPromoCode.color)),
+                                                            fontSize: lng?.header3.size.toDouble(),
+                                                            fontWeight: FontWeight.w300),),
+                                                    ],),
+                                                ),
+                                              ],
                                             ),
-                                            Padding(
-                                              padding: const EdgeInsets.all(8.0),
-                                              child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                  MyText(
-                                                    cartPage.body.totalAfterPromoCode.data,
-                                                    style: TextStyle(
-                                                        fontFamily: "${lng?.header3.textFamily}",
-                                                        color: Color(int.parse(cartPage.body.totalAfterPromoCode.color)),
-                                                        fontSize: lng?.header3.size.toDouble(),
-                                                        fontWeight: FontWeight.w300),),
-                                                  // MyText(
-                                                  //   getTranslated(context, "totalAfterPromoCode")!,
-                                                  //   style: TextStyle(
-                                                  //       fontFamily: "${getTranslated(
-                                                  //           context,
-                                                  //           "fontFamilyBody")!}",
-                                                  //       color: Colors.amber,
-                                                  //       fontSize: double.parse(
-                                                  //           getTranslated(context,
-                                                  //               "cartpageHeader2SubTotal")!),
-                                                  //       fontWeight: FontWeight.w300),),
-                                                  MyText('AED ${demoCartProvider.Details.Total-SliderProvider.selectedPoint/10}',
-                                                    //"AED ${demoCartProvider.Details.Total}",
-                                                    style: TextStyle(
-                                                        fontFamily: "${lng?.header3.textFamily}",
-                                                        color: Color(int.parse(cartPage.body.totalAfterPromoCode.color)),
-                                                        fontSize: lng?.header3.size.toDouble(),
-                                                        fontWeight: FontWeight.w300),),
-                                                ],),
-                                            ),
+
                                             Padding(
                                               padding: const EdgeInsets.all(8.0),
                                               child: Row(
@@ -966,6 +975,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                           ),
                                           padding:const EdgeInsets.only(left: 0, right: 0, top: 10, bottom: 10),
                                           child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.stretch,
                                             children: [
                                               /// - Total
                                               Row(
@@ -986,7 +996,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                       ),
                                                       children: [
                                                         TextSpan(
-                                                          text: ' AED ${demoCartProvider.Details.Total-SliderProvider.selectedPoint/10}',
+                                                          text: ' AED ${(demoCartProvider.Details.Total-(SliderProvider.selectedPoint/loyaltyPointRate)).toStringAsFixed(1)}',
                                                           style: TextStyle(
                                                               fontWeight: FontWeight.w300,
                                                               color: Color(int.parse(cartPage.body.total.price.color))
@@ -1001,24 +1011,27 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                               /// - credit calculation
                                               Padding(
                                                 padding: const EdgeInsets.only(left: 8.0, right: 8, top: 15),
-                                                child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                  children: [
-                                                    MyText(
-                                                      cartPage.body.credit.data,
-                                                      // getTranslated(context, "earned credits")!,
-                                                      style: TextStyle(
-                                                          fontFamily: lng?.header1.textFamily,
-                                                          color: Color(int.parse(cartPage.body.credit.color)),
-                                                          fontSize: lng?.header1.size.toDouble()),),
-                                                    MyText(getTranslated(
-                                                        context, "total of credits")!,
-                                                      style: TextStyle(
-                                                          fontFamily: getTranslated(
-                                                              context, "fontFamilyBody"),
-                                                          color: Colors.amber,
-                                                          fontSize: 10),),
-                                                  ],
+                                                child: Container(
+                                                  color:Colors.green,
+                                                  child: Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    children: [
+                                                      MyText(
+                                                        cartPage.body.credit.data,
+                                                        // getTranslated(context, "earned credits")!,
+                                                        style: TextStyle(
+                                                            fontFamily: lng?.header1.textFamily,
+                                                            color: Color(int.parse(cartPage.body.credit.color)),
+                                                            fontSize: lng?.header1.size.toDouble()),),
+                                                      MyText(getTranslated(
+                                                          context, "total of credits")!,
+                                                        style: TextStyle(
+                                                            fontFamily: getTranslated(
+                                                                context, "fontFamilyBody"),
+                                                            color: Colors.amber,
+                                                            fontSize: 10),),
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
                                               const SizedBox(height: 10,),

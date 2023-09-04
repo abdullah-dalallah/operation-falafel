@@ -12,7 +12,7 @@ class SettingProvider with ChangeNotifier{
   Future<Response<dynamic>> getLanguages() async {
     print('\x1B[33mThird\x1B[0m');
     print("getting Languages from Online Server...");
-    var url = '${Strings.baseAppContactUsAddressUrl}languages';
+    var url = '${Strings.baseAppContactUsUrl}languages';
     print(url);
     Map<String, String> header = <String, String>{};
     header.putIfAbsent(Keys.acceptKey, () => "application/json");

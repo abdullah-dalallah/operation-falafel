@@ -134,6 +134,9 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
                Provider.of<ProfileProvider>(context,listen: false).getUserInfo(userToken, );
                Provider.of<ProfileProvider>(context,listen: false).getUserSavedAddress(userToken);
                Provider.of<LoyaltyProvider>(context, listen: false).getLoyaltyTotalPoint(userToken: userToken).then((value) {});
+               Provider.of<LoyaltyProvider>(context, listen: false).getLoyaltyPointRate(userToken: userToken).then((res) {
+
+               });
 
              });
            }
@@ -143,6 +146,9 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
              Provider.of<ProfileProvider>(context,listen: false).getUserInfo(loggedInUser.token!, );
              Provider.of<LoyaltyProvider>(context, listen: false).getLoyaltyTotalPoint(userToken: userToken).then((value) {});
              Provider.of<ProfileProvider>(context,listen: false).getUserSavedAddress(loggedInUser.token!);
+             Provider.of<LoyaltyProvider>(context, listen: false).getLoyaltyPointRate(userToken: loggedInUser.token!).then((res) {
+
+             });
            }
 
         }

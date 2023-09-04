@@ -47,7 +47,7 @@ class HomePageProvider with ChangeNotifier{
   Future<Response<dynamic>> getSocialMediaItems() async {
     print('\x1B[33mSecond\x1B[0m');
     print("getting social-media from Online Server...");
-    var url = '${Strings.baseAppContactUsAddressUrl}/social-media';
+    var url = '${Strings.baseAppContactUsUrl}/social-media';
     Map<String, String> header = <String, String>{};
     header.putIfAbsent(Keys.acceptKey, () => "application/json");
 
