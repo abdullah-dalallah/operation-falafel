@@ -511,7 +511,7 @@ final _shellNavigatorFKey = GlobalKey<NavigatorState>(debugLabel: 'shellF');
 
 
 
-
+final navigatorKey =GlobalKey<NavigatorState>();
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
@@ -534,8 +534,6 @@ Future<void> main() async {
   // });
 
 // turn off the # in the URLs on the web
-
-
 
 
   usePathUrlStrategy();
@@ -609,6 +607,7 @@ class _MyAppState extends State<MyApp> {
 
         ],
         child: MaterialApp(
+          navigatorKey: navigatorKey,
          // routes: {
          //   ResetYourPassword.routeName: (ctx) =>  ResetYourPassword(),
          //

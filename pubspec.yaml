@@ -29,6 +29,10 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  path_provider: ^2.1.1
+  firebase_messaging: ^14.6.7
+  firebase_core: ^2.15.1
+  flutter_local_notifications: ^15.1.1
   webview_flutter: ^4.2.1
   http: ^1.1.0
   mime: ^1.0.4
