@@ -1,6 +1,7 @@
 
 import 'dart:async';
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,6 +21,7 @@ import 'package:operation_falafel/widgets/address_list_sheet.dart';
 import 'package:operation_falafel/widgets/cart_gifts_widget.dart';
 import 'package:operation_falafel/widgets/checkbox_option.dart';
 import 'package:operation_falafel/widgets/credit_card_payment_method_checkbox.dart';
+import 'package:operation_falafel/widgets/delivery_pickup_custom_switch_widget.dart';
 import 'package:operation_falafel/widgets/drawer.dart';
 import 'package:operation_falafel/widgets/loading_page.dart';
 import 'package:operation_falafel/widgets/loading_widget.dart';
@@ -27,6 +29,7 @@ import 'package:operation_falafel/widgets/loyalty_payment_method_checkbox.dart';
 import 'package:operation_falafel/widgets/placing_order_model.dart';
 
 import 'package:operation_falafel/widgets/pluse_minus_widget.dart';
+import 'package:operation_falafel/widgets/schedule_widget.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
 import 'package:badges/badges.dart' as badges;
@@ -716,6 +719,227 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                       const SizedBox(height: 15,),
 
                                /// - New Changes
+
+                                      /// - Login messages
+                                      if(authProvider.loggedInUser==null)
+                                      Container(
+                                        height: 40,
+                                        padding: EdgeInsets.only(left: 8, right: 8),
+                                        color: Colors.amber,
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              // SequentialTextDisplay(
+                                              //   texts: _texts,
+                                              //   textAnimationDuration: Duration(milliseconds: 100), // Optional, set animation speed
+                                              // ),
+                                              Expanded(
+                                                flex:5,
+                                                child:  AnimatedTextKit(
+
+
+                                                    animatedTexts: _texts.map((e) =>  RotateAnimatedText(e,
+                                                      textStyle: TextStyle(
+                                                      color: Colors.black,
+                                                        // color:Color(int.parse(cartPage!.body.paymentMethods.creditCardPaymentMethodCheckBox!.selectedCard!.changeButton!.color),),
+                                                        fontFamily:lng!.header2.textFamily,
+                                                        fontWeight: FontWeight.bold,
+                                                    ),
+                                                     textAlign: TextAlign.left,
+                                                     duration: const Duration(milliseconds:2000),
+                                                      rotateOut: false,
+                                                      alignment: Alignment.centerLeft
+                                                    )).toList(),
+                                                    repeatForever: true,
+
+
+                                                  ),
+
+                                              ),
+
+                                              Expanded(
+                                                child: Visibility(
+                                                  visible: (authProvider.loggedInUser!=null)?false:true,
+                                                  child: SizedBox(
+                                                    height: 30,
+                                                    child: TextButton(
+                                                      style: TextButton.styleFrom(
+                                                        padding: EdgeInsets.all(0),
+                                                        foregroundColor: Colors.white,
+                                                      ),
+                                                      onPressed: () {
+                                                        Provider.of<TabIndexGenerator>(context, listen: false).setIndex(4);
+                                                      },
+                                                      child: MyText("Login", style: TextStyle(color:Colors.black,fontFamily:lng!.header2.textFamily),),
+
+
+
+
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          )
+                                      ),
+
+                                      /// - Address
+                                      Visibility(
+                                        visible: (cartPage.body.selectAddress.visibility=='true'),
+                                        child: Container(
+                                          color:Colors.black,
+                                          child: Column(
+                                            children: [
+                                              const SizedBox(height: 15,),
+                                              Align(
+                                                  alignment: Alignment.centerLeft,
+                                                  child: Padding(
+                                                    padding: const EdgeInsets.only(left: 18.0, right: 18),
+                                                    child: Row(
+                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                      children: [
+                                                        MyText(
+                                                          cartPage.body.selectAddress.title.data,
+                                                          // getTranslated(context, "address")!,
+                                                          style: TextStyle(
+                                                            // color: Colors.amber,
+                                                              color: Color(int.parse(cartPage.body.selectAddress.title.color)),
+                                                              fontSize: lng?.titleHeader1.size.toDouble(),
+                                                              fontFamily:lng?.titleHeader1.textFamily
+                                                            // fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!),
+                                                          )
+                                                          // fontFamily: getTranslated(context, "fontFamilyButtons")!)
+                                                          ,),
+                                                      ],
+                                                    ),
+                                                  )),
+
+                                              const SizedBox(height: 10,),
+                                              Padding(
+                                                padding: const EdgeInsets.only(left: 18.0, right: 18),
+                                                child: Container(
+                                                    decoration:  BoxDecoration(
+                                                      color:
+                                                      Colors.grey.shade100.withOpacity(0.2),
+                                                      // Color(int.parse(cartPage.body.selectAddress.backGroundColor)),
+                                                      borderRadius:const BorderRadius.only(
+                                                        topRight: Radius.circular(10),
+                                                        bottomLeft: Radius.circular(10),
+                                                        topLeft: Radius.circular(10),
+                                                        bottomRight: Radius.circular(10),
+                                                      ),
+                                                      // border: Border.all(
+                                                      //   width: 0.5,
+                                                      //   color: Colors.white,
+                                                      //   style: BorderStyle.solid,
+                                                      // ),
+                                                    ),
+                                                    // padding: EdgeInsets.all(18),
+                                                    child: ListTile(
+                                                      // contentPadding: EdgeInsets.only(),
+                                                      onTap: () {
+
+                                                      },
+                                                      title: Row(
+                                                        children: [
+                                                          Image.network("${cartPage.body.selectAddress.icon.imageIcon}", scale: 3,height: 17,),
+                                                          const SizedBox(width: 8,),
+                                                          MyText(
+                                                            "Delivering to",
+                                                            // getTranslated(context, "pleaseSelectAddress")!,
+                                                            style: TextStyle(
+                                                                color:
+                                                                 Colors.white54,
+                                                                // Color(int.parse(cartPage.body.selectAddress.hintText.color)),
+                                                                fontWeight: FontWeight.w300,
+                                                                fontFamily: lng?.header3.textFamily
+                                                              // fontFamily: getTranslated(context, "cartpageHeader2")
+                                                            ),),
+                                                          // MyText(
+                                                          //   cartPage.body.selectAddress.hintText.data,
+                                                          //   // getTranslated(context, "pleaseSelectAddress")!,
+                                                          //   style: TextStyle(
+                                                          //       color: Color(int.parse(cartPage.body.selectAddress.hintText.color)),
+                                                          //       fontWeight: FontWeight.w300,
+                                                          //       fontFamily: lng?.header3.textFamily
+                                                          //     // fontFamily: getTranslated(context, "cartpageHeader2")
+                                                          //   ),),
+                                                        ],
+                                                      ),
+
+                                                      subtitle: MyText(
+                                                        // "United Arab Emirates - Dubai - Silicon Oasis Binghatti Point - 910 ",
+
+
+                                                        cartPage.body.selectAddress.hintText.data,
+                                                        // getTranslated(context, "pleaseSelectAddress")!,
+                                                        style: TextStyle(
+                                                            fontSize:  lng?.header2.size.toDouble(),
+                                                            color:
+                                                            Colors.white38,
+                                                            // Color(int.parse(cartPage.body.selectAddress.hintText.color)),
+                                                            fontWeight: FontWeight.w300,
+                                                            fontFamily: lng?.header3.textFamily,
+
+                                                          // fontFamily: getTranslated(context, "cartpageHeader2")
+                                                        ),maxLines: 1,overflow: TextOverflow.ellipsis,),
+                                                      trailing: (authProvider.loggedInUser!=null)?SizedBox(
+                                                          height: 30,
+                                                          child: TextButton(
+                                                            
+                                                            style: TextButton.styleFrom(
+                                                              padding: const EdgeInsets.all(0),
+                                                              backgroundColor: Colors.transparent,
+                                                              // foregroundColor: Colors.white,
+                                                            ),
+                                                            onPressed: () {
+
+                                                              if(authProvider.loggedInUser!=null){
+                                                                showModalBottomSheet(
+                                                                    useSafeArea: true,
+                                                                    isScrollControlled: true,
+                                                                    context: context,
+                                                                    backgroundColor: Colors.transparent,
+                                                                    builder: (context) =>
+                                                                        DraggableScrollableSheet(
+                                                                            initialChildSize: 0.5,
+                                                                            minChildSize: 0.5,
+                                                                            maxChildSize: 1,
+                                                                            expand: true,
+                                                                            builder: (context, scrollController) {
+                                                                              return AddressListSheet(
+                                                                                  scrollController);
+                                                                            }
+
+                                                                        )
+                                                                );
+                                                              }
+                                                              else{
+                                                                Provider.of<TabIndexGenerator>(context, listen: false).setIndex(4);
+                                                              }
+
+                                                            },
+                                                            child:
+                                                            MyText("Change", style: TextStyle(color:Color(int.parse(cartPage!.body.paymentMethods.creditCardPaymentMethodCheckBox!.selectedCard!.changeButton!.color),),fontFamily:lng!.header2.textFamily),)
+
+
+
+
+
+                                                          ),
+                                                        ):null,
+
+                                                      // leading:
+
+                                                      // leading: Image.asset("assets/images/icon_location_address.png", scale: 3,),
+                                                    )
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+
                                       /// - Payment
                                       Container(
                                         color: Colors.black,
@@ -739,25 +963,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                         fontSize: lng?.titleHeader1.size.toDouble()
                                                       // fontFamily: getTranslated(context, "cartpageHeader2")
                                                     ),),
-                                                  Visibility(
-                                                    visible: (authProvider.loggedInUser!=null)?false:true,
-                                                    child: SizedBox(
-                                                      height: 30,
-                                                      child: TextButton(
-                                                        style: TextButton.styleFrom(
-                                                          foregroundColor: Colors.white,
-                                                        ),
-                                                        onPressed: () {
-                                                          Provider.of<TabIndexGenerator>(context, listen: false).setIndex(4);
-                                                        },
-                                                        child: MyText("Login", style: TextStyle(color:Color(int.parse(cartPage!.body.paymentMethods.creditCardPaymentMethodCheckBox!.selectedCard!.changeButton!.color),),fontFamily:lng!.header2.textFamily),),
 
-
-
-
-                                                      ),
-                                                    ),
-                                                  ),
                                                 ],
                                               ),
 
@@ -767,6 +973,12 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                               //       color: Colors.amber,
                                               //       fontSize: double.parse(getTranslated(context, "fontFamilyButtonsSize")!)),),
                                             )),
+
+
+
+
+
+
 
                                             Visibility(
                                               visible: (authProvider.loggedInUser!=null)?true:false,
@@ -996,7 +1208,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                       ),
                                                       children: [
                                                         TextSpan(
-                                                          text: ' AED ${(demoCartProvider.Details.Total-(SliderProvider.selectedPoint/loyaltyPointRate)).toStringAsFixed(1)}',
+                                                          text: ' AED ${(authProvider.loggedInUser!=null)?(demoCartProvider.Details.Total-(SliderProvider.selectedPoint/loyaltyPointRate)).toStringAsFixed(1):demoCartProvider.Details.Total}',
                                                           style: TextStyle(
                                                               fontWeight: FontWeight.w300,
                                                               color: Color(int.parse(cartPage.body.total.price.color))
@@ -1043,7 +1255,8 @@ class _Cart_ScreenState extends State<Cart_Screen> {
 
                                       /// - Address
                                       Visibility(
-                                        visible: (cartPage.body.selectAddress.visibility=='true'),
+                                        visible: false,
+                                        // (cartPage.body.selectAddress.visibility=='true'),
                                         child: Column(
                                           children: [
                                             const SizedBox(height: 20,),
@@ -1232,9 +1445,11 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                           ],
                                         ),
                                       ),
+                                      // const SizedBox(height: 50,),
+                                      ScheduleWidget(),
+
+
                                       const SizedBox(height: 50,),
-
-
                                     ],
                                   ),
 
@@ -1464,7 +1679,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
 
 
 
-
+  bool switchValue = false;
 
 
 
@@ -1555,6 +1770,17 @@ class _Cart_ScreenState extends State<Cart_Screen> {
     // if (!mounted) return;
     // Navigator.of(context).pop();
   }
+
+
+
+  List<String> _texts = [
+    'Don\'t miss out – log in or sign up for full access!',
+    'Unlock quick and easy ordering – log in now!',
+    'Ready to feast? Log in for address and payments.',
+    'Save time and log in – your details await!',
+    'Join us for ordering – log in or sign up today.'
+  ];
+  int _currentIndex = 0;
 
 
 }

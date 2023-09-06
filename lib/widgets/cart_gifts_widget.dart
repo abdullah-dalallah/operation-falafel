@@ -37,7 +37,7 @@ class _CartGiftsWidgetState extends State<CartGiftsWidget> {
       bool loadingDesign = loyaltyMyGiftsPage != null;
       bool giftsListEmpty = loyaltyProvider.gifts == null;
      return Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.all(17.0),
         child: InputDecorator(
 
           decoration: InputDecoration(

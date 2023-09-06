@@ -118,6 +118,7 @@ class _LoyaltyPaymentMethodCheckboxState extends State<LoyaltyPaymentMethodCheck
 
           ],
         ),
+
         children: [
 
           Container(
@@ -194,7 +195,7 @@ class _LoyaltyPaymentMethodCheckboxState extends State<LoyaltyPaymentMethodCheck
                 // ),
 
                 Padding(
-                  padding: const EdgeInsets.all(12),
+                  padding: const EdgeInsets.only(left: 17,right: 17),
                   child: Container(
                     decoration:  BoxDecoration(
                       color: Colors.black87,
