@@ -9,6 +9,7 @@
   "cartpageHeader2": 20,
   "cartpageHeader2SubTotal": 15,
   "cartpageHeader3": 13,
+  "cartpageHeader3": 13,
 
 
   "enterOfTitleSize": 100,
@@ -66,7 +67,8 @@
   "totalAfterPromoCode": "TOTAL AFTER PROMO CODE",
   "delivery fee": "DELIVERY FEE",
   "total": "TOTAL",
-  "total of credits": "TOTAL OF CREDITS 0.00 CREDITS",
+  "total of credits": "TOTAL OF CREDITS",
+  "total  credits": "0.00 CREDITS",
   "earned credits": "YOU EARNED 2.10 CREDITS",
   "pleaseSelectAddress":"Please Select Address",
   "payment": "PEYMENT",

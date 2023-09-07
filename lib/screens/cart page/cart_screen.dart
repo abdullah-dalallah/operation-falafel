@@ -29,6 +29,7 @@ import 'package:operation_falafel/widgets/loyalty_payment_method_checkbox.dart';
 import 'package:operation_falafel/widgets/placing_order_model.dart';
 
 import 'package:operation_falafel/widgets/pluse_minus_widget.dart';
+import 'package:operation_falafel/widgets/schedule_checkbox.dart';
 import 'package:operation_falafel/widgets/schedule_widget.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
@@ -1224,19 +1225,26 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                               Padding(
                                                 padding: const EdgeInsets.only(left: 8.0, right: 8, top: 15),
                                                 child: Container(
-                                                  color:Colors.green,
+                                                  color:Colors.transparent,
                                                   child: Row(
                                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                     children: [
-                                                      MyText(
-                                                        cartPage.body.credit.data,
-                                                        // getTranslated(context, "earned credits")!,
-                                                        style: TextStyle(
-                                                            fontFamily: lng?.header1.textFamily,
-                                                            color: Color(int.parse(cartPage.body.credit.color)),
-                                                            fontSize: lng?.header1.size.toDouble()),),
+                                                      // MyText(
+                                                      //   cartPage.body.credit.data,
+                                                      //   // getTranslated(context, "earned credits")!,
+                                                      //   style: TextStyle(
+                                                      //       fontFamily: lng?.header1.textFamily,
+                                                      //       color: Color(int.parse(cartPage.body.credit.color)),
+                                                      //       fontSize: lng?.header1.size.toDouble()),),
                                                       MyText(getTranslated(
                                                           context, "total of credits")!,
+                                                        style: TextStyle(
+                                                            fontFamily: getTranslated(
+                                                                context, "fontFamilyBody"),
+                                                            color: Colors.amber,
+                                                            fontSize: 10),),
+                                                      MyText(getTranslated(
+                                                          context, "total  credits")!,
                                                         style: TextStyle(
                                                             fontFamily: getTranslated(
                                                                 context, "fontFamilyBody"),
@@ -1247,6 +1255,16 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                 ),
                                               ),
                                               const SizedBox(height: 10,),
+                                              ScheduleCheckbox(
+                                                onChanged: _scheduleChangedHandler(),
+                                                text: "Schedule",
+                                                value: scheduleCheckboxValue,
+                                                colorOfBox: Colors.white,
+                                                colorOfText: Colors.white54,
+                                                fontFamily: "Raleway-Regular",
+
+                                              )
+
                                             ],
                                           )
                                       ),
@@ -1410,43 +1428,51 @@ class _Cart_ScreenState extends State<Cart_Screen> {
 
 
                                       /// - checkbox
-                                      const SizedBox(height: 15,),
-                                      MyText(getTranslated(context, "optional")!, style: TextStyle(fontFamily: "${getTranslated(
-                                            context, "fontFamilyBody")!}",
-                                            color: Colors.amber,
-                                            fontSize: double.parse(getTranslated(
-                                                context, "cartpageHeader2")!)),),
-                                      Padding(
-                                        padding: const EdgeInsets.all(18.0),
+
+                                      Visibility(
+                                        visible: false,
                                         child: Column(
                                           children: [
-                                            CheckboxOption(
-                                              value: checkboxBool,
-                                              onChanged: _valueChangedHandler(),
-                                              label: '1',
-                                              text: 'SCHEDULE PICKUP',
-                                              addOnFlag: false,
-                                              colorOfBox: Colors.white,
-                                              colorOfText: Colors.white,
+                                            const SizedBox(height: 15,),
+                                            MyText(getTranslated(context, "optional")!, style: TextStyle(fontFamily: "${getTranslated(
+                                                  context, "fontFamilyBody")!}",
+                                                  color: Colors.amber,
+                                                  fontSize: double.parse(getTranslated(
+                                                      context, "cartpageHeader2")!)),),
+                                            Padding(
+                                              padding: const EdgeInsets.all(18.0),
+                                              child: Column(
+                                                children: [
+                                                  CheckboxOption(
+                                                    value: checkboxBool,
+                                                    onChanged: _valueChangedHandler(),
+                                                    label: '1',
+                                                    text: 'SCHEDULE PICKUP',
+                                                    addOnFlag: false,
+                                                    colorOfBox: Colors.white,
+                                                    colorOfText: Colors.white,
+                                                  ),
+
+
+                                                  CheckboxOption(
+                                                    value: checkboxBool,
+                                                    onChanged: _valueChangedHandler(),
+                                                    label: '1',
+                                                    text: 'SCHEDULE DELIVERY',
+                                                    addOnFlag: false,
+                                                    colorOfBox: Colors.white,
+                                                    colorOfText: Colors.white,
+                                                  ),
+
+
+                                                ],
+                                              ),
                                             ),
-
-
-                                            CheckboxOption(
-                                              value: checkboxBool,
-                                              onChanged: _valueChangedHandler(),
-                                              label: '1',
-                                              text: 'SCHEDULE DELIVERY',
-                                              addOnFlag: false,
-                                              colorOfBox: Colors.white,
-                                              colorOfText: Colors.white,
-                                            ),
-
-
                                           ],
                                         ),
                                       ),
-                                      // const SizedBox(height: 50,),
-                                      ScheduleWidget(),
+
+
 
 
                                       const SizedBox(height: 50,),
@@ -1710,6 +1736,20 @@ class _Cart_ScreenState extends State<Cart_Screen> {
 
     });
   }
+
+  bool scheduleCheckboxValue = false;
+  ValueChanged _scheduleChangedHandler() {
+    return (value) => setState(() {
+      // print(value);
+      // if(value==true)
+      //   creditCardCheckboxValue = false;
+      // else
+      scheduleCheckboxValue =value;
+      print(value);
+
+    });
+  }
+
   /// - Code changes - Payment mehtod
 
 

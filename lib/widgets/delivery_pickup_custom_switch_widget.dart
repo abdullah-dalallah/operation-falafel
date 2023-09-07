@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:operation_falafel/data/my_text.dart';
 
 class DeliveryPickupCustomSwitchWidget extends StatefulWidget {
-  const DeliveryPickupCustomSwitchWidget({super.key});
+  final ValueChanged onChanged;
+  const DeliveryPickupCustomSwitchWidget({required this.onChanged,super.key});
 
   @override
   State<DeliveryPickupCustomSwitchWidget> createState() => _DeliveryPickupCustomSwitchWidgetState();
@@ -41,6 +42,7 @@ class _DeliveryPickupCustomSwitchWidgetState extends State<DeliveryPickupCustomS
                    onPressed: () {
                      setState(() {
                        scheduleValue = "Delivery";
+                       widget.onChanged("Delivery");
                      });
 
                    },
@@ -64,7 +66,7 @@ class _DeliveryPickupCustomSwitchWidgetState extends State<DeliveryPickupCustomS
                        Icon(Icons.delivery_dining,color: (scheduleValue == "Delivery")?Colors.white:Colors.black,size: 15,),
                        SizedBox(width: 10,),
                        MyText(
-                         "Delivery",
+                         "Delivery",style: TextStyle(fontFamily: "Raleway-Regular"),
                          // getTranslated(context, "bringItOn")!,
                          // style: TextStyle(
                          //     fontFamily: "${lng?.titleHeader1.textFamily}",
@@ -90,6 +92,7 @@ class _DeliveryPickupCustomSwitchWidgetState extends State<DeliveryPickupCustomS
                    onPressed: () {
                      setState(() {
                        scheduleValue = "Pickup";
+                       widget.onChanged("Pickup");
                      });
                    },
                    style: ButtonStyle(
@@ -114,7 +117,7 @@ class _DeliveryPickupCustomSwitchWidgetState extends State<DeliveryPickupCustomS
                        SizedBox(width: 10,),
 
                        MyText(
-                         "Pickup",
+                         "Pickup",style: TextStyle(fontFamily: "Raleway-Regular"),
                          // getTranslated(context, "bringItOn")!,
                          // style: TextStyle(
                          //     fontFamily: "${lng?.titleHeader1.textFamily}",
