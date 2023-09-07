@@ -2,14 +2,24 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:operation_falafel/data/my_text.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
+import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
+import 'package:operation_falafel/providers/ProfileProviders/profile_provider.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:provider/provider.dart';
 
+import '../screens/profile/profile_pages/add_new_address.dart';
 import 'Saved_address/saved_address_list_sheet.dart';
 
-class AddressListSheet extends StatelessWidget{
+class AddressListSheet extends StatefulWidget{
   ScrollController scrollController;
 
   AddressListSheet(this.scrollController,{super.key});
 
+  @override
+  State<AddressListSheet> createState() => _AddressListSheetState();
+}
+
+class _AddressListSheetState extends State<AddressListSheet> {
   @override
   Widget build(BuildContext context) {
    return Container(
@@ -49,24 +59,40 @@ class AddressListSheet extends StatelessWidget{
            ),
          ),
          /// - Add address title
-         SizedBox(
-           width: double.maxFinite,
-           child: DecoratedBox(
+         Padding(
+           padding: const EdgeInsets.all(8.0),
+           child: SizedBox(
+             width: double.maxFinite,
+             child: DecoratedBox(
 
-             decoration:const BoxDecoration(
-               border: Border(
-                 bottom: BorderSide(color: Colors.white),
+               decoration:const BoxDecoration(
+                 border: Border(
+                   bottom: BorderSide(color: Colors.white),
+                 ),
                ),
-             ),
-             child: TextButton(
-               style: TextButton.styleFrom(
-                 foregroundColor: Colors.white,
-               ),
-               onPressed: () { },
-               child: Row(
-                 children: [
-                   MyText(getTranslated(context, "addAddress")!,style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400, fontFamily:  getTranslated(context, "fontFamilyBody")!,),),
-                 ],
+               child: TextButton(
+                 style: TextButton.styleFrom(
+                   foregroundColor: Colors.white,
+                 ),
+                 onPressed: () {
+
+                   PersistentNavBarNavigator.pushNewScreen(
+                     context,
+                     screen: AddNewAddress(),
+                     withNavBar: true,
+                     // OPTIONAL VALUE. True by default.
+                     pageTransitionAnimation: PageTransitionAnimation
+                         .cupertino,
+                   );
+
+                 },
+                 child: Row(
+                   mainAxisAlignment: MainAxisAlignment.end,
+                   children: [
+                     Icon(Icons.add),
+                     MyText(getTranslated(context, "addAddress")!,style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400, fontFamily:  getTranslated(context, "fontFamilyBody")!,),),
+                   ],
+                 ),
                ),
              ),
            ),
@@ -78,7 +104,7 @@ class AddressListSheet extends StatelessWidget{
            child: MyText( getTranslated(context, "savedAddress")!, style: TextStyle(color: Colors.amber,fontSize: 15, fontWeight: FontWeight.w300,fontFamily:  getTranslated(context, "fontFamilyBody")!),),
          ),
 
-          SavedAddressListSheet(scrollController: scrollController),
+          SavedAddressListSheet(scrollController: widget.scrollController),
 
 
          //  Expanded(
@@ -433,4 +459,11 @@ class AddressListSheet extends StatelessWidget{
 
   }
 
+  @override
+  void initState() {
+    var authProvider = Provider.of<AuthProvider>(context,listen: false);
+    String token =authProvider.loggedInUser?.token??"";
+
+    Provider.of<ProfileProvider>(context,listen: false).getUserSavedAddress(token);
+  }
 }

@@ -9,7 +9,7 @@ part of 'saved_address_list_res_model.dart';
 SavedAddressList _$SavedAddressListFromJson(Map<String, dynamic> json) =>
     SavedAddressList(
       success: json['success'] as bool?,
-      savedAddressItem: (json['savedAddressItem'] as List<dynamic>?)
+      savedAddressItems: (json['savedAddressItem'] as List<dynamic>?)
           ?.map((e) => SavedAddressItem.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -17,5 +17,5 @@ SavedAddressList _$SavedAddressListFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$SavedAddressListToJson(SavedAddressList instance) =>
     <String, dynamic>{
       'success': instance.success,
-      'savedAddressItem': instance.savedAddressItem,
+      'savedAddressItem': instance.savedAddressItems,
     };

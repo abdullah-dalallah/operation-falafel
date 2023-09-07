@@ -14,20 +14,20 @@ String savedAddressListToJson(SavedAddressList data) => json.encode(data.toJson(
 class SavedAddressList {
   SavedAddressList({
     this.success,
-    this.savedAddressItem,
+    this.savedAddressItems,
   });
 
   bool? success;
-  List<SavedAddressItem>? savedAddressItem;
+  List<SavedAddressItem>? savedAddressItems;
 
   factory SavedAddressList.fromJson(Map<String, dynamic> json) => SavedAddressList(
     success: json["success"],
-    savedAddressItem: json["body"] == null ? [] : List<SavedAddressItem>.from(json["body"]!.map((x) => SavedAddressItem.fromJson(x))),
+    savedAddressItems: json["body"] == null ? [] : List<SavedAddressItem>.from(json["body"]!.map((x) => SavedAddressItem.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
     "success": success,
-    "body": savedAddressItem == null ? [] : List<dynamic>.from(savedAddressItem!.map((x) => x.toJson())),
+    "body": savedAddressItems == null ? [] : List<dynamic>.from(savedAddressItems!.map((x) => x.toJson())),
   };
 }
 

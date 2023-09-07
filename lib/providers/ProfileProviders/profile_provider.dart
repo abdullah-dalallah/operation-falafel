@@ -45,7 +45,7 @@ class ProfileProvider with ChangeNotifier {
         if(response.data[Keys.successKey]!=null){
           _savedAddressList =   SavedAddressList(
             success: SavedAddressList.fromJson(response.data).success,
-            savedAddressItem: SavedAddressList.fromJson(response.data).savedAddressItem,
+            savedAddressItems: SavedAddressList.fromJson(response.data).savedAddressItems,
           );
 
           notifyListeners();
@@ -104,6 +104,20 @@ class ProfileProvider with ChangeNotifier {
       return e.response!;
 
     }
+  }
+
+  SavedAddressItem? _selectedAddress ;
+  SavedAddressItem? get selectedAddress => _selectedAddress;
+
+  /// Select Address
+  Future<void> selectAddress (SavedAddressItem addressValue) async{
+    _selectedAddress = addressValue;
+    notifyListeners();
+  }
+  /// - Reset selected Address
+  Future<void> resetSelectAddress () async{
+    _selectedAddress = null;
+    notifyListeners();
   }
 
   /// - Get Address Types List

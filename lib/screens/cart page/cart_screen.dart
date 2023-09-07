@@ -11,6 +11,7 @@ import 'package:operation_falafel/data/network_constants.dart';
 import 'package:operation_falafel/localization/localization_constants.dart';
 import 'package:operation_falafel/providers/AuthProvider/auth_provider.dart';
 import 'package:operation_falafel/providers/NetworkPaymentProvider/network_two_stage_payment_provider.dart';
+import 'package:operation_falafel/providers/ProfileProviders/profile_provider.dart';
 import 'package:operation_falafel/providers/demo_cart/demo_cart_provider.dart';
 import 'package:operation_falafel/providers/gifts_provider/loyalty_provider.dart';
 import 'package:operation_falafel/providers/palcing_order_model_provider.dart';
@@ -83,8 +84,8 @@ class _Cart_ScreenState extends State<Cart_Screen> {
        //   width: MediaQuery.of(context).size.width,
        //   fit: BoxFit.cover,
        // ),
-        Consumer5<ThemeProvider,DemoCartProvider,SliderProvider, AuthProvider,LoyaltyProvider>(
-                  builder: (context, appTheme,demoCartProvider,SliderProvider,authProvider,loyaltyProvider, child)
+        Consumer6<ThemeProvider,DemoCartProvider,SliderProvider, AuthProvider,LoyaltyProvider, ProfileProvider>(
+                  builder: (context, appTheme,demoCartProvider,SliderProvider,authProvider,loyaltyProvider,profileProvider, child)
                   {
                     bool cartEmpty = demoCartProvider.cartItems.isEmpty;
 
@@ -837,7 +838,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                     ),
                                                     // padding: EdgeInsets.all(18),
                                                     child: ListTile(
-                                                      // contentPadding: EdgeInsets.only(),
+                                                      contentPadding:   (profileProvider.selectedAddress!=null)?EdgeInsets.only(top: 8, left: 18, right: 18,bottom: 8):EdgeInsets.only(left: 18, right: 18),
                                                       onTap: () {
 
                                                       },
@@ -867,23 +868,28 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                                           //   ),),
                                                         ],
                                                       ),
+                                                     dense: false,
+                                                      subtitle: Padding(
+                                                        padding: const EdgeInsets.only(top:5.0),
+                                                        child: MyText(
+                                                          // "United Arab Emirates - Dubai - Silicon Oasis Binghatti Point - 910 ",
+                                                             "${
+                                                                 (profileProvider.selectedAddress!=null)?
+                                                                 profileProvider.selectedAddress!.name:
+                                                                 cartPage.body.selectAddress.hintText.data
+                                                             }",
+                                                          // getTranslated(context, "pleaseSelectAddress")!,
+                                                          style: TextStyle(
+                                                              fontSize:  lng?.header2.size.toDouble(),
+                                                              color:
+                                                              Colors.white38,
+                                                              // Color(int.parse(cartPage.body.selectAddress.hintText.color)),
+                                                              fontWeight: FontWeight.w300,
+                                                              fontFamily: lng?.header3.textFamily,
 
-                                                      subtitle: MyText(
-                                                        // "United Arab Emirates - Dubai - Silicon Oasis Binghatti Point - 910 ",
-
-
-                                                        cartPage.body.selectAddress.hintText.data,
-                                                        // getTranslated(context, "pleaseSelectAddress")!,
-                                                        style: TextStyle(
-                                                            fontSize:  lng?.header2.size.toDouble(),
-                                                            color:
-                                                            Colors.white38,
-                                                            // Color(int.parse(cartPage.body.selectAddress.hintText.color)),
-                                                            fontWeight: FontWeight.w300,
-                                                            fontFamily: lng?.header3.textFamily,
-
-                                                          // fontFamily: getTranslated(context, "cartpageHeader2")
-                                                        ),maxLines: 1,overflow: TextOverflow.ellipsis,),
+                                                            // fontFamily: getTranslated(context, "cartpageHeader2")
+                                                          ),maxLines: 2,overflow: TextOverflow.ellipsis,),
+                                                      ),
                                                       trailing: (authProvider.loggedInUser!=null)?SizedBox(
                                                           height: 30,
                                                           child: TextButton(
@@ -1170,7 +1176,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                         ),
                                       ),
 
-                                      /// - Total & credit calculation
+                                      /// - Total & credit calculation & Schedule
                                       Container(
                                           decoration: const BoxDecoration(
                                             color: Colors.black,

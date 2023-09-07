@@ -87,7 +87,7 @@ class _ScheduleCheckboxState extends State<ScheduleCheckbox> {
   void _scrollToSelectedContent({required GlobalKey expansionTileKey}) {
     final keyContext = expansionTileKey.currentContext;
     if (keyContext != null) {
-      Future.delayed(Duration(milliseconds: 200)).then((value) {
+      Future.delayed(Duration(milliseconds: 500)).then((value) {
         Scrollable.ensureVisible(keyContext,
             duration: Duration(milliseconds: 200));
       });
@@ -100,11 +100,13 @@ class _ScheduleCheckboxState extends State<ScheduleCheckbox> {
       child: ExpansionTile(
         key: expansionTileKey,
         onExpansionChanged: (expansionValue) {
-          if (expansionValue) {
-            _scrollToSelectedContent(expansionTileKey: expansionTileKey);
-          }
+
           print(expansionValue);
           widget.onChanged(expansionValue);
+          if (expansionValue) {
+            print("scrolling up");
+            _scrollToSelectedContent(expansionTileKey: expansionTileKey);
+          }
         },
         iconColor: Colors.white,
         title: Row(

@@ -91,7 +91,7 @@ class _SavedAddressListWidgetState extends State<SavedAddressListWidget> {
                                         String token =authProvider.loggedInUser?.token??"";
                                         Provider.of<ProfileProvider>(context,listen: false).deleteAddress(userToken: token,addressId: savedAddressItem.id! ).then((res) {
                                           if(res.statusCode==200){
-                                            Provider.of<ProfileProvider>(context,listen: false).savedAddressList.savedAddressItem?.remove(savedAddressItem);
+                                            Provider.of<ProfileProvider>(context,listen: false).savedAddressList.savedAddressItems?.remove(savedAddressItem);
                                           }else{
                                             SnackbarGenerator(context).snackBarGeneratorToast("User address delete Failed!",);
                                           }
@@ -219,7 +219,7 @@ class _SavedAddressListWidgetState extends State<SavedAddressListWidget> {
           child: Padding(
             padding: const EdgeInsets.only(left: 50.0, right: 50),
             child: ListView.builder(
-              itemCount: profileProvider.savedAddressList.savedAddressItem?.length,
+              itemCount: profileProvider.savedAddressList.savedAddressItems?.length,
               // physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return Container(
@@ -245,7 +245,7 @@ class _SavedAddressListWidgetState extends State<SavedAddressListWidget> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             /// - Address title
-                            MyText("${profileProvider.savedAddressList.savedAddressItem![index].area} - ${profileProvider.savedAddressList.savedAddressItem![index].name}",
+                            MyText("${profileProvider.savedAddressList.savedAddressItems![index].area} - ${profileProvider.savedAddressList.savedAddressItems![index].name}",
                               style:TextStyle(
                                   fontFamily: widget.lng?.header3.textFamily,
                                   color: Color(int.parse(widget.savedAddressPage?.body.addressList.title.color as String)),
@@ -255,7 +255,7 @@ class _SavedAddressListWidgetState extends State<SavedAddressListWidget> {
                               overflow: TextOverflow.ellipsis,
                             ),
                             /// - Address Sub Title
-                            MyText("${profileProvider.savedAddressList.savedAddressItem![index].building}",
+                            MyText("${profileProvider.savedAddressList.savedAddressItems![index].building}",
                               style: TextStyle(
                                   fontFamily: widget.lng?.header3.textFamily,
                                   color: Color(int.parse(widget.savedAddressPage?.body.addressList.subTitle.color as String)),
@@ -283,7 +283,7 @@ class _SavedAddressListWidgetState extends State<SavedAddressListWidget> {
 
                                     PersistentNavBarNavigator.pushNewScreen(
                                       context,
-                                      screen: UpdateAddress(savedAddressItem:profileProvider.savedAddressList.savedAddressItem![index] ),
+                                      screen: UpdateAddress(savedAddressItem:profileProvider.savedAddressList.savedAddressItems![index] ),
                                       withNavBar: true,
                                       // OPTIONAL VALUE. True by default.
                                       pageTransitionAnimation: PageTransitionAnimation
@@ -317,7 +317,7 @@ class _SavedAddressListWidgetState extends State<SavedAddressListWidget> {
                             IconButton(
                                 onPressed: () {
 
-                                  showDeleteAddressDialog( context, widget!.savedAddressPage! , widget.lng!, profileProvider.savedAddressList.savedAddressItem![index]);
+                                  showDeleteAddressDialog( context, widget!.savedAddressPage! , widget.lng!, profileProvider.savedAddressList.savedAddressItems![index]);
                                   
                                   
                                 
